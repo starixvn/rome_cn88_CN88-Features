@@ -14,8 +14,8 @@
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
+    using Features.Shared.Configurations;
     using ONEbook.UM.Filters;
-    using Shared.Configurations;
     using Sunplus.Agent.Model.Entities;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 

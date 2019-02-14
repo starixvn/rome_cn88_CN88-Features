@@ -1,9 +1,16 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Fanex.Data.Repository;
+    using Fanex.RemotingRef;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
     using global::CN88.Features.Models;
+    using global::CN88.Features.Reports.Services;
+    using global::CN88.Features.Shared.Services;
     using global::CN88.Features.Site.Controllers;
     using global::CN88.Features.Site.Models;
     using MediatR;
@@ -12,10 +19,6 @@
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
@@ -73,8 +76,23 @@
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.RegisterSingleton<IUser, User>();
+            container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
+            container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
 
-            container.RegisterPerWebRequest<CustomerListService, CustomerListServiceImpl>();
+            container.Register<SportService>(
+                () => new SportServiceImpl(
+                    container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<CacheRefService>().GetSportName),
+                Lifestyle.Singleton);
+            container.Register<BettypeService>(
+                () => new BettypeServiceImpl(
+                    container.GetInstance<IDynamicRepository>(),
+                    container.GetInstance<CacheRefService>().GetBetTypeName),
+                Lifestyle.Singleton);
+
+            container.RegisterSingleton<CustomerListService, CustomerListServiceImpl>();
+
+            container.RegisterSingleton<ReportService, ReportServiceImpl>();
         }
     }
 }

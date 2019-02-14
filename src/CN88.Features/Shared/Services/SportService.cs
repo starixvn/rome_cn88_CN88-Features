@@ -18,22 +18,19 @@
     {
         private const string SportsCacheKey = "CN88.Features.Shared.Services.SportServiceImpl.Sports";
 
-        private readonly CacheService cacheService;
         private readonly IDynamicRepository dynamicRepository;
         private readonly Func<int, string> getSportDisplayName;
 
         public SportServiceImpl(
-            CacheService cacheService,
             IDynamicRepository dynamicRepository,
             Func<int, string> getSportDisplayName)
         {
-            this.cacheService = cacheService;
             this.dynamicRepository = dynamicRepository;
             this.getSportDisplayName = getSportDisplayName;
         }
 
         public async Task<IEnumerable<Sport>> GetSports()
-            => await cacheService.GetOrSetAsync(
+            => await ConfiguredCacheService.GetOrSetAsync(
                 SportsCacheKey,
                 () =>
                 {

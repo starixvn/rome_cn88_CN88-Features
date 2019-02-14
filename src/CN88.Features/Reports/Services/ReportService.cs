@@ -12,6 +12,8 @@ namespace CN88.Features.Reports.Services
         Task<IEnumerable<ReportModel>> GetWagerReport(ReportParam param);
 
         Task<IEnumerable<ReportModel>> GetLegacyreport(ReportParam param);
+
+        Task<IEnumerable<AccountingPeriod>> GetAccountingPeriods();
     }
 
     public class ReportServiceImpl : ReportService
@@ -40,5 +42,8 @@ namespace CN88.Features.Reports.Services
                     param.ToDate,
                     param.SportTypeId,
                     param.BetTypeId));
+
+        public async Task<IEnumerable<AccountingPeriod>> GetAccountingPeriods()
+            => await dynamicRepository.FetchAsync<AccountingPeriod>(new GetAccountingPeriodsCriteria());
     }
 }

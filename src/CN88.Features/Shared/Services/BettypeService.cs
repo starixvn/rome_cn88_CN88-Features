@@ -11,29 +11,26 @@
 
     public interface BettypeService
     {
-        Task<IEnumerable<BetType>> GetBetTypesBySport(int sportTypeId);
+        Task<IEnumerable<BetType>> GetBetTypesBySport(int sportTypeId = 0);
     }
 
     public class BettypeServiceImpl : BettypeService
     {
         private const string BetTypesCacheKey = "CN88.Features.Shared.Services.Bettypes";
 
-        private readonly CacheService cacheService;
         private readonly IDynamicRepository dynamicRepository;
         private readonly Func<int, string> getBetTypeDisplayName;
 
         public BettypeServiceImpl(
-            CacheService cacheService,
             IDynamicRepository dynamicRepository,
             Func<int, string> getBetTypeDisplayName)
         {
-            this.cacheService = cacheService;
             this.dynamicRepository = dynamicRepository;
             this.getBetTypeDisplayName = getBetTypeDisplayName;
         }
 
-        public async Task<IEnumerable<BetType>> GetBetTypesBySport(int sportTypeId)
-            => await cacheService.GetOrSetAsync(
+        public async Task<IEnumerable<BetType>> GetBetTypesBySport(int sportTypeId = 0)
+            => await ConfiguredCacheService.GetOrSetAsync(
                 $"{BetTypesCacheKey}.{sportTypeId}",
                 () =>
                 {
