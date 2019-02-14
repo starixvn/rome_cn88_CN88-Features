@@ -1,0 +1,10 @@
+﻿<Functions SiteId="115" SiteName="CN88">
+  <Function Name="Customer List">
+    <Setting Key="Age_CS_Customer_DownlineList_Sel" SpName="Age_CS_Customer_DownlineList_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CS_Customer_Credit_Sel" SpName="Age_CS_Customer_Credit_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CS_Customer_Status_Upd" SpName="Age_CS_Customer_Status_Upd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>

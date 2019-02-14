@@ -308,6 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
     <Content Include="Global.asax" />
     <Content Include="Reports\bundles\reports.css" />
     <Content Include="Reports\Styles\reports.css">
