@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,9 +52,11 @@
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.1.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.1.9\lib\net461\Alpha.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Alpha.Web, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn8801\lib\net461\Alpha.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta09\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -86,6 +89,9 @@
     <Reference Include="Fanex.Data.OldConnectionStringProvider, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.OldConnectionStringProvider.1.0.1\lib\net461\Fanex.Data.OldConnectionStringProvider.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data.Repository, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.Repository.3.0.0\lib\net461\Fanex.Data.Repository.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
@@ -216,14 +222,33 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CustomerList\CustomerListController.cs" />
+    <Compile Include="CustomerList\CustomerListHandler.cs" />
+    <Compile Include="CustomerList\Requests\CreateCustomerQuery.cs" />
+    <Compile Include="CustomerList\Requests\CustomerListQuery.cs" />
+    <Compile Include="CustomerList\Requests\IndexQuery.cs" />
+    <Compile Include="CustomerList\Requests\Popup\CreditCommand.cs" />
+    <Compile Include="CustomerList\Requests\Popup\CreditPopupQuery.cs" />
+    <Compile Include="CustomerList\Requests\Popup\CustomerStatusCommand.cs" />
+    <Compile Include="CustomerList\Requests\Popup\CustomerStatusPopupQuery.cs" />
+    <Compile Include="CustomerList\ViewModels\CustomerList\CustomerListViewModel.cs" />
+    <Compile Include="CustomerList\ViewModels\CustomerList\IndexViewModel.cs" />
+    <Compile Include="CustomerList\ViewModels\CustomerList\Popup\CreditRangeViewModel.cs" />
+    <Compile Include="CustomerList\ViewModels\CustomerList\Popup\StatusPopupViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IPHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Controllers\LegacyReportController.cs" />
     <Compile Include="Reports\Controllers\ReportMainController.cs" />
     <Compile Include="Reports\Controllers\WagerReportController.cs" />
+    <Compile Include="Shared\Controllers\SiteBaseController.cs" />
+    <Compile Include="Shared\Models\User.cs" />
+    <Compile Include="Shared\Requests\BaseQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -231,6 +256,12 @@
     <Content Include="Web.AppSettings.config" />
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="Shared\Views\Web.config" />
+    <Content Include="CustomerList\Views\CreditPopup.cshtml" />
+    <Content Include="CustomerList\Views\Index.cshtml" />
+    <Content Include="CustomerList\Views\StatusPopup.cshtml" />
+    <Content Include="CustomerList\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

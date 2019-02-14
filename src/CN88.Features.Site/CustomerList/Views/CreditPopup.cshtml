@@ -1,0 +1,43 @@
+﻿@model CreditRangeViewModel
+
+@section Styles {
+	@StaticResources.RenderStyles("~/assets/bundles/popup")
+}
+
+<div class="popup-modal">
+	<div class="col-xs-12 hidden msg" id="error-message"></div>
+	<div class="form-group col-xs-12">
+		<div class="col-xs-3">
+			@Resources.UsedCredit
+		</div>
+		<div class="col-xs-9">
+			<span>@((Model.CustLevel.IsMemberLevel() ? Model.CreditModel.BetCredit : Model.CreditModel.UsedCredit).ToString("N2"))</span>
+		</div>
+	</div>
+	<div class="form-group col-xs-12">
+		<div class="col-xs-3">@Resources.Credit</div>
+		<div class="col-xs-4">
+			<input class="textbox" id="credit" type="text" />
+		</div>
+		<div class="col-xs-4 credit-range">
+			[@Model.CreditModel.MinCredit.ToString("N2"); @Model.CreditModel.MaxCredit.ToString("N2")]
+		</div>
+	</div>
+	<div class="col-xs-10 row-info popup-bottom list-button">
+		<button type="button" class="btn-submit">@Resources.Save</button>
+		<button type="button" class="btn-cancel">@Resources.Cancel</button>
+	</div>
+</div>
+
+@Html.Hidden("MinCredit", Model.CreditModel.MinCredit)
+@Html.Hidden("MaxCredit", Model.CreditModel.MaxCredit)
+@Html.Hidden("CustId", Model.CustId)
+@Html.Hidden("CustLevelId", Model.CustLevel.Value)
+@Html.Hidden("UpdateSuccessfully", Resources.UpdateSuccessfully)
+@Html.Hidden("ExceededAgentCredit", Resources.ExceededAgentCredit)
+@Html.Hidden("InputNumberError", Resources.InputNumberError)
+@Html.AntiForgeryToken()
+
+@section Scripts {
+	@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/credit-popup")
+}

@@ -98,6 +98,7 @@
     <Compile Include="Shared\Criteria\GetSportsCriteria.cs" />
     <Compile Include="Shared\Models\Bettype.cs" />
     <Compile Include="Shared\Models\Enumeration.cs" />
+    <Compile Include="Shared\Models\IUser.cs" />
     <Compile Include="Shared\Models\Result.cs" />
     <Compile Include="Shared\Models\Sport.cs" />
     <Compile Include="Shared\Models\UserLevel.cs" />

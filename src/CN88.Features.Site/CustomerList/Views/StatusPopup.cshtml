@@ -1,0 +1,41 @@
+﻿@model StatusPopupViewModel
+
+@section Styles {
+	@StaticResources.RenderStyles("~/assets/bundles/popup")
+}
+
+<div class="popup-modal">
+	<div class="col-xs-12 hidden msg" id="error-message"></div>
+	<div class="form-group col-xs-12">
+		<div class="col-xs-4 status-label">
+			@Resources.Status
+		</div>
+		<div class="col-xs-7">
+			<select id="dropdown-status" class="dropdown-status">
+				<option value="@CustomerStatus.Open" @(Model.UpdateStatusId.Equals(CustomerStatus.Open) ? "selected" : string.Empty)>
+					@Resources.Open
+				</option>
+				<option value="@CustomerStatus.Suspended" @(Model.UpdateStatusId.Equals(CustomerStatus.Suspended) ? "selected" : string.Empty)>
+					@Resources.Suspended
+				</option>
+				<option value="@CustomerStatus.Closed" @(Model.UpdateStatusId.Equals(CustomerStatus.Closed) ? "selected" : string.Empty)>
+					@Resources.Closed
+				</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-8 row-info popup-bottom list-button">
+		<button type="button" class="btn-submit">@Resources.Save</button>
+		<button type="button" class="btn-cancel">@Resources.Cancel</button>
+	</div>
+</div>
+
+@Html.Hidden("CustId", Model.CustId)
+@Html.Hidden("UpdateSuccessfully", Resources.UpdateSuccessfully)
+@Html.Hidden("CurrentStatusId", Model.UpdateStatusId)
+@Html.Hidden("ThereIsNoChange", Resources.ThereIsNoChange)
+@Html.AntiForgeryToken()
+
+@section Scripts {
+	@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/status-popup")
+}

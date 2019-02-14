@@ -1,0 +1,212 @@
+﻿@model IndexViewModel
+@section Styles {
+    @StaticResources.AssetStyles.Render($"/bundles/site-cn88/tab-{Model.ActorLevel.DisplayName.ToLowerInvariant()}")
+}
+
+<div class="page-title">
+    <span class="pull-left">@Resources.DownlineList</span>
+</div>
+<ul id="nav-tabs" class="nav nav-tabs" role="tablist">
+    @if (Model.ActorLevel.IsSuperLevel())
+    {
+        <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
+            <a>@Resources.Master</a>
+        </li>
+    }
+
+    @if (Model.ActorLevel.IsMasterOrSuperLevel())
+    {
+        <li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
+            <a>@Resources.Agent</a>
+        </li>
+    }
+
+    <li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
+        <a>@Resources.Member</a>
+    </li>
+</ul>
+
+@if (Model.ActorLevel.IsSuperLevel())
+{
+    <div class="tab-content display-none" level="@UserLevel.Master.Value">
+        <div class="tab-panel active" role="tabpanel">
+            <div class="filter">
+                <form id="form-master" class="form-inline" role="form">
+                    <div class="form-group">
+                        <label>@Resources.UsernameOrNameContains</label>
+                        <input id="txt-username-master" class="txt-username" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>@Resources.Status</label>
+                        <select id="dropdown-status-master" class="dropdown-status">
+                            <option value="@CustomerStatus.All">@Resources.All</option>
+                            <option value="@CustomerStatus.Open">@Resources.Open</option>
+                            <option value="@CustomerStatus.Closed">@Resources.Closed</option>
+                            <option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input id="btn-submit-master" class="btn-submit" type="button" value="@Resources.Submit" />
+                    </div>
+                </form>
+            </div>
+
+            <table id="tbl-master" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
+                <thead>
+                    <tr>
+                        <th><div class="col-no">@Resources.No</div></th>
+                        <th><div class="col-username">@Resources.Username</div></th>
+                        <th><div class="col-name">@Resources.Name</div></th>
+                        <th><div class="col-credit">@Resources.Credit</div></th>
+                        <th><div class="col-creation-date">@Resources.CreationDate</div></th>
+                        <th><div class="col-status">@Resources.Status</div></th>
+                        <th><div class="col-action">@Resources.Action</div></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+}
+
+@if (Model.ActorLevel.IsMasterOrSuperLevel())
+{
+    <div class="tab-content display-none" level="@UserLevel.Agent.Value">
+        <div class="tab-panel active" role="tabpanel">
+            <div class="filter">
+                <form id="form-agent" class="form-inline" role="form">
+                    @if (Model.ActorLevel.IsSuperLevel() || Model.IsInternal)
+                    {
+                        <div class="form-group">
+                            <label>@Resources.Master</label>
+                            <input id="txt-viewed-master" class="txt-username" type="text" value="" />
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label>@Resources.UsernameOrNameContains</label>
+                        <input id="txt-username-agent" class="txt-username" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>@Resources.Status</label>
+                        <select id="dropdown-status-agent">
+                            <option value="@CustomerStatus.All">@Resources.All</option>
+                            <option value="@CustomerStatus.Open">@Resources.Open</option>
+                            <option value="@CustomerStatus.Closed">@Resources.Closed</option>
+                            <option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input id="btn-submit-agent" class="btn-submit" type="button" value="@Resources.Submit" />
+                    </div>
+                    <div id="msg-err-agent" class="msg msg-error display-none">@Resources.MasterIsRequired</div>
+                </form>
+            </div>
+            <table id="tbl-agent" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
+                <thead>
+                    <tr>
+                        <th><div class="col-no">@Resources.No</div></th>
+                        <th><div class="col-username">@Resources.Username</div></th>
+                        <th><div class="col-name">@Resources.Name</div></th>
+                        <th><div class="col-credit">@Resources.Credit</div></th>
+                        <th><div class="col-creation-date">@Resources.CreationDate</div></th>
+                        <th><div class="col-status">@Resources.Status</div></th>
+                        <th><div class="col-action">@Resources.Action</div></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+}
+
+<div class="tab-content display-none" level="@UserLevel.Member.Value">
+    <div class="tab-panel active" role="tabpanel">
+        <div class="filter">
+            <form id="form-member" class="form-inline" role="form">
+                @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
+                {
+                    <div class="form-group">
+                        <label>@Resources.Agent</label>
+                        <input id="txt-viewed-agent" class="txt-username" type="text" value="" />
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label>@Resources.UsernameOrNameContains</label>
+                    <input id="txt-username-member" class="txt-username" type="text" value="" />
+                </div>
+                <div class="form-group">
+                    <label>@Resources.Status</label>
+                    <select id="dropdown-status-member">
+                        <option value="@CustomerStatus.All">@Resources.All</option>
+                        <option value="@CustomerStatus.Open">@Resources.Open</option>
+                        <option value="@CustomerStatus.Closed">@Resources.Closed</option>
+                        <option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input id="btn-submit-member" class="btn-submit" type="button" value="@Resources.Submit" />
+                </div>
+                <div id="msg-err-member" class="msg msg-error display-none">@Resources.AgentIsRequired</div>
+            </form>
+        </div>
+        <table id="tbl-member" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
+            <thead>
+                <tr>
+                    <th><div class="col-no">@Resources.No</div></th>
+                    <th><div class="col-username">@Resources.Username</div></th>
+                    <th><div class="col-name">@Resources.Name</div></th>
+                    <th><div class="col-credit">@Resources.Group</div></th>
+                    <th><div class="col-credit">@Resources.Credit</div></th>
+                    <th><div class="col-creation-date">@Resources.CreationDate</div></th>
+                    <th><div class="col-status">@Resources.Status</div></th>
+                    <th><div class="col-action">@Resources.Action</div></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</div>
+
+<div class="shadow" id="shadow"></div>
+<div class="output" id="output"></div>
+@Html.Hidden("directDownline", Model.ActorLevel.GetDirectDownLineLevel().Value)
+@Html.Hidden("getCustomerListUrl", Url.Action("GetCustomerList", "CustomerList"))
+@Html.Hidden("creditPopupUrl", Url.Action("CreditPopup", "CustomerList"))
+@Html.Hidden("statusPopupUrl", Url.Action("StatusPopup", "CustomerList"))
+
+@Html.Hidden("NoInformationIsAvailable", Resources.NoInformationIsAvailable)
+@Html.Hidden("Open", Resources.Open)
+@Html.Hidden("Closed", Resources.Closed)
+@Html.Hidden("Suspended", Resources.Suspended)
+@Html.Hidden("Page", Resources.Page)
+@Html.Hidden("of", Resources.of)
+@Html.Hidden("Pager_DisplayItems", Resources.Pager_DisplayItems)
+@Html.Hidden("usernameAutoSuggestionPath", IndexViewModel.UsernameAutoSuggestionPath)
+@Html.Hidden("EditCustomerLink", IndexViewModel.EditCustomerLink)
+@Html.Hidden("CreateCustomerLink", IndexViewModel.CreateCustomerLink)
+@Html.Hidden("CurrentLink", IndexViewModel.CurrentLink)
+
+@Html.Hidden("UpdateStatus", Resources.UpdateStatus)
+@Html.Hidden("UpdateCredit", Resources.UpdateCredit)
+@Html.Hidden("Disabled", Resources.Disabled)
+@Html.Hidden("HasUpdatePermission", Model.HasUpdatePermission ? 1 : 0)
+@Html.Hidden("HasAddNewPermission", Model.HasAddNewPermission ? 1 : 0)
+@Html.Hidden("Language", Model.Language)
+@Html.Hidden("ViewerId", Model.ViewerId)
+@Html.Hidden("ActorLevel", Model.ActorLevel.Value)
+
+@Html.Hidden("DownlineUsername", Model.DownlineUsername)
+@Html.Hidden("Username", Model.Username)
+@Html.Hidden("SearchRoleId", Model.SearchRoleId)
+@Html.Hidden("Status", Model.Status)
+@Html.Hidden("PageSize", Model.PageSize)
+@Html.Hidden("PageIndex", Model.PageIndex)
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/customer-list/index")
+}
