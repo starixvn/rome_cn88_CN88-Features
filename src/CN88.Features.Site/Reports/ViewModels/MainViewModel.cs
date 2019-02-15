@@ -20,7 +20,6 @@
             ToDate = toDate;
             Sports = sports;
             BetTypes = betTypes;
-            AccountingPeriods = accountingPeriods;
         }
 
         public int ReportType { get; }
@@ -33,6 +32,6 @@
 
         public IEnumerable<BetType> BetTypes { get; }
 
-        public IEnumerable<AccountingPeriod> AccountingPeriods { get; }
+        public IEnumerable<AccountingPeriodViewModel> AccountingPeriods { get; }
     }
 }
