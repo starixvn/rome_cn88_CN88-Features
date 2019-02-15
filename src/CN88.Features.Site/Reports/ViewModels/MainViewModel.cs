@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Features.Reports.Models;
     using Features.Shared.Models;
 
@@ -14,14 +13,14 @@
             DateTime toDate,
             IEnumerable<Sport> sports,
             IEnumerable<BetType> betTypes,
-            IEnumerable<AccountingGroup> accountingGroups)
+            IEnumerable<AccountingPeriodGroup> accountingPeriodGroups)
         {
             ReportType = reportType;
             FromDate = fromDate;
             ToDate = toDate;
             Sports = sports;
             BetTypes = betTypes;
-            AccountingGroups = accountingGroups;
+            AccountingPeriodGroups = accountingPeriodGroups;
         }
 
         public int ReportType { get; }
@@ -34,8 +33,6 @@
 
         public IEnumerable<BetType> BetTypes { get; }
 
-        public IEnumerable<AccountingGroup> AccountingGroups { get; }
-
-        public int MaxPeriodId => AccountingGroups.Max(g => g.Periods.Count);
+        public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
     }
 }

@@ -368,6 +368,7 @@
     <Content Include="compilerconfig.json" />
     <Content Include="Reports\Views\Main\Index.cshtml" />
     <Content Include="Reports\Views\Main\Web.config" />
+    <Content Include="Reports\Views\Main\_AccountingSheet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -376,6 +377,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="Reports\Views\LegacyReport\" />
     <Folder Include="Reports\Views\WagerReport\" />
   </ItemGroup>

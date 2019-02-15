@@ -6,7 +6,27 @@
 <div class="container-fluid">
     <div class="row">
         <div class="filter-container col-xs-12 col-sm-12 col-md-5">
-            <div class="reportTitle">Create Report</div>
+            <div class="page-title">Create Report</div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a data-toggle="tab" href="#wagerReport">Wager report</a>
+                </li>
+                <li role="presentation">
+                    <a data-toggle="tab" href="#cancelledReport">Cancelled report</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
+                    <form class="filter" role="form">
+                        <div class="form-group">
+                            <input type="reset" value="Clear" />
+                            <input type="submit" value="View Report" />
+                        </div>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
+                </div>
+            </div>
         </div>
         <div class="result-container col-xs-12 col-sm-12 col-md-5">
             <ul class="nav nav-tabs" role="tablist">
@@ -21,33 +41,7 @@
                 <div role="tabpanel" class="tab-pane fade in active" id="settlementSumary">
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
-                    <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover">
-                        <thead>
-                            <tr>
-                                @foreach (var g in Model.AccountingGroups)
-                                {
-                                    <th>@g.Name</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                @for (var i = 0; i < Model.MaxPeriodId; i++)
-                                {
-                                    foreach (var g in Model.AccountingGroups)
-                                    {
-                                        if (i >= g.Periods.Count)
-                                        {
-                                            continue;
-                                        }
-
-                                        var p = g.Periods[i];
-                                        <td>@p.FromDateStr ~ @p.ToDateStr</td>
-                                    }
-                                }
-                            </tr>
-                        </tbody>
-                    </table>
+                    @Html.Partial("~/Reports/Views/Main/_AccountingSheet.cshtml")
                 </div>
             </div>
         </div>

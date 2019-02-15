@@ -1,20 +1,20 @@
 ﻿namespace CN88.Features.Reports.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using CN88.Features.Reports.Criteria;
-    using CN88.Features.Reports.Models;
-    using CN88.Features.Reports.Params;
+    using Criteria;
+    using Fanex.Caching;
     using Fanex.Data.Repository;
+    using Models;
+    using Params;
 
     public interface ReportService
     {
-        Task<IEnumerable<ReportModel>> GetWagerReport(ReportParam param);
+        Task<IEnumerable<ReportModel>> GetReportData(ReportParam param);
 
-        Task<IEnumerable<ReportModel>> GetLegacyreport(ReportParam param);
-
-        Task<IEnumerable<AccountingGroup>> GetAccountingPeriods();
+        Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups();
     }
 
     public class ReportServiceImpl : ReportService
@@ -26,29 +26,23 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<IEnumerable<ReportModel>> GetWagerReport(ReportParam param)
+        public async Task<IEnumerable<ReportModel>> GetReportData(ReportParam param)
             => await dynamicRepository.FetchAsync<ReportModel>(
-                new WagerReportCriteria(
+                new ReportCriteria(
                     param.ReportType,
                     param.FromDate,
                     param.ToDate,
                     param.SportTypeId,
                     param.BetTypeId));
 
-        public async Task<IEnumerable<ReportModel>> GetLegacyreport(ReportParam param)
-            => await dynamicRepository.FetchAsync<ReportModel>(
-                new LegacyReportCriteria(
-                    param.ReportType,
-                    param.FromDate,
-                    param.ToDate,
-                    param.SportTypeId,
-                    param.BetTypeId));
-
-        public async Task<IEnumerable<AccountingGroup>> GetAccountingPeriods()
+        public async Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups()
         {
-            var periods = await dynamicRepository.FetchAsync<AccountingPeriod>(new GetAccountingPeriodsCriteria());
-            var groups = periods.GroupBy(p => p.Year.ToString()).OrderByDescending(g => g.Key);
-            var result = new List<AccountingGroup>();
+            var periods = await GetAccountingPeriods();
+            var groups = periods
+                .OrderBy(p => p.PeriodId)
+                .GroupBy(p => p.PeriodId.ToString());
+            var result = new List<AccountingPeriodGroup>();
+
             foreach (var group in groups)
             {
                 var ps = new List<AccountingPeriod>();
@@ -58,10 +52,16 @@
                     ps.Add(p);
                 }
 
-                result.Add(new AccountingGroup(group.Key, ps.OrderBy(p => p.PeriodId).ToList()));
+                result.Add(new AccountingPeriodGroup(group.Key, ps.OrderByDescending(p => p.Year).ToList()));
             }
 
             return result;
         }
+
+        private Task<IEnumerable<AccountingPeriod>> GetAccountingPeriods()
+            => ConfiguredCacheService.GetOrSetAsync(
+                "CN88.Features.Reports.Services.ReportServiceImpl.AccountingPeriods",
+                () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsCriteria()),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
     }
 }

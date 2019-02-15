@@ -119,11 +119,9 @@
     <Compile Include="CustomerList\Models\CustomerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Criteria\GetAccountingPeriodsCriteria.cs" />
-    <Compile Include="Reports\Criteria\LegacyReportCriteria.cs" />
-    <Compile Include="Reports\Criteria\ReportBaseCriteria.cs" />
-    <Compile Include="Reports\Criteria\WagerReportCriteria.cs" />
+    <Compile Include="Reports\Criteria\ReportCriteria.cs" />
     <Compile Include="Reports\Models\AccountingPeriod.cs" />
-    <Compile Include="Reports\Models\AccountingGroup.cs" />
+    <Compile Include="Reports\Models\AccountingPeriodGroup.cs" />
     <Compile Include="Reports\Models\ReportData.cs" />
     <Compile Include="Reports\Models\ReportModel.cs" />
     <Compile Include="Reports\Params\ReportParam.cs" />

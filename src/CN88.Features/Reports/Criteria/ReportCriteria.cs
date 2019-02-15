@@ -3,9 +3,9 @@
     using System;
     using Fanex.Data.Repository;
 
-    public abstract class ReportBaseCriteria : CriteriaBase
+    public class ReportCriteria : CriteriaBase
     {
-        protected ReportBaseCriteria(
+        public ReportCriteria(
             int reportType,
             DateTime fromDate,
             DateTime toDate,

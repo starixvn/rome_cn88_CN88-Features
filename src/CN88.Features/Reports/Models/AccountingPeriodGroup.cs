@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public class AccountingGroup
+    public class AccountingPeriodGroup
     {
-        public AccountingGroup(string name, List<AccountingPeriod> periods)
+        public AccountingPeriodGroup(string name, List<AccountingPeriod> periods)
         {
             Name = name;
             Periods = periods;

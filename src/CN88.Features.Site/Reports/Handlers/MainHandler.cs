@@ -27,7 +27,7 @@
         {
             var sports = await sportService.GetSports();
             var betTypes = await betTypeService.GetBetTypesBySport();
-            var accountingPeriods = await reportService.GetAccountingPeriods();
+            var accountingPeriodGroups = await reportService.GetAccountingPeriodGroups();
 
             return new MainViewModel(
                 message.ReportType,
@@ -35,7 +35,7 @@
                 message.ToDate,
                 sports,
                 betTypes,
-                accountingPeriods);
+                accountingPeriodGroups);
         }
     }
 }
