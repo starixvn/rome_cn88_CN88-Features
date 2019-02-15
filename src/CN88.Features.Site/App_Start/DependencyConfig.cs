@@ -5,6 +5,7 @@
     using System.Reflection;
     using System.Web.Mvc;
     using Fanex.Data.Repository;
+    using Fanex.Logging;
     using Fanex.RemotingRef;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
@@ -52,9 +53,12 @@
             container.RegisterSingleton<IMediator, Mediator>();
             container.Register(typeof(IRequestHandler<,>), assemblies);
             container.Register(typeof(IAsyncRequestHandler<,>), assemblies);
+            container.Register(typeof(ICancellableAsyncRequestHandler<>), assemblies);
 
             container.RegisterCollection(typeof(INotificationHandler<>), assemblies);
             container.RegisterCollection(typeof(IAsyncNotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(ICancellableAsyncNotificationHandler<>), assemblies);
+            container.RegisterCollection(typeof(IPipelineBehavior<,>), assemblies);
 
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
             container.RegisterSingleton(new MultiInstanceFactory(container.GetAllInstances));
@@ -67,15 +71,16 @@
 
         private static void RegisterDataAccesses(Container container)
         {
-            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+            container.RegisterSingleton<IDynamicRepository, DynamicRepository>();
 
-            container.RegisterPerWebRequest<CustomerListDataAccess, CustomerListDataAccessImpl>();
+            container.RegisterSingleton<CustomerListDataAccess, CustomerListDataAccessImpl>();
         }
 
         private static void RegisterServices(Container container)
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.RegisterSingleton<IUser, User>();
+            container.RegisterSingleton(Logger.Log);
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
 

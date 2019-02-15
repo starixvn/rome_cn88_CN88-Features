@@ -2,10 +2,9 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Alpha.Web;
     using MediatR;
 
-    public abstract class FeatureBaseController : BaseAsyncController
+    public abstract class FeatureBaseController : Controller
     {
         protected readonly IMediator mediator;
 

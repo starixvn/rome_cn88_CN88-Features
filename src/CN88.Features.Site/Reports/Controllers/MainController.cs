@@ -8,7 +8,7 @@
 
     public class MainController : FeatureBaseController
     {
-        private const string MainViewPath = "~/Reports/Main/Views/Index.cshtml";
+        private const string MainViewPath = "~/Reports/Views/Main/Index.cshtml";
 
         public MainController(IMediator mediator)
             : base(mediator)

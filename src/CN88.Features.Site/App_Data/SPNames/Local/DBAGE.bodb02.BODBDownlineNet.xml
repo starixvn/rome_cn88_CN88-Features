@@ -5,5 +5,6 @@
     <Setting Key="CS_BetType_Sel" SpName="CS_BetType_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Reports">
+    <Setting Key="CS_AccountingPeriod_Sel" SpName="CS_AccountingPeriod_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>
