@@ -123,6 +123,7 @@
     <Compile Include="Reports\Criteria\ReportBaseCriteria.cs" />
     <Compile Include="Reports\Criteria\WagerReportCriteria.cs" />
     <Compile Include="Reports\Models\AccountingPeriod.cs" />
+    <Compile Include="Reports\Models\AccountingGroup.cs" />
     <Compile Include="Reports\Models\ReportData.cs" />
     <Compile Include="Reports\Models\ReportModel.cs" />
     <Compile Include="Reports\Params\ReportParam.cs" />

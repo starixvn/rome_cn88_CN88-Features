@@ -28,14 +28,8 @@
                                 <th>@(DateTime.Now.Year - 1)</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach (var period in Model.AccountingPeriods)
-                            {
-                                <tr>
-                                    <td>@period.Index</td>
-                                    <td>@period.CurrentYearPeriod</td>
-                                </tr>
-                            }
+                        <tbody>	
+
                         </tbody>
                     </table>
                 </div>
