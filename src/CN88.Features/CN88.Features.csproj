@@ -142,6 +142,7 @@
     <Compile Include="Shared\Configurations\AppSettings.cs" />
     <Compile Include="Shared\Criteria\GetBetTypeBySportCriteria.cs" />
     <Compile Include="Shared\Criteria\GetSportsCriteria.cs" />
+    <Compile Include="Shared\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Shared\Models\Bettype.cs" />
     <Compile Include="Shared\Models\Enumeration.cs" />
     <Compile Include="Shared\Models\IUser.cs" />
@@ -177,7 +178,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-Hans.resx" />
     <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-TW.resx" />
-    <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-CN..resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-CN.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-TW.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-Hans.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.resx">

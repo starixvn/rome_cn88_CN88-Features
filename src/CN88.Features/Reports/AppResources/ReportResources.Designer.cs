@@ -70,6 +70,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accounting Sheet.
+        /// </summary>
+        public static string AccountingSheet {
+            get {
+                return ResourceManager.GetString("AccountingSheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled Report.
         /// </summary>
         public static string CancelledReport {
@@ -88,11 +97,38 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settlement Summary.
+        /// </summary>
+        public static string SettlementSummary {
+            get {
+                return ResourceManager.GetString("SettlementSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unsettled Wager.
         /// </summary>
         public static string UnsettledWager {
             get {
                 return ResourceManager.GetString("UnsettledWager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Report.
+        /// </summary>
+        public static string ViewReport {
+            get {
+                return ResourceManager.GetString("ViewReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager Report.
+        /// </summary>
+        public static string WagerReport {
+            get {
+                return ResourceManager.GetString("WagerReport", resourceCulture);
             }
         }
     }

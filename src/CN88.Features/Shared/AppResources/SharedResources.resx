@@ -120,4 +120,31 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function.</value>
   </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Tomorrow</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>This Week</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Last Week</value>
+  </data>
+  <data name="ThisPeriod" xml:space="preserve">
+    <value>This Period</value>
+  </data>
+  <data name="LastPeriod" xml:space="preserve">
+    <value>Last Period</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
 </root>

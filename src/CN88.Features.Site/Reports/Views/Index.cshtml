@@ -2,22 +2,25 @@
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
 @using CN88.Features.Site.Reports.ViewModels
+@using CN88.Features.Shared.Extensions
+@using CN88.Features.Shared.AppResources
+@using CN88.Features.Reports.AppResources
 @model MainViewModel
 <div class="container-fluid">
     <div class="row">
         <div class="filter-container col-xs-12 col-sm-12 col-md-5">
             <div class="page-title">Create Report</div>
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a data-toggle="tab" href="#wagerReport">Wager report</a>
-                </li>
-                <li role="presentation">
-                    <a data-toggle="tab" href="#cancelledReport">Cancelled report</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
-                    <form class="filter" role="form">
+            <form class="filter" role="form">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a data-toggle="tab" href="#wagerReport">@ReportResources.WagerReport</a>
+                    </li>
+                    <li role="presentation">
+                        <a data-toggle="tab" href="#cancelledReport">@ReportResources.CancelledReport</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
                         <div class="form-group">
                             <select>
                                 @foreach (var type in Model.WagerReportTypes)
@@ -26,23 +29,77 @@
                                 }
                             </select>
                         </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
                         <div class="form-group">
-                            <input type="reset" value="Clear" />
-                            <input type="submit" value="View Report" />
+                            <select>
+                                @foreach (var type in Model.CancelledReportTypes)
+                                {
+                                    <option value="@type.Value">@type.Text</option>
+                                }
+                            </select>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
+                <div class="form-group  from-date-box">
+                    <div class="control date">
+                        <div id="from-date-container"
+                             class="input-group date fromdate">
+                            <input type="text"
+                                   id="from-date"
+                                   name="FromDate"
+                                   readonly="readonly"
+                                   autocomplete="off"
+                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                                   value="@Model.FromDate.ToShortDateWithSlash()" />
+                            <span class="input-group-addon">
+                                <span class="icon-calendar" id="fdate_trigger"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <label>@SharedResources.To</label>
+                    <div class="control date">
+                        <div id="to-date-container"
+                             class="input-group date todate">
+                            <input type="text"
+                                   id="to-date"
+                                   name="ToDate"
+                                   readonly="readonly"
+                                   autocomplete="off"
+                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                                   value="@Model.ToDate.ToShortDateWithSlash()" />
+                            <span class="input-group-addon">
+                                <span class="icon-calendar" id="tdate_trigger"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <input type="button" value="@SharedResources.Today" />
+                    <input type="button" value="@SharedResources.Yesterday" />
+                    <input type="button" value="@SharedResources.Tomorrow" />
+                </div>
+                <div class="form-group">
+                    <input type="button" value="@SharedResources.ThisWeek" />
+                    <input type="button" value="@SharedResources.LastWeek" />
+                </div>
+                <div class="form-group">
+                    <input type="button" value="@SharedResources.ThisPeriod" />
+                    <input type="button" value="@SharedResources.LastPeriod" />
+                </div>
+                <div class="form-group">
+                    <input type="reset" value="@SharedResources.Clear" />
+                    <input type="submit" value="@ReportResources.ViewReport" />
+                </div>
+            </form>
         </div>
         <div class="result-container col-xs-12 col-sm-12 col-md-5">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
-                    <a data-toggle="tab" href="#settlementSumary">Settlement summary</a>
+                    <a data-toggle="tab" href="#settlementSumary">@ReportResources.SettlementSummary</a>
                 </li>
                 <li role="presentation">
-                    <a data-toggle="tab" href="#accountingSheet">Accounting sheet</a>
+                    <a data-toggle="tab" href="#accountingSheet">@ReportResources.AccountingSheet</a>
                 </li>
             </ul>
             <div class="tab-content">

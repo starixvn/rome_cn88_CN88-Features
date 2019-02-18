@@ -19,7 +19,7 @@ namespace CN88.Features.Shared.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class SharedResources {
@@ -61,11 +61,92 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Period.
+        /// </summary>
+        public static string LastPeriod {
+            get {
+                return ResourceManager.GetString("LastPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Week.
+        /// </summary>
+        public static string LastWeek {
+            get {
+                return ResourceManager.GetString("LastWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are not authorized on this function..
         /// </summary>
         public static string NotAuthorized {
             get {
                 return ResourceManager.GetString("NotAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Period.
+        /// </summary>
+        public static string ThisPeriod {
+            get {
+                return ResourceManager.GetString("ThisPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Week.
+        /// </summary>
+        public static string ThisWeek {
+            get {
+                return ResourceManager.GetString("ThisWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomorrow.
+        /// </summary>
+        public static string Tomorrow {
+            get {
+                return ResourceManager.GetString("Tomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday.
+        /// </summary>
+        public static string Yesterday {
+            get {
+                return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
     }

@@ -120,7 +120,4 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>您没有使用此功能的权限.</value>
   </data>
-  <data name="NotAuthorized1" xml:space="preserve">
-    <value>您没有使用此功能的权限.</value>
-  </data>
 </root>

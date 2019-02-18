@@ -350,6 +350,7 @@
     <Compile Include="Reports\Requests\MainQuery.cs" />
     <Compile Include="Reports\ViewModels\MainViewModel.cs" />
     <Compile Include="Shared\Controllers\FeatureBaseController.cs" />
+    <Compile Include="Shared\Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

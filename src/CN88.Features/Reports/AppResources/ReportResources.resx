@@ -109,4 +109,16 @@
   <data name="AbnormalBets" xml:space="preserve">
     <value>Abnormal Bets</value>
   </data>
+  <data name="ViewReport" xml:space="preserve">
+    <value>View Report</value>
+  </data>
+  <data name="WagerReport" xml:space="preserve">
+    <value>Wager Report</value>
+  </data>
+  <data name="SettlementSummary" xml:space="preserve">
+    <value>Settlement Summary</value>
+  </data>
+  <data name="AccountingSheet" xml:space="preserve">
+    <value>Accounting Sheet</value>
+  </data>
 </root>
