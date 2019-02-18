@@ -8,7 +8,9 @@
     {
         public IndexQuery()
         {
-
+            IsInternal = false;
+            HasUpdatePermission = true;
+            HasAddNewPermission = true;
         }
 
         //public IndexQuery(IUser viewer) : base(viewer)

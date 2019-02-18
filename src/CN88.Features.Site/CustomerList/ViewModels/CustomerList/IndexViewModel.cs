@@ -7,6 +7,20 @@
     {
         public IndexViewModel(IndexQuery query)
         {
+            ActorLevel = UserLevel.Super;
+            IsInternal = query.IsInternal;
+            HasUpdatePermission = query.HasUpdatePermission;
+            HasAddNewPermission = query.HasAddNewPermission;
+
+            ViewerId = 44;
+
+            DownlineUsername = query.DownlineUsername;
+            Username = query.Username;
+            SearchRoleId = query.SearchRoleId;
+            Status = query.Status;
+            PageSize = query.PageSize;
+            PageIndex = query.PageIndex;
+
             //ActorLevel = query.ActorLevel;
             //IsInternal = query.IsInternal;
             //HasUpdatePermission = query.HasUpdatePermission;

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -370,6 +372,18 @@
     <Content Include="Reports\Views\Index.cshtml" />
     <Content Include="Reports\Views\Web.config" />
     <Content Include="Reports\Views\_AccountingSheet.cshtml" />
+    <Content Include="CustomerList\Styles\popup.scss" />
+    <Content Include="Shared\Styles\_mixins.scss" />
+    <Content Include="Shared\Styles\_variables.scss" />
+    <Content Include="typings\globals\bootstrap\typings.json" />
+    <Content Include="typings\globals\jasmine-jquery\typings.json" />
+    <Content Include="typings\globals\jasmine\typings.json" />
+    <Content Include="typings\globals\jquery.blockui\typings.json" />
+    <Content Include="typings\globals\jquery.cookie\typings.json" />
+    <Content Include="typings\globals\jqueryui\typings.json" />
+    <Content Include="typings\globals\jquery\typings.json" />
+    <Content Include="typings\globals\moment\typings.json" />
+    <Content Include="typings\globals\storejs\typings.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -386,11 +400,38 @@
       <Name>CN88.Features</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\index.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\master-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\member-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\Popup\credit-popup.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\Popup\popup-base.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
+    <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jquery.blockui\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jquery.cookie\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jqueryui\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\storejs\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

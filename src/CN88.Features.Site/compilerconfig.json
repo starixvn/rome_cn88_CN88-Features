@@ -1,6 +1,10 @@
 ﻿[
-  {
-    "outputFile": "Reports/Styles/reports.css",
-    "inputFile": "Reports/Styles/reports.scss"
-  }
+	{
+		"outputFile": "Reports/Styles/reports.css",
+		"inputFile": "Reports/Styles/reports.scss"
+	},
+	{
+		"outputFile": "CustomerList/Styles/popup.css",
+		"inputFile": "CustomerList/Styles/popup.scss"
+	}
 ]
