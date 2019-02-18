@@ -117,92 +117,101 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>No information is available</value>
-  </data>
-  <data name="DownlineList" xml:space="preserve">
-    <value>Downline List</value>
-  </data>
-  <data name="Master" xml:space="preserve">
-    <value>Master</value>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
-  <data name="Member" xml:space="preserve">
-    <value>Member</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="PageSize" xml:space="preserve">
-    <value>Page Size</value>
+  <data name="AgentIsRequired" xml:space="preserve">
+    <value>Agent is required.</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>No.</value>
-  </data>
-  <data name="Username" xml:space="preserve">
-    <value>Username</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Credit" xml:space="preserve">
-    <value>Credit</value>
-  </data>
-  <data name="CreationDate" xml:space="preserve">
-    <value>Created Date</value>
-  </data>
-  <data name="Action" xml:space="preserve">
-    <value>Action</value>
-  </data>
-  <data name="Open" xml:space="preserve">
-    <value>Open</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>Closed</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Created Date</value>
   </data>
-  <data name="UsernameOrNameContains" xml:space="preserve">
-    <value>Username Or Name contains</value>
+  <data name="Credit" xml:space="preserve">
+    <value>Credit</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>Page</value>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
   </data>
-  <data name="of" xml:space="preserve">
-    <value>of</value>
-  </data>
-  <data name="Pager_DisplayItems" xml:space="preserve">
-    <value>Displaying {from} to {to} of {total} items</value>
-  </data>
-  <data name="NotAuthorized" xml:space="preserve">
-    <value>You are not authorized on this function.</value>
-  </data>
-  <data name="MasterIsRequired" xml:space="preserve">
-    <value>Master is required.</value>
-  </data>
-  <data name="AgentIsRequired" xml:space="preserve">
-    <value>Agent is required.</value>
+  <data name="DownlineList" xml:space="preserve">
+    <value>Downline List</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="ExceededAgentCredit" xml:space="preserve">
+    <value>Sorry, increase credit unsuccessfully. You have exceeded your agent credit.</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="InputNumberError" xml:space="preserve">
+    <value>Please input a value number !</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="MasterIsRequired" xml:space="preserve">
+    <value>Master is required.</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>No information is available</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function.</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="OnlineMembers" xml:space="preserve">
+    <value>Online Members</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>Displaying {from} to {to} of {total} items</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page Size</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="UsedCredit" xml:space="preserve">
-    <value>Used Credit</value>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>There is no change to update.</value>
   </data>
   <data name="UpdateCredit" xml:space="preserve">
     <value>Update Credit</value>
@@ -213,22 +222,13 @@
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Update Successfully!</value>
   </data>
-  <data name="ExceededAgentCredit" xml:space="preserve">
-    <value>Sorry, increase credit unsuccessfully. You have exceeded your agent credit.</value>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>Used Credit</value>
   </data>
-  <data name="Disabled" xml:space="preserve">
-    <value>Disabled</value>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
-  <data name="Group" xml:space="preserve">
-    <value>Group</value>
-  </data>
-  <data name="InputNumberError" xml:space="preserve">
-    <value>Please input a value number !</value>
-  </data>
-  <data name="ThereIsNoChange" xml:space="preserve">
-    <value>There is no change to update.</value>
-  </data>
-  <data name="OnlineMembers" xml:space="preserve">
-    <value>Online Members</value>
+  <data name="UsernameOrNameContains" xml:space="preserve">
+    <value>Username Or Name contains</value>
   </data>
 </root>

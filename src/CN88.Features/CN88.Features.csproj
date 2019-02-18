@@ -100,9 +100,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerList\AppResources\CustomerListResources.Designer.cs">
-      <DependentUpon>CustomerListResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="CustomerList\Constants\CloseReasonConstant.cs" />
     <Compile Include="CustomerList\Constants\CustomerStatus.cs" />
     <Compile Include="CustomerList\Criteria\CustomerListCriteria.cs" />
@@ -117,6 +114,11 @@
     <Compile Include="CustomerList\Models\CreditRangeModel.cs" />
     <Compile Include="CustomerList\Models\CustomerListModel.cs" />
     <Compile Include="CustomerList\Models\CustomerModel.cs" />
+    <Compile Include="CustomerList\Resources\CustomerListResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerListResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\AppResources\ReportResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -132,8 +134,10 @@
     <Compile Include="Reports\Models\ReportModel.cs" />
     <Compile Include="Reports\Params\ReportParam.cs" />
     <Compile Include="Reports\Services\ReportService.cs" />
-    <Compile Include="Shared\AppResources\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
+    <Compile Include="Shared\AppResources\SharedResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SharedResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Shared\Configurations\AppSettings.cs" />
     <Compile Include="Shared\Criteria\GetBetTypeBySportCriteria.cs" />
@@ -153,28 +157,34 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.ja-JP.resx" />
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.ko-KR.resx" />
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.resx" />
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.th-TH.resx" />
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.vi-VN.resx" />
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.zh-CN.resx" />
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.zh-Hans.resx" />
-    <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.zh-TW.resx" />
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.ja-JP.resx" />
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.ko-KR.resx" />
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomerListResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.th-TH.resx" />
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.vi-VN.resx" />
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-CN.resx" />
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-Hans.resx" />
+    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-TW.resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.ko-KR.resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.th-TH.resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.vi-VN.resx" />
     <EmbeddedResource Include="Reports\AppResources\ReportResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ReportResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-Hans.resx" />
     <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-TW.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.ja-JP.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.ko-KR.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.th-TH.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.vi-VN.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.zh-CN.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.zh-Hans.resx" />
-    <EmbeddedResource Include="Shared\AppResources\Resources.zh-TW.resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-CN..resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-TW.resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-Hans.resx" />
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\AppResources\SharedResources.ja-JP.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

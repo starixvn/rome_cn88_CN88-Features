@@ -117,65 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>没资料显示</value>
-  </data>
-  <data name="Master" xml:space="preserve">
-    <value>总代理</value>
+  <data name="Action" xml:space="preserve">
+    <value>动作</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>代理</value>
   </data>
-  <data name="Member" xml:space="preserve">
-    <value>会员</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>提交</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>状态</value>
-  </data>
-  <data name="PageSize" xml:space="preserve">
-    <value>页面范围</value>
-  </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
-  </data>
-  <data name="Username" xml:space="preserve">
-    <value>用户名</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>名</value>
-  </data>
-  <data name="Credit" xml:space="preserve">
-    <value>信用额度</value>
-  </data>
-  <data name="CreationDate" xml:space="preserve">
-    <value>新增日期</value>
-  </data>
-  <data name="Open" xml:space="preserve">
-    <value>开启</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>关闭</value>
   </data>
-  <data name="Suspended" xml:space="preserve">
-    <value>暫停</value>
+  <data name="CreationDate" xml:space="preserve">
+    <value>新增日期</value>
   </data>
-  <data name="Page" xml:space="preserve">
-    <value>页</value>
-  </data>
-  <data name="of" xml:space="preserve">
-    <value>之第</value>
-  </data>
-  <data name="NotAuthorized" xml:space="preserve">
-    <value>您没有使用此功能的权限.</value>
-  </data>
-  <data name="Action" xml:space="preserve">
-    <value>动作</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>修改</value>
+  <data name="Credit" xml:space="preserve">
+    <value>信用额度</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>禁用</value>
@@ -183,7 +141,49 @@
   <data name="DownlineList" xml:space="preserve">
     <value>下线名单</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>修改</value>
+  </data>
   <data name="Group" xml:space="preserve">
     <value>组别</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>总代理</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>没资料显示</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您没有使用此功能的权限.</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>之第</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>页面范围</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用户名</value>
   </data>
 </root>

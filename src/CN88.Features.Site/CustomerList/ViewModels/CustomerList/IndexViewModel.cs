@@ -7,20 +7,20 @@
     {
         public IndexViewModel(IndexQuery query)
         {
-            ActorLevel = query.ActorLevel;
-            IsInternal = query.IsInternal;
-            HasUpdatePermission = query.HasUpdatePermission;
-            HasAddNewPermission = query.HasAddNewPermission;
+            //ActorLevel = query.ActorLevel;
+            //IsInternal = query.IsInternal;
+            //HasUpdatePermission = query.HasUpdatePermission;
+            //HasAddNewPermission = query.HasAddNewPermission;
 
-            Language = query.Language;
-            ViewerId = query.ViewerId;
+            //Language = query.Language;
+            //ViewerId = query.ViewerId;
 
-            DownlineUsername = query.DownlineUsername;
-            Username = query.Username;
-            SearchRoleId = query.SearchRoleId;
-            Status = query.Status;
-            PageSize = query.PageSize;
-            PageIndex = query.PageIndex;
+            //DownlineUsername = query.DownlineUsername;
+            //Username = query.Username;
+            //SearchRoleId = query.SearchRoleId;
+            //Status = query.Status;
+            //PageSize = query.PageSize;
+            //PageIndex = query.PageIndex;
         }
 
         public UserLevel ActorLevel { get; set; }

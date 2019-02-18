@@ -4,18 +4,21 @@
     using CN88.Features.Site.CustomerList;
     using MediatR;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
 
     public class CustomerListController : SiteBaseController
     {
+        private const string CustomerListPath = "~/CustomerList/Views/Index.cshtml";
+
         public CustomerListController(IMediator mediator)
             : base(mediator)
         {
         }
 
         [HttpGet]
-        public ActionResult Index(IndexQuery message)
-            => View(mediator.Send(message));
+        public async Task<ActionResult> Index(IndexQuery message)
+            => View(CustomerListPath, await mediator.Send(message));
 
         [HttpGet]
         public JsonResult GetCustomerList(CustomerListQuery message)

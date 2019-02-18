@@ -4,25 +4,25 @@
 }
 
 <div class="page-title">
-    <span class="pull-left">@Resources.DownlineList</span>
+    <span class="pull-left">@CustomerListResources.DownlineList</span>
 </div>
 <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
         <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
-            <a>@Resources.Master</a>
+            <a>@CustomerListResources.Master</a>
         </li>
     }
 
     @if (Model.ActorLevel.IsMasterOrSuperLevel())
     {
         <li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
-            <a>@Resources.Agent</a>
+            <a>@CustomerListResources.Agent</a>
         </li>
     }
 
     <li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
-        <a>@Resources.Member</a>
+        <a>@CustomerListResources.Member</a>
     </li>
 </ul>
 
@@ -33,20 +33,20 @@
             <div class="filter">
                 <form id="form-master" class="form-inline" role="form">
                     <div class="form-group">
-                        <label>@Resources.UsernameOrNameContains</label>
+                        <label>@CustomerListResources.UsernameOrNameContains</label>
                         <input id="txt-username-master" class="txt-username" type="text" value="" />
                     </div>
                     <div class="form-group">
-                        <label>@Resources.Status</label>
+                        <label>@CustomerListResources.Status</label>
                         <select id="dropdown-status-master" class="dropdown-status">
-                            <option value="@CustomerStatus.All">@Resources.All</option>
-                            <option value="@CustomerStatus.Open">@Resources.Open</option>
-                            <option value="@CustomerStatus.Closed">@Resources.Closed</option>
-                            <option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+                            <option value="@CustomerStatus.All">@CustomerListResources.All</option>
+                            <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
+                            <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
+                            <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input id="btn-submit-master" class="btn-submit" type="button" value="@Resources.Submit" />
+                        <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
                 </form>
             </div>
@@ -54,13 +54,13 @@
             <table id="tbl-master" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
                 <thead>
                     <tr>
-                        <th><div class="col-no">@Resources.No</div></th>
-                        <th><div class="col-username">@Resources.Username</div></th>
-                        <th><div class="col-name">@Resources.Name</div></th>
-                        <th><div class="col-credit">@Resources.Credit</div></th>
-                        <th><div class="col-creation-date">@Resources.CreationDate</div></th>
-                        <th><div class="col-status">@Resources.Status</div></th>
-                        <th><div class="col-action">@Resources.Action</div></th>
+                        <th><div class="col-no">@CustomerListResources.No</div></th>
+                        <th><div class="col-username">@CustomerListResources.Username</div></th>
+                        <th><div class="col-name">@CustomerListResources.Name</div></th>
+                        <th><div class="col-credit">@CustomerListResources.Credit</div></th>
+                        <th><div class="col-creation-date">@CustomerListResources.CreationDate</div></th>
+                        <th><div class="col-status">@CustomerListResources.Status</div></th>
+                        <th><div class="col-action">@CustomerListResources.Action</div></th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -79,40 +79,40 @@
                     @if (Model.ActorLevel.IsSuperLevel() || Model.IsInternal)
                     {
                         <div class="form-group">
-                            <label>@Resources.Master</label>
+                            <label>@CustomerListResources.Master</label>
                             <input id="txt-viewed-master" class="txt-username" type="text" value="" />
                         </div>
                     }
 
                     <div class="form-group">
-                        <label>@Resources.UsernameOrNameContains</label>
+                        <label>@CustomerListResources.UsernameOrNameContains</label>
                         <input id="txt-username-agent" class="txt-username" type="text" value="" />
                     </div>
                     <div class="form-group">
-                        <label>@Resources.Status</label>
+                        <label>@CustomerListResources.Status</label>
                         <select id="dropdown-status-agent">
-                            <option value="@CustomerStatus.All">@Resources.All</option>
-                            <option value="@CustomerStatus.Open">@Resources.Open</option>
-                            <option value="@CustomerStatus.Closed">@Resources.Closed</option>
-                            <option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+                            <option value="@CustomerStatus.All">@CustomerListResources.All</option>
+                            <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
+                            <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
+                            <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input id="btn-submit-agent" class="btn-submit" type="button" value="@Resources.Submit" />
+                        <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
-                    <div id="msg-err-agent" class="msg msg-error display-none">@Resources.MasterIsRequired</div>
+                    <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
                 </form>
             </div>
             <table id="tbl-agent" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
                 <thead>
                     <tr>
-                        <th><div class="col-no">@Resources.No</div></th>
-                        <th><div class="col-username">@Resources.Username</div></th>
-                        <th><div class="col-name">@Resources.Name</div></th>
-                        <th><div class="col-credit">@Resources.Credit</div></th>
-                        <th><div class="col-creation-date">@Resources.CreationDate</div></th>
-                        <th><div class="col-status">@Resources.Status</div></th>
-                        <th><div class="col-action">@Resources.Action</div></th>
+                        <th><div class="col-no">@CustomerListResources.No</div></th>
+                        <th><div class="col-username">@CustomerListResources.Username</div></th>
+                        <th><div class="col-name">@CustomerListResources.Name</div></th>
+                        <th><div class="col-credit">@CustomerListResources.Credit</div></th>
+                        <th><div class="col-creation-date">@CustomerListResources.CreationDate</div></th>
+                        <th><div class="col-status">@CustomerListResources.Status</div></th>
+                        <th><div class="col-action">@CustomerListResources.Action</div></th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -129,41 +129,41 @@
                 @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
                 {
                     <div class="form-group">
-                        <label>@Resources.Agent</label>
+                        <label>@CustomerListResources.Agent</label>
                         <input id="txt-viewed-agent" class="txt-username" type="text" value="" />
                     </div>
                 }
 
                 <div class="form-group">
-                    <label>@Resources.UsernameOrNameContains</label>
+                    <label>@CustomerListResources.UsernameOrNameContains</label>
                     <input id="txt-username-member" class="txt-username" type="text" value="" />
                 </div>
                 <div class="form-group">
-                    <label>@Resources.Status</label>
+                    <label>@CustomerListResources.Status</label>
                     <select id="dropdown-status-member">
-                        <option value="@CustomerStatus.All">@Resources.All</option>
-                        <option value="@CustomerStatus.Open">@Resources.Open</option>
-                        <option value="@CustomerStatus.Closed">@Resources.Closed</option>
-                        <option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+                        <option value="@CustomerStatus.All">@CustomerListResources.All</option>
+                        <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
+                        <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
+                        <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input id="btn-submit-member" class="btn-submit" type="button" value="@Resources.Submit" />
+                    <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                 </div>
-                <div id="msg-err-member" class="msg msg-error display-none">@Resources.AgentIsRequired</div>
+                <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
             </form>
         </div>
         <table id="tbl-member" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
             <thead>
                 <tr>
-                    <th><div class="col-no">@Resources.No</div></th>
-                    <th><div class="col-username">@Resources.Username</div></th>
-                    <th><div class="col-name">@Resources.Name</div></th>
-                    <th><div class="col-credit">@Resources.Group</div></th>
-                    <th><div class="col-credit">@Resources.Credit</div></th>
-                    <th><div class="col-creation-date">@Resources.CreationDate</div></th>
-                    <th><div class="col-status">@Resources.Status</div></th>
-                    <th><div class="col-action">@Resources.Action</div></th>
+                    <th><div class="col-no">@CustomerListResources.No</div></th>
+                    <th><div class="col-username">@CustomerListResources.Username</div></th>
+                    <th><div class="col-name">@CustomerListResources.Name</div></th>
+                    <th><div class="col-credit">@CustomerListResources.Group</div></th>
+                    <th><div class="col-credit">@CustomerListResources.Credit</div></th>
+                    <th><div class="col-creation-date">@CustomerListResources.CreationDate</div></th>
+                    <th><div class="col-status">@CustomerListResources.Status</div></th>
+                    <th><div class="col-action">@CustomerListResources.Action</div></th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -179,21 +179,21 @@
 @Html.Hidden("creditPopupUrl", Url.Action("CreditPopup", "CustomerList"))
 @Html.Hidden("statusPopupUrl", Url.Action("StatusPopup", "CustomerList"))
 
-@Html.Hidden("NoInformationIsAvailable", Resources.NoInformationIsAvailable)
-@Html.Hidden("Open", Resources.Open)
-@Html.Hidden("Closed", Resources.Closed)
-@Html.Hidden("Suspended", Resources.Suspended)
-@Html.Hidden("Page", Resources.Page)
-@Html.Hidden("of", Resources.of)
-@Html.Hidden("Pager_DisplayItems", Resources.Pager_DisplayItems)
+@Html.Hidden("NoInformationIsAvailable", CustomerListResources.NoInformationIsAvailable)
+@Html.Hidden("Open", CustomerListResources.Open)
+@Html.Hidden("Closed", CustomerListResources.Closed)
+@Html.Hidden("Suspended", CustomerListResources.Suspended)
+@Html.Hidden("Page", CustomerListResources.Page)
+@Html.Hidden("of", CustomerListResources.of)
+@Html.Hidden("Pager_DisplayItems", CustomerListResources.Pager_DisplayItems)
 @Html.Hidden("usernameAutoSuggestionPath", IndexViewModel.UsernameAutoSuggestionPath)
 @Html.Hidden("EditCustomerLink", IndexViewModel.EditCustomerLink)
 @Html.Hidden("CreateCustomerLink", IndexViewModel.CreateCustomerLink)
 @Html.Hidden("CurrentLink", IndexViewModel.CurrentLink)
 
-@Html.Hidden("UpdateStatus", Resources.UpdateStatus)
-@Html.Hidden("UpdateCredit", Resources.UpdateCredit)
-@Html.Hidden("Disabled", Resources.Disabled)
+@Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
+@Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
+@Html.Hidden("Disabled", CustomerListResources.Disabled)
 @Html.Hidden("HasUpdatePermission", Model.HasUpdatePermission ? 1 : 0)
 @Html.Hidden("HasAddNewPermission", Model.HasAddNewPermission ? 1 : 0)
 @Html.Hidden("Language", Model.Language)

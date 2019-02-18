@@ -1,6 +1,6 @@
 ﻿namespace CN88.Features.Models
 {
-    using CN88.Features.AppResources;
+    using CN88.Features.Shared.AppResources;
     using System.Net;
 
     public class Result
@@ -22,7 +22,7 @@
             => new Result(code, message);
 
         public static Result CreateForbiddenResult()
-            => new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized);
+            => new Result((int)HttpStatusCode.Forbidden, SharedResources.NotAuthorized);
 
         public bool IsSuccess => Code.Equals(0);
     }
