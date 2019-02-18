@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Site.Reports.Handlers
+﻿namespace CN88.Features.Site.Reports
 {
     using System.Threading.Tasks;
     using Features.Reports.Services;
@@ -7,13 +7,13 @@
     using Requests;
     using ViewModels;
 
-    public class MainHandler : IAsyncRequestHandler<MainQuery, MainViewModel>
+    public class ReportsHandler : IAsyncRequestHandler<MainQuery, MainViewModel>
     {
         private readonly SportService sportService;
         private readonly BettypeService betTypeService;
         private readonly ReportService reportService;
 
-        public MainHandler(
+        public ReportsHandler(
             SportService sportService,
             BettypeService betTypeService,
             ReportService reportService)
@@ -30,7 +30,6 @@
             var accountingPeriodGroups = await reportService.GetAccountingPeriodGroups();
 
             return new MainViewModel(
-                message.ReportType,
                 message.FromDate,
                 message.ToDate,
                 sports,

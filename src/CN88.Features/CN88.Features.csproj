@@ -118,6 +118,12 @@
     <Compile Include="CustomerList\Models\CustomerListModel.cs" />
     <Compile Include="CustomerList\Models\CustomerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\AppResources\ReportResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Constants\ReportTypeConstants.cs" />
     <Compile Include="Reports\Criteria\GetAccountingPeriodsCriteria.cs" />
     <Compile Include="Reports\Criteria\ReportCriteria.cs" />
     <Compile Include="Reports\Models\AccountingPeriod.cs" />
@@ -155,6 +161,12 @@
     <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.zh-CN.resx" />
     <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.zh-Hans.resx" />
     <EmbeddedResource Include="CustomerList\AppResources\CustomerListResources.zh-TW.resx" />
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-Hans.resx" />
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-TW.resx" />
     <EmbeddedResource Include="Shared\AppResources\Resources.ja-JP.resx" />
     <EmbeddedResource Include="Shared\AppResources\Resources.ko-KR.resx" />
     <EmbeddedResource Include="Shared\AppResources\Resources.resx" />

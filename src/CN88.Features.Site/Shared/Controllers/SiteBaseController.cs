@@ -1,10 +1,10 @@
 ﻿namespace CN88.Features.Site.Controllers
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Web.Mvc;
     using CN88.Features.Models;
     using CN88.Features.Site.Requests;
     using MediatR;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Web.Mvc;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class SiteBaseController : Controller
