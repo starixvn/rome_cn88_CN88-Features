@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Site.CustomerList
+﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
     public class StatusPopupViewModel
     {

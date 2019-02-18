@@ -311,6 +311,19 @@
   <ItemGroup>
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
+    <Content Include="CustomerList\bundles\scripts\index.js" />
+    <Content Include="CustomerList\bundles\scripts\index.min.js">
+      <DependentUpon>index.js</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.min.js">
+      <DependentUpon>credit-popup.js</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\bundles\scripts\popup\status-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\popup\status-popup.min.js">
+      <DependentUpon>status-popup.js</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="Global.asax" />
     <Content Include="Reports\bundles\reports.css" />
     <Content Include="Reports\Styles\reports.css">

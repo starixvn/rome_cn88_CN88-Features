@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Site.CustomerList
+﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
     using Alpha.Web.Helpers;
     using CN88.Features.Shared.Models;

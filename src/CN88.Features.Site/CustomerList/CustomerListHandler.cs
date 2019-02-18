@@ -4,6 +4,7 @@
     using CN88.Features.CustomerList.Services;
     using CN88.Features.Models;
     using CN88.Features.Site.CustomerList;
+    using CN88.Features.Site.CustomerList.ViewModels;
     using MediatR;
 
     public class CustomerListHandler :

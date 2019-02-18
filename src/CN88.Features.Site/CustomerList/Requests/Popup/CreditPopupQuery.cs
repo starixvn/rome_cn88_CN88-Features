@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.CustomerList
 {
     using CN88.Features.Models;
+    using CN88.Features.Site.CustomerList.ViewModels;
     using CN88.Features.Site.Requests;
     using MediatR;
 

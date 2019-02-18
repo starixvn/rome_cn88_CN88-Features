@@ -1,4 +1,5 @@
 ﻿@model IndexViewModel
+
 @{
 	Layout = "~/Shared/Views/_Layout.cshtml";
 }
@@ -212,5 +213,5 @@
 @Html.Hidden("PageIndex", Model.PageIndex)
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/assets/bundles/customer-list/index")
+	@StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
 }

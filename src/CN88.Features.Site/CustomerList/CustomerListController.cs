@@ -20,9 +20,9 @@
         public async Task<ActionResult> Index(IndexQuery message)
             => View(CustomerListPath, await mediator.Send(message));
 
-        [HttpGet]
-        public JsonResult GetCustomerList(CustomerListQuery message)
-            => Json(mediator.Send(message), JsonRequestBehavior.AllowGet);
+        //[HttpGet]
+        public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
+            => Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
 
         [HttpGet]
         public ActionResult CreditPopup(CreditPopupQuery message)

@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Site.CustomerList
+﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
     using CN88.Features.CustomerList.Models;
     using System.Collections.Generic;

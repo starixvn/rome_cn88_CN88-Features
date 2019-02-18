@@ -8,28 +8,28 @@
 	{
 		"outputFileName": "CustomerList/bundles/scripts/index.js",
 		"inputFiles": [
-			"Shared/scripts/components/single-selection-dropdown.js",
-			"Shared/scripts/components/pager.js",
-			"CustomerList/scripts/site-infrastructure.js",
-			"CustomerList/scripts/base-list.js",
-			"CustomerList/scripts/master-list.js",
-			"CustomerList/scripts/agent-list.js",
-			"CustomerList/scripts/member-list.js",
-			"CustomerList/scripts/index.js"
+			"Shared/Scripts/components/single-selection-dropdown.js",
+			"Shared/Scripts/components/pager.js",
+			"CustomerList/Scripts/site-infrastructure.js",
+			"CustomerList/Scripts/base-list.js",
+			"CustomerList/Scripts/master-list.js",
+			"CustomerList/Scripts/agent-list.js",
+			"CustomerList/Scripts/member-list.js",
+			"CustomerList/Scripts/index.js"
 		]
 	},
 	{
-		"outputFileName": "assets/bundles/customer-list/popup/credit-popup.js",
+		"outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
 		"inputFiles": [
-			"CustomerList/scripts/popup/popup-base.js",
-			"CustomerList/scripts/popup/credit-popup.js"
+			"CustomerList/Scripts/Popup/popup-base.js",
+			"CustomerList/Scripts/Popup/credit-popup.js"
 		]
 	},
 	{
-		"outputFileName": "assets/bundles/customer-list/popup/status-popup.js",
+		"outputFileName": "CustomerList/bundles/scripts/popup/status-popup.js",
 		"inputFiles": [
-			"CustomerList/scripts/popup/popup-base.js",
-			"CustomerList/scripts/popup/status-popup.js"
+			"CustomerList/Scripts/Popup/popup-base.js",
+			"CustomerList/Scripts/Popup/status-popup.js"
 		]
 	},
 	{

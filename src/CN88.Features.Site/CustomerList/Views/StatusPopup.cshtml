@@ -8,32 +8,32 @@
 	<div class="col-xs-12 hidden msg" id="error-message"></div>
 	<div class="form-group col-xs-12">
 		<div class="col-xs-4 status-label">
-			@Resources.Status
+			@CustomerListResources.Status
 		</div>
 		<div class="col-xs-7">
 			<select id="dropdown-status" class="dropdown-status">
 				<option value="@CustomerStatus.Open" @(Model.UpdateStatusId.Equals(CustomerStatus.Open) ? "selected" : string.Empty)>
-					@Resources.Open
+					@CustomerListResources.Open
 				</option>
 				<option value="@CustomerStatus.Suspended" @(Model.UpdateStatusId.Equals(CustomerStatus.Suspended) ? "selected" : string.Empty)>
-					@Resources.Suspended
+					@CustomerListResources.Suspended
 				</option>
 				<option value="@CustomerStatus.Closed" @(Model.UpdateStatusId.Equals(CustomerStatus.Closed) ? "selected" : string.Empty)>
-					@Resources.Closed
+					@CustomerListResources.Closed
 				</option>
 			</select>
 		</div>
 	</div>
 	<div class="col-xs-8 row-info popup-bottom list-button">
-		<button type="button" class="btn-submit">@Resources.Save</button>
-		<button type="button" class="btn-cancel">@Resources.Cancel</button>
+		<button type="button" class="btn-submit">@CustomerListResources.Save</button>
+		<button type="button" class="btn-cancel">@CustomerListResources.Cancel</button>
 	</div>
 </div>
 
 @Html.Hidden("CustId", Model.CustId)
-@Html.Hidden("UpdateSuccessfully", Resources.UpdateSuccessfully)
+@Html.Hidden("UpdateSuccessfully", CustomerListResources.UpdateSuccessfully)
 @Html.Hidden("CurrentStatusId", Model.UpdateStatusId)
-@Html.Hidden("ThereIsNoChange", Resources.ThereIsNoChange)
+@Html.Hidden("ThereIsNoChange", CustomerListResources.ThereIsNoChange)
 @Html.AntiForgeryToken()
 
 @section Scripts {
