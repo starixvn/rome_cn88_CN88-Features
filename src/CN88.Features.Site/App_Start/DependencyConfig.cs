@@ -11,6 +11,7 @@
     using global::CN88.Features.CustomerList.Services;
     using global::CN88.Features.Models;
     using global::CN88.Features.Reports.Services;
+    using global::CN88.Features.Shared.DataAccesses;
     using global::CN88.Features.Shared.Services;
     using global::CN88.Features.Site.Controllers;
     using global::CN88.Features.Site.Models;
@@ -74,6 +75,7 @@
             container.RegisterSingleton<IDynamicRepository, DynamicRepository>();
 
             container.RegisterSingleton<CustomerListDataAccess, CustomerListDataAccessImpl>();
+            container.RegisterSingleton<SportGroupDataAccess, SportGroupDataAccessImpl>();
         }
 
         private static void RegisterServices(Container container)
@@ -84,9 +86,9 @@
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
 
-            container.Register<SportService>(
-                () => new SportServiceImpl(
-                    container.GetInstance<IDynamicRepository>(),
+            container.Register<SportGroupService>(
+                () => new SportGroupServiceImpl(
+                    container.GetInstance<SportGroupDataAccess>(),
                     container.GetInstance<CacheRefService>().GetSportName),
                 Lifestyle.Singleton);
             container.Register<BettypeService>(

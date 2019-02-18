@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetSportsCriteria : CriteriaBase
+    public class GetSportGroupsCriteria : CriteriaBase
     {
         public override string GetSettingKey() => "CS_SportType_Sel";
 

@@ -311,20 +311,24 @@
   <ItemGroup>
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
+    <Content Include="assets\bundles\customer-list\popup\credit-popup.js" />
+    <Content Include="assets\bundles\customer-list\popup\credit-popup.min.js">
+      <DependentUpon>credit-popup.js</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\customer-list\popup\status-popup.js" />
+    <Content Include="assets\bundles\customer-list\popup\status-popup.min.js">
+      <DependentUpon>status-popup.js</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
     </Content>
-    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
-    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.min.js">
-      <DependentUpon>credit-popup.js</DependentUpon>
-    </Content>
-    <Content Include="CustomerList\bundles\scripts\popup\status-popup.js" />
-    <Content Include="CustomerList\bundles\scripts\popup\status-popup.min.js">
-      <DependentUpon>status-popup.js</DependentUpon>
-    </Content>
     <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="Global.asax" />
+    <Content Include="Reports\bundles\index.js" />
+    <Content Include="Reports\bundles\index.min.js">
+      <DependentUpon>index.js</DependentUpon>
+    </Content>
     <Content Include="Reports\bundles\reports.css" />
     <Content Include="Reports\Styles\reports.css">
       <DependentUpon>reports.scss</DependentUpon>
@@ -359,13 +363,18 @@
     <Compile Include="Reports\Constants\ReportDisplayModeConstants.cs" />
     <Compile Include="Reports\ReportsController.cs" />
     <Compile Include="Reports\ReportsHandler.cs" />
+    <Compile Include="Reports\Requests\ReportQuery.cs" />
+    <Compile Include="Reports\ViewModels\ReportViewModel.cs" />
+    <Compile Include="Shared\BaseHandler.cs" />
     <Compile Include="Shared\Controllers\SiteBaseController.cs" />
+    <Compile Include="Shared\Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Shared\Models\User.cs" />
     <Compile Include="Shared\Requests\BaseQuery.cs" />
     <Compile Include="Reports\Requests\MainQuery.cs" />
     <Compile Include="Reports\ViewModels\MainViewModel.cs" />
     <Compile Include="Shared\Controllers\FeatureBaseController.cs" />
-    <Compile Include="Shared\Utils\SystemTime.cs" />
+    <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
+    <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -397,6 +406,8 @@
     <Content Include="typings\globals\jquery\typings.json" />
     <Content Include="typings\globals\moment\typings.json" />
     <Content Include="typings\globals\storejs\typings.json" />
+    <Content Include="App_Code\Components\SportGroupSelection.cshtml" />
+    <Content Include="App_Code\Components\BetTypeSelection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -404,9 +415,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Code\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CN88.Features\CN88.Features.csproj">
       <Project>{db2cd304-10b8-44cd-81ea-f9743e38e71b}</Project>
@@ -423,8 +432,11 @@
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\popup-base.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\index.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\core.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />

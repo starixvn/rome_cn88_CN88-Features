@@ -20,8 +20,10 @@
     using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.RabbitMQ;
     using Fanex.Logging.Sentry.RavenClient;
+    using Fanex.RemotingRef;
     using Features.Shared.Configurations;
     using ONEbook.UM.Filters;
+    using Shared.Helpers;
     using SharpRaven;
     using Sunplus.Agent.Model.Entities;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
@@ -49,11 +51,16 @@
 
             ShareSession.Init();
 
+            ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
             //GlobalFilters.Filters.Add(new CheckBelongingFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
+
+            RefDataTypeContainer
+                .ConnectTo(new Uri(AppSettings.RemoteRefURL))
+                .FromApplication("CN88.Features.Site");
         }
 
         /// <summary>

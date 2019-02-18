@@ -6,22 +6,25 @@
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
-    using Features.Shared.Models;
+    using Shared.ViewModels.Components;
 
     public class MainViewModel
     {
         public MainViewModel(
             DateTime fromDate,
             DateTime toDate,
-            IEnumerable<Sport> sports,
-            IEnumerable<BetType> betTypes,
-            IEnumerable<AccountingPeriodGroup> accountingPeriodGroups)
+            IEnumerable<SelectListItem> sportGroups,
+            IEnumerable<SelectListItem> betTypes,
+            IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
+            AccountingPeriod currentPeriod)
         {
             FromDate = fromDate;
             ToDate = toDate;
-            Sports = sports;
-            BetTypes = betTypes;
             AccountingPeriodGroups = accountingPeriodGroups;
+            CurrentPeriod = currentPeriod;
+
+            SportGroupSelectionViewModel = new SportGroupSelectionViewModel(sportGroups, 0);
+            BetTypeSelectionViewModel = new BetTypeSelectionViewModel(betTypes, 0);
         }
 
         public IEnumerable<SelectListItem> WagerReportTypes =>
@@ -58,10 +61,12 @@
 
         public DateTime ToDate { get; }
 
-        public IEnumerable<Sport> Sports { get; }
-
-        public IEnumerable<BetType> BetTypes { get; }
-
         public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
+
+        public AccountingPeriod CurrentPeriod { get; }
+
+        public SportGroupSelectionViewModel SportGroupSelectionViewModel { get; }
+
+        public BetTypeSelectionViewModel BetTypeSelectionViewModel { get; }
     }
 }

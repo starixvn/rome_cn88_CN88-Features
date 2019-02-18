@@ -141,17 +141,20 @@
     </Compile>
     <Compile Include="Shared\Configurations\AppSettings.cs" />
     <Compile Include="Shared\Criteria\GetBetTypeBySportCriteria.cs" />
-    <Compile Include="Shared\Criteria\GetSportsCriteria.cs" />
+    <Compile Include="Shared\Criteria\GetSportGroupsCriteria.cs" />
+    <Compile Include="Shared\DataAccesses\SportGroupDataAccess.cs" />
     <Compile Include="Shared\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Shared\Models\Bettype.cs" />
     <Compile Include="Shared\Models\Enumeration.cs" />
     <Compile Include="Shared\Models\IUser.cs" />
     <Compile Include="Shared\Models\Result.cs" />
     <Compile Include="Shared\Models\Sport.cs" />
+    <Compile Include="Shared\Models\SportGroup.cs" />
     <Compile Include="Shared\Models\UserLevel.cs" />
     <Compile Include="Shared\Services\BettypeService.cs" />
     <Compile Include="Shared\Services\CacheRefService.cs" />
-    <Compile Include="Shared\Services\SportService.cs" />
+    <Compile Include="Shared\Services\SportGroupService.cs" />
+    <Compile Include="Shared\Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

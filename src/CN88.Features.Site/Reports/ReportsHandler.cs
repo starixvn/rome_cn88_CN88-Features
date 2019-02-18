@@ -5,16 +5,17 @@
     using Features.Shared.Services;
     using MediatR;
     using Requests;
+    using Shared;
     using ViewModels;
 
-    public class ReportsHandler : IAsyncRequestHandler<MainQuery, MainViewModel>
+    public class ReportsHandler : BaseHandler, IAsyncRequestHandler<MainQuery, MainViewModel>
     {
-        private readonly SportService sportService;
+        private readonly SportGroupService sportService;
         private readonly BettypeService betTypeService;
         private readonly ReportService reportService;
 
         public ReportsHandler(
-            SportService sportService,
+            SportGroupService sportService,
             BettypeService betTypeService,
             ReportService reportService)
         {
@@ -25,16 +26,18 @@
 
         public async Task<MainViewModel> Handle(MainQuery message)
         {
-            var sports = await sportService.GetSports();
+            var sportGroups = await sportService.GetSportGroups();
             var betTypes = await betTypeService.GetBetTypesBySport();
             var accountingPeriodGroups = await reportService.GetAccountingPeriodGroups();
+            var currentPeriod = await reportService.GetCurrentPeriod();
 
             return new MainViewModel(
                 message.FromDate,
                 message.ToDate,
-                sports,
-                betTypes,
-                accountingPeriodGroups);
+                BuildSportGroupSelectListItems(sportGroups, 0),
+                BuildBetTypeSelectListItems(betTypes, 0),
+                accountingPeriodGroups,
+                currentPeriod);
         }
     }
 }

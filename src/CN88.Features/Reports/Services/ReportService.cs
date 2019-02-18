@@ -9,12 +9,15 @@
     using Fanex.Data.Repository;
     using Models;
     using Params;
+    using Shared.Utils;
 
     public interface ReportService
     {
         Task<IEnumerable<ReportModel>> GetReportData(ReportParam param);
 
         Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups();
+
+        Task<AccountingPeriod> GetCurrentPeriod();
     }
 
     public class ReportServiceImpl : ReportService
@@ -58,10 +61,15 @@
             return result;
         }
 
-        private Task<IEnumerable<AccountingPeriod>> GetAccountingPeriods()
-            => ConfiguredCacheService.GetOrSetAsync(
+        private async Task<IEnumerable<AccountingPeriod>> GetAccountingPeriods()
+            => await ConfiguredCacheService.GetOrSetAsync(
                 "CN88.Features.Reports.Services.ReportServiceImpl.AccountingPeriods",
                 () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
+
+        public async Task<AccountingPeriod> GetCurrentPeriod()
+            => (await GetAccountingPeriods()).FirstOrDefault(
+                    p => p.FromDate <= SystemTime.Today
+                        && SystemTime.Today >= p.ToDate);
     }
 }

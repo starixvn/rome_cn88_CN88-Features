@@ -61,11 +61,38 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Bet Types.
+        /// </summary>
+        public static string AllBetTypes {
+            get {
+                return ResourceManager.GetString("AllBetTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Sports.
+        /// </summary>
+        public static string AllSports {
+            get {
+                return ResourceManager.GetString("AllSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string Clear {
             get {
                 return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In-Play.
+        /// </summary>
+        public static string InPlay {
+            get {
+                return ResourceManager.GetString("InPlay", resourceCulture);
             }
         }
         

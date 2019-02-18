@@ -1,0 +1,13 @@
+﻿@using CN88.Features.Site.Shared.ViewModels.Components
+@helper Render(BetTypeSelectionViewModel model)
+{
+    <div class="form-group">
+        <select id="dropdown-bettype">
+            @foreach (var group in model.BetTypes)
+            {
+                <option value="@group.Value" @(group.Selected ? " selected=\"selected\"" : string.Empty)>@group.Text</option>
+            }
+        </select>
+        <input type="hidden" name="UserSelectedBetTypeId" id="UserSelectedBetTypeId" value="@model.UserSelectedBetTypeId" />
+    </div>
+}

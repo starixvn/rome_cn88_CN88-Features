@@ -4,6 +4,7 @@
 @using CN88.Features.Site.Reports.ViewModels
 @using CN88.Features.Shared.Extensions
 @using CN88.Features.Shared.AppResources
+@using CN88.Features.Shared.Utils
 @using CN88.Features.Reports.AppResources
 @model MainViewModel
 <div class="container-fluid">
@@ -40,6 +41,12 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div id="daterange-picker"
+                     class="daterange-picker"
+                     data-currentdate="@SystemTime.Today"
+                     data-mindate="@Model.CurrentPeriod.FromDate.ToShortDateWithSlash()"
+                     data-maxdate="@Model.CurrentPeriod.ToDate.ToShortDateWithSlash()">
                 </div>
                 <div class="form-group  from-date-box">
                     <div class="control date">
@@ -87,6 +94,8 @@
                     <input type="button" value="@SharedResources.ThisPeriod" />
                     <input type="button" value="@SharedResources.LastPeriod" />
                 </div>
+                @SportGroupSelection.Render(Model.SportGroupSelectionViewModel)
+                @BetTypeSelection.Render(Model.BetTypeSelectionViewModel)
                 <div class="form-group">
                     <input type="reset" value="@SharedResources.Clear" />
                     <input type="submit" value="@ReportResources.ViewReport" />
@@ -112,3 +121,6 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    @StaticResources.RenderScripts("~/Reports/bundles/index")
+}

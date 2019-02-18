@@ -36,7 +36,7 @@
                 {
                     var betTypes = dynamicRepository.Fetch<BetType>(new GetBetTypeBySportCriteria(sportTypeId));
 
-                    return betTypes.Select(betType => new BetType(betType.Id, betType.Name, getBetTypeDisplayName));
+                    return betTypes.Select(betType => new BetType(betType.Id, betType.Name, betType.IsLive, getBetTypeDisplayName));
                 },
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
     }

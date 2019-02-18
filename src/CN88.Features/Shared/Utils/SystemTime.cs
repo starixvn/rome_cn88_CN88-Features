@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Site.Shared.Utils
+﻿namespace CN88.Features.Shared.Utils
 {
     using System;
 

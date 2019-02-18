@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.Reports.Requests
 {
     using System;
+    using Features.Shared.Utils;
     using MediatR;
     using ViewModels;
 
@@ -8,9 +9,11 @@
     {
         public MainQuery()
         {
-            FromDate = DateTime.Now.Date;
-            ToDate = DateTime.Now.Date;
+            FromDate = SystemTime.Today.AddDays(-1);
+            ToDate = SystemTime.Today.AddDays(-1);
         }
+
+        public int DisplayMode { get; set; }
 
         public int ReportType { get; set; }
 

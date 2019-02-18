@@ -19,7 +19,9 @@
             => await View(message, MainViewPath);
 
         public async Task<ActionResult> Wager()
-            => View();
+        {
+            return View();
+        }
 
         public async Task<ActionResult> Lagecy()
             => View();
