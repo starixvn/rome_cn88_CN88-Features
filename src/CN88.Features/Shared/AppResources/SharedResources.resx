@@ -159,4 +159,13 @@
   <data name="AllSports" xml:space="preserve">
     <value>All Sports</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>Bet type</value>
+  </data>
 </root>

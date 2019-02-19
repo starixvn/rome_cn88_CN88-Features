@@ -2,9 +2,11 @@
 {
     using System;
     using Features.Models;
+    using MediatR;
     using Site.Requests;
+    using ViewModels;
 
-    public class ReportQuery : BaseQuery
+    public class ReportQuery : BaseQuery, IRequest<ReportViewModel>
     {
         public ReportQuery(IUser viewer)
             : base(viewer)

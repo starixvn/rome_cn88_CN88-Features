@@ -338,6 +338,10 @@
     <Content Include="Reports\bundles\index.min.js">
       <DependentUpon>index.js</DependentUpon>
     </Content>
+    <Content Include="Reports\bundles\legacy.js" />
+    <Content Include="Reports\bundles\legacy.min.js">
+      <DependentUpon>legacy.js</DependentUpon>
+    </Content>
     <Content Include="Reports\bundles\reports.css" />
     <Content Include="Reports\Styles\reports.css">
       <DependentUpon>reports.scss</DependentUpon>
@@ -373,15 +377,17 @@
     <Compile Include="Reports\ReportsController.cs" />
     <Compile Include="Reports\ReportsHandler.cs" />
     <Compile Include="Reports\Requests\ReportQuery.cs" />
+    <Compile Include="Reports\ViewModels\ReportFilterViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportViewModel.cs" />
     <Compile Include="Shared\BaseHandler.cs" />
     <Compile Include="Shared\Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Shared\Models\User.cs" />
     <Compile Include="Shared\BaseQuery.cs" />
-    <Compile Include="Reports\Requests\MainQuery.cs" />
-    <Compile Include="Reports\ViewModels\MainViewModel.cs" />
+    <Compile Include="Reports\Requests\IndexQuery.cs" />
+    <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
+    <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +423,10 @@
     <Content Include="App_Code\Components\SportGroupSelection.cshtml" />
     <Content Include="Shared\Views\NoInformation.cshtml" />
     <Content Include="App_Code\Components\BetTypeSelection.cshtml" />
+    <Content Include="App_Code\Components\DateRangePicker.cshtml" />
+    <Content Include="Reports\Views\Wager.cshtml" />
+    <Content Include="Reports\Views\Legacy.cshtml" />
+    <Content Include="Reports\Views\_Filter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -442,6 +452,7 @@
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\legacy.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />

@@ -6,26 +6,41 @@
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
+    using Requests;
     using Shared.ViewModels.Components;
 
-    public class MainViewModel
+    public class IndexViewModel
     {
-        public MainViewModel(
-            DateTime fromDate,
-            DateTime toDate,
+        public IndexViewModel(
+            IndexQuery query,
             IEnumerable<SelectListItem> sportGroups,
             IEnumerable<SelectListItem> betTypes,
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
             AccountingPeriod currentPeriod)
         {
-            FromDate = fromDate;
-            ToDate = toDate;
+            DisplayMode = query.DisplayMode;
+            FromDate = query.FromDate;
+            ToDate = query.ToDate;
             AccountingPeriodGroups = accountingPeriodGroups;
             CurrentPeriod = currentPeriod;
 
             SportGroupSelectionViewModel = new SportGroupSelectionViewModel(sportGroups, 0);
             BetTypeSelectionViewModel = new BetTypeSelectionViewModel(betTypes, 0);
         }
+
+        public int DisplayMode { get; }
+
+        public DateTime FromDate { get; }
+
+        public DateTime ToDate { get; }
+
+        public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
+
+        public AccountingPeriod CurrentPeriod { get; }
+
+        public SportGroupSelectionViewModel SportGroupSelectionViewModel { get; }
+
+        public BetTypeSelectionViewModel BetTypeSelectionViewModel { get; }
 
         public IEnumerable<SelectListItem> WagerReportTypes =>
             new List<SelectListItem>
@@ -56,17 +71,5 @@
                     Value = ReportTypeConstants.AbnormalBets.ToString(),
                 }
             };
-
-        public DateTime FromDate { get; }
-
-        public DateTime ToDate { get; }
-
-        public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
-
-        public AccountingPeriod CurrentPeriod { get; }
-
-        public SportGroupSelectionViewModel SportGroupSelectionViewModel { get; }
-
-        public BetTypeSelectionViewModel BetTypeSelectionViewModel { get; }
     }
 }

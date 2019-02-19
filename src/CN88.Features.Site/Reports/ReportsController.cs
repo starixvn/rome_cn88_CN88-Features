@@ -9,21 +9,21 @@
     public class ReportsController : FeatureBaseController
     {
         private const string MainViewPath = "~/Reports/Views/Index.cshtml";
+        private const string WagerViewPath = "~/Reports/Views/Wager.cshtml";
+        private const string LegacyViewPath = "~/Reports/Views/Legacy.cshtml";
 
         public ReportsController(IMediator mediator)
             : base(mediator)
         {
         }
 
-        public async Task<ActionResult> Index(MainQuery message)
+        public async Task<ActionResult> Index(IndexQuery message)
             => await ViewAsync(message, MainViewPath);
 
-        public async Task<ActionResult> Wager()
-        {
-            return View();
-        }
+        public async Task<ActionResult> Wager(ReportQuery message)
+            => await View(message, WagerViewPath);
 
-        public async Task<ActionResult> Lagecy()
-            => View();
+        public async Task<ActionResult> Legacy(ReportQuery message)
+            => await View(message, LegacyViewPath);
     }
 }

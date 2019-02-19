@@ -1,0 +1,8 @@
+﻿@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+@model ReportViewModel
+<div class="page-title">
+    <span class="pull-left">@Model.Title</span>
+</div>
+@Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)

@@ -1,17 +1,17 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
-@using CN88.Features.Site.Reports.ViewModels
 @using CN88.Features.Shared.Extensions
 @using CN88.Features.Shared.AppResources
 @using CN88.Features.Shared.Utils
 @using CN88.Features.Reports.AppResources
-@model MainViewModel
+@model IndexViewModel
 <div class="container-fluid">
     <div class="row">
         <div class="filter-container col-xs-12 col-sm-12 col-md-5">
             <div class="page-title">Create Report</div>
             <form class="filter" role="form">
+                @Html.Hidden("DisplayMode", Model.DisplayMode)
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active">
                         <a data-toggle="tab" href="#wagerReport">@ReportResources.WagerReport</a>

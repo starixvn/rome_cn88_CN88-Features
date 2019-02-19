@@ -15,6 +15,15 @@
     ]
   },
   {
+    "outputFileName": "Reports/bundles/legacy.js",
+    "inputFiles": [
+      "Shared/Scripts/core.js",
+      "Shared/Scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/daterangepicker.js",
+      "Reports/Scripts/legacy.js"
+    ]
+  },
+  {
     "outputFileName": "CustomerList/bundles/scripts/index.js",
     "inputFiles": [
       "Shared/scripts/components/single-selection-dropdown.js",

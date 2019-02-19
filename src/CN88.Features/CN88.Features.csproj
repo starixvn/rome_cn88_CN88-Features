@@ -127,10 +127,9 @@
     </Compile>
     <Compile Include="Reports\Constants\ReportTypeConstants.cs" />
     <Compile Include="Reports\Criteria\GetAccountingPeriodsCriteria.cs" />
-    <Compile Include="Reports\Criteria\ReportCriteria.cs" />
+    <Compile Include="Reports\Criteria\GetReportDataCriteria.cs" />
     <Compile Include="Reports\Models\AccountingPeriod.cs" />
     <Compile Include="Reports\Models\AccountingPeriodGroup.cs" />
-    <Compile Include="Reports\Models\ReportData.cs" />
     <Compile Include="Reports\Models\ReportModel.cs" />
     <Compile Include="Reports\Params\ReportParam.cs" />
     <Compile Include="Reports\Services\ReportService.cs" />
@@ -140,10 +139,12 @@
       <DependentUpon>SharedResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Shared\Configurations\AppSettings.cs" />
+    <Compile Include="Shared\Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Shared\Criteria\GetBetTypeBySportCriteria.cs" />
     <Compile Include="Shared\Criteria\GetSportGroupsCriteria.cs" />
     <Compile Include="Shared\DataAccesses\SportGroupDataAccess.cs" />
     <Compile Include="Shared\Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Shared\Models\BalanceUpDayAndMoveBetsDay.cs" />
     <Compile Include="Shared\Models\Bettype.cs" />
     <Compile Include="Shared\Models\Enumeration.cs" />
     <Compile Include="Shared\Models\IUser.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Shared\Models\UserLevel.cs" />
     <Compile Include="Shared\Services\BettypeService.cs" />
     <Compile Include="Shared\Services\CacheRefService.cs" />
+    <Compile Include="Shared\Services\ReportDateService.cs" />
     <Compile Include="Shared\Services\SportGroupService.cs" />
     <Compile Include="Shared\Utils\SystemTime.cs" />
   </ItemGroup>

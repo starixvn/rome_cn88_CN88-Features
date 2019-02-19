@@ -61,7 +61,7 @@ var PopupBase = /** @class */ (function () {
     return PopupBase;
 }());
 ;
-//# sourceMappingURL=popup-base.js.map
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -125,4 +125,3 @@ $(function () {
     var creditPopup = new CreditPopup($, window.top);
     creditPopup.init();
 });
-//# sourceMappingURL=credit-popup.js.map

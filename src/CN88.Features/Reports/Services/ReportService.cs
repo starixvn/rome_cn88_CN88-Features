@@ -9,7 +9,7 @@
     using Fanex.Data.Repository;
     using Models;
     using Params;
-    using Shared.Utils;
+    using Shared.Services;
 
     public interface ReportService
     {
@@ -23,20 +23,30 @@
     public class ReportServiceImpl : ReportService
     {
         private readonly IDynamicRepository dynamicRepository;
+        private readonly ReportDateService reportDateService;
 
-        public ReportServiceImpl(IDynamicRepository dynamicRepository)
+        public ReportServiceImpl(
+            IDynamicRepository dynamicRepository,
+            ReportDateService reportDateService)
         {
             this.dynamicRepository = dynamicRepository;
+            this.reportDateService = reportDateService;
         }
 
         public async Task<IEnumerable<ReportModel>> GetReportData(ReportParam param)
             => await dynamicRepository.FetchAsync<ReportModel>(
-                new ReportCriteria(
-                    param.ReportType,
+                new GetReportDataCriteria(
+                    param.CustId,
+                    param.IsOwner,
                     param.FromDate,
                     param.ToDate,
+                    await reportDateService.GetBalanceUpDay(),
+                    await reportDateService.GetMoveBetsDay(),
                     param.SportTypeId,
-                    param.BetTypeId));
+                    param.BetTypeId,
+                    param.IsLive,
+                    param.ReportType,
+                    param.ReportLevel));
 
         public async Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups()
         {
@@ -68,8 +78,6 @@
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
 
         public async Task<AccountingPeriod> GetCurrentPeriod()
-            => (await GetAccountingPeriods()).FirstOrDefault(
-                    p => p.FromDate <= SystemTime.Today
-                        && SystemTime.Today >= p.ToDate);
+            => (await GetAccountingPeriods()).FirstOrDefault(p => p.IsCurrentPeriod);
     }
 }

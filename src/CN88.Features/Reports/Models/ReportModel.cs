@@ -8,7 +8,7 @@
 
         public ReportModel(
             int userId,
-            string userCode,
+            string username,
             string name,
             int wagers,
             decimal stake,
@@ -35,7 +35,7 @@
 
         public int UserId { get; }
 
-        public string UserCode { get; }
+        public string Username { get; }
 
         public string Name { get; }
 

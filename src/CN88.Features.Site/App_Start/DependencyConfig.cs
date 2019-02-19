@@ -24,7 +24,6 @@
 
     public static class DependencyConfig
     {
-        [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Reviewed")]
         public static void Init()
         {
             var container = new Container();
@@ -85,6 +84,7 @@
             container.RegisterSingleton(Logger.Log);
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.RegisterSingleton<ReportDateService, ReportDateServiceImpl>();
 
             container.Register<SportGroupService>(
                 () => new SportGroupServiceImpl(

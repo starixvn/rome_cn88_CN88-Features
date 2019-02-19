@@ -79,11 +79,29 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet type.
+        /// </summary>
+        public static string BetType {
+            get {
+                return ResourceManager.GetString("BetType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string Clear {
             get {
                 return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace CN88.Features.Shared.AppResources {
         public static string NotAuthorized {
             get {
                 return ResourceManager.GetString("NotAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sport.
+        /// </summary>
+        public static string Sport {
+            get {
+                return ResourceManager.GetString("Sport", resourceCulture);
             }
         }
         

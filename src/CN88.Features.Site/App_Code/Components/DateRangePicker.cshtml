@@ -1,0 +1,50 @@
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Shared.Extensions
+@using CN88.Features.Shared.Utils
+@using CN88.Features.Site.Shared.ViewModels.Components
+@helper Render(DateRangePickerViewModel model)
+{
+    <div id="daterange-picker"
+         class="daterange-picker"
+         data-currentdate="@SystemTime.Today"
+         data-mindate="@model.MinDate.ToShortDateWithSlash()"
+         data-maxdate="@model.MaxDate.ToShortDateWithSlash()">
+    </div>
+
+    <div class="form-group  from-date-box">
+        <label>@SharedResources.From</label>
+        <div class="control date">
+            <div id="from-date-container"
+                 class="input-group date fromdate">
+                <input type="text"
+                       id="from-date"
+                       name="FromDate"
+                       readonly="readonly"
+                       autocomplete="off"
+                       class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                       value="@model.FromDate.ToShortDateWithSlash()" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar" id="fdate_trigger"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>@SharedResources.To</label>
+        <div class="control date">
+            <div id="to-date-container"
+                 class="input-group date todate">
+                <input type="text"
+                       id="to-date"
+                       name="ToDate"
+                       readonly="readonly"
+                       autocomplete="off"
+                       class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                       value="@model.ToDate.ToShortDateWithSlash()" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar" id="tdate_trigger"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+}

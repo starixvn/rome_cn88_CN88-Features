@@ -5,17 +5,15 @@
     using MediatR;
     using ViewModels;
 
-    public class MainQuery : IRequest<MainViewModel>
+    public class IndexQuery : IRequest<IndexViewModel>
     {
-        public MainQuery()
+        public IndexQuery()
         {
             FromDate = SystemTime.Today.AddDays(-1);
             ToDate = SystemTime.Today.AddDays(-1);
         }
 
         public int DisplayMode { get; set; }
-
-        public int ReportType { get; set; }
 
         public DateTime FromDate { get; set; }
 

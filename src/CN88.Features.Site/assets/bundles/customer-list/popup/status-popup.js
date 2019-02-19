@@ -61,7 +61,7 @@ var PopupBase = /** @class */ (function () {
     return PopupBase;
 }());
 ;
-//# sourceMappingURL=popup-base.js.map
+
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -118,4 +118,3 @@ $(function () {
     var statusPopup = new StatusPopup($, window.top);
     statusPopup.init();
 });
-//# sourceMappingURL=status-popup.js.map

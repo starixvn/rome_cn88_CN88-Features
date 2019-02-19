@@ -126,7 +126,7 @@ var CN88Features = /** @class */ (function () {
     return CN88Features;
 }());
 var cn88Features = new CN88Features($, store);
-//# sourceMappingURL=core.js.map
+
 "use strict";
 var SingleSelectionDropdownOption = /** @class */ (function () {
     function SingleSelectionDropdownOption(dropdownId, inputId, onChange) {
@@ -188,7 +188,7 @@ var SingleSelectionDropdownComponent = /** @class */ (function () {
     }
     return SingleSelectionDropdownComponent;
 }());
-//# sourceMappingURL=single-selection-dropdown.js.map
+
 /// <reference path="../core.ts" />
 "use strict";
 var DateRangePickerOption = /** @class */ (function () {
@@ -247,7 +247,7 @@ var DateRangePickerComponent = /** @class */ (function () {
     }
     return DateRangePickerComponent;
 }());
-//# sourceMappingURL=daterangepicker.js.map
+
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 "use strict";
@@ -272,4 +272,3 @@ $(function () {
     var reportIndexView = new ReportIndexView($, new DateRangePickerComponent($), new SingleSelectionDropdownComponent($), new SingleSelectionDropdownComponent($));
     reportIndexView.init();
 });
-//# sourceMappingURL=index.js.map
