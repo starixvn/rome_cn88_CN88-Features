@@ -150,6 +150,9 @@
   <data name="InPlay" xml:space="preserve">
     <value>In-Play</value>
   </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>No information is available</value>
+  </data>
   <data name="AllBetTypes" xml:space="preserve">
     <value>All Bet Types</value>
   </data>

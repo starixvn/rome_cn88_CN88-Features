@@ -16,7 +16,7 @@
         }
 
         public async Task<ActionResult> Index(MainQuery message)
-            => await View(message, MainViewPath);
+            => await ViewAsync(message, MainViewPath);
 
         public async Task<ActionResult> Wager()
         {

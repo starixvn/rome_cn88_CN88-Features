@@ -2,12 +2,13 @@
 {
     using Alpha.Web.Filters;
     using CN88.Features.Site.CustomerList;
+    using CN88.Features.Site.Shared.Controllers;
     using MediatR;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    public class CustomerListController : SiteBaseController
+    public class CustomerListController : FeatureBaseController
     {
         private const string CustomerListPath = "~/CustomerList/Views/Index.cshtml";
 
@@ -18,7 +19,7 @@
 
         [HttpGet]
         public async Task<ActionResult> Index(IndexQuery message)
-            => View(CustomerListPath, await mediator.Send(message));
+            => await ViewAsync(message, CustomerListPath);
 
         //[HttpGet]
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)

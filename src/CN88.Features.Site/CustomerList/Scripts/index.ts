@@ -183,9 +183,9 @@
         let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
 			popupTitle = `${this.$("#UpdateStatus").val()} - ${username}`;
 
-		let width = this.topWindow.displayTextWidth(popupTitle, this.$(".col-username").css("fontSize"));
+		//let width = this.topWindow.displayTextWidth(popupTitle, this.$(".col-username").css("fontSize"));
 
-		this.topWindow.popupManager.open(url, popupTitle, width + 150, 250);
+		this.topWindow.popupManager.open(url, popupTitle, 500, 250);
     };
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);

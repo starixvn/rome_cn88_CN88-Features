@@ -1,9 +1,5 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Fanex.Data.Repository;
     using Fanex.Logging;
     using Fanex.RemotingRef;
@@ -13,14 +9,18 @@
     using global::CN88.Features.Reports.Services;
     using global::CN88.Features.Shared.DataAccesses;
     using global::CN88.Features.Shared.Services;
-    using global::CN88.Features.Site.Controllers;
     using global::CN88.Features.Site.Models;
+    using global::CN88.Features.Site.Shared.Controllers;
     using MediatR;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
@@ -67,7 +67,7 @@
 
         private static IEnumerable<Assembly> GetAssemblies()
         {
-            yield return typeof(SiteBaseController).Assembly;
+            yield return typeof(FeatureBaseController).Assembly;
         }
 
         private static void RegisterDataAccesses(Container container)

@@ -124,8 +124,8 @@ var CustomerList = /** @class */ (function () {
         };
         this.updateStatus = function (custId, username, updateStatusId) {
             var url = _this.$("#statusPopupUrl").val() + "?custId=" + custId + "&UpdateStatusId=" + updateStatusId, popupTitle = _this.$("#UpdateStatus").val() + " - " + username;
-            var width = _this.topWindow.displayTextWidth(popupTitle, _this.$(".col-username").css("fontSize"));
-            _this.topWindow.popupManager.open(url, popupTitle, width + 150, 250);
+            //let width = this.topWindow.displayTextWidth(popupTitle, this.$(".col-username").css("fontSize"));
+            _this.topWindow.popupManager.open(url, popupTitle, 500, 250);
         };
         this.updateAccount = function (custId, username, custLevelId, reportParam) {
             _this.storeCurrentPage(reportParam);

@@ -324,6 +324,15 @@
       <DependentUpon>index.js</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\styles\popup.css" />
+    <Content Include="CustomerList\bundles\styles\popup.min.css">
+      <DependentUpon>popup.css</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\popup.css">
+      <DependentUpon>popup.scss</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\popup.min.css">
+      <DependentUpon>popup.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Reports\bundles\index.js" />
     <Content Include="Reports\bundles\index.min.js">
@@ -366,13 +375,12 @@
     <Compile Include="Reports\Requests\ReportQuery.cs" />
     <Compile Include="Reports\ViewModels\ReportViewModel.cs" />
     <Compile Include="Shared\BaseHandler.cs" />
-    <Compile Include="Shared\Controllers\SiteBaseController.cs" />
     <Compile Include="Shared\Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Shared\Models\User.cs" />
-    <Compile Include="Shared\Requests\BaseQuery.cs" />
+    <Compile Include="Shared\BaseQuery.cs" />
     <Compile Include="Reports\Requests\MainQuery.cs" />
     <Compile Include="Reports\ViewModels\MainViewModel.cs" />
-    <Compile Include="Shared\Controllers\FeatureBaseController.cs" />
+    <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
   </ItemGroup>
@@ -407,6 +415,7 @@
     <Content Include="typings\globals\moment\typings.json" />
     <Content Include="typings\globals\storejs\typings.json" />
     <Content Include="App_Code\Components\SportGroupSelection.cshtml" />
+    <Content Include="Shared\Views\NoInformation.cshtml" />
     <Content Include="App_Code\Components\BetTypeSelection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -5,21 +5,19 @@
     using CN88.Features.Site.Requests;
     using MediatR;
 
-    public class IndexQuery : IRequest<IndexViewModel>
+    public class IndexQuery : BaseQuery, IRequest<IndexViewModel>
     {
-        public IndexQuery()
+        public IndexQuery() : this(null)
         {
-            IsInternal = false;
-            HasUpdatePermission = true;
-            HasAddNewPermission = true;
+
         }
 
-        //public IndexQuery(IUser viewer) : base(viewer)
-        //{
-        //    IsInternal = viewer.IsInternal;
-        //    HasUpdatePermission = viewer.HasUpdatePermission;
-        //    HasAddNewPermission = viewer.HasAddNewPermission;
-        //}
+        public IndexQuery(IUser viewer) : base(viewer)
+        {
+            IsInternal = false; //viewer.IsInternal;
+            HasUpdatePermission = true; // viewer.HasUpdatePermission;
+            HasAddNewPermission = true; // viewer.HasAddNewPermission;
+        }
 
         public bool IsInternal { get; }
 
