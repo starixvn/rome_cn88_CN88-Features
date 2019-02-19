@@ -2,6 +2,7 @@
 {
     using System;
     using Features.Models;
+    using Features.Shared.Utils;
     using MediatR;
     using Site.Requests;
     using ViewModels;
@@ -11,9 +12,11 @@
         public ReportQuery(IUser viewer)
             : base(viewer)
         {
+            FromDate = SystemTime.Today;
+            ToDate = SystemTime.Today;
         }
 
-        public int ReportType { get; }
+        public int ReportType { get; set; }
 
         public int SportGroupId { get; set; }
 

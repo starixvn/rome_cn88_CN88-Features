@@ -168,4 +168,7 @@
   <data name="BetType" xml:space="preserve">
     <value>Bet type</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
 </root>
