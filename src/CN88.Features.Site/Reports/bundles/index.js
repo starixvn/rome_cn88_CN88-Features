@@ -1,5 +1,5 @@
 "use strict";
-var CN88Features = /** @class */ (function () {
+var CN88Features = (function () {
     function CN88Features($, store) {
         var _this = this;
         this.format = {
@@ -128,7 +128,7 @@ var CN88Features = /** @class */ (function () {
 var cn88Features = new CN88Features($, store);
 
 "use strict";
-var SingleSelectionDropdownOption = /** @class */ (function () {
+var SingleSelectionDropdownOption = (function () {
     function SingleSelectionDropdownOption(dropdownId, inputId, onChange) {
         if (dropdownId === void 0) { dropdownId = "dropdown-single"; }
         if (inputId === void 0) { inputId = "UserSelectedId"; }
@@ -139,7 +139,7 @@ var SingleSelectionDropdownOption = /** @class */ (function () {
     }
     return SingleSelectionDropdownOption;
 }());
-var SingleSelectionDropdownComponent = /** @class */ (function () {
+var SingleSelectionDropdownComponent = (function () {
     function SingleSelectionDropdownComponent($) {
         var _this = this;
         this.options = new SingleSelectionDropdownOption();
@@ -191,7 +191,7 @@ var SingleSelectionDropdownComponent = /** @class */ (function () {
 
 /// <reference path="../core.ts" />
 "use strict";
-var DateRangePickerOption = /** @class */ (function () {
+var DateRangePickerOption = (function () {
     function DateRangePickerOption(selectorId, reportFormId, onChange) {
         if (selectorId === void 0) { selectorId = "daterange-picker"; }
         if (reportFormId === void 0) { reportFormId = "report-form"; }
@@ -205,7 +205,7 @@ var DateRangePickerOption = /** @class */ (function () {
     }
     return DateRangePickerOption;
 }());
-var DateRangePickerComponent = /** @class */ (function () {
+var DateRangePickerComponent = (function () {
     function DateRangePickerComponent($) {
         var _this = this;
         this.options = new DateRangePickerOption();
@@ -251,7 +251,7 @@ var DateRangePickerComponent = /** @class */ (function () {
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 "use strict";
-var ReportIndexView = /** @class */ (function () {
+var ReportIndexView = (function () {
     function ReportIndexView($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent) {
         var _this = this;
         this.init = function () {

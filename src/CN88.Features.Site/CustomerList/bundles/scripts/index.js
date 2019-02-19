@@ -1,5 +1,5 @@
 "use strict";
-var SingleSelectionDropdownOption = /** @class */ (function () {
+var SingleSelectionDropdownOption = (function () {
     function SingleSelectionDropdownOption(dropdownId, inputId, onChange) {
         if (dropdownId === void 0) { dropdownId = "dropdown-single"; }
         if (inputId === void 0) { inputId = "UserSelectedId"; }
@@ -10,7 +10,7 @@ var SingleSelectionDropdownOption = /** @class */ (function () {
     }
     return SingleSelectionDropdownOption;
 }());
-var SingleSelectionDropdownComponent = /** @class */ (function () {
+var SingleSelectionDropdownComponent = (function () {
     function SingleSelectionDropdownComponent($) {
         var _this = this;
         this.options = new SingleSelectionDropdownOption();
@@ -61,7 +61,7 @@ var SingleSelectionDropdownComponent = /** @class */ (function () {
 }());
 //# sourceMappingURL=single-selection-dropdown.js.map
 "use strict";
-var PagerOption = /** @class */ (function () {
+var PagerOption = (function () {
     function PagerOption(onSelectPage, pagerId, formId, pageIndexId, pageSizeId, pageList) {
         if (onSelectPage === void 0) { onSelectPage = null; }
         if (pagerId === void 0) { pagerId = "report-pager"; }
@@ -78,7 +78,7 @@ var PagerOption = /** @class */ (function () {
     }
     return PagerOption;
 }());
-var PagerComponent = /** @class */ (function () {
+var PagerComponent = (function () {
     function PagerComponent($) {
         var _this = this;
         this.pageList = [];
@@ -139,7 +139,7 @@ var PagerComponent = /** @class */ (function () {
 }());
 //# sourceMappingURL=pager.js.map
 "use strict";
-var SiteInfrastructure = /** @class */ (function () {
+var SiteInfrastructure = (function () {
     function SiteInfrastructure() {
         var _this = this;
         this.pageList = [50, 100, 200, 500];
@@ -180,7 +180,7 @@ var SiteInfrastructure = /** @class */ (function () {
 }());
 var siteInfrastructure = new SiteInfrastructure();
 //# sourceMappingURL=site-infrastructure.js.map
-var BaseList = /** @class */ (function () {
+var BaseList = (function () {
     function BaseList($, statusComponent, numeral, pager, levelName) {
         var _this = this;
         this.reportParam = {
@@ -304,19 +304,16 @@ var BaseList = /** @class */ (function () {
 }());
 //# sourceMappingURL=base-list.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var MasterList = /** @class */ (function (_super) {
+var MasterList = (function (_super) {
     __extends(MasterList, _super);
     function MasterList($, statusComponent, numeral, pager) {
         var _this = _super.call(this, $, statusComponent, numeral, pager, "Master") || this;
@@ -366,19 +363,16 @@ var MasterList = /** @class */ (function (_super) {
 }(BaseList));
 //# sourceMappingURL=master-list.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var AgentList = /** @class */ (function (_super) {
+var AgentList = (function (_super) {
     __extends(AgentList, _super);
     function AgentList($, statusComponent, numeral, pager) {
         var _this = _super.call(this, $, statusComponent, numeral, pager, "Agent") || this;
@@ -484,19 +478,16 @@ var AgentList = /** @class */ (function (_super) {
 }(BaseList));
 //# sourceMappingURL=agent-list.js.map
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var MemberList = /** @class */ (function (_super) {
+var MemberList = (function (_super) {
     __extends(MemberList, _super);
     function MemberList($, statusComponent, numeral, pager) {
         var _this = _super.call(this, $, statusComponent, numeral, pager, "Member") || this;
@@ -601,7 +592,7 @@ var MemberList = /** @class */ (function (_super) {
     return MemberList;
 }(BaseList));
 //# sourceMappingURL=member-list.js.map
-var CustomerList = /** @class */ (function () {
+var CustomerList = (function () {
     function CustomerList($, statusComponent, numeral, pager, topWindow) {
         var _this = this;
         this.reportParam = {

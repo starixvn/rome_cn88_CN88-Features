@@ -343,6 +343,9 @@
       <DependentUpon>legacy.js</DependentUpon>
     </Content>
     <Content Include="Reports\bundles\reports.css" />
+    <Content Include="Reports\bundles\reports.min.css">
+      <DependentUpon>reports.css</DependentUpon>
+    </Content>
     <Content Include="Reports\Styles\reports.css">
       <DependentUpon>reports.scss</DependentUpon>
     </Content>

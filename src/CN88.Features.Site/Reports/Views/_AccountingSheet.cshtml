@@ -1,9 +1,9 @@
 ﻿@model IndexViewModel
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover">
+<table class="tbl-noborder">
     <thead>
         <tr>
-            <th colspan="2">@DateTime.Now.Year</th>
-            <th colspan="2">@(DateTime.Now.Year - 1)</th>
+            <th>@DateTime.Now.Year</th>
+            <th>@(DateTime.Now.Year - 1)</th>
         </tr>
     </thead>
     <tbody>
@@ -12,8 +12,7 @@
             <tr>
                 @foreach (var period in group.Periods)
                 {
-                    <td>@period.PeriodId.</td>
-                    <td>@period.FromDateStr ~ @period.ToDateStr</td>
+                    <td><span class="reportNo">@period.PeriodId.</span>@period.FromDateStr ~ @period.ToDateStr</td>
                 }
             </tr>
         }

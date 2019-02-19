@@ -49,6 +49,7 @@
                 {
                     Text = ReportResources.SettledWager,
                     Value = ReportTypeConstants.SettledWager.ToString(),
+                    Selected=true
                 },
                 new SelectListItem
                 {
@@ -64,6 +65,7 @@
                 {
                     Text = ReportResources.CancelledReport,
                     Value = ReportTypeConstants.CancelledReport.ToString(),
+                    Selected=true
                 },
                 new SelectListItem
                 {
