@@ -1,7 +1,7 @@
 ﻿namespace CN88.Features.Site.Requests
 {
-    using CN88.Features.Models;
-    using CN88.Features.Shared.Models;
+    using Features.Models;
+    using Features.Shared.Models;
 
     public class BaseQuery
     {
@@ -11,10 +11,10 @@
         {
             this.viewer = viewer;
 
-            //// Default data, if query string had data, then get from query string.
-            //CustId = viewer.Id;
-            //CustName = viewer.Name;
-            //CustLevelId = viewer.LevelId;
+            // Default data, if query string had data, then get from query string.
+            CustId = viewer.Id;
+            CustName = viewer.Name;
+            CustLevelId = viewer.LevelId;
         }
 
         public int CustId { get; set; }

@@ -1,13 +1,13 @@
 ﻿namespace CN88.Features.Site.Shared.Controllers
 {
-    using Alpha.Web;
-    using CN88.Features.Models;
-    using CN88.Features.Site.Requests;
-    using MediatR;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.Web;
+    using Features.Models;
+    using MediatR;
+    using Requests;
 
-    public abstract class FeatureBaseController : Controller
+    public abstract class FeatureBaseController : BaseAsyncController
     {
         private const string NoInformationPageViewPath = "~/Shared/Views/NoInformation.cshtml";
 

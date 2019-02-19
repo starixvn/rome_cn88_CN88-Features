@@ -21,9 +21,9 @@
             => await ViewAsync(message, MainViewPath);
 
         public async Task<ActionResult> Wager(ReportQuery message)
-            => await View(message, WagerViewPath);
+            => await ViewAsync(message, WagerViewPath);
 
         public async Task<ActionResult> Legacy(ReportQuery message)
-            => await View(message, LegacyViewPath);
+            => await ViewAsync(message, LegacyViewPath);
     }
 }
