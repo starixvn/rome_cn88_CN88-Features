@@ -1,9 +1,12 @@
 ﻿@using CN88.Features.Shared.AppResources
 @using CN88.Features.Site.Shared.ViewModels.Components
-@helper Render(BetTypeSelectionViewModel model)
+@helper Render(BetTypeSelectionViewModel model, bool showLabel)
 {
     <div class="form-group">
-        <label>@SharedResources.Sport</label>
+        @if (showLabel)
+        {
+            <label>@SharedResources.BetType</label>
+        }
         <select id="dropdown-bettype">
             @foreach (var group in model.BetTypes)
             {

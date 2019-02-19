@@ -1,34 +1,43 @@
 ﻿body {
     background-color: #ecf0f1;
 }
+
 .wager-report {
     padding: 20px;
 }
+
 .filter-container {
     background-color: #fff0d7;
+
     .tab-content {
         padding: 20px;
     }
 }
+
 .result-container {
     background-color: #fff;
 }
+
 .create-form {
     padding: 0 20px;
+
     .form-group {
         margin: 0 0 15px;
+
         &.btn-ex-group .btn-default {
             width: 156px;
         }
     }
+
     .control.date {
         margin-left: 0;
         width: 148px;
         position: relative;
     }
+
     .multiselect .multiselect-selected-text {
         width: 292px;
-    }    
+    }
 }
 
 .dropdown .dropdown-toggle {
@@ -36,11 +45,14 @@
     padding-left: 10px;
     text-align: left;
 }
+
 .dropdown-menu {
     width: 322px;
 }
+
 .tbl-noborder {
     width: 100%;
+
     .reportNo {
         padding-right: 6px;
     }
@@ -52,10 +64,10 @@
             width: 400px;
             margin-right: 20px;
         }
+
         .filter-container, .result-container {
             display: inline-block;
             vertical-align: top;
         }
     }
-        
 }

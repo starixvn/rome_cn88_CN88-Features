@@ -2,7 +2,7 @@
 {
     public static class ReportDisplayModeConstants
     {
-        public const int WagerReport = 1;
-        public const int LegacyReport = 2;
+        public const int Wager = 1;
+        public const int Legacy = 2;
     }
 }

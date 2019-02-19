@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
@@ -18,7 +19,6 @@
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
             AccountingPeriod currentPeriod)
         {
-            DisplayMode = query.DisplayMode;
             FromDate = query.FromDate;
             ToDate = query.ToDate;
             AccountingPeriodGroups = accountingPeriodGroups;
@@ -26,9 +26,13 @@
 
             SportGroupSelectionViewModel = new SportGroupSelectionViewModel(sportGroups, 0);
             BetTypeSelectionViewModel = new BetTypeSelectionViewModel(betTypes, 0);
+
+            ActionName = query.DisplayMode == ReportDisplayModeConstants.Wager
+                ? nameof(ReportDisplayModeConstants.Wager)
+                : nameof(ReportDisplayModeConstants.Legacy);
         }
 
-        public int DisplayMode { get; }
+        public string ActionName { get; }
 
         public DateTime FromDate { get; }
 

@@ -1,5 +1,5 @@
 ﻿@model IndexViewModel
-<table class="tbl-noborder">
+<table class="tbl-noborder" id="tblAccountingSheet">
     <thead>
         <tr>
             <th>@DateTime.Now.Year</th>
@@ -12,7 +12,9 @@
             <tr>
                 @foreach (var period in group.Periods)
                 {
-                    <td><span class="reportNo">@period.PeriodId.</span>@period.FromDateStr ~ @period.ToDateStr</td>
+                    <td class="@(period.IsCurrentPeriod ? "current" : string.Empty)">
+                        <span class="reportNo">@period.PeriodId.</span>@period.FromDateStr ~ @period.ToDateStr
+                    </td>
                 }
             </tr>
         }

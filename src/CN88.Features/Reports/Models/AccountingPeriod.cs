@@ -33,6 +33,6 @@
 
         public string ToDateStr => ToDate.ToString("yyyy/MM/dd");
 
-        public bool IsCurrentPeriod => FromDate >= SystemTime.Today && SystemTime.Today <= ToDate;
+        public bool IsCurrentPeriod => FromDate <= SystemTime.Today && SystemTime.Today <= ToDate;
     }
 }

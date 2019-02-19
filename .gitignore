@@ -21,6 +21,7 @@ Thumbs.db
 *.log
 *.js
 *.map
+*.css
 [Bb]in
 [Dd]ebug*/
 *.lib

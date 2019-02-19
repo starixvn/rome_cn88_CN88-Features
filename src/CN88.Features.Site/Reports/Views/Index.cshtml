@@ -56,7 +56,7 @@
                  data-mindate="@Model.CurrentPeriod.FromDate.ToShortDateWithSlash()"
                  data-maxdate="@Model.CurrentPeriod.ToDate.ToShortDateWithSlash()">
             </div>
-            <form class="form-horizontal create-form">
+            <form class="form-horizontal create-form" role="form" action="@Url.Action(Model.ActionName, "Reports")">
                 <div class="form-group  from-date-box">
                     <div class="control date">
                         <div id="from-date-container"
@@ -103,11 +103,11 @@
                     <input type="button" value="@SharedResources.ThisPeriod" class="btn-default" />
                     <input type="button" value="@SharedResources.LastPeriod" class="btn-default" />
                 </div>
-                @SportGroupSelection.Render(Model.SportGroupSelectionViewModel)
-                @BetTypeSelection.Render(Model.BetTypeSelectionViewModel)
+                @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
+                @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, false)
                 <div class="form-group">
-                    <input type="reset" value="@SharedResources.Clear" class="btn btn-default" />
-                    <input type="submit" value="@ReportResources.ViewReport" class="btn-default" />
+                    <input type="button" value="@SharedResources.Clear" class="btn btn-default" />
+                    <input type="submit" value="@ReportResources.ViewReport" class="btn-submit" />
                 </div>
             </form>
         </div>
