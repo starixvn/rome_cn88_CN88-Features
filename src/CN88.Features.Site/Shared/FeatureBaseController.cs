@@ -6,7 +6,7 @@
     using MediatR;
     using Requests;
 
-    public abstract class FeatureBaseController : Controller
+    public abstract class FeatureBaseController : BaseController
     {
         private const string NoInformationPageViewPath = "~/Shared/Views/NoInformation.cshtml";
 

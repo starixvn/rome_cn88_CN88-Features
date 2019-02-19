@@ -355,6 +355,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountManagement\SubAccountController.cs" />
     <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
