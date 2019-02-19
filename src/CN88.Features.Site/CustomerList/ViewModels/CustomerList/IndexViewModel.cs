@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
+    using Alpha.Auth.Configurations;
     using Alpha.Web.Helpers;
     using CN88.Features.Shared.Models;
 
@@ -48,9 +49,9 @@
         public static string UsernameAutoSuggestionPath
             => MicroSites.OldMainUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
 
-        public static string EditCustomerLink => $"{MicroSites.CN88Url()}/CN88CustomerSetting/ViewCN88CustomerSetting/Edit";
+        public static string EditCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Edit";
 
-        public static string CreateCustomerLink => $"{MicroSites.CN88Url()}/CN88CustomerSetting/ViewCN88CustomerSetting/Create";
+        public static string CreateCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Create";
 
         public static string CurrentLink => MicroSites.CN88Url("~/CustomerList/Index");
 
@@ -69,5 +70,7 @@
         public int PageSize { get; }
 
         public int PageIndex { get; }
+
+        private static string SiteFeaturePath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("FeaturesAppPath"), "~");
     }
 }

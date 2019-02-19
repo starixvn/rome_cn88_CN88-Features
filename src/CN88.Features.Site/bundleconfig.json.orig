@@ -1,0 +1,85 @@
+﻿[
+  {
+    "outputFileName": "Reports/bundles/reports.css",
+    "inputFiles": [
+      "Reports/Styles/reports.css"
+    ]
+  },
+  {
+    "outputFileName": "Reports/bundles/index.js",
+    "inputFiles": [
+      "Shared/Scripts/core.js",
+      "Shared/Scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/daterangepicker.js",
+      "Reports/Scripts/index.js"
+    ]
+  },
+  {
+    "outputFileName": "Reports/bundles/wager.js",
+    "inputFiles": [
+      "Shared/Scripts/core.js",
+      "Shared/Scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/daterangepicker.js",
+      "Reports/Scripts/wager.js"
+    ]
+  },
+  {
+    "outputFileName": "Reports/bundles/legacy.js",
+    "inputFiles": [
+      "Shared/Scripts/core.js",
+      "Shared/Scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/daterangepicker.js",
+      "Reports/Scripts/legacy.js"
+    ]
+  },
+  {
+    "outputFileName": "CustomerList/bundles/scripts/index.js",
+    "inputFiles": [
+      "Shared/scripts/components/single-selection-dropdown.js",
+      "Shared/scripts/components/pager.js",
+      "CustomerList/scripts/site-infrastructure.js",
+      "CustomerList/scripts/base-list.js",
+      "CustomerList/scripts/master-list.js",
+      "CustomerList/scripts/agent-list.js",
+      "CustomerList/scripts/member-list.js",
+      "CustomerList/scripts/index.js"
+    ]
+  },
+<<<<<<< HEAD
+  {
+    "outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
+    "inputFiles": [
+      "CustomerList/scripts/popup/popup-base.js",
+      "CustomerList/scripts/popup/credit-popup.js"
+    ]
+  },
+  {
+    "outputFileName": "CustomerList/bundles/scripts/popup/status-popup.js",
+    "inputFiles": [
+      "CustomerList/scripts/popup/popup-base.js",
+      "CustomerList/scripts/popup/status-popup.js"
+    ]
+  },
+=======
+	{
+		"outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
+		"inputFiles": [
+			"CustomerList/scripts/popup/popup-base.js",
+			"CustomerList/scripts/popup/credit-popup.js"
+		]
+	},
+	{
+		"outputFileName": "CustomerList/bundles/scripts/popup/status-popup.js",
+		"inputFiles": [
+			"CustomerList/scripts/popup/popup-base.js",
+			"CustomerList/scripts/popup/status-popup.js"
+		]
+	},
+>>>>>>> 00000 - account managerment - remove hard code - integrate setting
+  {
+    "outputFileName": "CustomerList/bundles/styles/popup.css",
+    "inputFiles": [
+      "CustomerList/Styles/popup.css"
+    ]
+  }
+]

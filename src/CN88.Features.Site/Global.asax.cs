@@ -13,6 +13,7 @@
     using Alpha.Web;
     using Alpha.Web.Filters;
     using Alpha.Web.Helpers;
+    using global::CN88.CustomerSetting.Client;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
@@ -38,6 +39,7 @@
             MvcHandler.DisableMvcResponseHeader = true;
 
             AreaRegistration.RegisterAllAreas();
+            CN88CustomerSettingRegistration.Init();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             InitLogging();
             DependencyConfig.Init();

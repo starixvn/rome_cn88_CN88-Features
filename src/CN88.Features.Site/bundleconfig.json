@@ -45,20 +45,20 @@
       "CustomerList/scripts/index.js"
     ]
   },
-  {
-    "outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
-    "inputFiles": [
-      "CustomerList/scripts/popup/popup-base.js",
-      "CustomerList/scripts/popup/credit-popup.js"
-    ]
-  },
-  {
-    "outputFileName": "CustomerList/bundles/scripts/popup/status-popup.js",
-    "inputFiles": [
-      "CustomerList/scripts/popup/popup-base.js",
-      "CustomerList/scripts/popup/status-popup.js"
-    ]
-  },
+	{
+		"outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
+		"inputFiles": [
+			"CustomerList/scripts/popup/popup-base.js",
+			"CustomerList/scripts/popup/credit-popup.js"
+		]
+	},
+	{
+		"outputFileName": "CustomerList/bundles/scripts/popup/status-popup.js",
+		"inputFiles": [
+			"CustomerList/scripts/popup/popup-base.js",
+			"CustomerList/scripts/popup/status-popup.js"
+		]
+	},
   {
     "outputFileName": "CustomerList/bundles/styles/popup.css",
     "inputFiles": [
