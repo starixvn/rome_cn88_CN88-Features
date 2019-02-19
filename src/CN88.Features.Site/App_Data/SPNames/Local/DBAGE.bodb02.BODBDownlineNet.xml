@@ -14,4 +14,8 @@
     <Setting Key="CS_Rpt_Wager_Master" SpName="CS_Rpt_Wager_Master" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_Rpt_Wager_Super" SpName="CS_Rpt_Wager_Super" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
+  <Function Name="Alpha.Auth">
+    <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
 </Functions>
