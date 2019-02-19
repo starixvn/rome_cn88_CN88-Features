@@ -4,133 +4,131 @@
 @section Styles {
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
-@using CN88.Features.Shared.Extensions
 @using CN88.Features.Shared.AppResources
 @using CN88.Features.Shared.Utils
 @using CN88.Features.Reports.AppResources
-@using System.Runtime
-@using System.Linq
+@model IndexViewModel
 <div class="wager-report">
-        <div class="filter-container">
-            <div class="page-title">Create Report</div>
-            <div class="filter">
-                @Html.Hidden("DisplayMode", Model.DisplayMode)
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
-                        <a data-toggle="tab" href="#wagerReport">@ReportResources.WagerReport</a>
-                    </li>
-                    <li role="presentation">
-                        <a data-toggle="tab" href="#cancelledReport">@ReportResources.CancelledReport</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" id="reportType" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                @Model.WagerReportTypes.ElementAt(0).Text
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="reportType">
-                                @foreach (var type in Model.WagerReportTypes)
-                                {
-                                    <li value="@type.Value"><a>@type.Text</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" id="reportType" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                @Model.CancelledReportTypes.ElementAt(0).Text
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="reportType">
-                                @foreach (var type in Model.CancelledReportTypes)
-                                {
-                                    <li value="@type.Value"><a>@type.Text</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div id="daterange-picker"
-                     class="daterange-picker"
-                     data-currentdate="@SystemTime.Today"
-                     data-mindate="@Model.CurrentPeriod.FromDate.ToShortDateWithSlash()"
-                     data-maxdate="@Model.CurrentPeriod.ToDate.ToShortDateWithSlash()">
-                </div>
-                <form class="form-horizontal create-form">
-                    <div class="form-group  from-date-box">
-                        <div class="control date">
-                            <div id="from-date-container"
-                                 class="input-group date fromdate">
-                                <input type="text"
-                                       id="from-date"
-                                       name="FromDate"
-                                       readonly="readonly"
-                                       autocomplete="off"
-                                       class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
-                                       value="@Model.FromDate.ToShortDateWithSlash()" />
-                                <span class="input-group-addon">
-                                    <span class="icon-calendar" id="fdate_trigger"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <label>@SharedResources.To</label>
-                        <div class="control date">
-                            <div id="to-date-container"
-                                 class="input-group date todate">
-                                <input type="text"
-                                       id="to-date"
-                                       name="ToDate"
-                                       readonly="readonly"
-                                       autocomplete="off"
-                                       class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
-                                       value="@Model.ToDate.ToShortDateWithSlash()" />
-                                <span class="input-group-addon">
-                                    <span class="icon-calendar" id="tdate_trigger"></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="button" value="@SharedResources.Today" class="btn-default" />
-                        <input type="button" value="@SharedResources.Yesterday" class="btn-default" />
-                        <input type="button" value="@SharedResources.Tomorrow" class="btn-default" />
-                    </div>
-                    <div class="form-group btn-ex-group">
-                        <input type="button" value="@SharedResources.ThisWeek" class="btn-default " />
-                        <input type="button" value="@SharedResources.LastWeek" class="btn-default" />
-                    </div>
-                    <div class="form-group btn-ex-group">
-                        <input type="button" value="@SharedResources.ThisPeriod" class="btn-default" />
-                        <input type="button" value="@SharedResources.LastPeriod" class="btn-default" />
-                    </div>
-                    @SportGroupSelection.Render(Model.SportGroupSelectionViewModel)
-                    @BetTypeSelection.Render(Model.BetTypeSelectionViewModel)
-                    <div class="form-group">
-                        <input type="reset" value="@SharedResources.Clear" class="btn btn-default" />
-                        <input type="submit" value="@ReportResources.ViewReport" class="btn-default" />
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="result-container">
+    <div class="filter-container">
+        <div class="page-title">Create Report</div>
+        <div class="filter">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
-                    <a data-toggle="tab" href="#settlementSumary">@ReportResources.SettlementSummary</a>
+                    <a data-toggle="tab" href="#wagerReport">@ReportResources.WagerReport</a>
                 </li>
                 <li role="presentation">
-                    <a data-toggle="tab" href="#accountingSheet">@ReportResources.AccountingSheet</a>
+                    <a data-toggle="tab" href="#cancelledReport">@ReportResources.CancelledReport</a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="settlementSumary">
+                <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" id="reportType" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            @Model.WagerReportTypes.ElementAt(0).Text
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="reportType">
+                            @foreach (var type in Model.WagerReportTypes)
+                            {
+                                <li value="@type.Value"><a>@type.Text</a></li>
+                            }
+                        </ul>
+                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
-                    @Html.Partial("~/Reports/Views/_AccountingSheet.cshtml")
+                <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" id="reportType" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            @Model.CancelledReportTypes.ElementAt(0).Text
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="reportType">
+                            @foreach (var type in Model.CancelledReportTypes)
+                            {
+                                <li value="@type.Value"><a>@type.Text</a></li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <div id="daterange-picker"
+                 class="daterange-picker"
+                 data-currentdate="@SystemTime.Today"
+                 data-mindate="@Model.CurrentPeriod.FromDate.ToShortDateWithSlash()"
+                 data-maxdate="@Model.CurrentPeriod.ToDate.ToShortDateWithSlash()">
+            </div>
+            <form class="form-horizontal create-form">
+                <div class="form-group  from-date-box">
+                    <div class="control date">
+                        <div id="from-date-container"
+                             class="input-group date fromdate">
+                            <input type="text"
+                                   id="from-date"
+                                   name="FromDate"
+                                   readonly="readonly"
+                                   autocomplete="off"
+                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                                   value="@Model.FromDate.ToShortDateWithSlash()" />
+                            <span class="input-group-addon">
+                                <span class="icon-calendar" id="fdate_trigger"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <label>@SharedResources.To</label>
+                    <div class="control date">
+                        <div id="to-date-container"
+                             class="input-group date todate">
+                            <input type="text"
+                                   id="to-date"
+                                   name="ToDate"
+                                   readonly="readonly"
+                                   autocomplete="off"
+                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                                   value="@Model.ToDate.ToShortDateWithSlash()" />
+                            <span class="input-group-addon">
+                                <span class="icon-calendar" id="tdate_trigger"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="button" value="@SharedResources.Today" class="btn-default" />
+                    <input type="button" value="@SharedResources.Yesterday" class="btn-default" />
+                    <input type="button" value="@SharedResources.Tomorrow" class="btn-default" />
+                </div>
+                <div class="form-group btn-ex-group">
+                    <input type="button" value="@SharedResources.ThisWeek" class="btn-default " />
+                    <input type="button" value="@SharedResources.LastWeek" class="btn-default" />
+                </div>
+                <div class="form-group btn-ex-group">
+                    <input type="button" value="@SharedResources.ThisPeriod" class="btn-default" />
+                    <input type="button" value="@SharedResources.LastPeriod" class="btn-default" />
+                </div>
+                @SportGroupSelection.Render(Model.SportGroupSelectionViewModel)
+                @BetTypeSelection.Render(Model.BetTypeSelectionViewModel)
+                <div class="form-group">
+                    <input type="reset" value="@SharedResources.Clear" class="btn btn-default" />
+                    <input type="submit" value="@ReportResources.ViewReport" class="btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="result-container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a data-toggle="tab" href="#settlementSumary">@ReportResources.SettlementSummary</a>
+            </li>
+            <li role="presentation">
+                <a data-toggle="tab" href="#accountingSheet">@ReportResources.AccountingSheet</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="settlementSumary">
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
+                @Html.Partial("~/Reports/Views/_AccountingSheet.cshtml")
+            </div>
+        </div>
+    </div>
 </div>
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/index")
