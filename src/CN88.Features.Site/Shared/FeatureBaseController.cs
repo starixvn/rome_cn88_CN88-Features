@@ -2,12 +2,11 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Alpha.Web;
     using Features.Models;
     using MediatR;
     using Requests;
 
-    public abstract class FeatureBaseController : BaseAsyncController
+    public abstract class FeatureBaseController : Controller
     {
         private const string NoInformationPageViewPath = "~/Shared/Views/NoInformation.cshtml";
 

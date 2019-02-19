@@ -8,6 +8,7 @@
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Alpha.Auth.Filters;
     using Alpha.CN88.Site.App_Start;
     using Alpha.Web;
     using Alpha.Web.Filters;
@@ -53,7 +54,7 @@
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
-            //GlobalFilters.Filters.Add(new CheckBelongingFilter());
+            GlobalFilters.Filters.Add(new CheckBelongingFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
