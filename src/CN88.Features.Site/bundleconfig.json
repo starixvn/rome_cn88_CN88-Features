@@ -64,5 +64,11 @@
     "inputFiles": [
       "CustomerList/Styles/popup.css"
     ]
+  },
+  {
+    "outputFileName": "CustomerList/bundles/styles/downline-list.css",
+    "inputFiles": [
+      "CustomerList/Styles/downline-list.css"
+    ]
   }
 ]

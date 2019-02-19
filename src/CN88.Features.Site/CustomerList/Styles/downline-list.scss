@@ -1,0 +1,32 @@
+﻿body {
+    padding: 14px;
+}
+
+.control {
+    width: 168px;
+}
+
+.tble-style2 {
+    width: 1240px;
+
+    [class^="icon"]:hover:not(:disabled) {
+        cursor: pointer;
+    }
+}
+
+.icon-add {
+    color: #25a77b;
+}
+
+
+.icon-pass,
+.icon-security,
+.icon-edit {
+    color: #494949;
+    font-size: 17px;
+    margin: 0 9px;
+}
+
+.icon-edit {
+    font-size: 19px;
+}
