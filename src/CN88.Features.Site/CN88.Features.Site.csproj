@@ -311,18 +311,11 @@
   <ItemGroup>
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
-    <Content Include="assets\bundles\customer-list\popup\credit-popup.js" />
-    <Content Include="assets\bundles\customer-list\popup\credit-popup.min.js">
-      <DependentUpon>credit-popup.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\customer-list\popup\status-popup.js" />
-    <Content Include="assets\bundles\customer-list\popup\status-popup.min.js">
-      <DependentUpon>status-popup.js</DependentUpon>
-    </Content>
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
     </Content>
+    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
     <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
@@ -343,8 +336,9 @@
       <DependentUpon>legacy.js</DependentUpon>
     </Content>
     <Content Include="Reports\bundles\reports.css" />
-    <Content Include="Reports\bundles\reports.min.css">
-      <DependentUpon>reports.css</DependentUpon>
+    <Content Include="Reports\bundles\wager.js" />
+    <Content Include="Reports\bundles\wager.min.js">
+      <DependentUpon>wager.js</DependentUpon>
     </Content>
     <Content Include="Reports\Styles\reports.css">
       <DependentUpon>reports.scss</DependentUpon>
@@ -355,7 +349,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountManagement\SubAccountController.cs" />
     <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -396,9 +389,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="App_Data\AuthorizationSection.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="App_Data\AuthorizationSection.config" />
     <Content Include="Web.AppSettings.config" />
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="Shared\Views\Web.config" />
@@ -459,6 +450,7 @@
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\wager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />

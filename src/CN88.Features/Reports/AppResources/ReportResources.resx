@@ -121,4 +121,28 @@
   <data name="AccountingSheet" xml:space="preserve">
     <value>Accounting Sheet</value>
   </data>
+  <data name="ValidStake" xml:space="preserve">
+    <value>Valid Stake</value>
+  </data>
+  <data name="AgentResult" xml:space="preserve">
+    <value>Agent Result</value>
+  </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>Master Agent</value>
+  </data>
+  <data name="SMAResult" xml:space="preserve">
+    <value>SMA Result</value>
+  </data>
+  <data name="SMAStock" xml:space="preserve">
+    <value>SMA Stock</value>
+  </data>
+  <data name="Settlement" xml:space="preserve">
+    <value>Settlement</value>
+  </data>
+  <data name="MemberIncome" xml:space="preserve">
+    <value>Member Income</value>
+  </data>
+  <data name="SMAIncome" xml:space="preserve">
+    <value>SMA Income</value>
+  </data>
 </root>

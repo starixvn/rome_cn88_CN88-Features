@@ -15,6 +15,15 @@
     ]
   },
   {
+    "outputFileName": "Reports/bundles/wager.js",
+    "inputFiles": [
+      "Shared/Scripts/core.js",
+      "Shared/Scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/daterangepicker.js",
+      "Reports/Scripts/wager.js"
+    ]
+  },
+  {
     "outputFileName": "Reports/bundles/legacy.js",
     "inputFiles": [
       "Shared/Scripts/core.js",
@@ -37,14 +46,14 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/customer-list/popup/credit-popup.js",
+    "outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
     "inputFiles": [
       "CustomerList/scripts/popup/popup-base.js",
       "CustomerList/scripts/popup/credit-popup.js"
     ]
   },
   {
-    "outputFileName": "assets/bundles/customer-list/popup/status-popup.js",
+    "outputFileName": "CustomerList/bundles/scripts/popup/status-popup.js",
     "inputFiles": [
       "CustomerList/scripts/popup/popup-base.js",
       "CustomerList/scripts/popup/status-popup.js"

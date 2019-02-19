@@ -6,6 +6,36 @@
     <span class="pull-left">@Model.Title</span>
 </div>
 @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover" id="tbl-report">
+    <thead>
+        <tr>
+            <th>@SharedResources.UserCode</th>
+            <th>@SharedResources.Wagers</th>
+            <th>@SharedResources.Stake</th>
+            <th>@ReportResources.ValidStake</th>
+            <th>@SharedResources.Member</th>
+            <th>@SharedResources.Agent</th>
+            <th>@ReportResources.MasterAgent</th>
+            <th>@SharedResources.SMA</th>
+            <th>@ReportResources.SMAResult</th>
+            <th>@ReportResources.SMAStock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model.ReportData)
+        {
+            <tr>
+                <td>@row.Username</td>
+                <td>@row.Wagers</td>
+                <td>@row.Stake</td>
+                <td>@row.ValidStake</td>
+                <td>@row.MemberIncome</td>
+                <td>@row.Agent</td>
+                <td>@row.AgentResult</td>
+            </tr>
+        }
+    </tbody>
+</table>
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/legacy")
 }

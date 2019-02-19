@@ -79,11 +79,38 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Result.
+        /// </summary>
+        public static string AgentResult {
+            get {
+                return ResourceManager.GetString("AgentResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled Report.
         /// </summary>
         public static string CancelledReport {
             get {
                 return ResourceManager.GetString("CancelledReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Agent.
+        /// </summary>
+        public static string MasterAgent {
+            get {
+                return ResourceManager.GetString("MasterAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Income.
+        /// </summary>
+        public static string MemberIncome {
+            get {
+                return ResourceManager.GetString("MemberIncome", resourceCulture);
             }
         }
         
@@ -97,6 +124,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settlement.
+        /// </summary>
+        public static string Settlement {
+            get {
+                return ResourceManager.GetString("Settlement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settlement Summary.
         /// </summary>
         public static string SettlementSummary {
@@ -106,11 +142,47 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SMA Income.
+        /// </summary>
+        public static string SMAIncome {
+            get {
+                return ResourceManager.GetString("SMAIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA Result.
+        /// </summary>
+        public static string SMAResult {
+            get {
+                return ResourceManager.GetString("SMAResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA Stock.
+        /// </summary>
+        public static string SMAStock {
+            get {
+                return ResourceManager.GetString("SMAStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unsettled Wager.
         /// </summary>
         public static string UnsettledWager {
             get {
                 return ResourceManager.GetString("UnsettledWager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid Stake.
+        /// </summary>
+        public static string ValidStake {
+            get {
+                return ResourceManager.GetString("ValidStake", resourceCulture);
             }
         }
         

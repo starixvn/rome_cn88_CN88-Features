@@ -343,6 +343,13 @@
       <DependentUpon>legacy.js</DependentUpon>
     </Content>
     <Content Include="Reports\bundles\reports.css" />
+    <Content Include="Reports\bundles\reports.min.css">
+      <DependentUpon>reports.css</DependentUpon>
+    </Content>
+    <Content Include="Reports\bundles\wager.js" />
+    <Content Include="Reports\bundles\wager.min.js">
+      <DependentUpon>wager.js</DependentUpon>
+    </Content>
     <Content Include="Reports\Styles\reports.css">
       <DependentUpon>reports.scss</DependentUpon>
     </Content>
@@ -352,6 +359,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountManagement\SubAccountController.cs" />
     <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -382,24 +390,19 @@
     <Compile Include="Shared\BaseHandler.cs" />
     <Compile Include="Shared\Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Shared\Models\User.cs" />
-<<<<<<< HEAD
     <Compile Include="Shared\BaseQuery.cs" />
-    <Compile Include="Reports\Requests\MainQuery.cs" />
-    <Compile Include="Reports\ViewModels\MainViewModel.cs" />
-    <Compile Include="Shared\FeatureBaseController.cs" />
-=======
-    <Compile Include="Shared\Requests\BaseQuery.cs" />
     <Compile Include="Reports\Requests\IndexQuery.cs" />
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
-    <Compile Include="Shared\Controllers\FeatureBaseController.cs" />
->>>>>>> 00000 - reports
+    <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="App_Data\AuthorizationSection.config" />
+    <Content Include="App_Data\AuthorizationSection.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.AppSettings.config" />
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="Shared\Views\Web.config" />
@@ -460,6 +463,7 @@
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\wager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />

@@ -60,10 +60,10 @@
 
         public override string GetSettingKey()
             => ReportLevel.IsAgentLevel()
-                ? "CS_Rpt_Wager_Agent"
+                ? "CS_Rpt_Winloss_Agent"
                 : ReportLevel.IsMasterLevel()
-                ? "CS_Rpt_Wager_Master"
-                : "CS_Rpt_Wager_Super";
+                ? "CS_Rpt_Winloss_Master"
+                : "CS_Rpt_Winloss_Super";
 
         public override bool IsValid() => CustId > 0 && FromDate <= ToDate;
     }
