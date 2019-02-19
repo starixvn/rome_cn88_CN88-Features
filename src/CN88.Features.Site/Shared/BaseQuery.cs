@@ -9,7 +9,7 @@
 
         protected BaseQuery(IUser viewer)
         {
-            //this.viewer = viewer;
+            this.viewer = viewer;
 
             //// Default data, if query string had data, then get from query string.
             //CustId = viewer.Id;
@@ -23,42 +23,25 @@
 
         public byte CustLevelId { get; set; }
 
-        //public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
-
-        //public int ViewerId => viewer.Id;
-
-        //public string ViewerName => viewer.Name;
-
-        //public byte ViewerLevelId => viewer.LevelId;
-
-        //public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
-
-        //public int SubAccountId => viewer.SubAccountId;
-
-        //public string IP => viewer.IP;
-
-        //public string Language => viewer.Language;
-
         public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 
-        public int ViewerId => 34044212;
+        public int ViewerId => viewer.Id;
 
-        public string ViewerName => "davidtest18feb";
+        public string ViewerName => viewer.Name;
 
-        public byte ViewerLevelId => 4;
+        public byte ViewerLevelId => viewer.LevelId;
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
 
-        public int SubAccountId => 0;
+        public int SubAccountId => viewer.SubAccountId;
 
-        public string IP => string.Empty;
+        public string IP => viewer.IP;
 
-        public string Language => "en";
+        public string Language => viewer.Language;
 
-        public virtual bool IsValid() => true;
-            //=> CustId > 0
-            //&& !string.IsNullOrWhiteSpace(CustName)
-            //&& ActorLevel.IsEqualOrUplineOf(CustLevel)
-            //&& !string.IsNullOrWhiteSpace(Language);
+        public virtual bool IsValid()
+            => ViewerId > 0
+            && !string.IsNullOrWhiteSpace(ViewerName)
+            && !string.IsNullOrWhiteSpace(Language);
     }
 }

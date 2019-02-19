@@ -14,9 +14,9 @@
 
         public IndexQuery(IUser viewer) : base(viewer)
         {
-            IsInternal = false; //viewer.IsInternal;
-            HasUpdatePermission = true; // viewer.HasUpdatePermission;
-            HasAddNewPermission = true; // viewer.HasAddNewPermission;
+            IsInternal = viewer.IsInternal;
+            HasUpdatePermission = viewer.HasUpdatePermission;
+            HasAddNewPermission = viewer.HasAddNewPermission;
         }
 
         public bool IsInternal { get; }
