@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using AppResources;
 
     public class SportGroup
     {
@@ -38,6 +39,11 @@
 
         private string GetDisplayName()
         {
+            if (Id == 10)
+            {
+                return SharedResources.Parlay;
+            }
+
             var stringBuilder = new StringBuilder();
             var length = DisplaySportIds.Count();
 

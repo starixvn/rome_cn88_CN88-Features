@@ -145,4 +145,25 @@
   <data name="SMAIncome" xml:space="preserve">
     <value>SMA Income</value>
   </data>
+  <data name="AgentPoss" xml:space="preserve">
+    <value>Agent Poss.</value>
+  </data>
+  <data name="AgentIncome" xml:space="preserve">
+    <value>Agent Income</value>
+  </data>
+  <data name="AgentResultA" xml:space="preserve">
+    <value>Agent Result A</value>
+  </data>
+  <data name="AgentStock" xml:space="preserve">
+    <value>Agent Stock</value>
+  </data>
+  <data name="AgentCurrency" xml:space="preserve">
+    <value>Agent Currency</value>
+  </data>
+  <data name="MemberUsername" xml:space="preserve">
+    <value>Member Username</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

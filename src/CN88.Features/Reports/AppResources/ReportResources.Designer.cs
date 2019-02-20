@@ -79,11 +79,56 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Currency.
+        /// </summary>
+        public static string AgentCurrency {
+            get {
+                return ResourceManager.GetString("AgentCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Income.
+        /// </summary>
+        public static string AgentIncome {
+            get {
+                return ResourceManager.GetString("AgentIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Poss..
+        /// </summary>
+        public static string AgentPoss {
+            get {
+                return ResourceManager.GetString("AgentPoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Result.
         /// </summary>
         public static string AgentResult {
             get {
                 return ResourceManager.GetString("AgentResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Result A.
+        /// </summary>
+        public static string AgentResultA {
+            get {
+                return ResourceManager.GetString("AgentResultA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Stock.
+        /// </summary>
+        public static string AgentStock {
+            get {
+                return ResourceManager.GetString("AgentStock", resourceCulture);
             }
         }
         
@@ -111,6 +156,24 @@ namespace CN88.Features.Reports.AppResources {
         public static string MemberIncome {
             get {
                 return ResourceManager.GetString("MemberIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Username.
+        /// </summary>
+        public static string MemberUsername {
+            get {
+                return ResourceManager.GetString("MemberUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

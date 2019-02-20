@@ -169,6 +169,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parlay.
+        /// </summary>
+        public static string Parlay {
+            get {
+                return ResourceManager.GetString("Parlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMA.
         /// </summary>
         public static string SMA {

@@ -189,4 +189,7 @@
   <data name="SMA" xml:space="preserve">
     <value>SMA</value>
   </data>
+  <data name="Parlay" xml:space="preserve">
+    <value>Parlay</value>
+  </data>
 </root>

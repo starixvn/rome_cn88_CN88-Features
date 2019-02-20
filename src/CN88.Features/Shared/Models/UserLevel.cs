@@ -40,6 +40,10 @@
 
         public bool IsMemberLevel() => this == Member;
 
+        public bool IsMemberOrMasterLevel() => IsMemberLevel() || IsMasterLevel();
+
+        public bool IsNotMemberLevel() => !IsMemberLevel();
+
         public bool IsDirectUplineOf(byte downlineLevelValue)
             => GapBetweenTwoLevels(Value, downlineLevelValue) == 1;
 

@@ -5,6 +5,7 @@
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
+    using Features.Shared.Models;
     using Requests;
     using Shared.ViewModels.Components;
 
@@ -18,6 +19,7 @@
             WinLossModel grandTotal,
             AccountingPeriod currentPeriod)
         {
+            ReportLevel = query.CustLevel;
             ReportData = reportData;
             GrandTotal = grandTotal;
 
@@ -39,6 +41,8 @@
                 : query.ReportType == ReportTypeConstants.CancelledReport ? ReportResources.CancelledReport
                 : ReportResources.AbnormalBets;
         }
+
+        public UserLevel ReportLevel { get; }
 
         public IEnumerable<WinLossModel> ReportData { get; }
 

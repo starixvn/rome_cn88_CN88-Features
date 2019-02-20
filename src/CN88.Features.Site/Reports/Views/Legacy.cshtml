@@ -13,29 +13,78 @@
             <th>@SharedResources.Wagers</th>
             <th>@SharedResources.Stake</th>
             <th>@ReportResources.ValidStake</th>
-            <th>@SharedResources.Member</th>
-            <th>@SharedResources.Agent</th>
-            <th>@ReportResources.MasterAgent</th>
-            <th>@SharedResources.SMA</th>
-            <th>@ReportResources.SMAResult</th>
-            <th>@ReportResources.SMAStock</th>
+            <th>@ReportResources.MemberIncome</th>
+            @if (Model.ReportLevel.IsNotMemberLevel())
+            {
+                <th>@SharedResources.Agent</th>
+            }
+            @if (Model.ReportLevel.IsMemberOrMasterLevel())
+            {
+                <th>@ReportResources.AgentPoss</th>
+                <th>@ReportResources.AgentIncome</th>
+            }
+            @if (Model.ReportLevel.IsMemberLevel())
+            {
+                <th>@ReportResources.AgentResultA</th>
+            }
+            else
+            {
+                <th>@ReportResources.AgentResult</th>
+            }
+            @if (Model.ReportLevel.IsAgentLevel())
+            {
+                <th>@ReportResources.AgentStock</th>
+                <th>@ReportResources.AgentCurrency</th>
+
+            }
         </tr>
     </thead>
     <tbody>
         @foreach (var row in Model.ReportData)
-        {
+            {
             <tr>
                 <td>@row.Username</td>
                 <td>@row.Wagers</td>
                 <td>@row.Stake</td>
                 <td>@row.ValidStake</td>
                 <td>@row.MemberIncome</td>
-                <td>@row.Agent</td>
-                <td>@row.AgentResult</td>
+                @RenderNetWinLoss(row.AgentNetWinLoss)
+                @if (Model.ReportLevel.IsAgentLevel())
+                {
+                    <td>@row.AgentCurrency</td>
+                }
             </tr>
         }
     </tbody>
 </table>
+@helper RenderNetWinLoss(NetWinLoss netWinLoss)
+{
+if (netWinLoss == null)
+{
+    return;
+}
+if (netWinLoss.WinLoss != null)
+{
+        <td>@netWinLoss.WinLoss</td>
+}
+if (netWinLoss.Poss != null)
+{
+        <td>@netWinLoss.Poss</td>
+}
+if (netWinLoss.Income != null)
+{
+        <td>@netWinLoss.Income</td>
+
+}
+if (netWinLoss.Result != null)
+{
+        <td>@netWinLoss.Result</td>
+}
+if (netWinLoss.Stock != null)
+{
+        <td>@netWinLoss.Stock</td>
+}
+}
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/legacy")
 }

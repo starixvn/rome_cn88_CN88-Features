@@ -1,0 +1,31 @@
+﻿@model ReportViewModel
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover" id="tbl-report">
+    <thead>
+        <tr>
+            <th>@ReportResources.MemberUsername</th>
+            <th>@ReportResources.Name</th>
+            <th>@SharedResources.Wagers</th>
+            <th>@SharedResources.Stake</th>
+            <th>@ReportResources.ValidStake</th>
+            <th>@ReportResources.MemberIncome</th>
+            <th>@ReportResources.AgentPoss</th>
+            <th>@ReportResources.AgentIncome</th>
+            <th>@ReportResources.AgentResultA</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model.ReportData)
+            {
+            <tr>
+                <td>@row.Username</td>
+                <td>@row.Wagers</td>
+                <td>@row.Stake</td>
+                <td>@row.ValidStake</td>
+                <td>@row.MemberIncome</td>
+                <td>@row.AgentNetWinLoss.Poss</td>
+                <td>@row.AgentNetWinLoss.Income</td>
+                <td>@row.AgentNetWinLoss.Result</td>
+            </tr>
+        }
+    </tbody>
+</table>
