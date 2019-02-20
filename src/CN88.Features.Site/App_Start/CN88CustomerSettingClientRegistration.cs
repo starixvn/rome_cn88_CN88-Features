@@ -22,7 +22,9 @@
 
         public override SettingContext FetchSettingContext()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             var currentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
+#pragma warning restore CS0618 // Type or member is obsolete
             return new SettingContext()
             {
                 ActorId = currentUserSession.UserId,
@@ -38,7 +40,9 @@
 
         private bool IsAllowPermissionBasedOnSubAccAndInternalAcc()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             var currentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
+#pragma warning restore CS0618 // Type or member is obsolete
             bool subAccountPermission = !currentUserSession.IsSubAcc || currentUserSession.SubPageAccess.UpdateAccount;
             return !currentUserSession.IsInternal && subAccountPermission;
         }
@@ -47,7 +51,9 @@
         {
             var productId = GetProductId(permissionContext);
 
+#pragma warning disable CS0618 // Type or member is obsolete
             return productId == 0 ? true : UserPermission.HasPermissionOnProduct(productId);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         private int GetProductId(PermissionContext permissionContext)

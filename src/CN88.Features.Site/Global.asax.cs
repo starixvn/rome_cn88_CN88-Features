@@ -79,7 +79,9 @@
             //}
 
             Exception ex = Server.GetLastError();
+#pragma warning disable CS0618 // Type or member is obsolete
             var currentCustomer = UserSession.Current;
+#pragma warning restore CS0618 // Type or member is obsolete
 
             if (ex is FormatException &&
                 Request.Params.AllKeys.Any(key => Alpha.Auth.Configurations.AuthorizationSection.Instance.CustIdQueryStringParamNames.Any(cf => string.Equals(key, cf, StringComparison.OrdinalIgnoreCase))))

@@ -79,7 +79,9 @@
 
         private static void RegisterServices(Container container)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUserSession, UserSessionExt>();
+#pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUser, User>();
             container.RegisterSingleton(Logger.Log);
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();

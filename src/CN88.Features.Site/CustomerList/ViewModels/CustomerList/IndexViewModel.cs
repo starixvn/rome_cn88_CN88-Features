@@ -8,12 +8,13 @@
     {
         public IndexViewModel(IndexQuery query)
         {
-            ActorLevel = UserLevel.Super;
+            ActorLevel = query.ActorLevel;
             IsInternal = query.IsInternal;
             HasUpdatePermission = query.HasUpdatePermission;
             HasAddNewPermission = query.HasAddNewPermission;
 
-            ViewerId = 44;
+            Language = query.Language;
+            ViewerId = query.ViewerId;
 
             DownlineUsername = query.DownlineUsername;
             Username = query.Username;
@@ -21,21 +22,6 @@
             Status = query.Status;
             PageSize = query.PageSize;
             PageIndex = query.PageIndex;
-
-            //ActorLevel = query.ActorLevel;
-            //IsInternal = query.IsInternal;
-            //HasUpdatePermission = query.HasUpdatePermission;
-            //HasAddNewPermission = query.HasAddNewPermission;
-
-            //Language = query.Language;
-            //ViewerId = query.ViewerId;
-
-            //DownlineUsername = query.DownlineUsername;
-            //Username = query.Username;
-            //SearchRoleId = query.SearchRoleId;
-            //Status = query.Status;
-            //PageSize = query.PageSize;
-            //PageIndex = query.PageIndex;
         }
 
         public UserLevel ActorLevel { get; set; }
