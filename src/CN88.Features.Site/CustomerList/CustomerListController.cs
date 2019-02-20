@@ -28,8 +28,8 @@
             => Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
 
         [HttpGet]
-        public ActionResult CreditPopup(CreditPopupQuery message)
-           => View(mediator.Send(message));
+        public async Task<ActionResult> CreditPopup(CreditPopupQuery message)
+           => await ViewAsync(message, CreditPopupPath);
 
         [HttpGet]
         public async Task<ActionResult> StatusPopup(CustomerStatusPopupQuery message)

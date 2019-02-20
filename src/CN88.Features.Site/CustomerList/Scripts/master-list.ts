@@ -30,9 +30,9 @@
                 var customer = rs.Customers[i];
                 html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='" + customer.CustId + "'>" +
                     "<td class='text-center col-no'>" + customerIndex + "</td>" +
-                    "<td class='link' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
+                    "<td class='link view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
                     "<td>" + customer.Name + "</td>" +
-                    "<td class='text-right link' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
+                    "<td class='text-right link col-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='text-center col-date'>" + customer.CreationDateStr + "</td>" +
                     "<td class='text-center col-status link' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='text-center col-action'>" +

@@ -119,7 +119,7 @@
 
             self.viewDownlineFunction($this.attr("cust-id"), $this.html());
         });
-        this.$tblReport.find(".update-credit").click(function () {
+        this.$tblReport.find(".col-credit").click(function () {
             var $this = self.$(this);
 
             self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), self.levelId);

@@ -174,30 +174,26 @@
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-        let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevelId=${custLevelId}`,
+		let self = this,
+			url = `CreditPopup?custId=${custId}&custLevelId=${custLevelId}`,
             caption = this.$("#UpdateCredit").val();
+
+		this.$("#myModal").on("show.bs.modal", function (e) {
+			self.$(this).find('.modal-title').text(`${caption} - ${username}`);
+			self.$(this).find('iframe').attr('src', url);
+		}).modal('show');
 
         this.topWindow.popupManager.open(url, `${caption} - ${username}`, 550, 250);
     };
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
-		let url = `StatusPopup?custId=${custId}&UpdateStatusId=${updateStatusId}`,
+		let self = this,
+			url = `StatusPopup?custId=${custId}&UpdateStatusId=${updateStatusId}`,
 			popupTitle = `${this.$("#UpdateStatus").val()} - ${username}`;
-		let self = this;
-
-		
 
 		this.$("#myModal").on("show.bs.modal", function (e) {
-			var link = self.$(e.relatedTarget);
+			self.$(this).find('.modal-title').text(popupTitle);
 			self.$(this).find('iframe').attr('src', url);
-		});
-
-		//this.$('#myModal').removeData('bs.modal');
-		//this.$('#myModal').modal({ remote: url });
-		this.$('#myModal').modal('show');
-
-		//let width = this.topWindow.displayTextWidth(popupTitle, this.$(".col-username").css("fontSize"));
-
-		//this.topWindow.popupManager.open(url, popupTitle, 500, 250);
+		}).modal('show');
     };
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
@@ -266,7 +262,7 @@
         this.memberList.viewMembersOfAgent(custId, username);
     };
     reloadCreditValue = (custId: any, newValue: any) => {
-        this.$(".update-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
+		this.$(".col-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
     };
     reloadStatusValue = (custId: any, newValue: any) => {
         var column = this.$(".col-status[cust-id='" + custId + "']");
