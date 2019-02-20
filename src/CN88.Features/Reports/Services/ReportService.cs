@@ -6,10 +6,13 @@
     using System.Threading.Tasks;
     using Criteria;
     using DataAccesses;
+    using Extensions;
     using Fanex.Caching;
+    using Fanex.Common;
     using Fanex.Data.Repository;
     using Models;
     using Params;
+    using RawData;
     using Shared.Services;
 
     public interface ReportService
@@ -19,6 +22,8 @@
         Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups();
 
         Task<AccountingPeriod> GetCurrentPeriod();
+
+        Task<SettlementSummaryReport> GetSettlementSummaryReport();
     }
 
     public class ReportServiceImpl : ReportService
@@ -75,13 +80,55 @@
             return result;
         }
 
+        public async Task<AccountingPeriod> GetCurrentPeriod()
+            => (await GetAccountingPeriods()).FirstOrDefault(p => p.IsCurrentPeriod);
+
+        public async Task<SettlementSummaryReport> GetSettlementSummaryReport()
+        {
+            var rawData = await dynamicRepository.FetchAsync<SportSettlementByDateModel>(new GetSettlementSummaryReportCriteria());
+
+            var sportGroups = rawData.Select(d => d.SportTypeGroup).Distinct().OrderBy(s => Converter.ToInt(s));
+            var name = DateTime.Now.AddDays(-1).ToShortDateFormat();
+            var yesterday = new SettlementByGroup(
+                0,
+                $"{AppResources.ReportResources.Yesterday}({name})",
+                GetSettlementByDate(name, rawData, sportGroups));
+
+            name = DateTime.Now.ToShortDateFormat();
+            var today = new SettlementByGroup(
+                0,
+                $"{AppResources.ReportResources.Today}({name})",
+                GetSettlementByDate(name, rawData, sportGroups));
+
+            var result = new SettlementSummaryReport(sportGroups.ToList(), yesterday, today);
+
+            return result;
+        }
+
         private async Task<IEnumerable<AccountingPeriod>> GetAccountingPeriods()
             => await ConfiguredCacheService.GetOrSetAsync(
                 "CN88.Features.Reports.Services.ReportServiceImpl.AccountingPeriods",
                 () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
 
-        public async Task<AccountingPeriod> GetCurrentPeriod()
-            => (await GetAccountingPeriods()).FirstOrDefault(p => p.IsCurrentPeriod);
+        private IList<SettlementModel> GetSettlementByDate(
+            string name,
+            IEnumerable<SportSettlementByDateModel> rawData,
+            IEnumerable<string> sportGroups)
+        {
+            var result = new List<SettlementModel>();
+            foreach (var sportGroup in sportGroups)
+            {
+                var data = rawData.FirstOrDefault(d =>
+                Converter.To<DateTime>(d.EventDate).ToShortDateFormat() == name && sportGroup == d.SportTypeGroup);
+                var sport = data == null ?
+                    new SettlementModel(0, sportGroup, 0, 0) :
+                    new SettlementModel(0, sportGroup, data.IncompletedEvent, data.CompletedEvent);
+
+                result.Add(sport);
+            }
+
+            return result;
+        }
     }
 }

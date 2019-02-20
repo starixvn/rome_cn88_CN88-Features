@@ -14,6 +14,7 @@
     <Setting Key="CS_Rpt_Winloss_Agent" SpName="CS_Rpt_Winloss_Agent" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_Rpt_Winloss_Master" SpName="CS_Rpt_Winloss_Master" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_Rpt_Winloss_Super" SpName="CS_Rpt_Winloss_Super" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_SettlementSummary" SpName="CS_Rpt_SettlementSummary" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Alpha.Auth">
     <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />

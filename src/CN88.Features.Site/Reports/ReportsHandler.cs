@@ -37,12 +37,15 @@
             var accountingPeriodGroups = await reportService.GetAccountingPeriodGroups();
             var currentPeriod = await reportService.GetCurrentPeriod();
 
+            var settlementSummary = await reportService.GetSettlementSummaryReport();
+
             return new IndexViewModel(
                 message,
                 BuildSportGroupSelectListItems(sportGroups, 0),
                 BuildBetTypeSelectListItems(betTypes, 0),
                 accountingPeriodGroups,
-                currentPeriod);
+                currentPeriod,
+                settlementSummary);
         }
 
         public async Task<ReportViewModel> Handle(ReportQuery message)

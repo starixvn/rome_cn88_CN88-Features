@@ -405,7 +405,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="App_Data\AuthorizationSection.config" />
+    <Content Include="App_Data\AuthorizationSection.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.AppSettings.config" />
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="Shared\Views\Web.config" />
@@ -442,6 +444,7 @@
     <Content Include="Reports\Views\_Filter.cshtml" />
     <Content Include="CustomerList\Styles\downline-list.scss" />
     <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
+    <Content Include="Reports\Views\_SettlementSummary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

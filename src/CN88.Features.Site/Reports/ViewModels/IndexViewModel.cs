@@ -17,7 +17,8 @@
             IEnumerable<SelectListItem> sportGroups,
             IEnumerable<SelectListItem> betTypes,
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
-            AccountingPeriod currentPeriod)
+            AccountingPeriod currentPeriod,
+            SettlementSummaryReport settlementSummaryReport)
         {
             FromDate = query.FromDate;
             ToDate = query.ToDate;
@@ -30,6 +31,8 @@
             ActionName = query.DisplayMode == ReportDisplayModeConstants.Wager
                 ? nameof(ReportDisplayModeConstants.Wager)
                 : nameof(ReportDisplayModeConstants.Legacy);
+
+            SettlementSummaryReport = settlementSummaryReport;
         }
 
         public string ActionName { get; }
@@ -77,5 +80,7 @@
                     Value = ReportTypeConstants.AbnormalBets.ToString(),
                 }
             };
+
+        public SettlementSummaryReport SettlementSummaryReport { get; }
     }
 }

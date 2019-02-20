@@ -166,4 +166,22 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+    <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="Incomplete" xml:space="preserve">
+    <value>Incomplete</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="Unsettled" xml:space="preserve">
+    <value>Unsettled</value>
+  </data>
+  <data name="Settled" xml:space="preserve">
+    <value>Settled</value>
+  </data>
 </root>

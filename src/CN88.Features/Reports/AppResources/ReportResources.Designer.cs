@@ -142,6 +142,24 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string Complete {
+            get {
+                return ResourceManager.GetString("Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete.
+        /// </summary>
+        public static string Incomplete {
+            get {
+                return ResourceManager.GetString("Incomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master Agent.
         /// </summary>
         public static string MasterAgent {
@@ -174,6 +192,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settled.
+        /// </summary>
+        public static string Settled {
+            get {
+                return ResourceManager.GetString("Settled", resourceCulture);
             }
         }
         
@@ -232,6 +259,24 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsettled.
+        /// </summary>
+        public static string Unsettled {
+            get {
+                return ResourceManager.GetString("Unsettled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unsettled Wager.
         /// </summary>
         public static string UnsettledWager {
@@ -264,6 +309,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string WagerReport {
             get {
                 return ResourceManager.GetString("WagerReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday.
+        /// </summary>
+        public static string Yesterday {
+            get {
+                return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
     }
