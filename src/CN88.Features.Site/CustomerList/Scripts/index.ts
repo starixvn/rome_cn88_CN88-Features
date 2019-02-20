@@ -180,12 +180,24 @@
         this.topWindow.popupManager.open(url, `${caption} - ${username}`, 550, 250);
     };
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
-        let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
+		let url = `StatusPopup?custId=${custId}&UpdateStatusId=${updateStatusId}`,
 			popupTitle = `${this.$("#UpdateStatus").val()} - ${username}`;
+		let self = this;
+
+		
+
+		this.$("#myModal").on("show.bs.modal", function (e) {
+			var link = self.$(e.relatedTarget);
+			self.$(this).find('iframe').attr('src', url);
+		});
+
+		//this.$('#myModal').removeData('bs.modal');
+		//this.$('#myModal').modal({ remote: url });
+		this.$('#myModal').modal('show');
 
 		//let width = this.topWindow.displayTextWidth(popupTitle, this.$(".col-username").css("fontSize"));
 
-		this.topWindow.popupManager.open(url, popupTitle, 500, 250);
+		//this.topWindow.popupManager.open(url, popupTitle, 500, 250);
     };
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
@@ -257,7 +269,7 @@
         this.$(".update-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
     };
     reloadStatusValue = (custId: any, newValue: any) => {
-        var column = this.$(".update-status[cust-id='" + custId + "']");
+        var column = this.$(".col-status[cust-id='" + custId + "']");
         column.html(this.getStatusName(newValue));
         column.attr("current-status", newValue);
 

@@ -22,7 +22,7 @@
 	}
 
 	closePopup = () => {
-		this.topWindow.ageWnd.close();
+		this.topWindow.main.$('#myModal .close').click();
 	}
 
 	public reloadCallback(custId: any, newValue: any) {
@@ -41,7 +41,7 @@
 				xhr.setRequestHeader("__RequestVerificationToken", $("input[name=\"__RequestVerificationToken\"]").val());
 			}})
 			.done(function (data) {
-				data.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Message);
+				data.IsCompleted ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Message);
 			})
 			.always(function () { self.$.unblockUI(); });
 	}

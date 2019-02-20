@@ -33,11 +33,6 @@
 
 	reloadCallback(custId: any, newValue: any) {
 		let mainFrame = this.topWindow.main;
-		let menuFrame = this.topWindow.menu;
-
-		if (typeof menuFrame.reloadStatusValue === "function") {
-			menuFrame.reloadStatusValue(custId, newValue);
-		}
 
 		if (typeof mainFrame.customerList !== "undefined" && typeof mainFrame.customerList.reloadStatusValue === "function") {
 			mainFrame.customerList.reloadStatusValue(custId, newValue);

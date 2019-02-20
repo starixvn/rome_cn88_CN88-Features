@@ -124,7 +124,7 @@
 
             self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), self.levelId);
         });
-        this.$tblReport.find(".update-status").click(function () {
+		this.$tblReport.find(".col-status").click(function () {
             var $this = self.$(this);
 
             self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));

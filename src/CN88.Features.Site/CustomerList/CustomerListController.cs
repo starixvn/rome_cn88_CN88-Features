@@ -11,6 +11,8 @@
     public class CustomerListController : FeatureBaseController
     {
         private const string CustomerListPath = "~/CustomerList/Views/Index.cshtml";
+        private const string StatusPopupPath = "~/CustomerList/Views/StatusPopup.cshtml";
+        private const string CreditPopupPath = "~/CustomerList/Views/CreditPopup.cshtml";
 
         public CustomerListController(IMediator mediator)
             : base(mediator)
@@ -30,8 +32,8 @@
            => View(mediator.Send(message));
 
         [HttpGet]
-        public ActionResult StatusPopup(CustomerStatusPopupQuery message)
-            => View(mediator.Send(message));
+        public async Task<ActionResult> StatusPopup(CustomerStatusPopupQuery message)
+             => await ViewAsync(message, StatusPopupPath);
 
         [HttpPost, AntiXsrfFilter]
         public ActionResult UpdateCredit(CreditCommand command)

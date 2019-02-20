@@ -41,6 +41,10 @@
 
         public static string CurrentLink => MicroSites.CN88Url("~/CustomerList/Index");
 
+        public static string StatusPopupLink => MicroSites.CN88Url("~/CustomerList/StatusPopup");
+
+        public static string CreditPopupLink => MicroSites.CN88Url("~/CustomerList/CreditPopup");
+
         public string Language { get; }
 
         public int ViewerId { get; }

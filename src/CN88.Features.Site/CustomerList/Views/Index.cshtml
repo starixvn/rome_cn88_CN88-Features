@@ -178,41 +178,58 @@
     </div>
 </div>
 
-<div class="shadow" id="shadow"></div>
-<div class="output" id="output"></div>
-@Html.Hidden("directDownline", Model.ActorLevel.GetDirectDownLineLevel().Value)
-@Html.Hidden("getCustomerListUrl", Url.Action("GetCustomerList", "CustomerList"))
-@Html.Hidden("creditPopupUrl", Url.Action("CreditPopup", "CustomerList"))
-@Html.Hidden("statusPopupUrl", Url.Action("StatusPopup", "CustomerList"))
+<div id="myModal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<iframe width="100%" height="100%" frameborder="0" class="embed-responsive-item" src="" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+</div>
 
-@Html.Hidden("NoInformationIsAvailable", CustomerListResources.NoInformationIsAvailable)
-@Html.Hidden("Open", CustomerListResources.Open)
-@Html.Hidden("Closed", CustomerListResources.Closed)
-@Html.Hidden("Suspended", CustomerListResources.Suspended)
-@Html.Hidden("Page", CustomerListResources.Page)
-@Html.Hidden("of", CustomerListResources.of)
-@Html.Hidden("Pager_DisplayItems", CustomerListResources.Pager_DisplayItems)
-@Html.Hidden("usernameAutoSuggestionPath", IndexViewModel.UsernameAutoSuggestionPath)
-@Html.Hidden("EditCustomerLink", IndexViewModel.EditCustomerLink)
-@Html.Hidden("CreateCustomerLink", IndexViewModel.CreateCustomerLink)
-@Html.Hidden("CurrentLink", IndexViewModel.CurrentLink)
 
-@Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
-@Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
-@Html.Hidden("Disabled", CustomerListResources.Disabled)
-@Html.Hidden("HasUpdatePermission", Model.HasUpdatePermission ? 1 : 0)
-@Html.Hidden("HasAddNewPermission", Model.HasAddNewPermission ? 1 : 0)
-@Html.Hidden("Language", Model.Language)
-@Html.Hidden("ViewerId", Model.ViewerId)
-@Html.Hidden("ActorLevel", Model.ActorLevel.Value)
+	<div class="shadow" id="shadow"></div>
+	<div class="output" id="output"></div>
+	@Html.Hidden("directDownline", Model.ActorLevel.GetDirectDownLineLevel().Value)
+	@Html.Hidden("getCustomerListUrl", Url.Action("GetCustomerList", "CustomerList"))
+	@Html.Hidden("creditPopupUrl", IndexViewModel.CreditPopupLink)
+	@Html.Hidden("statusPopupUrl", IndexViewModel.StatusPopupLink)
 
-@Html.Hidden("DownlineUsername", Model.DownlineUsername)
-@Html.Hidden("Username", Model.Username)
-@Html.Hidden("SearchRoleId", Model.SearchRoleId)
-@Html.Hidden("Status", Model.Status)
-@Html.Hidden("PageSize", Model.PageSize)
-@Html.Hidden("PageIndex", Model.PageIndex)
+	@Html.Hidden("NoInformationIsAvailable", CustomerListResources.NoInformationIsAvailable)
+	@Html.Hidden("Open", CustomerListResources.Open)
+	@Html.Hidden("Closed", CustomerListResources.Closed)
+	@Html.Hidden("Suspended", CustomerListResources.Suspended)
+	@Html.Hidden("Page", CustomerListResources.Page)
+	@Html.Hidden("of", CustomerListResources.of)
+	@Html.Hidden("Pager_DisplayItems", CustomerListResources.Pager_DisplayItems)
+	@Html.Hidden("usernameAutoSuggestionPath", IndexViewModel.UsernameAutoSuggestionPath)
+	@Html.Hidden("EditCustomerLink", IndexViewModel.EditCustomerLink)
+	@Html.Hidden("CreateCustomerLink", IndexViewModel.CreateCustomerLink)
+	@Html.Hidden("CurrentLink", IndexViewModel.CurrentLink)
 
-@section Scripts {
-    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
-}
+	@Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
+	@Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
+	@Html.Hidden("Disabled", CustomerListResources.Disabled)
+	@Html.Hidden("HasUpdatePermission", Model.HasUpdatePermission ? 1 : 0)
+	@Html.Hidden("HasAddNewPermission", Model.HasAddNewPermission ? 1 : 0)
+	@Html.Hidden("Language", Model.Language)
+	@Html.Hidden("ViewerId", Model.ViewerId)
+	@Html.Hidden("ActorLevel", Model.ActorLevel.Value)
+
+	@Html.Hidden("DownlineUsername", Model.DownlineUsername)
+	@Html.Hidden("Username", Model.Username)
+	@Html.Hidden("SearchRoleId", Model.SearchRoleId)
+	@Html.Hidden("Status", Model.Status)
+	@Html.Hidden("PageSize", Model.PageSize)
+	@Html.Hidden("PageIndex", Model.PageIndex)
+
+	@section Scripts {
+		@StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
+	}
