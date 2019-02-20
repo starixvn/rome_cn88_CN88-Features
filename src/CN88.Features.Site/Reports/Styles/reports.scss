@@ -25,29 +25,33 @@
         margin: 0 0 15px;
 
         &.btn-ex-group .btn-default {
-            width: 156px;
+            width: 172px;
+        }
+        .btn-default, .btn-secondary {
+            width: 112px;
+            margin-right: 4px;
         }
     }
 
-    .control.date {
+    .form-group .control.date {
         margin-left: 0;
-        width: 148px;
-        position: relative;
+        width: 159px;
+        //position: relative;
     }
 
-    .multiselect .multiselect-selected-text {
-        width: 292px;
+    .multiselect.btn-default {
+        width: 350px;
     }
 }
 
 .dropdown .dropdown-toggle {
-    width: 322px;
+    width: 350px;
     padding-left: 10px;
     text-align: left;
 }
 
 .dropdown-menu {
-    width: 322px;
+    width: 350px;
 }
 
 .tbl-noborder {
@@ -55,6 +59,10 @@
 
     .reportNo {
         padding-right: 6px;
+    }
+    .current {
+        background: #828282;
+        color: #fff;
     }
 }
 

@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group">
                     <input type="button" value="@SharedResources.Today" class="btn-default" />
-                    <input type="button" value="@SharedResources.Yesterday" class="btn-default" />
+                    <input type="button" value="@SharedResources.Yesterday" class="btn-secondary" />
                     <input type="button" value="@SharedResources.Tomorrow" class="btn-default" />
                 </div>
                 <div class="form-group btn-ex-group">
@@ -105,7 +105,7 @@
                 </div>
                 @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
                 @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, false)
-                <div class="form-group">
+                <div class="form-group pull-right">
                     <input type="button" value="@SharedResources.Clear" class="btn btn-default" />
                     <input type="submit" value="@ReportResources.ViewReport" class="btn-submit" />
                 </div>
