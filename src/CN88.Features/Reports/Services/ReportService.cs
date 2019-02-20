@@ -93,8 +93,7 @@
             var sportGroups = rawData
                 .Select(d => d.SportTypeGroup)
                 .Distinct()
-                .OrderBy(s => Converter.ToInt(s))
-                .Select(s => cacheRefService.GetSportName(Converter.ToInt(s)));
+                .OrderBy(s => Converter.ToInt(s));
             var name = DateTime.Now.AddDays(-1).ToShortDateFormat();
             var yesterday = new SettlementByGroup(
                 0,
@@ -107,7 +106,7 @@
                 $"{AppResources.ReportResources.Today}({name})",
                 GetSettlementByDate(name, rawData, sportGroups));
 
-            var result = new SettlementSummaryReport(sportGroups.ToList(), yesterday, today);
+            var result = new SettlementSummaryReport(sportGroups.Select(s => cacheRefService.GetSportName(Converter.ToInt(s))).ToList(), yesterday, today);
 
             return result;
         }
