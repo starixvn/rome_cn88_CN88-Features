@@ -31,15 +31,18 @@
         private readonly IDynamicRepository dynamicRepository;
         private readonly ReportDateService reportDateService;
         private readonly ReportDataAccess reportDataAccess;
+        private readonly CacheRefService cacheRefService;
 
         public ReportServiceImpl(
             IDynamicRepository dynamicRepository,
             ReportDateService reportDateService,
-            ReportDataAccess reportDataAccess)
+            ReportDataAccess reportDataAccess,
+            CacheRefService cacheRefService)
         {
             this.dynamicRepository = dynamicRepository;
             this.reportDateService = reportDateService;
             this.reportDataAccess = reportDataAccess;
+            this.cacheRefService = cacheRefService;
         }
 
         public async Task<IEnumerable<WinLossModel>> GetWinLoss(ReportParam param)
@@ -87,7 +90,11 @@
         {
             var rawData = await dynamicRepository.FetchAsync<SportSettlementByDateModel>(new GetSettlementSummaryReportCriteria());
 
-            var sportGroups = rawData.Select(d => d.SportTypeGroup).Distinct().OrderBy(s => Converter.ToInt(s));
+            var sportGroups = rawData
+                .Select(d => d.SportTypeGroup)
+                .Distinct()
+                .OrderBy(s => Converter.ToInt(s))
+                .Select(s => cacheRefService.GetSportName(Converter.ToInt(s)));
             var name = DateTime.Now.AddDays(-1).ToShortDateFormat();
             var yesterday = new SettlementByGroup(
                 0,
