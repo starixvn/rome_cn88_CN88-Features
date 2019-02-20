@@ -1,5 +1,4 @@
 ﻿using System;
-using CN88.Features.Shared.AppResources;
 
 namespace CN88.Features.Shared.Models
 {
@@ -9,24 +8,21 @@ namespace CN88.Features.Shared.Models
         {
         }
 
-        public BetType(int id, string name, bool isLive)
+        public BetType(int id, string name)
         {
             Id = id;
             Name = name;
-            IsLive = isLive;
         }
 
-        internal BetType(int id, string name, bool isLive, Func<int, string> getBetTypeDisplayName)
-            : this(id, name, isLive)
+        internal BetType(int id, string name, Func<int, string> getBetTypeDisplayName)
+            : this(id, name)
         {
-            DisplayName = (isLive ? $"({SharedResources.InPlay}) " : string.Empty) + getBetTypeDisplayName(id);
+            DisplayName = getBetTypeDisplayName == null ? name : getBetTypeDisplayName(id);
         }
 
         public int Id { get; }
 
         public string Name { get; }
-
-        public bool IsLive { get; }
 
         public string DisplayName { get; }
     }

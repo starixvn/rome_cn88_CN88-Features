@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Criteria;
+    using DataAccesses;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
@@ -13,7 +14,7 @@
 
     public interface ReportService
     {
-        Task<IEnumerable<ReportModel>> GetReportData(ReportParam param);
+        Task<IEnumerable<WinLossModel>> GetWinLoss(ReportParam param);
 
         Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups();
 
@@ -24,18 +25,21 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly ReportDateService reportDateService;
+        private readonly ReportDataAccess reportDataAccess;
 
         public ReportServiceImpl(
             IDynamicRepository dynamicRepository,
-            ReportDateService reportDateService)
+            ReportDateService reportDateService,
+            ReportDataAccess reportDataAccess)
         {
             this.dynamicRepository = dynamicRepository;
             this.reportDateService = reportDateService;
+            this.reportDataAccess = reportDataAccess;
         }
 
-        public async Task<IEnumerable<ReportModel>> GetReportData(ReportParam param)
-            => await dynamicRepository.FetchAsync<ReportModel>(
-                new GetReportDataCriteria(
+        public async Task<IEnumerable<WinLossModel>> GetWinLoss(ReportParam param)
+            => await reportDataAccess.GetWinLoss(
+                new GetWinLossReportCriteria(
                     param.CustId,
                     param.IsOwner,
                     param.FromDate,

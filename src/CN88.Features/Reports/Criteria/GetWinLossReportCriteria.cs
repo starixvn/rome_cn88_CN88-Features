@@ -5,9 +5,9 @@
     using Fanex.Data.Repository;
     using Shared.Models;
 
-    public class GetReportDataCriteria : CriteriaBase
+    public class GetWinLossReportCriteria : CriteriaBase
     {
-        public GetReportDataCriteria(
+        public GetWinLossReportCriteria(
             int custId,
             bool isOwner,
             DateTime fromDate,
@@ -59,7 +59,9 @@
         public UserLevel ReportLevel { get; }
 
         public override string GetSettingKey()
-            => ReportLevel.IsAgentLevel()
+            => ReportLevel.IsMemberLevel()
+                ? "CS_Rpt_Winloss_Member"
+                : ReportLevel.IsAgentLevel()
                 ? "CS_Rpt_Winloss_Agent"
                 : ReportLevel.IsMasterLevel()
                 ? "CS_Rpt_Winloss_Master"

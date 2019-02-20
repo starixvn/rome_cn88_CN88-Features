@@ -1,17 +1,17 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
-
-namespace CN88.Features.Shared.Criteria
+﻿namespace CN88.Features.Shared.Criteria
 {
+    using Fanex.Data;
+    using Fanex.Data.Repository;
+
     public class GetBetTypeBySportCriteria : CriteriaBase
     {
-        public GetBetTypeBySportCriteria(int sportTypeId)
+        public GetBetTypeBySportCriteria(int sportGroupId)
         {
-            SportTypeId = sportTypeId;
+            SportGroupId = sportGroupId;
         }
 
-        [SpParam(SqlParamName = "SportType")]
-        public int SportTypeId { get; }
+        [SpParam(SqlParamName = "SportTypeGroup")]
+        public int SportGroupId { get; }
 
         public override string GetSettingKey() => "CS_BetType_Sel";
 

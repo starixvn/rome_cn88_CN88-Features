@@ -1,11 +1,15 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Fanex.Data.Repository;
     using Fanex.Logging;
     using Fanex.RemotingRef;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
     using global::CN88.Features.Models;
+    using global::CN88.Features.Reports.DataAccesses;
     using global::CN88.Features.Reports.Services;
     using global::CN88.Features.Shared.DataAccesses;
     using global::CN88.Features.Shared.Services;
@@ -17,10 +21,6 @@
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
@@ -75,6 +75,7 @@
 
             container.RegisterSingleton<CustomerListDataAccess, CustomerListDataAccessImpl>();
             container.RegisterSingleton<SportGroupDataAccess, SportGroupDataAccessImpl>();
+            container.RegisterSingleton<ReportDataAccess, ReportDataAccessImpl>();
         }
 
         private static void RegisterServices(Container container)

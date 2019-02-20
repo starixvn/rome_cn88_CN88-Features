@@ -1,6 +1,9 @@
 ﻿namespace CN88.Features.Site.Reports
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using Features.Reports.Models;
     using Features.Reports.Params;
     using Features.Reports.Services;
     using Features.Shared.Services;
@@ -48,7 +51,7 @@
             var betTypes = await betTypeService.GetBetTypesBySport(message.SportGroupId);
             var currentPeriod = await reportService.GetCurrentPeriod();
 
-            var reportData = await reportService.GetReportData(
+            var reportData = await reportService.GetWinLoss(
                 new ReportParam(
                     message.CustId,
                     false,
@@ -59,12 +62,30 @@
                     2,
                     message.CustLevel));
 
+            var grandTotal = AccumulateGrandTotal(reportData);
+
             return new ReportViewModel(
                 message,
                 BuildSportGroupSelectListItems(sportGroups, message.SportGroupId),
                 BuildBetTypeSelectListItems(betTypes, message.BetTypeId),
                 reportData,
+                grandTotal,
                 currentPeriod);
+        }
+
+        internal WinLossModel AccumulateGrandTotal(IEnumerable<WinLossModel> reportData)
+        {
+            var grandTotal = new WinLossModel();
+
+            if (reportData != null && reportData.Any())
+            {
+                foreach (var data in reportData)
+                {
+                    grandTotal.Add(data);
+                }
+            }
+
+            return grandTotal;
         }
     }
 }

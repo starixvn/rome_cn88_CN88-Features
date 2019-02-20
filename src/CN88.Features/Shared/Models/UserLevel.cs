@@ -13,6 +13,8 @@
 
         public static readonly UserLevel Member = new UserLevel(1, "Member");
 
+        public static readonly UserLevel Headline = new UserLevel(0, "Headline");
+
         public UserLevel()
         {
         }

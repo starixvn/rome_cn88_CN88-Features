@@ -14,10 +14,13 @@
             ReportQuery query,
             IEnumerable<SelectListItem> sportGroups,
             IEnumerable<SelectListItem> betTypes,
-            IEnumerable<ReportModel> reportData,
+            IEnumerable<WinLossModel> reportData,
+            WinLossModel grandTotal,
             AccountingPeriod currentPeriod)
         {
             ReportData = reportData;
+            GrandTotal = grandTotal;
+
             var sportGroupSelectionViewModel = new SportGroupSelectionViewModel(sportGroups, query.SportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.ToDate, query.FromDate);
             var betTypeSelectionViewModel = new BetTypeSelectionViewModel(betTypes, query.BetTypeId);
@@ -37,7 +40,9 @@
                 : ReportResources.AbnormalBets;
         }
 
-        public IEnumerable<ReportModel> ReportData { get; }
+        public IEnumerable<WinLossModel> ReportData { get; }
+
+        public WinLossModel GrandTotal { get; }
 
         public ReportFilterViewModel ReportFilterViewModel { get; }
 

@@ -11,7 +11,7 @@
 
     public interface BettypeService
     {
-        Task<IEnumerable<BetType>> GetBetTypesBySport(int sportTypeId = 0);
+        Task<IEnumerable<BetType>> GetBetTypesBySport(int sportGroupId = 0);
     }
 
     public class BettypeServiceImpl : BettypeService
@@ -29,14 +29,14 @@
             this.getBetTypeDisplayName = getBetTypeDisplayName;
         }
 
-        public async Task<IEnumerable<BetType>> GetBetTypesBySport(int sportTypeId = 0)
+        public async Task<IEnumerable<BetType>> GetBetTypesBySport(int sportGroupId = 0)
             => await ConfiguredCacheService.GetOrSetAsync(
-                $"{BetTypesCacheKey}.{sportTypeId}",
+                $"{BetTypesCacheKey}.{sportGroupId}",
                 () =>
                 {
-                    var betTypes = dynamicRepository.Fetch<BetType>(new GetBetTypeBySportCriteria(sportTypeId));
+                    var betTypes = dynamicRepository.Fetch<BetType>(new GetBetTypeBySportCriteria(sportGroupId));
 
-                    return betTypes.Select(betType => new BetType(betType.Id, betType.Name, betType.IsLive, getBetTypeDisplayName));
+                    return betTypes.Select(betType => new BetType(betType.Id, betType.Name, getBetTypeDisplayName));
                 },
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
     }

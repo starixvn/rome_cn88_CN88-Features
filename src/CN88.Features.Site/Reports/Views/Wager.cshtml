@@ -18,17 +18,10 @@
     <thead>
         <tr>
             <th>@SharedResources.UserCode</th>
-            <th class="settlement">@SharedResources.SMA</th>
-            <th class="settlement">@ReportResources.SMAIncome</th>
-            <th class="settlement">@ReportResources.SMAResult</th>
-            <th class="settlement">@ReportResources.SMAStock</th>
             <th class="valid-stake">@SharedResources.Wagers</th>
             <th class="valid-stake">@SharedResources.Stake</th>
             <th class="valid-stake">@ReportResources.ValidStake</th>
             <th class="valid-stake">@ReportResources.MemberIncome</th>
-            <th class="valid-stake">@SharedResources.Agent</th>
-            <th class="valid-stake">@ReportResources.AgentResult</th>
-            <th class="valid-stake">@ReportResources.MasterAgent</th>
         </tr>
     </thead>
     <tbody>
@@ -38,24 +31,17 @@
             {
                 <tr>
                     <td>@data.Username</td>
-                    <td>@data.Super</td>
-                    <td>@data.SuperIncome</td>
-                    <td>@data.SuperResult</td>
-                    <td>@data.SuperStock</td>
                     <td>@data.Wagers</td>
                     <td>@data.Stake</td>
                     <td>@data.ValidStake</td>
                     <td>@data.MemberIncome</td>
-                    <td>@data.Agent</td>
-                    <td>@data.AgentResult</td>
-                    <td>@data.Master</td>
                 </tr>
             }
         }
         else
         {
             <tr>
-                <td colspan="12" align="center">@SharedResources.NoInformationIsAvailable</td>
+                <td colspan="5" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
         }
     </tbody>
