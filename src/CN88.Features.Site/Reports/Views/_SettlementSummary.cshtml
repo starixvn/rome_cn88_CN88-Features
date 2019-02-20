@@ -7,14 +7,14 @@
         <tr>
             <th></th>
             <th colspan="2">
-                <span class="@(report.Yesterday.IsComplete ? "" : "incomplete-settlement")">
+                <span class="@(report.Yesterday.IsComplete ? "complete-settlement" : "incomplete-settlement")">
                     @(report.Yesterday.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
                 </span>
                 <br />
                 @report.Yesterday.Name
             </th>
             <th colspan="2">
-                <span class="@(report.Yesterday.IsComplete ? "" : "incomplete-settlement")">
+                <span class="@(report.Yesterday.IsComplete ? "complete-settlement" : "incomplete-settlement")">
                     @(report.Today.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
                 </span>
                 <br />

@@ -27,6 +27,7 @@
         &.btn-ex-group .btn-default {
             width: 172px;
         }
+
         .btn-default, .btn-secondary {
             width: 112px;
             margin-right: 4px;
@@ -60,6 +61,7 @@
     .reportNo {
         padding-right: 6px;
     }
+
     .current {
         background: #828282;
         color: #fff;
@@ -68,6 +70,10 @@
 
 .incomplete-settlement {
     color: #FF0000;
+}
+
+.complete-settlement {
+    color: #00FF00;
 }
 
 @media all and (min-width: 1280px) {
