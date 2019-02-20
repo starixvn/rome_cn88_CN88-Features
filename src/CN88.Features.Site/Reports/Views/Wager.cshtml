@@ -1,10 +1,13 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
+@section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+}
 @model ReportViewModel
-<div class="page-title">
-    <span class="pull-left">@Model.Title</span>
+<div class="page-title title-report-detail">
     <ul class="nav nav-tabs" role="tablist">
+        <li class="report-name">@Model.Title</li>
         <li role="presentation" class="active">
             <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
         </li>

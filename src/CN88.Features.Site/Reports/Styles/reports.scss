@@ -68,6 +68,26 @@
     }
 }
 
+.title-report-detail {
+    .nav-tabs > li > a {
+        line-height: inherit;
+        padding: 0 16px;
+    }
+    .report-name {
+        padding-right: 24px;
+    }
+}
+.report-form {
+    padding: 16px 20px 0;
+    .form-group {
+        vertical-align: bottom;
+        > label {
+            text-transform: uppercase;
+            display: block;
+        }
+    }
+}
+
 .incomplete-settlement {
     color: #FF0000;
 }

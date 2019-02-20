@@ -2,8 +2,8 @@
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
 @model ReportViewModel
-<div class="page-title">
-    <span class="pull-left">@Model.Title</span>
+<div class="page-title title-report-detail">
+    <div class="">@Model.Title</div>
 </div>
 @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover" id="tbl-report">
