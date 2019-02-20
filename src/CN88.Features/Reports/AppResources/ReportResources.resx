@@ -166,7 +166,7 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
-    <data name="Today" xml:space="preserve">
+  <data name="Today" xml:space="preserve">
     <value>Today</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
@@ -183,5 +183,54 @@
   </data>
   <data name="Settled" xml:space="preserve">
     <value>Settled</value>
+  </data>
+
+  <data name="AgentUsername" xml:space="preserve">
+    <value>Agent Username</value>
+  </data>
+  <data name="MAPoss" xml:space="preserve">
+    <value>MA Poss.</value>
+  </data>
+  <data name="MAIncome" xml:space="preserve">
+    <value>MA Income</value>
+  </data>
+  <data name="MAResult" xml:space="preserve">
+    <value>MAResult</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="MAUsername" xml:space="preserve">
+    <value>MA Username</value>
+  </data>
+  <data name="MAStock" xml:space="preserve">
+    <value>MA Stock</value>
+  </data>
+  <data name="MAStockPercent" xml:space="preserve">
+    <value>MA Stock %</value>
+  </data>
+  <data name="SMAPoss" xml:space="preserve">
+    <value>SMA Poss.</value>
+  </data>
+  <data name="SMAStockPercent" xml:space="preserve">
+    <value>SMA Stock %</value>
+  </data>
+  <data name="SMAUsername" xml:space="preserve">
+    <value>SMA Username</value>
+  </data>
+  <data name="HeadlinePoss" xml:space="preserve">
+    <value>Headline Poss.</value>
+  </data>
+  <data name="HeadlineIncome" xml:space="preserve">
+    <value>Headline Income</value>
+  </data>
+  <data name="HeadlineResult" xml:space="preserve">
+    <value>Headline Result</value>
+  </data>
+  <data name="HeadlineStock" xml:space="preserve">
+    <value>Headline Stock</value>
+  </data>
+  <data name="HeadlineStockPercent" xml:space="preserve">
+    <value>Headline Stock %</value>
   </data>
 </root>

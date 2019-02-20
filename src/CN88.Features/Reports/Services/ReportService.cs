@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Criteria;
-    using DataAccesses;
     using Extensions;
     using Fanex.Caching;
     using Fanex.Common;
@@ -17,7 +16,7 @@
 
     public interface ReportService
     {
-        Task<IEnumerable<WinLossModel>> GetWinLoss(ReportParam param);
+        IEnumerable<WinLossModel> GetWinLoss(ReportParam param);
 
         Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups();
 
@@ -30,35 +29,37 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly ReportDateService reportDateService;
-        private readonly ReportDataAccess reportDataAccess;
         private readonly CacheRefService cacheRefService;
 
         public ReportServiceImpl(
             IDynamicRepository dynamicRepository,
             ReportDateService reportDateService,
-            ReportDataAccess reportDataAccess,
             CacheRefService cacheRefService)
         {
             this.dynamicRepository = dynamicRepository;
             this.reportDateService = reportDateService;
-            this.reportDataAccess = reportDataAccess;
             this.cacheRefService = cacheRefService;
         }
 
-        public async Task<IEnumerable<WinLossModel>> GetWinLoss(ReportParam param)
-            => await reportDataAccess.GetWinLoss(
+        public IEnumerable<WinLossModel> GetWinLoss(ReportParam param)
+        {
+            var balanceUpDay = reportDateService.GetBalanceUpDay();
+            var moveBetsDay = reportDateService.GetMoveBetsDay();
+
+            return dynamicRepository.Fetch<WinLossModel>(
                 new GetWinLossReportCriteria(
                     param.CustId,
                     param.IsOwner,
                     param.FromDate,
                     param.ToDate,
-                    await reportDateService.GetBalanceUpDay(),
-                    await reportDateService.GetMoveBetsDay(),
+                    balanceUpDay,
+                    moveBetsDay,
                     param.SportTypeId,
                     param.BetTypeId,
                     param.IsLive,
                     param.ReportType,
                     param.ReportLevel));
+        }
 
         public async Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups()
         {

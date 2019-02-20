@@ -133,6 +133,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Username.
+        /// </summary>
+        public static string AgentUsername {
+            get {
+                return ResourceManager.GetString("AgentUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancelled Report.
         /// </summary>
         public static string CancelledReport {
@@ -159,12 +168,112 @@ namespace CN88.Features.Reports.AppResources {
             }
         }
         
+         /// <summary>
+        ///   Looks up a localized string similar to Headline Income.
+        /// </summary>
+        public static string HeadlineIncome {
+            get {
+                return ResourceManager.GetString("HeadlineIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headline Poss..
+        /// </summary>
+        public static string HeadlinePoss {
+            get {
+                return ResourceManager.GetString("HeadlinePoss", resourceCulture);
+            }
+        }
+
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headline Result.
+        /// </summary>
+        public static string HeadlineResult {
+            get {
+                return ResourceManager.GetString("HeadlineResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headline Stock.
+        /// </summary>
+        public static string HeadlineStock {
+            get {
+                return ResourceManager.GetString("HeadlineStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headline Stock %.
+        /// </summary>
+        public static string HeadlineStockPercent {
+            get {
+                return ResourceManager.GetString("HeadlineStockPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MA Income.
+        /// </summary>
+        public static string MAIncome {
+            get {
+                return ResourceManager.GetString("MAIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MA Poss..
+        /// </summary>
+        public static string MAPoss {
+            get {
+                return ResourceManager.GetString("MAPoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAResult.
+        /// </summary>
+        public static string MAResult {
+            get {
+                return ResourceManager.GetString("MAResult", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Master Agent.
         /// </summary>
         public static string MasterAgent {
             get {
                 return ResourceManager.GetString("MasterAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MA Stock.
+        /// </summary>
+        public static string MAStock {
+            get {
+                return ResourceManager.GetString("MAStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MA Stock %.
+        /// </summary>
+        public static string MAStockPercent {
+            get {
+                return ResourceManager.GetString("MAStockPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MA Username.
+        /// </summary>
+        public static string MAUsername {
+            get {
+                return ResourceManager.GetString("MAUsername", resourceCulture);
             }
         }
         
@@ -241,6 +350,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SMA Poss..
+        /// </summary>
+        public static string SMAPoss {
+            get {
+                return ResourceManager.GetString("SMAPoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMA Result.
         /// </summary>
         public static string SMAResult {
@@ -255,6 +373,33 @@ namespace CN88.Features.Reports.AppResources {
         public static string SMAStock {
             get {
                 return ResourceManager.GetString("SMAStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA Stock %.
+        /// </summary>
+        public static string SMAStockPercent {
+            get {
+                return ResourceManager.GetString("SMAStockPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA Username.
+        /// </summary>
+        public static string SMAUsername {
+            get {
+                return ResourceManager.GetString("SMAUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         

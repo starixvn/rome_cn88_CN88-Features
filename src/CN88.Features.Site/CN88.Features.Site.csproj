@@ -446,6 +446,9 @@
     <Content Include="CustomerList\Styles\downline-list.scss" />
     <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
     <Content Include="Reports\Views\_SettlementSummary.cshtml" />
+    <Content Include="Reports\Views\Legacy\AgentTable.cshtml" />
+    <Content Include="Reports\Views\Legacy\MasterTable.cshtml" />
+    <Content Include="Reports\Views\Legacy\SuperTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

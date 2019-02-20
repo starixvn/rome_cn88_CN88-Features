@@ -53,17 +53,17 @@
             var sportGroups = await sportService.GetSportGroups();
             var betTypes = await betTypeService.GetBetTypesBySport(message.SportGroupId);
             var currentPeriod = await reportService.GetCurrentPeriod();
+            var param = new ReportParam(
+                     message.CustId,
+                     false,
+                     message.FromDate,
+                     message.ToDate,
+                     message.SportGroupId,
+                     message.BetTypeId, message.ReportType,
+                     2,
+                     message.CustLevel);
 
-            var reportData = await reportService.GetWinLoss(
-                new ReportParam(
-                    message.CustId,
-                    false,
-                    message.FromDate,
-                    message.ToDate,
-                    message.SportGroupId,
-                    message.BetTypeId, message.ReportType,
-                    2,
-                    message.CustLevel));
+            var reportData = reportService.GetWinLoss(param);
 
             var grandTotal = AccumulateGrandTotal(reportData);
 

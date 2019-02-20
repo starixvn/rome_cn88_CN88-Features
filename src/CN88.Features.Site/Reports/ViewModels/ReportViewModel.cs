@@ -19,6 +19,7 @@
             WinLossModel grandTotal,
             AccountingPeriod currentPeriod)
         {
+            IsNotOwner = !query.IsOwner;
             ReportLevel = query.CustLevel;
             ReportData = reportData;
             GrandTotal = grandTotal;
@@ -41,6 +42,8 @@
                 : query.ReportType == ReportTypeConstants.CancelledReport ? ReportResources.CancelledReport
                 : ReportResources.AbnormalBets;
         }
+
+        public bool IsNotOwner { get; }
 
         public UserLevel ReportLevel { get; }
 

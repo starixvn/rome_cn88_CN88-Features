@@ -9,7 +9,6 @@
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
     using global::CN88.Features.Models;
-    using global::CN88.Features.Reports.DataAccesses;
     using global::CN88.Features.Reports.Services;
     using global::CN88.Features.Shared.DataAccesses;
     using global::CN88.Features.Shared.Services;
@@ -75,7 +74,6 @@
 
             container.RegisterSingleton<CustomerListDataAccess, CustomerListDataAccessImpl>();
             container.RegisterSingleton<SportGroupDataAccess, SportGroupDataAccessImpl>();
-            container.RegisterSingleton<ReportDataAccess, ReportDataAccessImpl>();
         }
 
         private static void RegisterServices(Container container)

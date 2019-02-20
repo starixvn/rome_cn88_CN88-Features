@@ -14,17 +14,40 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var row in Model.ReportData)
+        @if (Model.ReportData.Any())
+        {
+            var total = Model.GrandTotal;
+            <tr class="total">
+                <td>@ReportResources.Total</td>
+                <td></td>
+                <td>@total.Wagers</td>
+                <td>@total.Stake</td>
+                <td>@total.ValidStake</td>
+                <td>@total.MemberIncome</td>
+                <td></td>
+                <td>@total.AgentIncome</td>
+                <td>@total.AgentResult</td>
+            </tr>
+
+            foreach (var row in Model.ReportData)
             {
+                <tr>
+                    <td>@row.Username</td>
+                    <td>@row.Name</td>
+                    <td>@row.Wagers</td>
+                    <td>@row.Stake</td>
+                    <td>@row.ValidStake</td>
+                    <td>@row.MemberIncome</td>
+                    <td>@row.AgentPoss</td>
+                    <td>@row.AgentIncome</td>
+                    <td>@row.AgentResult</td>
+                </tr>
+            }
+        }
+        else
+        {
             <tr>
-                <td>@row.Username</td>
-                <td>@row.Wagers</td>
-                <td>@row.Stake</td>
-                <td>@row.ValidStake</td>
-                <td>@row.MemberIncome</td>
-                <td>@row.AgentNetWinLoss.Poss</td>
-                <td>@row.AgentNetWinLoss.Income</td>
-                <td>@row.AgentNetWinLoss.Result</td>
+                <td colspan="8" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
         }
     </tbody>

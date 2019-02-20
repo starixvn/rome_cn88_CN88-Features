@@ -129,11 +129,9 @@
     <Compile Include="Reports\Constants\ReportTypeConstants.cs" />
     <Compile Include="Reports\Criteria\GetAccountingPeriodsCriteria.cs" />
     <Compile Include="Reports\Criteria\GetWinLossReportCriteria.cs" />
-    <Compile Include="Reports\DataAccesses\ReportDataAccess.cs" />
     <Compile Include="Reports\Criteria\GetSettlementSummaryReportCriteria.cs" />
     <Compile Include="Reports\Models\AccountingPeriod.cs" />
     <Compile Include="Reports\Models\AccountingPeriodGroup.cs" />
-    <Compile Include="Reports\Models\NetWinLoss.cs" />
     <Compile Include="Reports\Models\SettlementByGroup.cs" />
     <Compile Include="Reports\Models\WinLossModel.cs" />
     <Compile Include="Reports\Models\SettlementModel.cs" />

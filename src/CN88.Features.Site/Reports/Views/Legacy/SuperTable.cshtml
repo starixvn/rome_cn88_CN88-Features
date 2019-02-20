@@ -1,0 +1,94 @@
+﻿@model ReportViewModel
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover" id="tbl-report">
+    <thead>
+        <tr>
+            <th>@ReportResources.SMAUsername</th>
+            <th>@ReportResources.Name</th>
+            <th>@SharedResources.Wagers</th>
+            <th>@SharedResources.Stake</th>
+            <th>@ReportResources.ValidStake</th>
+            <th>@ReportResources.MemberIncome</th>
+            <th>@SharedResources.Agent</th>
+            <th>@ReportResources.AgentResult</th>
+            <th>@ReportResources.MasterAgent</th>
+            <th>@SharedResources.SMA</th>
+            <th>@ReportResources.SMAIncome</th>
+            <th>@ReportResources.SMAResult</th>
+            <th>@ReportResources.SMAStock</th>
+            @if (Model.IsNotOwner)
+            {
+                <th>@ReportResources.SMAStockPercent</th>
+                <th>@ReportResources.HeadlinePoss</th>
+                <th>@ReportResources.HeadlineIncome</th>
+                <th>@ReportResources.HeadlineResult</th>
+                <th>@ReportResources.HeadlineStock</th>
+                <th>@ReportResources.HeadlineStockPercent</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ReportData.Any())
+        {
+            var total = Model.GrandTotal;
+            <tr class="total">
+                <td>@ReportResources.Total</td>
+                <td></td>
+                <td>@total.Wagers</td>
+                <td>@total.Stake</td>
+                <td>@total.ValidStake</td>
+                <td>@total.MemberIncome</td>
+                <td>@total.Agent</td>
+                <td>@total.AgentResult</td>
+                <td>@total.Master</td>
+                <td>@total.Super</td>
+                <td>@total.SuperIncome</td>
+                <td>@total.SuperResult</td>
+                <td>@total.SuperStock</td>
+                <td>100.00</td>
+                @if (Model.IsNotOwner)
+                {
+                    <td>100.00</td>
+                    <td></td>
+                    <td>@total.HeadlineIncome</td>
+                    <td>@total.HeadlineResult</td>
+                    <td>@total.HeadlineStock</td>
+                    <td>100.00</td>
+                }
+            </tr>
+
+            foreach (var row in Model.ReportData)
+            {
+                <tr>
+                    <td>@row.Username</td>
+                    <td>@row.Name</td>
+                    <td>@row.Wagers</td>
+                    <td>@row.Stake</td>
+                    <td>@row.ValidStake</td>
+                    <td>@row.MemberIncome</td>
+                    <td>@row.Agent</td>
+                    <td>@row.AgentResult</td>
+                    <td>@row.Master</td>
+                    <td>@row.Super</td>
+                    <td>@row.SuperIncome</td>
+                    <td>@row.SuperResult</td>
+                    <td>@row.SuperStock</td>
+                    @if (Model.IsNotOwner)
+                    {
+                        <td>@(row.SuperStock / total.SuperStock * 100)</td>
+                        <td>@row.HeadlinePoss</td>
+                        <td>@row.HeadlineIncome</td>
+                        <td>@row.HeadlineResult</td>
+                        <td>@row.HeadlineStock</td>
+                        <td>@(row.HeadlineStock / total.HeadlineStock * 100)</td>
+                    }
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="@(Model.IsNotOwner ? "19" : "13")" align="center">@SharedResources.NoInformationIsAvailable</td>
+            </tr>
+        }
+    </tbody>
+</table>
