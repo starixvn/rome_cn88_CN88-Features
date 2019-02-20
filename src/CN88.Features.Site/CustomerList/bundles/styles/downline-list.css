@@ -27,6 +27,14 @@ body {
   width: 100%; }
   .tble-style2 [class^="icon"]:hover:not(:disabled) {
     cursor: pointer; }
+  .tble-style2 .col-no {
+    width: 50px; }
+  .tble-style2 .col-action {
+    width: 150px; }
+  .tble-style2 .col-status {
+    width: 110px; }
+  .tble-style2 .col-date {
+    width: 180px; }
 
 .icon-add {
   color: #25a77b; }

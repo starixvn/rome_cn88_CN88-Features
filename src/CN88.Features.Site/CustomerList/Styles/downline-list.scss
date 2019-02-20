@@ -37,6 +37,21 @@
     [class^="icon"]:hover:not(:disabled) {
         cursor: pointer;
     }
+    .col-no {
+        width: 50px;
+    }
+
+    .col-action {
+        width: 150px;
+    }
+
+    .col-status {
+        width: 110px;
+    }
+
+    .col-date {
+        width: 180px;
+    }
 }
 
 .icon-add {
