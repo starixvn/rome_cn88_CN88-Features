@@ -15,6 +15,7 @@
             siteInfrastructure.roleId.master,
             indexManager.viewMaster,
             indexManager.addAgentForMaster);
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
     renderMasterList = (rs: any) => {
@@ -36,10 +37,10 @@
                     "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
                     "<td class='col-status link' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='col-action'>" +
-                    "<span class='icon-pass'></span>" +
-                    "<span class='icon-security'></span>" +
-                    "<span class='icon-edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasUpdatePermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
-                    "<span class='icon-add' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasAddNewPermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
+                    "<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='Reset Password'></span>" +
+                    "<span class='icon-security' data-toggle='tooltip' data-placement='left' title='Reset Security Code'></span>" +
+                    "<span class='icon-edit' data-toggle='tooltip' data-placement='left' title='Edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasUpdatePermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
+                    "<span class='icon-add' data-toggle='tooltip' data-placement='left' title='Add' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasAddNewPermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
                     "</td>" +
                     "</tr>";
             }
