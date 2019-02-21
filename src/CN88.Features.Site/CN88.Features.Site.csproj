@@ -369,6 +369,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
     <Compile Include="SubAccount\SubAccountHandler.cs" />
@@ -406,9 +407,7 @@
     <Compile Include="Reports\Requests\IndexQuery.cs" />
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
-    <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
-    <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
     <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -455,6 +454,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="App_Code\HtmlHelpers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

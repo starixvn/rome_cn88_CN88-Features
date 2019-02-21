@@ -29,22 +29,22 @@
             <tr class="total">
                 <td>@ReportResources.Total</td>
                 <td></td>
-                <td>@total.Wagers</td>
-                <td>@total.Stake</td>
-                <td>@total.ValidStake</td>
-                <td>@total.MemberIncome</td>
-                <td>@total.Agent</td>
+                @HtmlHelpers.RenderNumberCell(total.Wagers)
+                @HtmlHelpers.RenderNumberCell(total.Stake)
+                @HtmlHelpers.RenderNumberCell(total.ValidStake)
+                @HtmlHelpers.RenderNumberCell(total.MemberIncome)
+                @HtmlHelpers.RenderNumberCell(total.Agent)
                 <td></td>
-                <td>@total.AgentIncome</td>
-                <td>@total.AgentResult</td>
+                @HtmlHelpers.RenderNumberCell(total.AgentIncome)
+                @HtmlHelpers.RenderNumberCell(total.AgentResult)
                 @if (Model.IsNotOwner)
                 {
                     <td></td>
-                    <td>@total.MasterIncome</td>
-                    <td>@total.MasterResult</td>
+                    @HtmlHelpers.RenderNumberCell(total.MasterIncome)
+                    @HtmlHelpers.RenderNumberCell(total.MasterResult)
                 }
-                <td>@total.AgentCurrency</td>
-                <td>@total.AgentStock</td>
+                @HtmlHelpers.RenderNumberCell(total.AgentCurrency)
+                @HtmlHelpers.RenderNumberCell(total.AgentStock)
             </tr>
 
             foreach (var row in Model.ReportData)
@@ -52,22 +52,22 @@
                 <tr>
                     <td>@row.Username</td>
                     <td>@row.Name</td>
-                    <td>@row.Wagers</td>
-                    <td>@row.Stake</td>
-                    <td>@row.ValidStake</td>
-                    <td>@row.MemberIncome</td>
-                    <td>@row.Agent</td>
-                    <td>@row.AgentPoss</td>
-                    <td>@row.AgentIncome</td>
-                    <td>@row.AgentResult</td>
+                    @HtmlHelpers.RenderNumberCell(row.Wagers)
+                    @HtmlHelpers.RenderNumberCell(row.Stake)
+                    @HtmlHelpers.RenderNumberCell(row.ValidStake)
+                    @HtmlHelpers.RenderNumberCell(row.MemberIncome)
+                    @HtmlHelpers.RenderNumberCell(row.Agent)
+                    @HtmlHelpers.RenderNumberCell(row.AgentPoss)
+                    @HtmlHelpers.RenderNumberCell(row.AgentIncome)
+                    @HtmlHelpers.RenderNumberCell(row.AgentResult)
                     @if (Model.IsNotOwner)
                     {
-                        <td>@row.MasterPoss</td>
-                        <td>@row.MasterIncome</td>
-                        <td>@row.MasterResult</td>
+                        @HtmlHelpers.RenderNumberCell(row.MasterPoss)
+                        @HtmlHelpers.RenderNumberCell(row.MasterIncome)
+                        @HtmlHelpers.RenderNumberCell(row.MasterResult)
                     }
-                    <td>@row.AgentCurrency</td>
-                    <td>@row.AgentStock</td>
+                    @HtmlHelpers.RenderNumberCell(row.AgentCurrency)
+                    @HtmlHelpers.RenderNumberCell(row.AgentStock)
                 </tr>
             }
         }
