@@ -11,14 +11,14 @@
                     @(report.Yesterday.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
                 </span>
                 <br />
-                @report.Yesterday.Name
+                <span>@report.Yesterday.Name</span>
             </th>
             <th colspan="2">
                 <span class="@(report.Yesterday.IsComplete ? "complete-settlement" : "incomplete-settlement")">
                     @(report.Today.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
                 </span>
                 <br />
-                @report.Today.Name
+                <span>@report.Today.Name</span>
             </th>
         </tr>
         <tr>

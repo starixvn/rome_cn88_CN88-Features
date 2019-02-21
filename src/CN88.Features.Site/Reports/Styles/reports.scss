@@ -89,11 +89,28 @@
 }
 
 .incomplete-settlement {
-    color: #FF0000;
+    color: #c0392b;
 }
 
 .complete-settlement {
-    color: #00FF00;
+    color: #27a67b;
+}
+#tblSettlementSummary {
+    > thead > tr {
+        &:first-child th{
+            border: none;
+            padding-bottom: 4px;            
+            color: #333;
+        }
+        &:nth-child(2) th {
+            padding-top: 0;
+            font-size: 12px;
+        }
+        > th {
+            font-weight: normal;
+        }
+    }
+         
 }
 
 @media all and (min-width: 1280px) {
