@@ -5,31 +5,34 @@
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
 @model ReportViewModel
-<div class="page-title title-report-detail">
-    <div class="">@Model.Title</div>
+<div class="report-detail">
+    <div class="page-title title-report-detail">
+        <div class="">@Model.Title</div>
+    </div>
+    @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
+    @{
+        if (Model.ReportLevel.IsMemberLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/MemberTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsAgentLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/AgentTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsMasterLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/MasterTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsSuperLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/SuperTable.cshtml", Model)
+        }
+    }
 </div>
-@Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
-@{
-    if (Model.ReportLevel.IsMemberLevel())
-    {
-        @Html.Partial("~/Reports/Views/Legacy/MemberTable.cshtml", Model)
-    }
 
-    if (Model.ReportLevel.IsAgentLevel())
-    {
-        @Html.Partial("~/Reports/Views/Legacy/AgentTable.cshtml", Model)
-    }
-
-    if (Model.ReportLevel.IsMasterLevel())
-    {
-        @Html.Partial("~/Reports/Views/Legacy/MasterTable.cshtml", Model)
-    }
-
-    if (Model.ReportLevel.IsSuperLevel())
-    {
-        @Html.Partial("~/Reports/Views/Legacy/SuperTable.cshtml", Model)
-    }
-}
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/legacy")
 }
