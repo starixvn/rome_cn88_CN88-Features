@@ -18,7 +18,6 @@
         </ul>
     </div>
     @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
-
     <table class="tbl-noborder tbl-report">
         <thead>
             <tr>
@@ -52,7 +51,6 @@
         </tbody>
     </table>
 </div>
-
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/legacy")
 }

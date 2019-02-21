@@ -18,9 +18,11 @@
 
         public int ReportType { get; set; }
 
-        public int SportGroupId { get; set; }
+        public int UserSelectedSportGroupId { get; set; }
 
-        public int BetTypeId { get; set; }
+        public int UserSelectedBetTypeId { get; set; }
+
+        public int UserSelectedLiveStatusId { get; set; }
 
         public DateTime FromDate { get; set; }
 

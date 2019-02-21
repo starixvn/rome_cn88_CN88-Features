@@ -1,9 +1,19 @@
 ﻿@model ReportFilterViewModel
 <form class="form-inline filter report-form" role="form" id="report-form">
+    @RenderHiddenFields()
     @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, true)
     @DateRangePicker.Render(Model.DateRangePickerViewModel)
     @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, true)
+    @LiveStatusSelection.Render(Model.LiveStatusSelectionViewModel, true)
     <div class="form-group">
         <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
     </div>
 </form>
+@helper RenderHiddenFields()
+{
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("CustName", Model.CustName)
+    @Html.Hidden("CustLevelId", Model.CustLevel.Value)
+    @Html.Hidden("IsOwner", Model.IsOwner)
+    @Html.Hidden("ReportType", Model.ReportType)
+}

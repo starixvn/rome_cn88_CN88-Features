@@ -51,16 +51,17 @@
         public async Task<ReportViewModel> Handle(ReportQuery message)
         {
             var sportGroups = await sportService.GetSportGroups();
-            var betTypes = await betTypeService.GetBetTypesBySport(message.SportGroupId);
+            var betTypes = await betTypeService.GetBetTypesBySport(message.UserSelectedSportGroupId);
             var currentPeriod = await reportService.GetCurrentPeriod();
             var param = new ReportParam(
                      message.CustId,
                      message.IsOwner,
                      message.FromDate,
                      message.ToDate,
-                     message.SportGroupId,
-                     message.BetTypeId, message.ReportType,
-                     2,
+                     message.UserSelectedSportGroupId,
+                     message.UserSelectedBetTypeId,
+                     message.ReportType,
+                     message.UserSelectedLiveStatusId,
                      message.CustLevel);
 
             var reportData = reportService.GetWinLoss(param);
@@ -69,8 +70,8 @@
 
             return new ReportViewModel(
                 message,
-                BuildSportGroupSelectListItems(sportGroups, message.SportGroupId),
-                BuildBetTypeSelectListItems(betTypes, message.BetTypeId),
+                BuildSportGroupSelectListItems(sportGroups, message.UserSelectedSportGroupId),
+                BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 reportData,
                 grandTotal,
                 currentPeriod);

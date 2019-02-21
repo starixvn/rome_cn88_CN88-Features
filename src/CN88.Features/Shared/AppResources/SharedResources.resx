@@ -198,4 +198,7 @@
   <data name="PreMatchAndInPlay" xml:space="preserve">
     <value>Pre-Match &amp; In-Play</value>
   </data>
+  <data name="PreMatchOrInPlay" xml:space="preserve">
+    <value>Pre-Match / In-Play</value>
+  </data>
 </root>

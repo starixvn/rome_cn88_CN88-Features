@@ -31,13 +31,13 @@
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, 0);
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
 
-            var liveStatus = LiveStatusConstants.LiveStatuses
+            var liveStatuses = LiveStatusConstants.LiveStatuses
                 .Select(s => new SelectListItem
                 {
                     Text = SharedResources.ResourceManager.GetString(s.Value),
                     Value = s.Key.ToString(),
                 });
-            LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatus, LiveStatusConstants.PreMatchAndInPlay);
+            LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, LiveStatusConstants.PreMatchAndInPlay);
 
             ActionName = query.DisplayMode == ReportDisplayModeConstants.Wager
                 ? nameof(ReportDisplayModeConstants.Wager)

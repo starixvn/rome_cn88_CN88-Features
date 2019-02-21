@@ -1,6 +1,9 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
+@section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+}
 @model ReportViewModel
 <div class="page-title title-report-detail">
     <div class="">@Model.Title</div>
