@@ -30,7 +30,7 @@
         this.$("#btn-submit-member").off("click").on("click", function () {
             self.reportParam.PageSize = 100;
             self.reportParam.PageIndex = 1;
-            self.viewMembers();
+            self.viewMembers(0);
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
             this.initAutoComplete();
@@ -46,13 +46,13 @@
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
     }
-    viewMembers = () => {
+	viewMembers = (custId: number) => {
         this.$.blockUI();
         this.reportParam = {
             DownlineUsername: this.$("#txt-viewed-agent").val(),
             Username: this.$username.val(),
 			SearchRoleId: siteInfrastructure.roleId.member,
-			CustId: 0,
+			CustId: custId,
             Status: this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
@@ -73,6 +73,7 @@
             return;
         }
 
+		this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
         this.$tblReport.removeClass("display-none");
 
         var html = "";
@@ -111,7 +112,7 @@
 
         this.statusComponent.changeSelection(siteInfrastructure.customerStatus.all);
 
-        this.viewMembers();
+		this.viewMembers(custId);
     };
     initAutoComplete = () => {
         var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
@@ -131,7 +132,7 @@
         this.$("#PageIndexMember").val(reportParam.PageIndex);
         this.$("#PageSizeMember").val(reportParam.PageIndex);
 
-        this.viewMembers();
+		this.viewMembers(reportParam.CustId);
     };
 }
 

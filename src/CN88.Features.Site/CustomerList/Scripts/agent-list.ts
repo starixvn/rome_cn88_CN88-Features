@@ -138,7 +138,7 @@ class AgentList extends BaseList {
         this.$("#PageIndexAgent").val(reportParam.PageIndex);
         this.$("#PageSizeAgent").val(reportParam.PageIndex);
 
-        this.viewAgents(0);
+		this.viewAgents(reportParam.CustId);
     };
 }
 

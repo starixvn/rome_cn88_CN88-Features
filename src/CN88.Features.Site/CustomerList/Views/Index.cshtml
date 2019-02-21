@@ -129,33 +129,34 @@
 <div class="tab-content display-none" level="@UserLevel.Member.Value">
     <div class="tab-panel active" role="tabpanel">
         <div class="filter">
-            <form id="form-member" class="form-inline" role="form">
-                @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
-                {
-                    <div class="form-group">
-                        <label>@CustomerListResources.Agent</label>
-                        <input id="txt-viewed-agent" class="control" type="text" value="" />
-                    </div>
-                }
+			<div id="form-member" class="form-inline" role="form">
+				@if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
+				{
+					<div class="form-group">
+						<label>@CustomerListResources.Agent</label>
+						<input id="txt-viewed-agent" class="control" type="text" value="" />
+					</div>
+				}
 
-                <div class="form-group">
-                    <label>@CustomerListResources.UsernameOrNameContains</label>
-                    <input id="txt-username-member" class="control" type="text" value="" />
-                </div>
-                <div class="form-group">
-                    <label>@CustomerListResources.Status</label>
-                    <select id="dropdown-status-member" class="control">
-                        <option value="@CustomerStatus.All">@CustomerListResources.All</option>
-                        <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
-                        <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
-                        <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-                </div>
-                <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-            </form>
+				<div class="form-group">
+					<label>@CustomerListResources.UsernameOrNameContains</label>
+					<input id="txt-username-member" class="control" type="text" value="" />
+				</div>
+				<div class="form-group">
+					<label>@CustomerListResources.Status</label>
+					<select id="dropdown-status-member" class="control">
+						<option value="@CustomerStatus.All">@CustomerListResources.All</option>
+						<option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
+						<option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
+						<option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
+				</div>
+				<div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
+				<button id="add-directdownline" cust-id="" class="btn-submit add-new"><span class="icon-add"></span>New Member</button>
+			</div>
         </div>
         <table id="tbl-member" class="tble-style2">
             <thead>
