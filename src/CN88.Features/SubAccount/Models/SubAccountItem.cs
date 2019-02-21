@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.SubAccount.Models
 {
     using System;
+    using Sunplus.Agent.Model.Entities;
 
     public class SubAccountItem
     {
@@ -39,5 +40,7 @@
         public bool Closed { get; }
 
         public string PageAccess { get; }
+
+        public PageAccess Permission => PageAccess;
     }
 }

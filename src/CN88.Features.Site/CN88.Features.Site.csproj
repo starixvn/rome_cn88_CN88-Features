@@ -340,6 +340,9 @@
       <DependentUpon>legacy.js</DependentUpon>
     </Content>
     <Content Include="Reports\bundles\reports.css" />
+    <Content Include="Reports\bundles\reports.min.css">
+      <DependentUpon>reports.css</DependentUpon>
+    </Content>
     <Content Include="Reports\bundles\wager.js" />
     <Content Include="Reports\bundles\wager.min.js">
       <DependentUpon>wager.js</DependentUpon>

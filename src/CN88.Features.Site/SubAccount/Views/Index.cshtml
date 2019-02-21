@@ -28,5 +28,22 @@
                 <td colspan="9">@SharedResources.NoInformationIsAvailable</td>
             </tr>
         }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@item.CreatedDate</td>
+                    <td></td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
