@@ -98,6 +98,10 @@
 .complete-settlement {
     color: #27a67b;
 }
+.icon-sort-arrow-up {
+    display: inline-block;
+    transform: rotate(180deg);
+}
 #tblSettlementSummary {
     > thead > tr {
         &:first-child th{
@@ -125,10 +129,19 @@
     > thead > tr > th {
         border-width: 1px;
         font-weight: normal;
-        padding: 13px 0;
+        padding: 13px 8px;
     }
     > tbody > tr > td {
-        padding: 7px 0;
+        padding: 7px 8px;
+    }
+    > tbody > tr.total > td {
+        color: #fff;
+        background-color: #2C3E50;
+    }
+}
+#tblAccountingSheet, #tblSettlementSummary {
+    > thead > tr > th, > tbody > tr > td {
+        text-align: center;
     }
 }
 

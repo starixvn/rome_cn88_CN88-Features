@@ -21,11 +21,11 @@
     <table class="tbl-noborder tbl-report">
         <thead>
             <tr>
-                <th>@SharedResources.UserCode</th>
-                <th class="valid-stake">@SharedResources.Wagers</th>
-                <th class="valid-stake">@SharedResources.Stake</th>
-                <th class="valid-stake">@ReportResources.ValidStake</th>
-                <th class="valid-stake">@ReportResources.MemberIncome</th>
+                <th>@SharedResources.UserCode<span class="icon-sort-arrow-up"></span></th>
+                <th class="valid-stake text-right">@SharedResources.Wagers<span class="icon-sort-arrow"></span></th>
+                <th class="valid-stake text-right">@SharedResources.Stake<span class="icon-sort-arrow"></span></th>
+                <th class="valid-stake text-right">@ReportResources.ValidStake<span class="icon-sort-arrow"></span></th>
+                <th class="valid-stake text-right">@ReportResources.MemberIncome<span class="icon-sort-arrow"></span></th>
             </tr>
         </thead>
         <tbody>
@@ -35,17 +35,17 @@
                 {
                     <tr>
                         <td>@data.Username</td>
-                        <td>@data.Wagers</td>
-                        <td>@data.Stake</td>
-                        <td>@data.ValidStake</td>
-                        <td>@data.MemberIncome</td>
+                        <td class="text-right">@data.Wagers</td>
+                        <td class="text-right">@data.Stake</td>
+                        <td class="text-right">@data.ValidStake</td>
+                        <td class="text-right">@data.MemberIncome</td>
                     </tr>
                 }
             }
             else
             {
                 <tr>
-                    <td colspan="5" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="5" class="text-right">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
         </tbody>
