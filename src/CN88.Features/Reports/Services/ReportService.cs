@@ -57,7 +57,6 @@
                     param.SportTypeId,
                     param.BetTypeId,
                     param.IsLive,
-                    param.ReportType,
                     param.ReportLevel));
         }
 

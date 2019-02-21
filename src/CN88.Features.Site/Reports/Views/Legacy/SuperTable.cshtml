@@ -3,7 +3,6 @@
     <thead>
         <tr>
             <th>@ReportResources.SMAUsername</th>
-            <th>@ReportResources.Name</th>
             <th>@SharedResources.Wagers</th>
             <th>@SharedResources.Stake</th>
             <th>@ReportResources.ValidStake</th>
@@ -32,7 +31,6 @@
             var total = Model.GrandTotal;
             <tr class="total">
                 <td>@ReportResources.Total</td>
-                <td></td>
                 @HtmlHelpers.RenderNumberCell(total.Wagers)
                 @HtmlHelpers.RenderNumberCell(total.Stake)
                 @HtmlHelpers.RenderNumberCell(total.ValidStake)
@@ -58,8 +56,7 @@
             foreach (var row in Model.ReportData)
             {
                 <tr>
-                    <td>@row.Username</td>
-                    <td>@row.Name</td>
+                    <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
                     @HtmlHelpers.RenderNumberCell(row.Wagers)
                     @HtmlHelpers.RenderNumberCell(row.Stake)
                     @HtmlHelpers.RenderNumberCell(row.ValidStake)
@@ -86,7 +83,7 @@
         else
         {
             <tr>
-                <td colspan="@(Model.IsNotOwner ? "19" : "13")" align="center">@SharedResources.NoInformationIsAvailable</td>
+                <td colspan="@(Model.IsNotOwner ? "18" : "12")" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
         }
     </tbody>

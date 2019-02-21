@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Alpha.Web.Helpers;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
@@ -14,6 +15,8 @@
 
     public class ReportViewModel
     {
+        private readonly ReportQuery query;
+
         public ReportViewModel(
             ReportQuery query,
             IEnumerable<SelectListItem> sportGroups,
@@ -22,8 +25,8 @@
             WinLossModel grandTotal,
             AccountingPeriod currentPeriod)
         {
-            IsNotOwner = !query.IsOwner;
-            ReportLevel = query.CustLevel;
+            this.query = query;
+
             ReportData = reportData;
             GrandTotal = grandTotal;
 
@@ -57,11 +60,9 @@
                 : ReportResources.AbnormalBets;
         }
 
-        public bool IsOwner { get; }
+        public bool IsNotOwner => !query.IsOwner;
 
-        public bool IsNotOwner { get; }
-
-        public UserLevel ReportLevel { get; }
+        public UserLevel ReportLevel => query.CustLevel;
 
         public IEnumerable<WinLossModel> ReportData { get; }
 
@@ -70,5 +71,43 @@
         public ReportFilterViewModel ReportFilterViewModel { get; }
 
         public string Title { get; }
+
+        public virtual string BuildDrillDownLink(WinLossModel model, string currentLink)
+            => ReportLevel.IsMemberLevel()
+            ? BuildBetListLink(model)
+            : BuildDownlineLink(model, currentLink);
+
+        private string BuildBetListLink(WinLossModel model)
+            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
+                MicroSites.BetListsUrl(),
+                GetBetListLinkRouteValues(model));
+
+        private string BuildDownlineLink(WinLossModel model, string currentLink)
+        {
+            var routeValues = GetDownlineLinkRouteValues(model);
+            return Shared.Helpers.UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+                currentLink,
+                new Dictionary<string, object>(routeValues)
+                {
+                    { "CustLevelId", ReportLevel.GetDirectDownLineLevel().Value },
+                });
+        }
+
+        private IDictionary<string, object> GetDownlineLinkRouteValues(WinLossModel model)
+            => new Dictionary<string, object>
+            {
+                ["CustId"] = model.CustId,
+                ["CustName"] = model.Username,
+                ["FromDate"] = query.FromDate,
+                ["ToDate"] = query.ToDate,
+                ["IsOwner"] = false,
+                ["ReportType"] = query.ReportType,
+                ["UserSelectedSportGroupId"] = query.UserSelectedSportGroupId,
+                ["UserSelectedBetTypeId"] = query.UserSelectedBetTypeId,
+                ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId
+            };
+
+        private IDictionary<string, object> GetBetListLinkRouteValues(WinLossModel model)
+           => new Dictionary<string, object> { };
     }
 }

@@ -17,7 +17,6 @@
             int sportGroupId,
             int betTypeId,
             int isLive,
-            int reportType,
             UserLevel reportLevel)
         {
             CustId = custId;
@@ -29,7 +28,6 @@
             SportGroupId = sportGroupId;
             BetTypeId = betTypeId;
             IsLive = isLive;
-            ReportType = reportType;
             ReportLevel = reportLevel;
         }
 
@@ -52,8 +50,6 @@
         public int BetTypeId { get; }
 
         public int IsLive { get; }
-
-        public int ReportType { get; }
 
         [SpParam(Ignored = true)]
         public UserLevel ReportLevel { get; }

@@ -369,6 +369,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shared\Helpers\JsonHelper.cs" />
+    <Compile Include="Shared\Helpers\UrlHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
@@ -517,7 +519,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59599</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

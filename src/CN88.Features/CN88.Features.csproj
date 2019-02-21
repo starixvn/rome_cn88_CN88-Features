@@ -137,6 +137,7 @@
     <Compile Include="Reports\Criteria\GetSettlementSummaryReportCriteria.cs" />
     <Compile Include="Reports\Models\AccountingPeriod.cs" />
     <Compile Include="Reports\Models\AccountingPeriodGroup.cs" />
+    <Compile Include="Reports\Models\CustInfo.cs" />
     <Compile Include="Reports\Models\SettlementByGroup.cs" />
     <Compile Include="Reports\Models\WinLossModel.cs" />
     <Compile Include="Reports\Models\SettlementModel.cs" />

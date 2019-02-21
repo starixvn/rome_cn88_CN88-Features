@@ -14,6 +14,7 @@
         {
             FromDate = SystemTime.Today;
             ToDate = SystemTime.Today;
+            IsOwner = CustId == ViewerId;
         }
 
         public int ReportType { get; set; }
@@ -28,6 +29,6 @@
 
         public DateTime ToDate { get; set; }
 
-        public bool IsOwner => CustId == ViewerId;
+        public bool IsOwner { get; set; }
     }
 }
