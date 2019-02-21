@@ -23,8 +23,8 @@ class AgentList extends BaseList {
             this.renderAgentList,
             siteInfrastructure.roleId.agent,
             indexManager.viewAgent,
-			indexManager.addMemberForAgent,
-			indexManager.addDirectDownline);
+			indexManager.addNewCrossDownline,
+			indexManager.addNewDirectDownline);
 
         this.cacheDOMElements();
 

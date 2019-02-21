@@ -14,8 +14,8 @@
             this.renderMasterList,
             siteInfrastructure.roleId.master,
             indexManager.viewMaster,
-            indexManager.addAgentForMaster,
-			indexManager.addDirectDownline);
+			indexManager.addNewCrossDownline,
+			indexManager.addNewDirectDownline);
 	    $('[data-toggle="tooltip"]').tooltip();
 
     }

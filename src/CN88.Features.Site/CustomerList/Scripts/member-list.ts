@@ -22,7 +22,7 @@
             siteInfrastructure.roleId.member,
             null,
 			null,
-			indexManager.addDirectDownline);
+			indexManager.addNewDirectDownline);
 
         this.cacheDOMElements();
 

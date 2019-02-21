@@ -210,7 +210,7 @@
             ActorLevel: this.ActorLevel
         });
 	};
-	addDirectDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+	addNewDirectDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
 		this.storeCurrentPage(reportParam);
 		this.topWindow.showCN88CancelButton = true;
 
@@ -224,7 +224,20 @@
 			ActorLevel: this.ActorLevel
 		});
 	};
-    addAgentForMaster = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+		this.storeCurrentPage(reportParam);
+		this.topWindow.showCN88CancelButton = true;
+
+		window.location.href = this.CreateCustomerLink + "?" + this.$.param({
+			Language: this.Language,
+			ProductId: 1,
+			CustomerLevel: custLevelId,
+			CustomerId: custId,
+			IsReadOnly: !this.HasAddNewPermission,
+			UplineId: custId,
+			ActorLevel: this.ActorLevel
+		});
+	};
+    addNewCrossDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
 
@@ -234,21 +247,6 @@
             CustomerLevel: custLevelId,
             CustomerId: custId,
             IsReadOnly: !this.HasAddNewPermission,
-            UplineId: custId,
-            ActorLevel: this.ActorLevel
-        });
-    };
-    addMemberForAgent = (custId: any, username: any, custLevelId: any, reportParam: any) => {
-        this.storeCurrentPage(reportParam);
-        this.topWindow.showCN88CancelButton = true;
-
-        window.location.href = this.CreateCustomerLink + "?" + this.$.param({
-            Language: this.Language,
-            ProductId: 1,
-            CustomerLevel: custLevelId,
-            CustomerId: custId,
-            IsReadOnly: !this.HasAddNewPermission,
-            IsCreateNew: true,
             UplineId: custId,
             ActorLevel: this.ActorLevel
         });
