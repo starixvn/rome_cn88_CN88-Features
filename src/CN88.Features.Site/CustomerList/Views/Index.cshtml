@@ -194,8 +194,6 @@
 	<div class="output" id="output"></div>
 	@Html.Hidden("directDownline", Model.ActorLevel.GetDirectDownLineLevel().Value)
 	@Html.Hidden("getCustomerListUrl", Url.Action("GetCustomerList", "CustomerList"))
-	@Html.Hidden("creditPopupUrl", IndexViewModel.CreditPopupLink)
-	@Html.Hidden("statusPopupUrl", IndexViewModel.StatusPopupLink)
 
 	@Html.Hidden("NoInformationIsAvailable", CustomerListResources.NoInformationIsAvailable)
 	@Html.Hidden("Open", CustomerListResources.Open)
@@ -207,7 +205,6 @@
 	@Html.Hidden("usernameAutoSuggestionPath", IndexViewModel.UsernameAutoSuggestionPath)
 	@Html.Hidden("EditCustomerLink", IndexViewModel.EditCustomerLink)
 	@Html.Hidden("CreateCustomerLink", IndexViewModel.CreateCustomerLink)
-	@Html.Hidden("CurrentLink", IndexViewModel.CurrentLink)
 
 	@Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
 	@Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
