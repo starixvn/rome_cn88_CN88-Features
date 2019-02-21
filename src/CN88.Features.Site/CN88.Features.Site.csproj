@@ -58,7 +58,7 @@
       <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn8801\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta09\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
+      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta12\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -512,6 +512,17 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+      cd $(ProjectDir)
+      cd ..
+      cd ..
+      cd build
+      assets.build.cmd
+      if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
+      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
