@@ -70,5 +70,11 @@
     "inputFiles": [
       "CustomerList/Styles/downline-list.css"
     ]
+  }, 
+  {
+    "outputFileName": "SubAccount/bundles/styles/sub-account.css",
+    "inputFiles": [
+      "SubAccount/Styles/sub-account.css"
+    ]
   }
 ]

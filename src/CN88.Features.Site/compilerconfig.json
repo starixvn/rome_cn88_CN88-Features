@@ -10,5 +10,9 @@
   {
     "outputFile": "CustomerList/Styles/downline-list.css",
     "inputFile": "CustomerList/Styles/downline-list.scss"
+  },
+  {
+    "outputFile": "SubAccount/Styles/sub-account.css",
+    "inputFile": "SubAccount/Styles/sub-account.scss"
   }
 ]

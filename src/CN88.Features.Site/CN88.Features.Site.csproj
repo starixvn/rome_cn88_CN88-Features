@@ -324,6 +324,8 @@
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
     </Content>
+    <Content Include="CustomerList\Styles\downline-list.css" />
+    <Content Include="CustomerList\Styles\downline-list.min.css" />
     <Content Include="CustomerList\Styles\popup.css">
       <DependentUpon>popup.scss</DependentUpon>
     </Content>
@@ -352,6 +354,16 @@
     </Content>
     <Content Include="Reports\Styles\reports.min.css">
       <DependentUpon>reports.css</DependentUpon>
+    </Content>
+    <Content Include="SubAccount\bundles\styles\sub-account.css" />
+    <Content Include="SubAccount\bundles\styles\sub-account.min.css">
+      <DependentUpon>sub-account.css</DependentUpon>
+    </Content>
+    <Content Include="SubAccount\Styles\sub-account.css">
+      <DependentUpon>sub-account.scss</DependentUpon>
+    </Content>
+    <Content Include="SubAccount\Styles\sub-account.min.css">
+      <DependentUpon>sub-account.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -393,8 +405,9 @@
     <Compile Include="Reports\Requests\IndexQuery.cs" />
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
-    <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
+    <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
     <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -436,12 +449,11 @@
     <Content Include="Reports\Views\_Filter.cshtml" />
     <Content Include="SubAccount\Views\Index.cshtml" />
     <Content Include="SubAccount\Views\Web.config" />
-    <Content Include="App_Code\Components\LiveStatusSelection.cshtml" />
-    <Content Include="Reports\Views\Legacy\AgentTable.cshtml" />
-    <Content Include="Reports\Views\Legacy\MasterTable.cshtml" />
-    <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
-    <Content Include="Reports\Views\Legacy\SuperTable.cshtml" />
-    <Content Include="Reports\Views\_SettlementSummary.cshtml" />
+    <Content Include="CustomerList\Styles\downline-list.scss" />
+    <Content Include="SubAccount\Styles\sub-account.scss" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

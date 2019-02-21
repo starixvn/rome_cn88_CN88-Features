@@ -2,48 +2,53 @@
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
 @section Styles {
-
+    @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
 }
 @section Scripts {
 
 }
 @model IEnumerable<IndexViewModel>
 
-<table>
-    <thead>
-        <tr>@SubAccountResource.UserCode</tr>
-        <tr>@SubAccountResource.Name</tr>
-        <tr>@SubAccountResource.LoginId</tr>
-        <tr>@SubAccountResource.TotalBets</tr>
-        <tr>@SubAccountResource.ACManagementViewOnly</tr>
-        <tr>@SubAccountResource.ACManagementEditView</tr>
-        <tr>@SubAccountResource.Reports</tr>
-        <tr>@SubAccountResource.CreatedDate</tr>
-        <tr>@SubAccountResource.Action</tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
-        {
+<div class="subacc-page">
+    <table class="tble-style2" id="tbl-subaccount">
+        <thead>
             <tr>
-                <td colspan="9">@SharedResources.NoInformationIsAvailable</td>
+                <th>@SubAccountResource.UserCode</th>
+                <th>@SubAccountResource.Name</th>
+                <th>@SubAccountResource.LoginId</th>
+                <th>@SubAccountResource.TotalBets</th>
+                <th>@SubAccountResource.ACManagementViewOnly</th>
+                <th>@SubAccountResource.ACManagementEditView</th>
+                <th>@SubAccountResource.Reports</th>
+                <th>@SubAccountResource.CreatedDate</th>
+                <th>@SubAccountResource.Action</th>
             </tr>
-        }
-        else
-        {
-            foreach (var item in Model)
+        </thead>
+        <tbody>
+            @if (!Model.Any())
             {
                 <tr>
-                    <td>@item.UserName</td>
-                    <td>@item.FirstName @item.LastName</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>@item.CreatedDate</td>
-                    <td></td>
+                    <td colspan="9" class="text-center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
-        }
-    </tbody>
-</table>
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>@item.CreatedDate</td>
+                        <td></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
