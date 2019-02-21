@@ -317,7 +317,13 @@
       <DependentUpon>index.js</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.min.js">
+      <DependentUpon>credit-popup.js</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\scripts\popup\status-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\popup\status-popup.min.js">
+      <DependentUpon>status-popup.js</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\styles\downline-list.css" />
     <Content Include="CustomerList\bundles\styles\downline-list.min.css">
       <DependentUpon>downline-list.css</DependentUpon>

@@ -24,9 +24,11 @@
         public string UsernameAutoSuggestionPath => string.Empty;
         //    => MicroSites.OldMainUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
 
-        public string EditCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Edit";
+        public string EditCustomerLink => $"{SiteFeaturePath}CN88CustomerSetting/ViewCN88CustomerSetting/Edit";
 
-        public string CreateCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Create";
+        public string CreateCustomerLink => $"{SiteFeaturePath}CN88CustomerSetting/ViewCN88CustomerSetting/Create";
+
+        public string CurrentLink => $"{SiteFeaturePath}CustomerList/Index";
 
         //public string AddNewMasterLink
         //    => $"{CreateCustomerLink}?Language={Language}&ProductId=1&CustomerLevel={customerLevel}" +

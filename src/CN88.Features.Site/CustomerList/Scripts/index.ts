@@ -210,21 +210,7 @@
             ActorLevel: this.ActorLevel
         });
 	};
-	addNewDirectDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
-		this.storeCurrentPage(reportParam);
-		this.topWindow.showCN88CancelButton = true;
-
-		window.location.href = this.CreateCustomerLink + "?" + this.$.param({
-			Language: this.Language,
-			ProductId: 1,
-			CustomerLevel: custLevelId,
-			CustomerId: custId,
-			IsReadOnly: !this.HasAddNewPermission,
-			UplineId: custId,
-			ActorLevel: this.ActorLevel
-		});
-	};
-    addNewCrossDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+    addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
 

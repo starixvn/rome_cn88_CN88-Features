@@ -31,8 +31,7 @@
 
     levelId: number;
     viewDownlineFunction: Function;
-	addCrossDownlineFunction: Function;
-	addDirectDownlineFunction: Function;
+	addDownlineFunction: Function;
     reportColSpan: number;
 
     constructor(
@@ -55,16 +54,14 @@
         renderList: Function,
         levelId: number,
         viewDownlineFunction: Function,
-		addCrossDownlineFunction: Function,
-		addDirectDownlineFunction: Function) {
+		addDownlineFunction: Function) {
         this.viewResources = viewResources;
         this.indexManager = indexManager;
         this.renderList = renderList;
         this.levelId = levelId;
         this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 8 : 7;
         this.viewDownlineFunction = viewDownlineFunction;
-		this.addCrossDownlineFunction = addCrossDownlineFunction;
-		this.addDirectDownlineFunction = addDirectDownlineFunction;
+		this.addDownlineFunction = addDownlineFunction;
 
         this.cacheDOMElements();
 
@@ -150,19 +147,13 @@
             this.$tblReport.find(".icon-add").click(function () {
                 var $this = self.$(this);
 
-				self.addCrossDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId - 1, self.reportParam);
+				self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId - 1, self.reportParam);
 			});
 
 			this.$formReport.find("#add-directdownline").click(function () {
 				var $this = self.$(this);
 
-				self.addDirectDownlineFunction($this.attr("cust-id"), '', self.levelId, self.reportParam);
-			});
-
-			this.$formReport.find("#add-directdownline").click(function () {
-				var $this = self.$(this);
-
-				self.addDirectDownlineFunction($this.attr("cust-id"), '', self.levelId, self.reportParam);
+				self.addDownlineFunction($this.attr("cust-id"), '', self.levelId, self.reportParam);
 			});
         }
 

@@ -23,8 +23,7 @@ class AgentList extends BaseList {
             this.renderAgentList,
             siteInfrastructure.roleId.agent,
             indexManager.viewAgent,
-			indexManager.addNewCrossDownline,
-			indexManager.addNewDirectDownline);
+			indexManager.addNewDownline);
 
         this.cacheDOMElements();
 
@@ -34,10 +33,6 @@ class AgentList extends BaseList {
             self.reportParam.PageIndex = 1;
             self.viewAgents(0);
 		});
-
-		//this.$("#add-agent").off("click").on("click", function () {
-		//	self.indexManager.addAgentForMaster(self.$(this).attr("cust-id"), '', 3);
-		//});
 
         if (this.directDownline >= siteInfrastructure.roleId.master) {
             this.initAutoComplete();

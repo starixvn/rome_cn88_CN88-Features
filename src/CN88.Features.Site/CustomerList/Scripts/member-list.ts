@@ -21,8 +21,7 @@
             this.renderMemberList,
             siteInfrastructure.roleId.member,
             null,
-			null,
-			indexManager.addNewDirectDownline);
+			indexManager.addNewDownline);
 
         this.cacheDOMElements();
 
