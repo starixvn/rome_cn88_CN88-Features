@@ -2,11 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
+    using Features.Shared.AppResources;
+    using Features.Shared.Constants;
     using Requests;
     using Shared.ViewModels.Components;
 
@@ -25,8 +28,16 @@
             AccountingPeriodGroups = accountingPeriodGroups;
             CurrentPeriod = currentPeriod;
 
-            SportGroupSelectionViewModel = new SportGroupSelectionViewModel(sportGroups, 0);
-            BetTypeSelectionViewModel = new BetTypeSelectionViewModel(betTypes, 0);
+            SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, 0);
+            BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
+
+            var liveStatus = LiveStatusConstants.LiveStatuses
+                .Select(s => new SelectListItem
+                {
+                    Text = SharedResources.ResourceManager.GetString(s.Value),
+                    Value = s.Key.ToString(),
+                });
+            LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatus, LiveStatusConstants.PreMatchAndInPlay);
 
             ActionName = query.DisplayMode == ReportDisplayModeConstants.Wager
                 ? nameof(ReportDisplayModeConstants.Wager)
@@ -45,41 +56,25 @@
 
         public AccountingPeriod CurrentPeriod { get; }
 
-        public SportGroupSelectionViewModel SportGroupSelectionViewModel { get; }
+        public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
 
-        public BetTypeSelectionViewModel BetTypeSelectionViewModel { get; }
+        public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
 
-        public IEnumerable<SelectListItem> WagerReportTypes =>
-            new List<SelectListItem>
+        public SingleSelectionViewModel LiveStatusSelectionViewModel { get; }
+
+        public IEnumerable<SelectListItem> WagerReportTypes => ReportTypeConstants.WagerReportTypes
+            .Select(t => new SelectListItem
             {
-                new SelectListItem
-                {
-                    Text = ReportResources.SettledWager,
-                    Value = ReportTypeConstants.SettledWager.ToString(),
-                    Selected=true
-                },
-                new SelectListItem
-                {
-                    Text = ReportResources.UnsettledWager,
-                    Value = ReportTypeConstants.UnsettledWager.ToString(),
-                }
-            };
+                Text = ReportResources.ResourceManager.GetString(t.Value),
+                Value = t.Key.ToString(),
+            });
 
-        public IEnumerable<SelectListItem> CancelledReportTypes =>
-            new List<SelectListItem>
+        public IEnumerable<SelectListItem> CancelledReportTypes => ReportTypeConstants.CancelledReportTypes
+            .Select(t => new SelectListItem
             {
-                new SelectListItem
-                {
-                    Text = ReportResources.CancelledReport,
-                    Value = ReportTypeConstants.CancelledReport.ToString(),
-                    Selected=true
-                },
-                new SelectListItem
-                {
-                    Text = ReportResources.AbnormalBets,
-                    Value = ReportTypeConstants.AbnormalBets.ToString(),
-                }
-            };
+                Text = ReportResources.ResourceManager.GetString(t.Value),
+                Value = t.Key.ToString(),
+            });
 
         public SettlementSummaryReport SettlementSummaryReport { get; }
     }

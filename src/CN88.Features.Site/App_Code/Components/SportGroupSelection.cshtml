@@ -1,6 +1,6 @@
 ﻿@using CN88.Features.Shared.AppResources
 @using CN88.Features.Site.Shared.ViewModels.Components
-@helper Render(SportGroupSelectionViewModel model, bool showLabel)
+@helper Render(SingleSelectionViewModel model, bool showLabel)
 {
     <div class="form-group">
         @if (showLabel)
@@ -8,11 +8,11 @@
             <label>@SharedResources.Sport</label>
         }
         <select id="dropdown-sportgroup">
-            @foreach (var group in model.SportGroups)
+            @foreach (var group in model.Items)
             {
                 <option value="@group.Value" @(group.Selected ? " selected=\"selected\"" : string.Empty)>@group.Text</option>
             }
         </select>
-        <input type="hidden" name="UserSelectedSportGroupId" id="UserSelectedSportGroupId" value="@model.UserSelectedSportGroupId" />
+        <input type="hidden" name="UserSelectedSportGroupId" id="UserSelectedSportGroupId" value="@model.UserSelectedId" />
     </div>
 }

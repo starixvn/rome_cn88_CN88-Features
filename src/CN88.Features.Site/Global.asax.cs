@@ -13,7 +13,6 @@
     using Alpha.Web;
     using Alpha.Web.Filters;
     using Alpha.Web.Helpers;
-    using global::CN88.CustomerSetting.Client;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
@@ -24,6 +23,7 @@
     using Fanex.Logging.Sentry.RavenClient;
     using Fanex.RemotingRef;
     using Features.Shared.Configurations;
+    using global::CN88.CustomerSetting.Client;
     using ONEbook.UM.Filters;
     using Shared.Helpers;
     using SharpRaven;
@@ -73,10 +73,10 @@
         /// <param name="e">Event arguments.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            //if (Request.IsLocal)
-            //{
-            //    return;
-            //}
+            if (Request.IsLocal)
+            {
+                return;
+            }
 
             Exception ex = Server.GetLastError();
 #pragma warning disable CS0618 // Type or member is obsolete

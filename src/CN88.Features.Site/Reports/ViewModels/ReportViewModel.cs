@@ -24,9 +24,9 @@
             ReportData = reportData;
             GrandTotal = grandTotal;
 
-            var sportGroupSelectionViewModel = new SportGroupSelectionViewModel(sportGroups, query.SportGroupId);
+            var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.SportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.ToDate, query.FromDate);
-            var betTypeSelectionViewModel = new BetTypeSelectionViewModel(betTypes, query.BetTypeId);
+            var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, query.BetTypeId);
 
             ReportFilterViewModel = new ReportFilterViewModel(
                 query.ReportType,

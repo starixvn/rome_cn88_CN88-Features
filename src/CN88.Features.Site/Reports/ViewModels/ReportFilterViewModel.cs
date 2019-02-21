@@ -10,9 +10,9 @@
             int custId,
             string custName,
             UserLevel custLevel,
-            SportGroupSelectionViewModel sportGroupSelectionViewModel,
+            SingleSelectionViewModel sportGroupSelectionViewModel,
             DateRangePickerViewModel dateRangePickerViewModel,
-            BetTypeSelectionViewModel betTypeSelectionViewModel)
+            SingleSelectionViewModel betTypeSelectionViewModel)
         {
             ReportType = reportType;
             CustId = custId;
@@ -31,10 +31,10 @@
 
         public UserLevel CustLevel { get; }
 
-        public SportGroupSelectionViewModel SportGroupSelectionViewModel { get; }
+        public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
 
         public DateRangePickerViewModel DateRangePickerViewModel { get; }
 
-        public BetTypeSelectionViewModel BetTypeSelectionViewModel { get; }
+        public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
     }
 }

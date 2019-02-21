@@ -55,7 +55,7 @@
             var currentPeriod = await reportService.GetCurrentPeriod();
             var param = new ReportParam(
                      message.CustId,
-                     false,
+                     message.IsOwner,
                      message.FromDate,
                      message.ToDate,
                      message.SportGroupId,

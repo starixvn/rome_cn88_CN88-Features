@@ -178,6 +178,24 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pre-Match.
+        /// </summary>
+        public static string PreMatch {
+            get {
+                return ResourceManager.GetString("PreMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pre-Match &amp; In-Play.
+        /// </summary>
+        public static string PreMatchAndInPlay {
+            get {
+                return ResourceManager.GetString("PreMatchAndInPlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMA.
         /// </summary>
         public static string SMA {

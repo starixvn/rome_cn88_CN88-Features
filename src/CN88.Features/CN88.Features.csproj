@@ -149,6 +149,7 @@
       <DependentUpon>SharedResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Shared\Configurations\AppSettings.cs" />
+    <Compile Include="Shared\Constants\LiveStatusConstants.cs" />
     <Compile Include="Shared\Criteria\GetBalanceUpDayAndMoveBetsDayCriteria.cs" />
     <Compile Include="Shared\Criteria\GetBetTypeBySportCriteria.cs" />
     <Compile Include="Shared\Criteria\GetSportGroupsCriteria.cs" />

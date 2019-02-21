@@ -192,4 +192,10 @@
   <data name="Parlay" xml:space="preserve">
     <value>Parlay</value>
   </data>
+  <data name="PreMatch" xml:space="preserve">
+    <value>Pre-Match</value>
+  </data>
+  <data name="PreMatchAndInPlay" xml:space="preserve">
+    <value>Pre-Match &amp; In-Play</value>
+  </data>
 </root>

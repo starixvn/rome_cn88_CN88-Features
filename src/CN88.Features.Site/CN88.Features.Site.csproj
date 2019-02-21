@@ -393,9 +393,8 @@
     <Compile Include="Reports\Requests\IndexQuery.cs" />
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
-    <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
+    <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
-    <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
     <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -437,6 +436,12 @@
     <Content Include="Reports\Views\_Filter.cshtml" />
     <Content Include="SubAccount\Views\Index.cshtml" />
     <Content Include="SubAccount\Views\Web.config" />
+    <Content Include="App_Code\Components\LiveStatusSelection.cshtml" />
+    <Content Include="Reports\Views\Legacy\AgentTable.cshtml" />
+    <Content Include="Reports\Views\Legacy\MasterTable.cshtml" />
+    <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
+    <Content Include="Reports\Views\Legacy\SuperTable.cshtml" />
+    <Content Include="Reports\Views\_SettlementSummary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
