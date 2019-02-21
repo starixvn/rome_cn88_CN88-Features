@@ -1,0 +1,88 @@
+﻿@model ReportViewModel
+    asdas
+<div id="settlement-content" class="tab-content">
+    <table class="tbl-noborder tbl-report settlement-report">
+        <thead>
+            <tr>
+                <th>@SharedResources.UserCode</th>
+                <th class="valid-stake">@SharedResources.SMA</th>
+                <th class="valid-stake">@ReportResources.SMAIncome</th>
+                <th class="valid-stake">@ReportResources.SMAResult</th>
+                <th class="valid-stake">@ReportResources.SMAStock</th>
+                <th class="valid-stake">@ReportResources.SMAStockPercent</th>
+                <th class="valid-stake">@ReportResources.HeadlinePoss</th>
+                <th class="valid-stake">@ReportResources.HeadlineIncome</th>
+                <th class="valid-stake">@ReportResources.HeadlineResult</th>
+                <th class="valid-stake">@ReportResources.HeadlineStock</th>
+                <th class="valid-stake">@ReportResources.HeadlineStockPercent</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ReportData.Any())
+            {
+                foreach (var data in Model.ReportData)
+                {
+            <tr>
+                <td>@data.Username</td>
+                @HtmlHelpers.RenderNumberCell(data.Super)
+                @HtmlHelpers.RenderNumberCell(data.SuperIncome)
+                @HtmlHelpers.RenderNumberCell(data.SuperResult)
+                @HtmlHelpers.RenderNumberCell(data.SuperStock)
+                @HtmlHelpers.RenderNumberCell(data.SuperStock)
+                @HtmlHelpers.RenderNumberCell(data.HeadlinePoss)
+                @HtmlHelpers.RenderNumberCell(data.HeadlineIncome)
+                @HtmlHelpers.RenderNumberCell(data.HeadlineResult)
+                @HtmlHelpers.RenderNumberCell(data.HeadlineStock)
+                @HtmlHelpers.RenderNumberCell(data.HeadlineStock)
+            </tr>
+                }
+            }
+            else
+            {
+            <tr>
+                <td colspan="11" align="center">@SharedResources.NoInformationIsAvailable</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="valid-stake-content" class="tab-content display-none">
+    <table class="tbl-noborder tbl-report valid-stake-report">
+        <thead>
+            <tr>
+                <th>@SharedResources.UserCode</th>
+                <th class="valid-stake">@SharedResources.Wagers</th>
+                <th class="valid-stake">@SharedResources.Stake</th>
+                <th class="valid-stake">@ReportResources.ValidStake</th>
+                <th class="valid-stake">@ReportResources.MemberIncome</th>
+                <th class="valid-stake">@SharedResources.Agent</th>
+                <th class="valid-stake">@ReportResources.AgentResult</th>
+                <th class="valid-stake">@ReportResources.MasterAgent</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ReportData.Any())
+            {
+                foreach (var data in Model.ReportData)
+                {
+            <tr>
+                <td>@data.Username</td>
+                @HtmlHelpers.RenderNumberCell(data.Wagers)
+                @HtmlHelpers.RenderNumberCell(data.Stake)
+                @HtmlHelpers.RenderNumberCell(data.ValidStake)
+                @HtmlHelpers.RenderNumberCell(data.MemberIncome)
+                @HtmlHelpers.RenderNumberCell(data.Agent)
+                @HtmlHelpers.RenderNumberCell(data.AgentResult)
+                @HtmlHelpers.RenderNumberCell(data.Master)
+            </tr>
+                }
+            }
+            else
+            {
+            <tr>
+                <td colspan="8" align="center">@SharedResources.NoInformationIsAvailable</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

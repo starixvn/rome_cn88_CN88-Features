@@ -467,6 +467,7 @@
     <Content Include="Reports\Views\Wager\SuperTable.cshtml" />
     <Content Include="Reports\Views\Wager\AgentTable.cshtml" />
     <Content Include="Reports\Views\Wager\MasterTable.cshtml" />
+    <Content Include="Reports\Views\Wager\HeadlineTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
