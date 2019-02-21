@@ -25,7 +25,7 @@
 
         public string Language => userSession.Language;
 
-        public byte LevelId => 4; // userSession.RoleId;
+        public byte LevelId => userSession.RoleId;
 
         public bool IsInternal => userSession.IsInternal;
 
