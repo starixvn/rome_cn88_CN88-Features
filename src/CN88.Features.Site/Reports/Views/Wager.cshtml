@@ -5,50 +5,54 @@
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
 @model ReportViewModel
-<div class="page-title title-report-detail">
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="report-name">@Model.Title</li>
-        <li role="presentation" class="active">
-            <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
-        </li>
-        <li role="presentation">
-            <a data-toggle="tab" href="#">@ReportResources.ValidStake</a>
-        </li>
-    </ul>
-</div>
-@Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover">
-    <thead>
-        <tr>
-            <th>@SharedResources.UserCode</th>
-            <th class="valid-stake">@SharedResources.Wagers</th>
-            <th class="valid-stake">@SharedResources.Stake</th>
-            <th class="valid-stake">@ReportResources.ValidStake</th>
-            <th class="valid-stake">@ReportResources.MemberIncome</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.ReportData.Any())
-        {
-            foreach (var data in Model.ReportData)
+<div class="report-detail">
+    <div class="page-title title-report-detail">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="report-name">@Model.Title</li>
+            <li role="presentation" class="active">
+                <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
+            </li>
+            <li role="presentation">
+                <a data-toggle="tab" href="#">@ReportResources.ValidStake</a>
+            </li>
+        </ul>
+    </div>
+    @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
+
+    <table class="tbl-noborder tbl-report">
+        <thead>
+            <tr>
+                <th>@SharedResources.UserCode</th>
+                <th class="valid-stake">@SharedResources.Wagers</th>
+                <th class="valid-stake">@SharedResources.Stake</th>
+                <th class="valid-stake">@ReportResources.ValidStake</th>
+                <th class="valid-stake">@ReportResources.MemberIncome</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ReportData.Any())
+            {
+                foreach (var data in Model.ReportData)
+                {
+                    <tr>
+                        <td>@data.Username</td>
+                        <td>@data.Wagers</td>
+                        <td>@data.Stake</td>
+                        <td>@data.ValidStake</td>
+                        <td>@data.MemberIncome</td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@data.Username</td>
-                    <td>@data.Wagers</td>
-                    <td>@data.Stake</td>
-                    <td>@data.ValidStake</td>
-                    <td>@data.MemberIncome</td>
+                    <td colspan="5" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
-        }
-        else
-        {
-            <tr>
-                <td colspan="5" align="center">@SharedResources.NoInformationIsAvailable</td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/legacy")
 }

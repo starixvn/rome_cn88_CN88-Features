@@ -20,7 +20,6 @@
 
 .create-form {
     padding: 0 20px;
-
     .form-group {
         margin: 0 0 15px;
 
@@ -37,11 +36,13 @@
     .form-group .control.date {
         margin-left: 0;
         width: 159px;
-        //position: relative;
     }
 
     .multiselect.btn-default {
         width: 350px;
+    }
+    .multiselect .multiselect-selected-text {
+        width: 100%;
     }
 }
 
@@ -69,6 +70,7 @@
 }
 
 .title-report-detail {
+    padding: 0;
     .nav-tabs > li > a {
         line-height: inherit;
         padding: 0 16px;
@@ -78,7 +80,8 @@
     }
 }
 .report-form {
-    padding: 16px 20px 0;
+    padding-top: 16px;
+    border-bottom: 1px solid #c8c8c8;
     .form-group {
         vertical-align: bottom;
         > label {
@@ -111,6 +114,22 @@
         }
     }
          
+}
+.nav-tabs > li.report-name:hover:after {
+    width: 0;
+}
+.report-detail {
+    padding: 0 20px;
+}
+.tbl-report {
+    > thead > tr > th {
+        border-width: 1px;
+        font-weight: normal;
+        padding: 13px 0;
+    }
+    > tbody > tr > td {
+        padding: 7px 0;
+    }
 }
 
 @media all and (min-width: 1280px) {
