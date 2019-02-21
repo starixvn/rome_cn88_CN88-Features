@@ -33,10 +33,9 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -317,13 +316,6 @@
       <DependentUpon>index.js</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
-    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.min.js">
-      <DependentUpon>credit-popup.js</DependentUpon>
-    </Content>
-    <Content Include="CustomerList\bundles\scripts\popup\status-popup.js" />
-    <Content Include="CustomerList\bundles\scripts\popup\status-popup.min.js">
-      <DependentUpon>status-popup.js</DependentUpon>
-    </Content>
     <Content Include="CustomerList\bundles\styles\downline-list.css" />
     <Content Include="CustomerList\bundles\styles\downline-list.min.css">
       <DependentUpon>downline-list.css</DependentUpon>
@@ -332,8 +324,6 @@
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
     </Content>
-    <Content Include="CustomerList\Styles\downline-list.css" />
-    <Content Include="CustomerList\Styles\downline-list.min.css" />
     <Content Include="CustomerList\Styles\popup.css">
       <DependentUpon>popup.scss</DependentUpon>
     </Content>
@@ -350,9 +340,6 @@
       <DependentUpon>legacy.js</DependentUpon>
     </Content>
     <Content Include="Reports\bundles\reports.css" />
-    <Content Include="Reports\bundles\reports.min.css">
-      <DependentUpon>reports.css</DependentUpon>
-    </Content>
     <Content Include="Reports\bundles\wager.js" />
     <Content Include="Reports\bundles\wager.min.js">
       <DependentUpon>wager.js</DependentUpon>
@@ -366,6 +353,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SubAccount\Requests\IndexQuery.cs" />
+    <Compile Include="SubAccount\SubAccountController.cs" />
+    <Compile Include="SubAccount\SubAccountHandler.cs" />
     <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -403,12 +393,11 @@
     <Compile Include="Shared\ViewModels\Components\BetTypeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SportGroupSelectionViewModel.cs" />
+    <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="App_Data\AuthorizationSection.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="App_Data\AuthorizationSection.config" />
     <Content Include="Web.AppSettings.config" />
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="Shared\Views\Web.config" />
@@ -443,12 +432,8 @@
     <Content Include="Reports\Views\Wager.cshtml" />
     <Content Include="Reports\Views\Legacy.cshtml" />
     <Content Include="Reports\Views\_Filter.cshtml" />
-    <Content Include="CustomerList\Styles\downline-list.scss" />
-    <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
-    <Content Include="Reports\Views\_SettlementSummary.cshtml" />
-    <Content Include="Reports\Views\Legacy\AgentTable.cshtml" />
-    <Content Include="Reports\Views\Legacy\MasterTable.cshtml" />
-    <Content Include="Reports\Views\Legacy\SuperTable.cshtml" />
+    <Content Include="SubAccount\Views\Index.cshtml" />
+    <Content Include="SubAccount\Views\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -527,17 +512,6 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <PropertyGroup>
-    <PostBuildEvent>
-      cd $(ProjectDir)
-      cd ..
-      cd ..
-      cd build
-      assets.build.cmd
-      if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
-      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
-</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

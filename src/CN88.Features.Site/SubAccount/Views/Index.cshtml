@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+@section Styles {
+
+}
+@section Scripts {
+
+}
+@model IEnumerable<IndexViewModel>
+
+<table>
+    <thead>
+        <tr>@SubAccountResource.UserCode</tr>
+        <tr>@SubAccountResource.Name</tr>
+        <tr>@SubAccountResource.LoginId</tr>
+        <tr>@SubAccountResource.TotalBets</tr>
+        <tr>@SubAccountResource.ACManagementViewOnly</tr>
+        <tr>@SubAccountResource.ACManagementEditView</tr>
+        <tr>@SubAccountResource.Reports</tr>
+        <tr>@SubAccountResource.CreatedDate</tr>
+        <tr>@SubAccountResource.Action</tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="9">@SharedResources.NoInformationIsAvailable</td>
+            </tr>
+        }
+    </tbody>
+</table>

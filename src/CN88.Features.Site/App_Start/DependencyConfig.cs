@@ -14,6 +14,7 @@
     using global::CN88.Features.Shared.Services;
     using global::CN88.Features.Site.Models;
     using global::CN88.Features.Site.Shared.Controllers;
+    using global::CN88.Features.SubAccount.Services;
     using MediatR;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
@@ -99,6 +100,8 @@
             container.RegisterSingleton<CustomerListService, CustomerListServiceImpl>();
 
             container.RegisterSingleton<ReportService, ReportServiceImpl>();
+
+            container.RegisterSingleton<SubAccountService, SubAccountServiceImpl>();
         }
     }
 }

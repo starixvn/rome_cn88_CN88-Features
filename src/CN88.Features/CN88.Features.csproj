@@ -163,6 +163,19 @@
     <Compile Include="Shared\Services\ReportDateService.cs" />
     <Compile Include="Shared\Services\SportGroupService.cs" />
     <Compile Include="Shared\Utils\SystemTime.cs" />
+    <Compile Include="SubAccount\AppResources\SubAccountResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubAccountResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SubAccount\Criteria\BaseSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\CreateSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\GetSubAccountCriteria.cs" />
+    <Compile Include="SubAccount\Criteria\GetSubAccountListCriteria.cs" />
+    <Compile Include="SubAccount\Criteria\UpdateSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\UpdateSubAccountPermissionCommand.cs" />
+    <Compile Include="SubAccount\Models\SubAccountItem.cs" />
+    <Compile Include="SubAccount\Services\SubAccountService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -197,10 +210,14 @@
       <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\AppResources\SharedResources.ja-JP.resx" />
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SubAccountResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-Hans.resx" />
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-TW.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AccountManagement\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
