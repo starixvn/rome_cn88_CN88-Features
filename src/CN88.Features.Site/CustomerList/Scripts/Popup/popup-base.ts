@@ -50,10 +50,10 @@
 		let self = this;
 		this.showSuccesfullyMessage();
 
-		setTimeout(function () {
-			self.reloadCallback(custId, newValue);
-			self.closePopup();
-		}, 3000);
+		//setTimeout(function () {
+		//	self.reloadCallback(custId, newValue);
+		//	self.closePopup();
+		//}, 3000);
 	}
 
 	showSuccesfullyMessage() {

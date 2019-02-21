@@ -180,11 +180,10 @@
 
 		this.$("#myModal").on("show.bs.modal", function (e) {
 			self.$(this).find('.modal-title').text(`${caption} - ${username}`);
-			self.$(this).find('iframe').attr('src', url);
-		}).modal('show');
-
-        this.topWindow.popupManager.open(url, `${caption} - ${username}`, 550, 250);
+            self.$(this).find('iframe').attr('src', url);
+        }).removeAttr('class').addClass('modal modal-credit').modal('show');
     };
+
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
 		let self = this,
 			url = `StatusPopup?custId=${custId}&UpdateStatusId=${updateStatusId}`,
@@ -193,7 +192,7 @@
 		this.$("#myModal").on("show.bs.modal", function (e) {
 			self.$(this).find('.modal-title').text(popupTitle);
 			self.$(this).find('iframe').attr('src', url);
-		}).modal('show');
+        }).removeAttr('class').addClass('modal modal-status').modal('show');
     };
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);

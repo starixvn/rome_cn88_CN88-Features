@@ -46,6 +46,13 @@
   font-size: 17px;
   margin: 0 9px; }
 
+.icon-pass {
+  margin-left: 0; }
+
 .icon-edit {
   font-size: 19px; }
+
+.modal.modal-status .modal-dialog,
+.modal.modal-credit .modal-dialog {
+  width: 480px; }
 

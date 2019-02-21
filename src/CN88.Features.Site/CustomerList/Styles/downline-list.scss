@@ -58,7 +58,6 @@
     color: #25a77b;
 }
 
-
 .icon-pass,
 .icon-security,
 .icon-edit {
@@ -67,6 +66,17 @@
     margin: 0 9px;
 }
 
+.icon-pass {
+    margin-left: 0;
+}
+
 .icon-edit {
     font-size: 19px;
+}
+
+
+// modals
+.modal.modal-status .modal-dialog,
+.modal.modal-credit .modal-dialog {
+    width: 480px;
 }

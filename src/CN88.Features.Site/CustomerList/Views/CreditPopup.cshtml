@@ -1,36 +1,28 @@
 ﻿@model CreditRangeViewModel
 
 @{
-	Layout = "~/Shared/Views/_Layout.cshtml";
+    Layout = "~/Shared/Views/_Layout.cshtml";
 }
 
 @section Styles {
-	@StaticResources.RenderStyles("~/assets/bundles/popup")
+    @StaticResources.RenderStyles("~/CustomerList/bundles/styles/popup")
 }
 
-<div class="popup-modal">
-	<div class="col-xs-12 hidden msg" id="error-message"></div>
-	<div class="form-group col-xs-12">
-		<div class="col-xs-3">
-			@CustomerListResources.UsedCredit
-		</div>
-		<div class="col-xs-9">
-			<span>@((Model.CustLevel.IsMemberLevel() ? Model.CreditModel.BetCredit : Model.CreditModel.UsedCredit).ToString("N2"))</span>
-		</div>
-	</div>
-	<div class="form-group col-xs-12">
-		<div class="col-xs-3">@CustomerListResources.Credit</div>
-		<div class="col-xs-4">
-			<input class="textbox" id="credit" type="text" />
-		</div>
-		<div class="col-xs-4 credit-range">
-			[@Model.CreditModel.MinCredit.ToString("N2"); @Model.CreditModel.MaxCredit.ToString("N2")]
-		</div>
-	</div>
-	<div class="col-xs-10 row-info popup-bottom list-button">
-		<button type="button" class="btn-submit">@CustomerListResources.Save</button>
-		<button type="button" class="btn-cancel">@CustomerListResources.Cancel</button>
-	</div>
+<div class="popup-modal form">
+    <div class="col-xs-12 hidden msg" id="error-message"></div>
+    <div class="used-credit">
+        <span>@CustomerListResources.UsedCredit</span>
+        <span class="bold">@((Model.CustLevel.IsMemberLevel() ? Model.CreditModel.BetCredit : Model.CreditModel.UsedCredit).ToString("N2"))</span>
+    </div>
+    <div class="form-group">
+        <label>@CustomerListResources.Credit</label>
+        <input class="txt-credit" id="credit" type="text" />
+        <div class="credit-range">[@Model.CreditModel.MinCredit.ToString("N2"); @Model.CreditModel.MaxCredit.ToString("N2")]</div>
+    </div>
+    <div class="list-button">
+        <button type="button" class="btn-submit">@CustomerListResources.Save</button>
+        <button type="button" class="btn-cancel">@CustomerListResources.Cancel</button>
+    </div>
 </div>
 
 @Html.Hidden("MinCredit", Model.CreditModel.MinCredit)
@@ -43,5 +35,5 @@
 @Html.AntiForgeryToken()
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/CustomerList/bundles/scripts/popup/credit-popup")
+    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/popup/credit-popup")
 }
