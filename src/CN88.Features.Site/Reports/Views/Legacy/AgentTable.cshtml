@@ -50,7 +50,7 @@
             foreach (var row in Model.ReportData)
             {
                 <tr>
-                    <td>@row.Username</td>
+                    <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
                     <td>@row.Name</td>
                     @HtmlHelpers.RenderNumberCell(row.Wagers)
                     @HtmlHelpers.RenderNumberCell(row.Stake)

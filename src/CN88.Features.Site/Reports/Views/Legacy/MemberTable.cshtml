@@ -20,27 +20,27 @@
             <tr class="total">
                 <td>@ReportResources.Total</td>
                 <td></td>
-                <td>@total.Wagers</td>
-                <td>@total.Stake</td>
-                <td>@total.ValidStake</td>
-                <td>@total.MemberIncome</td>
+                @HtmlHelpers.RenderNumberCell(total.Wagers)
+                @HtmlHelpers.RenderNumberCell(total.Stake)
+                @HtmlHelpers.RenderNumberCell(total.ValidStake)
+                @HtmlHelpers.RenderNumberCell(total.MemberIncome)
                 <td></td>
-                <td>@total.AgentIncome</td>
-                <td>@total.AgentResult</td>
+                @HtmlHelpers.RenderNumberCell(total.AgentIncome)
+                @HtmlHelpers.RenderNumberCell(total.AgentResult)
             </tr>
 
             foreach (var row in Model.ReportData)
             {
                 <tr>
-                    <td>@row.Username</td>
+                    <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
                     <td>@row.Name</td>
-                    <td>@row.Wagers</td>
-                    <td>@row.Stake</td>
-                    <td>@row.ValidStake</td>
-                    <td>@row.MemberIncome</td>
-                    <td>@row.AgentPoss</td>
-                    <td>@row.AgentIncome</td>
-                    <td>@row.AgentResult</td>
+                    @HtmlHelpers.RenderNumberCell(row.Wagers)
+                    @HtmlHelpers.RenderNumberCell(row.Stake)
+                    @HtmlHelpers.RenderNumberCell(row.ValidStake)
+                    @HtmlHelpers.RenderNumberCell(row.MemberIncome)
+                    @HtmlHelpers.RenderNumberCell(row.AgentPoss)
+                    @HtmlHelpers.RenderNumberCell(row.AgentIncome)
+                    @HtmlHelpers.RenderNumberCell(row.AgentResult)
                 </tr>
             }
         }
