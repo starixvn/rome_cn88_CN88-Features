@@ -15,9 +15,13 @@
             CustId = viewer.Id;
             CustName = viewer.Name;
             CustLevelId = viewer.LevelId;
+
             FromDate = SystemTime.Today;
             ToDate = SystemTime.Today;
             IsOwner = CustId == ViewerId;
+
+            PageSize = 50;
+            PageIndex = 1;
         }
 
         public int ReportType { get; set; }
@@ -33,5 +37,9 @@
         public DateTime ToDate { get; set; }
 
         public bool IsOwner { get; set; }
+
+        public int PageIndex { get; set; }
+
+        public int PageSize { get; set; }
     }
 }

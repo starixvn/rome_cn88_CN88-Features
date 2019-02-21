@@ -1,0 +1,16 @@
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Site.Shared.ViewModels.Components
+@helper Render(PagerViewModel model)
+{
+if (model?.TotalRecords > 0)
+{
+        <div id="report-pager"
+             data-labelpage="@SharedResources.Page"
+             data-labelof="@SharedResources.of"
+             data-labeldisplayitems="@SharedResources.Pager_DisplayItems"
+             data-pageindex="@model.PageIndex"
+             data-pagesize="@model.PageSize"
+             data-totalrecords="@model.TotalRecords">
+        </div>
+}
+}

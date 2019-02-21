@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../shared/scripts/core.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class LegacyReport {
@@ -10,27 +11,34 @@ class LegacyReport {
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
     betTypeSelectionComponent: SingleSelectionDropdownComponent;
     liveStatusSelectionComponent: SingleSelectionDropdownComponent;
+    pagerComponent: PagerComponent;
 
     constructor(
         $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
-        liveStatusSelectionComponent: SingleSelectionDropdownComponent) {
+        liveStatusSelectionComponent: SingleSelectionDropdownComponent,
+        pagerComponent: PagerComponent) {
         this.$ = $;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
         this.betTypeSelectionComponent = betTypeSelectionComponent;
         this.liveStatusSelectionComponent = liveStatusSelectionComponent;
+        this.pagerComponent = pagerComponent;
     }
 
     init = () => {
         this.$.blockUI();
         this.cacheDOMElement();
+
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
+        this.pagerComponent.pageList = this.pagerComponent.pageList;
+        this.pagerComponent.render();
+
         this.registerEvents();
         this.$.unblockUI();
     };
@@ -57,7 +65,8 @@ $(function () {
         new DateRangePickerComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new SingleSelectionDropdownComponent($));
+        new SingleSelectionDropdownComponent($),
+        new PagerComponent($));
 
     legacyReport.init();
 })

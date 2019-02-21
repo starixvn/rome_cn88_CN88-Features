@@ -29,6 +29,7 @@
       "Shared/Scripts/core.js",
       "Shared/Scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/daterangepicker.js",
+      "Shared/Scripts/components/client-pager.js",
       "Reports/Scripts/legacy.js"
     ]
   },
@@ -70,7 +71,7 @@
     "inputFiles": [
       "CustomerList/Styles/downline-list.css"
     ]
-  }, 
+  },
   {
     "outputFileName": "SubAccount/bundles/styles/sub-account.css",
     "inputFiles": [

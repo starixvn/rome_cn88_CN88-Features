@@ -317,6 +317,7 @@
       <DependentUpon>index.js</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\popup\status-popup.js" />
     <Content Include="CustomerList\bundles\styles\downline-list.css" />
     <Content Include="CustomerList\bundles\styles\downline-list.min.css">
       <DependentUpon>downline-list.css</DependentUpon>
@@ -372,6 +373,7 @@
     <Compile Include="Shared\ViewModels\Components\BreadcrumbLevelViewModel.cs" />
     <Compile Include="Shared\Helpers\JsonHelper.cs" />
     <Compile Include="Shared\Helpers\UrlHelper.cs" />
+    <Compile Include="Shared\ViewModels\Components\PagerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
@@ -455,6 +457,8 @@
     <Content Include="CustomerList\Styles\downline-list.scss" />
     <Content Include="SubAccount\Styles\sub-account.scss" />
     <Content Include="App_Code\Components\Breadcrumb.cshtml" />
+    <Content Include="App_Code\Components\LiveStatusSelection.cshtml" />
+    <Content Include="App_Code\Components\Pager.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

@@ -184,7 +184,6 @@
   <data name="Settled" xml:space="preserve">
     <value>Settled</value>
   </data>
-
   <data name="AgentUsername" xml:space="preserve">
     <value>Agent Username</value>
   </data>
@@ -232,5 +231,8 @@
   </data>
   <data name="HeadlineStockPercent" xml:space="preserve">
     <value>Headline Stock %</value>
+  </data>
+  <data name="ProfitMagin" xml:space="preserve">
+    <value>Profit Magin</value>
   </data>
 </root>

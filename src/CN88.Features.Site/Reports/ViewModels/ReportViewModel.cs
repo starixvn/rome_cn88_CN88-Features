@@ -77,6 +77,9 @@
 
         public ReportFilterViewModel ReportFilterViewModel { get; }
 
+        public PagerViewModel PagerViewModel =>
+            new PagerViewModel(query.PageIndex, query.PageSize, ReportData.Count());
+
         public string Title { get; }
 
         public virtual string BuildDrillDownLink(WinLossModel model, string currentLink)

@@ -32,6 +32,7 @@
             @Html.Partial("~/Reports/Views/Legacy/SuperTable.cshtml", Model)
         }
     }
+    @Pager.Render(Model.PagerViewModel)
 </div>
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/legacy")
