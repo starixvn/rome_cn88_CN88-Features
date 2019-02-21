@@ -18,39 +18,21 @@
         </ul>
     </div>
     @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
-    <table class="tbl-noborder tbl-report">
-        <thead>
-            <tr>
-                <th>@SharedResources.UserCode<span class="icon-sort-arrow-up"></span></th>
-                <th class="valid-stake text-right">@SharedResources.Wagers<span class="icon-sort-arrow"></span></th>
-                <th class="valid-stake text-right">@SharedResources.Stake<span class="icon-sort-arrow"></span></th>
-                <th class="valid-stake text-right">@ReportResources.ValidStake<span class="icon-sort-arrow"></span></th>
-                <th class="valid-stake text-right">@ReportResources.MemberIncome<span class="icon-sort-arrow"></span></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.ReportData.Any())
-            {
-                foreach (var data in Model.ReportData)
-                {
-                    <tr>
-                        <td>@data.Username</td>
-                        <td class="text-right">@data.Wagers</td>
-                        <td class="text-right">@data.Stake</td>
-                        <td class="text-right">@data.ValidStake</td>
-                        <td class="text-right">@data.MemberIncome</td>
-                    </tr>
-                }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="5" class="text-right">@SharedResources.NoInformationIsAvailable</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    @if (Model.ReportLevel.IsSuperLevel())
+    {
+        @Html.Partial("~/Reports/Views/Wager/SuperTable.cshtml", Model)
+    }
+
+    @if (Model.ReportLevel.IsMasterLevel())
+    {
+        @Html.Partial("~/Reports/Views/Wager/MasterTable.cshtml", Model)
+    }
+
+    @if (Model.ReportLevel.IsAgentLevel())
+    {
+        @Html.Partial("~/Reports/Views/Wager/AgentTable.cshtml", Model)
+    }
 </div>
 @section Scripts{
-    @StaticResources.RenderScripts("~/Reports/bundles/legacy")
+    @StaticResources.RenderScripts("~/Reports/bundles/wager")
 }

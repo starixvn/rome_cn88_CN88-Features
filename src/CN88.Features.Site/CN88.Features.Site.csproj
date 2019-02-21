@@ -462,6 +462,9 @@
     <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
     <Content Include="Reports\Views\Legacy\SuperTable.cshtml" />
     <Content Include="Reports\Views\_SettlementSummary.cshtml" />
+    <Content Include="Reports\Views\Wager\SuperTable.cshtml" />
+    <Content Include="Reports\Views\Wager\AgentTable.cshtml" />
+    <Content Include="Reports\Views\Wager\MasterTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
