@@ -1,8 +1,11 @@
 ﻿namespace CN88.Features.Site.Shared.Helpers
 {
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using Features.Models;
+    using Features.Reports.Models;
+    using Newtonsoft.Json;
     using Requests;
 
     public class QueryEntityModelBinder : DefaultModelBinder
@@ -37,6 +40,25 @@
         {
             var boundModel = CallBaseBindModel(controllerContext, bindingContext);
 
+            var reportBaseQuery = boundModel as BaseQuery;
+            if (reportBaseQuery != null)
+            {
+                var breadcrumbLevelJson = GetBreadcrumbLevelJson(controllerContext);
+
+                if (!string.IsNullOrWhiteSpace(breadcrumbLevelJson)
+                   && breadcrumbLevelJson.LastIndexOf(",[", StringComparison.OrdinalIgnoreCase) < 0)
+                {
+                    reportBaseQuery.BreadcrumbLevel = JsonConvert.DeserializeObject<IEnumerable<CustInfo>>(
+                        breadcrumbLevelJson,
+                        new JsonSerializerSettings
+                        {
+                            Error = (sender, errorArgs) => { errorArgs.ErrorContext.Handled = true; }
+                        });
+                }
+
+                return reportBaseQuery;
+            }
+
             return boundModel;
         }
 
@@ -44,5 +66,8 @@
            ControllerContext controllerContext,
            ModelBindingContext bindingContext)
             => base.BindModel(controllerContext, bindingContext);
+
+        protected virtual string GetBreadcrumbLevelJson(ControllerContext controllerContext)
+            => controllerContext.RequestContext.HttpContext.Request["BreadcrumbLevelJson"];
     }
 }

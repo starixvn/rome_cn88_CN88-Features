@@ -1,6 +1,9 @@
 ﻿namespace CN88.Features.Site.Requests
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Features.Models;
+    using Features.Reports.Models;
     using Features.Shared.Models;
 
     public class BaseQuery
@@ -32,6 +35,8 @@
         public byte ViewerLevelId => viewer.LevelId;
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
+
+        public IEnumerable<CustInfo> BreadcrumbLevel { get; set; } = Enumerable.Empty<CustInfo>();
 
         public int SubAccountId => viewer.SubAccountId;
 

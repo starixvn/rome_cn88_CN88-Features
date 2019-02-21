@@ -70,6 +70,7 @@
 
             return new ReportViewModel(
                 message,
+                BuildBreadcrumbLevel(message),
                 BuildSportGroupSelectListItems(sportGroups, message.UserSelectedSportGroupId),
                 BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 reportData,

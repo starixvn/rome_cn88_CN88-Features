@@ -369,6 +369,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shared\ViewModels\Components\BreadcrumbLevelViewModel.cs" />
     <Compile Include="Shared\Helpers\JsonHelper.cs" />
     <Compile Include="Shared\Helpers\UrlHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
@@ -453,6 +454,7 @@
     <Content Include="SubAccount\Views\Web.config" />
     <Content Include="CustomerList\Styles\downline-list.scss" />
     <Content Include="SubAccount\Styles\sub-account.scss" />
+    <Content Include="App_Code\Components\Breadcrumb.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

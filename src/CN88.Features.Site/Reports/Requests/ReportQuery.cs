@@ -12,6 +12,9 @@
         public ReportQuery(IUser viewer)
             : base(viewer)
         {
+            CustId = viewer.Id;
+            CustName = viewer.Name;
+            CustLevelId = viewer.LevelId;
             FromDate = SystemTime.Today;
             ToDate = SystemTime.Today;
             IsOwner = CustId == ViewerId;

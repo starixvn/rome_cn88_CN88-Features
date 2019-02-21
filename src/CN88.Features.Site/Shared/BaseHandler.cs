@@ -1,13 +1,38 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using CN88.Features.Shared.AppResources;
-using CN88.Features.Shared.Models;
-
-namespace CN88.Features.Site.Shared
+﻿namespace CN88.Features.Site.Shared
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Features.Reports.Models;
+    using Features.Shared.AppResources;
+    using Features.Shared.Models;
+    using Requests;
+
     public class BaseHandler
     {
+        protected internal IEnumerable<CustInfo> BuildBreadcrumbLevel(BaseQuery query)
+        {
+            var breadcrumbLevel = new List<CustInfo>();
+
+            if (query.BreadcrumbLevel != null
+                && query.BreadcrumbLevel.Any())
+            {
+                foreach (var custInfo in query.BreadcrumbLevel)
+                {
+                    if (custInfo.CustLevelId == query.CustLevelId)
+                    {
+                        break;
+                    }
+
+                    breadcrumbLevel.Add(custInfo);
+                }
+            }
+
+            breadcrumbLevel.Add(new CustInfo(query.CustId, query.CustName, query.CustLevelId));
+
+            return breadcrumbLevel;
+        }
+
         protected internal IEnumerable<SelectListItem> BuildSportGroupSelectListItems(
             IEnumerable<SportGroup> sportGroups,
             int userSelectedSportGroupId)

@@ -11,6 +11,7 @@
     using Features.Shared.Constants;
     using Features.Shared.Models;
     using Requests;
+    using Shared.Helpers;
     using Shared.ViewModels.Components;
 
     public class ReportViewModel
@@ -19,6 +20,7 @@
 
         public ReportViewModel(
             ReportQuery query,
+            IEnumerable<CustInfo> breadcrumbLevel,
             IEnumerable<SelectListItem> sportGroups,
             IEnumerable<SelectListItem> betTypes,
             IEnumerable<WinLossModel> reportData,
@@ -29,6 +31,9 @@
 
             ReportData = reportData;
             GrandTotal = grandTotal;
+
+            var breadcrumbLevelJson = JsonHelper.ToJsonFunc(breadcrumbLevel);
+            BreadcrumbLevelViewModel = new BreadcrumbLevelViewModel(breadcrumbLevel, breadcrumbLevelJson);
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.ToDate, query.FromDate);
@@ -64,6 +69,8 @@
 
         public UserLevel ReportLevel => query.CustLevel;
 
+        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel { get; set; }
+
         public IEnumerable<WinLossModel> ReportData { get; }
 
         public WinLossModel GrandTotal { get; }
@@ -89,7 +96,8 @@
                 currentLink,
                 new Dictionary<string, object>(routeValues)
                 {
-                    { "CustLevelId", ReportLevel.GetDirectDownLineLevel().Value },
+                    ["CustLevelId"] = ReportLevel.GetDirectDownLineLevel().Value,
+                    ["BreadcrumbLevelJson"] = BreadcrumbLevelViewModel.BreadcrumbLevelJson
                 });
         }
 

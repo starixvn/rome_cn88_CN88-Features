@@ -20,6 +20,8 @@
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
 
+        public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify() => Require(StoredProcedurePath, nameof(StoredProcedurePath));

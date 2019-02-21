@@ -8,6 +8,7 @@
 <div class="report-detail">
     <div class="page-title title-report-detail">
         <div class="">@Model.Title</div>
+        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
     </div>
     @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
     @{
@@ -32,7 +33,6 @@
         }
     }
 </div>
-
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/legacy")
 }

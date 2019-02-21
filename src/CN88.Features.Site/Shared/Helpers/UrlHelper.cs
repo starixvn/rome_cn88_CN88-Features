@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using Alpha.Web.Helpers;
+    using Features.Shared.Configurations;
 
     public static class UrlHelper
     {
@@ -38,6 +40,8 @@
                 replaceOrAddQueryStringParamsFunc = value;
             }
         }
+
+        public static Func<string, string, string> GetSiteUrl { get; internal set; } = GetLink;
 
         internal static string ReplaceOrAddQueryStringParams(string link, IDictionary<string, object> routeValues)
         {
@@ -85,6 +89,11 @@
             }
 
             return link + $"&{paramName}={paramValue}";
+        }
+
+        internal static string GetLink(string action, string currentQuery)
+        {
+            return AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, action + currentQuery);
         }
     }
 }
