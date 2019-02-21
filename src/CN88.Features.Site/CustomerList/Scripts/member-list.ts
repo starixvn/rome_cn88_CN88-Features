@@ -21,7 +21,8 @@
             this.renderMemberList,
             siteInfrastructure.roleId.member,
             null,
-            null);
+			null,
+			indexManager.addDirectDownline);
 
         this.cacheDOMElements();
 
@@ -50,7 +51,8 @@
         this.reportParam = {
             DownlineUsername: this.$("#txt-viewed-agent").val(),
             Username: this.$username.val(),
-            SearchRoleId: siteInfrastructure.roleId.member,
+			SearchRoleId: siteInfrastructure.roleId.member,
+			CustId: 0,
             Status: this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex

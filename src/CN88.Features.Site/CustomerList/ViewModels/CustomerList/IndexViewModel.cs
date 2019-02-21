@@ -6,55 +6,52 @@
 
     public class IndexViewModel
     {
+        private IndexQuery query;
+
         public IndexViewModel(IndexQuery query)
         {
-            ActorLevel = query.ActorLevel;
-            IsInternal = query.IsInternal;
-            HasUpdatePermission = query.HasUpdatePermission;
-            HasAddNewPermission = query.HasAddNewPermission;
-
-            Language = query.Language;
-            ViewerId = query.ViewerId;
-
-            DownlineUsername = query.DownlineUsername;
-            Username = query.Username;
-            SearchRoleId = query.SearchRoleId;
-            Status = query.Status;
-            PageSize = query.PageSize;
-            PageIndex = query.PageIndex;
+            this.query = query;
         }
 
-        public UserLevel ActorLevel { get; set; }
+        public UserLevel ActorLevel => query.ActorLevel;
 
-        public bool IsInternal { get; set; }
+        public bool IsInternal => query.IsInternal;
 
-        public bool HasUpdatePermission { get; set; }
+        public bool HasUpdatePermission => query.HasUpdatePermission;
 
-        public bool HasAddNewPermission { get; set; }
+        public bool HasAddNewPermission => query.HasAddNewPermission;
 
-        public static string UsernameAutoSuggestionPath
-            => MicroSites.OldMainUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
+        public string UsernameAutoSuggestionPath => string.Empty;
+        //    => MicroSites.OldMainUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
 
-        public static string EditCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Edit";
+        public string EditCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Edit";
 
-        public static string CreateCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Create";
+        public string CreateCustomerLink => $"{SiteFeaturePath}/CN88CustomerSetting/ViewCN88CustomerSetting/Create";
 
-        public string Language { get; }
+        //public string AddNewMasterLink
+        //    => $"{CreateCustomerLink}?Language={Language}&ProductId=1&CustomerLevel={customerLevel}" +
+        //       $"&CustomerId={custId}&IsReadOnly={isReadOnly}&UplineId={uplineId}&ActorLevel={actorLevel}";
 
-        public int ViewerId { get; }
+        public string Language => query.Language;
 
-        public string DownlineUsername { get; }
+        public int ViewerId => query.ViewerId;
 
-        public string Username { get; }
+        public string DownlineUsername => query.DownlineUsername;
 
-        public byte SearchRoleId { get; }
+        public string Username => query.Username;
 
-        public byte Status { get; }
+        public byte SearchRoleId => query.SearchRoleId;
 
-        public int PageSize { get; }
+        public byte Status => query.Status;
 
-        public int PageIndex { get; }
+        public int PageSize => query.PageSize;
 
-        private static string SiteFeaturePath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("FeaturesAppPath"), "~");
+        public int PageIndex => query.PageIndex;
+
+        private string SiteFeaturePath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("FeaturesAppPath"), "~");
+
+        //private string BuildAddNewLink(byte actorLevelId)
+        //   => $"{CreateCustomerLink}?Language={Language}&ProductId=1&CustomerLevel={customerLevel}" +
+        //      $"&CustomerId={custId}&IsReadOnly={isReadOnly}&UplineId={uplineId}&ActorLevel={actorLevelId}";
     }
 }

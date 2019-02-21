@@ -37,7 +37,7 @@
                 message.PageIndex);
             var model = service.GetCustomerList(param);
 
-            return new CustomerListViewModel(model);
+            return new CustomerListViewModel(model, message.CustId);
         }
 
         public CreditRangeViewModel Handle(CreditPopupQuery message)

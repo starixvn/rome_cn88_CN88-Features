@@ -1,7 +1,7 @@
 ﻿declare var initAutoComplete: any;
 
 class AgentList extends BaseList {
-    $viewedMaster: JQuery;
+	$viewedMaster: JQuery;
     $errAgent: JQuery;
     directDownline: number;
 
@@ -23,7 +23,8 @@ class AgentList extends BaseList {
             this.renderAgentList,
             siteInfrastructure.roleId.agent,
             indexManager.viewAgent,
-            indexManager.addMemberForAgent);
+			indexManager.addMemberForAgent,
+			indexManager.addDirectDownline);
 
         this.cacheDOMElements();
 
@@ -31,8 +32,12 @@ class AgentList extends BaseList {
         this.$("#btn-submit-agent").off("click").on("click", function () {
             self.reportParam.PageSize = 100;
             self.reportParam.PageIndex = 1;
-            self.viewAgents();
-        });
+            self.viewAgents(0);
+		});
+
+		//this.$("#add-agent").off("click").on("click", function () {
+		//	self.indexManager.addAgentForMaster(self.$(this).attr("cust-id"), '', 3);
+		//});
 
         if (this.directDownline >= siteInfrastructure.roleId.master) {
             this.initAutoComplete();
@@ -42,18 +47,19 @@ class AgentList extends BaseList {
     public cacheDOMElements() {
         super.cacheDOMElements();
 
-        this.$viewedMaster = this.$("#txt-viewed-master");
+		this.$viewedMaster = this.$("#txt-viewed-master");
         this.directDownline = parseInt(this.$("#directDownline").val());
         this.$errAgent = this.$("#msg-err-agent");
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
-    }
-    viewAgents = () => {
+	}
+	viewAgents = (custId: number) => {
         this.$.blockUI();
         this.reportParam = {
             DownlineUsername: this.$("#txt-viewed-master").val(),
             Username: this.$username.val(),
-            SearchRoleId: siteInfrastructure.roleId.agent,
+			SearchRoleId: siteInfrastructure.roleId.agent,
+			CustId: custId,
             Status: this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
@@ -74,6 +80,7 @@ class AgentList extends BaseList {
             return;
         }
 
+		this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
         this.$tblReport.removeClass("display-none");
 
         var html = "";
@@ -112,7 +119,7 @@ class AgentList extends BaseList {
 
         this.statusComponent.changeSelection(siteInfrastructure.customerStatus.all);
 
-        this.viewAgents();
+		this.viewAgents(custId);
     };
     initAutoComplete = () => {
         var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
@@ -131,7 +138,7 @@ class AgentList extends BaseList {
         this.$("#PageIndexAgent").val(reportParam.PageIndex);
         this.$("#PageSizeAgent").val(reportParam.PageIndex);
 
-        this.viewAgents();
+        this.viewAgents(0);
     };
 }
 

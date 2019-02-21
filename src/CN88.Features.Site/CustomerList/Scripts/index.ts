@@ -14,7 +14,8 @@
     reportParam = {
         DownlineUsername: null,
         Username: "",
-        SearchRoleId: 0,
+		SearchRoleId: 0,
+		CustId: 0,
         Status: 0,
         PageSize: 100,
         PageIndex: 1
@@ -101,7 +102,7 @@
                     this.masterList.viewList();
                     break;
                 case siteInfrastructure.roleId.agent:
-                    this.agentList.viewAgents();
+                    this.agentList.viewAgents(0);
                     break;
                 case siteInfrastructure.roleId.member:
                     this.memberList.viewMembers();
@@ -137,7 +138,8 @@
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
             Username: this.$("#Username").val(),
-            SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
+			SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
+			CustId: 0,
             Status: parseInt(this.$("#Status").val()),
             PageSize: parseInt(this.$("#PageSize").val()),
             PageIndex: 1
@@ -207,7 +209,21 @@
             UplineId: this.ViewerId,
             ActorLevel: this.ActorLevel
         });
-    };
+	};
+	addDirectDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+		this.storeCurrentPage(reportParam);
+		this.topWindow.showCN88CancelButton = true;
+
+		window.location.href = this.CreateCustomerLink + "?" + this.$.param({
+			Language: this.Language,
+			ProductId: 1,
+			CustomerLevel: custLevelId,
+			CustomerId: custId,
+			IsReadOnly: !this.HasAddNewPermission,
+			UplineId: custId,
+			ActorLevel: this.ActorLevel
+		});
+	};
     addAgentForMaster = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;

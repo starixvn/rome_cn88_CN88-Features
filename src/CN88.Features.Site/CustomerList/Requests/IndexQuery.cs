@@ -7,6 +7,8 @@
 
     public class IndexQuery : BaseQuery, IRequest<IndexViewModel>
     {
+        private IUser viewer;
+
         public IndexQuery() : this(null)
         {
 
@@ -14,16 +16,16 @@
 
         public IndexQuery(IUser viewer) : base(viewer)
         {
-            IsInternal = viewer.IsInternal;
-            HasUpdatePermission = viewer.HasUpdatePermission;
-            HasAddNewPermission = viewer.HasAddNewPermission;
+            this.viewer = viewer;
         }
 
-        public bool IsInternal { get; }
+        public bool IsInternal => viewer.IsInternal;
 
-        public bool HasUpdatePermission { get; }
+        public bool HasUpdatePermission => viewer.HasUpdatePermission;
 
-        public bool HasAddNewPermission { get; }
+        public bool HasAddNewPermission => viewer.HasAddNewPermission;
+
+        public int ActorId => viewer.Id;
 
         public string DownlineUsername { get; set; }
 

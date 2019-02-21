@@ -6,13 +6,15 @@
 
     $dropdownStatus: JQuery;
     $username: JQuery;
-    $tblReport: JQuery;
+	$tblReport: JQuery;
+	$formReport: JQuery;
     getCustomerListUrl: string;
 
     reportParam = {
         DownlineUsername: null,
         Username: "",
-        SearchRoleId: 0,
+		SearchRoleId: 0,
+		CustId: 0,
         Status: 0,
         PageSize: 100,
         PageIndex: 1
@@ -29,7 +31,8 @@
 
     levelId: number;
     viewDownlineFunction: Function;
-    addDownlineFunction: Function;
+	addDownlineFunction: Function;
+	addDirectDownlineFunction: Function;
     reportColSpan: number;
 
     constructor(
@@ -52,14 +55,16 @@
         renderList: Function,
         levelId: number,
         viewDownlineFunction: Function,
-        addDownlineFunction: Function) {
+		addDownlineFunction: Function,
+		addDirectDownlineFunction: Function) {
         this.viewResources = viewResources;
         this.indexManager = indexManager;
         this.renderList = renderList;
         this.levelId = levelId;
         this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 8 : 7;
         this.viewDownlineFunction = viewDownlineFunction;
-        this.addDownlineFunction = addDownlineFunction;
+		this.addDownlineFunction = addDownlineFunction;
+		this.addDirectDownlineFunction = addDirectDownlineFunction;
 
         this.cacheDOMElements();
 
@@ -79,7 +84,8 @@
     public cacheDOMElements() {
         this.$username = this.$("#txt-username-" + this.levelNameLowerCase);
         this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
-        this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
+		this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
+		this.$formReport = this.$("#form-" + this.levelNameLowerCase);
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
         this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
     };
@@ -100,7 +106,8 @@
         this.reportParam = {
             DownlineUsername: null,
             Username: this.$username.val(),
-            SearchRoleId: this.levelId,
+			SearchRoleId: this.levelId,
+			CustId: 0,
             Status: this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
@@ -123,7 +130,8 @@
             var $this = self.$(this);
 
             self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), self.levelId);
-        });
+		});
+
 		this.$tblReport.find(".col-status").click(function () {
             var $this = self.$(this);
 
@@ -135,7 +143,7 @@
                 var $this = self.$(this);
 
                 self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam);
-            });
+			});
         }
 
         if (this.HasAddNewPermission) {
@@ -143,7 +151,13 @@
                 var $this = self.$(this);
 
                 self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId - 1, self.reportParam);
-            });
+			});
+
+			this.$formReport.find("#add-directdownline").click(function () {
+				var $this = self.$(this);
+
+				self.addDirectDownlineFunction($this.attr("cust-id"), '', self.levelId, self.reportParam);
+			});
         }
 
         this.$tblReport.find("> tfoot").empty();

@@ -14,8 +14,10 @@
             this.renderMasterList,
             siteInfrastructure.roleId.master,
             indexManager.viewMaster,
-            indexManager.addAgentForMaster);
-        $('[data-toggle="tooltip"]').tooltip();
+            indexManager.addAgentForMaster,
+			indexManager.addDirectDownline);
+	    $('[data-toggle="tooltip"]').tooltip();
+
     }
 
     renderMasterList = (rs: any) => {
@@ -28,7 +30,11 @@
             html = "<tr><td colspan='7' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
             for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                var customer = rs.Customers[i];
+				let customer = rs.Customers[i],
+					custId = customer.CustId,
+					username = customer.Username,
+					disabledTooltip = `disabled title=${this.indexManager.viewResources.Disabled}`;
+
                 html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='" + customer.CustId + "'>" +
                     "<td class='col-no'>" + customerIndex + "</td>" +
                     "<td class='link view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
@@ -39,8 +45,8 @@
                     "<td class='col-action'>" +
                     "<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='Reset Password'></span>" +
                     "<span class='icon-security' data-toggle='tooltip' data-placement='left' title='Reset Security Code'></span>" +
-                    "<span class='icon-edit' data-toggle='tooltip' data-placement='left' title='Edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasUpdatePermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
-                    "<span class='icon-add' data-toggle='tooltip' data-placement='left' title='Add' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasAddNewPermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
+		    `<span class='icon-edit' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? '' : `${disabledTooltip}`}></span>` +
+		    `<span class='icon-add' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? '' : `${disabledTooltip}`}></span>` +
                     "</td>" +
                     "</tr>";
             }

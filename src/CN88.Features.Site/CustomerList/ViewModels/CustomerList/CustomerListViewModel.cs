@@ -6,8 +6,9 @@
 
     public class CustomerListViewModel
     {
-        public CustomerListViewModel(CustomerListModel model)
+        public CustomerListViewModel(CustomerListModel model, int searchAccountId)
         {
+            SearchAccountId = searchAccountId;
             TotalCustomers = model.TotalCustomers;
             Customers = model.Customers;
 
@@ -17,6 +18,7 @@
                 c.Group = HttpUtility.HtmlEncode(c.Group);
             }
         }
+        public int SearchAccountId { get; }
 
         public int TotalCustomers { get; }
 

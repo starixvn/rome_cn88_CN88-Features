@@ -12,9 +12,9 @@
             this.viewer = viewer;
 
             // Default data, if query string had data, then get from query string.
-            CustId = viewer.Id;
-            CustName = viewer.Name;
-            CustLevelId = viewer.LevelId;
+            //CustId = viewer.Id;
+            //CustName = viewer.Name;
+            //CustLevelId = viewer.LevelId;
         }
 
         public int CustId { get; set; }
