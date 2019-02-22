@@ -85,7 +85,8 @@ class PagerComponent {
 
     isShow = () => {
         // total records less than min page size => do not need to show pager
-        return this.pageList[0] <= this.totalRecords;
+        //return this.pageList[0] <= this.totalRecords;
+        return true;
     };
 
     options = new PagerOption(this.onChange);

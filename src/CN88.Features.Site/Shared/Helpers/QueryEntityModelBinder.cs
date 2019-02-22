@@ -40,15 +40,15 @@
         {
             var boundModel = CallBaseBindModel(controllerContext, bindingContext);
 
-            var reportBaseQuery = boundModel as BaseQuery;
-            if (reportBaseQuery != null)
+            var baseQuery = boundModel as BaseQuery;
+            if (baseQuery != null)
             {
                 var breadcrumbLevelJson = GetBreadcrumbLevelJson(controllerContext);
 
                 if (!string.IsNullOrWhiteSpace(breadcrumbLevelJson)
                    && breadcrumbLevelJson.LastIndexOf(",[", StringComparison.OrdinalIgnoreCase) < 0)
                 {
-                    reportBaseQuery.BreadcrumbLevel = JsonConvert.DeserializeObject<IEnumerable<CustInfo>>(
+                    baseQuery.BreadcrumbLevel = JsonConvert.DeserializeObject<IEnumerable<CustInfo>>(
                         breadcrumbLevelJson,
                         new JsonSerializerSettings
                         {
@@ -56,7 +56,7 @@
                         });
                 }
 
-                return reportBaseQuery;
+                return baseQuery;
             }
 
             return boundModel;

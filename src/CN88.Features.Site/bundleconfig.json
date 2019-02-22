@@ -29,7 +29,7 @@
       "Shared/Scripts/core.js",
       "Shared/Scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/daterangepicker.js",
-      "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/pager.js",
       "Reports/Scripts/legacy.js"
     ]
   },
