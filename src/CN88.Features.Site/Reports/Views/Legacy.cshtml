@@ -9,7 +9,7 @@
     <div class="page-title title-report-detail">
         <div class="">
             @Model.Title
-            @*@Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)*@
+            @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
         </div>
     </div>
     @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)

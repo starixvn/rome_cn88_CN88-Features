@@ -22,7 +22,6 @@
 
         public ReportViewModel(
             ReportQuery query,
-            IEnumerable<CustInfo> breadcrumbLevel,
             IEnumerable<SelectListItem> sportGroups,
             IEnumerable<SelectListItem> betTypes,
             IEnumerable<WinLossModel> reportData,
@@ -33,9 +32,6 @@
 
             ReportData = reportData;
             GrandTotal = grandTotal;
-
-            var breadcrumbLevelJson = JsonHelper.ToJsonFunc(breadcrumbLevel);
-            BreadcrumbLevelViewModel = new BreadcrumbLevelViewModel(BuildReportMainUrl(), breadcrumbLevel, breadcrumbLevelJson);
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.FromDate, query.ToDate);
@@ -66,13 +62,14 @@
 
         public UserLevel ReportLevel => query.CustLevel;
 
-        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel { get; set; }
-
         public IEnumerable<WinLossModel> ReportData { get; }
 
         public WinLossModel GrandTotal { get; }
 
         public ReportFilterViewModel ReportFilterViewModel { get; }
+
+        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
+            => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
 
         public PagerViewModel PagerViewModel =>
             new PagerViewModel(query.PageIndex, query.PageSize, ReportData.Count());
@@ -97,8 +94,45 @@
                 new Dictionary<string, object>(routeValues)
                 {
                     ["CustLevelId"] = ReportLevel.GetDirectDownLineLevel().Value,
-                    ["BreadcrumbLevelJson"] = BreadcrumbLevelViewModel.BreadcrumbLevelJson
+                    ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
                 });
+        }
+
+        private IEnumerable<CustInfo> BuildBreadcrumbLevel(WinLossModel model)
+        {
+            var breadcrumbLevel = new List<CustInfo>();
+
+            breadcrumbLevel.AddRange(GetBreadcrumbLevel());
+
+            breadcrumbLevel.Add(
+                new CustInfo(
+                    query.CustId,
+                    model.Username,
+                    query.CustLevelId,
+                    query.IsOwner));
+
+            return breadcrumbLevel;
+        }
+
+        private IEnumerable<CustInfo> GetBreadcrumbLevel()
+        {
+            var breadcrumbLevel = new List<CustInfo>();
+
+            if (query.BreadcrumbLevel != null
+                && query.BreadcrumbLevel.Any())
+            {
+                foreach (var custInfo in query.BreadcrumbLevel)
+                {
+                    if (custInfo.CustLevelId == query.CustLevelId)
+                    {
+                        break;
+                    }
+
+                    breadcrumbLevel.Add(custInfo);
+                }
+            }
+
+            return breadcrumbLevel;
         }
 
         private IDictionary<string, object> GetDownlineLinkRouteValues(WinLossModel model)

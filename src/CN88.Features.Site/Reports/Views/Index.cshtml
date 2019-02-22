@@ -47,45 +47,7 @@
             @Html.Hidden("ReportType")
             @Html.Hidden("DisplayMode", Model.DisplayMode)
             @Html.Hidden("IsOwner", true)
-            <div id="daterange-picker"
-                 class="daterange-picker"
-                 data-currentdate="@SystemTime.Today"
-                 data-mindate="@Model.CurrentPeriod.FromDate.ToShortDateWithSlash()"
-                 data-maxdate="@Model.CurrentPeriod.ToDate.ToShortDateWithSlash()">
-            </div>
-            <div class="form-group  from-date-box">
-                <div class="control date">
-                    <div id="from-date-container"
-                         class="input-group date fromdate">
-                        <input type="text"
-                               id="from-date"
-                               name="FromDate"
-                               readonly="readonly"
-                               autocomplete="off"
-                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
-                               value="@Model.FromDate.ToShortDateWithSlash()" />
-                        <span class="input-group-addon">
-                            <span class="icon-calendar" id="fdate_trigger"></span>
-                        </span>
-                    </div>
-                </div>
-                <label>@SharedResources.To</label>
-                <div class="control date">
-                    <div id="to-date-container"
-                         class="input-group date todate">
-                        <input type="text"
-                               id="to-date"
-                               name="ToDate"
-                               readonly="readonly"
-                               autocomplete="off"
-                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
-                               value="@Model.ToDate.ToShortDateWithSlash()" />
-                        <span class="input-group-addon">
-                            <span class="icon-calendar" id="tdate_trigger"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            @DateRangePicker.Render(Model.DateRangePickerViewModel)
             <div class="form-group">
                 <input type="button" value="@SharedResources.Today" class="btn-default" />
                 <input type="button" value="@SharedResources.Yesterday" class="btn-secondary" />

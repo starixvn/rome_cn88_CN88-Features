@@ -24,11 +24,10 @@
             SettlementSummaryReport settlementSummaryReport)
         {
             DisplayMode = query.DisplayMode;
-            FromDate = query.FromDate;
-            ToDate = query.ToDate;
             AccountingPeriodGroups = accountingPeriodGroups;
             CurrentPeriod = currentPeriod;
 
+            DateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.FromDate, query.ToDate);
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, 0);
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
 
@@ -58,6 +57,8 @@
         public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
 
         public AccountingPeriod CurrentPeriod { get; }
+
+        public DateRangePickerViewModel DateRangePickerViewModel { get; }
 
         public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
 

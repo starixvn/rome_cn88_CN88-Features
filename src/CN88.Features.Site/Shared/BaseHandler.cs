@@ -5,38 +5,9 @@
     using System.Web.Mvc;
     using Features.Shared.AppResources;
     using Features.Shared.Models;
-    using Requests;
 
     public class BaseHandler
     {
-        protected internal virtual IEnumerable<CustInfo> BuildBreadcrumbLevel(BaseQuery query)
-        {
-            var breadcrumbLevel = new List<CustInfo>();
-
-            if (query.BreadcrumbLevel != null
-                && query.BreadcrumbLevel.Any())
-            {
-                foreach (var custInfo in query.BreadcrumbLevel)
-                {
-                    if (custInfo.CustLevelId == query.CustLevelId)
-                    {
-                        break;
-                    }
-
-                    breadcrumbLevel.Add(custInfo);
-                }
-            }
-
-            breadcrumbLevel.Add(
-                new CustInfo(
-                    query.CustId,
-                    query.CustName,
-                    query.CustLevelId,
-                    query.CustId == query.ViewerId));
-
-            return breadcrumbLevel;
-        }
-
         protected internal IEnumerable<SelectListItem> BuildSportGroupSelectListItems(
             IEnumerable<SportGroup> sportGroups,
             int userSelectedSportGroupId)

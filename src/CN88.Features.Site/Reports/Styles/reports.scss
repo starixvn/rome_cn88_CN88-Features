@@ -32,6 +32,7 @@
 
 .create-form {
     padding: 0 20px;
+
     .form-group {
         margin: 0 0 15px;
 
@@ -50,9 +51,14 @@
         width: 159px;
     }
 
+    .from-date-box > label {
+        display: none;
+    }
+
     .multiselect.btn-default {
         width: 350px;
     }
+
     .multiselect .multiselect-selected-text {
         width: 100%;
     }
@@ -84,22 +90,28 @@
 .title-report-detail {
     padding: 0;
     border-bottom: 1px solid #ddd;
+
     .nav-tabs > li > a {
         line-height: inherit;
         padding: 0 16px;
     }
+
     .report-name {
         padding-right: 24px;
     }
+
     .breadcrumb-container {
         float: right;
     }
 }
+
 .report-form {
     padding-top: 16px;
     border-bottom: 1px solid #c8c8c8;
+
     .form-group {
         vertical-align: bottom;
+
         > label {
             text-transform: uppercase;
             display: block;
@@ -114,53 +126,63 @@
 .complete-settlement {
     color: #27a67b;
 }
+
 .icon-sort-arrow-up {
     display: inline-block;
     transform: rotate(180deg);
 }
+
 #tblSettlementSummary {
     > thead > tr {
-        &:first-child th{
+        &:first-child th {
             border: none;
-            padding-bottom: 4px;            
+            padding-bottom: 4px;
             color: #333;
         }
+
         &:nth-child(2) th {
             padding-top: 0;
             font-size: 12px;
         }
+
         > th {
             font-weight: normal;
         }
     }
-         
 }
+
 .nav-tabs > li.report-name:hover:after {
     width: 0;
 }
+
 .report-detail {
     padding: 0 20px;
     background-color: #fff;
-    height: 100%
+    height: 100%;
 }
+
 .tbl-report {
     > thead > tr > th {
         border-width: 1px;
         font-weight: normal;
         padding: 13px 8px;
     }
+
     > tbody > tr > td {
         padding: 7px 8px;
+
         &.profit-margin span {
             color: #000;
             padding-left: 10px;
         }
     }
+
     > tbody > tr.total > td {
         color: #fff;
         background-color: #2C3E50;
     }
 }
+
 #tblAccountingSheet, #tblSettlementSummary {
     > thead > tr > th, > tbody > tr > td {
         text-align: center;
