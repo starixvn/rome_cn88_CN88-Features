@@ -19,7 +19,14 @@
 
     }
 
-    renderMasterList = (rs: any) => {
+	renderMasterList = (rs: any) => {
+		if (!rs.Customers) {
+			return;
+		}
+
+		this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
+		this.$formReport.find("#add-directdownline").attr("username", rs.Username);
+		this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
         this.$tblReport.removeClass("display-none");
 
         var html = "";

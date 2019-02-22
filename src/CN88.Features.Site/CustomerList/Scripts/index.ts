@@ -101,11 +101,11 @@
                 case siteInfrastructure.roleId.master:
                     this.masterList.viewList();
                     break;
-                case siteInfrastructure.roleId.agent:
-                    this.agentList.viewAgents(0);
+				case siteInfrastructure.roleId.agent:
+					this.agentList.viewAgents(this.reportParam.CustId);
                     break;
                 case siteInfrastructure.roleId.member:
-                    this.memberList.viewMembers(0);
+					this.memberList.viewMembers(this.reportParam.CustId);
                     break;
             }
         }
@@ -176,26 +176,27 @@
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-		let self = this,
-			url = `CreditPopup?custId=${custId}&custLevelId=${custLevelId}`,
-            caption = this.$("#UpdateCredit").val();
+		let url = `CreditPopup?custId=${custId}&custLevelId=${custLevelId}`,
+			popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
 
-		this.$("#myModal").on("show.bs.modal", function (e) {
-			self.$(this).find('.modal-title').text(`${caption} - ${username}`);
-            self.$(this).find('iframe').attr('src', url);
-        }).removeAttr('class').addClass('modal modal-credit').modal('show');
+		this.openPopup(popupTitle, url, 'modal modal-credit');
     };
 
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
-		let self = this,
-			url = `StatusPopup?custId=${custId}&UpdateStatusId=${updateStatusId}`,
-			popupTitle = `${this.$("#UpdateStatus").val()} - ${username}`;
+		let url = `StatusPopup?custId=${custId}&UpdateStatusId=${updateStatusId}`,
+			popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
-		this.$("#myModal").on("show.bs.modal", function (e) {
+		this.openPopup(popupTitle, url, 'modal modal-status');
+	};
+
+	openPopup = (popupTitle: string, url: string, modifiedClass: string) => {
+		let self = this;
+		this.$("#popup").on("show.bs.modal", function (e) {
 			self.$(this).find('.modal-title').text(popupTitle);
 			self.$(this).find('iframe').attr('src', url);
-        }).removeAttr('class').addClass('modal modal-status').modal('show');
-    };
+		}).removeAttr('class').addClass(`modal ${modifiedClass}`).modal('show');
+	};
+
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
@@ -210,7 +211,12 @@
             ActorLevel: this.ActorLevel
         });
 	};
-    addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+	addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
+		reportParam.CustId = custId;
+		reportParam.Username = username;
+		reportParam.SearchRoleId = custLevelId;
+		reportParam.DownlineUsername = downlineUsername; 
+
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
 

@@ -37,7 +37,11 @@
                 message.PageIndex);
             var model = service.GetCustomerList(param);
 
-            return new CustomerListViewModel(model, message.CustId);
+            return new CustomerListViewModel(
+                model, 
+                message.CustId.Equals(0) ? message.ViewerId : message.CustId, 
+                message.Username, 
+                message.DownlineUsername);
         }
 
         public CreditRangeViewModel Handle(CreditPopupQuery message)

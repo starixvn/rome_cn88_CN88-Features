@@ -50,7 +50,7 @@
 					<div class="form-group">
 						<input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
 					</div>
-					<button id="add-directdownline" cust-id="@Model.ViewerId" class="btn-submit add-new"><span class="icon-add"></span>New Master Agent</button>
+					<button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Master Agent</button>
 				</div>
 			</div>
 
@@ -104,7 +104,7 @@
 						<input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
 					</div>
 					<div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-					<button id="add-directdownline" cust-id="" class="btn-submit add-new"><span class="icon-add"></span>New Agent</button>
+					<button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Agent</button>
 				</div>
 			</div>
 			<table id="tbl-agent" class="tble-style2">
@@ -155,7 +155,7 @@
 					<input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
 				</div>
 				<div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-				<button id="add-directdownline" cust-id="" class="btn-submit add-new"><span class="icon-add"></span>New Member</button>
+				<button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Member</button>
 			</div>
 		</div>
 		<table id="tbl-member" class="tble-style2">
@@ -177,7 +177,7 @@
 	</div>
 </div>
 
-<div id="myModal" class="modal" tabindex="-1" role="dialog">
+<div id="popup" class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

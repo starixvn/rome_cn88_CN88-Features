@@ -28,8 +28,8 @@
         var self = this;
         this.$("#btn-submit-member").off("click").on("click", function () {
             self.reportParam.PageSize = 100;
-            self.reportParam.PageIndex = 1;
-            self.viewMembers(0);
+			self.reportParam.PageIndex = 1;
+			self.viewMembers(self.reportParam.CustId);
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
             this.initAutoComplete();
@@ -68,11 +68,13 @@
         this.loadData();
     };
     renderMemberList = (rs: any) => {
-        if (!rs.Customers) {
-            return;
-        }
+		if (!rs.Customers) {
+			return;
+		}
 
 		this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
+		this.$formReport.find("#add-directdownline").attr("username", rs.Username);
+		this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
         this.$tblReport.removeClass("display-none");
 
         var html = "";
