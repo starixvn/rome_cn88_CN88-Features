@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Features.Reports.Models;
+    using Features.Shared.Models;
     using Helpers;
 
     public class BreadcrumbLevelViewModel
@@ -33,11 +33,11 @@
                 url,
                 new Dictionary<string, object>
                 {
-                    { "CustId", model.CustId },
-                    { "CustName", model.CustName },
-                    { "CustLevelId", model.CustLevelId },
-                    { "IsOwner", model.IsOwner },
-                    { "BreadcrumbLevelJson", BreadcrumbLevelJson }
+                    ["CustId"] = model.CustId,
+                    ["CustName"] = model.CustName,
+                    ["CustLevelId"] = model.CustLevelId,
+                    ["IsOwner"] = model.IsOwner,
+                    ["BreadcrumbLevelJson"] = BreadcrumbLevelJson
                 });
         }
     }

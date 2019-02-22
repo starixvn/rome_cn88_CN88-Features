@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Features.Models;
-    using Features.Reports.Models;
+    using Features.Shared.Models;
     using Newtonsoft.Json;
     using Requests;
 

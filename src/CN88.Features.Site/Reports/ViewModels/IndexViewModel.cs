@@ -70,6 +70,7 @@
             {
                 Text = ReportResources.ResourceManager.GetString(t.Value),
                 Value = t.Key.ToString(),
+                Selected = t.Key == ReportTypeConstants.SettledWager
             });
 
         public IEnumerable<SelectListItem> CancelledReportTypes => ReportTypeConstants.CancelledReportTypes
@@ -77,6 +78,7 @@
             {
                 Text = ReportResources.ResourceManager.GetString(t.Value),
                 Value = t.Key.ToString(),
+                Selected = t.Key == ReportTypeConstants.CancelledReport
             });
 
         public SettlementSummaryReport SettlementSummaryReport { get; }

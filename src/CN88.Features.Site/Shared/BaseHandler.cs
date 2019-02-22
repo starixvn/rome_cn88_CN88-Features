@@ -3,14 +3,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Features.Reports.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Models;
     using Requests;
 
     public class BaseHandler
     {
-        protected internal IEnumerable<CustInfo> BuildBreadcrumbLevel(BaseQuery query)
+        protected internal virtual IEnumerable<CustInfo> BuildBreadcrumbLevel(BaseQuery query)
         {
             var breadcrumbLevel = new List<CustInfo>();
 
@@ -32,7 +31,7 @@
                 new CustInfo(
                     query.CustId,
                     query.CustName,
-                    query.CustLevel.GetDirectUpLineLevel().Value,
+                    query.CustLevelId,
                     query.CustId == query.ViewerId));
 
             return breadcrumbLevel;

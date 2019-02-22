@@ -10,7 +10,7 @@
             bool isOwner,
             DateTime fromDate,
             DateTime toDate,
-            int sportTypeId,
+            int sportGroupId,
             int betTypeId,
             int reportType,
             int isLive,
@@ -20,7 +20,7 @@
             IsOwner = isOwner;
             FromDate = fromDate;
             ToDate = toDate;
-            SportTypeId = sportTypeId;
+            SportGroupId = sportGroupId;
             BetTypeId = betTypeId;
             ReportType = reportType;
             IsLive = isLive;
@@ -35,7 +35,7 @@
 
         public DateTime ToDate { get; }
 
-        public int SportTypeId { get; }
+        public int SportGroupId { get; }
 
         public int BetTypeId { get; }
 

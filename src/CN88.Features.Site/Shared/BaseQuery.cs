@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using Features.Models;
-    using Features.Reports.Models;
     using Features.Shared.Models;
 
     public class BaseQuery
@@ -25,6 +24,8 @@
         public string CustName { get; set; }
 
         public byte CustLevelId { get; set; }
+
+        public bool IsOwner { get; set; }
 
         public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 

@@ -6,8 +6,9 @@ class ReportIndexView {
     $wagerTab: JQuery;
     $cancelledTab: JQuery;
     $reportType: JQuery;
-    $changeRptTypeLink: JQuery;
     $createRptForm: JQuery;
+    $wagerRptTypeDropdown: JQuery;
+    $cancelledRptTypeDropdown: JQuery;
 
     dateRangePickerComponent: DateRangePickerComponent;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
@@ -29,13 +30,15 @@ class ReportIndexView {
 
     init = () => {
         this.$.blockUI();
+
         this.cachedDOMElements();
+        this.renderRptTypeDropdown();
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.registerEvents();
-        this.$wagerTab.click();
+
         this.$.unblockUI();
     };
 
@@ -43,30 +46,59 @@ class ReportIndexView {
         this.$wagerTab = this.$("#wager-tab");
         this.$cancelledTab = this.$("#cancelled-tab");
         this.$reportType = this.$("#ReportType");
-        this.$changeRptTypeLink = this.$(".changeRptType-link");
         this.$createRptForm = this.$("#create-rpt-form");
+        this.$wagerRptTypeDropdown = this.$("#dropdown-wagerRptType");
+        this.$cancelledRptTypeDropdown = this.$("#dropdown-cancelledRptType");
+    };
+
+    renderRptTypeDropdown = () => {
+        this.$wagerRptTypeDropdown.multiselect({
+            multiple: false,
+            maxHeight: 300,
+            numberDisplayed: 1,
+            includeSelectAllOption: false,
+        });
+
+        this.$cancelledRptTypeDropdown.multiselect({
+            multiple: false,
+            maxHeight: 300,
+            numberDisplayed: 1,
+            includeSelectAllOption: false,
+        });
     };
 
     registerEvents = () => {
         var self = this;
-        this.$wagerTab.on('click', (e) => {
-            self.updateReportType(self.$(e.target).data("defaulttype"));
-        });
-        this.$cancelledTab.on('click', (e) => {
-            self.updateReportType(self.$(e.target).data("defaulttype"));
-        });
-        this.$changeRptTypeLink.on('click touchend', (e) => {
-            self.updateReportType(self.$(e.target).data("value"));
-        });
 
         this.$createRptForm.submit(() => self.onSubmit());
     };
 
-    public updateReportType(value) {
-        this.$reportType.val(value);
+    updateReportTypeValue = () => {
+        let selected = [];
+        let selectedOptions;
+        let this$ = this.$;
+
+        if (this.$wagerTab.hasClass("active")) {
+            selectedOptions = this.$wagerRptTypeDropdown.find("option:selected");
+
+            selectedOptions.each(function () {
+                selected.push([this$(this).val()]);
+            });
+        }
+
+        if (this.$cancelledTab.hasClass("active")) {
+            selectedOptions = this.$cancelledRptTypeDropdown.find("option:selected");
+
+            selectedOptions.each(function () {
+                selected.push([this$(this).val()]);
+            });
+        }
+
+        this.$reportType.val(selected[0]);
     };
 
     public onSubmit() {
+        this.updateReportTypeValue();
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.betTypeSelectionComponent.updateSelectedValue();
         this.liveStatusSelectionComponent.updateSelectedValue();

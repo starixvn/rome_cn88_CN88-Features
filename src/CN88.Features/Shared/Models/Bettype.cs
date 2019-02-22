@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace CN88.Features.Shared.Models
+﻿namespace CN88.Features.Shared.Models
 {
+    using System;
+
     public class BetType
     {
         public BetType()

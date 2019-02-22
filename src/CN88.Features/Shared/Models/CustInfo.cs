@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Reports.Models
+﻿namespace CN88.Features.Shared.Models
 {
     public class CustInfo
     {

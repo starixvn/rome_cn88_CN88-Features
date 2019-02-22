@@ -18,7 +18,6 @@
 
             FromDate = SystemTime.Today;
             ToDate = SystemTime.Today;
-            IsOwner = CustId == ViewerId;
 
             PageSize = 50;
             PageIndex = 1;
@@ -37,8 +36,6 @@
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
-
-        public bool IsOwner { get; set; }
 
         public int PageIndex { get; set; }
 

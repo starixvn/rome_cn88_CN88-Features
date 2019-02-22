@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Constants;
     using Criteria;
     using Extensions;
     using Fanex.Caching;
@@ -42,23 +43,7 @@
         }
 
         public IEnumerable<WinLossModel> GetWinLoss(ReportParam param)
-        {
-            var balanceUpDay = reportDateService.GetBalanceUpDay();
-            var moveBetsDay = reportDateService.GetMoveBetsDay();
-
-            return dynamicRepository.Fetch<WinLossModel>(
-                new GetWinLossReportCriteria(
-                    param.CustId,
-                    param.IsOwner,
-                    param.FromDate,
-                    param.ToDate,
-                    balanceUpDay,
-                    moveBetsDay,
-                    param.SportTypeId,
-                    param.BetTypeId,
-                    param.IsLive,
-                    param.ReportLevel));
-        }
+            => dynamicRepository.Fetch<WinLossModel>(CreateReportCriteria(param));
 
         public async Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups()
         {
@@ -135,6 +120,55 @@
             }
 
             return result;
+        }
+
+        private ICriteria CreateReportCriteria(ReportParam param)
+        {
+            var balanceUpDay = reportDateService.GetBalanceUpDay();
+            var moveBetsDay = reportDateService.GetMoveBetsDay();
+
+            if (param.ReportType == ReportTypeConstants.SettledWager)
+            {
+                return new GetWinLossReportCriteria(
+                    param.CustId,
+                    param.IsOwner,
+                    param.FromDate,
+                    param.ToDate,
+                    balanceUpDay,
+                    moveBetsDay,
+                    param.SportGroupId,
+                    param.BetTypeId,
+                    param.IsLive,
+                    param.ReportLevel);
+            }
+
+            if (param.ReportType == ReportTypeConstants.UnsettledWager)
+            {
+                return new GetOutstandingReportCriteria(
+                    param.CustId,
+                    param.IsOwner,
+                    param.FromDate,
+                    param.ToDate,
+                    balanceUpDay,
+                    moveBetsDay,
+                    param.SportGroupId,
+                    param.BetTypeId,
+                    param.IsLive,
+                    param.ReportLevel);
+            }
+
+            return new GetCancelledReportCriteria(
+                param.CustId,
+                param.IsOwner,
+                param.FromDate,
+                param.ToDate,
+                balanceUpDay,
+                moveBetsDay,
+                param.SportGroupId,
+                param.BetTypeId,
+                param.IsLive,
+                param.ReportType,
+                param.ReportLevel);
         }
     }
 }

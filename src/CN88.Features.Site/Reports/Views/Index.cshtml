@@ -13,111 +13,100 @@
         <div class="page-title">Create Report</div>
         <div class="filter">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a data-toggle="tab" href="#wagerReport" id="wager-tab" data-defaulttype="@ReportTypeConstants.SettledWager">@ReportResources.WagerReport</a>
+                <li role="presentation" id="wager-tab" class="active">
+                    <a data-toggle="tab" href="#wagerReport" data-defaulttype="@ReportTypeConstants.SettledWager">@ReportResources.WagerReport</a>
                 </li>
-                <li role="presentation">
-                    <a data-toggle="tab" href="#cancelledReport" id="cancelled-tab" data-defaulttype="@ReportTypeConstants.CancelledReport">@ReportResources.CancelledReport</a>
+                <li role="presentation" id="cancelled-tab">
+                    <a data-toggle="tab" href="#cancelledReport" data-defaulttype="@ReportTypeConstants.CancelledReport">@ReportResources.CancelledReport</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
                     <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            @Model.WagerReportTypes.ElementAt(0).Text
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="reportType">
+                        <select id="dropdown-wagerRptType">
                             @foreach (var type in Model.WagerReportTypes)
                             {
-                                <li>
-                                    <a class="changeRptType-link" data-value="@type.Value">@type.Text</a>
-                                </li>
+                                <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
                             }
-                        </ul>
+                        </select>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
                     <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            @Model.CancelledReportTypes.ElementAt(0).Text
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="reportType">
+                        <select id="dropdown-cancelledRptType">
                             @foreach (var type in Model.CancelledReportTypes)
                             {
-                                <li>
-                                    <a class="changeRptType-link" data-value="@type.Value">@type.Text</a>
-                                </li>
+                                <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
                             }
-                        </ul>
+                        </select>
                     </div>
                 </div>
             </div>
-            <form id="create-rpt-form" class="form-horizontal create-form" role="form" action="@Url.Action(Model.ActionName, "Reports")">
-                @Html.Hidden("ReportType")
-                @Html.Hidden("DisplayMode", Model.DisplayMode)
-                <div id="daterange-picker"
-                     class="daterange-picker"
-                     data-currentdate="@SystemTime.Today"
-                     data-mindate="@Model.CurrentPeriod.FromDate.ToShortDateWithSlash()"
-                     data-maxdate="@Model.CurrentPeriod.ToDate.ToShortDateWithSlash()">
-                </div>
-                <div class="form-group  from-date-box">
-                    <div class="control date">
-                        <div id="from-date-container"
-                             class="input-group date fromdate">
-                            <input type="text"
-                                   id="from-date"
-                                   name="FromDate"
-                                   readonly="readonly"
-                                   autocomplete="off"
-                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
-                                   value="@Model.FromDate.ToShortDateWithSlash()" />
-                            <span class="input-group-addon">
-                                <span class="icon-calendar" id="fdate_trigger"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <label>@SharedResources.To</label>
-                    <div class="control date">
-                        <div id="to-date-container"
-                             class="input-group date todate">
-                            <input type="text"
-                                   id="to-date"
-                                   name="ToDate"
-                                   readonly="readonly"
-                                   autocomplete="off"
-                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
-                                   value="@Model.ToDate.ToShortDateWithSlash()" />
-                            <span class="input-group-addon">
-                                <span class="icon-calendar" id="tdate_trigger"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="button" value="@SharedResources.Today" class="btn-default" />
-                    <input type="button" value="@SharedResources.Yesterday" class="btn-secondary" />
-                    <input type="button" value="@SharedResources.Tomorrow" class="btn-default" />
-                </div>
-                <div class="form-group btn-ex-group">
-                    <input type="button" value="@SharedResources.ThisWeek" class="btn-default " />
-                    <input type="button" value="@SharedResources.LastWeek" class="btn-default" />
-                </div>
-                <div class="form-group btn-ex-group">
-                    <input type="button" value="@SharedResources.ThisPeriod" class="btn-default" />
-                    <input type="button" value="@SharedResources.LastPeriod" class="btn-default" />
-                </div>
-                @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
-                @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, false)
-                @LiveStatusSelection.Render(Model.LiveStatusSelectionViewModel, false)
-                <div class="form-group pull-right">
-                    <input type="button" value="@SharedResources.Clear" class="btn btn-default" />
-                    <input type="submit" value="@ReportResources.ViewReport" class="btn-submit" />
-                </div>
-            </form>
         </div>
+        <form id="create-rpt-form" class="form-horizontal create-form filter" role="form" action="@Url.Action(Model.ActionName, "Reports")">
+            @Html.Hidden("ReportType")
+            @Html.Hidden("DisplayMode", Model.DisplayMode)
+            @Html.Hidden("IsOwner", true)
+            <div id="daterange-picker"
+                 class="daterange-picker"
+                 data-currentdate="@SystemTime.Today"
+                 data-mindate="@Model.CurrentPeriod.FromDate.ToShortDateWithSlash()"
+                 data-maxdate="@Model.CurrentPeriod.ToDate.ToShortDateWithSlash()">
+            </div>
+            <div class="form-group  from-date-box">
+                <div class="control date">
+                    <div id="from-date-container"
+                         class="input-group date fromdate">
+                        <input type="text"
+                               id="from-date"
+                               name="FromDate"
+                               readonly="readonly"
+                               autocomplete="off"
+                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                               value="@Model.FromDate.ToShortDateWithSlash()" />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar" id="fdate_trigger"></span>
+                        </span>
+                    </div>
+                </div>
+                <label>@SharedResources.To</label>
+                <div class="control date">
+                    <div id="to-date-container"
+                         class="input-group date todate">
+                        <input type="text"
+                               id="to-date"
+                               name="ToDate"
+                               readonly="readonly"
+                               autocomplete="off"
+                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                               value="@Model.ToDate.ToShortDateWithSlash()" />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar" id="tdate_trigger"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" value="@SharedResources.Today" class="btn-default" />
+                <input type="button" value="@SharedResources.Yesterday" class="btn-secondary" />
+                <input type="button" value="@SharedResources.Tomorrow" class="btn-default" />
+            </div>
+            <div class="form-group btn-ex-group">
+                <input type="button" value="@SharedResources.ThisWeek" class="btn-default " />
+                <input type="button" value="@SharedResources.LastWeek" class="btn-default" />
+            </div>
+            <div class="form-group btn-ex-group">
+                <input type="button" value="@SharedResources.ThisPeriod" class="btn-default" />
+                <input type="button" value="@SharedResources.LastPeriod" class="btn-default" />
+            </div>
+            @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
+            @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, false)
+            @LiveStatusSelection.Render(Model.LiveStatusSelectionViewModel, false)
+            <div class="form-group pull-right">
+                <input type="button" value="@SharedResources.Clear" class="btn btn-default" />
+                <input type="submit" value="@ReportResources.ViewReport" class="btn-submit" />
+            </div>
+        </form>
     </div>
     <div class="result-container">
         <ul class="nav nav-tabs" role="tablist">
