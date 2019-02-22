@@ -6,6 +6,10 @@
     padding: 20px;
 }
 
+.legacy-report .page-title {
+    border-bottom: 1px solid #ddd;
+}
+
 .filter-container {
     background-color: #fff0d7;
 
@@ -77,6 +81,9 @@
     }
     .report-name {
         padding-right: 24px;
+    }
+    .breadcrumb-container {
+        float: right;
     }
 }
 .report-form {

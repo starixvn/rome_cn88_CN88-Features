@@ -5,10 +5,13 @@
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
 @model ReportViewModel
-<div class="report-detail">
+<div class="report-detail legacy-report">
     <div class="page-title title-report-detail">
-        <div class="">@Model.Title</div>
-        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+        <div class="">
+            @Model.Title
+             @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+        </div>
+       
     </div>
     @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
     @{
