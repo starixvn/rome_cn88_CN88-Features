@@ -2,29 +2,29 @@
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
         <tr>
-            <th>@ReportResources.MAUsername</th>
-            <th>@ReportResources.Name</th>
-            <th>@SharedResources.Wagers</th>
-            <th>@SharedResources.Stake</th>
-            <th>@ReportResources.ValidStake</th>
-            <th>@ReportResources.MemberIncome</th>
-            <th>@SharedResources.Agent</th>
-            <th>@ReportResources.AgentResult</th>
-            <th>@ReportResources.MAPoss</th>
-            <th>@ReportResources.MAResult</th>
+            <th class="text-left">@ReportResources.MAUsername</th>
+            <th class="text-left">@ReportResources.Name</th>
+            <th class="text-right">@SharedResources.Wagers</th>
+            <th class="text-right">@SharedResources.Stake</th>
+            <th class="text-right">@ReportResources.ValidStake</th>
+            <th class="text-right">@ReportResources.MemberIncome</th>
+            <th class="text-right">@SharedResources.Agent</th>
+            <th class="text-right">@ReportResources.AgentResult</th>
+            <th class="text-right">@ReportResources.MAPoss</th>
+            <th class="text-right">@ReportResources.MAResult</th>
             @if (Model.IsNotOwner)
             {
-                <th>@SharedResources.SMA</th>
+                <th class="text-right">@SharedResources.SMA</th>
             }
-            <th>@ReportResources.MAStock</th>
-            <th>@ReportResources.MAStockPercent</th>
+            <th class="text-right">@ReportResources.MAStock</th>
+            <th class="text-right">@ReportResources.MAStockPercent</th>
             @if (Model.IsNotOwner)
             {
-                <th>@ReportResources.SMAIncome</th>
-                <th>@ReportResources.SMAPoss</th>
-                <th>@ReportResources.SMAResult</th>
-                <th>@ReportResources.SMAStock</th>
-                <th>@ReportResources.SMAStockPercent</th>
+                <th class="text-right">@ReportResources.SMAIncome</th>
+                <th class="text-right">@ReportResources.SMAPoss</th>
+                <th class="text-right">@ReportResources.SMAResult</th>
+                <th class="text-right">@ReportResources.SMAStock</th>
+                <th class="text-right">@ReportResources.SMAStockPercent</th>
             }
         </tr>
     </thead>
@@ -33,7 +33,7 @@
         {
             var total = Model.GrandTotal;
             <tr class="total">
-                <td>@ReportResources.Total</td>
+                <td class="text-left">@ReportResources.Total</td>
                 <td></td>
                 @HtmlHelpers.RenderNumberCell(total.Wagers)
                 @HtmlHelpers.RenderNumberCell(total.Stake)
@@ -63,7 +63,7 @@
             {
                 <tr>
                     <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
-                    <td>@row.Name</td>
+                    <td class="text-left">@row.Name</td>
                     @HtmlHelpers.RenderNumberCell(row.Wagers)
                     @HtmlHelpers.RenderNumberCell(row.Stake)
                     @HtmlHelpers.RenderNumberCell(row.ValidStake)

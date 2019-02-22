@@ -56,6 +56,7 @@
             </div>
             <form id="create-rpt-form" class="form-horizontal create-form" role="form" action="@Url.Action(Model.ActionName, "Reports")">
                 @Html.Hidden("ReportType")
+                @Html.Hidden("DisplayMode", Model.DisplayMode)
                 <div id="daterange-picker"
                      class="daterange-picker"
                      data-currentdate="@SystemTime.Today"

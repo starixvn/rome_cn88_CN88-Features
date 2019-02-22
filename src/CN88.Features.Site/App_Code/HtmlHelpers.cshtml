@@ -8,13 +8,13 @@
 }
 @helper RenderNumberCell(decimal cellValue, string cellClass = "")
 {
-    <td class="@cellClass">
+    <td class="text-right @cellClass">
         @FormatNumber(cellValue)
     </td>
 }
 @helper RenderNumberCell(int cellValue, string cellClass = "")
 {
-    <td class="@cellClass">
+    <td class="text-right @cellClass">
         @FormatNumber(cellValue)
     </td>
 }

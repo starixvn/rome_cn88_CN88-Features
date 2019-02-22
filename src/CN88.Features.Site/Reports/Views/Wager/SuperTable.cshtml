@@ -3,28 +3,37 @@
     <table class="tbl-noborder tbl-report settlement-report">
         <thead>
             <tr>
-                <th>@SharedResources.UserCode</th>
-                <th class="valid-stake">@SharedResources.SMA</th>
-                <th class="valid-stake">@ReportResources.SMAIncome</th>
-                <th class="valid-stake">@ReportResources.SMAResult</th>
-                <th class="valid-stake">@ReportResources.SMAStock</th>
-                <th class="valid-stake">@ReportResources.SMAStockPercent</th>
+                <th class="text-left">@SharedResources.UserCode</th>
+                <th class="text-right valid-stake">@SharedResources.SMA</th>
+                <th class="text-right valid-stake">@ReportResources.SMAIncome</th>
+                <th class="text-right valid-stake">@ReportResources.SMAResult</th>
+                <th class="text-right valid-stake">@ReportResources.SMAStock</th>
             </tr>
         </thead>
         <tbody>
             @if (Model.ReportData.Any())
             {
+                var total = Model.GrandTotal;
+                <tr class="total">
+                    <td class="text-left">@ReportResources.Total</td>
+                    @HtmlHelpers.RenderNumberCell(total.Super)
+                    @HtmlHelpers.RenderNumberCell(total.SuperIncome)
+                    @HtmlHelpers.RenderNumberCell(total.SuperResult)
+                    @HtmlHelpers.RenderNumberCell(total.SuperStock)
+                </tr>
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
-                        <td>@data.Username</td>
+                        <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
                         @HtmlHelpers.RenderNumberCell(data.Super)
                         @HtmlHelpers.RenderNumberCell(data.SuperIncome)
                         @HtmlHelpers.RenderNumberCell(data.SuperResult)
                         @HtmlHelpers.RenderNumberCell(data.SuperStock)
-                        @HtmlHelpers.RenderNumberCell(data.SuperStock)
                     </tr>
                 }
+                <tr>
+                    <td class="profit-margin" colspan="5" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(total.SuperResult / total.SuperStock) %</strong></td>
+                </tr>
             }
             else
             {
@@ -39,23 +48,34 @@
     <table class="tbl-noborder tbl-report valid-stake-report">
         <thead>
             <tr>
-                <th>@SharedResources.UserCode</th>
-                <th class="valid-stake">@SharedResources.Wagers</th>
-                <th class="valid-stake">@SharedResources.Stake</th>
-                <th class="valid-stake">@ReportResources.ValidStake</th>
-                <th class="valid-stake">@ReportResources.MemberIncome</th>
-                <th class="valid-stake">@SharedResources.Agent</th>
-                <th class="valid-stake">@ReportResources.AgentResult</th>
-                <th class="valid-stake">@ReportResources.MasterAgent</th>
+                <th class="text-left">@SharedResources.UserCode</th>
+                <th class="text-right valid-stake">@SharedResources.Wagers</th>
+                <th class="text-right valid-stake">@SharedResources.Stake</th>
+                <th class="text-right valid-stake">@ReportResources.ValidStake</th>
+                <th class="text-right valid-stake">@ReportResources.MemberIncome</th>
+                <th class="text-right valid-stake">@SharedResources.Agent</th>
+                <th class="text-right valid-stake">@ReportResources.AgentResult</th>
+                <th class="text-right valid-stake">@ReportResources.MasterAgent</th>
             </tr>
         </thead>
         <tbody>
             @if (Model.ReportData.Any())
             {
+                var total = Model.GrandTotal;
+                <tr class="total">
+                    <td class="text-left">@ReportResources.Total</td>
+                    @HtmlHelpers.RenderNumberCell(total.Wagers)
+                    @HtmlHelpers.RenderNumberCell(total.Stake)
+                    @HtmlHelpers.RenderNumberCell(total.ValidStake)
+                    @HtmlHelpers.RenderNumberCell(total.MemberIncome)
+                    @HtmlHelpers.RenderNumberCell(total.Agent)
+                    @HtmlHelpers.RenderNumberCell(total.AgentResult)
+                    @HtmlHelpers.RenderNumberCell(total.Master)
+                </tr>
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
-                        <td>@data.Username</td>
+                        <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
                         @HtmlHelpers.RenderNumberCell(data.Wagers)
                         @HtmlHelpers.RenderNumberCell(data.Stake)
                         @HtmlHelpers.RenderNumberCell(data.ValidStake)
@@ -65,6 +85,9 @@
                         @HtmlHelpers.RenderNumberCell(data.Master)
                     </tr>
                 }
+                <tr>
+                    <td class="profit-margin" colspan="8" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(total.SuperResult / total.SuperStock) %</strong></td>
+                </tr>
             }
             else
             {

@@ -3,17 +3,21 @@
     using System.Collections.Generic;
     using System.Linq;
     using Features.Reports.Models;
-    using Shared.Helpers;
+    using Helpers;
 
     public class BreadcrumbLevelViewModel
     {
         public BreadcrumbLevelViewModel(
+            string mainLink,
             IEnumerable<CustInfo> breadcrumbLevel,
             string breadcrumbLevelJson = null)
         {
+            MainLink = mainLink;
             BreadcrumbLevel = breadcrumbLevel;
             BreadcrumbLevelJson = breadcrumbLevelJson ?? JsonHelper.ToJsonFunc(breadcrumbLevel);
         }
+
+        public string MainLink { get; }
 
         public IEnumerable<CustInfo> BreadcrumbLevel { get; }
 
@@ -32,6 +36,7 @@
                     { "CustId", model.CustId },
                     { "CustName", model.CustName },
                     { "CustLevelId", model.CustLevelId },
+                    { "IsOwner", model.IsOwner },
                     { "BreadcrumbLevelJson", BreadcrumbLevelJson }
                 });
         }

@@ -91,9 +91,10 @@
             return link + $"&{paramName}={paramValue}";
         }
 
+        public static string GetFeaturesAppPath(string virtualPath = "~/")
+            => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, virtualPath);
+
         internal static string GetLink(string action, string currentQuery)
-        {
-            return AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, action + currentQuery);
-        }
+            => GetFeaturesAppPath(action + currentQuery);
     }
 }

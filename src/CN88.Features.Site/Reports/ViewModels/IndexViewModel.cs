@@ -23,6 +23,7 @@
             AccountingPeriod currentPeriod,
             SettlementSummaryReport settlementSummaryReport)
         {
+            DisplayMode = query.DisplayMode;
             FromDate = query.FromDate;
             ToDate = query.ToDate;
             AccountingPeriodGroups = accountingPeriodGroups;
@@ -45,6 +46,8 @@
 
             SettlementSummaryReport = settlementSummaryReport;
         }
+
+        public int DisplayMode { get; }
 
         public string ActionName { get; }
 

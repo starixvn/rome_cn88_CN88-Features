@@ -1,9 +1,9 @@
-﻿@using CN88.Features.Site.Shared.ViewModels.Components
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Site.Shared.ViewModels.Components
 @helper Render(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel)
 {
 var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
 var linkIndex = 0;
-var lastLinkIndex = linkLength - 1;
 
 if (linkLength > 0)
 {
@@ -11,11 +11,13 @@ if (linkLength > 0)
             <ul class="breadcrumb">
                 @foreach (var custinfo in viewModel.BreadcrumbLevel)
                 {
-                    // TODO: Last customer just need to render by text, not link, will refactor soon
-                    if (linkIndex == lastLinkIndex)
+                    if (linkIndex == 0)
                     {
                         <li>
-                            @(custinfo.CustName)
+                            <a class="breadcrumb-link"
+                               href="@viewModel.MainLink">
+                                @(SharedResources.Main)
+                            </a>
                         </li>
                     }
                     else

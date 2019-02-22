@@ -2,24 +2,24 @@
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
         <tr>
-            <th>@ReportResources.AgentUsername</th>
-            <th>@ReportResources.Name</th>
-            <th>@SharedResources.Wagers</th>
-            <th>@SharedResources.Stake</th>
-            <th>@ReportResources.ValidStake</th>
-            <th>@ReportResources.MemberIncome</th>
-            <th>@SharedResources.Agent</th>
-            <th>@ReportResources.AgentPoss</th>
-            <th>@ReportResources.AgentIncome</th>
-            <th>@ReportResources.AgentResult</th>
+            <th class="text-left">@ReportResources.AgentUsername</th>
+            <th class="text-left">@ReportResources.Name</th>
+            <th class="text-right">@SharedResources.Wagers</th>
+            <th class="text-right">@SharedResources.Stake</th>
+            <th class="text-right">@ReportResources.ValidStake</th>
+            <th class="text-right">@ReportResources.MemberIncome</th>
+            <th class="text-right">@SharedResources.Agent</th>
+            <th class="text-right">@ReportResources.AgentPoss</th>
+            <th class="text-right">@ReportResources.AgentIncome</th>
+            <th class="text-right">@ReportResources.AgentResult</th>
             @if (Model.IsNotOwner)
             {
-                <th>@ReportResources.MAPoss</th>
-                <th>@ReportResources.MAIncome</th>
-                <th>@ReportResources.MAResult</th>
+                <th class="text-right">@ReportResources.MAPoss</th>
+                <th class="text-right">@ReportResources.MAIncome</th>
+                <th class="text-right">@ReportResources.MAResult</th>
             }
-            <th>@ReportResources.AgentCurrency</th>
-            <th>@ReportResources.AgentStock</th>
+            <th class="text-right">@ReportResources.AgentCurrency</th>
+            <th class="text-right">@ReportResources.AgentStock</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
         {
             var total = Model.GrandTotal;
             <tr class="total">
-                <td>@ReportResources.Total</td>
+                <td class="text-left">@ReportResources.Total</td>
                 <td></td>
                 @HtmlHelpers.RenderNumberCell(total.Wagers)
                 @HtmlHelpers.RenderNumberCell(total.Stake)
@@ -51,7 +51,7 @@
             {
                 <tr>
                     <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
-                    <td>@row.Name</td>
+                    <td class="text-left">@row.Name</td>
                     @HtmlHelpers.RenderNumberCell(row.Wagers)
                     @HtmlHelpers.RenderNumberCell(row.Stake)
                     @HtmlHelpers.RenderNumberCell(row.ValidStake)

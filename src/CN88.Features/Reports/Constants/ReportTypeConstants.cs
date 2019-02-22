@@ -20,5 +20,13 @@ namespace CN88.Features.Reports.Constants
             [CancelledReport] = nameof(CancelledReport),
             [AbnormalBets] = nameof(AbnormalBets),
         };
+
+        public static IDictionary<int, string> ReportTypes { get; } = new Dictionary<int, string>
+        {
+            [SettledWager] = nameof(SettledWager),
+            [UnsettledWager] = nameof(UnsettledWager),
+            [CancelledReport] = nameof(CancelledReport),
+            [AbnormalBets] = nameof(AbnormalBets),
+        };
     }
 }

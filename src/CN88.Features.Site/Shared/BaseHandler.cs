@@ -28,7 +28,12 @@
                 }
             }
 
-            breadcrumbLevel.Add(new CustInfo(query.CustId, query.CustName, query.CustLevelId));
+            breadcrumbLevel.Add(
+                new CustInfo(
+                    query.CustId,
+                    query.CustName,
+                    query.CustLevel.GetDirectUpLineLevel().Value,
+                    query.CustId == query.ViewerId));
 
             return breadcrumbLevel;
         }

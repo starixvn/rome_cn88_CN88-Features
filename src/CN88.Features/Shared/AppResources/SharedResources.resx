@@ -210,4 +210,7 @@
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>Displaying {from} to {to} of {total} items</value>
   </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
 </root>

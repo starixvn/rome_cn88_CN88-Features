@@ -16,6 +16,8 @@
 
     public class ReportViewModel
     {
+        private const string ReportMainActionPath = "~/Reports/Index";
+
         private readonly ReportQuery query;
 
         public ReportViewModel(
@@ -33,10 +35,10 @@
             GrandTotal = grandTotal;
 
             var breadcrumbLevelJson = JsonHelper.ToJsonFunc(breadcrumbLevel);
-            BreadcrumbLevelViewModel = new BreadcrumbLevelViewModel(breadcrumbLevel, breadcrumbLevelJson);
+            BreadcrumbLevelViewModel = new BreadcrumbLevelViewModel(BuildReportMainUrl(), breadcrumbLevel, breadcrumbLevelJson);
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
-            var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.ToDate, query.FromDate);
+            var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.FromDate, query.ToDate);
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, query.UserSelectedBetTypeId);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
@@ -58,11 +60,6 @@
                 dateRangePickerViewModel,
                 betTypeSelectionViewModel,
                 liveStatusSelectionViewModel);
-
-            Title = query.ReportType == ReportTypeConstants.SettledWager ? ReportResources.SettledWager
-                : query.ReportType == ReportTypeConstants.UnsettledWager ? ReportResources.UnsettledWager
-                : query.ReportType == ReportTypeConstants.CancelledReport ? ReportResources.CancelledReport
-                : ReportResources.AbnormalBets;
         }
 
         public bool IsNotOwner => !query.IsOwner;
@@ -80,9 +77,9 @@
         public PagerViewModel PagerViewModel =>
             new PagerViewModel(query.PageIndex, query.PageSize, ReportData.Count());
 
-        public string Title { get; }
+        public string Title => ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[query.ReportType]);
 
-        public virtual string BuildDrillDownLink(WinLossModel model, string currentLink)
+        public string BuildDrillDownLink(WinLossModel model, string currentLink)
             => ReportLevel.IsMemberLevel()
             ? BuildBetListLink(model)
             : BuildDownlineLink(model, currentLink);
@@ -120,5 +117,13 @@
 
         private IDictionary<string, object> GetBetListLinkRouteValues(WinLossModel model)
            => new Dictionary<string, object> { };
+
+        private string BuildReportMainUrl()
+            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
+                Shared.Helpers.UrlHelper.GetFeaturesAppPath(ReportMainActionPath),
+                new Dictionary<string, object>
+                {
+                    ["DisplayMode"] = query.DisplayMode
+                });
     }
 }

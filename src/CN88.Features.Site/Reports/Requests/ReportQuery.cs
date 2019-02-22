@@ -24,6 +24,8 @@
             PageIndex = 1;
         }
 
+        public int DisplayMode { get; set; }
+
         public int ReportType { get; set; }
 
         public int UserSelectedSportGroupId { get; set; }

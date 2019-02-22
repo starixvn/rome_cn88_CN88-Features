@@ -2,26 +2,26 @@
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
         <tr>
-            <th class="text-left">@ReportResources.SMAUsername<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@SharedResources.Wagers<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@SharedResources.Stake<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@ReportResources.ValidStake<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@ReportResources.MemberIncome<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@SharedResources.Agent<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@ReportResources.AgentResult<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@ReportResources.MasterAgent<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@SharedResources.SMA<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@ReportResources.SMAIncome<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@ReportResources.SMAResult<span class="icon-sort-arrow"></span></th>
-            <th class="text-right">@ReportResources.SMAStock<span class="icon-sort-arrow"></span></th>
+            <th class="text-left">@ReportResources.SMAUsername</th>
+            <th class="text-right">@SharedResources.Wagers</th>
+            <th class="text-right">@SharedResources.Stake</th>
+            <th class="text-right">@ReportResources.ValidStake</th>
+            <th class="text-right">@ReportResources.MemberIncome</th>
+            <th class="text-right">@SharedResources.Agent</th>
+            <th class="text-right">@ReportResources.AgentResult</th>
+            <th class="text-right">@ReportResources.MasterAgent</th>
+            <th class="text-right">@SharedResources.SMA</th>
+            <th class="text-right">@ReportResources.SMAIncome</th>
+            <th class="text-right">@ReportResources.SMAResult</th>
+            <th class="text-right">@ReportResources.SMAStock</th>
             @if (Model.IsNotOwner)
             {
-                <th class="text-right">@ReportResources.SMAStockPercent<span class="icon-sort-arrow"></span></th>
-                <th class="text-right">@ReportResources.HeadlinePoss<span class="icon-sort-arrow"></span></th>
-                <th class="text-right">@ReportResources.HeadlineIncome<span class="icon-sort-arrow"></span></th>
-                <th class="text-right">@ReportResources.HeadlineResult<span class="icon-sort-arrow"></span></th>
-                <th class="text-right">@ReportResources.HeadlineStock<span class="icon-sort-arrow"></span></th>
-                <th class="text-right">@ReportResources.HeadlineStockPercent<span class="icon-sort-arrow"></span></th>
+                <th class="text-right">@ReportResources.SMAStockPercent</th>
+                <th class="text-right">@ReportResources.HeadlinePoss</th>
+                <th class="text-right">@ReportResources.HeadlineIncome</th>
+                <th class="text-right">@ReportResources.HeadlineResult</th>
+                <th class="text-right">@ReportResources.HeadlineStock</th>
+                <th class="text-right">@ReportResources.HeadlineStockPercent</th>
             }
         </tr>
     </thead>
@@ -31,25 +31,25 @@
             var total = Model.GrandTotal;
             <tr class="total">
                 <td class="text-left">@ReportResources.Total</td>
-                @HtmlHelpers.RenderNumberCell(total.Wagers, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.Stake, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.ValidStake, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.MemberIncome, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.Agent, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.AgentResult, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.Master, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.Super, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.SuperIncome, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.SuperResult, "text-right")
-                @HtmlHelpers.RenderNumberCell(total.SuperStock, "text-right")
+                @HtmlHelpers.RenderNumberCell(total.Wagers)
+                @HtmlHelpers.RenderNumberCell(total.Stake)
+                @HtmlHelpers.RenderNumberCell(total.ValidStake)
+                @HtmlHelpers.RenderNumberCell(total.MemberIncome)
+                @HtmlHelpers.RenderNumberCell(total.Agent)
+                @HtmlHelpers.RenderNumberCell(total.AgentResult)
+                @HtmlHelpers.RenderNumberCell(total.Master)
+                @HtmlHelpers.RenderNumberCell(total.Super)
+                @HtmlHelpers.RenderNumberCell(total.SuperIncome)
+                @HtmlHelpers.RenderNumberCell(total.SuperResult)
+                @HtmlHelpers.RenderNumberCell(total.SuperStock)
                 @if (Model.IsNotOwner)
                 {
                     @HtmlHelpers.RenderNumberCell(100)
                     <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.HeadlineIncome, "text-right")
-                    @HtmlHelpers.RenderNumberCell(total.HeadlineResult, "text-right")
-                    @HtmlHelpers.RenderNumberCell(total.HeadlineStock, "text-right")
-                    @HtmlHelpers.RenderNumberCell(100, "text-right")
+                    @HtmlHelpers.RenderNumberCell(total.HeadlineIncome)
+                    @HtmlHelpers.RenderNumberCell(total.HeadlineResult)
+                    @HtmlHelpers.RenderNumberCell(total.HeadlineStock)
+                    @HtmlHelpers.RenderNumberCell(100)
                 }
             </tr>
 
@@ -57,25 +57,25 @@
             {
                 <tr>
                     <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
-                    @HtmlHelpers.RenderNumberCell(row.Wagers, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.Stake, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.ValidStake, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.MemberIncome, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.Agent, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.AgentResult, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.Master, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.Super, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.SuperIncome, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.SuperResult, "text-right")
-                    @HtmlHelpers.RenderNumberCell(row.SuperStock, "text-right")
+                    @HtmlHelpers.RenderNumberCell(row.Wagers)
+                    @HtmlHelpers.RenderNumberCell(row.Stake)
+                    @HtmlHelpers.RenderNumberCell(row.ValidStake)
+                    @HtmlHelpers.RenderNumberCell(row.MemberIncome)
+                    @HtmlHelpers.RenderNumberCell(row.Agent)
+                    @HtmlHelpers.RenderNumberCell(row.AgentResult)
+                    @HtmlHelpers.RenderNumberCell(row.Master)
+                    @HtmlHelpers.RenderNumberCell(row.Super)
+                    @HtmlHelpers.RenderNumberCell(row.SuperIncome)
+                    @HtmlHelpers.RenderNumberCell(row.SuperResult)
+                    @HtmlHelpers.RenderNumberCell(row.SuperStock)
                     @if (Model.IsNotOwner)
                     {
-                        @HtmlHelpers.RenderNumberCell(row.SuperStock / total.SuperStock * 100, "text-right")
-                        @HtmlHelpers.RenderNumberCell(row.HeadlinePoss, "text-right")
-                        @HtmlHelpers.RenderNumberCell(row.HeadlineIncome, "text-right")
-                        @HtmlHelpers.RenderNumberCell(row.HeadlineResult, "text-right")
-                        @HtmlHelpers.RenderNumberCell(row.HeadlineStock, "text-right")
-                        @HtmlHelpers.RenderNumberCell(row.HeadlineStock / total.HeadlineStock * 100, "text-right")
+                        @HtmlHelpers.RenderNumberCell(row.SuperStock / total.SuperStock * 100)
+                        @HtmlHelpers.RenderNumberCell(row.HeadlinePoss)
+                        @HtmlHelpers.RenderNumberCell(row.HeadlineIncome)
+                        @HtmlHelpers.RenderNumberCell(row.HeadlineResult)
+                        @HtmlHelpers.RenderNumberCell(row.HeadlineStock)
+                        @HtmlHelpers.RenderNumberCell(row.HeadlineStock / total.HeadlineStock * 100)
                     }
                 </tr>
             }
