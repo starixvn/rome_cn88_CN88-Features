@@ -81,7 +81,7 @@
             }
 
             <tr>
-                <td colspan="@(Model.IsNotOwner ? "18" : "12")" align="right"><span>@ReportResources.ProfitMagin</span> @HtmlHelpers.FormatNumber(total.SuperResult / total.SuperStock) %</td>
+                <td class="profit-margin" colspan="@(Model.IsNotOwner ? "18" : "12")" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(total.SuperResult / total.SuperStock) %</strong></td>
             </tr>
         }
         else
