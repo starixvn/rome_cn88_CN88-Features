@@ -2,6 +2,7 @@
     background-color: #ecf0f1;
 }
 
+
 .wager-report {
     padding: 20px;
 
@@ -184,6 +185,11 @@
         text-align: center;
     }
 }
+
+.title-report-detail .nav-tabs {
+    float: left;
+}
+
 
 @media all and (min-width: 1280px) {
     .wager-report {
