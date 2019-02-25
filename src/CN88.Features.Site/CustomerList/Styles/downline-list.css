@@ -23,17 +23,17 @@
     .add-new .icon-add:after {
       display: none; }
 
-.tble-style2 {
+.tbl-style2 {
   width: 100%; }
-  .tble-style2 [class^="icon"]:hover:not(:disabled) {
+  .tbl-style2 [class^="icon"]:hover:not(:disabled) {
     cursor: pointer; }
-  .tble-style2 .col-no {
+  .tbl-style2 .col-no {
     width: 50px; }
-  .tble-style2 .col-action {
+  .tbl-style2 .col-action {
     width: 150px; }
-  .tble-style2 .col-status {
+  .tbl-style2 .col-status {
     width: 110px; }
-  .tble-style2 .col-date {
+  .tbl-style2 .col-date {
     width: 180px; }
 
 .icon-add {
