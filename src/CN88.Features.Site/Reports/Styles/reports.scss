@@ -2,11 +2,17 @@
     background-color: #ecf0f1;
 }
 
+.page-title {
+    padding: 20px;
+}
+
 .wager-report {
     padding: 20px;
+
     .nav-tabs, .breadcrumb-container {
         display: table-cell;
     }
+
     .nav-tabs {
         border-bottom: none;
     }
