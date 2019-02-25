@@ -186,4 +186,10 @@
   <data name="Username" xml:space="preserve">
     <value>ชื่อผู้ใช้ระบบ</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>เครดิตที่ใช้ไป</value>
+  </data>
 </root>

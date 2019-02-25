@@ -123,4 +123,28 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>Bạn không được cho phép sử dụng chức năng này.</value>
   </data>
+  <data name="To" xml:space="preserve">
+    <value>đến</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hôm nay</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Hôm qua</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Từ</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>Tiền cược</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Tuần trước</value>
+  </data>
 </root>

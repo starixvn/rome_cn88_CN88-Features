@@ -186,4 +186,10 @@
   <data name="Username" xml:space="preserve">
     <value>Tên đăng nhập</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>Hạn mức tín dụng đã dùng</value>
+  </data>
 </root>

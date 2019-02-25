@@ -124,7 +124,7 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TotalBets.
+        ///   Looks up a localized string similar to Total Bets.
         /// </summary>
         public static string TotalBets {
             get {

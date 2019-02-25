@@ -123,4 +123,40 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้.</value>
   </data>
+  <data name="To" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>วันนี้</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>เมื่อวาน</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>จาก</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>กีฬา</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>เงินเดิมพัน </value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>สมาชิก</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>ตัวแทน</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>หน้า</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>ของ</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>สัปดาห์ล่าสุด</value>
+  </data>
 </root>

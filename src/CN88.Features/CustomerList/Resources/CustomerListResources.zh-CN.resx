@@ -186,4 +186,10 @@
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>已用額度</value>
+  </data>
 </root>

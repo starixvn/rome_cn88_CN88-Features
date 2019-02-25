@@ -186,4 +186,10 @@
   <data name="Username" xml:space="preserve">
     <value>ユーザー名</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>使用貸付金額</value>
+  </data>
 </root>

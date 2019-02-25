@@ -118,9 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>No information is available</value>
+    <value>没资料显示</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>您没有使用此功能的权限.</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日赛事</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨天</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>运动</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>投注额</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>之第</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>上周</value>
   </data>
 </root>

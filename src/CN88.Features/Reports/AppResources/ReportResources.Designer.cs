@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CN88.Features.Reports.AppResources
-{
-
-
+namespace CN88.Features.Reports.AppResources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,554 +22,454 @@ namespace CN88.Features.Reports.AppResources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ReportResources
-    {
-
+    public class ReportResources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ReportResources()
-        {
+        internal ReportResources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CN88.Features.Reports.AppResources.ReportResources", typeof(ReportResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Abnormal Bets.
         /// </summary>
-        public static string AbnormalBets
-        {
-            get
-            {
+        public static string AbnormalBets {
+            get {
                 return ResourceManager.GetString("AbnormalBets", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Accounting Sheet.
         /// </summary>
-        public static string AccountingSheet
-        {
-            get
-            {
+        public static string AccountingSheet {
+            get {
                 return ResourceManager.GetString("AccountingSheet", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Agent Currency.
         /// </summary>
-        public static string AgentCurrency
-        {
-            get
-            {
+        public static string AgentCurrency {
+            get {
                 return ResourceManager.GetString("AgentCurrency", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Agent Income.
         /// </summary>
-        public static string AgentIncome
-        {
-            get
-            {
+        public static string AgentIncome {
+            get {
                 return ResourceManager.GetString("AgentIncome", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Agent Poss..
         /// </summary>
-        public static string AgentPoss
-        {
-            get
-            {
+        public static string AgentPoss {
+            get {
                 return ResourceManager.GetString("AgentPoss", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Agent Result.
         /// </summary>
-        public static string AgentResult
-        {
-            get
-            {
+        public static string AgentResult {
+            get {
                 return ResourceManager.GetString("AgentResult", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Agent Result A.
         /// </summary>
-        public static string AgentResultA
-        {
-            get
-            {
+        public static string AgentResultA {
+            get {
                 return ResourceManager.GetString("AgentResultA", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Agent Stock.
         /// </summary>
-        public static string AgentStock
-        {
-            get
-            {
+        public static string AgentStock {
+            get {
                 return ResourceManager.GetString("AgentStock", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Agent Username.
         /// </summary>
-        public static string AgentUsername
-        {
-            get
-            {
+        public static string AgentUsername {
+            get {
                 return ResourceManager.GetString("AgentUsername", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cancelled Report.
         /// </summary>
-        public static string CancelledReport
-        {
-            get
-            {
+        public static string CancelledReport {
+            get {
                 return ResourceManager.GetString("CancelledReport", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Complete.
         /// </summary>
-        public static string Complete
-        {
-            get
-            {
+        public static string Complete {
+            get {
                 return ResourceManager.GetString("Complete", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Headline Income.
         /// </summary>
-        public static string HeadlineIncome
-        {
-            get
-            {
+        public static string HeadlineIncome {
+            get {
                 return ResourceManager.GetString("HeadlineIncome", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Headline Poss..
         /// </summary>
-        public static string HeadlinePoss
-        {
-            get
-            {
+        public static string HeadlinePoss {
+            get {
                 return ResourceManager.GetString("HeadlinePoss", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Headline Result.
         /// </summary>
-        public static string HeadlineResult
-        {
-            get
-            {
+        public static string HeadlineResult {
+            get {
                 return ResourceManager.GetString("HeadlineResult", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Headline Stock.
         /// </summary>
-        public static string HeadlineStock
-        {
-            get
-            {
+        public static string HeadlineStock {
+            get {
                 return ResourceManager.GetString("HeadlineStock", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Headline Stock %.
         /// </summary>
-        public static string HeadlineStockPercent
-        {
-            get
-            {
+        public static string HeadlineStockPercent {
+            get {
                 return ResourceManager.GetString("HeadlineStockPercent", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Incomplete.
         /// </summary>
-        public static string Incomplete
-        {
-            get
-            {
+        public static string Incomplete {
+            get {
                 return ResourceManager.GetString("Incomplete", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MA Income.
         /// </summary>
-        public static string MAIncome
-        {
-            get
-            {
+        public static string MAIncome {
+            get {
                 return ResourceManager.GetString("MAIncome", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MA Poss..
         /// </summary>
-        public static string MAPoss
-        {
-            get
-            {
+        public static string MAPoss {
+            get {
                 return ResourceManager.GetString("MAPoss", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MAResult.
         /// </summary>
-        public static string MAResult
-        {
-            get
-            {
+        public static string MAResult {
+            get {
                 return ResourceManager.GetString("MAResult", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Master Agent.
         /// </summary>
-        public static string MasterAgent
-        {
-            get
-            {
+        public static string MasterAgent {
+            get {
                 return ResourceManager.GetString("MasterAgent", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MA Stock.
         /// </summary>
-        public static string MAStock
-        {
-            get
-            {
+        public static string MAStock {
+            get {
                 return ResourceManager.GetString("MAStock", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MA Stock %.
         /// </summary>
-        public static string MAStockPercent
-        {
-            get
-            {
+        public static string MAStockPercent {
+            get {
                 return ResourceManager.GetString("MAStockPercent", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MA Username.
         /// </summary>
-        public static string MAUsername
-        {
-            get
-            {
+        public static string MAUsername {
+            get {
                 return ResourceManager.GetString("MAUsername", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Member Income.
         /// </summary>
-        public static string MemberIncome
-        {
-            get
-            {
+        public static string MemberIncome {
+            get {
                 return ResourceManager.GetString("MemberIncome", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Member Username.
         /// </summary>
-        public static string MemberUsername
-        {
-            get
-            {
+        public static string MemberUsername {
+            get {
                 return ResourceManager.GetString("MemberUsername", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string Name
-        {
-            get
-            {
+        public static string Name {
+            get {
                 return ResourceManager.GetString("Name", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Profit Magin.
         /// </summary>
-        public static string ProfitMagin
-        {
-            get
-            {
+        public static string ProfitMagin {
+            get {
                 return ResourceManager.GetString("ProfitMagin", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Settled.
         /// </summary>
-        public static string Settled
-        {
-            get
-            {
+        public static string Settled {
+            get {
                 return ResourceManager.GetString("Settled", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Settled Wager.
         /// </summary>
-        public static string SettledWager
-        {
-            get
-            {
+        public static string SettledWager {
+            get {
                 return ResourceManager.GetString("SettledWager", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Settlement.
         /// </summary>
-        public static string Settlement
-        {
-            get
-            {
+        public static string Settlement {
+            get {
                 return ResourceManager.GetString("Settlement", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Settlement Summary.
         /// </summary>
-        public static string SettlementSummary
-        {
-            get
-            {
+        public static string SettlementSummary {
+            get {
                 return ResourceManager.GetString("SettlementSummary", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to SMA Income.
         /// </summary>
-        public static string SMAIncome
-        {
-            get
-            {
+        public static string SMAIncome {
+            get {
                 return ResourceManager.GetString("SMAIncome", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to SMA Poss..
         /// </summary>
-        public static string SMAPoss
-        {
-            get
-            {
+        public static string SMAPoss {
+            get {
                 return ResourceManager.GetString("SMAPoss", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to SMA Result.
         /// </summary>
-        public static string SMAResult
-        {
-            get
-            {
+        public static string SMAResult {
+            get {
                 return ResourceManager.GetString("SMAResult", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to SMA Stock.
         /// </summary>
-        public static string SMAStock
-        {
-            get
-            {
+        public static string SMAStock {
+            get {
                 return ResourceManager.GetString("SMAStock", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to SMA Stock %.
         /// </summary>
-        public static string SMAStockPercent
-        {
-            get
-            {
+        public static string SMAStockPercent {
+            get {
                 return ResourceManager.GetString("SMAStockPercent", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to SMA Username.
         /// </summary>
-        public static string SMAUsername
-        {
-            get
-            {
+        public static string SMAUsername {
+            get {
                 return ResourceManager.GetString("SMAUsername", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Today.
         /// </summary>
-        public static string Today
-        {
-            get
-            {
+        public static string Today {
+            get {
                 return ResourceManager.GetString("Today", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
-        public static string Total
-        {
-            get
-            {
+        public static string Total {
+            get {
                 return ResourceManager.GetString("Total", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Unsettled.
         /// </summary>
-        public static string Unsettled
-        {
-            get
-            {
+        public static string Unsettled {
+            get {
                 return ResourceManager.GetString("Unsettled", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Unsettled Wager.
         /// </summary>
-        public static string UnsettledWager
-        {
-            get
-            {
+        public static string UnsettledWager {
+            get {
                 return ResourceManager.GetString("UnsettledWager", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Valid Stake.
         /// </summary>
-        public static string ValidStake
-        {
-            get
-            {
+        public static string ValidStake {
+            get {
                 return ResourceManager.GetString("ValidStake", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to View Report.
         /// </summary>
-        public static string ViewReport
-        {
-            get
-            {
+        public static string ViewReport {
+            get {
                 return ResourceManager.GetString("ViewReport", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Wager Report.
         /// </summary>
-        public static string WagerReport
-        {
-            get
-            {
+        public static string WagerReport {
+            get {
                 return ResourceManager.GetString("WagerReport", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Yesterday.
         /// </summary>
-        public static string Yesterday
-        {
-            get
-            {
+        public static string Yesterday {
+            get {
                 return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }

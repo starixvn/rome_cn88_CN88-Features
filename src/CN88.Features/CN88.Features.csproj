@@ -203,6 +203,11 @@
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-CN.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-Hans.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-TW.resx" />
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.ja-JP.resx" />
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.ko-KR.resx" />
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.th-TH.resx" />
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.vi-VN.resx" />
+    <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-CN.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.ko-KR.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.th-TH.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.vi-VN.resx" />
@@ -220,10 +225,15 @@
       <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\AppResources\SharedResources.ja-JP.resx" />
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.ja-JP.resx" />
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.ko-KR.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SubAccountResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.th-TH.resx" />
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.vi-VN.resx" />
+    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-CN.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-Hans.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-TW.resx" />
   </ItemGroup>

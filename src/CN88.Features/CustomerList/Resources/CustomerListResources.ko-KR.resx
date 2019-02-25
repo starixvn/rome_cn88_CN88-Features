@@ -186,4 +186,10 @@
   <data name="Username" xml:space="preserve">
     <value>사용자 이름</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>사용된 크레딧</value>
+  </data>
 </root>
