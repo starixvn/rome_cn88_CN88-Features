@@ -3,16 +3,7 @@
 /// <reference path="../../shared/scripts/components/pager.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
-class WagerReport {
-    $: JQueryStatic;
-    $reportForm: JQuery;
-
-    dateRangePickerComponent: DateRangePickerComponent;
-    sportGroupSelectionComponent: SingleSelectionDropdownComponent;
-    betTypeSelectionComponent: SingleSelectionDropdownComponent;
-    liveStatusSelectionComponent: SingleSelectionDropdownComponent;
-    pagerComponent: PagerComponent;
-
+class WagerReport extends LegacyReport {
     elements = {
         tabSelectors: null,
         tabContent: null
@@ -25,36 +16,31 @@ class WagerReport {
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
         pagerComponent: PagerComponent) {
-        this.$ = $;
-        this.dateRangePickerComponent = dateRangePickerComponent;
-        this.sportGroupSelectionComponent = sportGroupSelectionComponent;
-        this.betTypeSelectionComponent = betTypeSelectionComponent;
-        this.liveStatusSelectionComponent = liveStatusSelectionComponent;
-        this.pagerComponent = pagerComponent;
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, pagerComponent)
     }
 
     init = () => {
         this.$.blockUI();
-        this.cacheDOMElement();
+        this.cacheDOMElements();
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
-        this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
+        this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.pagerComponent.pageList = this.pagerComponent.pageList;
         this.pagerComponent.render();
         this.registerEvents();
         this.$.unblockUI();
     };
 
-    public cacheDOMElement() {
-        this.$reportForm = this.$("#report-form");
+    public cacheDOMElements() {
+        super.cacheDOMElements();
         this.elements.tabSelectors = $(".tab-selector");
         this.elements.tabContent = $(".tab-content");
     }
 
     public registerEvents() {
         let self = this;
-        this.$reportForm.submit(() => self.onReportSubmit());
+        super.registerEvents();
 
         this.elements.tabSelectors.on("click touchend", function () {
             self.elements.tabSelectors.removeClass("active");
@@ -63,12 +49,6 @@ class WagerReport {
             self.elements.tabContent.addClass("display-none");
             $("#" + target).removeClass("display-none");
         });
-    }
-
-    public onReportSubmit() {
-        this.sportGroupSelectionComponent.updateSelectedValue();
-        this.betTypeSelectionComponent.updateSelectedValue();
-        this.liveStatusSelectionComponent.updateSelectedValue();
     }
 }
 

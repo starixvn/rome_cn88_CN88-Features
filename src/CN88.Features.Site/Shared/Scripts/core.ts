@@ -12,7 +12,8 @@ class CN88Features {
     format = {
         monthFormat: "MMMM - yyyy",
         shortDateWithSlash_DatePicker: "MM/DD/YYYY",
-        shortDateWithSlash_MonthPicker: "MM/dd/yyyy"
+        shortDateWithSlash_MonthPicker: "MM/dd/yyyy",
+        shortDate_DatePicker: "YYYY-MM-DD"
     };
 
     sort = {

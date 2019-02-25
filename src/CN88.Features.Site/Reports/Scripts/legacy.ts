@@ -3,14 +3,9 @@
 /// <reference path="../../shared/scripts/components/pager.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
-class LegacyReport {
-    $: JQueryStatic;
+class LegacyReport extends BaseReport {
     $reportForm: JQuery;
 
-    dateRangePickerComponent: DateRangePickerComponent;
-    sportGroupSelectionComponent: SingleSelectionDropdownComponent;
-    betTypeSelectionComponent: SingleSelectionDropdownComponent;
-    liveStatusSelectionComponent: SingleSelectionDropdownComponent;
     pagerComponent: PagerComponent;
 
     constructor(
@@ -20,22 +15,19 @@ class LegacyReport {
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
         pagerComponent: PagerComponent) {
-        this.$ = $;
-        this.dateRangePickerComponent = dateRangePickerComponent;
-        this.sportGroupSelectionComponent = sportGroupSelectionComponent;
-        this.betTypeSelectionComponent = betTypeSelectionComponent;
-        this.liveStatusSelectionComponent = liveStatusSelectionComponent;
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent)
+
         this.pagerComponent = pagerComponent;
     }
 
     init = () => {
         this.$.blockUI();
-        this.cacheDOMElement();
+        this.cacheDOMElements();
 
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
-        this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
+        this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.pagerComponent.pageList = this.pagerComponent.pageList;
         this.pagerComponent.render();
 
@@ -43,7 +35,7 @@ class LegacyReport {
         this.$.unblockUI();
     };
 
-    public cacheDOMElement() {
+    public cacheDOMElements() {
         this.$reportForm = this.$("#report-form");
     }
 

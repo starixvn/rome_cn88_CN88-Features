@@ -42,7 +42,7 @@ class DateRangePickerComponent {
 
         dateRangePicker.nexDatePicker({
             datePickerFormat: {
-                dateFormat: cn88Features.format.shortDateWithSlash_DatePicker
+                dateFormat: cn88Features.format.shortDate_DatePicker
             },
             selectedItem: dateRangePicker.data("selecteddaterange"),
             minDate: new Date(minDate),

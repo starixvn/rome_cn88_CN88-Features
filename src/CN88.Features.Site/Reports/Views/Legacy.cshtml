@@ -12,7 +12,7 @@
             @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
         </div>
     </div>
-    @Html.Partial("~/Reports/Views/_Filter.cshtml", Model.ReportFilterViewModel)
+    @Html.Partial("~/Reports/Views/Filter.cshtml", Model.ReportFilterViewModel)
     @{
         if (Model.ReportLevel.IsMemberLevel())
         {

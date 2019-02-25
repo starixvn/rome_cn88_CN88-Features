@@ -1,19 +1,24 @@
 ﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/core.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 "use strict";
-class ReportIndexView {
-    $: JQueryStatic;
+class ReportIndexView extends BaseReport {
     $wagerTab: JQuery;
     $cancelledTab: JQuery;
     $reportType: JQuery;
     $createRptForm: JQuery;
     $wagerRptTypeDropdown: JQuery;
     $cancelledRptTypeDropdown: JQuery;
+    $todayBtn: JQuery;
+    $tomorrowBtn: JQuery;
+    $yesterdayBtn: JQuery;
+    $fromDate: JQuery;
+    $toDate: JQuery;
+    $choiceBtn: JQuery;
 
-    dateRangePickerComponent: DateRangePickerComponent;
-    sportGroupSelectionComponent: SingleSelectionDropdownComponent;
-    betTypeSelectionComponent: SingleSelectionDropdownComponent;
-    liveStatusSelectionComponent: SingleSelectionDropdownComponent;
+    today: Date;
+    yesterday: any;
+    tomorrow: any;
 
     constructor(
         $: JQueryStatic,
@@ -21,11 +26,7 @@ class ReportIndexView {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent) {
-        this.$ = $;
-        this.dateRangePickerComponent = dateRangePickerComponent;
-        this.sportGroupSelectionComponent = sportGroupSelectionComponent;
-        this.betTypeSelectionComponent = betTypeSelectionComponent;
-        this.liveStatusSelectionComponent = liveStatusSelectionComponent;
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent)
     }
 
     init = () => {
@@ -36,7 +37,13 @@ class ReportIndexView {
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
-        this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
+        this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
+
+        let dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
+        this.today = new Date(dateRangePicker.data("currentdate"));
+        this.yesterday = new Date().setDate(this.today.getDate() - 1);
+        this.tomorrow = new Date().setDate(this.today.getDate() + 1);
+
         this.registerEvents();
 
         this.$.unblockUI();
@@ -49,6 +56,12 @@ class ReportIndexView {
         this.$createRptForm = this.$("#create-rpt-form");
         this.$wagerRptTypeDropdown = this.$("#dropdown-wagerRptType");
         this.$cancelledRptTypeDropdown = this.$("#dropdown-cancelledRptType");
+        this.$todayBtn = this.$("#btn-today");
+        this.$tomorrowBtn = this.$("#btn-tomorrow");
+        this.$yesterdayBtn = this.$("#btn-yesterday");
+        this.$fromDate = this.$("#from-date");
+        this.$toDate = this.$("#to-date");
+        this.$choiceBtn = this.$(".btn-quick-choice");
     };
 
     renderRptTypeDropdown = () => {
@@ -69,9 +82,28 @@ class ReportIndexView {
 
     registerEvents = () => {
         var self = this;
-
         this.$createRptForm.submit(() => self.onSubmit());
+
+        this.$todayBtn.click((e) => {
+            this.changeDateRange(e, this.today, this.today);
+        });
+
+        this.$yesterdayBtn.click((e) => {
+            this.changeDateRange(e, this.yesterday, this.yesterday);
+        });
+
+        this.$tomorrowBtn.click((e) => {
+            this.changeDateRange(e, this.tomorrow, this.tomorrow);
+        });
     };
+
+    changeDateRange = (e: JQueryEventObject, fromDate, toDate) => {
+        var button = this.$(e.target);
+        this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
+        button.removeClass("btn-default").addClass("btn-secondary");
+        this.$fromDate.val(moment(fromDate).format(cn88Features.format.shortDate_DatePicker));
+        this.$toDate.val(moment(toDate).format(cn88Features.format.shortDate_DatePicker));
+    }
 
     updateReportTypeValue = () => {
         let selected = [];
