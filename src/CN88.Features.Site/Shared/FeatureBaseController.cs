@@ -6,10 +6,12 @@
     using Features.Models;
     using MediatR;
     using Requests;
+    using ViewModels;
 
     public abstract class FeatureBaseController : BaseController
     {
         private const string NoInformationPageViewPath = "~/Shared/Views/NoInformation.cshtml";
+        private const string InvalidExcelFileName = "Invalid";
 
         protected readonly IMediator mediator;
 
@@ -45,5 +47,19 @@
 
             return Json(await mediator.Send(message).ConfigureAwait(false), jsonRequestBehavior);
         }
+
+        protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
+        {
+            var baseQuery = message as BaseQuery;
+            if (baseQuery != null && !baseQuery.IsValid())
+            {
+                return GetExcelContent(new ExcelFileViewModel(InvalidExcelFileName, new byte[] { }));
+            }
+
+            return GetExcelContent(await mediator.Send(message));
+        }
+
+        private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
+            => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
     }
 }

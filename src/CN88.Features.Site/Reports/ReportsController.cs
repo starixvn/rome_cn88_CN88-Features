@@ -25,5 +25,8 @@
 
         public async Task<ActionResult> Legacy(ReportQuery message)
             => await ViewAsync(message, LegacyViewPath);
+
+        public async Task<ActionResult> Excel(ReportExcelQuery message)
+            => await ExcelView(message);
     }
 }
