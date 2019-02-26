@@ -192,4 +192,7 @@
   <data name="UsedCredit" xml:space="preserve">
     <value>Hạn mức tín dụng đã dùng</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng cộng</value>
+  </data>
 </root>

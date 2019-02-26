@@ -192,4 +192,7 @@
   <data name="UsedCredit" xml:space="preserve">
     <value>已用額度</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>總和</value>
+  </data>
 </root>

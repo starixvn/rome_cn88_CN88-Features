@@ -192,4 +192,7 @@
   <data name="UsedCredit" xml:space="preserve">
     <value>사용된 크레딧</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>총</value>
+  </data>
 </root>

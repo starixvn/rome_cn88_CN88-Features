@@ -231,4 +231,13 @@
   <data name="UsernameOrNameContains" xml:space="preserve">
     <value>Username Or Name contains</value>
   </data>
+  <data name="UserCode" xml:space="preserve">
+    <value>User Code</value>
+  </data>
+  <data name="LoginDateTime" xml:space="preserve">
+    <value>Login Date Time</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

@@ -378,6 +378,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SubAccount\Requests\CreateCommand.cs" />
+    <Compile Include="CustomerList\Requests\OnlineMembersQuery.cs" />
+    <Compile Include="CustomerList\ViewModels\OnlineMemberViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\BreadcrumbLevelViewModel.cs" />
     <Compile Include="Shared\Helpers\JsonHelper.cs" />
     <Compile Include="Shared\Helpers\UrlHelper.cs" />
@@ -485,6 +487,7 @@
     <Content Include="Reports\Views\Wager\SuperTableByUpper.cshtml" />
     <Content Include="Reports\Views\Wager\MemberTable.cshtml" />
     <Content Include="Reports\Views\Index\CreateReport.cshtml" />
+    <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

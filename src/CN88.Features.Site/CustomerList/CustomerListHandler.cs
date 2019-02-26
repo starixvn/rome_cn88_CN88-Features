@@ -5,6 +5,7 @@
     using CN88.Features.Models;
     using CN88.Features.Site.CustomerList;
     using CN88.Features.Site.CustomerList.ViewModels;
+    using CustomerList.Requests;
     using MediatR;
 
     public class CustomerListHandler :
@@ -13,7 +14,8 @@
          IRequestHandler<CreditPopupQuery, CreditRangeViewModel>,
          IRequestHandler<CustomerStatusPopupQuery, StatusPopupViewModel>,
          IRequestHandler<CreditCommand, Result>,
-         IRequestHandler<CustomerStatusCommand, Result>
+         IRequestHandler<CustomerStatusCommand, Result>,
+         IRequestHandler<OnlineMembersQuery, OnlineMemberViewModel>
     {
         private readonly CustomerListService service;
 
@@ -38,9 +40,9 @@
             var model = service.GetCustomerList(param);
 
             return new CustomerListViewModel(
-                model, 
-                message.CustId.Equals(0) ? message.ViewerId : message.CustId, 
-                message.Username, 
+                model,
+                message.CustId.Equals(0) ? message.ViewerId : message.CustId,
+                message.Username,
                 message.DownlineUsername);
         }
 
@@ -70,5 +72,8 @@
                command.Language,
                command.IP,
                command.ViewerName));
+
+        public OnlineMemberViewModel Handle(OnlineMembersQuery message)
+            => new OnlineMemberViewModel(service.OnlineMembers(new OnlineMembersParam(message.ViewerId)));
     }
 }

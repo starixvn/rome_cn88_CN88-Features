@@ -1,12 +1,13 @@
 ﻿namespace CN88.Features.Site.Controllers
 {
-    using Alpha.Web.Filters;
-    using CN88.Features.Site.CustomerList;
-    using CN88.Features.Site.Shared.Controllers;
-    using MediatR;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.Web.Filters;
+    using CustomerList;
+    using CustomerList.Requests;
+    using MediatR;
+    using Shared.Controllers;
 
     public class CustomerListController : FeatureBaseController
     {
@@ -60,5 +61,9 @@
 
             return Redirect(string.Join(string.Empty, urlString));
         }
+
+        [HttpGet]
+        public async Task<ActionResult> OnlineMembers(OnlineMembersQuery message)
+            => await ViewAsync(message, "~/CustomerList/Views/OnlineMembers.cshtml");
     }
 }

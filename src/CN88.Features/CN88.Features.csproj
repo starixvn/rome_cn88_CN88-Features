@@ -113,7 +113,9 @@
     <Compile Include="CustomerList\Criteria\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="CustomerList\CustomerListDataAccess.cs" />
     <Compile Include="CustomerList\CustomerListService.cs" />
+    <Compile Include="CustomerList\Models\OnlineMemberModel.cs" />
     <Compile Include="CustomerList\Params\CustomerListParam.cs" />
+    <Compile Include="CustomerList\Params\OnlineMembersParam.cs" />
     <Compile Include="CustomerList\Params\UpdateCreditParam.cs" />
     <Compile Include="CustomerList\Params\UpdateCustomerStatusParam.cs" />
     <Compile Include="CustomerList\Models\CreditRangeModel.cs" />

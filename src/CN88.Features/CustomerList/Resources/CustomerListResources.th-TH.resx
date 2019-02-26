@@ -192,4 +192,7 @@
   <data name="UsedCredit" xml:space="preserve">
     <value>เครดิตที่ใช้ไป</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>ยอดรวม</value>
+  </data>
 </root>

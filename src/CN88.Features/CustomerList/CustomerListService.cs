@@ -6,6 +6,7 @@
     using Fanex.Data.Repository;
     using CustomerList.Models;
     using CustomerList.Params;
+    using System.Collections.Generic;
 
     public interface CustomerListService
     {
@@ -16,6 +17,8 @@
         Result UpdateCredit(UpdateCreditParam param);
 
         Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
+
+        IList<OnlineMemberModel> OnlineMembers(OnlineMembersParam param);
     }
 
     public class CustomerListServiceImpl : CustomerListService
@@ -51,7 +54,7 @@
                     param.Language,
                     param.IP);
 
-             dynamicRepository.Execute(command);
+            dynamicRepository.Execute(command);
 
             return command.CreditProblem
                ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
@@ -73,6 +76,17 @@
             return command.ErrCode.Equals(0)
                 ? Result.CreateSuccessResult() :
                 Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+        }
+
+        public IList<OnlineMemberModel> OnlineMembers(OnlineMembersParam param)
+        {
+            var result = new List<OnlineMemberModel>
+            {
+                new OnlineMemberModel("Member 1","Name 1", new System.DateTime(2019,02,28)),
+                new OnlineMemberModel("Member 2","Name 2", new System.DateTime(2019,02,28))
+            };
+
+            return result;
         }
     }
 }
