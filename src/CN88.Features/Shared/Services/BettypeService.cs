@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Data.Repository;
@@ -11,7 +10,7 @@
 
     public interface BettypeService
     {
-        Task<IEnumerable<BetType>> GetBetTypesBySport(int sportGroupId = 0);
+        IEnumerable<BetType> GetBetTypesBySport(int sportGroupId = 0);
     }
 
     public class BettypeServiceImpl : BettypeService
@@ -29,8 +28,8 @@
             this.getBetTypeDisplayName = getBetTypeDisplayName;
         }
 
-        public async Task<IEnumerable<BetType>> GetBetTypesBySport(int sportGroupId = 0)
-            => await ConfiguredCacheService.GetOrSetAsync(
+        public IEnumerable<BetType> GetBetTypesBySport(int sportGroupId = 0)
+            => ConfiguredCacheService.GetOrSet(
                 $"{BetTypesCacheKey}.{sportGroupId}",
                 () =>
                 {

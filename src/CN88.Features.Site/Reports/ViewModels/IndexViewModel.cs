@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -10,6 +9,7 @@
     using Features.Reports.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Constants;
+    using Features.Shared.Models;
     using Requests;
     using Shared.ViewModels.Components;
 
@@ -24,6 +24,9 @@
             SettlementSummaryReport settlementSummaryReport)
         {
             DisplayMode = query.DisplayMode;
+            CustLevelId = query.ActorLevel.IsHeadline() ? UserLevel.Super.Value : query.ActorLevel.Value;
+            IsOwner = query.ActorLevel.IsNotHeadline();
+
             AccountingPeriodGroups = accountingPeriodGroups;
             CurrentPeriod = currentPeriod;
 
@@ -48,11 +51,11 @@
 
         public int DisplayMode { get; }
 
+        public int CustLevelId { get; }
+
+        public bool IsOwner { get; }
+
         public string ActionName { get; }
-
-        public DateTime FromDate { get; }
-
-        public DateTime ToDate { get; }
 
         public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
 

@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Constants;
     using Criteria;
     using Extensions;
@@ -17,13 +16,13 @@
 
     public interface ReportService
     {
-        IEnumerable<WinLossModel> GetWinLoss(ReportParam param);
+        IEnumerable<ReportModel> GetReportData(ReportParam param);
 
-        Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups();
+        IEnumerable<AccountingPeriodGroup> GetAccountingPeriodGroups();
 
-        Task<AccountingPeriod> GetCurrentPeriod();
+        AccountingPeriod GetCurrentPeriod();
 
-        Task<SettlementSummaryReport> GetSettlementSummaryReport();
+        SettlementSummaryReport GetSettlementSummaryReport();
     }
 
     public class ReportServiceImpl : ReportService
@@ -42,12 +41,12 @@
             this.cacheRefService = cacheRefService;
         }
 
-        public IEnumerable<WinLossModel> GetWinLoss(ReportParam param)
-            => dynamicRepository.Fetch<WinLossModel>(CreateReportCriteria(param));
+        public IEnumerable<ReportModel> GetReportData(ReportParam param)
+            => dynamicRepository.Fetch<ReportModel>(CreateReportCriteria(param));
 
-        public async Task<IEnumerable<AccountingPeriodGroup>> GetAccountingPeriodGroups()
+        public IEnumerable<AccountingPeriodGroup> GetAccountingPeriodGroups()
         {
-            var periods = await GetAccountingPeriods();
+            var periods = GetAccountingPeriods();
             var groups = periods
                 .OrderBy(p => p.PeriodId)
                 .GroupBy(p => p.PeriodId.ToString());
@@ -68,12 +67,12 @@
             return result;
         }
 
-        public async Task<AccountingPeriod> GetCurrentPeriod()
-            => (await GetAccountingPeriods()).FirstOrDefault(p => p.IsCurrentPeriod);
+        public AccountingPeriod GetCurrentPeriod()
+            => GetAccountingPeriods().FirstOrDefault(p => p.IsCurrentPeriod);
 
-        public async Task<SettlementSummaryReport> GetSettlementSummaryReport()
+        public SettlementSummaryReport GetSettlementSummaryReport()
         {
-            var rawData = await dynamicRepository.FetchAsync<SportSettlementByDateModel>(new GetSettlementSummaryReportCriteria());
+            var rawData = dynamicRepository.Fetch<SportSettlementByDateModel>(new GetSettlementSummaryReportCriteria());
 
             var sportGroups = rawData
                 .Select(d => d.SportTypeGroup)
@@ -96,8 +95,8 @@
             return result;
         }
 
-        private async Task<IEnumerable<AccountingPeriod>> GetAccountingPeriods()
-            => await ConfiguredCacheService.GetOrSetAsync(
+        private IEnumerable<AccountingPeriod> GetAccountingPeriods()
+            => ConfiguredCacheService.GetOrSet(
                 "CN88.Features.Reports.Services.ReportServiceImpl.AccountingPeriods",
                 () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));

@@ -44,6 +44,10 @@
 
         public bool IsNotMemberLevel() => !IsMemberLevel();
 
+        public bool IsHeadline() => this == Headline;
+
+        public bool IsNotHeadline() => !IsHeadline();
+
         public bool IsDirectUplineOf(byte downlineLevelValue)
             => GapBetweenTwoLevels(Value, downlineLevelValue) == 1;
 

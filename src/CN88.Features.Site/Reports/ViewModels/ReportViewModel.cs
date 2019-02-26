@@ -24,8 +24,8 @@
             ReportQuery query,
             IEnumerable<SelectListItem> sportGroups,
             IEnumerable<SelectListItem> betTypes,
-            IEnumerable<WinLossModel> reportData,
-            WinLossModel grandTotal,
+            IEnumerable<ReportModel> reportData,
+            ReportModel grandTotal,
             AccountingPeriod currentPeriod)
         {
             this.query = query;
@@ -62,9 +62,9 @@
 
         public UserLevel ReportLevel => query.CustLevel;
 
-        public IEnumerable<WinLossModel> ReportData { get; }
+        public IEnumerable<ReportModel> ReportData { get; }
 
-        public WinLossModel GrandTotal { get; }
+        public ReportModel GrandTotal { get; }
 
         public ReportFilterViewModel ReportFilterViewModel { get; }
 
@@ -76,17 +76,17 @@
 
         public string Title => ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[query.ReportType]);
 
-        public string BuildDrillDownLink(WinLossModel model, string currentLink)
+        public string BuildDrillDownLink(ReportModel model, string currentLink)
             => ReportLevel.IsMemberLevel()
             ? BuildBetListLink(model)
             : BuildDownlineLink(model, currentLink);
 
-        private string BuildBetListLink(WinLossModel model)
+        private string BuildBetListLink(ReportModel model)
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
                 MicroSites.BetListsUrl(),
                 GetBetListLinkRouteValues(model));
 
-        private string BuildDownlineLink(WinLossModel model, string currentLink)
+        private string BuildDownlineLink(ReportModel model, string currentLink)
         {
             var routeValues = GetDownlineLinkRouteValues(model);
             return Shared.Helpers.UrlHelper.ReplaceOrAddQueryStringParamsFunc(
@@ -98,7 +98,7 @@
                 });
         }
 
-        private IEnumerable<CustInfo> BuildBreadcrumbLevel(WinLossModel model)
+        private IEnumerable<CustInfo> BuildBreadcrumbLevel(ReportModel model)
         {
             var breadcrumbLevel = new List<CustInfo>();
 
@@ -135,7 +135,7 @@
             return breadcrumbLevel;
         }
 
-        private IDictionary<string, object> GetDownlineLinkRouteValues(WinLossModel model)
+        private IDictionary<string, object> GetDownlineLinkRouteValues(ReportModel model)
             => new Dictionary<string, object>
             {
                 ["CustId"] = model.CustId,
@@ -149,7 +149,7 @@
                 ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId
             };
 
-        private IDictionary<string, object> GetBetListLinkRouteValues(WinLossModel model)
+        private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model)
            => new Dictionary<string, object> { };
 
         private string BuildReportMainUrl()

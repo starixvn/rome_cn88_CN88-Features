@@ -2,7 +2,6 @@
     background-color: #ecf0f1;
 }
 
-
 .wager-report {
     padding: 20px;
 
@@ -33,8 +32,10 @@
     .form-group {
         margin: 0 0 15px;
 
-        &.btn-ex-group .btn-default {
-            width: 172px;
+        &.btn-ex-group {
+            .btn-default, .btn-secondary {
+                width: 172px;
+            }
         }
 
         .btn-default, .btn-secondary {
@@ -189,7 +190,6 @@
 .title-report-detail .nav-tabs {
     float: left;
 }
-
 
 @media all and (min-width: 1280px) {
     .wager-report {

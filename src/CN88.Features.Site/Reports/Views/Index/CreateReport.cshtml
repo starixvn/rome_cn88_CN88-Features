@@ -35,7 +35,8 @@
 <form id="create-rpt-form" class="form-horizontal create-form filter" role="form" action="@Url.Action(Model.ActionName, "Reports")">
     @Html.Hidden("ReportType")
     @Html.Hidden("DisplayMode", Model.DisplayMode)
-    @Html.Hidden("IsOwner", true)
+    @Html.Hidden("IsOwner", Model.IsOwner)
+    @Html.Hidden("CustLevelId", Model.CustLevelId)
     @DateRangePicker.Render(Model.DateRangePickerViewModel)
     <div class="form-group">
         <input id="btn-today" type="button" value="@SharedResources.Today" class="btn-quick-choice btn-default" />
@@ -48,13 +49,13 @@
     </div>
     <div class="form-group btn-ex-group">
         <input id="btn-this-period" type="button" value="@SharedResources.ThisPeriod" class="btn-quick-choice btn-default" />
-        <input id="btn-last-period" type="button" value="@SharedResources.LastPeriod" class="btn-quick-choice btn-default" />
+        <input id="btn-last-period" type="button" value="@SharedResources.LastPeriod" class="btn-quick-choice btn-default" disabled="disabled" />
     </div>
     @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
     @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, false)
     @LiveStatusSelection.Render(Model.LiveStatusSelectionViewModel, false)
     <div class="form-group pull-right">
-        <input type="button" value="@SharedResources.Clear" class="btn btn-default" />
+        <input id="btn-clear" type="button" value="@SharedResources.Clear" class="btn btn-default" />
         <input type="submit" value="@ReportResources.ViewReport" class="btn-submit" />
     </div>
 </form>

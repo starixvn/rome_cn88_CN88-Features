@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Features.Reports.Models;
     using Features.Reports.Params;
     using Features.Reports.Services;
@@ -13,8 +12,8 @@
     using ViewModels;
 
     public class ReportsHandler : BaseHandler,
-        IAsyncRequestHandler<IndexQuery, IndexViewModel>,
-        IAsyncRequestHandler<ReportQuery, ReportViewModel>
+        IRequestHandler<IndexQuery, IndexViewModel>,
+        IRequestHandler<ReportQuery, ReportViewModel>
     {
         private readonly SportGroupService sportService;
         private readonly BettypeService betTypeService;
@@ -30,14 +29,13 @@
             this.reportService = reportService;
         }
 
-        public async Task<IndexViewModel> Handle(IndexQuery message)
+        public IndexViewModel Handle(IndexQuery message)
         {
-            var sportGroups = await sportService.GetSportGroups();
-            var betTypes = await betTypeService.GetBetTypesBySport();
-            var accountingPeriodGroups = await reportService.GetAccountingPeriodGroups();
-            var currentPeriod = await reportService.GetCurrentPeriod();
-
-            var settlementSummary = await reportService.GetSettlementSummaryReport();
+            var sportGroups = sportService.GetSportGroups();
+            var betTypes = betTypeService.GetBetTypesBySport();
+            var accountingPeriodGroups = reportService.GetAccountingPeriodGroups();
+            var currentPeriod = reportService.GetCurrentPeriod();
+            var settlementSummary = reportService.GetSettlementSummaryReport();
 
             return new IndexViewModel(
                 message,
@@ -48,11 +46,11 @@
                 settlementSummary);
         }
 
-        public async Task<ReportViewModel> Handle(ReportQuery message)
+        public ReportViewModel Handle(ReportQuery message)
         {
-            var sportGroups = await sportService.GetSportGroups();
-            var betTypes = await betTypeService.GetBetTypesBySport(message.UserSelectedSportGroupId);
-            var currentPeriod = await reportService.GetCurrentPeriod();
+            var sportGroups = sportService.GetSportGroups();
+            var betTypes = betTypeService.GetBetTypesBySport(message.UserSelectedSportGroupId);
+            var currentPeriod = reportService.GetCurrentPeriod();
             var param = new ReportParam(
                      message.CustId,
                      message.IsOwner,
@@ -64,7 +62,7 @@
                      message.UserSelectedLiveStatusId,
                      message.CustLevel);
 
-            var reportData = reportService.GetWinLoss(param);
+            var reportData = reportService.GetReportData(param);
 
             var grandTotal = AccumulateGrandTotal(reportData);
 
@@ -77,9 +75,9 @@
                 currentPeriod);
         }
 
-        internal WinLossModel AccumulateGrandTotal(IEnumerable<WinLossModel> reportData)
+        internal ReportModel AccumulateGrandTotal(IEnumerable<ReportModel> reportData)
         {
-            var grandTotal = new WinLossModel();
+            var grandTotal = new ReportModel();
 
             if (reportData != null && reportData.Any())
             {

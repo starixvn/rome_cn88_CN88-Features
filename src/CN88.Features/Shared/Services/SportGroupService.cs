@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Criteria;
     using DataAccesses;
     using Fanex.Caching;
@@ -11,7 +10,7 @@
 
     public interface SportGroupService
     {
-        Task<IEnumerable<SportGroup>> GetSportGroups();
+        IEnumerable<SportGroup> GetSportGroups();
     }
 
     public class SportGroupServiceImpl : SportGroupService
@@ -29,8 +28,8 @@
             this.getSportDisplayName = getSportDisplayName;
         }
 
-        public async Task<IEnumerable<SportGroup>> GetSportGroups()
-            => await ConfiguredCacheService.GetOrSetAsync(
+        public IEnumerable<SportGroup> GetSportGroups()
+            => ConfiguredCacheService.GetOrSet(
                 SportGroupsCacheKey,
                 () =>
                 {

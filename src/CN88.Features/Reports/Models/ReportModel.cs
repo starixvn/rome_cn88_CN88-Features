@@ -1,12 +1,12 @@
 ﻿namespace CN88.Features.Reports.Models
 {
-    public class WinLossModel
+    public class ReportModel
     {
-        public WinLossModel()
+        public ReportModel()
         {
         }
 
-        public WinLossModel(
+        public ReportModel(
             int custId,
             string username,
             string name,
@@ -122,7 +122,7 @@
 
         public decimal HeadlineStock { get; private set; }
 
-        public WinLossModel Add(WinLossModel winloss)
+        public ReportModel Add(ReportModel winloss)
         {
             if (winloss == null)
             {
