@@ -105,6 +105,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetLists\BetListsService.cs" />
+    <Compile Include="BetLists\Models\DailyWinLossModel.cs" />
+    <Compile Include="BetLists\Params\DailyWinLossParam.cs" />
+    <Compile Include="BetLists\Resources\BetListsResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetListsResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="CustomerList\Constants\CloseReasonConstant.cs" />
     <Compile Include="CustomerList\Constants\CustomerStatus.cs" />
     <Compile Include="CustomerList\Criteria\CustomerListCriteria.cs" />
@@ -194,6 +202,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.ja-JP.resx" />
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.ko-KR.resx" />
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BetListsResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.th-TH.resx" />
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.vi-VN.resx" />
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-CN.resx" />
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-Hans.resx" />
+    <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-TW.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.ja-JP.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.ko-KR.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.resx">
@@ -239,7 +258,9 @@
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-Hans.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-TW.resx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BetLists\Criteria\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

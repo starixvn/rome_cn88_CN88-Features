@@ -409,6 +409,10 @@
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
+    <Compile Include="BetLists\BetListsController.cs" />
+    <Compile Include="BetLists\BetListsHandler.cs" />
+    <Compile Include="BetLists\Requests\DailyWinLossQuery.cs" />
+    <Compile Include="BetLists\ViewModels\DailyWinLossViewModel.cs" />
     <Compile Include="SubAccount\Requests\CreateCommand.cs" />
     <Compile Include="CustomerList\Requests\OnlineMembersQuery.cs" />
     <Compile Include="CustomerList\ViewModels\OnlineMemberViewModel.cs" />
@@ -501,6 +505,10 @@
     <Content Include="App_Code\Components\Breadcrumb.cshtml" />
     <Content Include="App_Code\Components\LiveStatusSelection.cshtml" />
     <Content Include="App_Code\Components\Pager.cshtml" />
+    <Content Include="BetLists\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="BetLists\Views\DailyWinLoss.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

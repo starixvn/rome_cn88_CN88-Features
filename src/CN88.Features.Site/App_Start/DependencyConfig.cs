@@ -6,6 +6,7 @@
     using Fanex.Data.Repository;
     using Fanex.Logging;
     using Fanex.RemotingRef;
+    using global::CN88.Features.BetLists;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
     using global::CN88.Features.Models;
@@ -79,9 +80,7 @@
 
         private static void RegisterServices(Container container)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUserSession, UserSessionExt>();
-#pragma warning restore CS0618 // Type or member is obsolete
             container.RegisterSingleton<IUser, User>();
             container.RegisterSingleton(Logger.Log);
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
@@ -104,6 +103,7 @@
             container.RegisterSingleton<ReportService, ReportServiceImpl>();
 
             container.RegisterSingleton<SubAccountService, SubAccountServiceImpl>();
+            container.RegisterSingleton<BetListsService, BetListsServiceImpl>();
         }
     }
 }
