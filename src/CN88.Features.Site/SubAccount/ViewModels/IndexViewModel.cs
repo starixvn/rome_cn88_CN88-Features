@@ -1,34 +1,32 @@
 ﻿namespace CN88.Features.Site.SubAccount.ViewModels
 {
-    using System;
+    using System.Collections.Generic;
     using Features.SubAccount.Models;
-    using Sunplus.Agent.Model.Entities;
 
     public class IndexViewModel
     {
-        public IndexViewModel(SubAccountItem subAccount)
+        public IndexViewModel(
+            string userCode,
+            int pageIndex,
+            int pageSize,
+            int totalItems,
+            IEnumerable<SubAccountItem> subAccounts)
         {
-            SubAccId = subAccount.SubAccId;
-            UserName = subAccount.UserName;
-            FirstName = subAccount.FirstName;
-            LastName = subAccount.LastName;
-            CreatedDate = subAccount.CreatedDate;
-            Closed = subAccount.Closed;
-            PageAccess = subAccount.PageAccess;
+            UserCode = userCode;
+            PageIndex = pageIndex;
+            PageSize = pageSize;
+            TotalItems = totalItems;
+            SubAccounts = subAccounts;
         }
 
-        public int SubAccId { get; }
+        public string UserCode { get; }
 
-        public string UserName { get; }
+        public int PageIndex { get; }
 
-        public string FirstName { get; }
+        public int PageSize { get; }
 
-        public string LastName { get; }
+        public int TotalItems { get; }
 
-        public DateTime CreatedDate { get; }
-
-        public bool Closed { get; }
-
-        public PageAccess PageAccess { get; }
+        public IEnumerable<SubAccountItem> SubAccounts { get; }
     }
 }

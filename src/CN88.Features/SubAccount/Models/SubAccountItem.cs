@@ -14,7 +14,7 @@
             string userName,
             string firstName,
             string lastName,
-            DateTime createdDate,
+            DateTime createDate,
             bool closed,
             string pageAccess)
         {
@@ -22,7 +22,7 @@
             UserName = userName;
             FirstName = firstName;
             LastName = lastName;
-            CreatedDate = createdDate;
+            CreateDate = createDate;
             Closed = closed;
             PageAccess = pageAccess;
         }
@@ -35,12 +35,12 @@
 
         public string LastName { get; }
 
-        public DateTime CreatedDate { get; }
+        public DateTime CreateDate { get; }
 
         public bool Closed { get; }
 
         public string PageAccess { get; }
 
-        public PageAccess Permission => PageAccess;
+        public PageAccess Permissions => PageAccess;
     }
 }

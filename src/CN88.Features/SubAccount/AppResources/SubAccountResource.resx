@@ -138,6 +138,9 @@
   <data name="Reports" xml:space="preserve">
     <value>Reports</value>
   </data>
+  <data name="RequiredFieldError" xml:space="preserve">
+    <value>You cannot leave this empty.</value>
+  </data>
   <data name="TotalBets" xml:space="preserve">
     <value>Total Bets</value>
   </data>

@@ -377,6 +377,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SubAccount\Requests\CreateCommand.cs" />
     <Compile Include="Shared\ViewModels\Components\BreadcrumbLevelViewModel.cs" />
     <Compile Include="Shared\Helpers\JsonHelper.cs" />
     <Compile Include="Shared\Helpers\UrlHelper.cs" />

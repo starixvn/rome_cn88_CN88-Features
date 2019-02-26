@@ -7,7 +7,7 @@
 @section Scripts {
 
 }
-@model IEnumerable<IndexViewModel>
+@model IndexViewModel
 
 <div class="subacc-page">
     <table class="tbl-style2" id="tbl-subaccount">
@@ -25,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            @if (!Model.Any())
+            @if (Model.TotalItems == 0)
             {
                 <tr>
                     <td colspan="9" class="text-center">@SharedResources.NoInformationIsAvailable</td>
@@ -33,17 +33,18 @@
             }
             else
             {
-                foreach (var item in Model)
+                foreach (var item in Model.SubAccounts)
                 {
+                    var permission = item.Permissions;
                     <tr>
                         <td>@item.UserName</td>
                         <td>@item.FirstName @item.LastName</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>@item.CreatedDate</td>
+                        <td>N/A</td>
+                        <td>@permission.ViewTotalBets</td>
+                        <td>@permission.ViewMemberInfo</td>
+                        <td>@permission.UpdateAccount</td>
+                        <td>@permission.ViewReports</td>
+                        <td>@item.CreateDate</td>
                         <td></td>
                     </tr>
                 }
@@ -51,4 +52,3 @@
         </tbody>
     </table>
 </div>
-
