@@ -1,33 +1,27 @@
 ﻿namespace CN88.Features.Site
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
     using Alpha.Auth.Filters;
     using Alpha.CN88.Site.App_Start;
     using Alpha.Web;
     using Alpha.Web.Filters;
     using Alpha.Web.Helpers;
+    using App_Start;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
-    using Fanex.Logging;
-    using Fanex.Logging.Extensions;
-    using Fanex.Logging.Extensions.Database;
-    using Fanex.Logging.RabbitMQ;
-    using Fanex.Logging.Sentry.RavenClient;
     using Fanex.RemotingRef;
     using Features.Shared.Configurations;
     using global::CN88.CustomerSetting.Client;
     using ONEbook.UM.Filters;
     using Shared.Helpers;
-    using SharpRaven;
     using Sunplus.Agent.Model.Entities;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -41,7 +35,7 @@
             AreaRegistration.RegisterAllAreas();
             CN88CustomerSettingRegistration.Init();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            InitLogging();
+            LoggingManager.Init();
             DependencyConfig.Init();
             AppSettings.Verify();
 
@@ -95,32 +89,6 @@
                     ["SubAccountName"] = currentCustomer?.SubUserName,
                     ["AdminName"] = currentCustomer?.AdminName
                 });
-        }
-
-        private void InitLogging()
-        {
-            var logEngines = new List<ILogEngine>
-            {
-                new RabbitMQLogging(ConfigurationManager.AppSettings["Fanex.Logging:RabbitMQConnectionStrings"])
-            };
-
-            var sentryUrl = ConfigurationManager.AppSettings["Fanex.Logging:SentryUrl"];
-            if (!string.IsNullOrWhiteSpace(sentryUrl))
-            {
-                logEngines.Add(new SentryLogging(new SentryEngineOptions
-                {
-                    Dsn = new Dsn(sentryUrl)
-                }));
-            }
-
-            LogManager
-                    .SetDefaultLogCategory(ConfigurationManager.AppSettings["Fanex.Logging:DefaultCategory"])
-                    .Use(logEngines);
-
-            ExceptionHandler
-                .UseConfig(new LoggingConfiguration()
-                .GetHttpHeaderInfo()
-                .UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo));
         }
 
         private static string GetBuildVersion()

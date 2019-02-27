@@ -403,6 +403,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\LoggingManager.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
