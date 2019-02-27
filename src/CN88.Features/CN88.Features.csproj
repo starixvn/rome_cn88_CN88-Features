@@ -202,59 +202,34 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BetLists\Resources\BetListsResources.ja-JP.resx" />
-    <EmbeddedResource Include="BetLists\Resources\BetListsResources.ko-KR.resx" />
     <EmbeddedResource Include="BetLists\Resources\BetListsResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BetListsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="BetLists\Resources\BetListsResources.th-TH.resx" />
-    <EmbeddedResource Include="BetLists\Resources\BetListsResources.vi-VN.resx" />
-    <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-CN.resx" />
     <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-Hans.resx" />
     <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-TW.resx" />
-    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.ja-JP.resx" />
-    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.ko-KR.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CustomerListResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.th-TH.resx" />
-    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.vi-VN.resx" />
-    <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-CN.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-Hans.resx" />
     <EmbeddedResource Include="CustomerList\Resources\CustomerListResources.zh-TW.resx" />
-    <EmbeddedResource Include="Reports\AppResources\ReportResources.ja-JP.resx" />
-    <EmbeddedResource Include="Reports\AppResources\ReportResources.ko-KR.resx" />
-    <EmbeddedResource Include="Reports\AppResources\ReportResources.th-TH.resx" />
-    <EmbeddedResource Include="Reports\AppResources\ReportResources.vi-VN.resx" />
-    <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-CN.resx" />
-    <EmbeddedResource Include="Shared\AppResources\SharedResources.ko-KR.resx" />
-    <EmbeddedResource Include="Shared\AppResources\SharedResources.th-TH.resx" />
-    <EmbeddedResource Include="Shared\AppResources\SharedResources.vi-VN.resx" />
     <EmbeddedResource Include="Reports\AppResources\ReportResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ReportResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-Hans.resx" />
     <EmbeddedResource Include="Reports\AppResources\ReportResources.zh-TW.resx" />
-    <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-CN.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-TW.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.zh-Hans.resx" />
     <EmbeddedResource Include="Shared\AppResources\SharedResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shared\AppResources\SharedResources.ja-JP.resx" />
-    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.ja-JP.resx" />
-    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.ko-KR.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SubAccountResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.th-TH.resx" />
-    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.vi-VN.resx" />
-    <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-CN.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-Hans.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-TW.resx" />
   </ItemGroup>
