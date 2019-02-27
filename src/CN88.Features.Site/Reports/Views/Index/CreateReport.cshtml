@@ -43,13 +43,10 @@
         <input id="btn-yesterday" type="button" value="@SharedResources.Yesterday" class="btn-quick-choice btn-secondary" />
         <input id="btn-tomorrow" type="button" value="@SharedResources.Tomorrow" class="btn-quick-choice btn-default" />
     </div>
-    <div class="form-group btn-ex-group">
+    <div class="form-group">
         <input id="btn-this-week" type="button" value="@SharedResources.ThisWeek" class="btn-quick-choice btn-default " />
         <input id="btn-last-week" type="button" value="@SharedResources.LastWeek" class="btn-quick-choice btn-default" />
-    </div>
-    <div class="form-group btn-ex-group">
         <input id="btn-this-period" type="button" value="@SharedResources.ThisPeriod" class="btn-quick-choice btn-default" />
-        <input id="btn-last-period" type="button" value="@SharedResources.LastPeriod" class="btn-quick-choice btn-default" disabled="disabled" />
     </div>
     @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
     @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, false)
