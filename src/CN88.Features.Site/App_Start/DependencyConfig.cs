@@ -14,9 +14,12 @@
     using global::CN88.Features.Shared.DataAccesses;
     using global::CN88.Features.Shared.Services;
     using global::CN88.Features.Site.Models;
+    using global::CN88.Features.Site.Reports.Handlers;
     using global::CN88.Features.Site.Shared.Controllers;
     using global::CN88.Features.SubAccount.Services;
     using MediatR;
+    using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
@@ -92,8 +95,8 @@
                     container.GetInstance<SportGroupDataAccess>(),
                     container.GetInstance<CacheRefService>().GetSportName),
                 Lifestyle.Singleton);
-            container.Register<BettypeService>(
-                () => new BettypeServiceImpl(
+            container.Register<BettypeGroupService>(
+                () => new BettypeGroupServiceImpl(
                     container.GetInstance<IDynamicRepository>(),
                     container.GetInstance<CacheRefService>().GetBetTypeName),
                 Lifestyle.Singleton);
@@ -104,6 +107,9 @@
 
             container.RegisterSingleton<SubAccountService, SubAccountServiceImpl>();
             container.RegisterSingleton<BetListsService, BetListsServiceImpl>();
+
+            container.Register(typeof(Workbook<>), typeof(NpoiWorkbook<>), Lifestyle.Scoped);
+            container.RegisterSingleton<ReportsWorkbook, ReportsWorkbookImpl>();
         }
     }
 }

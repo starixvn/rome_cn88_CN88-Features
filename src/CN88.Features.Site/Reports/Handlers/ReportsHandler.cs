@@ -11,12 +11,12 @@
         IRequestHandler<ReportQuery, ReportViewModel>
     {
         private readonly SportGroupService sportService;
-        private readonly BettypeService betTypeService;
+        private readonly BettypeGroupService betTypeService;
         private readonly ReportService reportService;
 
         public ReportsHandler(
             SportGroupService sportService,
-            BettypeService betTypeService,
+            BettypeGroupService betTypeService,
             ReportService reportService)
         {
             this.sportService = sportService;
@@ -27,7 +27,7 @@
         public IndexViewModel Handle(IndexQuery message)
         {
             var sportGroups = sportService.GetSportGroups();
-            var betTypes = betTypeService.GetBetTypesBySport();
+            var betTypes = betTypeService.GetBetTypeGroupsBySport();
             var accountingPeriodGroups = reportService.GetAccountingPeriodGroups();
             var currentPeriod = reportService.GetCurrentPeriod();
             var settlementSummary = reportService.GetSettlementSummaryReport();
@@ -44,7 +44,7 @@
         public ReportViewModel Handle(ReportQuery message)
         {
             var sportGroups = sportService.GetSportGroups();
-            var betTypes = betTypeService.GetBetTypesBySport(message.UserSelectedSportGroupId);
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(message.UserSelectedSportGroupId);
             var currentPeriod = reportService.GetCurrentPeriod();
 
             var param = CreateReportParam(message);

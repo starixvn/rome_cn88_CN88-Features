@@ -407,6 +407,7 @@
   <ItemGroup>
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
+    <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />

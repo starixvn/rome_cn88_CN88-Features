@@ -3,9 +3,9 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class GetBetTypeBySportCriteria : CriteriaBase
+    public class GetBetTypeGroupBySportCriteria : CriteriaBase
     {
-        public GetBetTypeBySportCriteria(int sportGroupId)
+        public GetBetTypeGroupBySportCriteria(int sportGroupId)
         {
             SportGroupId = sportGroupId;
         }

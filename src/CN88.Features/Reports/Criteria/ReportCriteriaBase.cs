@@ -15,7 +15,7 @@
             DateTime balanceUpDay,
             DateTime moveBetsDay,
             int sportGroupId,
-            int betTypeId,
+            int betTypeGroupId,
             int isLive,
             UserLevel reportLevel)
         {
@@ -26,7 +26,7 @@
             BalanceUpDay = balanceUpDay;
             MoveBetsDay = moveBetsDay;
             SportGroupId = sportGroupId;
-            BetTypeId = betTypeId;
+            BetTypeGroupId = betTypeGroupId;
             IsLive = isLive;
             ReportLevel = reportLevel;
         }
@@ -46,22 +46,13 @@
         [SpParam(SqlParamName = "SporttypeGroup")]
         public int SportGroupId { get; }
 
-        [SpParam(SqlParamName = "Bettype")]
-        public int BetTypeId { get; }
+        [SpParam(SqlParamName = "BettypeGroup")]
+        public int BetTypeGroupId { get; }
 
         public int IsLive { get; }
 
         [SpParam(Ignored = true)]
         public UserLevel ReportLevel { get; }
-
-        public override string GetSettingKey()
-            => ReportLevel.IsMemberLevel()
-                ? "CS_Rpt_Winloss_Member"
-                : ReportLevel.IsAgentLevel()
-                ? "CS_Rpt_Winloss_Agent"
-                : ReportLevel.IsMasterLevel()
-                ? "CS_Rpt_Winloss_Master"
-                : "CS_Rpt_Winloss_Super";
 
         public override bool IsValid() => CustId > 0 && FromDate <= ToDate;
     }

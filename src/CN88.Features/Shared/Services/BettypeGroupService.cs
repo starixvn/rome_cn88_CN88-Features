@@ -8,19 +8,19 @@
     using Fanex.Data.Repository;
     using Models;
 
-    public interface BettypeService
+    public interface BettypeGroupService
     {
-        IEnumerable<BetType> GetBetTypesBySport(int sportGroupId = 0);
+        IEnumerable<BetType> GetBetTypeGroupsBySport(int sportGroupId = 0);
     }
 
-    public class BettypeServiceImpl : BettypeService
+    public class BettypeGroupServiceImpl : BettypeGroupService
     {
         private const string BetTypesCacheKey = "CN88.Features.Shared.Services.Bettypes";
 
         private readonly IDynamicRepository dynamicRepository;
         private readonly Func<int, string> getBetTypeDisplayName;
 
-        public BettypeServiceImpl(
+        public BettypeGroupServiceImpl(
             IDynamicRepository dynamicRepository,
             Func<int, string> getBetTypeDisplayName)
         {
@@ -28,12 +28,12 @@
             this.getBetTypeDisplayName = getBetTypeDisplayName;
         }
 
-        public IEnumerable<BetType> GetBetTypesBySport(int sportGroupId = 0)
+        public IEnumerable<BetType> GetBetTypeGroupsBySport(int sportGroupId = 0)
             => ConfiguredCacheService.GetOrSet(
                 $"{BetTypesCacheKey}.{sportGroupId}",
                 () =>
                 {
-                    var betTypes = dynamicRepository.Fetch<BetType>(new GetBetTypeBySportCriteria(sportGroupId));
+                    var betTypes = dynamicRepository.Fetch<BetType>(new GetBetTypeGroupBySportCriteria(sportGroupId));
 
                     return betTypes.Select(betType => new BetType(betType.Id, betType.Name, getBetTypeDisplayName));
                 },
