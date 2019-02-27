@@ -20,6 +20,7 @@
             }
         </ul>
         @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+        <span id="icon-excel" class="icon-excel" title="@SharedResources.ExportToExcel"></span>
     </div>
     @Html.Partial("~/Reports/Views/Filter.cshtml", Model.ReportFilterViewModel)
     @if (Model.ReportLevel.Value == 0)

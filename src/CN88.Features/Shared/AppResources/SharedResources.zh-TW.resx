@@ -159,4 +159,7 @@
   <data name="LastWeek" xml:space="preserve">
     <value>上週</value>
   </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>導出到Excel</value>
+  </data>
 </root>

@@ -7,9 +7,10 @@
 @model ReportViewModel
 <div class="report-detail legacy-report">
     <div class="page-title title-report-detail">
-        <div class="">
+        <div>
             @Model.Title
             @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+            <span id="icon-excel" class="icon-excel" title="@SharedResources.ExportToExcel"></span>
         </div>
     </div>
     @Html.Partial("~/Reports/Views/Filter.cshtml", Model.ReportFilterViewModel)
