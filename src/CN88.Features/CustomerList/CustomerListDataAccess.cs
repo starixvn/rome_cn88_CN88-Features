@@ -39,6 +39,7 @@
                                 custId: Converter.ToInt(reader["CustId"]),
                                 username: Converter.ToString2(reader["Username"]),
                                 name: Converter.ToString2(reader["FirstName"]),
+                                nickname: Converter.ToString2(reader["nickname"]),
                                 group: Converter.ToString2(reader["Group"]),
                                 credit: Converter.ToDecimal(reader["Credit"]),
                                 creationDate: Converter.ToDateTime(reader["CreatedDate"]),

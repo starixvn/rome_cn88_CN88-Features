@@ -85,7 +85,7 @@ class AgentList extends BaseList {
         var customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
         if (rs.Customers.length == 0) {
-            html = "<tr><td colspan='7' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
+            html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
             for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 var customer = rs.Customers[i];
@@ -93,6 +93,7 @@ class AgentList extends BaseList {
                     "<td class='text-center'>" + customerIndex + "</td>" +
                     "<td class='link view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
                     "<td>" + customer.Name + "</td>" +
+                    "<td>" + customer.Nickname + "</td>" +
                     "<td class='text-right col-credit link' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
                     "<td class='text-center col-status link' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +

@@ -195,4 +195,7 @@
   <data name="Total" xml:space="preserve">
     <value>总和</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nick Name</value>
+  </data>
 </root>

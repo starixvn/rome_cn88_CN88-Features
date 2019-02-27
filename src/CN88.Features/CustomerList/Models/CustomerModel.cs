@@ -13,6 +13,7 @@
             int custId,
             string username,
             string name,
+            string nickname,
             string group,
             decimal credit,
             DateTime creationDate,
@@ -22,6 +23,7 @@
             CustId = custId;
             Username = username;
             Name = name;
+            Nickname = nickname;
             Group = group;
             Credit = credit;
             CreationDate = creationDate;
@@ -34,6 +36,8 @@
         public string Username { get; }
 
         public string Name { get; set; }
+
+        public string Nickname { get; set; }
 
         public string Group { get; set; }
 

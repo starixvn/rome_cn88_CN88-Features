@@ -232,6 +232,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nick Name.
+        /// </summary>
+        public static string Nickname {
+            get {
+                return ResourceManager.GetString("Nickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No..
         /// </summary>
         public static string No {
