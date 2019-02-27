@@ -104,6 +104,17 @@
     .breadcrumb-container {
         float: right;
     }
+
+    .breadcrumb,
+    .icon-excel {
+        float: right;
+    }
+
+    .icon-excel {
+        position: relative;
+        top: 14px;
+        margin-left: 20px;
+    }
 }
 
 .report-form {
