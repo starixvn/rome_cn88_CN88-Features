@@ -235,4 +235,19 @@
   <data name="ProfitMagin" xml:space="preserve">
     <value>Profit Magin</value>
   </data>
+  <data name="Stake" xml:space="preserve">
+    <value>Stake</value>
+  </data>
+  <data name="SMA" xml:space="preserve">
+    <value>SMA</value>
+  </data>
+  <data name="Wagers" xml:space="preserve">
+    <value>Wagers</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
 </root>

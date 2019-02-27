@@ -5,6 +5,8 @@
 "use strict";
 class LegacyReport extends BaseReport {
     $reportForm: JQuery;
+    $exportExcelForm: JQuery;
+    $excelIcon: JQuery;
 
     pagerComponent: PagerComponent;
 
@@ -37,18 +39,25 @@ class LegacyReport extends BaseReport {
 
     public cacheDOMElements() {
         this.$reportForm = this.$("#report-form");
+        this.$exportExcelForm = this.$("#export-excel-form");
+        this.$excelIcon = this.$("#icon-excel");
     }
 
     public registerEvents() {
-        let self = this;
-        this.$reportForm.submit(() => self.onReportSubmit());
+        this.$reportForm.submit(this.onReportSubmit);
+        this.$excelIcon.click(this.onExportExcelEvent)
     }
 
-    public onReportSubmit() {
+    onReportSubmit = () => {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.betTypeSelectionComponent.updateSelectedValue();
         this.liveStatusSelectionComponent.updateSelectedValue();
-    }
+    };
+
+    onExportExcelEvent = () => {
+        this.$exportExcelForm.submit();
+        this.$.unblockUI();
+    };
 }
 
 $(function () {

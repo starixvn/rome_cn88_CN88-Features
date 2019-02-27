@@ -79,6 +79,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        public static string Agent {
+            get {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent Currency.
         /// </summary>
         public static string AgentCurrency {
@@ -277,6 +286,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        public static string Member {
+            get {
+                return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member Income.
         /// </summary>
         public static string MemberIncome {
@@ -349,6 +367,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SMA.
+        /// </summary>
+        public static string SMA {
+            get {
+                return ResourceManager.GetString("SMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMA Income.
         /// </summary>
         public static string SMAIncome {
@@ -399,6 +426,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string SMAUsername {
             get {
                 return ResourceManager.GetString("SMAUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stake.
+        /// </summary>
+        public static string Stake {
+            get {
+                return ResourceManager.GetString("Stake", resourceCulture);
             }
         }
         
@@ -462,6 +498,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string WagerReport {
             get {
                 return ResourceManager.GetString("WagerReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wagers.
+        /// </summary>
+        public static string Wagers {
+            get {
+                return ResourceManager.GetString("Wagers", resourceCulture);
             }
         }
         

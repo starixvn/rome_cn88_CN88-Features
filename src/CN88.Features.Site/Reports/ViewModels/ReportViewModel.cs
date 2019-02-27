@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -34,7 +35,7 @@
             GrandTotal = grandTotal;
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
-            var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.FromDate, query.ToDate);
+            var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, DateTime.MaxValue, query.FromDate, query.ToDate);
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, query.UserSelectedBetTypeId);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses

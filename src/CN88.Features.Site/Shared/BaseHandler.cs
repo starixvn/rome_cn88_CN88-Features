@@ -73,7 +73,7 @@
             throw new FileNotFoundException($"Template {absolutePath} does not exist");
         }
 
-        protected internal string GetExcelTemplateFolder()
+        protected internal virtual string GetExcelTemplateFolder()
         {
             var reportNamespace = GetType().Namespace;
 

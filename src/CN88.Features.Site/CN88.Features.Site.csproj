@@ -509,6 +509,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="BetLists\Views\DailyWinLoss.cshtml" />
+    <Content Include="App_Data\ExcelTemplates\Reports\Super.xls" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
