@@ -7,17 +7,8 @@
 
     public class UpdateCreditCriteria : NonQueryCommand
     {
-        private static readonly IDictionary<UserLevel, string> settingKeys =
-            new Dictionary<UserLevel, string>
-            {
-                {UserLevel.Master, "Age_CustomerUpdCredit_SAg" },
-                {UserLevel.Agent, "Age_CustomerUpdCredit_MAg" },
-                {UserLevel.Member, "Age_CustomerUpdCredit_Ag" }
-            };
-
         public UpdateCreditCriteria(
             int searchAccountId,
-            byte searchAccountRoleId,
             decimal creditAmount,
             int actorId,
             int subAccountId,
@@ -25,7 +16,6 @@
             string ip)
         {
             SearchAccountId = searchAccountId;
-            SearchAccountRoleId = searchAccountRoleId;
             CreditAmount = creditAmount;
             ActorId = actorId;
             SubAccountId = subAccountId;
@@ -39,7 +29,7 @@
         [SpParam(Ignored = true)]
         public byte SearchAccountRoleId { get; }
 
-        [SpParam(SqlParamName = "CreditAmt")]
+        [SpParam(SqlParamName = "UpdCredit")]
         public decimal CreditAmount { get; }
 
         [SpParam(SqlParamName = "UserId")]
@@ -52,14 +42,14 @@
 
         public string IP { get; }
 
-        public bool CreditProblem { get; set; }
+        public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 
-        public override string GetSettingKey() => settingKeys[SearchAccountLevel];
+        public override string GetSettingKey()
+            => "CS_Customer_Credit_Upd";
 
         public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
 
-        private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(SearchAccountRoleId);
     }
 }

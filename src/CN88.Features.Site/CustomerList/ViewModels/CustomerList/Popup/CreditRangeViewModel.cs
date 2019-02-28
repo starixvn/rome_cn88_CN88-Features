@@ -8,13 +8,10 @@
         public CreditRangeViewModel(CreditPopupQuery query, CreditRangeModel creditModel)
         {
             CreditModel = creditModel;
-            CustLevel = query.CustLevel;
             CustId = query.CustId;
         }
 
         public CreditRangeModel CreditModel { get; }
-
-        public UserLevel CustLevel { get; }
 
         public int CustId { get; }
     }

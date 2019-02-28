@@ -38,7 +38,7 @@
         public int TotalCustomers { get; set; }
 
         public override string GetSettingKey()
-            => "Age_CS_Customer_DownlineList_Sel";
+            => "CS_Customer_DownlineList_Sel";
 
         public override bool IsValid()
             => ViewerId > 0;

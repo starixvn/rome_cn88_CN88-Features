@@ -13,7 +13,7 @@
         [SpParam(SqlParamName = "CustId")]
         public int SearchAccountId { get; }
 
-        public override string GetSettingKey() => "Age_CS_Customer_Credit_Sel";
+        public override string GetSettingKey() => "CS_Customer_Credit_Sel";
 
         public override bool IsValid() => SearchAccountId > 0;
     }

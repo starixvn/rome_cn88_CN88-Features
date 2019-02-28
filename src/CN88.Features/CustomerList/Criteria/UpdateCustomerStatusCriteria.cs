@@ -43,7 +43,7 @@
 
         public string ErrMsg { get; set; }
 
-        public override string GetSettingKey() => "Age_CS_Customer_Status_Upd";
+        public override string GetSettingKey() => "CS_Customer_Status_Upd";
 
         public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
     }

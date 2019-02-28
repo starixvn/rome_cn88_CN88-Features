@@ -12,7 +12,7 @@
     <div class="col-xs-12 hidden msg" id="error-message"></div>
     <div class="used-credit">
         <span>@CustomerListResources.UsedCredit</span>
-        <span class="bold">@((Model.CustLevel.IsMemberLevel() ? Model.CreditModel.BetCredit : Model.CreditModel.UsedCredit).ToString("N2"))</span>
+        <span class="bold">@Model.CreditModel.UsedCredit.ToString("N2")</span>
     </div>
     <div class="form-group">
         <label>@CustomerListResources.Credit</label>
@@ -22,13 +22,12 @@
     <div class="list-button">
         <button type="button" class="btn-submit">@CustomerListResources.Save</button>
         <button type="button" class="btn-cancel">@CustomerListResources.Cancel</button>
-    </div>
+    </div>  
 </div>
 
 @Html.Hidden("MinCredit", Model.CreditModel.MinCredit)
 @Html.Hidden("MaxCredit", Model.CreditModel.MaxCredit)
 @Html.Hidden("CustId", Model.CustId)
-@Html.Hidden("CustLevelId", Model.CustLevel.Value)
 @Html.Hidden("UpdateSuccessfully", CustomerListResources.UpdateSuccessfully)
 @Html.Hidden("ExceededAgentCredit", CustomerListResources.ExceededAgentCredit)
 @Html.Hidden("InputNumberError", CustomerListResources.InputNumberError)

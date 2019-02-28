@@ -361,6 +361,12 @@
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
     </Content>
+    <Content Include="CustomerList\Styles\downline-list.css">
+      <DependentUpon>downline-list.scss</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\downline-list.min.css">
+      <DependentUpon>downline-list.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\Styles\popup.css">
       <DependentUpon>popup.scss</DependentUpon>
     </Content>

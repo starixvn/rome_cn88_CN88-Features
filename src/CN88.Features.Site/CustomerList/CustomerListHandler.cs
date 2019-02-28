@@ -56,7 +56,6 @@
          => service.UpdateCredit(
                new UpdateCreditParam(
                    message.CustId,
-                   message.CustLevelId,
                    message.CreditAmount,
                    message.ViewerId,
                    message.SubAccountId,
