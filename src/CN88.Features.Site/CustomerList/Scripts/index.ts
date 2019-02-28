@@ -187,7 +187,14 @@
 			popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
 		this.openPopup(popupTitle, url, 'modal modal-status');
-	};
+    };
+
+    resetPassword = (custId: number, username: string) => {
+        const url = `Password/ResetDownlinePassword?custId=${custId}&username=${username}`;
+        const popupTitle = `${this.$('#ResetPassword').val()} - ${username}`;
+
+        this.openPopup(popupTitle, url, 'modal modal-password');
+    };
 
 	openPopup = (popupTitle: string, url: string, modifiedClass: string) => {
 		let self = this;
