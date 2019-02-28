@@ -135,6 +135,12 @@
             self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));
         });
 
+        this.$tblReport.find(".icon-pass").click(function () {
+            var $this = self.$(this);
+
+            self.indexManager.resetPassword($this.attr("cust-id"), $this.attr("username"), $this.attr("cust-role"));
+        });
+
         if (this.HasUpdatePermission) {
             this.$tblReport.find(".icon-edit").click(function () {
                 var $this = self.$(this);

@@ -13,6 +13,7 @@
     UpdateStatusLink: string;
 
     CurrentLink: string;
+    ResetPasswordLink: string;
 
     reportParam = {
         DownlineUsername: null,
@@ -131,6 +132,7 @@
         this.EditCustomerLink = this.$("#EditCustomerLink").val();
         this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
         this.CurrentLink = this.$("#CurrentLink").val();
+        this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
 
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
         this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
@@ -195,11 +197,16 @@
         this.openPopup(popupTitle, url, 'modal modal-status');
     };
 
-    resetPassword = (custId: number, username: string) => {
-        const url = `Password/ResetDownlinePassword?custId=${custId}&username=${username}`;
-        const popupTitle = `${this.$('#ResetPassword').val()} - ${username}`;
-
-        this.openPopup(popupTitle, url, 'modal modal-password');
+    resetPassword = (custId: number, username: string, custLevelId: number) => {
+        let popup: any = this.topWindow.popupManager;
+        popup.init(this.$, this.topWindow);
+        popup.open({
+            handlerId: "mainPopup",
+            title: `${this.$('#ResetPassword').val()} - ${username}`,
+            url: `${this.ResetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`,
+            width: 600,
+            height: 320
+        });
     };
 
     openPopup = (popupTitle: string, url: string, modifiedClass: string) => {

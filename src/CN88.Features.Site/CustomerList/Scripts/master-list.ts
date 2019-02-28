@@ -50,10 +50,10 @@
                     "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
                     "<td class='col-status link' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='col-action'>" +
-                    "<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='Reset Password'></span>" +
+                    `<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='Reset Password' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
                     "<span class='icon-security' data-toggle='tooltip' data-placement='left' title='Reset Security Code'></span>" +
-		    `<span class='icon-edit' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? '' : `${disabledTooltip}`}></span>` +
-		    `<span class='icon-add' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? '' : `${disabledTooltip}`}></span>` +
+		            `<span class='icon-edit' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? '' : `${disabledTooltip}`}></span>` +
+		            `<span class='icon-add' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? '' : `${disabledTooltip}`}></span>` +
                     "</td>" +
                     "</tr>";
             }
