@@ -1,4 +1,9 @@
-﻿namespace CN88.Features.Reports.Models
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using CN88.Features.Shared.Extensions;
+
+namespace CN88.Features.Reports.Models
 {
     public class ReportModel
     {
@@ -16,21 +21,17 @@
             decimal memberIncome,
             decimal agentCurrency,
             decimal agent,
-            decimal agentPoss,
             decimal agentIncome,
             decimal agentResult,
             decimal agentStock,
             decimal master,
-            decimal masterPoss,
             decimal masterIncome,
             decimal masterResult,
             decimal masterStock,
             decimal super,
-            decimal superPoss,
             decimal superIncome,
             decimal superResult,
             decimal superStock,
-            decimal headlinePoss,
             decimal headlineIncome,
             decimal headlineResult,
             decimal headlineStock)
@@ -45,24 +46,20 @@
 
             AgentCurrency = agentCurrency;
             Agent = agent;
-            AgentPoss = agentPoss;
             AgentIncome = agentIncome;
             AgentResult = agentResult;
             AgentStock = agentStock;
 
             Master = master;
-            MasterPoss = masterPoss;
             MasterIncome = masterIncome;
             MasterResult = masterResult;
             MasterStock = masterStock;
 
             Super = super;
-            SuperPoss = superPoss;
             SuperIncome = superIncome;
             SuperResult = superResult;
             SuperStock = superStock;
 
-            HeadlinePoss = headlinePoss;
             HeadlineIncome = headlineIncome;
             HeadlineResult = headlineResult;
             HeadlineStock = headlineStock;
@@ -86,7 +83,9 @@
 
         public decimal Agent { get; private set; }
 
-        public decimal AgentPoss { get; private set; }
+        public IEnumerable<decimal> AgentPT { get; internal set; }
+
+        public string AgentPoss => GetDisplayPoss(AgentPT);
 
         public decimal AgentIncome { get; private set; }
 
@@ -96,7 +95,9 @@
 
         public decimal Master { get; private set; }
 
-        public decimal MasterPoss { get; private set; }
+        public IEnumerable<decimal> MasterPT { get; internal set; }
+
+        public string MasterPoss => GetDisplayPoss(MasterPT);
 
         public decimal MasterIncome { get; private set; }
 
@@ -106,7 +107,9 @@
 
         public decimal Super { get; private set; }
 
-        public decimal SuperPoss { get; private set; }
+        public IEnumerable<decimal> SuperPT { get; internal set; }
+
+        public string SuperPoss => GetDisplayPoss(SuperPT);
 
         public decimal SuperIncome { get; private set; }
 
@@ -114,7 +117,9 @@
 
         public decimal SuperStock { get; private set; }
 
-        public decimal HeadlinePoss { get; private set; }
+        public IEnumerable<decimal> ExtraPT { get; internal set; }
+
+        public string HeadlinePoss => GetDisplayPoss(ExtraPT);
 
         public decimal HeadlineIncome { get; private set; }
 
@@ -155,6 +160,24 @@
             HeadlineStock += winloss.HeadlineStock;
 
             return this;
+        }
+
+        private string GetDisplayPoss(IEnumerable<decimal> pts)
+        {
+            var builder = new StringBuilder();
+            var length = pts.Count();
+
+            for (var i = 0; i < length; i++)
+            {
+                builder.Append(pts.ElementAt(i).FormatNumber());
+
+                if (i != length - 1)
+                {
+                    builder.Append(" / ");
+                }
+            }
+
+            return builder.ToString();
         }
     }
 }

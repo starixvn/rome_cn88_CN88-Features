@@ -22,6 +22,8 @@
 
         public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
 
+        public static bool IsTest => GetConfigValue("LocalTest") == "1";
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify() => Require(StoredProcedurePath, nameof(StoredProcedurePath));

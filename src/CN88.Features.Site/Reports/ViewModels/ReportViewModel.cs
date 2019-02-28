@@ -67,6 +67,11 @@
 
         public ReportModel GrandTotal { get; }
 
+        public decimal ProfitMargin
+            => query.CustLevel.IsSuperLevel() && GrandTotal.SuperStock != 0
+                ? GrandTotal.SuperResult / GrandTotal.SuperStock
+                : 0;
+
         public ReportFilterViewModel ReportFilterViewModel { get; }
 
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel

@@ -8,7 +8,8 @@
 
     public class ReportsHandler : ReportsBaseHandler,
         IRequestHandler<IndexQuery, IndexViewModel>,
-        IRequestHandler<ReportQuery, ReportViewModel>
+        IRequestHandler<ReportQuery, ReportViewModel>,
+        IRequestHandler<PTHistoryQuery, PTHistoryViewModel>
     {
         private readonly SportGroupService sportService;
         private readonly BettypeGroupService betTypeService;
@@ -60,5 +61,8 @@
                 grandTotal,
                 currentPeriod);
         }
+
+        public PTHistoryViewModel Handle(PTHistoryQuery message)
+            => new PTHistoryViewModel(reportService.GetPTHistories(message.CustId, message.FromDate, message.ToDate));
     }
 }

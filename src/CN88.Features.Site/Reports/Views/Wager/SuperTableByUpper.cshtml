@@ -3,8 +3,8 @@
     <table class="tbl-noborder tbl-report settlement-report">
         <thead>
             <tr>
-                <th class="text-left">@SharedResources.UserCode</th>
-                <th class="text-right valid-stake">@SharedResources.SMA</th>
+                <th class="text-left">@ReportResources.SMAUsername</th>
+                <th class="text-right valid-stake">@ReportResources.SMA</th>
                 <th class="text-right valid-stake">@ReportResources.SMAIncome</th>
                 <th class="text-right valid-stake">@ReportResources.SMAResult</th>
                 <th class="text-right valid-stake">@ReportResources.SMAStock</th>
@@ -42,13 +42,16 @@
                         @HtmlHelpers.RenderNumberCell(data.SuperResult)
                         @HtmlHelpers.RenderNumberCell(data.SuperStock)
                         @HtmlHelpers.RenderNumberCell(data.SuperStock / total.SuperStock * 100)
-                        @HtmlHelpers.RenderNumberCell(data.SuperPoss)
+                        <td class="text-right">@data.HeadlinePoss</td>
                         @HtmlHelpers.RenderNumberCell(data.HeadlineIncome)
                         @HtmlHelpers.RenderNumberCell(data.HeadlineResult)
                         @HtmlHelpers.RenderNumberCell(data.HeadlineStock)
                         @HtmlHelpers.RenderNumberCell(data.HeadlineStock / total.HeadlineStock * 100)
                     </tr>
                 }
+                <tr>
+                    <td class="profit-margin" colspan="11" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
+                </tr>
             }
             else
             {
@@ -63,12 +66,12 @@
     <table class="tbl-noborder tbl-report valid-stake-report">
         <thead>
             <tr>
-                <th class="text-left">@SharedResources.UserCode</th>
-                <th class="text-right valid-stake">@SharedResources.Wagers</th>
-                <th class="text-right valid-stake">@SharedResources.Stake</th>
+                <th class="text-left">@ReportResources.SMAUsername</th>
+                <th class="text-right valid-stake">@ReportResources.Wagers</th>
+                <th class="text-right valid-stake">@ReportResources.Stake</th>
                 <th class="text-right valid-stake">@ReportResources.ValidStake</th>
                 <th class="text-right valid-stake">@ReportResources.MemberIncome</th>
-                <th class="text-right valid-stake">@SharedResources.Agent</th>
+                <th class="text-right valid-stake">@ReportResources.Agent</th>
                 <th class="text-right valid-stake">@ReportResources.AgentResult</th>
                 <th class="text-right valid-stake">@ReportResources.MasterAgent</th>
             </tr>
@@ -100,6 +103,9 @@
                         @HtmlHelpers.RenderNumberCell(data.Master)
                     </tr>
                 }
+                <tr>
+                    <td class="profit-margin" colspan="8" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
+                </tr>
             }
             else
             {

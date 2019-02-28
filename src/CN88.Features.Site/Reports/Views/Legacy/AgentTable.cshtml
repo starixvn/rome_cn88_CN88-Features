@@ -4,11 +4,11 @@
         <tr>
             <th class="text-left">@ReportResources.AgentUsername</th>
             <th class="text-left">@ReportResources.Name</th>
-            <th class="text-right">@SharedResources.Wagers</th>
-            <th class="text-right">@SharedResources.Stake</th>
+            <th class="text-right">@ReportResources.Wagers</th>
+            <th class="text-right">@ReportResources.Stake</th>
             <th class="text-right">@ReportResources.ValidStake</th>
             <th class="text-right">@ReportResources.MemberIncome</th>
-            <th class="text-right">@SharedResources.Agent</th>
+            <th class="text-right">@ReportResources.Agent</th>
             <th class="text-right">@ReportResources.AgentPoss</th>
             <th class="text-right">@ReportResources.AgentIncome</th>
             <th class="text-right">@ReportResources.AgentResult</th>
@@ -57,12 +57,12 @@
                     @HtmlHelpers.RenderNumberCell(row.ValidStake)
                     @HtmlHelpers.RenderNumberCell(row.MemberIncome)
                     @HtmlHelpers.RenderNumberCell(row.Agent)
-                    @HtmlHelpers.RenderNumberCell(row.AgentPoss)
+                    <td class="text-right">@row.AgentPoss</td>
                     @HtmlHelpers.RenderNumberCell(row.AgentIncome)
                     @HtmlHelpers.RenderNumberCell(row.AgentResult)
                     @if (Model.IsNotOwner)
                     {
-                        @HtmlHelpers.RenderNumberCell(row.MasterPoss)
+                        <td class="text-right">@row.MasterPoss</td>
                         @HtmlHelpers.RenderNumberCell(row.MasterIncome)
                         @HtmlHelpers.RenderNumberCell(row.MasterResult)
                     }

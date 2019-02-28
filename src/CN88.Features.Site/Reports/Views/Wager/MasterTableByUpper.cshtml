@@ -9,7 +9,7 @@
                 <th class="text-right valid-stake">@ReportResources.MAResult</th>
                 <th class="text-right valid-stake">@ReportResources.MAStock</th>
                 <th class="text-right valid-stake">@ReportResources.MAStockPercent</th>
-                <th class="text-right valid-stake">@SharedResources.SMA</th>
+                <th class="text-right valid-stake">@ReportResources.SMA</th>
                 <th class="text-right valid-stake">@ReportResources.SMAPoss</th>
                 <th class="text-right valid-stake">@ReportResources.SMAIncome</th>
                 <th class="text-right valid-stake">@ReportResources.SMAResult</th>
@@ -45,7 +45,7 @@
                         @HtmlHelpers.RenderNumberCell(data.MasterStock)
                         @HtmlHelpers.RenderNumberCell(data.MasterStock / total.MasterStock * 100)
                         @HtmlHelpers.RenderNumberCell(data.Super)
-                        @HtmlHelpers.RenderNumberCell(data.SuperPoss)
+                        <td class="text-right">@data.SuperPoss</td>
                         @HtmlHelpers.RenderNumberCell(data.SuperIncome)
                         @HtmlHelpers.RenderNumberCell(data.SuperResult)
                         @HtmlHelpers.RenderNumberCell(data.SuperStock)
@@ -68,11 +68,11 @@
             <tr>
                 <th class="text-left">@ReportResources.MAUsername</th>
                 <th class="text-left">@ReportResources.Name</th>
-                <th class="text-right valid-stake">@SharedResources.Wagers</th>
-                <th class="text-right valid-stake">@SharedResources.Stake</th>
+                <th class="text-right valid-stake">@ReportResources.Wagers</th>
+                <th class="text-right valid-stake">@ReportResources.Stake</th>
                 <th class="text-right valid-stake">@ReportResources.ValidStake</th>
                 <th class="text-right valid-stake">@ReportResources.MemberIncome</th>
-                <th class="text-right valid-stake">@SharedResources.Agent</th>
+                <th class="text-right valid-stake">@ReportResources.Agent</th>
                 <th class="text-right valid-stake">@ReportResources.AgentResult</th>
             </tr>
         </thead>

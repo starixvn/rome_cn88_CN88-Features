@@ -5,7 +5,7 @@
     using Constants;
     using Shared.Models;
 
-    public class GetCancelledReportCriteria : ReportCriteriaBase
+    public class GetCancelledReportCriteria : GetWinLossReportCriteria
     {
         private readonly IDictionary<int, int> CancelledReportType = new Dictionary<int, int>
         {
@@ -18,14 +18,14 @@
             bool isOwner,
             DateTime fromDate,
             DateTime toDate,
-            DateTime balanceUpDay,
+            DateTime archiveDate,
             DateTime moveBetsDay,
             int sportGroupId,
             int betTypeId,
             int isLive,
             int reportType,
             UserLevel reportLevel)
-            : base(custId, isOwner, fromDate, toDate, balanceUpDay, moveBetsDay, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, isOwner, fromDate, toDate, archiveDate, moveBetsDay, sportGroupId, betTypeId, isLive, reportLevel)
         {
             ReportType = CancelledReportType[reportType];
         }

@@ -74,8 +74,9 @@
 
         private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
             => new TemplateInfo(
-                GetExcelTemplatePath(message.CustLevel.DisplayName),
+                GetExcelTemplatePath(message.IsOwner ? message.CustLevel.DisplayName + "Owner" : message.CustLevel.DisplayName),
                 noInfomationText: SharedResources.NoInformationIsAvailable,
+                titleStartIndex: -1,
                 headerStartIndex: 1,
                 bodyStartIndex: 2);
 

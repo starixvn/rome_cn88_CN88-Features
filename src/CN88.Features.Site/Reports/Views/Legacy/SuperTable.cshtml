@@ -3,14 +3,14 @@
     <thead>
         <tr>
             <th class="text-left">@ReportResources.SMAUsername</th>
-            <th class="text-right">@SharedResources.Wagers</th>
-            <th class="text-right">@SharedResources.Stake</th>
+            <th class="text-right">@ReportResources.Wagers</th>
+            <th class="text-right">@ReportResources.Stake</th>
             <th class="text-right">@ReportResources.ValidStake</th>
             <th class="text-right">@ReportResources.MemberIncome</th>
-            <th class="text-right">@SharedResources.Agent</th>
+            <th class="text-right">@ReportResources.Agent</th>
             <th class="text-right">@ReportResources.AgentResult</th>
             <th class="text-right">@ReportResources.MasterAgent</th>
-            <th class="text-right">@SharedResources.SMA</th>
+            <th class="text-right">@ReportResources.SMA</th>
             <th class="text-right">@ReportResources.SMAIncome</th>
             <th class="text-right">@ReportResources.SMAResult</th>
             <th class="text-right">@ReportResources.SMAStock</th>
@@ -71,7 +71,7 @@
                     @if (Model.IsNotOwner)
                     {
                         @HtmlHelpers.RenderNumberCell(row.SuperStock / total.SuperStock * 100)
-                        @HtmlHelpers.RenderNumberCell(row.HeadlinePoss)
+                        <td class="text-right">@row.HeadlinePoss</td>
                         @HtmlHelpers.RenderNumberCell(row.HeadlineIncome)
                         @HtmlHelpers.RenderNumberCell(row.HeadlineResult)
                         @HtmlHelpers.RenderNumberCell(row.HeadlineStock)

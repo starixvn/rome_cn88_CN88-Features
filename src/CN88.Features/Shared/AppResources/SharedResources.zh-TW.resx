@@ -141,9 +141,6 @@
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
   </data>
-  <data name="Stake" xml:space="preserve">
-    <value>投注額 </value>
-  </data>
   <data name="Member" xml:space="preserve">
     <value>會員</value>
   </data>

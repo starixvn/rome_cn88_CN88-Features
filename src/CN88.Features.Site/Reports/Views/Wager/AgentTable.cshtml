@@ -5,7 +5,7 @@
             <tr>
                 <th class="text-left">@ReportResources.AgentUsername</th>
                 <th class="text-left">@ReportResources.Name</th>
-                <th class="text-right valid-stake">@SharedResources.Agent</th>
+                <th class="text-right valid-stake">@ReportResources.Agent</th>
                 <th class="text-right valid-stake">@ReportResources.AgentPoss</th>
                 <th class="text-right valid-stake">@ReportResources.AgentIncome</th>
                 <th class="text-right valid-stake">@ReportResources.AgentResult</th>
@@ -31,7 +31,7 @@
                         <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
                         <td class="text-left">@data.Name</td>
                         @HtmlHelpers.RenderNumberCell(data.Agent)
-                        @HtmlHelpers.RenderNumberCell(data.AgentPoss)
+                        <td class="text-right">@data.AgentPoss</td>
                         @HtmlHelpers.RenderNumberCell(data.AgentIncome)
                         @HtmlHelpers.RenderNumberCell(data.AgentResult)
                         @HtmlHelpers.RenderNumberCell(data.AgentStock)
@@ -53,8 +53,8 @@
             <tr>
                 <th class="text-left">@ReportResources.AgentUsername</th>
                 <th class="text-left">@ReportResources.Name</th>
-                <th class="text-right valid-stake">@SharedResources.Wagers</th>
-                <th class="text-right valid-stake">@SharedResources.Stake</th>
+                <th class="text-right valid-stake">@ReportResources.Wagers</th>
+                <th class="text-right valid-stake">@ReportResources.Stake</th>
                 <th class="text-right valid-stake">@ReportResources.ValidStake</th>
                 <th class="text-right valid-stake">@ReportResources.MemberIncome</th>
                 <th class="text-right valid-stake">@ReportResources.AgentCurrency</th>

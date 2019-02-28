@@ -10,13 +10,12 @@
             bool isOwner,
             DateTime fromDate,
             DateTime toDate,
-            DateTime balanceUpDay,
             DateTime moveBetsDay,
             int sportGroupId,
             int betTypeId,
             int isLive,
             UserLevel reportLevel)
-            : base(custId, isOwner, fromDate, toDate, balanceUpDay, moveBetsDay, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, isOwner, fromDate, toDate, sportGroupId, betTypeId, isLive, reportLevel)
         {
         }
 

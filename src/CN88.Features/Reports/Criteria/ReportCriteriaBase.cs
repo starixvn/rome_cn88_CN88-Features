@@ -12,8 +12,6 @@
             bool isOwner,
             DateTime fromDate,
             DateTime toDate,
-            DateTime balanceUpDay,
-            DateTime moveBetsDay,
             int sportGroupId,
             int betTypeGroupId,
             int isLive,
@@ -23,8 +21,6 @@
             IsOwner = isOwner;
             FromDate = fromDate;
             ToDate = toDate;
-            BalanceUpDay = balanceUpDay;
-            MoveBetsDay = moveBetsDay;
             SportGroupId = sportGroupId;
             BetTypeGroupId = betTypeGroupId;
             IsLive = isLive;
@@ -38,10 +34,6 @@
         public DateTime FromDate { get; }
 
         public DateTime ToDate { get; }
-
-        public DateTime BalanceUpDay { get; }
-
-        public DateTime MoveBetsDay { get; }
 
         [SpParam(SqlParamName = "SporttypeGroup")]
         public int SportGroupId { get; }

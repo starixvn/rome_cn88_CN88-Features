@@ -10,15 +10,21 @@ namespace CN88.Features.Reports.Criteria
             bool isOwner,
             DateTime fromDate,
             DateTime toDate,
-            DateTime balanceUpDay,
+            DateTime archiveDate,
             DateTime moveBetsDay,
             int sportGroupId,
             int betTypeId,
             int isLive,
             UserLevel reportLevel)
-            : base(custId, isOwner, fromDate, toDate, balanceUpDay, moveBetsDay, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, isOwner, fromDate, toDate, sportGroupId, betTypeId, isLive, reportLevel)
         {
+            ArchiveDate = archiveDate;
+            MoveBetsDay = moveBetsDay;
         }
+
+        public DateTime ArchiveDate { get; }
+
+        public DateTime MoveBetsDay { get; }
 
         public override string GetSettingKey()
             => ReportLevel.IsMemberLevel()

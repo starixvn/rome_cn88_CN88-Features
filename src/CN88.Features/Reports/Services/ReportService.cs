@@ -12,6 +12,8 @@
     using Models;
     using Params;
     using RawData;
+    using Shared.Configurations;
+    using Shared.Extensions;
     using Shared.Services;
 
     public interface ReportService
@@ -23,6 +25,8 @@
         AccountingPeriod GetCurrentPeriod();
 
         SettlementSummaryReport GetSettlementSummaryReport();
+
+        IEnumerable<PTHistory> GetPTHistories(int custid, DateTime fromDate, DateTime toDate);
     }
 
     public class ReportServiceImpl : ReportService
@@ -42,7 +46,38 @@
         }
 
         public IEnumerable<ReportModel> GetReportData(ReportParam param)
-            => dynamicRepository.Fetch<ReportModel>(CreateReportCriteria(param));
+        {
+            var data = dynamicRepository.Fetch<ReportModel>(CreateReportCriteria(param));
+
+            if (data != null && data.Any())
+            {
+                var custIds = data.Select(d => d.CustId).Distinct().JoinWithComma();
+
+                var ptSettings = dynamicRepository.Fetch<PTSetting>(
+                    new GetCustomerPTSettingCriteria(param.ReportLevel.Value, custIds, AppSettings.IsTest));
+
+                var ptSettingGroups = ptSettings.GroupBy(pt => pt.CustId);
+
+                if (ptSettingGroups == null || !ptSettingGroups.Any())
+                {
+                    return data;
+                }
+
+                foreach (var item in data)
+                {
+                    var group = ptSettingGroups
+                        .FirstOrDefault(g => g.Key == item.CustId)
+                        .OrderBy(g => g.SportType);
+
+                    item.ExtraPT = group.Select(g => g.ExtraPT);
+                    item.SuperPT = group.Select(g => g.SuperPT);
+                    item.MasterPT = group.Select(g => g.MasterPT);
+                    item.AgentPT = group.Select(g => g.AgentPT);
+                }
+            }
+
+            return data;
+        }
 
         public IEnumerable<AccountingPeriodGroup> GetAccountingPeriodGroups()
         {
@@ -125,6 +160,7 @@
         {
             var balanceUpDay = reportDateService.GetBalanceUpDay();
             var moveBetsDay = reportDateService.GetMoveBetsDay();
+            var archiveDate = reportDateService.GetArchiveDate();
 
             if (param.ReportType == ReportTypeConstants.SettledWager)
             {
@@ -133,7 +169,7 @@
                     param.IsOwner,
                     param.FromDate,
                     param.ToDate,
-                    balanceUpDay,
+                    archiveDate,
                     moveBetsDay,
                     param.SportGroupId,
                     param.BetTypeId,
@@ -148,7 +184,6 @@
                     param.IsOwner,
                     param.FromDate,
                     param.ToDate,
-                    balanceUpDay,
                     moveBetsDay,
                     param.SportGroupId,
                     param.BetTypeId,
@@ -169,5 +204,13 @@
                 param.ReportType,
                 param.ReportLevel);
         }
+
+        public IEnumerable<PTHistory> GetPTHistories(int custid, DateTime fromDate, DateTime toDate)
+            => dynamicRepository.Fetch<PTHistory>(
+                new GetPTHistoryCriteria(
+                    custid,
+                    fromDate,
+                    toDate,
+                    AppSettings.IsTest));
     }
 }

@@ -28,5 +28,8 @@
 
         public async Task<ActionResult> Excel(ReportExcelQuery message)
             => await ExcelView(message);
+
+        public async Task<ActionResult> PTHistories(PTHistoryQuery message)
+            => await ViewAsync(message, LegacyViewPath);
     }
 }

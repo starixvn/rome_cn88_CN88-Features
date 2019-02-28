@@ -413,7 +413,9 @@
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
+    <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
+    <Compile Include="Reports\ViewModels\PTHistoryViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
     <Compile Include="BetLists\BetListsHandler.cs" />
@@ -528,7 +530,6 @@
     <Content Include="Reports\Views\Wager\SuperTable.cshtml" />
     <Content Include="Reports\Views\Wager\AgentTable.cshtml" />
     <Content Include="Reports\Views\Wager\MasterTable.cshtml" />
-    <Content Include="Reports\Views\Wager\HeadlineTable.cshtml" />
     <Content Include="Reports\Views\Wager\AgentTableByUpper.cshtml" />
     <Content Include="Reports\Views\Wager\MasterTableByUpper.cshtml" />
     <Content Include="Reports\Views\Wager\SuperTableByUpper.cshtml" />

@@ -268,15 +268,6 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stake.
-        /// </summary>
-        public static string Stake {
-            get {
-                return ResourceManager.GetString("Stake", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {
@@ -336,15 +327,6 @@ namespace CN88.Features.Shared.AppResources {
         public static string UserCode {
             get {
                 return ResourceManager.GetString("UserCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wagers.
-        /// </summary>
-        public static string Wagers {
-            get {
-                return ResourceManager.GetString("Wagers", resourceCulture);
             }
         }
         
