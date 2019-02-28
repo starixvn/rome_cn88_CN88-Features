@@ -209,7 +209,7 @@
         this.topWindow.popupManager.open({
             title: popupTitle,
             url: url,
-            width: 450,
+            width: 480,
             height: 300,
             popupCss: modifiedClass
         });
