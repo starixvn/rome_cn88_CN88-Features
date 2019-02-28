@@ -9,13 +9,16 @@
     $navTabs: JQuery;
     EditCustomerLink: string;
     CreateCustomerLink: string;
+    UpdateCreditLink: string;
+    UpdateStatusLink: string;
+
     CurrentLink: string;
 
     reportParam = {
         DownlineUsername: null,
         Username: "",
-		SearchRoleId: 0,
-		CustId: 0,
+        SearchRoleId: 0,
+        CustId: 0,
         Status: 0,
         PageSize: 100,
         PageIndex: 1
@@ -101,11 +104,11 @@
                 case siteInfrastructure.roleId.master:
                     this.masterList.viewList();
                     break;
-				case siteInfrastructure.roleId.agent:
-					this.agentList.viewAgents(this.reportParam.CustId);
+                case siteInfrastructure.roleId.agent:
+                    this.agentList.viewAgents(this.reportParam.CustId);
                     break;
                 case siteInfrastructure.roleId.member:
-					this.memberList.viewMembers(this.reportParam.CustId);
+                    this.memberList.viewMembers(this.reportParam.CustId);
                     break;
             }
         }
@@ -135,11 +138,14 @@
         this.ViewerId = this.$("#ViewerId").val();
         this.ActorLevel = this.$("#ActorLevel").val();
 
+        this.UpdateCreditLink = this.$("#UpdateCreditLink").val();
+        this.UpdateStatusLink = this.$("#UpdateStatusLink").val();
+
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
             Username: this.$("#Username").val(),
-			SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
-			CustId: 0,
+            SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
+            CustId: 0,
             Status: parseInt(this.$("#Status").val()),
             PageSize: parseInt(this.$("#PageSize").val()),
             PageIndex: 1
@@ -176,17 +182,17 @@
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-		let url = `CreditPopup?custId=${custId}&custLevelId=${custLevelId}`,
-			popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
+        let url = this.UpdateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
+            popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
 
-		this.openPopup(popupTitle, url, 'modal modal-credit');
+        this.openPopup(popupTitle, url, 'modal modal-credit');
     };
 
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
-		let url = `StatusPopup?custId=${custId}&UpdateStatusId=${updateStatusId}`,
-			popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
+        let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, UpdateStatusId: updateStatusId }),
+            popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
-		this.openPopup(popupTitle, url, 'modal modal-status');
+        this.openPopup(popupTitle, url, 'modal modal-status');
     };
 
     resetPassword = (custId: number, username: string) => {
@@ -196,13 +202,18 @@
         this.openPopup(popupTitle, url, 'modal modal-password');
     };
 
-	openPopup = (popupTitle: string, url: string, modifiedClass: string) => {
-		let self = this;
-		this.$("#popup").on("show.bs.modal", function (e) {
-			self.$(this).find('.modal-title').text(popupTitle);
-			self.$(this).find('iframe').attr('src', url);
-		}).removeAttr('class').addClass(`modal ${modifiedClass}`).modal('show');
-	};
+    openPopup = (popupTitle: string, url: string, modifiedClass: string) => {
+        let self = this;
+
+        this.topWindow.popupManager.init(this.$, this.topWindow);
+        this.topWindow.popupManager.open({
+            title: popupTitle,
+            url: url,
+            width: 450,
+            height: 300,
+            popupCss: modifiedClass
+        });
+    };
 
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
@@ -217,12 +228,12 @@
             UplineId: this.ViewerId,
             ActorLevel: this.ActorLevel
         });
-	};
-	addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
-		reportParam.CustId = custId;
-		reportParam.Username = username;
-		reportParam.SearchRoleId = custLevelId;
-		reportParam.DownlineUsername = downlineUsername; 
+    };
+    addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
+        reportParam.CustId = custId;
+        reportParam.Username = username;
+        reportParam.SearchRoleId = custLevelId;
+        reportParam.DownlineUsername = downlineUsername;
 
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
@@ -261,7 +272,7 @@
         this.memberList.viewMembersOfAgent(custId, username);
     };
     reloadCreditValue = (custId: any, newValue: any) => {
-		this.$(".col-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
+        this.$(".col-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
     };
     reloadStatusValue = (custId: any, newValue: any) => {
         var column = this.$(".col-status[cust-id='" + custId + "']");

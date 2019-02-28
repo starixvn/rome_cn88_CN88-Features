@@ -1,199 +1,184 @@
 ﻿@model IndexViewModel
 
 @{
-	Layout = "~/Shared/Views/_Layout.cshtml";
+    Layout = "~/Shared/Views/_Layout.cshtml";
 }
 
 @section Styles {
-	@StaticResources.RenderStyles("~/CustomerList/bundles/styles/downline-list")
+    @StaticResources.RenderStyles("~/CustomerList/bundles/styles/downline-list")
 }
 
 <ul id="nav-tabs" class="nav nav-tabs-style2" role="tablist">
-	@if (Model.ActorLevel.IsSuperLevel())
-	{
-		<li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
-			<a>@CustomerListResources.Master</a>
-		</li>
-	}
+    @if (Model.ActorLevel.IsSuperLevel())
+    {
+        <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
+            <a>@CustomerListResources.Master</a>
+        </li>
+    }
 
-	@if (Model.ActorLevel.IsMasterOrSuperLevel())
-	{
-		<li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
-			<a>@CustomerListResources.Agent</a>
-		</li>
-	}
+    @if (Model.ActorLevel.IsMasterOrSuperLevel())
+    {
+        <li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
+            <a>@CustomerListResources.Agent</a>
+        </li>
+    }
 
-	<li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
-		<a>@CustomerListResources.Member</a>
-	</li>
+    <li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
+        <a>@CustomerListResources.Member</a>
+    </li>
 </ul>
 
 @if (Model.ActorLevel.IsSuperLevel())
 {
-	<div class="tab-content display-none" level="@UserLevel.Master.Value">
-		<div class="tab-panel active" role="tabpanel">
-			<div class="filter">
-				<div id="form-master" class="form-inline" role="form">
-					<div class="form-group">
-						<label>@CustomerListResources.UsernameOrNameContains</label>
-						<input id="txt-username-master" class="control" type="text" value="" />
-					</div>
-					<div class="form-group">
-						<label>@CustomerListResources.Status</label>
-						<select id="dropdown-status-master" class="control">
-							<option value="@CustomerStatus.All">@CustomerListResources.All</option>
-							<option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
-							<option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
-							<option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-					</div>
-					<button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Master Agent</button>
-				</div>
-			</div>
+    <div class="tab-content display-none" level="@UserLevel.Master.Value">
+        <div class="tab-panel active" role="tabpanel">
+            <div class="filter">
+                <div id="form-master" class="form-inline" role="form">
+                    <div class="form-group">
+                        <label>@CustomerListResources.UsernameOrNameContains</label>
+                        <input id="txt-username-master" class="control" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>@CustomerListResources.Status</label>
+                        <select id="dropdown-status-master" class="control">
+                            <option value="@CustomerStatus.All">@CustomerListResources.All</option>
+                            <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
+                            <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
+                            <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
+                    </div>
+                    <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Master Agent</button>
+                </div>
+            </div>
 
-			<table id="tbl-master" class="tbl-style2">
-				<thead>
-					<tr>
-						<th><div class="col-no">@CustomerListResources.No</div></th>
-						<th><div class="col-username">@CustomerListResources.Username</div></th>
-						<th><div class="col-name">@CustomerListResources.Name</div></th>
+            <table id="tbl-master" class="tbl-style2">
+                <thead>
+                    <tr>
+                        <th><div class="col-no">@CustomerListResources.No</div></th>
+                        <th><div class="col-username">@CustomerListResources.Username</div></th>
+                        <th><div class="col-name">@CustomerListResources.Name</div></th>
                         <th><div class="col-nickname">@CustomerListResources.Nickname</div></th>
 						<th class="text-right"><div>@CustomerListResources.Credit</div></th>
 						<th class="text-center"><div class="col-creation-date">@CustomerListResources.CreationDate</div></th>
 						<th class="text-center"><div class="col-status">@CustomerListResources.Status</div></th>
 						<th class="text-center"><div class="col-action">@CustomerListResources.Action</div></th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-				<tfoot></tfoot>
-			</table>
-		</div>
-	</div>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
 }
 
 @if (Model.ActorLevel.IsMasterOrSuperLevel())
 {
-	<div class="tab-content display-none" level="@UserLevel.Agent.Value">
-		<div class="tab-panel active" role="tabpanel">
-			<div class="filter">
-				<div id="form-agent" class="form-inline" role="form">
-					@if (Model.ActorLevel.IsSuperLevel() || Model.IsInternal)
-					{
-						<div class="form-group">
-							<label>@CustomerListResources.Master</label>
-							<input id="txt-viewed-master" class="control" type="text" value="" />
-						</div>
-					}
+    <div class="tab-content display-none" level="@UserLevel.Agent.Value">
+        <div class="tab-panel active" role="tabpanel">
+            <div class="filter">
+                <div id="form-agent" class="form-inline" role="form">
+                    @if (Model.ActorLevel.IsSuperLevel() || Model.IsInternal)
+                    {
+                        <div class="form-group">
+                            <label>@CustomerListResources.Master</label>
+                            <input id="txt-viewed-master" class="control" type="text" value="" />
+                        </div>
+                    }
 
-					<div class="form-group">
-						<label>@CustomerListResources.UsernameOrNameContains</label>
-						<input id="txt-username-agent" class="control" type="text" value="" />
-					</div>
-					<div class="form-group">
-						<label>@CustomerListResources.Status</label>
-						<select id="dropdown-status-agent" class="control">
-							<option value="@CustomerStatus.All">@CustomerListResources.All</option>
-							<option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
-							<option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
-							<option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-					</div>
-					<div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-					<button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Agent</button>
-				</div>
-			</div>
-			<table id="tbl-agent" class="tbl-style2">
-				<thead>
-					<tr>
-						<th><div class="col-no">@CustomerListResources.No</div></th>
-						<th><div class="col-username">@CustomerListResources.Username</div></th>
-						<th><div class="col-name">@CustomerListResources.Name</div></th>
+                    <div class="form-group">
+                        <label>@CustomerListResources.UsernameOrNameContains</label>
+                        <input id="txt-username-agent" class="control" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>@CustomerListResources.Status</label>
+                        <select id="dropdown-status-agent" class="control">
+                            <option value="@CustomerStatus.All">@CustomerListResources.All</option>
+                            <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
+                            <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
+                            <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
+                    </div>
+                    <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
+                    <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Agent</button>
+                </div>
+            </div>
+            <table id="tbl-agent" class="tbl-style2">
+                <thead>
+                    <tr>
+                        <th><div class="col-no">@CustomerListResources.No</div></th>
+                        <th><div class="col-username">@CustomerListResources.Username</div></th>
+                        <th><div class="col-name">@CustomerListResources.Name</div></th>
                         <th><div class="col-name">@CustomerListResources.Nickname</div></th>
 						<th class="text-right"><div>@CustomerListResources.Credit</div></th>
 						<th class="text-center"><div class="col-creation-date">@CustomerListResources.CreationDate</div></th>
 						<th class="text-center"><div class="col-status">@CustomerListResources.Status</div></th>
 						<th class="text-center"><div class="col-action">@CustomerListResources.Action</div></th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-				<tfoot></tfoot>
-			</table>
-		</div>
-	</div>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
 }
 
 <div class="tab-content display-none" level="@UserLevel.Member.Value">
-	<div class="tab-panel active" role="tabpanel">
-		<div class="filter">
-			<div id="form-member" class="form-inline" role="form">
-				@if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
-				{
-					<div class="form-group">
-						<label>@CustomerListResources.Agent</label>
-						<input id="txt-viewed-agent" class="control" type="text" value="" />
-					</div>
-				}
+    <div class="tab-panel active" role="tabpanel">
+        <div class="filter">
+            <div id="form-member" class="form-inline" role="form">
+                @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
+                {
+                    <div class="form-group">
+                        <label>@CustomerListResources.Agent</label>
+                        <input id="txt-viewed-agent" class="control" type="text" value="" />
+                    </div>
+                }
 
-				<div class="form-group">
-					<label>@CustomerListResources.UsernameOrNameContains</label>
-					<input id="txt-username-member" class="control" type="text" value="" />
-				</div>
-				<div class="form-group">
-					<label>@CustomerListResources.Status</label>
-					<select id="dropdown-status-member" class="control">
-						<option value="@CustomerStatus.All">@CustomerListResources.All</option>
-						<option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
-						<option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
-						<option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-				</div>
-				<div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-				<button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Member</button>
-			</div>
-		</div>
-		<table id="tbl-member" class="tbl-style2">
-			<thead>
-				<tr>
-					<th><div class="col-no">@CustomerListResources.No</div></th>
-					<th><div class="col-username">@CustomerListResources.Username</div></th>
-					<th><div class="col-name">@CustomerListResources.Name</div></th>
+                <div class="form-group">
+                    <label>@CustomerListResources.UsernameOrNameContains</label>
+                    <input id="txt-username-member" class="control" type="text" value="" />
+                </div>
+                <div class="form-group">
+                    <label>@CustomerListResources.Status</label>
+                    <select id="dropdown-status-member" class="control">
+                        <option value="@CustomerStatus.All">@CustomerListResources.All</option>
+                        <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
+                        <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
+                        <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
+                </div>
+                <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
+                <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>New Member</button>
+            </div>
+        </div>
+        <table id="tbl-member" class="tbl-style2">
+            <thead>
+                <tr>
+                    <th><div class="col-no">@CustomerListResources.No</div></th>
+                    <th><div class="col-username">@CustomerListResources.Username</div></th>
+                    <th><div class="col-name">@CustomerListResources.Name</div></th>
                     <th><div class="col-name">@CustomerListResources.Nickname</div></th>
 					<th class="text-right"><div>@CustomerListResources.Group</div></th>
 					<th class="texy-right"><div>@CustomerListResources.Credit</div></th>
 					<th class="text-center"><div class="col-creation-date">@CustomerListResources.CreationDate</div></th>
 					<th class="text-center"><div class="col-status">@CustomerListResources.Status</div></th>
 					<th class="text-center"><div class="col-action">@CustomerListResources.Action</div></th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-			<tfoot></tfoot>
-		</table>
-	</div>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
 </div>
-
-<div id="popup" class="modal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Modal title</h5>
-				<button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<iframe width="100%" height="100%" frameborder="0" class="embed-responsive-item" src="" allowfullscreen></iframe>
-			</div>
-		</div>
-	</div>
-</div>
-
 
 <div class="shadow" id="shadow"></div>
 <div class="output" id="output"></div>
@@ -210,6 +195,8 @@
 @Html.Hidden("usernameAutoSuggestionPath", Model.UsernameAutoSuggestionPath)
 @Html.Hidden("EditCustomerLink", Model.EditCustomerLink)
 @Html.Hidden("CreateCustomerLink", Model.CreateCustomerLink)
+@Html.Hidden("UpdateCreditLink", Model.UpdateCreditLink)
+@Html.Hidden("UpdateStatusLink", Model.UpdateStatusLink)
 @Html.Hidden("CurrentLink", Model.CurrentLink)
 
 @Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
@@ -230,5 +217,5 @@
 @Html.Hidden("PageIndex", Model.PageIndex)
 
 @section Scripts {
-	@StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
+    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
 }

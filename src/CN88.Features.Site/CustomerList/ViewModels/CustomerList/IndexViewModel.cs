@@ -30,6 +30,10 @@
 
         public string CurrentLink => $"{SiteFeaturePath}CustomerList/Index";
 
+        public string UpdateCreditLink => $"{SiteFeaturePath}CustomerList/CreditPopup";
+
+        public string UpdateStatusLink => $"{SiteFeaturePath}CustomerList/StatusPopup";
+
         //public string AddNewMasterLink
         //    => $"{CreateCustomerLink}?Language={Language}&ProductId=1&CustomerLevel={customerLevel}" +
         //       $"&CustomerId={custId}&IsReadOnly={isReadOnly}&UplineId={uplineId}&ActorLevel={actorLevel}";
