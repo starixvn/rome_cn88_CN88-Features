@@ -518,6 +518,12 @@
     </Content>
     <Content Include="BetLists\Views\DailyWinLoss.cshtml" />
     <Content Include="App_Data\ExcelTemplates\Reports\Super.xls" />
+    <Content Include="App_Data\ExcelTemplates\Reports\Member.xls" />
+    <Content Include="App_Data\ExcelTemplates\Reports\Agent.xls" />
+    <Content Include="App_Data\ExcelTemplates\Reports\AgentOwner.xls" />
+    <Content Include="App_Data\ExcelTemplates\Reports\Master.xls" />
+    <Content Include="App_Data\ExcelTemplates\Reports\MasterOwner.xls" />
+    <Content Include="App_Data\ExcelTemplates\Reports\SuperOwner.xls" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

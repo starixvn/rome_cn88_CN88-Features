@@ -83,7 +83,7 @@ namespace CN88.Features.Reports.Models
 
         public decimal Agent { get; private set; }
 
-        public IEnumerable<decimal> AgentPT { get; internal set; }
+        public IEnumerable<decimal> AgentPT { get; internal set; } = new List<decimal>();
 
         public string AgentPoss => GetDisplayPoss(AgentPT);
 
@@ -95,7 +95,7 @@ namespace CN88.Features.Reports.Models
 
         public decimal Master { get; private set; }
 
-        public IEnumerable<decimal> MasterPT { get; internal set; }
+        public IEnumerable<decimal> MasterPT { get; internal set; } = new List<decimal>();
 
         public string MasterPoss => GetDisplayPoss(MasterPT);
 
@@ -107,7 +107,7 @@ namespace CN88.Features.Reports.Models
 
         public decimal Super { get; private set; }
 
-        public IEnumerable<decimal> SuperPT { get; internal set; }
+        public IEnumerable<decimal> SuperPT { get; internal set; } = new List<decimal>();
 
         public string SuperPoss => GetDisplayPoss(SuperPT);
 
@@ -117,7 +117,7 @@ namespace CN88.Features.Reports.Models
 
         public decimal SuperStock { get; private set; }
 
-        public IEnumerable<decimal> ExtraPT { get; internal set; }
+        public IEnumerable<decimal> ExtraPT { get; internal set; } = new List<decimal>();
 
         public string HeadlinePoss => GetDisplayPoss(ExtraPT);
 
