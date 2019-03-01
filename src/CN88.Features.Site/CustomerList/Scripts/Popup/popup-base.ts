@@ -22,7 +22,7 @@
     }
 
     closePopup = () => {
-        this.topWindow.main.$('#myModal .close').click();
+        this.topWindow.popupManager.close();
     }
 
     public reloadCallback(custId: any, newValue: any) {

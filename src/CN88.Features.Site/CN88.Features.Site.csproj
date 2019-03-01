@@ -58,6 +58,14 @@
     <Reference Include="Alpha.Web, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn8801\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
+    <Reference Include="CN88.BetList.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-beta01\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.Sportsbook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0-beta01\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta12\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
@@ -75,6 +83,14 @@
     </Reference>
     <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Enyim.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.BetTrade, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.79.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.Core, Version=2.79.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.79.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -313,6 +329,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TplCore, Version=1.0.4854.17253, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TplCore.1.0.4854.17254\lib\net40\TplCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
