@@ -7,12 +7,14 @@
     using CustomerList.Models;
     using CustomerList.Params;
     using System.Collections.Generic;
+    using Shared.Models;
+    using Shared.AppResources;
 
     public interface CustomerListService
     {
         CustomerListModel GetCustomerList(CustomerListParam param);
 
-        CreditRangeModel GetCreditRangeModel(int searchAccountId);
+        CreditRangeModel GetCreditRangeModel(int searchAccountId, bool isMember);
 
         Result UpdateCredit(UpdateCreditParam param);
 
@@ -40,11 +42,27 @@
             return customerListDataAccess.GetCustomerList(criteria);
         }
 
-        public CreditRangeModel GetCreditRangeModel(int searchAccountId)
-            => dynamicRepository.Get<CreditRangeModel>(new SelectCreditRangeCriteria(searchAccountId));
+        public CreditRangeModel GetCreditRangeModel(int searchAccountId, bool isMember)
+        {
+            var credit = dynamicRepository.Get<CreditRangeModel>(new SelectCreditRangeCriteria(searchAccountId));
+            if (!isMember)
+            {
+                return credit;
+            }
+            var memberUsedCredit = dynamicRepository.Get<CreditRangeModel>(new SelectMemberUsedCreditCriteria(searchAccountId));
+            return new CreditRangeModel(memberUsedCredit.UsedCredit, credit);         
+        }
+
+       
 
         public Result UpdateCredit(UpdateCreditParam param)
         {
+            var credit = GetCreditRangeModel(param.SearchAccountId, param.SearchAccountRoleId==UserLevel.Member.Value);
+            if (param.CreditAmount < credit.MinCredit || param.CreditAmount > credit.MaxCredit)
+            {
+                return Result.CreateErrorResult(101, SharedResources.InvalidCredit);
+            }
+
             var command = new UpdateCreditCriteria(
                     param.SearchAccountId,
                     param.CreditAmount,

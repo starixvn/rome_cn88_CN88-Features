@@ -159,4 +159,7 @@
   <data name="ExportToExcel" xml:space="preserve">
     <value>导出到Excel</value>
   </data>
+  <data name="InvalidCredit" xml:space="preserve">
+    <value>New Credit is out of range, please refresh the form and try again.</value>
+  </data>
 </root>

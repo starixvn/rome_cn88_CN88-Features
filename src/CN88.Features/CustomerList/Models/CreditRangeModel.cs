@@ -8,19 +8,34 @@
 
         public CreditRangeModel(
             decimal usedCredit,
-            decimal betCredit,
+            decimal uplineCredit,
+            decimal uplineUsedCredit,
             decimal minCredit,
             decimal maxCredit)
         {
             UsedCredit = usedCredit;
-            BetCredit = betCredit;
+            UplineCredit = uplineCredit;
+            UplineUsedCredit = uplineUsedCredit;
             MinCredit = minCredit;
             MaxCredit = maxCredit;
         }
 
+        public CreditRangeModel(
+            decimal usedCredit,
+            CreditRangeModel memberCredit)
+        {
+            UsedCredit = usedCredit;
+            UplineCredit = memberCredit.UplineCredit;
+            UplineUsedCredit = memberCredit.UplineUsedCredit;
+            MinCredit = usedCredit;
+            MaxCredit = memberCredit.UplineCredit - memberCredit.UplineUsedCredit + usedCredit;
+        }
+
         public decimal UsedCredit { get; }
 
-        public decimal BetCredit { get; }
+        public decimal UplineCredit { get; }
+
+        public decimal UplineUsedCredit { get; }
 
         public decimal MinCredit { get; }
 

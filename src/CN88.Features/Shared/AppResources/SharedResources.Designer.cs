@@ -133,6 +133,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Credit is out of range, please refresh the form and try again..
+        /// </summary>
+        public static string InvalidCredit {
+            get {
+                return ResourceManager.GetString("InvalidCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Period.
         /// </summary>
         public static string LastPeriod {

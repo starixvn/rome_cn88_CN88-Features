@@ -117,6 +117,7 @@
     <Compile Include="CustomerList\Constants\CustomerStatus.cs" />
     <Compile Include="CustomerList\Criteria\CustomerListCriteria.cs" />
     <Compile Include="CustomerList\Criteria\GetMemberStatementCriteria.cs" />
+    <Compile Include="CustomerList\Criteria\SelectMemberUsedCreditCriteria.cs" />
     <Compile Include="CustomerList\Criteria\SelectCreditRangeCriteria.cs" />
     <Compile Include="CustomerList\Criteria\UpdateCreditCriteria.cs" />
     <Compile Include="CustomerList\Criteria\UpdateCustomerStatusCriteria.cs" />

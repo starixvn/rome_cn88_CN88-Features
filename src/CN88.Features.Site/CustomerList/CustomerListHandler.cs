@@ -63,7 +63,7 @@
         }
 
         public CreditRangeViewModel Handle(CreditPopupQuery message)
-         => new CreditRangeViewModel(message, service.GetCreditRangeModel(message.CustId));
+         => new CreditRangeViewModel(message, service.GetCreditRangeModel(message.CustId, message.CustLevel.IsMemberLevel()));
 
         public StatusPopupViewModel Handle(CustomerStatusPopupQuery message)
          => new StatusPopupViewModel(message);
@@ -72,6 +72,7 @@
          => service.UpdateCredit(
                new UpdateCreditParam(
                    message.CustId,
+                   message.CustLevelId,
                    message.CreditAmount,
                    message.ViewerId,
                    message.SubAccountId,
