@@ -410,6 +410,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
+    <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
+    <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
@@ -542,6 +544,7 @@
     <Content Include="Reports\Views\Wager\MemberTable.cshtml" />
     <Content Include="Reports\Views\Index\CreateReport.cshtml" />
     <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
+    <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

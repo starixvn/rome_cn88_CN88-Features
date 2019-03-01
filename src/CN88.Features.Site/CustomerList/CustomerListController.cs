@@ -65,5 +65,8 @@
         [HttpGet]
         public async Task<ActionResult> OnlineMembers(OnlineMembersQuery message)
             => await ViewAsync(message, "~/CustomerList/Views/OnlineMembers.cshtml");
+
+        public async Task<ActionResult> MemberStatement(MemberStatementQuery message)
+            => await ViewAsync(message, "~/CustomerList/Views/MemberStatement.cshtml");
     }
 }

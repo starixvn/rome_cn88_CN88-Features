@@ -22,6 +22,7 @@
     <Setting Key="CS_Rpt_Cancelled_Super" SpName="CS_Rpt_Cancelled_Super" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
 
     <Setting Key="CS_Rpt_SettlementSummary" SpName="CS_Rpt_SettlementSummary" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_MemberStatement_Sel" SpName="CS_Rpt_MemberStatement_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Alpha.Auth">
     <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />

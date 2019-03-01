@@ -17,5 +17,8 @@
         {
             return date.ToString(TimeFormat);
         }
+
+        public static string ToLongDay(this DateTime date)
+            => date.ToString("YYYY-MM-dd dddd");
     }
 }
