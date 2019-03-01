@@ -198,26 +198,21 @@
     };
 
     resetPassword = (custId: number, username: string, custLevelId: number) => {
-        let popup: any = this.topWindow.popupManager;
-        popup.init(this.$, this.topWindow);
-        popup.open({
-            handlerId: "mainPopup",
-            title: `${this.$('#ResetPassword').val()} - ${username}`,
-            url: `${this.ResetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`,
-            width: 600,
-            height: 320
-        });
+        let url: string = `${this.ResetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
+        let popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
+
+        this.openPopup(popupTitle, url, 'modal modal-password', 420, 460);
     };
 
-    openPopup = (popupTitle: string, url: string, modifiedClass: string) => {
+    openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {
         let self = this;
 
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.open({
             title: popupTitle,
             url: url,
-            width: 480,
-            height: 300,
+            width: width,
+            height: height,
             popupCss: modifiedClass
         });
     };
