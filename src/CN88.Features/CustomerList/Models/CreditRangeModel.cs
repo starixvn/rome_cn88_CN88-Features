@@ -18,15 +18,6 @@
             MaxCredit = maxCredit;
         }
 
-        public CreditRangeModel(
-            decimal usedCredit,
-            CreditRangeModel memberCredit)
-        {            
-            GivenCredit = memberCredit.GivenCredit - usedCredit;          
-            MinCredit = usedCredit;
-            MaxCredit = memberCredit.MaxCredit;
-        }
-
         public decimal GivenCredit { get; }
 
         public decimal UsedCredit { get; }

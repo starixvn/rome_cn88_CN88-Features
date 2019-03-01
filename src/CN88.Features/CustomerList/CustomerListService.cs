@@ -8,6 +8,7 @@
     using Fanex.Data.Repository;
     using Resources;
     using Shared.Models;
+    using System;
     using System.Collections.Generic;
 
     public interface CustomerListService
@@ -49,7 +50,11 @@
                 return credit;
             }
             var memberUsedCredit = dynamicRepository.Get<CreditRangeModel>(new SelectMemberUsedCreditCriteria(searchAccountId));
-            return new CreditRangeModel(memberUsedCredit.UsedCredit, credit);         
+            return new CreditRangeModel(
+                credit.GivenCredit - memberUsedCredit.UsedCredit,
+                credit.UsedCredit,
+                memberUsedCredit.UsedCredit,
+                credit.MaxCredit);         
         }
 
        
