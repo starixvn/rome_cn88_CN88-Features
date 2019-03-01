@@ -6,6 +6,8 @@
 
         string Name { get; }
 
+        string NickName { get; }
+
         string Language { get; }
 
         byte LevelId { get; }

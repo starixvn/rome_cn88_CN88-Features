@@ -1,19 +1,15 @@
 ﻿namespace CN88.Features.Site.Models
 {
-    using CN88.Features.Models;
+    using Features.Models;
     using Sunplus.Agent.Model.Entities;
 
     public class User : IUser
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         private readonly IUserSession userSession;
-#pragma warning restore CS0618 // Type or member is obsolete
 
         private readonly PageAccess pageAccess;
 
-#pragma warning disable CS0618 // Type or member is obsolete
         public User(IUserSession userSession)
-#pragma warning restore CS0618 // Type or member is obsolete
         {
             this.userSession = userSession;
             pageAccess = new PageAccess();
@@ -22,6 +18,8 @@
         public int Id => userSession.CustId;
 
         public string Name => userSession.UserName;
+
+        public string NickName => userSession.NickName;
 
         public string Language => userSession.Language;
 

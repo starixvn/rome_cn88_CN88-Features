@@ -359,6 +359,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SPNames\Local\DB042.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Local\DBPRO.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DBTXN.BODB02.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
@@ -436,9 +437,12 @@
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
+    <Compile Include="Reports\OldReportsController.cs" />
     <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
+    <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
     <Compile Include="Reports\ViewModels\PTHistoryViewModel.cs" />
+    <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
     <Compile Include="BetLists\BetListsHandler.cs" />
@@ -566,6 +570,7 @@
     <Content Include="Reports\Views\Index\CreateReport.cshtml" />
     <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
+    <Content Include="Reports\Views\VerifyPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

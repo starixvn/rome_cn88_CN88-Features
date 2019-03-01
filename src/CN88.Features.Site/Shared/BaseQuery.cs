@@ -33,6 +33,8 @@
 
         public string ViewerName => viewer.Name;
 
+        public string NickName => viewer.NickName;
+
         public byte ViewerLevelId => viewer.LevelId;
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
