@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -10,6 +11,7 @@
     using Features.Shared.AppResources;
     using Features.Shared.Constants;
     using Features.Shared.Models;
+    using Features.Shared.Utils;
     using Requests;
     using Shared.ViewModels.Components;
 
@@ -21,6 +23,7 @@
             IEnumerable<SelectListItem> betTypes,
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
             AccountingPeriod currentPeriod,
+            AccountingPeriod lastPeriod,
             SettlementSummaryReport settlementSummaryReport)
         {
             DisplayMode = query.DisplayMode;
@@ -29,8 +32,13 @@
 
             AccountingPeriodGroups = accountingPeriodGroups;
             CurrentPeriod = currentPeriod;
+            LastPeriod = lastPeriod;
 
-            DateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, currentPeriod.ToDate, query.FromDate, query.ToDate);
+            DateRangePickerViewModel = new DateRangePickerViewModel(
+                lastPeriod.FromDate,
+                DateTime.MaxValue,
+                SystemTime.Today.AddDays(-1),
+                SystemTime.Today.AddDays(-1));
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, 0);
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
 
@@ -60,6 +68,8 @@
         public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
 
         public AccountingPeriod CurrentPeriod { get; }
+
+        public AccountingPeriod LastPeriod { get; }
 
         public DateRangePickerViewModel DateRangePickerViewModel { get; }
 

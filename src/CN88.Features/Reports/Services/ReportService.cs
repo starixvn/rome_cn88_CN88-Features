@@ -5,13 +5,9 @@
     using System.Linq;
     using Constants;
     using Criteria;
-    using Extensions;
-    using Fanex.Caching;
-    using Fanex.Common;
     using Fanex.Data.Repository;
     using Models;
     using Params;
-    using RawData;
     using Shared.Configurations;
     using Shared.Extensions;
     using Shared.Services;
@@ -20,12 +16,6 @@
     {
         IEnumerable<ReportModel> GetReportData(ReportParam param);
 
-        IEnumerable<AccountingPeriodGroup> GetAccountingPeriodGroups();
-
-        AccountingPeriod GetCurrentPeriod();
-
-        SettlementSummaryReport GetSettlementSummaryReport();
-
         IEnumerable<PTHistory> GetPTHistories(int custid, DateTime fromDate, DateTime toDate);
     }
 
@@ -33,16 +23,13 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly ReportDateService reportDateService;
-        private readonly CacheRefService cacheRefService;
 
         public ReportServiceImpl(
             IDynamicRepository dynamicRepository,
-            ReportDateService reportDateService,
-            CacheRefService cacheRefService)
+            ReportDateService reportDateService)
         {
             this.dynamicRepository = dynamicRepository;
             this.reportDateService = reportDateService;
-            this.cacheRefService = cacheRefService;
         }
 
         public IEnumerable<ReportModel> GetReportData(ReportParam param)
@@ -77,83 +64,6 @@
             }
 
             return data;
-        }
-
-        public IEnumerable<AccountingPeriodGroup> GetAccountingPeriodGroups()
-        {
-            var periods = GetAccountingPeriods();
-            var groups = periods
-                .OrderBy(p => p.PeriodId)
-                .GroupBy(p => p.PeriodId.ToString());
-            var result = new List<AccountingPeriodGroup>();
-
-            foreach (var group in groups)
-            {
-                var ps = new List<AccountingPeriod>();
-
-                foreach (var p in group)
-                {
-                    ps.Add(p);
-                }
-
-                result.Add(new AccountingPeriodGroup(group.Key, ps.OrderByDescending(p => p.Year).ToList()));
-            }
-
-            return result;
-        }
-
-        public AccountingPeriod GetCurrentPeriod()
-            => GetAccountingPeriods().FirstOrDefault(p => p.IsCurrentPeriod);
-
-        public SettlementSummaryReport GetSettlementSummaryReport()
-        {
-            var rawData = dynamicRepository.Fetch<SportSettlementByDateModel>(new GetSettlementSummaryReportCriteria());
-
-            var sportGroups = rawData
-                .Select(d => d.SportTypeGroup)
-                .Distinct()
-                .OrderBy(s => Converter.ToInt(s));
-            var name = DateTime.Now.AddDays(-1).ToShortDateFormat();
-            var yesterday = new SettlementByGroup(
-                0,
-                $"{AppResources.ReportResources.Yesterday}({name})",
-                GetSettlementByDate(name, rawData, sportGroups));
-
-            name = DateTime.Now.ToShortDateFormat();
-            var today = new SettlementByGroup(
-                0,
-                $"{AppResources.ReportResources.Today}({name})",
-                GetSettlementByDate(name, rawData, sportGroups));
-
-            var result = new SettlementSummaryReport(sportGroups.Select(s => cacheRefService.GetSportName(Converter.ToInt(s))).ToList(), yesterday, today);
-
-            return result;
-        }
-
-        private IEnumerable<AccountingPeriod> GetAccountingPeriods()
-            => ConfiguredCacheService.GetOrSet(
-                "CN88.Features.Reports.Services.ReportServiceImpl.AccountingPeriods",
-                () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsCriteria()),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
-
-        private IList<SettlementModel> GetSettlementByDate(
-            string name,
-            IEnumerable<SportSettlementByDateModel> rawData,
-            IEnumerable<string> sportGroups)
-        {
-            var result = new List<SettlementModel>();
-            foreach (var sportGroup in sportGroups)
-            {
-                var data = rawData.FirstOrDefault(d =>
-                Converter.To<DateTime>(d.EventDate).ToShortDateFormat() == name && sportGroup == d.SportTypeGroup);
-                var sport = data == null ?
-                    new SettlementModel(0, sportGroup, 0, 0) :
-                    new SettlementModel(0, sportGroup, data.IncompletedEvent, data.CompletedEvent);
-
-                result.Add(sport);
-            }
-
-            return result;
         }
 
         private ICriteria CreateReportCriteria(ReportParam param)

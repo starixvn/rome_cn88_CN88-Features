@@ -27,7 +27,7 @@
             IEnumerable<SelectListItem> betTypes,
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
-            AccountingPeriod currentPeriod)
+            AccountingPeriod lastPeriod)
         {
             this.query = query;
 
@@ -35,7 +35,7 @@
             GrandTotal = grandTotal;
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
-            var dateRangePickerViewModel = new DateRangePickerViewModel(currentPeriod.FromDate, DateTime.MaxValue, query.FromDate, query.ToDate);
+            var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, query.FromDate, query.ToDate);
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, query.UserSelectedBetTypeId);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses

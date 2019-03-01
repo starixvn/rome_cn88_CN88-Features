@@ -13,15 +13,21 @@
     {
         private readonly SportGroupService sportService;
         private readonly BettypeGroupService betTypeService;
+        private readonly AccountingPeriodService accountingPeriodService;
+        private readonly SettlementSummaryService settlementSummaryService;
         private readonly ReportService reportService;
 
         public ReportsHandler(
             SportGroupService sportService,
             BettypeGroupService betTypeService,
+            AccountingPeriodService accountingPeriodService,
+            SettlementSummaryService settlementSummaryService,
             ReportService reportService)
         {
             this.sportService = sportService;
             this.betTypeService = betTypeService;
+            this.accountingPeriodService = accountingPeriodService;
+            this.settlementSummaryService = settlementSummaryService;
             this.reportService = reportService;
         }
 
@@ -29,9 +35,10 @@
         {
             var sportGroups = sportService.GetSportGroups();
             var betTypes = betTypeService.GetBetTypeGroupsBySport();
-            var accountingPeriodGroups = reportService.GetAccountingPeriodGroups();
-            var currentPeriod = reportService.GetCurrentPeriod();
-            var settlementSummary = reportService.GetSettlementSummaryReport();
+            var accountingPeriodGroups = accountingPeriodService.GetAccountingPeriodGroups();
+            var currentPeriod = accountingPeriodService.GetCurrentPeriod();
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            var settlementSummary = settlementSummaryService.GetSettlementSummaryReport();
 
             return new IndexViewModel(
                 message,
@@ -39,6 +46,7 @@
                 BuildBetTypeSelectListItems(betTypes, 0),
                 accountingPeriodGroups,
                 currentPeriod,
+                lastPeriod,
                 settlementSummary);
         }
 
@@ -46,7 +54,7 @@
         {
             var sportGroups = sportService.GetSportGroups();
             var betTypes = betTypeService.GetBetTypeGroupsBySport(message.UserSelectedSportGroupId);
-            var currentPeriod = reportService.GetCurrentPeriod();
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
 
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
@@ -59,7 +67,7 @@
                 BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 reportData,
                 grandTotal,
-                currentPeriod);
+                lastPeriod);
         }
 
         public PTHistoryViewModel Handle(PTHistoryQuery message)

@@ -7,6 +7,7 @@
     using Fanex.Logging;
     using Fanex.RemotingRef;
     using global::CN88.Features.BetLists;
+    using global::CN88.Features.CustomerList;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
     using global::CN88.Features.Models;
@@ -102,7 +103,10 @@
                 Lifestyle.Singleton);
 
             container.RegisterSingleton<CustomerListService, CustomerListServiceImpl>();
+            container.RegisterSingleton<MemberStatementService, MemberStatementServiceImpl>();
 
+            container.RegisterSingleton<AccountingPeriodService, AccountingPeriodServiceImpl>();
+            container.RegisterSingleton<SettlementSummaryService, SettlementSummaryServiceImpl>();
             container.RegisterSingleton<ReportService, ReportServiceImpl>();
 
             container.RegisterSingleton<SubAccountService, SubAccountServiceImpl>();

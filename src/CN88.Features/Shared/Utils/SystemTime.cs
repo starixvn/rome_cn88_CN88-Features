@@ -12,7 +12,5 @@
             get { return today ?? DateTime.Today; }
             internal set { today = value; }
         }
-
-        public static DateTime Yesterday => Today.AddDays(-1);
     }
 }

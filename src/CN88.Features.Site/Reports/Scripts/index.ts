@@ -19,10 +19,9 @@ class ReportIndexView extends BaseReport {
     $thisWeekBtn: JQuery;
     $lastWeekBtn: JQuery;
     $thisPeriodBtn: JQuery;
+    $lastPeriodBtn: JQuery;
     $clearBtn: JQuery;
 
-    minDate: any;
-    maxDate: any;
     today: any;
     yesterday: any;
     tomorrow: any;
@@ -33,7 +32,15 @@ class ReportIndexView extends BaseReport {
     lastWeek = {
         fromDate: null,
         toDate: null
-    }
+    };
+    thisPeriod = {
+        fromDate: null,
+        toDate: null
+    };
+    lastPeriod = {
+        fromDate: null,
+        toDate: null
+    };
 
     constructor(
         $: JQueryStatic,
@@ -77,13 +84,12 @@ class ReportIndexView extends BaseReport {
         this.$thisWeekBtn = this.$("#btn-this-week");
         this.$lastWeekBtn = this.$("#btn-last-week");
         this.$thisPeriodBtn = this.$("#btn-this-period");
+        this.$lastPeriodBtn = this.$("#btn-last-period");
         this.$clearBtn = this.$("#btn-clear");
     };
 
     calculatedDate = () => {
         let dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
-        this.minDate = new Date(dateRangePicker.data("mindate"));
-        this.maxDate = new Date(dateRangePicker.data("maxdate"));
         this.today = new Date(dateRangePicker.data("currentdate"));
         this.yesterday = new Date().setDate(this.today.getDate() - 1);
         this.tomorrow = new Date().setDate(this.today.getDate() + 1);
@@ -93,6 +99,11 @@ class ReportIndexView extends BaseReport {
         this.thisWeek.toDate = new Date().setDate(first + 6);
         this.lastWeek.fromDate = new Date().setDate(first - 7);
         this.lastWeek.toDate = new Date().setDate(first - 1);
+
+        this.thisPeriod.fromDate = new Date(this.$("#ThisPeriod_FromDate").val())
+        this.thisPeriod.toDate = new Date(this.$("#ThisPeriod_ToDate").val())
+        this.lastPeriod.fromDate = new Date(this.$("#LastPeriod_FromDate").val())
+        this.lastPeriod.toDate = new Date(this.$("#LastPeriod_ToDate").val())
     }
 
     renderRptTypeDropdown = () => {
@@ -135,7 +146,11 @@ class ReportIndexView extends BaseReport {
         });
 
         this.$thisPeriodBtn.click((e) => {
-            this.changeDateRange(e, this.minDate, this.maxDate);
+            this.changeDateRange(e, this.thisPeriod.fromDate, this.thisPeriod.toDate);
+        });
+
+        this.$lastPeriodBtn.click((e) => {
+            this.changeDateRange(e, this.lastPeriod.fromDate, this.lastPeriod.toDate);
         });
 
         this.$clearBtn.click(() => {
