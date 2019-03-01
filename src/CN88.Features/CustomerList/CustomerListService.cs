@@ -2,13 +2,13 @@
 {
     using CN88.Features.Models;
     using CustomerList.Criteria;
-    using DataAccesses;
-    using Fanex.Data.Repository;
     using CustomerList.Models;
     using CustomerList.Params;
-    using System.Collections.Generic;
+    using DataAccesses;
+    using Fanex.Data.Repository;
+    using Resources;
     using Shared.Models;
-    using Shared.AppResources;
+    using System.Collections.Generic;
 
     public interface CustomerListService
     {
@@ -24,8 +24,7 @@
     }
 
     public class CustomerListServiceImpl : CustomerListService
-    {
-        private readonly int failErrorCode = 100;
+    {      
         private readonly IDynamicRepository dynamicRepository;
         private readonly CustomerListDataAccess customerListDataAccess;
 
@@ -57,10 +56,10 @@
 
         public Result UpdateCredit(UpdateCreditParam param)
         {
-            var credit = GetCreditRangeModel(param.SearchAccountId, param.SearchAccountRoleId==UserLevel.Member.Value);
+            var credit = GetCreditRangeModel(param.SearchAccountId, param.SearchAccountRoleId == UserLevel.Member.Value);
             if (param.CreditAmount < credit.MinCredit || param.CreditAmount > credit.MaxCredit)
             {
-                return Result.CreateErrorResult(101, SharedResources.InvalidCredit);
+                return Result.CreateErrorResult(101, CustomerListResources.InvalidCredit);
             }
 
             var command = new UpdateCreditCriteria(
@@ -74,8 +73,8 @@
             dynamicRepository.Execute(command);
 
             return command.ErrCode.Equals(0)
-               ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
-               : Result.CreateSuccessResult();
+               ? Result.CreateSuccessResult()
+               : Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
         public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)

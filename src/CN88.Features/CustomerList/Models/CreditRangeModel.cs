@@ -7,15 +7,13 @@
         }
 
         public CreditRangeModel(
-            decimal usedCredit,
-            decimal uplineCredit,
-            decimal uplineUsedCredit,
+            decimal givenCredit,
+            decimal usedCredit,         
             decimal minCredit,
             decimal maxCredit)
         {
-            UsedCredit = usedCredit;
-            UplineCredit = uplineCredit;
-            UplineUsedCredit = uplineUsedCredit;
+            GivenCredit = givenCredit;
+            UsedCredit = usedCredit;           
             MinCredit = minCredit;
             MaxCredit = maxCredit;
         }
@@ -23,19 +21,15 @@
         public CreditRangeModel(
             decimal usedCredit,
             CreditRangeModel memberCredit)
-        {
-            UsedCredit = usedCredit;
-            UplineCredit = memberCredit.UplineCredit;
-            UplineUsedCredit = memberCredit.UplineUsedCredit;
+        {            
+            GivenCredit = memberCredit.GivenCredit - usedCredit;          
             MinCredit = usedCredit;
-            MaxCredit = memberCredit.UplineCredit - memberCredit.UplineUsedCredit + usedCredit;
+            MaxCredit = memberCredit.MaxCredit;
         }
 
+        public decimal GivenCredit { get; }
+
         public decimal UsedCredit { get; }
-
-        public decimal UplineCredit { get; }
-
-        public decimal UplineUsedCredit { get; }
 
         public decimal MinCredit { get; }
 

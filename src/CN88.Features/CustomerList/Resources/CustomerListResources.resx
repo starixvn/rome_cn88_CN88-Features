@@ -157,7 +157,7 @@
     <value>Group</value>
   </data>
   <data name="InputNumberError" xml:space="preserve">
-    <value>Please input a value number !</value>
+    <value>Please input a value number!</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
@@ -245,5 +245,11 @@
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>Nick Name</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>Bet Credit</value>
+  </data>
+  <data name="InvalidCredit" xml:space="preserve">
+    <value>New Credit is out of range, please refresh the form and try again.</value>
   </data>
 </root>

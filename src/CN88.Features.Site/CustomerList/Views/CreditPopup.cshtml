@@ -11,8 +11,8 @@
 <div class="popup-modal form">
     <div class="col-xs-12 hidden msg" id="error-message"></div>
     <div class="used-credit">
-        <span>@CustomerListResources.UsedCredit</span>
-        <span class="bold">@Model.CreditModel.UsedCredit.ToString("N2")</span>
+        <span class="bold">@(Model.CustLevel.IsMemberLevel() ? CustomerListResources.BetCredit : CustomerListResources.UsedCredit)</span>      
+        <span class="bold">@(Model.CustLevel.IsMemberLevel() ? Model.CreditModel.GivenCredit.ToString("N2") : Model.CreditModel.UsedCredit.ToString("N2"))</span>
     </div>
     <div class="form-group">
         <label>@CustomerListResources.Credit</label>

@@ -97,6 +97,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bet Credit.
+        /// </summary>
+        public static string BetCredit {
+            get {
+                return ResourceManager.GetString("BetCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -178,11 +187,20 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please input a value number !.
+        ///   Looks up a localized string similar to Please input a value number!.
         /// </summary>
         public static string InputNumberError {
             get {
                 return ResourceManager.GetString("InputNumberError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Credit is out of range, please refresh the form and try again..
+        /// </summary>
+        public static string InvalidCredit {
+            get {
+                return ResourceManager.GetString("InvalidCredit", resourceCulture);
             }
         }
         
