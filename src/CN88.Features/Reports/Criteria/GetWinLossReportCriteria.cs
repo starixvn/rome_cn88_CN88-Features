@@ -1,8 +1,8 @@
-﻿using System;
-using CN88.Features.Shared.Models;
-
-namespace CN88.Features.Reports.Criteria
+﻿namespace CN88.Features.Reports.Criteria
 {
+    using System;
+    using Shared.Models;
+
     public class GetWinLossReportCriteria : ReportCriteriaBase
     {
         public GetWinLossReportCriteria(

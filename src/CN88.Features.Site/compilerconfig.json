@@ -4,6 +4,10 @@
     "inputFile": "Reports/Styles/reports.scss"
   },
   {
+    "outputFile": "Reports/Styles/security.css",
+    "inputFile": "Reports/Styles/security.scss"
+  },
+  {
     "outputFile": "CustomerList/Styles/popup.css",
     "inputFile": "CustomerList/Styles/popup.scss"
   },
@@ -19,4 +23,5 @@
     "outputFile": "BetLists/Styles/bet-lists.css",
     "inputFile": "BetLists/Styles/bet-lists.scss"
   }
+
 ]

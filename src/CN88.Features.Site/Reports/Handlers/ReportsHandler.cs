@@ -11,20 +11,20 @@
         IRequestHandler<ReportQuery, ReportViewModel>,
         IRequestHandler<PTHistoryQuery, PTHistoryViewModel>
     {
-        private readonly SportGroupService sportService;
+        private readonly SportGroupService sportGroupService;
         private readonly BettypeGroupService betTypeService;
         private readonly AccountingPeriodService accountingPeriodService;
         private readonly SettlementSummaryService settlementSummaryService;
         private readonly ReportService reportService;
 
         public ReportsHandler(
-            SportGroupService sportService,
+            SportGroupService sportGroupService,
             BettypeGroupService betTypeService,
             AccountingPeriodService accountingPeriodService,
             SettlementSummaryService settlementSummaryService,
             ReportService reportService)
         {
-            this.sportService = sportService;
+            this.sportGroupService = sportGroupService;
             this.betTypeService = betTypeService;
             this.accountingPeriodService = accountingPeriodService;
             this.settlementSummaryService = settlementSummaryService;
@@ -33,26 +33,26 @@
 
         public IndexViewModel Handle(IndexQuery message)
         {
-            var sportGroups = sportService.GetSportGroups();
-            var betTypes = betTypeService.GetBetTypeGroupsBySport();
-            var accountingPeriodGroups = accountingPeriodService.GetAccountingPeriodGroups();
+            var settlementSummary = settlementSummaryService.GetSettlementSummaryReport();
+            var accountingPeriods = accountingPeriodService.GetAccountingPeriods();
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
-            var settlementSummary = settlementSummaryService.GetSettlementSummaryReport();
+            var sportGroups = sportGroupService.GetSportGroups();
+            var betTypes = betTypeService.GetBetTypeGroupsBySport();
 
             return new IndexViewModel(
                 message,
-                BuildSportGroupSelectListItems(sportGroups, 0),
-                BuildBetTypeSelectListItems(betTypes, 0),
-                accountingPeriodGroups,
+                settlementSummary,
+                BuildAccountingPeriodGroup(accountingPeriods),
                 currentPeriod,
                 lastPeriod,
-                settlementSummary);
+                BuildSportGroupSelectListItems(sportGroups, 0),
+                BuildBetTypeSelectListItems(betTypes, 0));
         }
 
         public ReportViewModel Handle(ReportQuery message)
         {
-            var sportGroups = sportService.GetSportGroups();
+            var sportGroups = sportGroupService.GetSportGroups();
             var betTypes = betTypeService.GetBetTypeGroupsBySport(message.UserSelectedSportGroupId);
             var lastPeriod = accountingPeriodService.GetLastPeriod();
 

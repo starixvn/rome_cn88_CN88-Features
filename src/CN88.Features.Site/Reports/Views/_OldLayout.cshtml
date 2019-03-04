@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>OldReports</title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.Render("/bundles/site-features/default")
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="menubar">
+        <section id="main-menu-tab" class="mainmenu-container">
+            <ul class="list-menu" id="main-menu-items">
+                <li class="menu-item active">
+                    <a class="txt-item menu-opener parent-menu active" href="javascript:void(0);">Report</a>
+                </li>
+            </ul>
+            <ul class="sub-menu">
+                <li class="sub-menu-item">
+                    <a href="javascript:void(0);" target="main" class="redirect-item">Wager Report</a>
+                </li>
+                <li class="sub-menu-item">
+                    <a href="javascript:void(0);" target="main" class="redirect-item">Legacy Report</a>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <main class="content" id="content">
+        @RenderBody()
+    </main>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-features/default")
+    @RenderSection("Scripts", required: false)
+    @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
+</body>
+</html>

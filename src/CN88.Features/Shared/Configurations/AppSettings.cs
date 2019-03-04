@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Specialized;
     using System.Configuration;
+    using Fanex.Common;
 
     public static class AppSettings
     {
@@ -23,6 +24,8 @@
         public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
 
         public static bool IsTest => GetConfigValue("LocalTest") == "1";
+
+        public static int NumberOfPeriod => Converter.ToInt(GetConfigValue("OldReports:NumberOfPeriod"));
 
         public static string DefaultIpAddress => GetConfigValue("DefaultIpAddress");
 

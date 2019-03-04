@@ -11,11 +11,6 @@
 </form>
 <form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("Excel","Reports")">
     @RenderHiddenFields()
-    @Html.Hidden("FromDate", Model.DateRangePickerViewModel.FromDate)
-    @Html.Hidden("FromDate", Model.DateRangePickerViewModel.ToDate)
-    @Html.Hidden("UserSelectedSportGroupId", Model.SportGroupSelectionViewModel.UserSelectedId)
-    @Html.Hidden("UserSelectedBetTypeId", Model.BetTypeSelectionViewModel.UserSelectedId)
-    @Html.Hidden("UserSelectedLiveStatusId", Model.LiveStatusSelectionViewModel.UserSelectedId)
 </form>
 @helper RenderHiddenFields()
 {
@@ -24,4 +19,9 @@
     @Html.Hidden("CustLevelId", Model.CustLevel.Value)
     @Html.Hidden("IsOwner", Model.IsOwner)
     @Html.Hidden("ReportType", Model.ReportType)
+    @Html.Hidden("FromDate", Model.DateRangePickerViewModel.FromDate)
+    @Html.Hidden("FromDate", Model.DateRangePickerViewModel.ToDate)
+    @Html.Hidden("UserSelectedSportGroupId", Model.SportGroupSelectionViewModel.UserSelectedId)
+    @Html.Hidden("UserSelectedBetTypeId", Model.BetTypeSelectionViewModel.UserSelectedId)
+    @Html.Hidden("UserSelectedLiveStatusId", Model.LiveStatusSelectionViewModel.UserSelectedId)
 }

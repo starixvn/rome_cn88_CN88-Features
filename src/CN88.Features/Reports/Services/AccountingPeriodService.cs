@@ -7,14 +7,17 @@
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
+    using Shared.Configurations;
 
     public interface AccountingPeriodService
     {
-        IEnumerable<AccountingPeriodGroup> GetAccountingPeriodGroups();
-
         AccountingPeriod GetCurrentPeriod();
 
         AccountingPeriod GetLastPeriod();
+
+        IEnumerable<AccountingPeriod> GetOldAccountingPeriods();
+
+        IEnumerable<AccountingPeriod> GetAccountingPeriods();
     }
 
     public class AccountingPeriodServiceImpl : AccountingPeriodService
@@ -28,29 +31,6 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public IEnumerable<AccountingPeriodGroup> GetAccountingPeriodGroups()
-        {
-            var periods = GetAccountingPeriods();
-            var groups = periods
-                .OrderBy(p => p.PeriodId)
-                .GroupBy(p => p.PeriodId.ToString());
-            var result = new List<AccountingPeriodGroup>();
-
-            foreach (var group in groups)
-            {
-                var ps = new List<AccountingPeriod>();
-
-                foreach (var p in group)
-                {
-                    ps.Add(p);
-                }
-
-                result.Add(new AccountingPeriodGroup(group.Key, ps.OrderByDescending(p => p.Year).ToList()));
-            }
-
-            return result;
-        }
-
         public AccountingPeriod GetCurrentPeriod()
             => GetAccountingPeriods().FirstOrDefault(p => p.IsCurrentPeriod);
 
@@ -61,7 +41,20 @@
             return GetAccountingPeriods().FirstOrDefault(p => p.FromDate <= date && date <= p.ToDate);
         }
 
-        private IEnumerable<AccountingPeriod> GetAccountingPeriods()
+        public IEnumerable<AccountingPeriod> GetOldAccountingPeriods()
+        {
+            var periods = GetAccountingPeriods().ToList();
+
+            var currentPeriod = periods.FirstOrDefault(p => p.IsCurrentPeriod);
+            var currentIndex = periods.IndexOf(currentPeriod);
+
+            return periods
+                .Where(p => periods.IndexOf(p) < (currentIndex - 1))
+                .OrderByDescending(p => p.FromDate)
+                .Take(AppSettings.NumberOfPeriod);
+        }
+
+        public IEnumerable<AccountingPeriod> GetAccountingPeriods()
             => ConfiguredCacheService.GetOrSet(
                 AccountingPeriodsCacheKey,
                 () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsCriteria()),

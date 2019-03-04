@@ -189,6 +189,7 @@
     <Compile Include="CustomerList\Constants\CustomerStatus.cs" />
     <Compile Include="CustomerList\Criteria\CustomerListCriteria.cs" />
     <Compile Include="CustomerList\Criteria\GetMemberStatementCriteria.cs" />
+    <Compile Include="Reports\Criteria\ReCheckCustomerPasswordCommand.cs" />
     <Compile Include="CustomerList\Criteria\SelectMemberUsedCreditCriteria.cs" />
     <Compile Include="CustomerList\Criteria\SelectCreditRangeCriteria.cs" />
     <Compile Include="CustomerList\Criteria\UpdateCreditCriteria.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Reports\Models\PTHistory.cs" />
     <Compile Include="Reports\Models\PTSetting.cs" />
     <Compile Include="Reports\Services\AccountingPeriodService.cs" />
+    <Compile Include="Reports\Services\ReCheckCustomerPasswordService.cs" />
     <Compile Include="Reports\Services\SettlementSummaryService.cs" />
     <Compile Include="Shared\Criteria\GetArchiveDateCriteria.cs" />
     <Compile Include="Shared\Extensions\EnumerableExtensions.cs" />

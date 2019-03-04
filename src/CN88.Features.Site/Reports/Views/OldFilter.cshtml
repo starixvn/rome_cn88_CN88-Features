@@ -1,0 +1,24 @@
+﻿@model OldReportFilterViewModel
+<form class="form-inline filter report-form" role="form" id="report-form">
+    @RenderHiddenFields()
+    @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, true)
+    @Html.Partial("~/Reports/Views/AccountingPeriodSelection.cshtml", Model.AccountingPeriodSelectionViewModel)
+    @DateRangePicker.Render(Model.DateRangePickerViewModel)
+    <div class="form-group">
+        <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
+    </div>
+</form>
+<form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("Excel","Reports")">
+    @RenderHiddenFields()
+</form>
+@helper RenderHiddenFields()
+{
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("CustName", Model.CustName)
+    @Html.Hidden("CustLevelId", Model.CustLevel.Value)
+    @Html.Hidden("IsOwner", Model.IsOwner)
+    @Html.Hidden("ReportType", Model.ReportType)
+    @Html.Hidden("FromDate", Model.DateRangePickerViewModel.FromDate)
+    @Html.Hidden("FromDate", Model.DateRangePickerViewModel.ToDate)
+    @Html.Hidden("UserSelectedSportGroupId", Model.SportGroupSelectionViewModel.UserSelectedId)
+}

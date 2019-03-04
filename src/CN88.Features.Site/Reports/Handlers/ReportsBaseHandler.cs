@@ -9,7 +9,7 @@
 
     public class ReportsBaseHandler : BaseHandler
     {
-        protected internal ReportParam CreateReportParam(ReportQuery message)
+        protected internal ReportParam CreateReportParam(ReportBaseQuery message)
             => new ReportParam(
                 message.CustId,
                 message.IsOwner,
@@ -34,6 +34,28 @@
             }
 
             return grandTotal;
+        }
+
+        protected internal IEnumerable<AccountingPeriodGroup> BuildAccountingPeriodGroup(IEnumerable<AccountingPeriod> periods)
+        {
+            var groups = periods
+                .OrderBy(p => p.PeriodId)
+                .GroupBy(p => p.PeriodId.ToString());
+            var result = new List<AccountingPeriodGroup>();
+
+            foreach (var group in groups)
+            {
+                var ps = new List<AccountingPeriod>();
+
+                foreach (var p in group)
+                {
+                    ps.Add(p);
+                }
+
+                result.Add(new AccountingPeriodGroup(group.Key, ps.OrderByDescending(p => p.Year).ToList()));
+            }
+
+            return result;
         }
     }
 }

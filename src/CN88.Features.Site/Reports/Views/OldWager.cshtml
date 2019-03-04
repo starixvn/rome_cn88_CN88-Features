@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Reports/Views/_OldLayout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+}
+@model OldReportViewModel
+<div class="report-detail wager-report">
+    <div class="page-title title-report-detail">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="report-name">@Model.Title</li>
+            <li role="presentation" class="active tab-selector" target-id="settlement-content">
+                <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
+            </li>
+            @if (Model.ReportLevel.IsNotMemberLevel())
+            {
+                <li role="presentation" class="tab-selector" target-id="valid-stake-content">
+                    <a data-toggle="tab" href="#">@ReportResources.ValidStake</a>
+                </li>
+            }
+        </ul>
+        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+    </div>
+    @Html.Partial("~/Reports/Views/OldFilter.cshtml", Model.OldReportFilterViewModel)
+    @if (Model.IsNotOwner)
+    {
+        if (Model.ReportLevel.IsSuperLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/SuperTableByUpper.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsMasterLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/MasterTableByUpper.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsAgentLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/AgentTableByUpper.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsMemberLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/MemberTable.cshtml", Model)
+        }
+    }
+    else
+    {
+        if (Model.ReportLevel.IsSuperLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/SuperTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsMasterLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/MasterTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsAgentLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/AgentTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsMemberLevel())
+        {
+            @Html.Partial("~/Reports/Views/Wager/MemberTable.cshtml", Model)
+        }
+    }
+    @Pager.Render(Model.PagerViewModel)
+</div>
+@section Scripts{
+    @StaticResources.RenderScripts("~/Reports/bundles/wager")
+}

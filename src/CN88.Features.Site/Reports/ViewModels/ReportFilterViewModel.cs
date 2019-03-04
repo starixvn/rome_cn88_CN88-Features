@@ -3,7 +3,7 @@
     using Features.Shared.Models;
     using Shared.ViewModels.Components;
 
-    public class ReportFilterViewModel
+    public class ReportFilterViewModel : ReportFilterBaseViewModel
     {
         public ReportFilterViewModel(
             int reportType,
@@ -15,31 +15,11 @@
             DateRangePickerViewModel dateRangePickerViewModel,
             SingleSelectionViewModel betTypeSelectionViewModel,
             SingleSelectionViewModel liveStatusSelectionViewModel)
+            : base(reportType, isOwner, custId, custName, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
         {
-            ReportType = reportType;
-            IsOwner = isOwner;
-            CustId = custId;
-            CustName = custName;
-            CustLevel = custLevel;
-            SportGroupSelectionViewModel = sportGroupSelectionViewModel;
-            DateRangePickerViewModel = dateRangePickerViewModel;
             BetTypeSelectionViewModel = betTypeSelectionViewModel;
             LiveStatusSelectionViewModel = liveStatusSelectionViewModel;
         }
-
-        public int ReportType { get; }
-
-        public bool IsOwner { get; }
-
-        public int CustId { get; }
-
-        public string CustName { get; }
-
-        public UserLevel CustLevel { get; }
-
-        public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
-
-        public DateRangePickerViewModel DateRangePickerViewModel { get; }
 
         public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
 

@@ -1,0 +1,34 @@
+﻿@model OldIndexViewModel
+<div class="page-title">Create Report</div>
+<div class="filter">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" id="wager-tab" class="active">
+            <a data-toggle="tab" href="#wagerReport" data-defaulttype="@ReportTypeConstants.SettledWager">@ReportResources.WagerReport</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
+            <div class="dropdown">
+                <select id="dropdown-wagerRptType">
+                    @foreach (var type in Model.WagerReportTypes)
+                    {
+                        <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="create-rpt-form" class="form-horizontal create-form filter" role="form" action="@Url.Action(Model.ActionName, "OldReports")">
+    @Html.Hidden("ReportType")
+    @Html.Hidden("DisplayMode", Model.DisplayMode)
+    @Html.Hidden("IsOwner", Model.IsOwner)
+    @Html.Hidden("CustLevelId", Model.CustLevelId)
+    @Html.Partial("~/Reports/Views/AccountingPeriodSelection.cshtml", Model.AccountingPeriodSelectionViewModel)
+    @DateRangePicker.Render(Model.DateRangePickerViewModel)
+    @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
+    <div class="form-group pull-right">
+        <input id="btn-clear" type="button" value="@SharedResources.Clear" class="btn btn-default" />
+        <input type="submit" value="@ReportResources.ViewReport" class="btn-submit" />
+    </div>
+</form>

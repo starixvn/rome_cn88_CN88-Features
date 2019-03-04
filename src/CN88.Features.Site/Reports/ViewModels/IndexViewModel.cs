@@ -4,42 +4,36 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Constants;
-    using Features.Shared.Models;
     using Features.Shared.Utils;
     using Requests;
     using Shared.ViewModels.Components;
 
-    public class IndexViewModel
+    public class IndexViewModel : IndexBaseViewModel
     {
         public IndexViewModel(
             IndexQuery query,
-            IEnumerable<SelectListItem> sportGroups,
-            IEnumerable<SelectListItem> betTypes,
+            SettlementSummaryReport settlementSummaryReport,
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
-            SettlementSummaryReport settlementSummaryReport)
+            IEnumerable<SelectListItem> sportGroups,
+            IEnumerable<SelectListItem> betTypes)
+            : base(query, accountingPeriodGroups, sportGroups)
         {
-            DisplayMode = query.DisplayMode;
-            CustLevelId = query.ActorLevel.IsHeadline() ? UserLevel.Super.Value : query.ActorLevel.Value;
-            IsOwner = query.ActorLevel.IsNotHeadline();
-
-            AccountingPeriodGroups = accountingPeriodGroups;
             CurrentPeriod = currentPeriod;
             LastPeriod = lastPeriod;
+            SettlementSummaryReport = settlementSummaryReport;
 
             DateRangePickerViewModel = new DateRangePickerViewModel(
                 lastPeriod.FromDate,
                 DateTime.MaxValue,
                 SystemTime.Today.AddDays(-1),
                 SystemTime.Today.AddDays(-1));
-            SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, 0);
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
@@ -49,43 +43,15 @@
                     Value = s.Key.ToString(),
                 });
             LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, LiveStatusConstants.PreMatchAndInPlay);
-
-            ActionName = query.DisplayMode == ReportDisplayModeConstants.Wager
-                ? nameof(ReportDisplayModeConstants.Wager)
-                : nameof(ReportDisplayModeConstants.Legacy);
-
-            SettlementSummaryReport = settlementSummaryReport;
         }
-
-        public int DisplayMode { get; }
-
-        public int CustLevelId { get; }
-
-        public bool IsOwner { get; }
-
-        public string ActionName { get; }
-
-        public IEnumerable<AccountingPeriodGroup> AccountingPeriodGroups { get; }
 
         public AccountingPeriod CurrentPeriod { get; }
 
         public AccountingPeriod LastPeriod { get; }
 
-        public DateRangePickerViewModel DateRangePickerViewModel { get; }
-
-        public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
-
         public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
 
         public SingleSelectionViewModel LiveStatusSelectionViewModel { get; }
-
-        public IEnumerable<SelectListItem> WagerReportTypes => ReportTypeConstants.WagerReportTypes
-            .Select(t => new SelectListItem
-            {
-                Text = ReportResources.ResourceManager.GetString(t.Value),
-                Value = t.Key.ToString(),
-                Selected = t.Key == ReportTypeConstants.SettledWager
-            });
 
         public IEnumerable<SelectListItem> CancelledReportTypes => ReportTypeConstants.CancelledReportTypes
             .Select(t => new SelectListItem

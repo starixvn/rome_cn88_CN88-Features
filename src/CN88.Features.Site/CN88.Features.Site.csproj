@@ -442,6 +442,10 @@
     <Content Include="Reports\bundles\reports.min.css">
       <DependentUpon>reports.css</DependentUpon>
     </Content>
+    <Content Include="Reports\bundles\verify-password.css" />
+    <Content Include="Reports\bundles\verify-password.min.css">
+      <DependentUpon>verify-password.css</DependentUpon>
+    </Content>
     <Content Include="Reports\bundles\wager.js" />
     <Content Include="Reports\bundles\wager.min.js">
       <DependentUpon>wager.js</DependentUpon>
@@ -451,6 +455,12 @@
     </Content>
     <Content Include="Reports\Styles\reports.min.css">
       <DependentUpon>reports.css</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\security.css">
+      <DependentUpon>security.scss</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\security.min.css">
+      <DependentUpon>security.css</DependentUpon>
     </Content>
     <Content Include="SubAccount\bundles\styles\sub-account.css" />
     <Content Include="SubAccount\bundles\styles\sub-account.min.css">
@@ -470,14 +480,25 @@
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
+    <Compile Include="Reports\Handlers\OldReportsHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
     <Compile Include="Reports\OldReportsController.cs" />
+    <Compile Include="Reports\Requests\OldReportQuery.cs" />
+    <Compile Include="Reports\Requests\ReportBaseQuery.cs" />
+    <Compile Include="Reports\Requests\OldIndexQuery.cs" />
     <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
+    <Compile Include="Reports\ViewModels\AccountingPeriodSelectionViewModel.cs" />
+    <Compile Include="Reports\ViewModels\IndexBaseViewModel.cs" />
+    <Compile Include="Reports\ViewModels\OldIndexViewModel.cs" />
+    <Compile Include="Reports\ViewModels\OldReportFilterViewModel.cs" />
+    <Compile Include="Reports\ViewModels\OldReportViewModel.cs" />
     <Compile Include="Reports\ViewModels\PTHistoryViewModel.cs" />
+    <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
+    <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
@@ -615,6 +636,15 @@
     <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <Content Include="Reports\Views\VerifyPassword.cshtml" />
+    <Content Include="Reports\Styles\_variables.scss" />
+    <Content Include="Reports\Styles\_mixins.scss" />
+    <Content Include="Reports\Styles\security.scss" />
+    <Content Include="Reports\Views\OldIndex.cshtml" />
+    <Content Include="Reports\Views\Index\OldCreateReport.cshtml" />
+    <Content Include="Reports\Views\AccountingPeriodSelection.cshtml" />
+    <Content Include="Reports\Views\OldWager.cshtml" />
+    <Content Include="Reports\Views\OldFilter.cshtml" />
+    <Content Include="Reports\Views\_OldLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

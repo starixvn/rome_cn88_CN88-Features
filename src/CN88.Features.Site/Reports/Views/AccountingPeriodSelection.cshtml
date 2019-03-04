@@ -1,0 +1,15 @@
+﻿@model AccountingPeriodSelectionViewModel
+<div class="form-group">
+    <label>@ReportResources.AccountingSheet</label>
+    <select id="dropdown-bettype">
+        @foreach (var period in Model.Periods)
+        {
+            <option value="@period.PeriodId" @(period.PeriodId == Model.UserSelectedPeriodId ? " selected=\"selected\"" : string.Empty)
+                    data-fromdate="@period.FromDate.ToShortDate()"
+                    data-todate="@period.ToDate.ToShortDate()">
+                @period.FromDateStr ~ @period.ToDateStr
+            </option>
+        }
+    </select>
+    <input type="hidden" name="UserSelectedPeriodId" id="UserSelectedPeriodId" value="@Model.UserSelectedPeriodId" />
+</div>

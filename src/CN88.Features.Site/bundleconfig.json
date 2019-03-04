@@ -6,6 +6,12 @@
     ]
   },
   {
+    "outputFileName": "Reports/bundles/verify-password.css",
+    "inputFiles": [
+      "Reports/Styles/security.css"
+    ]
+  },
+  {
     "outputFileName": "Reports/bundles/index.js",
     "inputFiles": [
       "Shared/Scripts/core.js",
