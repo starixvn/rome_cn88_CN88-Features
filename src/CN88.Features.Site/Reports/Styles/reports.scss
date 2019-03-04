@@ -112,7 +112,6 @@
 
 .report-form {
     padding-top: 16px;
-    border-bottom: 1px solid #c8c8c8;
 
     .form-group {
         vertical-align: bottom;
@@ -162,10 +161,11 @@
 }
 
 .tbl-report {
+    width: 100%;
     > thead > tr > th {
         border-width: 1px;
         font-weight: normal;
-        padding: 13px 8px;
+        //padding: 13px 8px;
     }
 
     > tbody > tr > td {
@@ -180,6 +180,13 @@
     > tbody > tr.total > td {
         color: #fff;
         background-color: #2C3E50;
+    }
+}
+.addition-section .tooltip {
+    right: 0;
+    left: unset !important;
+    .tooltip-arrow {
+        margin-left: 18px;
     }
 }
 
