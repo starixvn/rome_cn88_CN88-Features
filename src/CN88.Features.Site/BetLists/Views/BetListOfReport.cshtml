@@ -1,8 +1,12 @@
-﻿@model BetListOfReportViewModel
+﻿@using Fanex.BetList.Core.Utils
+@model BetListOfReportViewModel
 @{
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
 
+@section Styles {
+    @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
+}
 <div class="page-title">@BetListsResources.BetList</div>
 <table class="tbl-style2">
     <thead>
@@ -36,8 +40,30 @@
             @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
             for (int i = 0; i < Model.BetListData.Total; i++)
             {
-                var ticket = Model.BetListData.Tickets.ElementAt(i);
+                var ticket1 = Model.BetListData.Tickets.ElementAt(i);
             }
+
+            var ticket = CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket1();
+            <tr>
+                @BetLists.TransDate.Render(ticket)
+                @BetLists.Comm.Render(ticket)
+                @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
+                @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
+                <td>@Html.Raw(ConvertByBetType.Stake(ticket.Stake))</td>
+                <td>@Html.Raw(ConvertByBetType.Winloss(ticket.Winlost))</td>
+                @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking)
+                @if (Model.CustLevel.IsMasterOrSuperLevel())
+                {
+                    @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking)
+                }
+
+                @if (Model.CustLevel.IsSuperLevel())
+                {
+                    @HtmlHelpers.RenderNumberCell((int)ticket.SuperPositionTaking)
+                    @HtmlHelpers.RenderNumberCell((int)Model.CompanyPositionTaking(ticket))
+                }
+            </tr>
         }
         else
         {
@@ -45,3 +71,6 @@
         }
     </tbody>
 </table>
+@section Scripts{
+    @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-report")
+}

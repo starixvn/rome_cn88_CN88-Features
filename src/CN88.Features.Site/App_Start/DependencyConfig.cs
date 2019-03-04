@@ -3,9 +3,14 @@
     using System.Collections.Generic;
     using System.Reflection;
     using System.Web.Mvc;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.RemotingRef;
+    using Fanex.BetList.Core.TicketHelper;
     using Fanex.Data.Repository;
     using Fanex.Logging;
     using Fanex.RemotingRef;
+    using global::CN88.BetList.Core.Builders;
     using global::CN88.Features.BetLists;
     using global::CN88.Features.BetLists.DataAccesses;
     using global::CN88.Features.CustomerList;
@@ -128,6 +133,11 @@
             container.Register(typeof(Workbook<>), typeof(NpoiWorkbook<>), Lifestyle.Scoped);
 
             container.RegisterSingleton<ReportsWorkbook, ReportsWorkbookImpl>();
+
+            container.RegisterSingleton<ICacheRef, CacheRef>();
+            container.RegisterPerWebRequest<ITicketHelper, TicketHelper>();
+            container.RegisterPerWebRequest<IBetListCN88HtmlBuilder, BetListCN88HtmlBuilder>();
+            container.RegisterPerWebRequest<IBetListHTMLBuilder, BetListHTMLBuilder>();
         }
     }
 }

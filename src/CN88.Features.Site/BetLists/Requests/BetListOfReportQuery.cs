@@ -10,6 +10,7 @@
     {
         public BetListOfReportQuery(IUser viewer) : base(viewer)
         {
+            DisplayVNIP = viewer.IsAdminCanViewVNIP;
         }
 
         public DateTime FromDate { get; }
@@ -23,5 +24,7 @@
         public int LiveIndicator { get; }
 
         public int Type { get; }
+
+        public bool DisplayVNIP { get; }
     }
 }

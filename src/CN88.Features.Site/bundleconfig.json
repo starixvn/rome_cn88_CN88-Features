@@ -82,5 +82,18 @@
     "inputFiles": [
       "SubAccount/Styles/sub-account.css"
     ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/betlist-of-report.css",
+    "inputFiles": [
+      "Content/CoreBetListCN88.css",
+      "BetLists/Styles/bet-lists.css"
+    ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/betlist-of-report.js",
+    "inputFiles": [
+      "BetLists/Scripts/betlist-of-report.js"
+    ]
   }
 ]

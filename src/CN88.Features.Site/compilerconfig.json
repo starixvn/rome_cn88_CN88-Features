@@ -14,5 +14,9 @@
   {
     "outputFile": "SubAccount/Styles/sub-account.css",
     "inputFile": "SubAccount/Styles/sub-account.scss"
+  },
+  {
+    "outputFile": "BetLists/Styles/bet-lists.css",
+    "inputFile": "BetLists/Styles/bet-lists.scss"
   }
 ]

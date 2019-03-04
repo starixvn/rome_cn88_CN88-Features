@@ -97,6 +97,10 @@
       <HintPath>..\..\packages\Fanex.BetList.Core.2.79.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.BetList.Core.RemotingRef, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.RemotingRef.1.0.0\lib\net461\Fanex.BetList.Core.RemotingRef.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
       <Private>True</Private>
@@ -378,6 +382,21 @@
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBTXN.BODB02.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
+    <Content Include="BetLists\bundles\betlist-of-report.css" />
+    <Content Include="BetLists\bundles\betlist-of-report.min.css">
+      <DependentUpon>betlist-of-report.css</DependentUpon>
+    </Content>
+    <Content Include="BetLists\Styles\bet-lists.css">
+      <DependentUpon>bet-lists.scss</DependentUpon>
+    </Content>
+    <Content Include="BetLists\Styles\bet-lists.min.css">
+      <DependentUpon>bet-lists.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\CoreBetListCN88.css" />
+    <Content Include="Content\images\add.png" />
+    <Content Include="Content\images\minus.png" />
+    <Content Include="Content\images\q_Icon2_1.png" />
+    <Content Include="Content\images\q_Icon_2.png" />
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
@@ -570,6 +589,12 @@
     <Content Include="App_Data\ExcelTemplates\Reports\SuperOwner.xls" />
     <Content Include="App_Code\BetLists\BetListTotal.cshtml" />
     <Content Include="App_Code\BetLists\NoInfomation.cshtml" />
+    <Content Include="App_Code\BetLists\TransDate.cshtml" />
+    <Content Include="App_Code\BetLists\Comm.cshtml" />
+    <Content Include="App_Code\BetLists\BetID.cshtml" />
+    <Content Include="App_Code\BetLists\Details.cshtml" />
+    <Content Include="App_Code\BetLists\Status.cshtml" />
+    <Content Include="BetLists\Styles\bet-lists.scss" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -605,6 +630,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\index.ts" />

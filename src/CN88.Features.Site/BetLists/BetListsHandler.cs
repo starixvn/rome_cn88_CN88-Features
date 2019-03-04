@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.SmartPunter.Services;
+    using BetList.Core.Builders;
+    using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
     using Features.BetLists.Models;
@@ -17,13 +19,22 @@
     {
         private BetListsService service;
         private ISmartPunterBetListMonitor monitorService;
+        private ITicketHelper ticketHelper;
+        private IBetListCN88HtmlBuilder cn88Builder;
+        private IBetListHTMLBuilder builder;
 
         public BetListsHandler(
             BetListsService service,
-            ISmartPunterBetListMonitor monitorService)
+            ISmartPunterBetListMonitor monitorService,
+            ITicketHelper ticketHelper,
+            IBetListCN88HtmlBuilder cn88Builder,
+            IBetListHTMLBuilder builder)
         {
             this.service = service;
             this.monitorService = monitorService;
+            this.ticketHelper = ticketHelper;
+            this.cn88Builder = cn88Builder;
+            this.builder = builder;
         }
 
         public async Task<BetListOfReportViewModel> Handle(BetListOfReportQuery message)
@@ -41,7 +52,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new BetListOfReportViewModel(message, betlistData);
+            return new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)

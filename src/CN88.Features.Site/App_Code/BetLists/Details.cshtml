@@ -1,0 +1,10 @@
+﻿@using CN88.Features.BetLists.Models
+@using CN88.BetList.Core.Builders
+@using Fanex.BetList.Core.Entities
+
+@helper Render(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, List<ITicketData> ticketData)
+{
+    <td>
+        @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
+    </td>
+}

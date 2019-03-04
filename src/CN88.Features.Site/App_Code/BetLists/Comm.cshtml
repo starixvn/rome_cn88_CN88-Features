@@ -1,0 +1,10 @@
+﻿@using CN88.Features.BetLists.Models
+
+@helper Render(TicketDto ticket)
+{
+    <td>
+        @ticket.UserName
+        <br />
+        <span class="com-info">@ticket.UGroup @ticket.Comm</span>
+    </td>
+}

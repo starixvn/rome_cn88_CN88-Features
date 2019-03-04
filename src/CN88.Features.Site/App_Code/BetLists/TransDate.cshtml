@@ -1,0 +1,11 @@
+﻿@using Fanex.BetList.Core.Entities
+@using CN88.Features.Extensions
+
+@helper Render(ITicket ticket)
+{
+    <td class="text-center">
+        @ticket.TransDate.ToShortDateFormat()
+        <br />
+        @ticket.TransDate.ToLongTime24h()
+    </td>
+}

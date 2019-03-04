@@ -21,5 +21,7 @@
         bool HasUpdatePermission { get; }
 
         bool HasAddNewPermission { get; }
+
+        bool IsAdminCanViewVNIP { get; }
     }
 }

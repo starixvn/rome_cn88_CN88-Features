@@ -34,5 +34,7 @@
         public bool HasUpdatePermission => !userSession.IsSubAcc || pageAccess.UpdateAccount;
 
         public bool HasAddNewPermission => !userSession.IsSubAcc || pageAccess.CreateAccount;
+
+        public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
     }
 }
