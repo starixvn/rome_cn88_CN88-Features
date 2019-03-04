@@ -65,7 +65,7 @@
 		this.addDownlineFunction = addDownlineFunction;
 
         this.cacheDOMElements();
-        this.initTooltip();
+      
         this.statusComponent.render(
             new SingleSelectionDropdownOption("dropdown-status-" + this.levelNameLowerCase, "UserSelectedStatusId" + this.levelName));
         this.$dropdownStatus = this.$("#dropdown-status-" + this.levelNameLowerCase);
@@ -84,8 +84,7 @@
 		this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
 		this.$formReport = this.$("#form-" + this.levelNameLowerCase);
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
-        this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
-        this.$tooltip = this.$('[data-toggle="tooltip"]');
+        this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";       
     };
     public loadData() {
         this.$.ajax({
@@ -100,7 +99,7 @@
     } 
 
     initTooltip = () => {
-        this.$tooltip.tooltip();
+        this.$('[data-toggle="tooltip"]').tooltip();
     };  
 
     viewList = () => {
@@ -197,7 +196,7 @@
             this.$tblReport.find("> tfoot").html(footer);
             this.pager.render(new PagerOption(this.pagingList, "report-pager-" + this.levelNameLowerCase, "form-" + this.levelNameLowerCase, "PageIndex" + this.levelName, "PageSize" + this.levelName));
         }
-
+        this.initTooltip();
         this.$.unblockUI();
     }
 }

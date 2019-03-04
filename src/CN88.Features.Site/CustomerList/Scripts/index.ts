@@ -36,6 +36,11 @@
         Pager_DisplayItems: '',
         ResetSecurityCodeDisabled: '',
         Disabled: '',
+        NewMember: '',
+        NewAgent: '',
+        EditMember: '',
+        EditAgent: '',
+        EditMasterAgent: '',
         ResetPassword: '',
         ResetSecurityCode: ''
     };
@@ -133,6 +138,12 @@
         this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
         this.viewResources.Disabled = this.$("#Disabled").val();
 
+        this.viewResources.NewMember = this.$("#NewMember").val();
+        this.viewResources.NewAgent = this.$("#NewAgent").val();
+        this.viewResources.EditMember = this.$("#EditMember").val();
+        this.viewResources.EditAgent = this.$("#EditAgent").val();
+        this.viewResources.EditMasterAgent = this.$("#EditMasterAgent").val();
+
         this.viewResources.ResetPassword = this.$("#ResetPassword").val();
         this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
 
@@ -141,6 +152,8 @@
         this.CurrentLink = this.$("#CurrentLink").val();
         this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
         this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
+
+
 
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
         this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";

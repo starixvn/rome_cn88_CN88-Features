@@ -87,11 +87,14 @@ class AgentList extends BaseList {
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
+            let disabledTooltip = `disabled title='${this.indexManager.viewResources.Disabled}'`,
+                newMemberTooltip = ` title='${this.indexManager.viewResources.NewMember}'`,
+                editAgentTooltip = ` title='${this.indexManager.viewResources.EditAgent}'`;
+
             for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 let customer = rs.Customers[i],
                     custId = customer.CustId,
-                    username = customer.Username,
-                    disabledTooltip = `disabled title=${this.indexManager.viewResources.Disabled}`;
+                    username = customer.Username;                  
 
                 html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='${custId}'>" +
                     "<td class='col-no'>" + customerIndex + "</td>" +
@@ -102,10 +105,10 @@ class AgentList extends BaseList {
                     "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
                     `<td class='col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='col-action'>" +
-                    `<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
-                    `<span class='icon-security' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
-                    `<span class='icon-edit' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? '' : `${disabledTooltip}`}></span>` +
-                    `<span class='icon-add' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? '' : `${disabledTooltip}`}></span>` +
+                    `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
+                    `<span class='icon-security' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
+                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? `${editAgentTooltip}` : `${disabledTooltip}`}></span>` +
+                    `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? `${newMemberTooltip}` : `${disabledTooltip}`}></span>` +
                     "</td>" +
                     "</tr>";
             }

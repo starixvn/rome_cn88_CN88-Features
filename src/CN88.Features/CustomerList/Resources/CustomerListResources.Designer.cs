@@ -169,6 +169,33 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Agent.
+        /// </summary>
+        public static string EditAgent {
+            get {
+                return ResourceManager.GetString("EditAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Master Agent.
+        /// </summary>
+        public static string EditMasterAgent {
+            get {
+                return ResourceManager.GetString("EditMasterAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Member.
+        /// </summary>
+        public static string EditMember {
+            get {
+                return ResourceManager.GetString("EditMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, increase credit unsuccessfully. You have exceeded your agent credit..
         /// </summary>
         public static string ExceededAgentCredit {
@@ -214,7 +241,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master.
+        ///   Looks up a localized string similar to Master Agent.
         /// </summary>
         public static string Master {
             get {

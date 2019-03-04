@@ -160,7 +160,7 @@
     <value>Please input a value number!</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>Master Agent</value>
   </data>
   <data name="MasterIsRequired" xml:space="preserve">
     <value>Master is required.</value>
@@ -254,6 +254,15 @@
   </data>
   <data name="ResetSecurityCode" xml:space="preserve">
     <value>Reset Security Code</value>
+  </data>
+  <data name="EditAgent" xml:space="preserve">
+    <value>Edit Agent</value>
+  </data>
+  <data name="EditMasterAgent" xml:space="preserve">
+    <value>Edit Master Agent</value>
+  </data>
+  <data name="EditMember" xml:space="preserve">
+    <value>Edit Member</value>
   </data>
   <data name="NewAgent" xml:space="preserve">
     <value>New Agent</value>

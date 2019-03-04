@@ -83,11 +83,12 @@
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='9' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
+            let disabledTooltip = `disabled title='${this.indexManager.viewResources.Disabled}'`,              
+                editMemberTooltip = ` title='${this.indexManager.viewResources.EditMember}'`;
             for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 let customer = rs.Customers[i],
                     custId = customer.CustId,
-                    username = customer.Username,
-                    disabledTooltip = `disabled title=${this.indexManager.viewResources.Disabled}`;
+                    username = customer.Username;
 
                 html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                     "<td class='col-no'>" + customerIndex + "</td>" +
@@ -99,8 +100,8 @@
                     "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
                     `<td class='col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='col-action'>" +
-                    `<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
-                    `<span class='icon-edit' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? '' : `${disabledTooltip}`}></span>` +
+                    `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
+                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? `${editMemberTooltip}` : `${disabledTooltip}`}></span>` +
                     "</td>" +
                     "</tr>";
             }
