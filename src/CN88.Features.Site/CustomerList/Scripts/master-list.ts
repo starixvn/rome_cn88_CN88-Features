@@ -15,8 +15,6 @@
             siteInfrastructure.roleId.master,
             indexManager.viewMaster,
 			indexManager.addNewDownline);
-	    $('[data-toggle="tooltip"]').tooltip();
-
     }
 
 	renderMasterList = (rs: any) => {

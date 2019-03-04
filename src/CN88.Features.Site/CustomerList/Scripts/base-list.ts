@@ -4,6 +4,7 @@
     statusComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
 
+    $tooltip: JQuery;
     $dropdownStatus: JQuery;
     $username: JQuery;
 	$tblReport: JQuery;
@@ -64,12 +65,11 @@
 		this.addDownlineFunction = addDownlineFunction;
 
         this.cacheDOMElements();
-
+        this.initTooltip();
         this.statusComponent.render(
             new SingleSelectionDropdownOption("dropdown-status-" + this.levelNameLowerCase, "UserSelectedStatusId" + this.levelName));
         this.$dropdownStatus = this.$("#dropdown-status-" + this.levelNameLowerCase);
-        this.$tblReport.stickyTableHeaders();
-
+        this.$tblReport.stickyTableHeaders();      
         var self = this;
         this.$("#btn-submit-" + this.levelName.toLowerCase()).click(function () {
             self.reportParam.PageSize = 100;
@@ -85,6 +85,7 @@
 		this.$formReport = this.$("#form-" + this.levelNameLowerCase);
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
         this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
+        this.$tooltip = this.$('[data-toggle="tooltip"]');
     };
     public loadData() {
         this.$.ajax({
@@ -96,7 +97,11 @@
                 this.renderList(rs);
             }
         });
-    }
+    } 
+
+    initTooltip = () => {
+        this.$tooltip.tooltip();
+    };  
 
     viewList = () => {
         this.$.blockUI();
