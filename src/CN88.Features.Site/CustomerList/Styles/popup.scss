@@ -13,13 +13,15 @@ body {
     }
 
     .control {
-        width: 208px;
+        float: right;
+        width: 360px;
+        margin-right: 0;
     }
 
     .list-button {
         [class^='btn'] {
             float: right;
-            width: 80px;
+            min-width: 80px;
             line-height: 30px;
         }
 
@@ -30,22 +32,10 @@ body {
         .btn-submit {
             margin-right: 0;
         }
-    }   
+    }
 }
 
-// Status popup
-/*.modal-status .list-button {
-    padding-left: 63px;
-    text-align: center;
-
-    [class^='btn'] {
-        float: left;
-    }
-
-}*/
-
 // Credit popup
-
 .used-credit {
     margin-bottom: 12px;
 }
@@ -54,9 +44,6 @@ body {
     margin-bottom: 20px;
 }
 
-.txt-credit {
-    width: 390px !important;
-}
 .credit-range {
     margin-top: 6px;
     text-align: right;

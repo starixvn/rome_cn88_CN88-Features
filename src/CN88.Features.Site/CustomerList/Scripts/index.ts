@@ -195,28 +195,28 @@
         let url = this.UpdateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
             popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-credit');
+        this.openPopup(popupTitle, url, 'modal modal-credit', 476, 280);
     };
 
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
         let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, UpdateStatusId: updateStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-status');
+        this.openPopup(popupTitle, url, 'modal modal-status', 476, 210);
     };
 
     resetPassword = (custId: number, username: string, custLevelId: number) => {
         let url: string = `${this.ResetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
         let popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-password', 420, 460);
+        this.openPopup(popupTitle, url, 'modal modal-password', 476, 430);
     };
 
     resetSecurityCode = (custId: number, username: string) => {
         let url: string = `${this.ResetSecurityCodeLink}?custId=${custId}`;
         let popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-password', 520, 460);
+        this.openPopup(popupTitle, url, 'modal modal-password', 476, 344);
     };
 
     openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {
