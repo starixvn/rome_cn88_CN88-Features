@@ -1,0 +1,17 @@
+﻿@using CN88.Features.BetLists.Resources
+
+@helper Render(string winLoss, string stake, string total, int noOfDetails, int numberOfColumns)
+{
+    <tr class="row-total">
+        <td colspan="3">@BetListsResources.Total</td>
+        <td>@numberOfColumns.ToString("#,##0")</td>
+        <td>@(new HtmlString(stake))</td>
+        <td>@(new HtmlString(winLoss))</td>
+        <td colspan="@(numberOfColumns - 6)"></td>
+    </tr>
+    <tr class="row-win-loss-comm">
+        <td colspan="5">@BetListsResources.WinLossWithCommission</td>
+        <td>@total</td>
+        <td colspan="@(numberOfColumns- 6)"></td>
+    </tr>
+}

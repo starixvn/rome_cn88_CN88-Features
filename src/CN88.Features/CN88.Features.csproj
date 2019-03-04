@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.1\lib\net461\Alpha.SmartPunter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Alpha.SubAccount, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
@@ -73,6 +77,10 @@
       <HintPath>..\..\packages\Fanex.Data.Repository.3.0.0\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.RemotingRef, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.RemotingRef.1.3.0\lib\net461\Fanex.RemotingRef.dll</HintPath>
       <Private>True</Private>
@@ -99,6 +107,18 @@
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.0\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.IpFormatter.3.0.0.2\lib\net461\Sunplus.Agent.Model.IpFormatter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -146,8 +166,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetLists\BetListsService.cs" />
-    <Compile Include="BetLists\Models\DailyWinLossModel.cs" />
-    <Compile Include="BetLists\Params\DailyWinLossParam.cs" />
+    <Compile Include="BetLists\Constants\BetListTypeConstant.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReportCriteria.cs" />
+    <Compile Include="BetLists\Criteria\SmartPunter\InternalAdminCheckerCommand.cs" />
+    <Compile Include="BetLists\Criteria\SmartPunter\NAPUserPermissionCriteria.cs" />
+    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterSMACheckerCommand.cs" />
+    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCommand.cs" />
+    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterWriteLogCommand.cs" />
+    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterWriteLogNoDataCommand.cs" />
+    <Compile Include="BetLists\DataAccesses\SmartPunterDataAccess.cs" />
+    <Compile Include="BetLists\Models\BetListData.cs" />
+    <Compile Include="BetLists\Models\NapUserFunctionPermission.cs" />
+    <Compile Include="BetLists\Models\TicketDto.cs" />
+    <Compile Include="BetLists\Params\BetListOfReportParam.cs" />
     <Compile Include="BetLists\Resources\BetListsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,9 +319,7 @@
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-Hans.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-TW.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BetLists\Criteria\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

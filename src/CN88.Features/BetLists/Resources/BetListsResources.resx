@@ -165,4 +165,7 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
   </data>
+  <data name="WinLossWithCommission" xml:space="preserve">
+    <value>WIN/LOSS with COMMISSION</value>
+  </data>
 </root>

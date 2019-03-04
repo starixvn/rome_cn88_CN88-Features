@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Smart Punter">
+    <Setting Key="Age_UserLog_SmartPunterInsMultiple" SpName="Age_UserLog_SmartPunterInsMultiple" DbName="DBLOG.bodb_CustomerLog.BODBDownlineNet" />
+    <Setting Key="NAP_UserLog_SmartPunterIns" SpName="NAP_UserLog_SmartPunterIns" DbName="DBLOG.bodb_CustomerLog.BODBDownlineNet" />
+  </Function>
+</Functions>

@@ -203,5 +203,14 @@ namespace CN88.Features.BetLists.Resources {
                 return ResourceManager.GetString("WinLoss", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WIN/LOSS with COMMISSION.
+        /// </summary>
+        public static string WinLossWithCommission {
+            get {
+                return ResourceManager.GetString("WinLossWithCommission", resourceCulture);
+            }
+        }
     }
 }

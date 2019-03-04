@@ -14,7 +14,7 @@
         }
 
         [HttpGet]
-        public async Task<ActionResult> DailyWinLoss(DailyWinLossQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/DailyWinLoss.cshtml");
+        public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/BetListOfReport.cshtml");
     }
 }

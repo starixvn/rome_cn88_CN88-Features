@@ -7,6 +7,7 @@
     using Fanex.Logging;
     using Fanex.RemotingRef;
     using global::CN88.Features.BetLists;
+    using global::CN88.Features.BetLists.DataAccesses;
     using global::CN88.Features.CustomerList;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
@@ -14,6 +15,7 @@
     using global::CN88.Features.Reports.Services;
     using global::CN88.Features.Shared.DataAccesses;
     using global::CN88.Features.Shared.Services;
+    using global::CN88.Features.Site.BetLists.Helpers;
     using global::CN88.Features.Site.Models;
     using global::CN88.Features.Site.Reports.Handlers;
     using global::CN88.Features.Site.Shared.Controllers;
@@ -24,6 +26,8 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
+    using SmartPunter.DataAccesses;
+    using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
 
@@ -80,6 +84,7 @@
 
             container.RegisterSingleton<CustomerListDataAccess, CustomerListDataAccessImpl>();
             container.RegisterSingleton<SportGroupDataAccess, SportGroupDataAccessImpl>();
+            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -110,9 +115,18 @@
             container.RegisterSingleton<ReportService, ReportServiceImpl>();
 
             container.RegisterSingleton<SubAccountService, SubAccountServiceImpl>();
+
+            container.RegisterSingleton<ISmartPunterService, SmartPunterService>();
+            container.Register(
+                () => SmartPunterBetListMonitor.CreateInstance(
+                    container.GetInstance<IUserSession>(),
+                    container.GetInstance<ISmartPunterService>(),
+                    IPHelper.CustomerIP),
+                Lifestyle.Singleton);
             container.RegisterSingleton<BetListsService, BetListsServiceImpl>();
 
             container.Register(typeof(Workbook<>), typeof(NpoiWorkbook<>), Lifestyle.Scoped);
+
             container.RegisterSingleton<ReportsWorkbook, ReportsWorkbookImpl>();
         }
     }

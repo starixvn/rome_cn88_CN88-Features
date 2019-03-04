@@ -24,6 +24,10 @@
 
         public static bool IsTest => GetConfigValue("LocalTest") == "1";
 
+        public static string DefaultIpAddress => GetConfigValue("DefaultIpAddress");
+
+        public static string LocalIpAddress => GetConfigValue("LocalIpAddress");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify() => Require(StoredProcedurePath, nameof(StoredProcedurePath));

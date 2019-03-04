@@ -51,6 +51,10 @@
       <HintPath>..\..\packages\Alpha.Auth.3.0.2.1\lib\net461\Alpha.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.1\lib\net461\Alpha.SmartPunter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Alpha.SubAccount, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
@@ -269,8 +273,16 @@
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.3\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sunplus.Agent.Model.IpFormatter, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.IpFormatter.3.0.0.2\lib\net461\Sunplus.Agent.Model.IpFormatter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Utilities.3.0.0.7\lib\net40\Sunplus.Agent.Utilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Core.Common, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Core.Common.1.2.0.1\lib\net40\Sunplus.Core.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -361,6 +373,9 @@
     <Content Include="App_Data\SPNames\Local\DB042.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DBPRO.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Local\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBPOL.NAP_UserControl.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBTXN.BODB02.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
     <Content Include="CustomerList\bundles\scripts\index.js" />
@@ -432,6 +447,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
+    <Compile Include="BetLists\Helpers\IPHelper.cs" />
+    <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
@@ -446,8 +463,8 @@
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
     <Compile Include="BetLists\BetListsHandler.cs" />
-    <Compile Include="BetLists\Requests\DailyWinLossQuery.cs" />
-    <Compile Include="BetLists\ViewModels\DailyWinLossViewModel.cs" />
+    <Compile Include="BetLists\Requests\BetListOfReportQuery.cs" />
+    <Compile Include="BetLists\ViewModels\BetListOfReportViewModel.cs" />
     <Compile Include="SubAccount\Requests\CreateCommand.cs" />
     <Compile Include="CustomerList\Requests\OnlineMembersQuery.cs" />
     <Compile Include="CustomerList\ViewModels\OnlineMemberViewModel.cs" />
@@ -543,7 +560,7 @@
     <Content Include="BetLists\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="BetLists\Views\DailyWinLoss.cshtml" />
+    <Content Include="BetLists\Views\BetListOfReport.cshtml" />
     <Content Include="App_Data\ExcelTemplates\Reports\Super.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\Member.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\Agent.xls" />
@@ -551,6 +568,8 @@
     <Content Include="App_Data\ExcelTemplates\Reports\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\MasterOwner.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\SuperOwner.xls" />
+    <Content Include="App_Code\BetLists\BetListTotal.cshtml" />
+    <Content Include="App_Code\BetLists\NoInfomation.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

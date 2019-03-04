@@ -1,37 +1,38 @@
 ﻿namespace CN88.Features.BetLists
 {
-    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Criteria;
+    using Fanex.BetList.Core.Entities;
+    using Fanex.Data.Repository;
     using Models;
     using Params;
+    using Shared.Services;
 
     public interface BetListsService
     {
-        IList<DailyWinLossModel> GetDailyWinLoss(DailyWinLossParam param);
+        Task<BetListData> GetBetListOfReport(BetListOfReportParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
     {
-        public IList<DailyWinLossModel> GetDailyWinLoss(DailyWinLossParam param)
-        {
-            var result = new List<DailyWinLossModel>
-            {
-                new DailyWinLossModel(
-                    new System.DateTime(2019,04,02,13,42,34),
-                    "aRS21234",
-                    (decimal)2.25,
-                    "HK 11004722724",
-                    1,
-                    "Indonesia Cup",
-                    50,
-                    (decimal)-48.9,
-                    2,
-                    40,
-                    30,
-                    0,
-                    30)
-            };
+        private readonly ReportDateService reportDateService;
+        private readonly IDynamicRepository dynamicRepository;
 
-            return result;
+        public BetListsServiceImpl(
+            ReportDateService reportDateService,
+            IDynamicRepository dynamicRepository)
+        {
+            this.reportDateService = reportDateService;
+            this.dynamicRepository = dynamicRepository;
+        }
+
+        public async Task<BetListData> GetBetListOfReport(BetListOfReportParam param)
+        {
+            var criteria = new BetListOfReportCriteria(param, reportDateService.GetMoveBetsDay());
+            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
     }
 }

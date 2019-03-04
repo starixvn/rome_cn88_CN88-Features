@@ -15,4 +15,8 @@
   <Function Name="PT Setting">
     <Setting Key="CS_CustSetting_LegacyReportSetting_Sel" SpName="CS_CustSetting_LegacyReportSetting_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
+  <Function Name="Smart Punter">
+    <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
 </Functions>
