@@ -209,14 +209,14 @@
         let url: string = `${this.ResetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
         let popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-password', 476, 430);
+        this.openPopup(popupTitle, url, 'modal modal-password', 490, 430);
     };
 
     resetSecurityCode = (custId: number, username: string) => {
         let url: string = `${this.ResetSecurityCodeLink}?custId=${custId}`;
         let popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-password', 476, 344);
+        this.openPopup(popupTitle, url, 'modal modal-password', 490, 344);
     };
 
     openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {
