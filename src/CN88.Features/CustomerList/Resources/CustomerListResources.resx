@@ -255,4 +255,13 @@
   <data name="ResetSecurityCode" xml:space="preserve">
     <value>Reset Security Code</value>
   </data>
+  <data name="NewAgent" xml:space="preserve">
+    <value>New Agent</value>
+  </data>
+  <data name="NewMasterAgent" xml:space="preserve">
+    <value>New Master Agent</value>
+  </data>
+  <data name="NewMember" xml:space="preserve">
+    <value>New Member</value>
+  </data>
 </root>

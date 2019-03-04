@@ -250,6 +250,33 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Agent.
+        /// </summary>
+        public static string NewAgent {
+            get {
+                return ResourceManager.GetString("NewAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Master Agent.
+        /// </summary>
+        public static string NewMasterAgent {
+            get {
+                return ResourceManager.GetString("NewMasterAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Member.
+        /// </summary>
+        public static string NewMember {
+            get {
+                return ResourceManager.GetString("NewMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nick Name.
         /// </summary>
         public static string Nickname {

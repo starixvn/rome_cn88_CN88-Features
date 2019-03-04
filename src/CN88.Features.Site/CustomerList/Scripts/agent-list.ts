@@ -94,13 +94,13 @@ class AgentList extends BaseList {
                     disabledTooltip = `disabled title=${this.indexManager.viewResources.Disabled}`;
 
                 html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='${custId}'>" +
-                    "<td class='text-center'>" + customerIndex + "</td>" +
+                    "<td class='col-no'>" + customerIndex + "</td>" +
                     `<td class='link view-downline' cust-id='${custId}'>${username}</td>` +
                     "<td>" + customer.Name + "</td>" +
                     "<td>" + customer.Nickname + "</td>" +
-                    `<td class='text-right col-credit link' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
-                    "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
-                    `<td class='text-center col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                    `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
+                    "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
+                    `<td class='col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='col-action'>" +
                     `<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
                     `<span class='icon-security' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
