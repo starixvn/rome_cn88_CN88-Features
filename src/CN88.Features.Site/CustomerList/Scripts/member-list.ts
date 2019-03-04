@@ -33,7 +33,7 @@
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
             this.initAutoComplete();
-        }
+        }        
     }
 
     public cacheDOMElements() {
@@ -91,7 +91,7 @@
 
                 html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                     "<td class='col-no'>" + customerIndex + "</td>" +
-                    `<td  class='view-downline'>${username}</td>` +
+                    `<td class='link view-statement'>${username}</td>` +
                     "<td>" + customer.Name + "</td>" +
                     "<td>" + customer.Nickname + "</td>" +
                     "<td class='text-center'>" + customer.Group + "</td>" +
