@@ -14,6 +14,7 @@
 
     CurrentLink: string;
     ResetPasswordLink: string;
+    ResetSecurityCodeLink: string;
 
     reportParam = {
         DownlineUsername: null,
@@ -33,7 +34,10 @@
         Page: '',
         Of: '',
         Pager_DisplayItems: '',
-        Disabled: ''
+        ResetSecurityCodeDisabled: '',
+        Disabled: '',
+        ResetPassword: '',
+        ResetSecurityCode: ''
     };
 
     masterList: MasterList;
@@ -129,10 +133,14 @@
         this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
         this.viewResources.Disabled = this.$("#Disabled").val();
 
+        this.viewResources.ResetPassword = this.$("#ResetPassword").val();
+        this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
+
         this.EditCustomerLink = this.$("#EditCustomerLink").val();
         this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
         this.CurrentLink = this.$("#CurrentLink").val();
         this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
+        this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
 
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
         this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
@@ -202,6 +210,13 @@
         let popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-password', 420, 460);
+    };
+
+    resetSecurityCode = (custId: number, username: string) => {
+        let url: string = `${this.ResetSecurityCodeLink}?custId=${custId}`;
+        let popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
+
+        this.openPopup(popupTitle, url, 'modal modal-password', 520, 460);
     };
 
     openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {

@@ -88,18 +88,24 @@ class AgentList extends BaseList {
             html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
             for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                var customer = rs.Customers[i];
-                html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='" + customer.CustId + "'>" +
+                let customer = rs.Customers[i],
+                    custId = customer.CustId,
+                    username = customer.Username,
+                    disabledTooltip = `disabled title=${this.indexManager.viewResources.Disabled}`;
+
+                html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='${custId}'>" +
                     "<td class='text-center'>" + customerIndex + "</td>" +
-                    "<td class='link view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
+                    `<td class='link view-downline' cust-id='${custId}'>${username}</td>` +
                     "<td>" + customer.Name + "</td>" +
                     "<td>" + customer.Nickname + "</td>" +
-                    "<td class='text-right col-credit link' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
+                    `<td class='text-right col-credit link' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
-                    "<td class='text-center col-status link' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
-                    "<td class='text-center'>" +
-                    "<span class='icon-edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasUpdatePermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
-                    "<span class='icon-add' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasAddNewPermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
+                    `<td class='text-center col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                    "<td class='col-action'>" +
+                    `<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
+                    `<span class='icon-security' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
+                    `<span class='icon-edit' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? '' : `${disabledTooltip}`}></span>` +
+                    `<span class='icon-add' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? '' : `${disabledTooltip}`}></span>` +
                     "</td>" +
                     "</tr>";
             }

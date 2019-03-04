@@ -349,6 +349,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset Security Code.
+        /// </summary>
+        public static string ResetSecurityCode {
+            get {
+                return ResourceManager.GetString("ResetSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {

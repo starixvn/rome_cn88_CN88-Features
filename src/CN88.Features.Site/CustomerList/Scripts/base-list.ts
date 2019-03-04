@@ -141,6 +141,12 @@
             self.indexManager.resetPassword($this.attr("cust-id"), $this.attr("username"), $this.attr("cust-role"));
         });
 
+        this.$tblReport.find(".icon-security").click(function () {
+            var $this = self.$(this);
+
+            self.indexManager.resetSecurityCode($this.attr("cust-id"), $this.attr("username"));
+        });
+
         if (this.HasUpdatePermission) {
             this.$tblReport.find(".icon-edit").click(function () {
                 var $this = self.$(this);

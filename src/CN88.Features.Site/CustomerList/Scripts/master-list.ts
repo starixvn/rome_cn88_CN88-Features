@@ -41,17 +41,17 @@
 					username = customer.Username,
 					disabledTooltip = `disabled title=${this.indexManager.viewResources.Disabled}`;
 
-                html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='" + customer.CustId + "'>" +
+                html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='${custId}'>" +
                     "<td class='col-no'>" + customerIndex + "</td>" +
-                    "<td class='link view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
+                    `<td class='link view-downline' cust-id='${custId}'>${username}</td>` +
                     "<td>" + customer.Name + "</td>" +
                     "<td>" + customer.Nickname + "</td>" +
-                    "<td class='text-right link col-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
+                    `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
-                    "<td class='col-status link' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                    `<td class='col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='col-action'>" +
-                    `<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='Reset Password' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
-                    "<span class='icon-security' data-toggle='tooltip' data-placement='left' title='Reset Security Code'></span>" +
+                    `<span class='icon-pass' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
+                    `<span class='icon-security' data-toggle='tooltip' data-placement='left' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
 		            `<span class='icon-edit' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? '' : `${disabledTooltip}`}></span>` +
 		            `<span class='icon-add' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? '' : `${disabledTooltip}`}></span>` +
                     "</td>" +

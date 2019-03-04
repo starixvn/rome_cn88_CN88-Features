@@ -37,6 +37,9 @@
         public string ResetPasswordLink
             => $"{AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~")}Password/ResetDownlinePassword";
 
+        public string ResetSecurityCodeLink
+            => $"{AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~")}SecurityCode/ResetSecurityCode";
+
         //public string AddNewMasterLink
         //    => $"{CreateCustomerLink}?Language={Language}&ProductId=1&CustomerLevel={customerLevel}" +
         //       $"&CustomerId={custId}&IsReadOnly={isReadOnly}&UplineId={uplineId}&ActorLevel={actorLevel}";

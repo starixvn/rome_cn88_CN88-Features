@@ -199,10 +199,12 @@
 @Html.Hidden("UpdateStatusLink", Model.UpdateStatusLink)
 @Html.Hidden("CurrentLink", Model.CurrentLink)
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
+@Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
 
 @Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
 @Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
 @Html.Hidden("ResetPassword", CustomerListResources.ResetPassword)
+@Html.Hidden("ResetSecurityCode", CustomerListResources.ResetSecurityCode)
 @Html.Hidden("Disabled", CustomerListResources.Disabled)
 @Html.Hidden("HasUpdatePermission", Model.HasUpdatePermission ? 1 : 0)
 @Html.Hidden("HasAddNewPermission", Model.HasAddNewPermission ? 1 : 0)
