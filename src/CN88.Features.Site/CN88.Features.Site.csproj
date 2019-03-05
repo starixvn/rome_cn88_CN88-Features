@@ -671,6 +671,9 @@
     <Content Include="Reports\Views\OldFilter.cshtml" />
     <Content Include="Reports\Views\_OldLayout.cshtml" />
     <Content Include="Reports\Views\OldLegacy.cshtml" />
+    <Content Include="Reports\Views\Wager\AgentTableByUpper.cshtml" />
+    <Content Include="Reports\Views\Wager\MasterTableByUpper.cshtml" />
+    <Content Include="Reports\Views\Wager\SuperTableByUpper.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
