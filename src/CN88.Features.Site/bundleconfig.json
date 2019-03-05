@@ -99,7 +99,14 @@
   {
     "outputFileName": "BetLists/bundles/betlist-of-report.js",
     "inputFiles": [
-      "BetLists/Scripts/betlist-of-report.js"
+      "BetLists/Scripts/app-path.js",
+      "BetLists/Scripts/utils.js",
+      "BetLists/Scripts/popup-details.js",
+      "BetLists/Scripts/betlist-of-report.js",
+      "BetLists/Scripts/result/base-result.js",
+      "BetLists/Scripts/result/sportsbook-result-details.js",
+      "BetLists/Scripts/result/casino-result-details.js",
+      "BetLists/Scripts/result/other-result-details.js"
     ]
   }
 ]

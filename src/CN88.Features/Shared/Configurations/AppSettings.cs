@@ -31,6 +31,10 @@
 
         public static string LocalIpAddress => GetConfigValue("LocalIpAddress");
 
+        public static string ResultAppPath => GetConfigValue("ResultSiteVirtualPath") ?? "site-results";
+
+        public static string TotalBetsForecastAppPath => GetConfigValue("ExTotalBetsForecastAppPath") ?? "ex-totalbetsforecast";
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify() => Require(StoredProcedurePath, nameof(StoredProcedurePath));

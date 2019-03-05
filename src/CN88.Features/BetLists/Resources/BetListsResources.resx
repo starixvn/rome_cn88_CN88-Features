@@ -168,4 +168,7 @@
   <data name="WinLossWithCommission" xml:space="preserve">
     <value>WIN/LOSS with COMMISSION</value>
   </data>
+  <data name="ColossusBetsPopUpDetailTitle" xml:space="preserve">
+    <value>Ticket details of</value>
+  </data>
 </root>

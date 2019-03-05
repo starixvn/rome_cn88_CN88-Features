@@ -11,6 +11,7 @@
         public BetListOfReportQuery(IUser viewer) : base(viewer)
         {
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
+            ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
         }
 
         public DateTime FromDate { get; }
@@ -26,5 +27,7 @@
         public int Type { get; }
 
         public bool DisplayVNIP { get; }
+
+        public int ViewerIdOrViewerAdminId { get; }
     }
 }

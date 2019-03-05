@@ -97,6 +97,15 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ticket details of.
+        /// </summary>
+        public static string ColossusBetsPopUpDetailTitle {
+            get {
+                return ResourceManager.GetString("ColossusBetsPopUpDetailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string Commission {

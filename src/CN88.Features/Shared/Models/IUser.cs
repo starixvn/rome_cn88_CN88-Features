@@ -23,5 +23,7 @@
         bool HasAddNewPermission { get; }
 
         bool IsAdminCanViewVNIP { get; }
+
+        int AdminId { get; }
     }
 }

@@ -293,8 +293,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BetLists\Resources\BetListsResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BetListsResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-Hans.resx" />
     <EmbeddedResource Include="BetLists\Resources\BetListsResources.zh-TW.resx" />
