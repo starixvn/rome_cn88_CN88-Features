@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Reports/Views/_OldLayout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+}
+@model OldReportViewModel
+<div class="report-detail legacy-report">
+    <div class="page-title title-report-detail">
+        <div>
+            @Model.Title
+            @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+        </div>
+    </div>
+    @Html.Partial("~/Reports/Views/OldFilter.cshtml", Model.OldReportFilterViewModel)
+    @{
+        if (Model.ReportLevel.IsMemberLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/MemberTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsAgentLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/AgentTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsMasterLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/MasterTable.cshtml", Model)
+        }
+
+        if (Model.ReportLevel.IsSuperLevel())
+        {
+            @Html.Partial("~/Reports/Views/Legacy/SuperTable.cshtml", Model)
+        }
+    }
+    @Pager.Render(Model.PagerViewModel)
+</div>
+@section Scripts{
+    @StaticResources.RenderScripts("~/Reports/bundles/legacy")
+}

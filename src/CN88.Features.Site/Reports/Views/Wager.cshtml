@@ -19,42 +19,17 @@
                 </li>
             }
         </ul>
-        <div class="addition-section">            
-            @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)   
-            <span id="icon-excel" class="icon-excel" title="@SharedResources.ExportToExcel" data-toggle="tooltip" data-placement="top" ></span>         
+        <div class="addition-section">
+            @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+            <span id="icon-excel" class="icon-excel" title="@SharedResources.ExportToExcel" data-toggle="tooltip" data-placement="top"></span>
         </div>
-    </div> 
-
+    </div>
     @Html.Partial("~/Reports/Views/Filter.cshtml", Model.ReportFilterViewModel)
-    @if (Model.IsNotOwner)
-    {
-        if (Model.ReportLevel.IsSuperLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/SuperTableByUpper.cshtml", Model)
-        }
-
-        if (Model.ReportLevel.IsMasterLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/MasterTableByUpper.cshtml", Model)
-        }
-
-        if (Model.ReportLevel.IsAgentLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/AgentTableByUpper.cshtml", Model)
-        }
-
-        if (Model.ReportLevel.IsMemberLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/MemberTable.cshtml", Model)
-        }
-    }
-    else
-    {
+    @{
         if (Model.ReportLevel.IsSuperLevel())
         {
             @Html.Partial("~/Reports/Views/Wager/SuperTable.cshtml", Model)
         }
-
         if (Model.ReportLevel.IsMasterLevel())
         {
             @Html.Partial("~/Reports/Views/Wager/MasterTable.cshtml", Model)

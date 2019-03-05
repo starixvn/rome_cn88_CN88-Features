@@ -10,6 +10,12 @@
                 <th class="valid-stake">@ReportResources.AgentIncome</th>
                 <th class="valid-stake">@ReportResources.AgentResult</th>
                 <th class="valid-stake">@ReportResources.AgentStock</th>
+                @if (Model.IsNotOwner)
+                {
+                    <th class="valid-stake">@ReportResources.MAPoss</th>
+                    <th class="valid-stake">@ReportResources.MAIncome</th>
+                    <th class="valid-stake">@ReportResources.MAResult</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -24,6 +30,12 @@
                     @HtmlHelpers.RenderNumberCell(total.AgentIncome)
                     @HtmlHelpers.RenderNumberCell(total.AgentResult)
                     @HtmlHelpers.RenderNumberCell(total.AgentStock)
+                    @if (Model.IsNotOwner)
+                    {
+                        <td></td>
+                        @HtmlHelpers.RenderNumberCell(total.MasterIncome)
+                        @HtmlHelpers.RenderNumberCell(total.MasterResult)
+                    }
                 </tr>
                 foreach (var data in Model.ReportData)
                 {
@@ -35,6 +47,12 @@
                         @HtmlHelpers.RenderNumberCell(data.AgentIncome)
                         @HtmlHelpers.RenderNumberCell(data.AgentResult)
                         @HtmlHelpers.RenderNumberCell(data.AgentStock)
+                        @if (Model.IsNotOwner)
+                        {
+                            <td class="text-right">@data.MasterPoss</td>
+                            @HtmlHelpers.RenderNumberCell(data.MasterIncome)
+                            @HtmlHelpers.RenderNumberCell(data.MasterResult)
+                        }
                     </tr>
                 }
             }
