@@ -11,8 +11,10 @@
     .icon-success {
         color: #2da57f;
     }
-    .icon-delete {
-        font-size: 16px;
+    .icon-delete, .icon-edit {
+        &:hover:not(:disabled) {
+            cursor: pointer;
+        }
     }
     
 }
