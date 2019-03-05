@@ -4,6 +4,7 @@
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class LegacyReport extends BaseReport {
+    $tooltip: JQuery;
     $reportForm: JQuery;
     $exportExcelForm: JQuery;
     $excelIcon: JQuery;
@@ -31,13 +32,19 @@ class LegacyReport extends BaseReport {
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.pagerComponent.pageList = this.pagerComponent.pageList;
+        this.initTooltip();
         this.pagerComponent.render();
 
         this.registerEvents();
         this.$.unblockUI();
     };
 
+    initTooltip = () => {
+        this.$tooltip.tooltip();
+    }
+
     public cacheDOMElements() {
+        this.$tooltip = this.$('[data-toggle="tooltip"]');
         this.$reportForm = this.$("#report-form");
         this.$exportExcelForm = this.$("#export-excel-form");
         this.$excelIcon = this.$("#icon-excel");

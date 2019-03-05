@@ -26,6 +26,10 @@
     .filter {
         padding-top: 0;
     }
+    .page-title {
+        padding: 19px 20px;
+        font-size: 18px;
+    }
 }
 
 .result-container {
@@ -108,6 +112,30 @@
 
     .breadcrumb-container {
         float: right;
+        .tooltip.bottom {
+            margin-top: -4px;
+            right: 18px;
+            left: unset !important;
+        }
+        .tooltip-arrow {
+            margin-left: 8px;
+        }
+        .tooltip-arrow:after {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+        }
+
+        .tooltip-arrow:after {
+            content:'';
+            border-width: 4px;
+            border-bottom-color: #ececec !important;
+            bottom: -6px;
+            border-top-width: 0;
+            margin-left: -4px;
+        }
     }
 
     .breadcrumb,
@@ -117,7 +145,7 @@
 
     .icon-excel {
         position: relative;
-        top: 14px;
+        top: 18px;
         margin-left: 20px;
     }
 }

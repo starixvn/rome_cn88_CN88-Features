@@ -27,6 +27,7 @@ class WagerReport extends LegacyReport {
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.pagerComponent.pageList = this.pagerComponent.pageList;
+        this.initTooltip();
         this.pagerComponent.render();
         this.registerEvents();
         this.$.unblockUI();
