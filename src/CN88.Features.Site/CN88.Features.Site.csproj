@@ -117,6 +117,10 @@
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Cryptography.Aes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Cryptography.Aes.1.0.0.0\lib\net461\Fanex.Cryptography.Aes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Data, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.3.0.2\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
@@ -475,6 +479,7 @@
     <Content Include="Reports\Styles\security.min.css">
       <DependentUpon>security.css</DependentUpon>
     </Content>
+    <Content Include="Reports\Scripts\aes.js" />
     <Content Include="SubAccount\bundles\styles\sub-account.css" />
     <Content Include="SubAccount\bundles\styles\sub-account.min.css">
       <DependentUpon>sub-account.css</DependentUpon>
@@ -497,6 +502,7 @@
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
+    <Compile Include="Reports\Handlers\VerifyPasswordHandler.cs" />
     <Compile Include="Reports\OldReportsController.cs" />
     <Compile Include="Reports\Requests\OldReportQuery.cs" />
     <Compile Include="Reports\Requests\BettypeQuery.cs" />
@@ -504,6 +510,7 @@
     <Compile Include="Reports\Requests\OldIndexQuery.cs" />
     <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
+    <Compile Include="Reports\Requests\VerifyPasswordCommand.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
     <Compile Include="Reports\ViewModels\AccountingPeriodSelectionViewModel.cs" />
     <Compile Include="Reports\ViewModels\BettypeViewModel.cs" />
@@ -688,6 +695,7 @@
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\verify-password.ts" />
     <TypeScriptCompile Include="Reports\Scripts\wager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />

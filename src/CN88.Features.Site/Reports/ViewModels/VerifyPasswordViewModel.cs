@@ -2,11 +2,16 @@
 {
     public class VerifyPasswordViewModel
     {
-        public VerifyPasswordViewModel(string nickName)
+        public VerifyPasswordViewModel(
+            string nickName,
+            string hashKey)
         {
             NickName = nickName;
+            HashKey = hashKey;
         }
 
         public string NickName { get; }
+
+        public string HashKey { get; }
     }
 }

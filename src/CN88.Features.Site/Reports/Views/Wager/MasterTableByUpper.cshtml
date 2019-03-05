@@ -1,0 +1,115 @@
+﻿@model ReportViewModel
+<div id="settlement-content" class="tab-content">
+    <table class="tbl-noborder tbl-report settlement-report">
+        <thead>
+            <tr>
+                <th class="text-left">@ReportResources.MAUsername</th>
+                <th class="text-left">@ReportResources.Name</th>
+                <th class="text-right valid-stake">@ReportResources.MAIncome</th>
+                <th class="text-right valid-stake">@ReportResources.MAResult</th>
+                <th class="text-right valid-stake">@ReportResources.MAStock</th>
+                <th class="text-right valid-stake">@ReportResources.MAStockPercent</th>
+                <th class="text-right valid-stake">@ReportResources.SMA</th>
+                <th class="text-right valid-stake">@ReportResources.SMAPoss</th>
+                <th class="text-right valid-stake">@ReportResources.SMAIncome</th>
+                <th class="text-right valid-stake">@ReportResources.SMAResult</th>
+                <th class="text-right valid-stake">@ReportResources.SMAStock</th>
+                <th class="text-right valid-stake">@ReportResources.SMAStockPercent</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ReportData.Any())
+            {
+                var total = Model.GrandTotal;
+                <tr class="total">
+                    <td class="text-left">@ReportResources.Total</td>
+                    <td></td>
+                    @HtmlHelpers.RenderNumberCell(total.MasterIncome)
+                    @HtmlHelpers.RenderNumberCell(total.MasterResult)
+                    @HtmlHelpers.RenderNumberCell(total.MasterStock)
+                    @HtmlHelpers.RenderNumberCell(100)
+                    @HtmlHelpers.RenderNumberCell(total.Super)
+                    <td></td>
+                    @HtmlHelpers.RenderNumberCell(total.SuperIncome)
+                    @HtmlHelpers.RenderNumberCell(total.SuperResult)
+                    @HtmlHelpers.RenderNumberCell(total.SuperStock)
+                    @HtmlHelpers.RenderNumberCell(100)
+                </tr>
+                foreach (var data in Model.ReportData)
+                {
+                    <tr>
+                        <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
+                        <td class="text-left">@data.Name</td>
+                        @HtmlHelpers.RenderNumberCell(data.MasterIncome)
+                        @HtmlHelpers.RenderNumberCell(data.MasterResult)
+                        @HtmlHelpers.RenderNumberCell(data.MasterStock)
+                        @HtmlHelpers.RenderNumberCell(data.MasterStock / total.MasterStock * 100)
+                        @HtmlHelpers.RenderNumberCell(data.Super)
+                        <td class="text-right">@data.SuperPoss</td>
+                        @HtmlHelpers.RenderNumberCell(data.SuperIncome)
+                        @HtmlHelpers.RenderNumberCell(data.SuperResult)
+                        @HtmlHelpers.RenderNumberCell(data.SuperStock)
+                        @HtmlHelpers.RenderNumberCell(data.SuperStock / total.SuperStock * 100)
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="12" align="center">@SharedResources.NoInformationIsAvailable</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="valid-stake-content" class="tab-content display-none">
+    <table class="tbl-noborder tbl-report valid-stake-report">
+        <thead>
+            <tr>
+                <th class="text-left">@ReportResources.MAUsername</th>
+                <th class="text-left">@ReportResources.Name</th>
+                <th class="text-right valid-stake">@ReportResources.Wagers</th>
+                <th class="text-right valid-stake">@ReportResources.Stake</th>
+                <th class="text-right valid-stake">@ReportResources.ValidStake</th>
+                <th class="text-right valid-stake">@ReportResources.MemberIncome</th>
+                <th class="text-right valid-stake">@ReportResources.Agent</th>
+                <th class="text-right valid-stake">@ReportResources.AgentResult</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ReportData.Any())
+            {
+                var total = Model.GrandTotal;
+                <tr class="total">
+                    <td class="text-left">@ReportResources.Total</td>
+                    <td></td>
+                    @HtmlHelpers.RenderNumberCell(total.Wagers)
+                    @HtmlHelpers.RenderNumberCell(total.Stake)
+                    @HtmlHelpers.RenderNumberCell(total.ValidStake)
+                    @HtmlHelpers.RenderNumberCell(total.MemberIncome)
+                    @HtmlHelpers.RenderNumberCell(total.Agent)
+                    @HtmlHelpers.RenderNumberCell(total.AgentResult)
+                </tr>
+                foreach (var data in Model.ReportData)
+                {
+                    <tr>
+                        <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
+                        <td class="text-left">@data.Name</td>
+                        @HtmlHelpers.RenderNumberCell(data.Wagers)
+                        @HtmlHelpers.RenderNumberCell(data.Stake)
+                        @HtmlHelpers.RenderNumberCell(data.ValidStake)
+                        @HtmlHelpers.RenderNumberCell(data.MemberIncome)
+                        @HtmlHelpers.RenderNumberCell(data.Agent)
+                        @HtmlHelpers.RenderNumberCell(data.AgentResult)
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" align="center">@SharedResources.NoInformationIsAvailable</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

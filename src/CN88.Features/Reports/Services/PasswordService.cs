@@ -4,21 +4,21 @@
     using Fanex.Data.Repository;
     using Features.Models;
 
-    public interface ReCheckCustomerPasswordService
+    public interface PasswordService
     {
-        Result ReCheckPassword(int custId, int subAccountId, string userPassword);
+        Result CheckCustomerPassword(int custId, int subAccountId, string userPassword);
     }
 
-    public class ReCheckCustomerPasswordServiceImpl : ReCheckCustomerPasswordService
+    public class PasswordServiceImpl : PasswordService
     {
         private readonly IDynamicRepository dynamicRepository;
 
-        public ReCheckCustomerPasswordServiceImpl(IDynamicRepository dynamicRepository)
+        public PasswordServiceImpl(IDynamicRepository dynamicRepository)
         {
             this.dynamicRepository = dynamicRepository;
         }
 
-        public Result ReCheckPassword(int custId, int subAccountId, string userPassword)
+        public Result CheckCustomerPassword(int custId, int subAccountId, string userPassword)
         {
             var command = new ReCheckCustomerPasswordCommand(custId, subAccountId, userPassword);
 

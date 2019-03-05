@@ -2,10 +2,10 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.Web.Filters;
     using MediatR;
     using Requests;
     using Shared.Controllers;
-    using ViewModels;
 
     public class OldReportsController : FeatureBaseController
     {
@@ -19,11 +19,16 @@
         {
         }
 
+        public async Task<ActionResult> VerifyPassword(VerifyPasswordQuery message)
+            => await ViewAsync(message, VerifyPasswordViewPath);
+
+        [HttpPost]
+        [AntiXsrfFilter]
+        public async Task<ActionResult> VerifyPassword(VerifyPasswordCommand message)
+            => await JsonDataAsync(message);
+
         public async Task<ActionResult> Index(OldIndexQuery message)
             => await ViewAsync(message, OldIndexViewPath);
-
-        public ActionResult VerifyPassword(VerifyPasswordQuery message)
-            => View(VerifyPasswordViewPath, new VerifyPasswordViewModel(message.NickName));
 
         public async Task<ActionResult> Wager(OldReportQuery message)
             => await ViewAsync(message, WagerViewPath);

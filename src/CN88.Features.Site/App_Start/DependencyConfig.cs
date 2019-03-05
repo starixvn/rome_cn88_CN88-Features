@@ -118,6 +118,7 @@
             container.RegisterSingleton<AccountingPeriodService, AccountingPeriodServiceImpl>();
             container.RegisterSingleton<SettlementSummaryService, SettlementSummaryServiceImpl>();
             container.RegisterSingleton<ReportService, ReportServiceImpl>();
+            container.RegisterSingleton<PasswordService, PasswordServiceImpl>();
 
             container.RegisterSingleton<SubAccountService, SubAccountServiceImpl>();
 
