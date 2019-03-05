@@ -1,13 +1,13 @@
 ﻿@model ReportBaseViewModel
 <div id="settlement-content" class="tab-content">
-    <table class="tbl-style2 tbl-report settlement-report">
+    <table class="tbl-noborder tbl-report settlement-report">
         <thead>
             <tr>
-                <th class="">@ReportResources.SMAUsername</th>
-                <th class="valid-stake">@ReportResources.SMA</th>
-                <th class="valid-stake">@ReportResources.SMAIncome</th>
-                <th class="valid-stake">@ReportResources.SMAResult</th>
-                <th class="valid-stake">@ReportResources.SMAStock</th>
+                <th class="text-left">@ReportResources.SMAUsername</th>
+                <th class="text-right valid-stake">@ReportResources.SMA</th>
+                <th class="text-right valid-stake">@ReportResources.SMAIncome</th>
+                <th class="text-right valid-stake">@ReportResources.SMAResult</th>
+                <th class="text-right valid-stake">@ReportResources.SMAStock</th>
                 @if (Model.IsNotOwner)
                 {
                     <th class="valid-stake">@ReportResources.SMAStockPercent</th>
@@ -72,17 +72,17 @@
     </table>
 </div>
 <div id="valid-stake-content" class="tab-content display-none">
-    <table class="tbl-style2 tbl-report valid-stake-report">
+    <table class="tbl-noborder tbl-report valid-stake-report">
         <thead>
             <tr>
-                <th class="">@ReportResources.SMAUsername</th>
-                <th class="valid-stake">@ReportResources.Wagers</th>
-                <th class="valid-stake">@ReportResources.Stake</th>
-                <th class="valid-stake">@ReportResources.ValidStake</th>
-                <th class="valid-stake">@ReportResources.MemberIncome</th>
-                <th class="valid-stake">@ReportResources.Agent</th>
-                <th class="valid-stake">@ReportResources.AgentResult</th>
-                <th class="valid-stake">@ReportResources.MasterAgent</th>
+                <th class="text-left">@ReportResources.SMAUsername</th>
+                <th class="text-right valid-stake">@ReportResources.Wagers</th>
+                <th class="text-right valid-stake">@ReportResources.Stake</th>
+                <th class="text-right valid-stake">@ReportResources.ValidStake</th>
+                <th class="text-right valid-stake">@ReportResources.MemberIncome</th>
+                <th class="text-right valid-stake">@ReportResources.Agent</th>
+                <th class="text-right valid-stake">@ReportResources.AgentResult</th>
+                <th class="text-right valid-stake">@ReportResources.MasterAgent</th>
             </tr>
         </thead>
         <tbody>

@@ -6,30 +6,11 @@
     padding: 20px;
 
     .nav-tabs, .breadcrumb-container {
-        display: inline-block;
-        vertical-align: middle;
+        display: table-cell;
     }
 
     .nav-tabs {
         border-bottom: none;
-    }
-}
-
-.report-detail {
-    .page-title {
-        line-height: 32px;
-    }
-    .head-group {
-        position: relative;
-        .addition-section {
-            position: absolute;
-            right: 0;
-            top: 7px;
-            z-index: 99;
-        }
-    }
-    .icon-excel {
-        padding-left: 16px;
     }
 }
 
@@ -41,9 +22,6 @@
     }
     .filter {
         padding-top: 0;
-    }
-    .page-title {
-        padding: 19px 20px;
     }
 }
 
@@ -110,11 +88,46 @@
     }
 }
 
+.title-report-detail {
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+
+    .nav-tabs > li > a {
+        line-height: inherit;
+        padding: 0 16px;
+    }
+
+    .report-name {
+        padding-right: 24px;
+    }
+
+    .breadcrumb-container {
+        float: right;
+    }
+
+    .breadcrumb,
+    .icon-excel {
+        float: right;
+    }
+
+    .icon-excel {
+        position: relative;
+        top: 14px;
+        margin-left: 20px;
+    }
+}
+
 .report-form {
     padding-top: 16px;
+    border-bottom: 1px solid #c8c8c8;
 
     .form-group {
         vertical-align: bottom;
+
+        > label {
+            text-transform: uppercase;
+            display: block;
+        }
     }
 }
 
@@ -161,11 +174,10 @@
 }
 
 .tbl-report {
-    width: 100%;
     > thead > tr > th {
         border-width: 1px;
         font-weight: normal;
-        //padding: 13px 8px;
+        padding: 13px 8px;
     }
 
     > tbody > tr > td {
@@ -180,13 +192,6 @@
     > tbody > tr.total > td {
         color: #fff;
         background-color: #2C3E50;
-    }
-}
-.addition-section .tooltip {
-    right: 0;
-    left: unset !important;
-    .tooltip-arrow {
-        margin-left: 18px;
     }
 }
 

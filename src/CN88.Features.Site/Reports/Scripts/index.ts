@@ -68,7 +68,6 @@ class ReportIndexView extends BaseReport {
     };
 
     cachedDOMElements = () => {
-        
         this.$wagerTab = this.$("#wager-tab");
         this.$cancelledTab = this.$("#cancelled-tab");
         this.$reportType = this.$("#ReportType");
@@ -88,8 +87,6 @@ class ReportIndexView extends BaseReport {
         this.$lastPeriodBtn = this.$("#btn-last-period");
         this.$clearBtn = this.$("#btn-clear");
     };
-
-    
 
     calculatedDate = () => {
         let dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);

@@ -6,9 +6,9 @@
 }
 @model ReportViewModel
 <div class="report-detail wager-report">
-    <div class="page-title">@Model.Title</div>
-    <div class="head-group">
-        <ul class="nav nav-tabs-style2" role="tablist">
+    <div class="page-title title-report-detail">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="report-name">@Model.Title</li>
             <li role="presentation" class="active tab-selector" target-id="settlement-content">
                 <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
             </li>
@@ -19,10 +19,7 @@
                 </li>
             }
         </ul>
-        <div class="addition-section">
-            @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
-            <span id="icon-excel" class="icon-excel" title="@SharedResources.ExportToExcel" data-toggle="tooltip" data-placement="top"></span>
-        </div>
+        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
     </div>
     @Html.Partial("~/Reports/Views/Filter.cshtml", Model.ReportFilterViewModel)
     @{
