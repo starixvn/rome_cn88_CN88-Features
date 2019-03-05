@@ -8,7 +8,6 @@
 
 }
 @model IndexViewModel
-
 <div class="subacc-page">
     <table class="tbl-style2" id="tbl-subaccount">
         <thead>
@@ -40,15 +39,24 @@
                         <td>@item.UserName</td>
                         <td>@item.FirstName @item.LastName</td>
                         <td>N/A</td>
-                        <td>@permission.ViewTotalBets</td>
-                        <td>@permission.ViewMemberInfo</td>
-                        <td>@permission.UpdateAccount</td>
-                        <td>@permission.ViewReports</td>
-                        <td>@item.CreateDate</td>
-                        <td></td>
+                        @RenderPermissionCell(permission.ViewTotalBets)
+                        @RenderPermissionCell(permission.ViewMemberInfo)
+                        @RenderPermissionCell(permission.UpdateAccount)
+                        @RenderPermissionCell(permission.ViewReports)
+                        <td>@item.CreateDateString</td>
+                        <td data-custid="@item.SubAccId">
+                            <span class="icon-edit" data-toggle="tooltip" data-placement="top"></span>
+                            <span class="icon-delete" data-toggle="tooltip" data-placement="top"></span>
+                        </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
 </div>
+@helper RenderPermissionCell(bool hasPermission)
+{
+    <td class="text-center">
+        <span class="@(hasPermission ? "icon-success " : "icon-minus")"></span>
+    </td>
+}

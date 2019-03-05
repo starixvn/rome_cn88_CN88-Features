@@ -18,7 +18,7 @@
 
         public async Task<IndexViewModel> Handle(IndexQuery message)
         {
-            var subAccounts = await subAccountService.GetSubAccountsAsync(message.CustId);
+            var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
 
             return new IndexViewModel(
                 message.UserCode,

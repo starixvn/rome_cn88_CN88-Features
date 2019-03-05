@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.SubAccount.Models
 {
     using System;
+    using Alpha.Utilities.Extensions;
     using Sunplus.Agent.Model.Entities;
 
     public class SubAccountItem
@@ -36,6 +37,8 @@
         public string LastName { get; }
 
         public DateTime CreateDate { get; }
+
+        public string CreateDateString => CreateDate.ToLongDateFormatWithSlash();
 
         public bool Closed { get; }
 
