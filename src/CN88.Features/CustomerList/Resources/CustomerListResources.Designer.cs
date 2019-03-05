@@ -502,7 +502,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Code.
+        ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string UserCode {
             get {

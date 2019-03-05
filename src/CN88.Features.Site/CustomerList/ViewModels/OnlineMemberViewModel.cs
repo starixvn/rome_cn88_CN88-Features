@@ -5,11 +5,11 @@
 
     public class OnlineMemberViewModel
     {
-        public OnlineMemberViewModel(IList<OnlineMemberModel> members)
+        public OnlineMemberViewModel(IEnumerable<OnlineMemberModel> members)
         {
             Members = members;
         }
 
-        public IList<OnlineMemberModel> Members { get; }
+        public IEnumerable<OnlineMemberModel> Members { get; }
     }
 }

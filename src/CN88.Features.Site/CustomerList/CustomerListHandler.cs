@@ -90,7 +90,7 @@
                command.ViewerName));
 
         public OnlineMemberViewModel Handle(OnlineMembersQuery message)
-            => new OnlineMemberViewModel(service.OnlineMembers(new OnlineMembersParam(message.ViewerId)));
+            => new OnlineMemberViewModel(service.OnlineMembers(new OnlineMembersParam(message.ViewerId, message.PageSize, message.PageIndex)));
 
         public MemberStatementViewModel Handle(MemberStatementQuery message)
         {
@@ -124,7 +124,8 @@
             {
                 Text = SharedResources.AllSports,
                 Value = "0",
-                Selected = userSelectedSportGroupId == 0 });
+                Selected = userSelectedSportGroupId == 0
+            });
 
             return items;
         }

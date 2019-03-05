@@ -21,7 +21,7 @@
 
         Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
 
-        IList<OnlineMemberModel> OnlineMembers(OnlineMembersParam param);
+        IEnumerable<OnlineMemberModel> OnlineMembers(OnlineMembersParam param);
     }
 
     public class CustomerListServiceImpl : CustomerListService
@@ -99,15 +99,7 @@
                 Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
-        public IList<OnlineMemberModel> OnlineMembers(OnlineMembersParam param)
-        {
-            var result = new List<OnlineMemberModel>
-            {
-                new OnlineMemberModel("Member 1","Name 1", new System.DateTime(2019,02,28)),
-                new OnlineMemberModel("Member 2","Name 2", new System.DateTime(2019,02,28))
-            };
-
-            return result;
-        }
+        public IEnumerable<OnlineMemberModel> OnlineMembers(OnlineMembersParam param)
+            => dynamicRepository.Fetch<OnlineMemberModel>(new GetOnlineMemberListCriteria(param));
     }
 }

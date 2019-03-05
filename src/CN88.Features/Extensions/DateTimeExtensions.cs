@@ -10,14 +10,13 @@
         private const string LongTime24h = "HH:mm:ss";
 
         public static string ToShortDateFormat(this DateTime date)
-        {
-            return date.ToString(ShortDateFormat);
-        }
+            => date.ToString(ShortDateFormat);
+
+        public static string ToLongDateFormat(this DateTime dateTime)
+           => $"{ToShortDateFormat(dateTime)} {ToTimeFormat(dateTime)}";
 
         public static string ToTimeFormat(this DateTime date)
-        {
-            return date.ToString(TimeFormat);
-        }
+            => date.ToString(TimeFormat);
 
         public static string ToLongDay(this DateTime date)
             => date.ToString("YYYY-MM-dd dddd");

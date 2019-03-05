@@ -31,5 +31,8 @@
 
         public async Task<ActionResult> PTHistories(PTHistoryQuery message)
             => await ViewAsync(message, LegacyViewPath);
+
+        public async Task<ActionResult> BetType(BettypeQuery message)
+            => await ViewAsync(message, "~/Reports/Views/Bettype.cshtml");
     }
 }

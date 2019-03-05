@@ -235,7 +235,7 @@
     <value>Reset Password</value>
   </data>
   <data name="UserCode" xml:space="preserve">
-    <value>User Code</value>
+    <value>User Name</value>
   </data>
   <data name="LoginDateTime" xml:space="preserve">
     <value>Login Date Time</value>

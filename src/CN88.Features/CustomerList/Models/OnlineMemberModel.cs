@@ -7,21 +7,14 @@
     {
         public OnlineMemberModel()
         {
-        }
+        }        
 
-        public OnlineMemberModel(string userCode, string name, DateTime loginTime)
-        {
-            UserCode = userCode;
-            Name = name;
-            LoginTime = loginTime;
-        }
-
-        public string UserCode { get; }
+        public string UserName { get; }
 
         public string Name { get; }
 
-        public DateTime LoginTime { get; }
+        public DateTime LastLogin { get; }
 
-        public string LoginTimeStr => LoginTime.ToShortDateFormat();
+        public string LastLoginStr => LastLogin.ToLongDateFormat();
     }
 }

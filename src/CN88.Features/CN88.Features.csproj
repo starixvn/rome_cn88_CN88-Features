@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="CustomerList\Constants\CloseReasonConstant.cs" />
     <Compile Include="CustomerList\Constants\CustomerStatus.cs" />
+    <Compile Include="CustomerList\Criteria\GetOnlineMemberListCriteria.cs" />
     <Compile Include="CustomerList\Criteria\CustomerListCriteria.cs" />
     <Compile Include="CustomerList\Criteria\GetMemberStatementCriteria.cs" />
     <Compile Include="Reports\Criteria\ReCheckCustomerPasswordCommand.cs" />

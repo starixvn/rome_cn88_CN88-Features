@@ -16,16 +16,16 @@
         @foreach (var m in Model.Members)
         {
             <tr>
-                <td>@m.UserCode</td>
+                <td>@m.UserName</td>
                 <td>@m.Name</td>
-                <td class="text-center">@m.LoginTimeStr</td>
+                <td class="text-center">@m.LastLoginStr</td>
             </tr>
         }
     </tbody>
     <tfoot class="tfoot-bg">
         <tr>
             <td colspan="2" class="text-right">@CustomerListResources.Total</td>
-            <td class="text-right">@Model.Members.Count</td>
+            <td class="text-right">@Model.Members.Count()</td>
         </tr>
     </tfoot>
 </table>

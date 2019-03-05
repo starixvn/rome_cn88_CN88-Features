@@ -9,7 +9,8 @@
     public class ReportsHandler : ReportsBaseHandler,
         IRequestHandler<IndexQuery, IndexViewModel>,
         IRequestHandler<ReportQuery, ReportViewModel>,
-        IRequestHandler<PTHistoryQuery, PTHistoryViewModel>
+        IRequestHandler<PTHistoryQuery, PTHistoryViewModel>,
+        IRequestHandler<BettypeQuery, BettypeViewModel>
     {
         private readonly SportGroupService sportGroupService;
         private readonly BettypeGroupService betTypeService;
@@ -72,5 +73,12 @@
 
         public PTHistoryViewModel Handle(PTHistoryQuery message)
             => new PTHistoryViewModel(reportService.GetPTHistories(message.CustId, message.FromDate, message.ToDate));
+
+        public BettypeViewModel Handle(BettypeQuery message)
+        {
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(message.SportType);
+
+            return new BettypeViewModel(BuildBetTypeSelectListItems(betTypes, 0));
+        }
     }
 }
