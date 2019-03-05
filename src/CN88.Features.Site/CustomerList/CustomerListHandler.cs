@@ -90,7 +90,12 @@
                command.ViewerName));
 
         public OnlineMemberViewModel Handle(OnlineMembersQuery message)
-            => new OnlineMemberViewModel(service.OnlineMembers(new OnlineMembersParam(message.ViewerId, message.PageSize, message.PageIndex)));
+        {
+            var param = new OnlineMembersParam(message.ViewerId, message.PageSize, message.PageIndex);
+            var onlineMembers = service.OnlineMembers(param);
+
+            return new OnlineMemberViewModel(onlineMembers, message, param.TotalRow);
+        }
 
         public MemberStatementViewModel Handle(MemberStatementQuery message)
         {

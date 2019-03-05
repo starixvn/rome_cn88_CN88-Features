@@ -20,8 +20,7 @@
 
         public int PageIndex { get; set; }
 
-        [SpParam(SqlParamName = "totalPages")]
-        public int TotalCustomers { get; set; }
+        public int TotalRows { get; set; }
 
         public override string GetSettingKey()
             => "CS_Customer_OnlineUserList_Sel";

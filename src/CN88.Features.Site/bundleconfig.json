@@ -27,7 +27,7 @@
       "Reports/Scripts/base-report.js",
       "Reports/Scripts/index.js"
     ]
-  },
+  },  
   {
     "outputFileName": "Reports/bundles/wager.js",
     "inputFiles": [
@@ -62,6 +62,14 @@
       "CustomerList/scripts/agent-list.js",
       "CustomerList/scripts/member-list.js",
       "CustomerList/scripts/index.js"
+    ]
+  },
+  {
+    "outputFileName": "CustomerList/bundles/scripts/onlinemember.js",
+    "inputFiles": [
+      "Shared/Scripts/core.js",
+      "Shared/Scripts/components/pager.js",
+      "CustomerList/scripts/online-member.js",
     ]
   },
   {

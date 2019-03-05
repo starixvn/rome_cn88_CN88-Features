@@ -17,5 +17,7 @@
         public int PageSize { get; }
 
         public int PageIndex { get; }
+
+        public int TotalRow { get; set; }
     }
 }

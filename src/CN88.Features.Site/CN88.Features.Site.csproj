@@ -419,6 +419,10 @@
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
     </Content>
+    <Content Include="CustomerList\bundles\scripts\onlinemember.js" />
+    <Content Include="CustomerList\bundles\scripts\onlinemember.min.js">
+      <DependentUpon>onlinemember.js</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
     <Content Include="CustomerList\bundles\scripts\popup\credit-popup.min.js">
       <DependentUpon>credit-popup.js</DependentUpon>

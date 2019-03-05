@@ -4,6 +4,9 @@
 }
 
 <div class="page-container">
+    <form class="hide" id="report-form">
+
+    </form>
     <div class="page-title">@CustomerListResources.OnlineMembers</div>
     <table class="tbl-style2 width-100per">
         <thead>
@@ -22,13 +25,12 @@
                     <td>@m.LastLoginStr</td>
                 </tr>
             }
-        </tbody>
-        <tfoot class="tfoot-bg">
-            <tr>
-                <td></td>
-                <td>@CustomerListResources.Total</td>
-                <td class="text-right">@Model.Members.Count()</td>
-            </tr>
-        </tfoot>
+        </tbody> 
     </table>
+    @Pager.Render(Model.PagerViewModel)
 </div>
+
+
+@section Scripts{
+    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/onlinemember")
+}

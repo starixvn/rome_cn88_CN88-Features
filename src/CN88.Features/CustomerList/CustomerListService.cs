@@ -100,6 +100,13 @@
         }
 
         public IEnumerable<OnlineMemberModel> OnlineMembers(OnlineMembersParam param)
-            => dynamicRepository.Fetch<OnlineMemberModel>(new GetOnlineMemberListCriteria(param));
+        {
+            var criteria = new GetOnlineMemberListCriteria(param);
+            var onlineMembers = dynamicRepository.Fetch<OnlineMemberModel>(criteria);
+            param.TotalRow = criteria.TotalRows;
+
+            return onlineMembers;
+        }
+            
     }
 }

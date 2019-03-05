@@ -240,9 +240,6 @@
   <data name="LoginDateTime" xml:space="preserve">
     <value>Login Date Time</value>
   </data>
-  <data name="Total" xml:space="preserve">
-    <value>Total</value>
-  </data>
   <data name="Nickname" xml:space="preserve">
     <value>Nick Name</value>
   </data>
