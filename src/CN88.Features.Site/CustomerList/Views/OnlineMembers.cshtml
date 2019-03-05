@@ -3,29 +3,32 @@
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
 
-<div class="page-title">@CustomerListResources.OnlineMembers</div>
-<table class="tbl-style2">
-    <thead>
-        <tr>
-            <th>@CustomerListResources.UserCode</th>
-            <th>@CustomerListResources.Name</th>
-            <th>@CustomerListResources.LoginDateTime</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var m in Model.Members)
-        {
+<div class="page-container">
+    <div class="page-title">@CustomerListResources.OnlineMembers</div>
+    <table class="tbl-style2 width-100per">
+        <thead>
             <tr>
-                <td>@m.UserName</td>
-                <td>@m.Name</td>
-                <td class="text-center">@m.LastLoginStr</td>
+                <th>@CustomerListResources.UserCode</th>
+                <th>@CustomerListResources.Name</th>
+                <th>@CustomerListResources.LoginDateTime</th>
             </tr>
-        }
-    </tbody>
-    <tfoot class="tfoot-bg">
-        <tr>
-            <td colspan="2" class="text-right">@CustomerListResources.Total</td>
-            <td class="text-right">@Model.Members.Count()</td>
-        </tr>
-    </tfoot>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Members)
+            {
+                <tr>
+                    <td>@m.UserName</td>
+                    <td>@m.Name</td>
+                    <td>@m.LastLoginStr</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot class="tfoot-bg">
+            <tr>
+                <td></td>
+                <td>@CustomerListResources.Total</td>
+                <td class="text-right">@Model.Members.Count()</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

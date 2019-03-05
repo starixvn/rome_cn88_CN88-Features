@@ -208,14 +208,14 @@
         let url = this.UpdateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
             popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-credit', 476, 280);
+        this.openPopup(popupTitle, url, 'modal modal-credit', 490, 280);
     };
 
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
         let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, UpdateStatusId: updateStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-status', 476, 210);
+        this.openPopup(popupTitle, url, 'modal modal-status', 490, 210);
     };
 
     resetPassword = (custId: number, username: string, custLevelId: number) => {
