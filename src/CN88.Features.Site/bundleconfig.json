@@ -106,7 +106,9 @@
       "BetLists/Scripts/result/base-result.js",
       "BetLists/Scripts/result/sportsbook-result-details.js",
       "BetLists/Scripts/result/casino-result-details.js",
-      "BetLists/Scripts/result/other-result-details.js"
+      "BetLists/Scripts/result/other-result-details.js",
+      "BetLists/Scripts/details/base-details.js",
+      "BetLists/Scripts/details/sportsbook-details.js"
     ]
   }
 ]

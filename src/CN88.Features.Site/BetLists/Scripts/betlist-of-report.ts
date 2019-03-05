@@ -13,8 +13,3 @@
     alert("Alert from showParlaySubBetsCN88");
 
 }
-
-function showCombMPDetail(winlostDate, transId, betId, custId, betTeam, sourceElement) {
-    // Place Your Code Here.
-    alert("Alert from showCombMPDetail");
-}

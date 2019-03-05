@@ -682,6 +682,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="BetLists\Scripts\details\sportsbook-details.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\details\base-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\other-result-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\casino-result-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\sportsbook-result-details.ts" />
