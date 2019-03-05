@@ -7,23 +7,42 @@
             return this.instance;
         }
 
-        public ShowComboParlayDetails = (winlostDate: Date, transId: string, betId: string, custId: string, betTeam: string, sourceElement: any) => {
-            const params = '?'
-                + '&winlostdate=' + winlostDate
-                + '&transid=' + transId
-                + '&betid=' + betId
-                + '&custid=' + custId
-                + '&betteam=' + betTeam;
+        public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string,
+            betId: string, custId: string, betTeam: string, sourceElement: any) => {
+            const ticketsContent: JQuery = $("#div-details-" + transId);
 
-            var options = {
-                url: Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params,
-                title: "",
-                width: 800,
-                height: 438
-            };
+            if (ticketsContent.length == 0) {
+                let moreInfo = $(".tbl-bet-list tr[data-trans-id='" + transId + "'] .cn88-bet-item");
 
-            // Place Your Code Here.
-            alert("Alert from showCombMPDetail");
+                var params = $.param({
+                    refNo: refNo,
+                    transId: transId,
+                    betId: betId,
+                    custId: custId
+                });
+
+                $.ajax({
+                    method: 'GET',
+                    url: Common.AppPath.BetListAppPath() + "BetLists/TicketDetail?" + params,
+                    beforeSend: () => {
+                        moreInfo.append("<div id='div-details-" + transId + "' class='block-icon-small'></div>");
+                    },
+                    success: (responseHtml) => {
+                        var div = $("#div-details-" + transId);
+                        div.removeClass("block-icon-small");
+                        div.html(responseHtml);
+                    },
+                });
+
+                return;
+            }
+
+            var isVisible = !ticketsContent.hasClass("display-none");
+            if (isVisible) {
+                ticketsContent.addClass("display-none");
+            } else {
+                ticketsContent.removeClass("display-none");
+            }
         }
     }
 }

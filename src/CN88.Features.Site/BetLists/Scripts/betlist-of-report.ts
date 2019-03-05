@@ -1,4 +1,13 @@
-﻿function showParlaySubBetsCN88(transId, index, refNo, handicap1, handicap2, betCheck, betTeam, custId, sourceElement) {
+﻿let ViewResult: Function;
+let showCombMPDetail: Function;
+
+$(document).ready(() => {
+    ViewResult = BetLists.Result.BaseResultDetails.Instance.ViewResultDetails;
+    showCombMPDetail = BetList.Details.ParlayTicketDetails.Instance.ShowComboParlayDetails;
+})
+
+
+function showParlaySubBetsCN88(transId, index, refNo, handicap1, handicap2, betCheck, betTeam, custId, sourceElement) {
     var $parent = $(sourceElement).parent();
 
     if ($parent.hasClass("cn88-mix-parlay-collapse")) {

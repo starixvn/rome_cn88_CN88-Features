@@ -8,7 +8,7 @@
     @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
 }
 <div class="page-title">@BetListsResources.BetList</div>
-<table class="tbl-style2">
+<table class="tbl-style2 tbl-bet-list">
     <thead>
         <tr>
             <th>@BetListsResources.DateTime</th>
@@ -49,7 +49,7 @@
             for (int i = 0; i < tickets.Count; i++)
             {
                 var ticket = tickets[i];
-        <tr>
+        <tr data-trans-id="@ticket.TransId">
             @BetLists.TransDate.Render(ticket)
             @BetLists.Comm.Render(ticket)
             @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
@@ -60,13 +60,13 @@
             @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking)
             @if (Model.CustLevel.IsMasterOrSuperLevel())
                     {
-            @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking)
+                    @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking)
                     }
 
             @if (Model.CustLevel.IsSuperLevel())
                     {
-            @HtmlHelpers.RenderNumberCell((int)ticket.SuperPositionTaking)
-            @HtmlHelpers.RenderNumberCell((int)Model.CompanyPositionTaking(ticket))
+                    @HtmlHelpers.RenderNumberCell((int)ticket.SuperPositionTaking)
+                    @HtmlHelpers.RenderNumberCell((int)Model.CompanyPositionTaking(ticket))
                     }
         </tr>
             }

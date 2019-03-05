@@ -5,9 +5,3 @@
         public readonly ColossusBetsPopUpDetailTitle = () => $('#colossusbets-popupdetail-title').val();
     }
 }
-
-let showCombMPDetail: Function;
-
-$(document).ready(() => {
-    showCombMPDetail = BetList.Details.ParlayTicketDetails.Instance.ShowComboParlayDetails;
-})

@@ -12,7 +12,7 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            const params = '?gambleId=' + matchId;
+            const params = "?" + $.param({ gambleId: matchId });
 
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ng2/TicketDetail' + params,
@@ -41,7 +41,11 @@
             betCheck?: string,
             custId?: number,
             transDesc?: string) => {
-            const params = '?custId=' + custId + '&gameTypeId=' + betTypeId + '&transId3rd=' + betCheck;
+            const params = "?" + $.param({
+                custId: custId,
+                gameTypeId: betTypeId,
+                transId3rd: betCheck
+            });
 
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'pokergames/Index' + params,

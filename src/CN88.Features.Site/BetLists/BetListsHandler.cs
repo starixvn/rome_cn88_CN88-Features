@@ -15,7 +15,9 @@
     using ViewModels;
 
     public class BetListsHandler :
-         IAsyncRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>
+         IAsyncRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
+         IRequestHandler<GetTicketDetailQuery, TicketDetailModel>,
+         IAsyncRequestHandler<GetSubTicketsQuery, SubTicketsViewModel>
     {
         private BetListsService service;
         private ISmartPunterBetListMonitor monitorService;
@@ -53,6 +55,32 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+        }
+
+        public TicketDetailModel Handle(GetTicketDetailQuery message)
+        {
+            var param = new GetTicketDetailParam(
+                message.RefNo,
+                message.TransId,
+                message.BetId,
+                message.CustId);
+
+            var betlistData = service.GetTicketDetail(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return betlistData;
+        }
+
+        public async Task<SubTicketsViewModel> Handle(GetSubTicketsQuery message)
+        {
+            var param = new GetSubTicketsParam(message.TransId, message.CustId);
+
+            var betlistData = await service.GetSubTickets(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return new SubTicketsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)

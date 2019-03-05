@@ -15,7 +15,13 @@
             betCheck?: string,
             custId?: number,
             transDesc?: string) => {
-            const params = '?transDesc=' + transDesc + '&betCheck=' + betCheck + '&bettypeId=' + betTypeId + '&sportId=' + sportTypeId;
+
+            const params = "?" + $.param({
+                transDesc: transDesc,
+                betCheck: betCheck,
+                bettypeId: betTypeId,
+                sportId: sportTypeId
+            });
 
             var options = {
                 url: this.ResultDetailsPath + params,
@@ -42,7 +48,12 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?gameId=' + refNo + '&roleId=' + this.ViewerLevelId + '&productId=6';
+
+            const params = "?" + $.param({
+                gameId: refNo,
+                roleId: this.ViewerLevelId,
+                productId: 6
+            });
 
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
@@ -69,10 +80,12 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + refNo +
-                '&productId=22';
+            const params = "?" + $.param({
+                custId: this.CustId,
+                roleId: this.ViewerLevelId,
+                gameId: refNo,
+                productId: 22
+            });
 
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
@@ -99,10 +112,12 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + betCheck +
-                '&productId=24';
+            const params = "?" + $.param({
+                custId: this.CustId,
+                roleId: this.ViewerLevelId,
+                gameId: refNo,
+                productId: 24
+            });
 
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
@@ -129,10 +144,12 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&gameId=' + betCheck +
-                '&productId=32';
+            const params = "?" + $.param({
+                custId: this.CustId,
+                roleId: this.ViewerLevelId,
+                gameId: refNo,
+                productId: 32
+            });
 
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
@@ -159,7 +176,12 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-            var params = '?custId=' + this.CustId + '&roleId=' + this.ViewerLevelId + '&gameId=' + refNo + '&productId=30';
+            const params = "?" + $.param({
+                custId: this.CustId,
+                roleId: this.ViewerLevelId,
+                gameId: refNo,
+                productId: 30
+            });
 
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,

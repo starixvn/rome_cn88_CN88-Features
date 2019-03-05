@@ -164,6 +164,8 @@
     <Compile Include="BetLists\BetListsService.cs" />
     <Compile Include="BetLists\Constants\BetListTypeConstant.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReportCriteria.cs" />
+    <Compile Include="BetLists\Criteria\GetSubTicketsCriteria.cs" />
+    <Compile Include="BetLists\Criteria\GetTicketDetailCriteria.cs" />
     <Compile Include="BetLists\Criteria\SmartPunter\InternalAdminCheckerCommand.cs" />
     <Compile Include="BetLists\Criteria\SmartPunter\NAPUserPermissionCriteria.cs" />
     <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterSMACheckerCommand.cs" />
@@ -174,8 +176,11 @@
     <Compile Include="BetLists\DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="BetLists\Models\BetListData.cs" />
     <Compile Include="BetLists\Models\NapUserFunctionPermission.cs" />
+    <Compile Include="BetLists\Models\TicketDetailModel.cs" />
     <Compile Include="BetLists\Models\TicketDto.cs" />
     <Compile Include="BetLists\Params\BetListOfReportParam.cs" />
+    <Compile Include="BetLists\Params\GetSubTicketsParam.cs" />
+    <Compile Include="BetLists\Params\GetTicketDetailParam.cs" />
     <Compile Include="BetLists\Resources\BetListsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -121,9 +121,3 @@
         }
     }
 }
-
-let ViewResult: Function;
-
-$(document).ready(() => {
-    ViewResult = BetLists.Result.BaseResultDetails.Instance.ViewResultDetails;
-})

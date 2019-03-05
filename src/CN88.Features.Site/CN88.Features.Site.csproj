@@ -386,6 +386,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SPNames\Local\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.xml" />
     <Content Include="App_Data\SPNames\Local\DB042.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DBPRO.bodb02.xml" />
@@ -503,7 +504,10 @@
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
     <Compile Include="BetLists\Helpers\IPHelper.cs" />
+    <Compile Include="BetLists\Requests\GetSubTicketsQuery.cs" />
+    <Compile Include="BetLists\Requests\GetTicketDetailQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
+    <Compile Include="BetLists\ViewModels\SubTicketsViewModel.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="Reports\Filters\RecheckPasswordAttribute.cs" />
@@ -648,6 +652,8 @@
     <Content Include="App_Code\BetLists\Status.cshtml" />
     <Content Include="BetLists\Styles\bet-lists.scss" />
     <Content Include="App_Data\securitycode.json" />
+    <Content Include="BetLists\Views\TicketDetail.cshtml" />
+    <Content Include="BetLists\Views\SubTickets.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

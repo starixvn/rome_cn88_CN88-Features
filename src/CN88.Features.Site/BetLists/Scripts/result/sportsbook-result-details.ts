@@ -12,15 +12,17 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            const params = '?matchid=' + matchId
-                + '&bettypeid=' + betTypeId
-                + '&race=' + race
-                + '&sportId=' + sportTypeId
-                + '&leagueId=' + league
-                + '&isOutright=' + isOutright
-                + '&refnum=' + refNo
-                + '&betid=' + betId
-                + '&isViewResultFromBetList=true';
+            const params = "?" + $.param({
+                matchid: matchId,
+                bettypeid: betTypeId,
+                race: race,
+                sportId: sportTypeId,
+                leagueId: league,
+                isOutright: isOutright,
+                refnum: refNo,
+                betid: betId,
+                isViewResultFromBetList: true
+            });
 
             var options = {
                 url: this.ResultDetailsPath + params,
@@ -46,10 +48,13 @@
             league?: number,
             isOutright?: boolean,
             betId?: number) => {
-            const params = '?refnum=' + refNoMixParlay
-                + '&wldate=' + winLostDate
-                + '&bettypeid=' + betTypeId
-                + '&matchid=1&isViewResultFromBetList=true';
+            const params = "?" + $.param({
+                refnum: refNoMixParlay,
+                wldate: winLostDate,
+                bettypeid: betTypeId,
+                matchid: 1,
+                isViewResultFromBetList: true
+            });
 
             var options = {
                 url: this.ResultDetailsPath + params,
@@ -76,16 +81,18 @@
             isOutright: boolean,
             betId: number,
             hdp2?: string) => {
-            const params = '?matchid=' + matchId
-                + '&bettypeid=' + betTypeId
-                + '&race=' + race
-                + '&sportId=' + sportTypeId
-                + '&leagueId=' + league
-                + '&isOutright=' + isOutright
-                + '&refnum=' + refNo
-                + '&betid=' + betId
-                + '&isViewResultFromBetList=true'
-                + '&hdp2=' + hdp2;
+            const params = "?" + $.param({
+                matchid: matchId,
+                bettypeid: betTypeId,
+                race: race,
+                sportId: sportTypeId,
+                leagueId: league,
+                isOutright: isOutright,
+                refnum: refNo,
+                betid: betId,
+                isViewResultFromBetList: true,
+                hdp2: hdp2
+            });
 
             var options = {
                 url: this.ResultDetailsPath + params,
