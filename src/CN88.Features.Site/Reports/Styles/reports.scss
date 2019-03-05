@@ -1,5 +1,8 @@
 ﻿body {
     background-color: #ecf0f1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
 }
 
 .wager-report {
@@ -49,7 +52,7 @@
 
     .form-group .control.date {
         margin-left: 0;
-        width: 159px;
+        width: 158px;
     }
 
     .from-date-box > label {
@@ -91,6 +94,8 @@
 .title-report-detail {
     padding: 0;
     border-bottom: 1px solid #ddd;
+    line-height: 56px;
+    margin-bottom: 0;
 
     .nav-tabs > li > a {
         line-height: inherit;
