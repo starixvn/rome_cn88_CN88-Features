@@ -38,32 +38,38 @@
             var total = Model.BetListTotal;
 
             @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
-            for (int i = 0; i < Model.BetListData.Total; i++)
+
+            var tickets = new List<CN88.Features.BetLists.Models.TicketDto>
             {
-                var ticket1 = Model.BetListData.Tickets.ElementAt(i);
+                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket1(),
+                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket2(),
+                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket3()
+            };
+
+            for (int i = 0; i < tickets.Count; i++)
+            {
+                var ticket = tickets[i];
+                <tr>
+                    @BetLists.TransDate.Render(ticket)
+                    @BetLists.Comm.Render(ticket)
+                    @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
+                    @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
+                    <td>@Html.Raw(ConvertByBetType.Stake(ticket.Stake))</td>
+                    <td>@Html.Raw(ConvertByBetType.Winloss(ticket.Winlost))</td>
+                    @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                    @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking)
+                    @if (Model.CustLevel.IsMasterOrSuperLevel())
+                    {
+                        @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking)
+                    }
+
+                    @if (Model.CustLevel.IsSuperLevel())
+                    {
+                        @HtmlHelpers.RenderNumberCell((int)ticket.SuperPositionTaking)
+                        @HtmlHelpers.RenderNumberCell((int)Model.CompanyPositionTaking(ticket))
+                    }
+                </tr>
             }
-
-            var ticket = CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket3();
-            <tr>
-                @BetLists.TransDate.Render(ticket)
-                @BetLists.Comm.Render(ticket)
-                @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
-                @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
-                <td>@Html.Raw(ConvertByBetType.Stake(ticket.Stake))</td>
-                <td>@Html.Raw(ConvertByBetType.Winloss(ticket.Winlost))</td>
-                @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
-                @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking)
-                @if (Model.CustLevel.IsMasterOrSuperLevel())
-                {
-                    @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking)
-                }
-
-                @if (Model.CustLevel.IsSuperLevel())
-                {
-                    @HtmlHelpers.RenderNumberCell((int)ticket.SuperPositionTaking)
-                    @HtmlHelpers.RenderNumberCell((int)Model.CompanyPositionTaking(ticket))
-                }
-            </tr>
         }
         else
         {
