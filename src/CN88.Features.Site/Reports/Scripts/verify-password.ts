@@ -16,6 +16,8 @@ class VerifyPassword {
         this.cacheDOMElements();
 
         this.hashKey = this.$hashKey.val();
+
+        this.registerEvents();
     };
 
     cacheDOMElements = () => {
@@ -25,14 +27,32 @@ class VerifyPassword {
         this.$messageContainer = this.$("#message-container");
     };
 
+    registerEvents = () => {
+        this.$formVerifyPassword.submit(this.onSubmit);
+    };
+
     onSubmit = () => {
         let password: string = this.$txtPassword.val();
 
         if (password.length === 0) {
             this.showError(this.$messageContainer, "");
             this.$txtPassword.focus();
+            this.$.unblockUI();
+            return false;
         }
-    }
+
+        if (!this.isValidPassword(password)) {
+            this.showError(this.$messageContainer, "");
+            this.$txtPassword.focus();
+            this.$.unblockUI();
+            return false;
+        }
+
+        let encryptedPwd = this.$txtPassword.val().encrypt(this.hashKey);
+        this.$txtPassword.val(encryptedPwd);
+
+        return true;
+    };
 
     isValidPassword(password: string) {
         let whiteSpace: RegExp = /^\S*$/;
@@ -55,3 +75,8 @@ class VerifyPassword {
         $target.html("<div class='msg msg-error'>" + error + "</div>");
     };
 }
+
+$(function () {
+    const verifyPwd = new VerifyPassword($);
+    verifyPwd.init();
+})

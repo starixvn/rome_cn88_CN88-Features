@@ -102,8 +102,9 @@
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
             container.RegisterSingleton<Encryptor, EncryptorImpl>();
-            container.RegisterSingleton<SessionManager, SessionManagerImpl>();
             container.RegisterSingleton<ReportDateService, ReportDateServiceImpl>();
+
+            container.RegisterPerWebRequest<SessionManager, SessionManagerImpl>();
 
             container.Register<SportGroupService>(
                 () => new SportGroupServiceImpl(

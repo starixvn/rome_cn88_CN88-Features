@@ -19,4 +19,7 @@
     <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
+  <Function Name="ReCheck Customer Password">
+    <Setting Key="CS_CustomerReCheckPwd" SpName="CS_CustomerReCheckPwd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
 </Functions>

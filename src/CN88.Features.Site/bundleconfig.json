@@ -12,6 +12,13 @@
     ]
   },
   {
+    "outputFileName": "Reports/bundles/verify-password.js",
+    "inputFiles": [
+      "Reports/Scripts/aes.js",
+      "Reports/Scripts/verify-password.js"
+    ]
+  },
+  {
     "outputFileName": "Reports/bundles/index.js",
     "inputFiles": [
       "Shared/Scripts/core.js",

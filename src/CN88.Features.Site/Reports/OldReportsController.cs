@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Alpha.Web.Filters;
     using MediatR;
     using Requests;
     using Shared.Controllers;
@@ -22,8 +21,7 @@
         public async Task<ActionResult> VerifyPassword(VerifyPasswordQuery message)
             => await ViewAsync(message, VerifyPasswordViewPath);
 
-        [HttpPost]
-        [AntiXsrfFilter]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPassword(VerifyPasswordCommand message)
             => await JsonDataAsync(message);
 

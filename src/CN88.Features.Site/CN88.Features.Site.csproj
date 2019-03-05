@@ -460,8 +460,12 @@
       <DependentUpon>reports.css</DependentUpon>
     </Content>
     <Content Include="Reports\bundles\verify-password.css" />
+    <Content Include="Reports\bundles\verify-password.js" />
     <Content Include="Reports\bundles\verify-password.min.css">
       <DependentUpon>verify-password.css</DependentUpon>
+    </Content>
+    <Content Include="Reports\bundles\verify-password.min.js">
+      <DependentUpon>verify-password.js</DependentUpon>
     </Content>
     <Content Include="Reports\bundles\wager.js" />
     <Content Include="Reports\bundles\wager.min.js">
@@ -502,6 +506,7 @@
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
+    <Compile Include="Reports\Filters\RecheckPasswordAttribute.cs" />
     <Compile Include="Reports\Handlers\OldReportsHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
