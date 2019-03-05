@@ -460,6 +460,18 @@
     <Content Include="Reports\bundles\legacy.min.js">
       <DependentUpon>legacy.js</DependentUpon>
     </Content>
+    <Content Include="Reports\bundles\old-index.js" />
+    <Content Include="Reports\bundles\old-index.min.js">
+      <DependentUpon>old-index.js</DependentUpon>
+    </Content>
+    <Content Include="Reports\bundles\old-legacy.js" />
+    <Content Include="Reports\bundles\old-legacy.min.js">
+      <DependentUpon>old-legacy.js</DependentUpon>
+    </Content>
+    <Content Include="Reports\bundles\old-wager.js" />
+    <Content Include="Reports\bundles\old-wager.min.js">
+      <DependentUpon>old-wager.js</DependentUpon>
+    </Content>
     <Content Include="Reports\bundles\reports.css" />
     <Content Include="Reports\bundles\reports.min.css">
       <DependentUpon>reports.css</DependentUpon>
@@ -514,7 +526,6 @@
     <Compile Include="BetLists\ViewModels\SubTicketsViewModel.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
-    <Compile Include="Reports\Filters\RecheckPasswordAttribute.cs" />
     <Compile Include="Reports\Handlers\OldReportsHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />
@@ -728,6 +739,10 @@
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\old-base-report.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\old-index.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\old-legacy.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\old-wager.ts" />
     <TypeScriptCompile Include="Reports\Scripts\verify-password.ts" />
     <TypeScriptCompile Include="Reports\Scripts\wager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />

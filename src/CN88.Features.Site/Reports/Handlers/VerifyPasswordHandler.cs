@@ -14,7 +14,6 @@
         IRequestHandler<VerifyPasswordCommand, Result>
     {
         private const string HashKeySessionKey = "CN88.Features.Site.Reports.Handlers.VerifyPasswordHandler.PasswordHash";
-        private const string IsAlreadyVerifyPasswordSessionKey = "CN88.Features.Site.Reports.Handlers.VerifyPasswordHandler";
 
         private readonly Encryptor encryptor;
         private readonly SessionManager sessionManager;
@@ -41,8 +40,6 @@
                 AesExtension.Decrypt(
                     message.Password,
                     sessionManager.Get<string>(HashKeySessionKey)));
-
-            sessionManager.Add(IsAlreadyVerifyPasswordSessionKey, result.IsSuccess);
 
             return result;
         }

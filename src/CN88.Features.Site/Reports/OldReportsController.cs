@@ -23,7 +23,16 @@
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPassword(VerifyPasswordCommand message)
-            => await JsonDataAsync(message);
+        {
+            var result = await mediator.Send(message);
+
+            if (result.IsSuccess)
+            {
+                return RedirectToAction(nameof(Index), new { DisplayMode = 1 });
+            }
+
+            return Json(result);
+        }
 
         public async Task<ActionResult> Index(OldIndexQuery message)
             => await ViewAsync(message, OldIndexViewPath);
