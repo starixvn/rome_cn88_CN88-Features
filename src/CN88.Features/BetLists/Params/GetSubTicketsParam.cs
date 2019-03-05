@@ -2,13 +2,13 @@
 {
     public class GetSubTicketsParam
     {
-        public GetSubTicketsParam(long transId, int custId)
+        public GetSubTicketsParam(string transId, int custId)
         {
             TransId = transId;
             CustId = custId;
         }
 
-        public long TransId { get; }
+        public string TransId { get; }
 
         public int CustId { get; }
     }

@@ -1,24 +1,11 @@
 ﻿let ViewResult: Function;
 let showCombMPDetail: Function;
+let showParlaySubBetsCN88: Function;
+let showAllParlaySubBetsCN88: Function;
 
 $(document).ready(() => {
     ViewResult = BetLists.Result.BaseResultDetails.Instance.ViewResultDetails;
     showCombMPDetail = BetList.Details.ParlayTicketDetails.Instance.ShowComboParlayDetails;
+    showParlaySubBetsCN88 = BetList.SubTickets.ParlaySubTickets.Instance.ShowSubBetsCN88;
+    showAllParlaySubBetsCN88 = BetList.SubTickets.ParlaySubTickets.Instance.ShowAllParlaySubBetsCN88;
 })
-
-
-function showParlaySubBetsCN88(transId, index, refNo, handicap1, handicap2, betCheck, betTeam, custId, sourceElement) {
-    var $parent = $(sourceElement).parent();
-
-    if ($parent.hasClass("cn88-mix-parlay-collapse")) {
-        $parent.removeClass("cn88-mix-parlay-collapse");
-    }
-
-    else {
-        $parent.addClass("cn88-mix-parlay-collapse");
-    }
-
-    // Place Your Code Here.
-    alert("Alert from showParlaySubBetsCN88");
-
-}

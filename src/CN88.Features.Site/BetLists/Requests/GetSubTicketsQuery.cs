@@ -13,7 +13,7 @@
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
         }
 
-        public long TransId { get; }
+        public string TransId { get; set; }
 
         public bool DisplayVNIP { get; }
 

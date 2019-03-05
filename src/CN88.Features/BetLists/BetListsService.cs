@@ -49,9 +49,9 @@
         public async Task<BetListData> GetSubTickets(GetSubTicketsParam param)
         {
             var criteria = new GetSubTicketsCriteria(param);
-            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+            return new BetListData(tickets, null);
         }
     }
 }

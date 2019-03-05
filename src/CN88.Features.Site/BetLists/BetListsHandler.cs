@@ -78,7 +78,7 @@
 
             var betlistData = await service.GetSubTickets(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+            // WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new SubTicketsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }

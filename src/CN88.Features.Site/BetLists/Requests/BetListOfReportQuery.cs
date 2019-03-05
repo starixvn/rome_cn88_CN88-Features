@@ -14,17 +14,17 @@
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
         }
 
-        public DateTime FromDate { get; }
+        public DateTime FromDate { get; set; }
 
-        public DateTime ToDate { get; }
+        public DateTime ToDate { get; set; }
 
-        public int SportTypeGroup { get; }
+        public int SportTypeGroup { get; set; }
 
-        public int BetTypeGroup { get; }
+        public int BetTypeGroup { get; set; }
 
-        public int LiveIndicator { get; }
+        public int LiveIndicator { get; set; }
 
-        public int Type { get; }
+        public int Type { get; set; }
 
         public bool DisplayVNIP { get; }
 

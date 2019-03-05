@@ -711,6 +711,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\result\sportsbook-result-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\app-path.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\popup-details.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\sub-tickets\parlay-sub-tickets.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\utils.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />

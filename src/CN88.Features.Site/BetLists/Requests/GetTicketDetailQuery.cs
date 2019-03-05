@@ -11,10 +11,10 @@
         {
         }
 
-        public long RefNo { get; }
+        public string RefNo { get; set; }
 
-        public long TransId { get; }
+        public string TransId { get; set; }
 
-        public long BetId { get; }
+        public string BetId { get; set; }
     }
 }

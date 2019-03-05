@@ -20,11 +20,11 @@
             BalanceUpDay = balanceUpDay;
         }
 
-        public long RefNo { get; }
+        public string RefNo { get; }
 
-        public long TransId { get; }
+        public string TransId { get; }
 
-        public long BetId { get; }
+        public string BetId { get; }
 
         public int CustId { get; }
 

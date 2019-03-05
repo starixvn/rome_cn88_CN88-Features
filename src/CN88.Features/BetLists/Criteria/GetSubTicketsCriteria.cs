@@ -11,7 +11,7 @@
             CustId = param.CustId;
         }
 
-        public long TransId { get; }
+        public string TransId { get; }
 
         public int CustId { get; }
 

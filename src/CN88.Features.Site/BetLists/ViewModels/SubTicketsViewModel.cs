@@ -28,7 +28,10 @@
             CN88Builder = cn88Builder;
             Builder = builder;
             CustId = message.CustId;
+            TransId = message.TransId;
         }
+
+        public string TransId { get; }
 
         public UserLevel CustLevel { get; }
 
