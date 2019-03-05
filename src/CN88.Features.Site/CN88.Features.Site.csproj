@@ -480,6 +480,10 @@
       <DependentUpon>security.css</DependentUpon>
     </Content>
     <Content Include="Reports\Scripts\aes.js" />
+    <Content Include="SubAccount\bundles\scripts\sub-account.js" />
+    <Content Include="SubAccount\bundles\scripts\sub-account.min.js">
+      <DependentUpon>sub-account.js</DependentUpon>
+    </Content>
     <Content Include="SubAccount\bundles\styles\sub-account.css" />
     <Content Include="SubAccount\bundles\styles\sub-account.min.css">
       <DependentUpon>sub-account.css</DependentUpon>
@@ -710,6 +714,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
+    <TypeScriptCompile Include="SubAccount\Scripts\sub-account.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />

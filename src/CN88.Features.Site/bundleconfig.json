@@ -84,6 +84,12 @@
     ]
   },
   {
+    "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
+    "inputFiles": [
+      "SubAccount/Scripts/sub-account.js"
+    ]
+  },
+  {
     "outputFileName": "SubAccount/bundles/styles/sub-account.css",
     "inputFiles": [
       "SubAccount/Styles/sub-account.css"

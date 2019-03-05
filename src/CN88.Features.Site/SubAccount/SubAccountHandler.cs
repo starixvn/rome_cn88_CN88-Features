@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using Features.SubAccount.Services;
     using MediatR;
@@ -20,12 +21,25 @@
         {
             var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
 
+            var subAccountsTemp = subAccounts.ToList();
+            for (int i = 0; i < 100; i++)
+            {
+                subAccountsTemp.Add(subAccountsTemp[i]);
+            }
+
             return new IndexViewModel(
                 message.UserCode,
                 message.PageIndex,
                 message.PageSize,
                 15,
-                subAccounts);
+                subAccountsTemp);
+
+            //return new IndexViewModel(
+            //    message.UserCode,
+            //    message.PageIndex,
+            //    message.PageSize,
+            //    15,
+            //    subAccounts);
         }
     }
 }

@@ -5,7 +5,7 @@
     @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
 }
 @section Scripts {
-
+    @StaticResources.RenderScripts("~/SubAccount/bundles/scripts/sub-account")
 }
 @model IndexViewModel
 <div class="subacc-page">
@@ -45,8 +45,8 @@
                         @RenderPermissionCell(permission.ViewReports)
                         <td>@item.CreateDateString</td>
                         <td data-custid="@item.SubAccId">
-                            <span class="icon-edit" data-toggle="tooltip" data-placement="top"></span>
-                            <span class="icon-delete" data-toggle="tooltip" data-placement="top"></span>
+                            <span class="icon-edit" data-toggle="tooltip" data-placement="top" title="@SharedResources.Edit"></span>
+                            <span class="icon-delete" data-toggle="tooltip" data-placement="top" title="@SharedResources.Delete"></span>
                         </td>
                     </tr>
                 }
