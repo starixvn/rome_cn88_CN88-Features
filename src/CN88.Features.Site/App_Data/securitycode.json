@@ -1,0 +1,19 @@
+{
+  "isActive": true,
+  "siteMainApp": "/site-cn88",
+  "paths": [
+    "CustomerList/CreditPopup",
+    "CustomerList/StatusPopup",
+    "CN88CustomerSetting/ViewCN88CustomerSetting/Edit",
+    "CN88CustomerSetting/ViewCN88CustomerSetting/Create",
+    "CustomerList/UpdateCredit",
+    "CustomerList/UpdateCustomerStatus",
+    "CN88CustomerSetting/UpdateCN88CustomerSetting/Update",
+    "CN88CustomerSetting/CreateCN88Customer/Create"
+
+  ],
+  "sites": [
+  ],
+  "verifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+  "resetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
+}
