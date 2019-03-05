@@ -711,6 +711,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\index.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\master-list.ts" />
