@@ -8,7 +8,6 @@
     using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Data.Repository;
-    using Fanex.Logging;
     using Fanex.RemotingRef;
     using global::CN88.BetList.Core.Builders;
     using global::CN88.Features.BetLists;
@@ -35,6 +34,9 @@
     using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Utilities;
+    using Web.Helpers;
+    using Web.Helpers.Impl;
 
     public static class DependencyConfig
     {
@@ -96,9 +98,11 @@
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.RegisterSingleton<IUser, User>();
-            container.RegisterSingleton(Logger.Log);
+            container.RegisterSingleton(Fanex.Logging.Logger.Log);
             container.RegisterSingleton<IRemotingRefService, RemotingRefService>();
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
+            container.RegisterSingleton<Encryptor, EncryptorImpl>();
+            container.RegisterSingleton<SessionManager, SessionManagerImpl>();
             container.RegisterSingleton<ReportDateService, ReportDateServiceImpl>();
 
             container.Register<SportGroupService>(
