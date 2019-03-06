@@ -34,7 +34,10 @@ class WagerReport extends LegacyReport {
         this.pagerComponent.render();
         this.registerEvents();
 
-        if (this.$reportType.val() == "2") {
+        let reportType = this.$reportType.val();
+        if (reportType == "2"
+            || reportType == "3"
+            || reportType == "4") {
             this.$tabValidStake.click();
         }
 
