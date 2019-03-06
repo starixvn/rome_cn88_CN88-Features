@@ -10,14 +10,18 @@
     using Features.BetLists;
     using Features.BetLists.Models;
     using Features.BetLists.Params;
+    using Features.Reports.Services;
+    using Features.Shared.Services;
     using MediatR;
     using Requests;
+    using Shared;
     using ViewModels;
 
     public class BetListsHandler :
-         IAsyncRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
-         IAsyncRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
-         IAsyncRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>
+        BaseHandler,
+        IAsyncRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
+        IAsyncRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
+        IAsyncRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>
     {
         private BetListsService service;
         private ISmartPunterBetListMonitor monitorService;
@@ -25,18 +29,29 @@
         private IBetListCN88HtmlBuilder cn88Builder;
         private IBetListHTMLBuilder builder;
 
+        private readonly SportGroupService sportGroupService;
+        private readonly BettypeGroupService betTypeService;
+        private readonly AccountingPeriodService accountingPeriodService;
+
         public BetListsHandler(
             BetListsService service,
             ISmartPunterBetListMonitor monitorService,
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
-            IBetListHTMLBuilder builder)
+            IBetListHTMLBuilder builder,
+            SportGroupService sportGroupService,
+            BettypeGroupService betTypeService,
+            AccountingPeriodService accountingPeriodService)
         {
             this.service = service;
             this.monitorService = monitorService;
             this.ticketHelper = ticketHelper;
             this.cn88Builder = cn88Builder;
             this.builder = builder;
+
+            this.sportGroupService = sportGroupService;
+            this.betTypeService = betTypeService;
+            this.accountingPeriodService = accountingPeriodService;
         }
 
         public async Task<BetListOfReportViewModel> Handle(BetListOfReportQuery message)
@@ -54,7 +69,21 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            var sportGroups = sportGroupService.GetSportGroups();
+            var betTypes = betTypeService.GetBetTypeGroupsBySport();
+            var currentPeriod = accountingPeriodService.GetCurrentPeriod();
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+
+            return new BetListOfReportViewModel(
+                message,
+                betlistData,
+                ticketHelper,
+                cn88Builder,
+                builder,
+                BuildSportGroupSelectListItems(sportGroups, 0),
+                BuildBetTypeSelectListItems(betTypes, 0),
+                currentPeriod,
+                lastPeriod);
         }
 
         public async Task<ParlayDetailViewModel> Handle(GetParlayDetailQuery message)

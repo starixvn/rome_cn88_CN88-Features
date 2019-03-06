@@ -686,6 +686,7 @@
     <Content Include="BetLists\Views\ParlaySubTickets.cshtml" />
     <Content Include="App_Code\Reports\ReportHtmlHelpers.cshtml" />
     <Content Include="BetLists\ExcelTemplates\ParlayDetail.xls" />
+    <Content Include="BetLists\Views\Filter.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
