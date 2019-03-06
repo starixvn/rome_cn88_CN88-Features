@@ -4,6 +4,9 @@
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class WagerReport extends LegacyReport {
+    $reportType: JQuery;
+    $tabValidStake: JQuery;
+
     elements = {
         tabSelectors: null,
         tabContent: null
@@ -30,11 +33,18 @@ class WagerReport extends LegacyReport {
         this.initTooltip();
         this.pagerComponent.render();
         this.registerEvents();
+
+        if (this.$reportType.val() == "2") {
+            this.$tabValidStake.click();
+        }
+
         this.$.unblockUI();
     };
 
     public cacheDOMElements() {
         super.cacheDOMElements();
+        this.$reportType = this.$("#ReportType");
+        this.$tabValidStake = this.$("#tabValidStake");
         this.elements.tabSelectors = $(".tab-selector");
         this.elements.tabContent = $(".tab-content");
     }
