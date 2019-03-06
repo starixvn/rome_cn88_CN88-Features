@@ -20,13 +20,16 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly CacheRefService cacheRefService;
+        private readonly SportGroupService sportGroupSerivce;
 
         public SettlementSummaryServiceImpl(
             IDynamicRepository dynamicRepository,
-            CacheRefService cacheRefService)
+            CacheRefService cacheRefService,
+            SportGroupService sportGroupSerivce)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheRefService = cacheRefService;
+            this.sportGroupSerivce = sportGroupSerivce;
         }
 
         public SettlementSummaryReport GetSettlementSummaryReport()
@@ -49,15 +52,22 @@
                 $"{AppResources.ReportResources.Today}({name})",
                 GetSettlementByDate(name, rawData, sportGroups));
 
-            var result = new SettlementSummaryReport(sportGroups.Select(s => cacheRefService.GetSportName(Converter.ToInt(s))).ToList(), yesterday, today);
+            var result = new SettlementSummaryReport(sportGroups.Select(s => GetSportGroupName(s)).ToList(), yesterday, today);
 
             return result;
+        }
+
+        private string GetSportGroupName(int sportGroupId)
+        {
+            var sportGroups = sportGroupSerivce.GetSportGroups();
+
+            return sportGroups.FirstOrDefault(g => g.Id == sportGroupId).DisplayName;
         }
 
         private IList<SettlementModel> GetSettlementByDate(
             string name,
             IEnumerable<SportSettlementByDateModel> rawData,
-            IEnumerable<string> sportGroups)
+            IEnumerable<int> sportGroups)
         {
             var result = new List<SettlementModel>();
             foreach (var sportGroup in sportGroups)
@@ -65,8 +75,8 @@
                 var data = rawData.FirstOrDefault(d =>
                 Converter.To<DateTime>(d.EventDate).ToShortDate() == name && sportGroup == d.SportTypeGroup);
                 var sport = data == null ?
-                    new SettlementModel(0, sportGroup, 0, 0) :
-                    new SettlementModel(0, sportGroup, data.IncompletedEvent, data.CompletedEvent);
+                    new SettlementModel(sportGroup, string.Empty, 0, 0) :
+                    new SettlementModel(sportGroup, string.Empty, data.IncompletedEvent, data.CompletedEvent);
 
                 result.Add(sport);
             }

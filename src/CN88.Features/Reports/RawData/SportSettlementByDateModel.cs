@@ -4,7 +4,7 @@
     {
         public string EventDate { get; set; }
 
-        public string SportTypeGroup { get; set; }
+        public int SportTypeGroup { get; set; }
 
         public long CompletedEvent { get; set; }
 
