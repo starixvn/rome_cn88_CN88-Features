@@ -95,7 +95,7 @@
                     `<td class='link view-statement'>${username}</td>` +
                     "<td>" + customer.Name + "</td>" +
                     "<td>" + customer.Nickname + "</td>" +
-                    "<td class='text-center'>" + customer.Group + "</td>" +
+                    "<td>" + customer.Group + "</td>" +
                     `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
                     `<td class='col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
