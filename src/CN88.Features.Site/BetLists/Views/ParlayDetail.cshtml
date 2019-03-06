@@ -31,7 +31,7 @@ foreach (var item in groupDetailItem)
         </tr>
 }
 }
-@if (!Model.IsDataTooHuge)
+@if (Model.IsDataTooHuge)
 {
     <div class="break-word">
         @Html.Raw(Model.HugeDataLabel)
@@ -53,12 +53,12 @@ else
         <tbody>
             @foreach (var group in Model.ParlayDetailWrapperGroups)
             {
-                @RenderDetailItems(group);
-                <tr class="bl_footertotal">
-                    <td class="text-right" colspan="4">@BetListsResources.SubTotal:</td>
-                    <td class="text-right">@Html.Raw(Model.SubTotalWinLost(group))</td>
-                    <td></td>
-                </tr>
+            @RenderDetailItems(group);
+            <tr class="bl_footertotal">
+                <td class="text-right" colspan="4">@BetListsResources.SubTotal:</td>
+                <td class="text-right">@Html.Raw(Model.SubTotalWinLost(group))</td>
+                <td></td>
+            </tr>
             }
         </tbody>
         <tfoot>
@@ -69,11 +69,11 @@ else
             </tr>
             @if (!Model.IsRunningTicket)
             {
-                <tr class="bl_footertotal">
-                    <td class="text-right" colspan="4">@BetListsResources.Total:</td>
-                    <td class="text-right">@Html.Raw(Model.TotalWinLost)</td>
-                    <td></td>
-                </tr>
+            <tr class="bl_footertotal">
+                <td class="text-right" colspan="4">@BetListsResources.Total:</td>
+                <td class="text-right">@Html.Raw(Model.TotalWinLost)</td>
+                <td></td>
+            </tr>
             }
         </tfoot>
     </table>
