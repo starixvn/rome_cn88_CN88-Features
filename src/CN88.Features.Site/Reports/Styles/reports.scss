@@ -238,7 +238,29 @@
     float: left;
 }
 
-@media all and (min-width: 1280px) {
+.old-report {
+    .list-menu {
+        overflow: hidden;
+        width: 100%;
+        .menu-item {
+            float: left;
+            border: none;
+            &:first-child {
+                background: inherit;
+                padding: 12px 20px 11px;
+            }
+        }
+    }
+    .sub-menu {
+        padding: 0;
+        background-color: #fff;
+    }
+    #tblAccountingSheet {
+        width: 416px;
+    }
+}
+
+@media all and (min-width: 768px) {
     .wager-report {
         .filter-container {
             width: 400px;
