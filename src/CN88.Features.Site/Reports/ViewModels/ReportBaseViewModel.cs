@@ -54,15 +54,17 @@
 
         protected abstract string GetReportMainActionPath();
 
+        protected abstract int GetBetListType(int reportType);
+
         private string BuildBetListLink(ReportModel model)
-           => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
-               MicroSites.BetListsUrl(),
+           => UrlHelper.AddQueryStringParamsFunc(
+               AppPathHelper.GetAppPath(CN88.Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
                GetBetListLinkRouteValues(model));
 
         private string BuildDownlineLink(ReportModel model, string currentLink)
         {
             var routeValues = GetDownlineLinkRouteValues(model);
-            return Shared.Helpers.UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                 currentLink,
                 new Dictionary<string, object>(routeValues)
                 {
@@ -123,11 +125,19 @@
         }
 
         private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model)
-           => new Dictionary<string, object> { };
+           => new Dictionary<string, object>
+           {
+               ["FromDate"] = query.FromDate,
+               ["ToDate"] = query.ToDate,
+               ["SportTypeGroup"] = query.UserSelectedSportGroupId,
+               ["BetTypeGroup"] = query.UserSelectedBetTypeId,
+               ["LiveIndicator"] = query.UserSelectedLiveStatusId,
+               ["Type"] = GetBetListType(query.ReportType)
+           };
 
         private string BuildReportMainUrl()
-            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
-                Shared.Helpers.UrlHelper.GetFeaturesAppPath(GetReportMainActionPath()),
+            => UrlHelper.AddQueryStringParamsFunc(
+                UrlHelper.GetFeaturesAppPath(GetReportMainActionPath()),
                 new Dictionary<string, object>
                 {
                     ["DisplayMode"] = query.DisplayMode
