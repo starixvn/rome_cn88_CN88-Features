@@ -27,7 +27,7 @@
       "Reports/Scripts/base-report.js",
       "Reports/Scripts/index.js"
     ]
-  },  
+  },
   {
     "outputFileName": "Reports/bundles/old-index.js",
     "inputFiles": [
@@ -71,7 +71,8 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/pager.js",
       "Reports/Scripts/base-report.js",
-      "Reports/Scripts/legacy.js"
+      "Reports/Scripts/legacy.js",
+      "Reports/Scripts/legacy-init.js"
     ]
   },
   {
@@ -82,7 +83,8 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/pager.js",
       "Reports/Scripts/old-base-report.js",
-      "Reports/Scripts/old-legacy.js"
+      "Reports/Scripts/old-legacy.js",
+      "Reports/Scripts/old-legacy-init.js"
     ]
   },
   {

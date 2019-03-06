@@ -61,14 +61,3 @@ class OldLegacyReport extends OldBaseReport {
         this.$.unblockUI();
     };
 }
-
-$(function () {
-    const oldLegacyReport = new OldLegacyReport(
-        $,
-        new SingleSelectionDropdownComponent($),
-        new DateRangePickerComponent($),
-        new SingleSelectionDropdownComponent($),
-        new PagerComponent($));
-
-    oldLegacyReport.init();
-})

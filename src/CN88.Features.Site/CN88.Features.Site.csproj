@@ -741,9 +741,11 @@
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\legacy-init.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy.ts" />
     <TypeScriptCompile Include="Reports\Scripts\old-base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\old-index.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\old-legacy-init.ts" />
     <TypeScriptCompile Include="Reports\Scripts\old-legacy.ts" />
     <TypeScriptCompile Include="Reports\Scripts\old-wager.ts" />
     <TypeScriptCompile Include="Reports\Scripts\verify-password.ts" />
