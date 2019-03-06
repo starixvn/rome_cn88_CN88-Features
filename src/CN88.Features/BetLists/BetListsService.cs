@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.BetLists
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Criteria;
@@ -15,7 +16,7 @@
 
         Task<ParlayDetailReportModel> GetParlayDetails(GetParlayDetailParam param);
 
-        Task<BetListData> GetSubTickets(GetSubTicketsParam param);
+        Task<IEnumerable<TicketDto>> GetParlaySubTickets(GetParlaySubTicketsParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
@@ -48,12 +49,12 @@
             return new ParlayDetailReportModel(parlayDetailTuple.Item1, parlayDetailTuple.Item2, criteria.Outstanding);
         }
 
-        public async Task<BetListData> GetSubTickets(GetSubTicketsParam param)
+        public async Task<IEnumerable<TicketDto>> GetParlaySubTickets(GetParlaySubTicketsParam param)
         {
-            var criteria = new GetSubTicketsCriteria(param);
+            var criteria = new GetParlaySubTicketsCriteria(param);
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
 
-            return new BetListData(tickets, null);
+            return tickets;
         }
     }
 }

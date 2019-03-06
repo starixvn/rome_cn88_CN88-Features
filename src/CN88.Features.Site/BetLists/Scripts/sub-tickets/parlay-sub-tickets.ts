@@ -15,32 +15,41 @@
             if ($parent.hasClass("cn88-mix-parlay-collapse")) {
                 $parent.removeClass("cn88-mix-parlay-collapse");
             }
-
             else {
                 $parent.addClass("cn88-mix-parlay-collapse");
             }
 
-            // Place Your Code Here.
             var row = $(".tbl-bet-list tr[data-trans-id='" + transId + "']");
 
-            const subTicketRows: JQuery = $(".sub-tickets-" + transId);
-            if (subTicketRows.length == 0) {
-                let moreInfo = $(".tbl-bet-list tr[data-trans-id='" + transId + "'] .cn88-bet-item");
+            const ticketsContent: JQuery = $("#cn88-sub-tickets-" + transId + "-" + index);
+            const comboOfferName = $('#combinationOfferName_' + transId + "_" + index);
+
+            if (ticketsContent.html() === "") {
+                let moreInfo = $(".tbl-bet-list tr[data-trans-id='" + transId + "'] .cn88-mix-parlay");
 
                 var params = $.param({
                     transId: transId,
-                    custId: custId
+                    custId: custId,
+                    betCheck: betCheck,
+                    betTeam: betTeam,
+                    handicap1: handicap1,
+                    handicap2: handicap2
                 });
 
                 $.ajax({
                     method: 'GET',
-                    url: Common.AppPath.BetListAppPath() + "BetLists/SubTickets?" + params,
+                    url: Common.AppPath.BetListAppPath() + "BetLists/ParlaySubTickets?" + params,
                     beforeSend: () => {
-                        moreInfo.append("<div id='div-sub-tickets-" + transId + "' class='block-icon-small'></div>");
+                        const blockIconContent = '<span class="block-icon-small"></span>';
+                        ticketsContent.html(blockIconContent);
+                        ticketsContent.show();
                     },
                     success: (responseHtml) => {
-                        this.InsertRowsAfterRow(row, $(responseHtml).find(">tbody>tr"));
-                        $("#div-sub-tickets-" + transId).remove();
+                        ticketsContent.html(responseHtml);
+                        if (ticketsContent.find(".offer-name-list").length) {
+                            comboOfferName.hide();
+                        }
+
                         row.attr("show-sub-tickets", "1");
                     },
                 });
@@ -48,13 +57,17 @@
                 return;
             }
 
-            var isVisible = row.attr("show-sub-tickets") == "1";
-            if (isVisible && !this.isShowAllSubBets) {
+            if (ticketsContent.is(":visible") && !this.isShowAllSubBets) {
+                ticketsContent.hide();
+                comboOfferName.show();
                 row.attr("show-sub-tickets", "0");
-                subTicketRows.addClass("display-none");
-            } else {
-                row.attr("show-sub-tickets", "1");
-                subTicketRows.removeClass("display-none");
+            }
+            else {
+                ticketsContent.show();
+                if (ticketsContent.find(".offer-name-list").length) {
+                    comboOfferName.hide();
+                    row.attr("show-sub-tickets", "1");
+                }
             }
         }
 
@@ -63,12 +76,5 @@
             $(".tbl-bet-list .cn88-mix-parlay > a").click();
             this.isShowAllSubBets = false;
         }
-
-        private InsertRowsAfterRow = (row: JQuery, rows: any) => {
-            var target = row[0];
-            for (var i = rows.length - 1; i >= 0; i--) {
-                target.parentNode.insertBefore(rows[i], target.nextSibling);
-            }
-        };
     }
 }

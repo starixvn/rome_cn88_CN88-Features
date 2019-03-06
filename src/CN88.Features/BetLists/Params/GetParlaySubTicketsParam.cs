@@ -1,8 +1,8 @@
 ﻿namespace CN88.Features.BetLists.Params
 {
-    public class GetSubTicketsParam
+    public class GetParlaySubTicketsParam
     {
-        public GetSubTicketsParam(string transId, int custId)
+        public GetParlaySubTicketsParam(string transId, int custId)
         {
             TransId = transId;
             CustId = custId;

@@ -1,0 +1,34 @@
+﻿@model ParlaySubTicketsViewModel
+@{
+    Layout = null;
+}
+
+@if (Model.HasValidData)
+{
+    foreach (var unitStakeByOfferNames in Model.UnitStakeByOfferNames)
+    {
+        <div class="offer-name-list">
+            @unitStakeByOfferNames.Key x <span class="unit-stake">@unitStakeByOfferNames.Value</span>
+        </div>
+    }
+
+    <div class="line"></div>
+
+    foreach (var ticket in Model.BetListData.Tickets)
+    {
+        <div class="ticket-list">
+            @Model.Builder.CreateChoiceBuilder(ticket.BetTypeId).GetBetTypeName(ticket, Model.TicketHelper, null)
+            @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, null)))
+            @Html.Raw(Model.Builder.BuildTransEventDateAndStatusResult(ticket, null))
+        </div>
+
+        if (!ticket.Equals(Model.BetListData.Tickets.Last()))
+        {
+            <div class="line"></div>
+        }
+    }
+}
+else
+{
+    @BetListsResources.NoInformationIsAvailable
+}

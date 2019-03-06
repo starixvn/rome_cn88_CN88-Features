@@ -523,12 +523,12 @@
     <Compile Include="BetLists\ParlayExcelHandler.cs" />
     <Compile Include="BetLists\Helpers\IPHelper.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
-    <Compile Include="BetLists\Requests\GetSubTicketsQuery.cs" />
+    <Compile Include="BetLists\Requests\GetParlaySubTicketsQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
-    <Compile Include="BetLists\ViewModels\SubTicketsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
@@ -679,7 +679,7 @@
     <Content Include="BetLists\Styles\bet-lists.scss" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="BetLists\Views\ParlayDetail.cshtml" />
-    <Content Include="BetLists\Views\SubTickets.cshtml" />
+    <Content Include="BetLists\Views\ParlaySubTickets.cshtml" />
     <Content Include="App_Code\Reports\ReportHtmlHelpers.cshtml" />
     <Content Include="BetLists\ExcelTemplates\ParlayDetail.xls" />
     <None Include="compilerconfig.json.defaults">

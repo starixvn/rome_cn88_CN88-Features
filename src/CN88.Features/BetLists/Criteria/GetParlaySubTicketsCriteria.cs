@@ -3,12 +3,16 @@
     using Fanex.Data.Repository;
     using Params;
 
-    public class GetSubTicketsCriteria : CriteriaBase
+    public class GetParlaySubTicketsCriteria : CriteriaBase
     {
-        public GetSubTicketsCriteria(GetSubTicketsParam param)
+        public GetParlaySubTicketsCriteria(GetParlaySubTicketsParam param)
         {
             TransId = param.TransId;
             CustId = param.CustId;
+
+            // must remove
+            TransId = "106028208282";
+            CustId = 19452;
         }
 
         public string TransId { get; }

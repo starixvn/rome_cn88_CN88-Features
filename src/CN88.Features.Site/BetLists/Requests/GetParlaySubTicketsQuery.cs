@@ -5,13 +5,21 @@
     using Site.Requests;
     using ViewModels;
 
-    public class GetSubTicketsQuery : BaseQuery, IRequest<SubTicketsViewModel>
+    public class GetParlaySubTicketsQuery : BaseQuery, IRequest<ParlaySubTicketsViewModel>
     {
-        public GetSubTicketsQuery(IUser viewer) : base(viewer)
+        public GetParlaySubTicketsQuery(IUser viewer) : base(viewer)
         {
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
         }
+
+        public string BetCheck { get; set; }
+
+        public string BetTeam { get; set; }
+
+        public decimal Handicap1 { get; set; }
+
+        public decimal Handicap2 { get; set; }
 
         public string TransId { get; set; }
 
