@@ -19,7 +19,7 @@
 
             var options = {
                 url: Common.AppPath.BetListAppPath() + "BetLists/ParlayDetail?" + params,
-                title: " ",
+                title: "",
                 width: 800,
                 height: 438
             };
