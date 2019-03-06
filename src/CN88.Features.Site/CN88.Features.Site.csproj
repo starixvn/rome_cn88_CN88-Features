@@ -526,6 +526,7 @@
     <Compile Include="BetLists\ViewModels\SubTicketsViewModel.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
+    <Compile Include="Reports\Filters\ReCheckPasswordAttribute.cs" />
     <Compile Include="Reports\Handlers\OldReportsHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsExcelHandler.cs" />

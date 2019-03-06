@@ -2,6 +2,8 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.Web.Helpers;
+    using Filters;
     using MediatR;
     using Requests;
     using Shared.Controllers;
@@ -12,10 +14,16 @@
         private const string VerifyPasswordViewPath = "~/Reports/Views/VerifyPassword.cshtml";
         private const string WagerViewPath = "~/Reports/Views/OldWager.cshtml";
         private const string LegacyViewPath = "~/Reports/Views/OldLegacy.cshtml";
+        private const string VerifyPasswordSessionKey = "OldReports.VerifiedPassword";
 
-        public OldReportsController(IMediator mediator)
+        private readonly SessionManager sessionManager;
+
+        public OldReportsController(
+            IMediator mediator,
+            SessionManager sessionManager)
             : base(mediator)
         {
+            this.sessionManager = sessionManager;
         }
 
         public async Task<ActionResult> VerifyPassword(VerifyPasswordQuery message)
@@ -26,6 +34,8 @@
         {
             var result = await mediator.Send(message);
 
+            sessionManager.Add(VerifyPasswordSessionKey, result.IsSuccess);
+
             if (result.IsSuccess)
             {
                 return RedirectToAction(nameof(Index), new { DisplayMode = 1 });
@@ -34,12 +44,15 @@
             return Json(result);
         }
 
+        [ReCheckPassword]
         public async Task<ActionResult> Index(OldIndexQuery message)
             => await ViewAsync(message, OldIndexViewPath);
 
+        [ReCheckPassword]
         public async Task<ActionResult> Wager(OldReportQuery message)
             => await ViewAsync(message, WagerViewPath);
 
+        [ReCheckPassword]
         public async Task<ActionResult> Legacy(OldReportQuery message)
             => await ViewAsync(message, LegacyViewPath);
     }
