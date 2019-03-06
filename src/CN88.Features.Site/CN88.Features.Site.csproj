@@ -670,6 +670,7 @@
     <Content Include="App_Data\securitycode.json" />
     <Content Include="BetLists\Views\TicketDetail.cshtml" />
     <Content Include="BetLists\Views\SubTickets.cshtml" />
+    <Content Include="App_Code\Reports\ReportHtmlHelpers.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -698,9 +699,6 @@
     <Content Include="Reports\Views\OldFilter.cshtml" />
     <Content Include="Reports\Views\_OldLayout.cshtml" />
     <Content Include="Reports\Views\OldLegacy.cshtml" />
-    <Content Include="Reports\Views\Wager\AgentTableByUpper.cshtml" />
-    <Content Include="Reports\Views\Wager\MasterTableByUpper.cshtml" />
-    <Content Include="Reports\Views\Wager\SuperTableByUpper.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

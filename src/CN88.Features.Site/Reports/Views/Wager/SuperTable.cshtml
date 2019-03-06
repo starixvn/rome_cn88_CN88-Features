@@ -10,12 +10,12 @@
                 <th class="text-right valid-stake">@ReportResources.SMAStock</th>
                 @if (Model.IsNotOwner)
                 {
-                    <th class="valid-stake">@ReportResources.SMAStockPercent</th>
-                    <th class="valid-stake">@ReportResources.HeadlinePoss</th>
-                    <th class="valid-stake">@ReportResources.HeadlineIncome</th>
-                    <th class="valid-stake">@ReportResources.HeadlineResult</th>
-                    <th class="valid-stake">@ReportResources.HeadlineStock</th>
-                    <th class="valid-stake">@ReportResources.HeadlineStockPercent</th>
+                    <th class="text-right valid-stake">@ReportResources.SMAStockPercent</th>
+                    <th class="text-right valid-stake">@ReportResources.HeadlinePoss</th>
+                    <th class="text-right valid-stake">@ReportResources.HeadlineIncome</th>
+                    <th class="text-right valid-stake">@ReportResources.HeadlineResult</th>
+                    <th class="text-right valid-stake">@ReportResources.HeadlineStock</th>
+                    <th class="text-right valid-stake">@ReportResources.HeadlineStockPercent</th>
                 }
             </tr>
         </thead>
@@ -31,12 +31,12 @@
                     @HtmlHelpers.RenderNumberCell(total.SuperStock)
                     @if (Model.IsNotOwner)
                     {
-                        @HtmlHelpers.RenderNumberCell(100)
+                        @ReportHtmlHelpers.RenderPercentCell(100)
                         <td></td>
                         @HtmlHelpers.RenderNumberCell(total.HeadlineIncome)
                         @HtmlHelpers.RenderNumberCell(total.HeadlineResult)
                         @HtmlHelpers.RenderNumberCell(total.HeadlineStock)
-                        @HtmlHelpers.RenderNumberCell(100)
+                        @ReportHtmlHelpers.RenderPercentCell(100)
                     }
                 </tr>
                 foreach (var data in Model.ReportData)
@@ -49,12 +49,12 @@
                         @HtmlHelpers.RenderNumberCell(data.SuperStock)
                         @if (Model.IsNotOwner)
                         {
-                            @HtmlHelpers.RenderNumberCell(data.SuperStock / total.SuperStock * 100)
+                            @ReportHtmlHelpers.RenderStockPercentCell(data.SuperStock, total.SuperStock)
                             <td class="text-right">@data.HeadlinePoss</td>
                             @HtmlHelpers.RenderNumberCell(data.HeadlineIncome)
                             @HtmlHelpers.RenderNumberCell(data.HeadlineResult)
                             @HtmlHelpers.RenderNumberCell(data.HeadlineStock)
-                            @HtmlHelpers.RenderNumberCell(data.HeadlineStock / total.HeadlineStock * 100)
+                            @ReportHtmlHelpers.RenderStockPercentCell(data.HeadlineStock, total.HeadlineStock)
                         }
                     </tr>
                 }

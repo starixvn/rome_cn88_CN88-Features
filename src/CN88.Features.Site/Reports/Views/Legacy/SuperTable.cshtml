@@ -44,12 +44,12 @@
                 @HtmlHelpers.RenderNumberCell(total.SuperStock)
                 @if (Model.IsNotOwner)
                 {
-                    @HtmlHelpers.RenderNumberCell(100)
+                    @ReportHtmlHelpers.RenderPercentCell(100)
                     <td></td>
                     @HtmlHelpers.RenderNumberCell(total.HeadlineIncome)
                     @HtmlHelpers.RenderNumberCell(total.HeadlineResult)
                     @HtmlHelpers.RenderNumberCell(total.HeadlineStock)
-                    @HtmlHelpers.RenderNumberCell(100)
+                    @ReportHtmlHelpers.RenderPercentCell(100)
                 }
             </tr>
 
@@ -70,18 +70,18 @@
                     @HtmlHelpers.RenderNumberCell(row.SuperStock)
                     @if (Model.IsNotOwner)
                     {
-                        @HtmlHelpers.RenderNumberCell(row.SuperStock / total.SuperStock * 100)
+                        @ReportHtmlHelpers.RenderStockPercentCell(row.SuperStock, total.SuperStock)
                         <td class="text-right">@row.HeadlinePoss</td>
                         @HtmlHelpers.RenderNumberCell(row.HeadlineIncome)
                         @HtmlHelpers.RenderNumberCell(row.HeadlineResult)
                         @HtmlHelpers.RenderNumberCell(row.HeadlineStock)
-                        @HtmlHelpers.RenderNumberCell(row.HeadlineStock / total.HeadlineStock * 100)
+                        @ReportHtmlHelpers.RenderStockPercentCell(row.HeadlineStock, total.HeadlineStock)
                     }
                 </tr>
             }
 
             <tr>
-                <td class="profit-margin" colspan="@(Model.IsNotOwner ? "18" : "12")" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(total.SuperResult / total.SuperStock) %</strong></td>
+                <td class="profit-margin" colspan="@(Model.IsNotOwner ? "18" : "12")" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
             </tr>
         }
         else
