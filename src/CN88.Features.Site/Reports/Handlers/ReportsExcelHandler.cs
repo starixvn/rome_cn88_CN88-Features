@@ -89,12 +89,12 @@
             }
             else
             {
-                mapper.Map(F, data => isTotal ? 100 : data.SuperStock / grandTotal.SuperStock * 100)
+                mapper.Map(F, data => isTotal ? 100 : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(G, data => isTotal ? string.Empty : data.HeadlinePoss)
                     .Map(H, data => data.HeadlineIncome)
                     .Map(I, data => data.HeadlineResult)
                     .Map(J, data => data.HeadlineStock)
-                    .Map(K, data => isTotal ? 100 : data.HeadlineStock / grandTotal.HeadlineStock * 100)
+                    .Map(K, data => isTotal ? 100 : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock))
                     .Map(L, data => data.Wagers)
                     .Map(M, data => data.Stake)
                     .Map(N, data => data.ValidStake)
@@ -115,7 +115,7 @@
                 .Map(C, data => data.MasterIncome)
                 .Map(D, data => data.MasterResult)
                 .Map(E, data => data.MasterStock)
-                .Map(F, data => isTotal ? 100 : data.MasterStock / grandTotal.MasterStock * 100);
+                .Map(F, data => isTotal ? 100 : CalculatePercentage(data.MasterStock, grandTotal.MasterStock));
 
             if (message.IsOwner)
             {
@@ -133,7 +133,7 @@
                     .Map(I, data => data.SuperIncome)
                     .Map(J, data => data.SuperResult)
                     .Map(K, data => data.SuperStock)
-                    .Map(L, data => isTotal ? 100 : data.SuperStock / grandTotal.SuperStock * 100)
+                    .Map(L, data => isTotal ? 100 : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(M, data => data.Wagers)
                     .Map(N, data => data.Stake)
                     .Map(O, data => data.ValidStake)
@@ -198,7 +198,7 @@
         internal Mapper<ReportModel> GetFooterRowMapper()
             => new Mapper<ReportModel>()
                 .Map(A, data => ReportResources.ProfitMagin)
-                .Map(B, data => data.SuperResult / data.SuperStock);
+                .Map(B, data => CalculatePercentage(data.SuperResult, data.SuperStock));
 
         private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
             => new TemplateInfo(
@@ -215,5 +215,8 @@
                param.ToDate.ToShortDate());
 
         protected internal override string GetExcelTemplateFolder() => "Reports";
+
+        private decimal CalculatePercentage(decimal devidend, decimal devisor)
+            => devisor == 0 ? 0 : devidend / devisor * 100;
     }
 }

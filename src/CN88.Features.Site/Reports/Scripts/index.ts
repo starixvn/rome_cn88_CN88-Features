@@ -22,6 +22,7 @@ class ReportIndexView extends BaseReport {
     $lastPeriodBtn: JQuery;
     $clearBtn: JQuery;
 
+    minDate: Date;
     today: Date;
     thisWeek = {
         fromDate: null,
@@ -89,6 +90,7 @@ class ReportIndexView extends BaseReport {
     calculatedDate = () => {
         let dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
         this.today = new Date(dateRangePicker.data("currentdate"));
+        this.minDate = new Date(dateRangePicker.data("mindate"));
 
         var first = this.today.getDate() - this.today.getDay() + 1;
         this.thisWeek.fromDate = new Date().setDate(first);
@@ -132,6 +134,10 @@ class ReportIndexView extends BaseReport {
                 yesterday = this.getYesterday(new Date(this.$fromDate.val()));
             } else {
                 yesterday = this.getYesterday(this.today);
+            }
+
+            if (yesterday < this.minDate) {
+                return;
             }
 
             this.changeDateRange(e, yesterday, yesterday);

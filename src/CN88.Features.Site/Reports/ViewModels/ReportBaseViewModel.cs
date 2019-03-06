@@ -36,7 +36,7 @@
 
         public decimal ProfitMargin
             => query.CustLevel.IsSuperLevel() && GrandTotal.SuperStock != 0
-                ? GrandTotal.SuperResult / GrandTotal.SuperStock
+                ? GrandTotal.SuperResult / GrandTotal.SuperStock * 100
                 : 0;
 
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
@@ -84,7 +84,8 @@
                 ["ReportType"] = query.ReportType,
                 ["UserSelectedSportGroupId"] = query.UserSelectedSportGroupId,
                 ["UserSelectedBetTypeId"] = query.UserSelectedBetTypeId,
-                ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId
+                ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId,
+                ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
             };
 
         private IEnumerable<CustInfo> BuildBreadcrumbLevel(ReportModel model)
