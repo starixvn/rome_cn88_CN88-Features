@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Factories;
     using Fanex.BetList.Core.RemotingRef;
     using Fanex.BetList.Core.TicketHelper;
     using Fanex.Data.Repository;
@@ -20,6 +21,7 @@
     using global::CN88.Features.Shared.DataAccesses;
     using global::CN88.Features.Shared.Services;
     using global::CN88.Features.Site.BetLists.Helpers;
+    using global::CN88.Features.Site.BetLists.Workbooks;
     using global::CN88.Features.Site.Models;
     using global::CN88.Features.Site.Reports.Handlers;
     using global::CN88.Features.Site.Shared.Controllers;
@@ -142,9 +144,19 @@
             container.RegisterSingleton<ReportsWorkbook, ReportsWorkbookImpl>();
 
             container.RegisterSingleton<ICacheRef, CacheRef>();
+
+            RegisterBetListCore(container);
+        }
+
+        private static void RegisterBetListCore(Container container)
+        {
             container.RegisterPerWebRequest<ITicketHelper, TicketHelper>();
             container.RegisterPerWebRequest<IBetListCN88HtmlBuilder, BetListCN88HtmlBuilder>();
             container.RegisterPerWebRequest<IBetListHTMLBuilder, BetListHTMLBuilder>();
+
+            container.RegisterPerWebRequest<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>();
+            container.RegisterPerWebRequest<IBetListExcelBuilder>(() => container.GetInstance<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
+            container.RegisterSingleton<ParlayDetailWorkbook, ParlayDetailWorkbookImpl>();
         }
     }
 }

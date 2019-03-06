@@ -1,13 +1,13 @@
 ﻿namespace CN88.Features.Site.BetLists.Requests
 {
-    using Features.BetLists.Models;
     using Features.Models;
     using MediatR;
     using Site.Requests;
+    using ViewModels;
 
-    public class GetTicketDetailQuery : BaseQuery, IRequest<TicketDetailModel>
+    public class GetParlayDetailQuery : BaseQuery, IRequest<ParlayDetailViewModel>
     {
-        public GetTicketDetailQuery(IUser viewer) : base(viewer)
+        public GetParlayDetailQuery(IUser viewer) : base(viewer)
         {
         }
 

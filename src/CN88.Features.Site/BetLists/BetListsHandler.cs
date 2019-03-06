@@ -16,7 +16,7 @@
 
     public class BetListsHandler :
          IAsyncRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
-         IRequestHandler<GetTicketDetailQuery, TicketDetailModel>,
+         IAsyncRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
          IAsyncRequestHandler<GetSubTicketsQuery, SubTicketsViewModel>
     {
         private BetListsService service;
@@ -57,19 +57,17 @@
             return new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }
 
-        public TicketDetailModel Handle(GetTicketDetailQuery message)
+        public async Task<ParlayDetailViewModel> Handle(GetParlayDetailQuery message)
         {
-            var param = new GetTicketDetailParam(
+            var param = new GetParlayDetailParam(
                 message.RefNo,
                 message.TransId,
                 message.BetId,
                 message.CustId);
 
-            var betlistData = service.GetTicketDetail(param);
+            var parlayDetailData = await service.GetParlayDetails(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
-            return betlistData;
+            return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, isExportingExcel: false);
         }
 
         public async Task<SubTicketsViewModel> Handle(GetSubTicketsQuery message)

@@ -1,8 +1,8 @@
 ﻿namespace CN88.Features.BetLists.Params
 {
-    public class GetTicketDetailParam
+    public class GetParlayDetailParam
     {
-        public GetTicketDetailParam(
+        public GetParlayDetailParam(
             string refNo,
             string transId,
             string betId,

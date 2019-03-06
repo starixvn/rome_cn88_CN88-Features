@@ -13,7 +13,7 @@
     {
         Task<BetListData> GetBetListOfReport(BetListOfReportParam param);
 
-        TicketDetailModel GetTicketDetail(GetTicketDetailParam param);
+        Task<ParlayDetailReportModel> GetParlayDetails(GetParlayDetailParam param);
 
         Task<BetListData> GetSubTickets(GetSubTicketsParam param);
     }
@@ -39,11 +39,13 @@
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
-        public TicketDetailModel GetTicketDetail(GetTicketDetailParam param)
+        public async Task<ParlayDetailReportModel> GetParlayDetails(GetParlayDetailParam param)
         {
-            var criteria = new GetTicketDetailCriteria(param, reportDateService.GetMoveBetsDay(), reportDateService.GetBalanceUpDay());
+            var criteria = new GetParlayDetailCriteria(param, reportDateService.GetMoveBetsDay(), reportDateService.GetBalanceUpDay());
 
-            return new TicketDetailModel(null);
+            var parlayDetailTuple = await dynamicRepository.FetchMultipleAsync<ParlayDetailModel, MatchDetailModel>(criteria);
+
+            return new ParlayDetailReportModel(parlayDetailTuple.Item1, parlayDetailTuple.Item2, criteria.Outstanding);
         }
 
         public async Task<BetListData> GetSubTickets(GetSubTicketsParam param)

@@ -18,11 +18,14 @@
             => await ViewAsync(message, "~/BetLists/Views/BetListOfReport.cshtml");
 
         [HttpGet]
-        public ActionResult TicketDetail(GetTicketDetailQuery message)
-            => View("~/BetLists/Views/TicketDetail.cshtml", mediator.Send(message));
-
-        [HttpGet]
         public async Task<ActionResult> SubTickets(GetSubTicketsQuery message)
             => await ViewAsync(message, "~/BetLists/Views/SubTickets.cshtml");
+
+        [HttpGet]
+        public async Task<ActionResult> ParlayDetail(GetParlayDetailQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/ParlayDetail.cshtml");
+
+        public async Task<ActionResult> ParlayDetailExcel(GetParlayDetailExcelQuery message)
+            => await ExcelView(message);
     }
 }

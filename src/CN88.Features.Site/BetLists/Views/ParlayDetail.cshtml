@@ -1,0 +1,88 @@
+﻿@using CN88.Features.Site.BetLists.ViewModels
+@model ParlayDetailViewModel
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = Model.Title;
+}
+@helper RenderDetailItems(IGrouping<string, ParlayDetailWrapper> groupDetailItem)
+{
+var showWinLostDate = false;
+foreach (var item in groupDetailItem)
+{
+        <tr>
+            @if (!showWinLostDate)
+            {
+                <td class="text-center" rowspan="@groupDetailItem.Count()">@groupDetailItem.Key</td>
+                showWinLostDate = true;
+            }
+            <td class="text-left">
+                @foreach (var eventDetail in item.Events)
+                {
+                    <div>@eventDetail</div>
+                }
+            </td>
+            <td class="text-right bl_underdog">@Html.Raw(item.Odds)</td>
+            <td class="text-right bl_underdog">@Html.Raw(item.Stake)</td>
+            <td class="text-right">
+                <div class="bl_underdog">@Html.Raw(item.WinLost)</div>
+                <div class="bl_underdog">@Html.Raw(item.Comm)</div>
+            </td>
+            <td class="text-center bl_status">@item.Status</td>
+        </tr>
+}
+}
+@if (!Model.IsDataTooHuge)
+{
+    <div class="break-word">
+        @Html.Raw(Model.HugeDataLabel)
+    </div>
+}
+else
+{
+    <table class="tbl-style2 tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover">
+        <thead>
+            <tr>
+                <th>@BetListsResources.Date</th>
+                <th>@BetListsResources.Event</th>
+                <th>@BetListsResources.Odds</th>
+                <th>@BetListsResources.Stake</th>
+                <th>@BetListsResources.WinLoss</th>
+                <th>@BetListsResources.Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var group in Model.ParlayDetailWrapperGroups)
+            {
+                @RenderDetailItems(group);
+                <tr class="bl_footertotal">
+                    <td class="text-right" colspan="4">@BetListsResources.SubTotal:</td>
+                    <td class="text-right">@Html.Raw(Model.SubTotalWinLost(group))</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="bl_footertotal outstanding">
+                <td class="text-right" colspan="4">@BetListsResources.Outstanding:</td>
+                <td class="text-right">@Html.Raw(Model.OutStanding)</td>
+                <td></td>
+            </tr>
+            @if (!Model.IsRunningTicket)
+            {
+                <tr class="bl_footertotal">
+                    <td class="text-right" colspan="4">@BetListsResources.Total:</td>
+                    <td class="text-right">@Html.Raw(Model.TotalWinLost)</td>
+                    <td></td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+    <div class="comm_note">
+        <div class="title">
+            <span class="star">*</span>@BetListsResources.Note
+        </div>
+        <div class="content">
+            @BetListsResources.WinLossRoundNote
+        </div>
+    </div>
+}

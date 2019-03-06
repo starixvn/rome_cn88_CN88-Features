@@ -519,11 +519,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
+    <Compile Include="BetLists\BetListExcelBaseHandler.cs" />
+    <Compile Include="BetLists\ParlayExcelHandler.cs" />
     <Compile Include="BetLists\Helpers\IPHelper.cs" />
+    <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetSubTicketsQuery.cs" />
-    <Compile Include="BetLists\Requests\GetTicketDetailQuery.cs" />
+    <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
+    <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\SubTicketsViewModel.cs" />
+    <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="Reports\Filters\ReCheckPasswordAttribute.cs" />
@@ -672,9 +678,10 @@
     <Content Include="App_Code\BetLists\Status.cshtml" />
     <Content Include="BetLists\Styles\bet-lists.scss" />
     <Content Include="App_Data\securitycode.json" />
-    <Content Include="BetLists\Views\TicketDetail.cshtml" />
+    <Content Include="BetLists\Views\ParlayDetail.cshtml" />
     <Content Include="BetLists\Views\SubTickets.cshtml" />
     <Content Include="App_Code\Reports\ReportHtmlHelpers.cshtml" />
+    <Content Include="BetLists\ExcelTemplates\ParlayDetail.xls" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

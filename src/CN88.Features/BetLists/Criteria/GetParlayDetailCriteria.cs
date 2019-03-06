@@ -4,10 +4,10 @@
     using Fanex.Data.Repository;
     using Params;
 
-    public class GetTicketDetailCriteria : CriteriaBase
+    public class GetParlayDetailCriteria : CriteriaBase
     {
-        public GetTicketDetailCriteria(
-            GetTicketDetailParam param,
+        public GetParlayDetailCriteria(
+            GetParlayDetailParam param,
             DateTime moveBetsDate,
             DateTime balanceUpDay)
         {
@@ -16,8 +16,17 @@
             BetId = param.BetId;
             CustId = param.CustId;
 
-            MoveBetsDay = moveBetsDate;
+            MoveBetDay = moveBetsDate;
             BalanceUpDay = balanceUpDay;
+
+            // must remove
+            RefNo = "101299489348";
+            TransId = "105931917918";
+            BetId = "0";
+            CustId = 23003440;
+
+            MoveBetDay = new DateTime(2019, 3, 3);
+            BalanceUpDay = new DateTime(2019, 2, 15);
         }
 
         public string RefNo { get; }
@@ -28,11 +37,11 @@
 
         public int CustId { get; }
 
-        public DateTime MoveBetsDay { get; }
+        public DateTime MoveBetDay { get; }
 
         public DateTime BalanceUpDay { get; }
 
-        public decimal Outstanding { get; }
+        public decimal Outstanding { get; set; }
 
         public override string GetSettingKey() => "CS_BetList_Parlay_TicketDetail";
 
