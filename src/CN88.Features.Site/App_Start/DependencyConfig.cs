@@ -125,7 +125,8 @@
             container.RegisterSingleton<ReportService, ReportServiceImpl>();
             container.RegisterSingleton<PasswordService, PasswordServiceImpl>();
 
-            container.RegisterSingleton<SubAccountService, SubAccountServiceImpl>();
+            container.RegisterPerWebRequest<SubAccountService, SubAccountServiceImpl>();
+            container.RegisterPerWebRequest<SubAccountValidator, SubAccountValidatorImpl>();
 
             container.RegisterSingleton<ISmartPunterService, SmartPunterService>();
             container.Register(

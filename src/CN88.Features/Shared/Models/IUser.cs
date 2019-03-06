@@ -10,6 +10,8 @@
 
         string Language { get; }
 
+        string LanguageKey { get; }
+
         byte LevelId { get; }
 
         bool IsInternal { get; }

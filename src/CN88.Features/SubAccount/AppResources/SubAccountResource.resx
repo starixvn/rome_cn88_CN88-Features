@@ -135,11 +135,23 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
+    <value>Your password must not contain your username or nickname.</value>
+  </data>
+  <data name="PasswordWrongRuleError" xml:space="preserve">
+    <value>Your password does not meet the minimum security requirement.</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Reports</value>
   </data>
-  <data name="RequiredFieldError" xml:space="preserve">
-    <value>You cannot leave this empty.</value>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>Sorry, password cannot be empty!!!</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="ResetSecurityCode" xml:space="preserve">
+    <value>Reset Security Code</value>
   </data>
   <data name="TotalBets" xml:space="preserve">
     <value>Total Bets</value>

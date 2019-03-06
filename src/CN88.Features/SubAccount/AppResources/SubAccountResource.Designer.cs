@@ -115,6 +115,24 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your password must not contain your username or nickname..
+        /// </summary>
+        public static string NewPwdContainsUserNameOrNickNameError {
+            get {
+                return ResourceManager.GetString("NewPwdContainsUserNameOrNickNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password does not meet the minimum security requirement..
+        /// </summary>
+        public static string PasswordWrongRuleError {
+            get {
+                return ResourceManager.GetString("PasswordWrongRuleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports.
         /// </summary>
         public static string Reports {
@@ -124,11 +142,29 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You cannot leave this empty..
+        ///   Looks up a localized string similar to Sorry, password cannot be empty!!!.
         /// </summary>
-        public static string RequiredFieldError {
+        public static string RequiredPasswordError {
             get {
-                return ResourceManager.GetString("RequiredFieldError", resourceCulture);
+                return ResourceManager.GetString("RequiredPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Password.
+        /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Security Code.
+        /// </summary>
+        public static string ResetSecurityCode {
+            get {
+                return ResourceManager.GetString("ResetSecurityCode", resourceCulture);
             }
         }
         

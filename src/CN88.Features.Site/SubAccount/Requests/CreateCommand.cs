@@ -1,8 +1,7 @@
 ﻿namespace CN88.Features.Site.SubAccount.Requests
 {
-    using System.ComponentModel.DataAnnotations;
+    using System.Collections.Generic;
     using Features.Models;
-    using Features.SubAccount.AppResources;
     using MediatR;
     using Site.Requests;
 
@@ -11,23 +10,32 @@
         public CreateCommand(IUser viewer)
             : base(viewer)
         {
+            LanguageKey = viewer.LanguageKey;
         }
 
-        [Required(ErrorMessageResourceName = "RequiredFieldError", ErrorMessageResourceType = typeof(SubAccountResource))]
-        public string UserCode { get; set; }
+        public string UserName { get; set; }
 
-        [Required(ErrorMessageResourceName = "RequiredFieldError", ErrorMessageResourceType = typeof(SubAccountResource))]
-        public string Name { get; set; }
-
-        [Required(ErrorMessageResourceName = "RequiredFieldError", ErrorMessageResourceType = typeof(SubAccountResource))]
         public string Password { get; set; }
 
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
+        public string FirstName { get; set; }
 
-        [Required(ErrorMessageResourceName = "RequiredFieldError", ErrorMessageResourceType = typeof(SubAccountResource))]
-        public string LoginId { get; set; }
+        public string LastName { get; set; }
 
         public string PageAccess { get; set; }
+
+        public string LanguageKey { get; }
+
+        public IEnumerable<string> InvalidPasswords
+        {
+            get
+            {
+                yield return ViewerName;
+                yield return NickName;
+                yield return UserName;
+            }
+        }
+
+        public override bool IsValid()
+            => base.IsValid() && SubAccountId == 0;
     }
 }

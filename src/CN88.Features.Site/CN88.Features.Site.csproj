@@ -564,7 +564,10 @@
     <Compile Include="Shared\Helpers\UrlHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\PagerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
+    <Compile Include="SubAccount\Requests\CreateQuery.cs" />
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
+    <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
+    <Compile Include="SubAccount\Requests\UpdatePermissionCommand.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
     <Compile Include="SubAccount\SubAccountHandler.cs" />
     <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
@@ -602,6 +605,7 @@
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="SubAccount\ViewModels\CreateViewModel.cs" />
     <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
