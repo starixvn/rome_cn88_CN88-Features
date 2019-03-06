@@ -170,15 +170,13 @@ class ReportIndexView extends BaseReport {
     };
 
     getYesterday = (date: Date) => {
-        var yesterday = new Date();
-        yesterday.setDate(date.getDate() - 1);
-        return yesterday;
+        date.setDate(date.getDate() - 1);
+        return date;
     }
 
     getTomorrow = (date: Date) => {
-        var tomorrow = new Date();
-        tomorrow.setDate(date.getDate() + 1);
-        return tomorrow;
+        date.setDate(date.getDate() + 1);
+        return date;
     }
 
     changeDateRange = (e: JQueryEventObject, fromDate, toDate) => {
