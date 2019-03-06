@@ -22,9 +22,7 @@ class ReportIndexView extends BaseReport {
     $lastPeriodBtn: JQuery;
     $clearBtn: JQuery;
 
-    today: any;
-    yesterday: any;
-    tomorrow: any;
+    today: Date;
     thisWeek = {
         fromDate: null,
         toDate: null
@@ -91,8 +89,6 @@ class ReportIndexView extends BaseReport {
     calculatedDate = () => {
         let dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
         this.today = new Date(dateRangePicker.data("currentdate"));
-        this.yesterday = new Date().setDate(this.today.getDate() - 1);
-        this.tomorrow = new Date().setDate(this.today.getDate() + 1);
 
         var first = this.today.getDate() - this.today.getDay() + 1;
         this.thisWeek.fromDate = new Date().setDate(first);
@@ -130,11 +126,26 @@ class ReportIndexView extends BaseReport {
         });
 
         this.$yesterdayBtn.click((e) => {
-            this.changeDateRange(e, this.yesterday, this.yesterday);
+            let yesterday: Date;
+
+            if (this.$fromDate.val() === this.$toDate.val()) {
+                yesterday = this.getYesterday(new Date(this.$fromDate.val()));
+            } else {
+                yesterday = this.getYesterday(this.today);
+            }
+
+            this.changeDateRange(e, yesterday, yesterday);
         });
 
         this.$tomorrowBtn.click((e) => {
-            this.changeDateRange(e, this.tomorrow, this.tomorrow);
+            let tomorrow: Date;
+            if (this.$fromDate.val() === this.$toDate.val()) {
+                tomorrow = this.getTomorrow(new Date(this.$fromDate.val()));
+            } else {
+                tomorrow = this.getTomorrow(this.today);
+            }
+
+            this.changeDateRange(e, tomorrow, tomorrow);
         });
 
         this.$thisWeekBtn.click((e) => {
@@ -157,6 +168,18 @@ class ReportIndexView extends BaseReport {
             this.$yesterdayBtn.click();
         });
     };
+
+    getYesterday = (date: Date) => {
+        var yesterday = new Date();
+        yesterday.setDate(date.getDate() - 1);
+        return yesterday;
+    }
+
+    getTomorrow = (date: Date) => {
+        var tomorrow = new Date();
+        tomorrow.setDate(date.getDate() + 1);
+        return tomorrow;
+    }
 
     changeDateRange = (e: JQueryEventObject, fromDate, toDate) => {
         var button = this.$(e.target);
