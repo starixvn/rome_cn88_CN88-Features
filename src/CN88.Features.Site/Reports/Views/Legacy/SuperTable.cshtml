@@ -30,26 +30,26 @@
         @if (Model.ReportData.Any())
         {
             <tr class="total">
-                <td class="text-left">@ReportResources.Total</td>
-                @HtmlHelpers.RenderNumberCell(total.Wagers)
-                @HtmlHelpers.RenderNumberCell(total.Stake)
-                @HtmlHelpers.RenderNumberCell(total.ValidStake)
-                @HtmlHelpers.RenderNumberCell(total.MemberIncome)
-                @HtmlHelpers.RenderNumberCell(total.Agent)
-                @HtmlHelpers.RenderNumberCell(total.AgentResult)
-                @HtmlHelpers.RenderNumberCell(total.Master)
-                @HtmlHelpers.RenderNumberCell(total.Super)
-                @HtmlHelpers.RenderNumberCell(total.SuperIncome)
-                @HtmlHelpers.RenderNumberCell(total.SuperResult)
-                @HtmlHelpers.RenderNumberCell(total.SuperStock)
+                <th class="text-left">@ReportResources.Total</th>
+                @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Agent)
+                @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Master)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Super)
+                @HtmlHelpers.RenderHeaderNumberCell(total.SuperIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(total.SuperResult)
+                @HtmlHelpers.RenderHeaderNumberCell(total.SuperStock)
                 @if (Model.IsNotOwner)
                 {
-                    @ReportHtmlHelpers.RenderPercentCell(100)
-                    <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.HeadlineIncome)
-                    @HtmlHelpers.RenderNumberCell(total.HeadlineResult)
-                    @HtmlHelpers.RenderNumberCell(total.HeadlineStock)
-                    @ReportHtmlHelpers.RenderPercentCell(100)
+                    @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                    <th></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineStock)
+                    @ReportHtmlHelpers.RenderHeaderPercentCell(100)
                 }
             </tr>
         }

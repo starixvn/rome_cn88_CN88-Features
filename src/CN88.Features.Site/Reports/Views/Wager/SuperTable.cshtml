@@ -66,7 +66,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td class="profit-margin" colspan="5" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
+                    <td class="profit-margin" colspan="@(Model.IsNotOwner?"11":"5")" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
                 </tr>
             </tfoot>
         }
@@ -74,7 +74,7 @@
         {
             <tbody>
                 <tr>
-                    <td colspan="6" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@(Model.IsNotOwner?"11":"5")" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             </tbody>
         }

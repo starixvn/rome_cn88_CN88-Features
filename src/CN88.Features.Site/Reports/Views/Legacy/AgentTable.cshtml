@@ -21,30 +21,28 @@
                 <th class="text-right">@ReportResources.MAIncome</th>
                 <th class="text-right">@ReportResources.MAResult</th>
             }
-            <th class="text-right">@ReportResources.AgentCurrency</th>
             <th class="text-right">@ReportResources.AgentStock</th>
         </tr>
         @if (Model.ReportData.Any())
         {
             <tr class="total">
-                <td class="text-left">@ReportResources.Total</td>
-                <td></td>
-                @HtmlHelpers.RenderNumberCell(total.Wagers)
-                @HtmlHelpers.RenderNumberCell(total.Stake)
-                @HtmlHelpers.RenderNumberCell(total.ValidStake)
-                @HtmlHelpers.RenderNumberCell(total.MemberIncome)
-                @HtmlHelpers.RenderNumberCell(total.Agent)
-                <td></td>
-                @HtmlHelpers.RenderNumberCell(total.AgentIncome)
-                @HtmlHelpers.RenderNumberCell(total.AgentResult)
+                <th class="text-left">@ReportResources.Total</th>
+                <th></th>
+                @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Agent)
+                <th></th>
+                @HtmlHelpers.RenderHeaderNumberCell(total.AgentIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
                 @if (Model.IsNotOwner)
                 {
-                    <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.MasterIncome)
-                    @HtmlHelpers.RenderNumberCell(total.MasterResult)
+                    <th></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MasterIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MasterResult)
                 }
-                @HtmlHelpers.RenderNumberCell(total.AgentCurrency)
-                @HtmlHelpers.RenderNumberCell(total.AgentStock)
+                @HtmlHelpers.RenderHeaderNumberCell(total.AgentStock)
             </tr>
         }
     </thead>
@@ -71,7 +69,6 @@
                         @HtmlHelpers.RenderNumberCell(row.MasterIncome)
                         @HtmlHelpers.RenderNumberCell(row.MasterResult)
                     }
-                    @HtmlHelpers.RenderNumberCell(row.AgentCurrency)
                     @HtmlHelpers.RenderNumberCell(row.AgentStock)
                 </tr>
             }
@@ -79,7 +76,7 @@
         else
         {
             <tr>
-                <td colspan="@(Model.IsNotOwner ? "15" : "12")" align="center">@SharedResources.NoInformationIsAvailable</td>
+                <td colspan="@(Model.IsNotOwner ? "14" : "11")" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
         }
     </tbody>

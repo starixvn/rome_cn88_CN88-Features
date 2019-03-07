@@ -19,15 +19,15 @@
             @if (Model.ReportData.Any())
             {
                 <tr class="total">
-                    <td class="text-left">@ReportResources.Total</td>
-                    <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.Wagers)
-                    @HtmlHelpers.RenderNumberCell(total.Stake)
-                    @HtmlHelpers.RenderNumberCell(total.ValidStake)
-                    @HtmlHelpers.RenderNumberCell(total.MemberIncome)
-                    <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.AgentIncome)
-                    @HtmlHelpers.RenderNumberCell(total.AgentResult)
+                    <th class="text-left">@ReportResources.Total</th>
+                    <th></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                    <th></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.AgentIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
                 </tr>
             }
         </thead>
