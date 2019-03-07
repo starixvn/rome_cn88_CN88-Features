@@ -8,7 +8,9 @@
     using CustomerList.Requests;
     using MediatR;
     using Shared.Controllers;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class CustomerListController : FeatureBaseController
     {
         private const string CustomerListPath = "~/CustomerList/Views/Index.cshtml";

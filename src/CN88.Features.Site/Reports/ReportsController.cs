@@ -5,7 +5,9 @@
     using MediatR;
     using Requests;
     using Shared.Controllers;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : FeatureBaseController
     {
         private const string MainViewPath = "~/Reports/Views/Index.cshtml";

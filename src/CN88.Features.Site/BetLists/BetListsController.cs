@@ -5,7 +5,9 @@
     using MediatR;
     using Requests;
     using Shared.Controllers;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
     {
         public BetListsController(IMediator mediator)
