@@ -31,7 +31,7 @@ class BetListOfReport {
     onExportExcelEvent = () => {
         this.$.blockUI();
         this.elements.exportExcelForm.submit();
-        // this.$.unblockUI();
+        this.$.unblockUI();
     };
 }
 

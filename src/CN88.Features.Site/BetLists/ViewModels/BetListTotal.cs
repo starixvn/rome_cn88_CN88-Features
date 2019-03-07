@@ -17,7 +17,7 @@
             TotalStake = tickets.Sum(ticket => ticket.Stake);
             TotalCommission = tickets.Sum(ticket => ticket.PlayerComm);
 
-            TotalStr = ConvertByBetType.Winloss(TotalWinLoss + TotalCommission);
+            WinLossWithCommission = TotalWinLoss + TotalCommission;
         }
 
         public decimal TotalWinLoss { get; }
@@ -26,11 +26,13 @@
 
         public decimal TotalCommission { get; }
 
+        public decimal WinLossWithCommission { get; }
+
         public string TotalWinLossStr => ConvertByBetType.Winloss(TotalWinLoss);
 
         public string TotalStakeStr => ConvertByBetType.Stake(TotalStake);
 
-        public string TotalStr { get; }
+        public string TotalStr => ConvertByBetType.Winloss(WinLossWithCommission);
 
         private static bool NotInExcludedStatus(ITicket ticket, string[] excludedStatus)
             => !excludedStatus.Contains(ticket.Status.ToLowerInvariant());

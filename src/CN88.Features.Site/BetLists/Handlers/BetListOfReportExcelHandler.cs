@@ -6,16 +6,15 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
-    using Features.BetLists.Models;
     using Features.BetLists.Params;
     using Features.BetLists.Resources;
     using Features.Shared.Models;
     using MediatR;
     using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
     using Requests;
     using Shared.ViewModels;
     using ViewModels;
+    using Workbooks;
 
     public class BetListOfReportExcelHandler :
         BetListExcelBaseHandler,
@@ -27,7 +26,7 @@
         private IBetListCN88HtmlBuilder cn88Builder;
         private IBetListHTMLBuilder builder;
 
-        private Workbook<TicketDto> workbook;
+        private BetListOfReportWorkbook workbook;
 
         public BetListOfReportExcelHandler(
             IBetListExcelBuilder excelBuilder,
@@ -36,7 +35,7 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
-            Workbook<TicketDto> workbook) : base(excelBuilder)
+            BetListOfReportWorkbook workbook) : base(excelBuilder)
         {
             this.service = service;
             this.monitorService = monitorService;
@@ -63,15 +62,16 @@
             var viewModel =
                 new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
 
-            workbook = workbook.UseTemplate(GetTemplateInfo(viewerLevel));
-            RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
+            var onebookWorkbook = workbook
+                .SetData(viewModel)
+                .UseTemplate(GetTemplateInfo(viewerLevel));
 
-            var fileContent = workbook
-                   .Header(BetListsResources.ResourceManager.GetString)
-                   .Title(viewModel.ReportTitle)
-                   //.Body(betlistData.Tickets, GetBodyRowMapper(viewerLevel, viewModel))
-                   //.Footer(new TicketDto(), GetFooterRowMapper(winLossViewModel.Footer))
-                   .ExportToBytes();
+            RtfHelper = message.RtfHelper ?? InitRTFHelper(workbook.Workbook);
+
+            var fileContent = onebookWorkbook
+                .Header(BetListsResources.ResourceManager.GetString)
+                .Title(viewModel.ReportTitle)
+                .ExportToBytes();
 
             return new ExcelFileViewModel(viewModel.ReportTitle, fileContent);
         }
@@ -83,6 +83,5 @@
                   bodyStartIndex: 3,
                   bodyEndIndex: 4,
                   footerEndIndex: 5);
-
     }
 }
