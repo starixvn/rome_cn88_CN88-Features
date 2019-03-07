@@ -6,6 +6,7 @@
     public class OldReportFilterViewModel : ReportFilterBaseViewModel
     {
         public OldReportFilterViewModel(
+            int displayMode,
             int reportType,
             bool isOwner,
             int custId,
@@ -14,7 +15,7 @@
             SingleSelectionViewModel sportGroupSelectionViewModel,
             AccountingPeriodSelectionViewModel accountingPeriodSelectionViewModel,
             DateRangePickerViewModel dateRangePickerViewModel)
-            : base(reportType, isOwner, custId, custName, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
+            : base(displayMode, reportType, isOwner, custId, custName, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
         {
             AccountingPeriodSelectionViewModel = accountingPeriodSelectionViewModel;
         }

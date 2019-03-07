@@ -6,6 +6,7 @@
     public class ReportFilterViewModel : ReportFilterBaseViewModel
     {
         public ReportFilterViewModel(
+            int displayMode,
             int reportType,
             bool isOwner,
             int custId,
@@ -15,7 +16,7 @@
             DateRangePickerViewModel dateRangePickerViewModel,
             SingleSelectionViewModel betTypeSelectionViewModel,
             SingleSelectionViewModel liveStatusSelectionViewModel)
-            : base(reportType, isOwner, custId, custName, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
+            : base(displayMode, reportType, isOwner, custId, custName, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
         {
             BetTypeSelectionViewModel = betTypeSelectionViewModel;
             LiveStatusSelectionViewModel = liveStatusSelectionViewModel;

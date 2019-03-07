@@ -36,6 +36,7 @@
             var dateRangePickerViewModel = new DateRangePickerViewModel(oldAccountingPeriods.Last().FromDate, oldAccountingPeriods.First().ToDate, query.FromDate, query.ToDate);
 
             OldReportFilterViewModel = new OldReportFilterViewModel(
+                query.DisplayMode,
                 query.ReportType,
                 query.IsOwner,
                 query.CustId,

@@ -47,6 +47,7 @@
             var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, query.UserSelectedLiveStatusId);
 
             ReportFilterViewModel = new ReportFilterViewModel(
+                query.DisplayMode,
                 query.ReportType,
                 query.IsOwner,
                 query.CustId,

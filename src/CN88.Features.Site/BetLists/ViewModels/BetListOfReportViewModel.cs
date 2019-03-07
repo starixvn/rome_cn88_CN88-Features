@@ -99,6 +99,7 @@
             var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.LiveIndicator);
 
             ReportFilterViewModel = new ReportFilterViewModel(
+                DisplayMode,
                 ReportType,
                 message.IsOwner,
                 message.CustId,

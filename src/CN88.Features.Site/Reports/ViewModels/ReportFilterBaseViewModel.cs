@@ -6,6 +6,7 @@
     public class ReportFilterBaseViewModel
     {
         public ReportFilterBaseViewModel(
+            int displayMode,
             int reportType,
             bool isOwner,
             int custId,
@@ -14,6 +15,7 @@
             SingleSelectionViewModel sportGroupSelectionViewModel,
             DateRangePickerViewModel dateRangePickerViewModel)
         {
+            DisplayMode = displayMode;
             ReportType = reportType;
             IsOwner = isOwner;
             CustId = custId;
@@ -22,6 +24,8 @@
             SportGroupSelectionViewModel = sportGroupSelectionViewModel;
             DateRangePickerViewModel = dateRangePickerViewModel;
         }
+
+        public int DisplayMode { get; }
 
         public int ReportType { get; }
 
