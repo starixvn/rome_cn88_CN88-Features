@@ -1,7 +1,7 @@
 ﻿namespace CN88.Features.CustomerList.Models
 {
     using System;
-    using Alpha.Utilities.Extensions;
+    using Extensions;
 
     public class CustomerModel
     {
@@ -45,7 +45,7 @@
 
         public DateTime CreationDate { get; }
 
-        public string CreationDateStr => CreationDate.ToLongDateFormatWithSlash();
+        public string CreationDateStr => CreationDate.ToLongDateTime24h();
 
         public int Status { get; }
 
