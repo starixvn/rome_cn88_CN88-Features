@@ -8,6 +8,7 @@
 
     public class SportGroup
     {
+        private const int ParlaySportGroupId = 9;
         private readonly Func<int, string> getSportGroupDisplayName;
 
         public SportGroup()
@@ -39,7 +40,7 @@
 
         private string GetDisplayName()
         {
-            if (Id == 10)
+            if (Id == ParlaySportGroupId)
             {
                 return SharedResources.Parlay;
             }
