@@ -7,6 +7,8 @@
 class WagerReport extends LegacyReport {
     $reportType: JQuery;
     $tabValidStake: JQuery;
+    $tabSettlement: JQuery;
+    $custLevelId: JQuery;
 
     elements = {
         tabSelectors: null,
@@ -33,16 +35,16 @@ class WagerReport extends LegacyReport {
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
-        this.pagerComponent.render();
         this.linkBuilderComponent.render();
 
         this.registerEvents();
 
         let reportType = this.$reportType.val();
-        if (reportType == "2"
-            || reportType == "3"
-            || reportType == "4") {
+        let custLevelId = this.$custLevelId.val();
+        if (reportType !== "1" && custLevelId !== "1") {
             this.$tabValidStake.click();
+        } else {
+            this.$tabSettlement.click();
         }
 
         this.$.unblockUI();
@@ -51,7 +53,9 @@ class WagerReport extends LegacyReport {
     public cacheDOMElements() {
         super.cacheDOMElements();
         this.$reportType = this.$("#ReportType");
+        this.$custLevelId = this.$("#CustLevelId");
         this.$tabValidStake = this.$("#tabValidStake");
+        this.$tabSettlement = this.$("#tabSettlement");
         this.elements.tabSelectors = $(".tab-selector");
         this.elements.tabContent = $(".tab-content");
     }
@@ -65,6 +69,8 @@ class WagerReport extends LegacyReport {
             $(this).addClass("active");
             var target = $(this).attr("target-id");
             self.elements.tabContent.addClass("display-none");
+            var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > .tbl-report");
+            self.pagerComponent.render(pagerOption);
             $("#" + target).removeClass("display-none");
         });
     }

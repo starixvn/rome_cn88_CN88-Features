@@ -39,8 +39,8 @@ class ClientPagerComponent {
         let pagerOption = <ClientPagerOption>this.$.extend({}, this.options, options);
         let pager = this.$("#" + pagerOption.pagerId);
 
-        this.$reportForm = this.$("#" + this.options.formId);
-        this.$bodyRows = this.$("#" + this.options.tableReportId + " > tbody > tr");
+        this.$reportForm = this.$("#" + pagerOption.formId);
+        this.$bodyRows = this.$("#" + pagerOption.tableReportId + " > tbody > tr");
 
         this.totalRecords = parseInt(pager.data("totalrecords"), 0);
         this.pageSize = parseInt(pager.data("pagesize"), 0);
