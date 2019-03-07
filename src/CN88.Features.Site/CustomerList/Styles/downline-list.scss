@@ -7,10 +7,6 @@
     width: 1240px;
 }
 
-.control {
-    width: 168px;
-}
-
 .add-new {
     position: absolute;
     top: 15px;
@@ -37,20 +33,25 @@
     [class^="icon"]:hover:not(:disabled) {
         cursor: pointer;
     }
+
     .col-no {
         width: 50px;
     }
 
     .col-action {
-        width: 150px;
+        width: 133px;
     }
 
     .col-status {
-        width: 110px;
+        width: 100px;
     }
 
     .col-date {
-        width: 180px;
+        width: 172px;
+    }
+
+    .col-credit {
+        width: 185px;
     }
 }
 
