@@ -14,26 +14,26 @@
             DateTime moveBetsDay,
             DateTime balanceUpDay)
         {
-            CustId = custId;
-            SportType = sportType;
-            FromDate = fromDate;
-            ToDate = toDate;
-            MoveBetsDay = moveBetsDay;
-            BalanceUpDay = balanceUpDay;
+            //CustId = custId;
+            //SportType = sportType;
+            //FromDate = fromDate;
+            //ToDate = toDate;
+            //MoveBetsDay = moveBetsDay;
+            //BalanceUpDay = balanceUpDay;
         }
 
-        public int CustId { get; }
+        public int CustId=> 34109860;
 
         [SpParam(SqlParamName = "SportTypeGroup")]
-        public int SportType { get; }
+        public int SportType => 0;
 
-        public DateTime FromDate { get; }
+        public DateTime FromDate => new DateTime(2019, 2, 20);
 
-        public DateTime ToDate { get; }
+        public DateTime ToDate => new DateTime(2019, 2, 27);
 
-        public DateTime MoveBetsDay { get; }
+        public DateTime MoveBetsDay => new DateTime(2019, 2, 16);
 
-        public DateTime BalanceUpDay { get; }
+        public DateTime BalanceUpDay => new DateTime(2019, 2, 8);
 
         public override string GetSettingKey()
             => "CS_Rpt_MemberStatement_Sel";

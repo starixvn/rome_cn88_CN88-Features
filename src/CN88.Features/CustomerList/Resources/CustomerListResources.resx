@@ -270,4 +270,16 @@
   <data name="NewMember" xml:space="preserve">
     <value>New Member</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>Stake</value>
+  </data>
+  <data name="ValidStake" xml:space="preserve">
+    <value>Valid Stake</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>Win/Loss</value>
+  </data>
 </root>

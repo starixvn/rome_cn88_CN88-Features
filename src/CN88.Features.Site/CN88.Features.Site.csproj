@@ -693,6 +693,7 @@
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Agent.xls" />
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Master.xls" />
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Super.xls" />
+    <Content Include="App_Code\Components\DateTimeSelection.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

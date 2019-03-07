@@ -1,10 +1,72 @@
-﻿@{
-	Layout = "~/Shared/Views/_Layout.cshtml";
+﻿@using Fanex.BetList.Core.Utils
+@model MemberStatementViewModel
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
 }
 
 @section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
+<div class="report-detail wager-report">
+    <form class="form-inline filter report-form" role="form" id="report-form">
+        @SportGroupSelection.Render(Model.SportTypeSelectionViewModel, true)
+        @DateTimeSelection.Render(Model.FromDateSelectionViewModel,"fromDate", @BetListsResources.Date)
+        @DateTimeSelection.Render(Model.ToDateSelectionViewModel, "toDate", @SharedResources.To)
+        <div class="form-group">
+            <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
+        </div>
+    </form>
 
+    
+    <table class="tbl-style2">
+        <thead>
+            <tr>
+                <th>@BetListsResources.Date</th>
+                <th>@BetListsResources.Stake</th>
+                <th>@ReportResources.ValidStake</th>
+                <th>@BetListsResources.WinLoss</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(!Model.Statements.Any())
+            {
+                <tr>
+                    <td colspan="4">@SharedResources.NoInformationIsAvailable</td>
+                </tr>
+            }
+            @foreach(var item in Model.Statements)
+            {
+                <tr>
+                    <td>
+                        @if (item.HasTicket)
+                        {
+                            <a href="..">@item.WinLostDateStr</a>
+                        }
+                        else
+                        {
+                            @item.WinLostDateStr
+                        }
+                    </td>
+                    <td>@item.StakeStr</td>
+                    <td>@item.ValidStakeStr</td>
+                    <td>@Html.Raw(ConvertByBetType.Winloss(item.WinLoss))</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            @if (Model.Statements.Any())
+            {
+                <tr>
+                    <td>Total</td>
+                    <td>@Model.TotalStake</td>
+                    <td>@Model.TotalValidStake</td>
+                    <td>@Model.TotalWinLoss</td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+    
+</div>
 @section Scripts {
 }
 

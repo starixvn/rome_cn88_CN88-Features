@@ -9,7 +9,6 @@
     using CN88.Features.Site.CustomerList;
     using CN88.Features.Site.CustomerList.ViewModels;
     using CustomerList.Requests;
-    using CustomerList.ViewModels.CustomerList;
     using Features.CustomerList;
     using Features.Shared.AppResources;
     using Features.Shared.Models;

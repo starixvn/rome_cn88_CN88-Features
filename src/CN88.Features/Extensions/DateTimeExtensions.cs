@@ -20,7 +20,7 @@
             => date.ToString(TimeFormat);
 
         public static string ToLongDay(this DateTime date)
-            => date.ToString("YYYY-MM-dd dddd");
+            => date.ToString("yyyy-MM-dd dddd");
 
         public static string ToLongTime24h(this DateTime dateTime)
             => dateTime.ToString(LongTime24h);

@@ -66,7 +66,7 @@
         public async Task<ActionResult> OnlineMembers(OnlineMembersQuery message)
             => await ViewAsync(message, "~/CustomerList/Views/OnlineMembers.cshtml");
 
-        public ActionResult MemberStatement(MemberStatementQuery message)
-            => View("~/CustomerList/Views/MemberStatement.cshtml");
+        public async Task<ActionResult> MemberStatement(MemberStatementQuery message)
+            => await ViewAsync(message, "~/CustomerList/Views/MemberStatement.cshtml");
     }
 }
