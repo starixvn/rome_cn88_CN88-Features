@@ -1,4 +1,7 @@
 ﻿@model ReportBaseViewModel
+@{
+    var total = Model.GrandTotal;
+}
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
         <tr>
@@ -21,11 +24,8 @@
             <th class="text-right">@ReportResources.AgentCurrency</th>
             <th class="text-right">@ReportResources.AgentStock</th>
         </tr>
-    </thead>
-    <tbody>
         @if (Model.ReportData.Any())
         {
-            var total = Model.GrandTotal;
             <tr class="total">
                 <td class="text-left">@ReportResources.Total</td>
                 <td></td>
@@ -46,6 +46,11 @@
                 @HtmlHelpers.RenderNumberCell(total.AgentCurrency)
                 @HtmlHelpers.RenderNumberCell(total.AgentStock)
             </tr>
+        }
+    </thead>
+    <tbody>
+        @if (Model.ReportData.Any())
+        {
 
             foreach (var row in Model.ReportData)
             {
