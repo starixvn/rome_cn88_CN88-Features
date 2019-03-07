@@ -198,7 +198,7 @@
         internal Mapper<ReportModel> GetFooterRowMapper()
             => new Mapper<ReportModel>()
                 .Map(A, data => ReportResources.ProfitMagin)
-                .Map(B, data => CalculatePercentage(data.SuperResult, data.SuperStock));
+                .Map(B, data => CalculatePercentage(data.SuperResult, data.SuperStock).FormatNumber() + " %");
 
         private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
             => new TemplateInfo(

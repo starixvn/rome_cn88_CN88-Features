@@ -752,6 +752,7 @@
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\client-pager.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy-init.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy.ts" />
@@ -763,6 +764,7 @@
     <TypeScriptCompile Include="Reports\Scripts\verify-password.ts" />
     <TypeScriptCompile Include="Reports\Scripts\wager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\link-builder.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />

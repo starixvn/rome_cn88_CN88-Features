@@ -22,10 +22,10 @@
             <th class="text-right">@ReportResources.AgentStock</th>
         </tr>
     </thead>
-    <tbody>
-        @if (Model.ReportData.Any())
-        {
-            var total = Model.GrandTotal;
+    @if (Model.ReportData.Any())
+    {
+        var total = Model.GrandTotal;
+        <tfoot>
             <tr class="total">
                 <td class="text-left">@ReportResources.Total</td>
                 <td></td>
@@ -46,8 +46,9 @@
                 @HtmlHelpers.RenderNumberCell(total.AgentCurrency)
                 @HtmlHelpers.RenderNumberCell(total.AgentStock)
             </tr>
-
-            foreach (var row in Model.ReportData)
+        </tfoot>
+        <tbody>
+            @foreach (var row in Model.ReportData)
             {
                 <tr>
                     <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
@@ -70,12 +71,15 @@
                     @HtmlHelpers.RenderNumberCell(row.AgentStock)
                 </tr>
             }
-        }
-        else
-        {
+        </tbody>
+    }
+    else
+    {
+        <tbody>
             <tr>
                 <td colspan="@(Model.IsNotOwner ? "15" : "12")" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
-        }
-    </tbody>
+        </tbody>
+
+    }
 </table>
