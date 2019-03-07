@@ -5,8 +5,7 @@
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new LinkBuilderComponent($),
-        new ClientPagerComponent($));
+        new PagerComponent($));
 
     legacyReport.init();
 })

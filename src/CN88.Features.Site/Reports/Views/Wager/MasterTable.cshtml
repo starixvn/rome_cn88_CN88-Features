@@ -1,7 +1,4 @@
 ﻿@model ReportBaseViewModel
-@{
-    var total = Model.GrandTotal;
-}
 <div id="settlement-content" class="tab-content">
     <table class="tbl-noborder tbl-report settlement-report">
         <thead>
@@ -22,8 +19,11 @@
                     <th class="text-right valid-stake">@ReportResources.SMAStockPercent</th>
                 }
             </tr>
+        </thead>
+        <tbody>
             @if (Model.ReportData.Any())
             {
+                var total = Model.GrandTotal;
                 <tr class="total">
                     <td class="text-left">@ReportResources.Total</td>
                     <td></td>
@@ -41,11 +41,6 @@
                         @ReportHtmlHelpers.RenderPercentCell(100)
                     }
                 </tr>
-            }
-        </thead>
-        <tbody>
-            @if (Model.ReportData.Any())
-            {
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
@@ -89,8 +84,11 @@
                 <th class="text-right valid-stake">@ReportResources.Agent</th>
                 <th class="text-right valid-stake">@ReportResources.AgentResult</th>
             </tr>
+        </thead>
+        <tbody>
             @if (Model.ReportData.Any())
             {
+                var total = Model.GrandTotal;
                 <tr class="total">
                     <td class="text-left">@ReportResources.Total</td>
                     <td></td>
@@ -101,11 +99,6 @@
                     @HtmlHelpers.RenderNumberCell(total.Agent)
                     @HtmlHelpers.RenderNumberCell(total.AgentResult)
                 </tr>
-            }
-        </thead>
-        <tbody>
-            @if (Model.ReportData.Any())
-            {
                 foreach (var data in Model.ReportData)
                 {
                     <tr>

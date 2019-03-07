@@ -1,8 +1,7 @@
 ﻿/// <reference path="../../shared/scripts/core.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
-/// <reference path="../../shared/scripts/components/link-builder.ts" />
-/// <reference path="../../shared/scripts/components/client-pager.ts" />
 "use strict";
 class LegacyReport extends BaseReport {
     $tooltip: JQuery;
@@ -10,8 +9,7 @@ class LegacyReport extends BaseReport {
     $exportExcelForm: JQuery;
     $excelIcon: JQuery;
 
-    linkBuilderComponent: LinkBuilderComponent;
-    pagerComponent: ClientPagerComponent;
+    pagerComponent: PagerComponent;
 
     constructor(
         $: JQueryStatic,
@@ -19,25 +17,22 @@ class LegacyReport extends BaseReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
-        linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent) {
+        pagerComponent: PagerComponent) {
         super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent)
 
-        this.linkBuilderComponent = linkBuilderComponent;
         this.pagerComponent = pagerComponent;
-        this.pagerComponent.pageList = this.pagerComponent.smallPageList;
     }
 
     init = () => {
         this.$.blockUI();
         this.cacheDOMElements();
-        this.initTooltip();
 
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
-        this.linkBuilderComponent.render();
+        this.pagerComponent.pageList = this.pagerComponent.pageList;
+        this.initTooltip();
         this.pagerComponent.render();
 
         this.registerEvents();

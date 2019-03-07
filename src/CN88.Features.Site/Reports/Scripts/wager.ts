@@ -1,7 +1,6 @@
 ﻿/// <reference path="../../shared/scripts/core.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="../../shared/scripts/components/client-pager.ts" />
-/// <reference path="../../shared/scripts/components/link-builder.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class WagerReport extends LegacyReport {
@@ -19,23 +18,20 @@ class WagerReport extends LegacyReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
-        linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent) {
-        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, linkBuilderComponent, pagerComponent)
+        pagerComponent: PagerComponent) {
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, pagerComponent)
     }
 
     init = () => {
         this.$.blockUI();
         this.cacheDOMElements();
-        this.initTooltip();
-
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
+        this.pagerComponent.pageList = this.pagerComponent.pageList;
+        this.initTooltip();
         this.pagerComponent.render();
-        this.linkBuilderComponent.render();
-
         this.registerEvents();
 
         let reportType = this.$reportType.val();
@@ -77,8 +73,7 @@ $(function () {
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new LinkBuilderComponent($),
-        new ClientPagerComponent($));
+        new PagerComponent($));
 
     wagerReport.init();
 })

@@ -1,7 +1,4 @@
 ﻿@model ReportBaseViewModel
-@{
-    var total = Model.GrandTotal;
-}
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
         <tr>
@@ -27,8 +24,11 @@
                 <th class="text-right">@ReportResources.HeadlineStockPercent</th>
             }
         </tr>
+    </thead>
+    <tbody>
         @if (Model.ReportData.Any())
         {
+            var total = Model.GrandTotal;
             <tr class="total">
                 <td class="text-left">@ReportResources.Total</td>
                 @HtmlHelpers.RenderNumberCell(total.Wagers)
@@ -52,12 +52,8 @@
                     @ReportHtmlHelpers.RenderPercentCell(100)
                 }
             </tr>
-        }
-    </thead>
-    @if (Model.ReportData.Any())
-    {
-        <tbody>
-            @foreach (var row in Model.ReportData)
+
+            foreach (var row in Model.ReportData)
             {
                 <tr>
                     <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
@@ -83,19 +79,16 @@
                     }
                 </tr>
             }
-        </tbody>
-        <tfoot>
+
             <tr>
                 <td class="profit-margin" colspan="@(Model.IsNotOwner ? "18" : "12")" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
             </tr>
-        </tfoot>
-    }
-    else
-    {
-        <tbody>
+        }
+        else
+        {
             <tr>
                 <td colspan="@(Model.IsNotOwner ? "18" : "12")" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
-        </tbody>
-    }
+        }
+    </tbody>
 </table>
