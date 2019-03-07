@@ -1,4 +1,5 @@
-﻿@model ParlaySubTicketsViewModel
+﻿@using CN88.Features.Extensions
+@model ParlaySubTicketsViewModel
 @{
     Layout = null;
 }
@@ -19,7 +20,8 @@
         <div class="ticket-list">
             @Model.Builder.CreateChoiceBuilder(ticket.BetTypeId).GetBetTypeName(ticket, Model.TicketHelper, null)
             @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, null)))
-            @Html.Raw(Model.Builder.BuildTransEventDateAndStatusResult(ticket, null))
+            <div class="event-date">@ticket.EventDate.ToLongDateTime24h()</div>
+            @Html.Raw(Model.Builder.CreateStatusBuilder(ticket.BetTypeId).RenderStatusResultText(ticket, null))
         </div>
 
         if (!ticket.Equals(Model.BetListData.Tickets.Last()))

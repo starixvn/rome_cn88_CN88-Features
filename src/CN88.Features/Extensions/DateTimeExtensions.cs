@@ -8,6 +8,7 @@
 
         public const string TimeFormat = "HH:mm:ss";
         private const string LongTime24h = "HH:mm:ss";
+        private const string LongDateTime24h = "yyyy-MM-dd HH:mm:ss";
 
         public static string ToShortDateFormat(this DateTime date)
             => date.ToString(ShortDateFormat);
@@ -23,5 +24,8 @@
 
         public static string ToLongTime24h(this DateTime dateTime)
             => dateTime.ToString(LongTime24h);
+
+        public static string ToLongDateTime24h(this DateTime dateTime)
+            => dateTime.ToString(LongDateTime24h);
     }
 }
