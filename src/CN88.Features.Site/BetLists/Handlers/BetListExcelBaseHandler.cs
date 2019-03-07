@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Site.BetLists
+﻿namespace CN88.Features.Site.BetLists.Handlers
 {
     using System;
     using System.IO;

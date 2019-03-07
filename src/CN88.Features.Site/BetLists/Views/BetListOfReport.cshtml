@@ -1,5 +1,4 @@
 ﻿@using Fanex.BetList.Core.Utils
-@using CN88.Features.Reports.AppResources
 @model BetListOfReportViewModel
 @{
     ViewBag.Title = "Bet List";
@@ -15,7 +14,7 @@
         @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
     </ul>
 </div>
-@Html.Partial("~/BetLists/Views/Filter.cshtml", Model.ReportFilterViewModel)
+@Html.Partial("~/BetLists/Views/Filter.cshtml", Model)
 <table class="tbl-style2 tbl-bet-list">
     <thead>
         <tr>

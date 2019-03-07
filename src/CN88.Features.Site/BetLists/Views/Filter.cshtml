@@ -1,30 +1,34 @@
-﻿@using CN88.Features.Site.Reports.ViewModels
-@using CN88.Features.Shared.AppResources
-@model ReportFilterViewModel
+﻿@using CN88.Features.Shared.AppResources
+@model BetListOfReportViewModel
+@{
+    var reportFilter = Model.ReportFilterViewModel;
+}
 <form class="form-inline filter report-form" role="form" id="report-form">
     @RenderHiddenFields()
-    @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, true)
-    @DateRangePicker.Render(Model.DateRangePickerViewModel)
-    @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, true)
-    @LiveStatusSelection.Render(Model.LiveStatusSelectionViewModel, true)
+    @SportGroupSelection.Render(reportFilter.SportGroupSelectionViewModel, true)
+    @DateRangePicker.Render(reportFilter.DateRangePickerViewModel)
+    @BetTypeSelection.Render(reportFilter.BetTypeSelectionViewModel, true)
+    @LiveStatusSelection.Render(reportFilter.LiveStatusSelectionViewModel, true)
     <div class="form-group">
         <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
     </div>
 </form>
-<form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("Excel","BetLists")">
+<form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("BetListOfReportExcel","BetLists")">
     @RenderHiddenFields()
-    @Html.Hidden("FromDate", Model.DateRangePickerViewModel.FromDate)
-    @Html.Hidden("ToDate", Model.DateRangePickerViewModel.ToDate)
-    @Html.Hidden("UserSelectedSportGroupId", Model.SportGroupSelectionViewModel.UserSelectedId)
-    @Html.Hidden("UserSelectedBetTypeId", Model.BetTypeSelectionViewModel.UserSelectedId)
-    @Html.Hidden("UserSelectedLiveStatusId", Model.LiveStatusSelectionViewModel.UserSelectedId)
 </form>
 
 @helper RenderHiddenFields()
 {
     @Html.Hidden("CustId", Model.CustId)
-    @Html.Hidden("CustName", Model.CustName)
+    @Html.Hidden("CustName", Model.ReportFilterViewModel.CustName)
     @Html.Hidden("CustLevelId", Model.CustLevel.Value)
-    @Html.Hidden("IsOwner", Model.IsOwner)
+    @Html.Hidden("IsOwner", Model.ReportFilterViewModel.IsOwner)
     @Html.Hidden("ReportType", Model.ReportType)
+
+    @Html.Hidden("FromDate", Model.ReportFilterViewModel.DateRangePickerViewModel.FromDate)
+    @Html.Hidden("ToDate", Model.ReportFilterViewModel.DateRangePickerViewModel.ToDate)
+    @Html.Hidden("SportTypeGroup", Model.ReportFilterViewModel.SportGroupSelectionViewModel.UserSelectedId)
+    @Html.Hidden("BetTypeGroup", Model.ReportFilterViewModel.BetTypeSelectionViewModel.UserSelectedId)
+    @Html.Hidden("LiveIndicator", Model.ReportFilterViewModel.LiveStatusSelectionViewModel.UserSelectedId)
+    @Html.Hidden("Type", Model.Type)
 }

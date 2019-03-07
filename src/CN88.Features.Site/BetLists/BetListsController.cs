@@ -27,5 +27,8 @@
 
         public async Task<ActionResult> ParlayDetailExcel(GetParlayDetailExcelQuery message)
             => await ExcelView(message);
+
+        public async Task<FileContentResult> BetListOfReportExcel(BetListOfReportExcelQuery message)
+            => await ExcelView(message);
     }
 }

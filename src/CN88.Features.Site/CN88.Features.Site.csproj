@@ -523,9 +523,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
-    <Compile Include="BetLists\BetListExcelBaseHandler.cs" />
-    <Compile Include="BetLists\ParlayExcelHandler.cs" />
+    <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
+    <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
     <Compile Include="BetLists\Helpers\IPHelper.cs" />
+    <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlaySubTicketsQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
@@ -563,7 +564,7 @@
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
-    <Compile Include="BetLists\BetListsHandler.cs" />
+    <Compile Include="BetLists\Handlers\BetListsHandler.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfReportViewModel.cs" />
     <Compile Include="SubAccount\Requests\CreateCommand.cs" />
