@@ -92,7 +92,7 @@
 
                 html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                     "<td class='col-no'>" + customerIndex + "</td>" +
-                    `<td class='link view-statement'>${username}</td>` +
+                    `<td class='link view-statement' username='${username}'>${username}</td>` +
                     "<td>" + customer.Name + "</td>" +
                     "<td>" + customer.Nickname + "</td>" +
                     "<td>" + customer.Group + "</td>" +

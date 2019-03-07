@@ -8,6 +8,7 @@
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
 <div class="report-detail wager-report">
+    <div class="page-title">@Model.UserName</div>
     <form class="form-inline filter report-form" role="form" id="report-form">
         @SportGroupSelection.Render(Model.SportTypeSelectionViewModel, true)
         @DateTimeSelection.Render(Model.FromDateSelectionViewModel,"fromDate", @BetListsResources.Date)

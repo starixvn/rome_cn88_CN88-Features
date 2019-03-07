@@ -24,7 +24,7 @@
             var dates = new List<SelectListItem> { new SelectListItem { Text = SystemTime.Today.ToShortDateFormat(), Value = SystemTime.Today.ToString() } };
             FromDateSelectionViewModel = new SingleSelectionViewModel(dates, 0);
             ToDateSelectionViewModel = new SingleSelectionViewModel(dates, 0);
-
+            UserName = message.CustName;
         }
 
         public IEnumerable<MemberStatementModel> Statements { get; }
@@ -42,5 +42,7 @@
         public decimal? TotalValidStake { get; }
 
         public decimal? TotalWinLoss { get; }
+
+        public string UserName { get; }
     }
 }

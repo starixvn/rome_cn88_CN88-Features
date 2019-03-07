@@ -123,7 +123,8 @@
     public bindReportEvents(rs) {
         var self = this;
         this.$tblReport.find(".view-statement").click(function () {
-            var viewStatementUrl = $("#viewStatementtUrl").val();
+            var $this = self.$(this);
+            var viewStatementUrl = $("#viewStatementtUrl").val() + "?CustName=" + $this.attr("username");
             window.open(viewStatementUrl, "", "height=600,width=800");
         });
 
