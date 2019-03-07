@@ -42,10 +42,6 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
-            IEnumerable<SelectListItem> sportGroups,
-            IEnumerable<SelectListItem> betTypes,
-            AccountingPeriod currentPeriod,
-            AccountingPeriod lastPeriod,
             string[] excludingTicketStatus = null)
         {
             this.message = message;
@@ -70,7 +66,48 @@
             ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
             ViewerLevelId = message.ViewerLevelId;
 
-            BuildReportFilterViewModel(message, sportGroups, betTypes, currentPeriod, lastPeriod);
+            ReportType = ReportTypes[message.Type];
+            ReportTitle = ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[ReportType]);
+        }
+
+        public BetListOfReportViewModel(
+            BetListOfReportQuery message,
+            BetListData betListData,
+            ITicketHelper ticketHelper,
+            IBetListCN88HtmlBuilder cn88Builder,
+            IBetListHTMLBuilder builder,
+            IEnumerable<SelectListItem> sportGroups,
+            IEnumerable<SelectListItem> betTypes,
+            AccountingPeriod currentPeriod,
+            AccountingPeriod lastPeriod,
+            string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, excludingTicketStatus)
+        {
+            DisplayMode = 1;
+            ReportMainActionPath = "~/Reports/Index";
+
+            var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportTypeGroup);
+            var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);
+            var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, message.BetTypeGroup);
+
+            var liveStatuses = LiveStatusConstants.LiveStatuses
+                .Select(s => new SelectListItem
+                {
+                    Text = SharedResources.ResourceManager.GetString(s.Value),
+                    Value = s.Key.ToString(),
+                    Selected = s.Key == message.LiveIndicator
+                });
+            var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.LiveIndicator);
+
+            ReportFilterViewModel = new ReportFilterViewModel(
+                ReportType,
+                message.IsOwner,
+                message.CustId,
+                message.CustName,
+                message.CustLevel,
+                sportGroupSelectionViewModel,
+                dateRangePickerViewModel,
+                betTypeSelectionViewModel,
+                liveStatusSelectionViewModel);
         }
 
         public UserLevel CustLevel { get; }
@@ -158,43 +195,6 @@
             }
 
             return breadcrumbLevel;
-        }
-
-        private void BuildReportFilterViewModel(
-            BetListOfReportQuery message,
-            IEnumerable<SelectListItem> sportGroups,
-            IEnumerable<SelectListItem> betTypes,
-            AccountingPeriod currentPeriod,
-            AccountingPeriod lastPeriod)
-        {
-            ReportType = ReportTypes[message.Type];
-            ReportTitle = ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[ReportType]);
-            DisplayMode = 1;
-            ReportMainActionPath = "~/Reports/Index";
-
-            var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportTypeGroup);
-            var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);
-            var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, message.BetTypeGroup);
-
-            var liveStatuses = LiveStatusConstants.LiveStatuses
-                .Select(s => new SelectListItem
-                {
-                    Text = SharedResources.ResourceManager.GetString(s.Value),
-                    Value = s.Key.ToString(),
-                    Selected = s.Key == message.LiveIndicator
-                });
-            var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.LiveIndicator);
-
-            ReportFilterViewModel = new ReportFilterViewModel(
-                ReportType,
-                message.IsOwner,
-                message.CustId,
-                message.CustName,
-                message.CustLevel,
-                sportGroupSelectionViewModel,
-                dateRangePickerViewModel,
-                betTypeSelectionViewModel,
-                liveStatusSelectionViewModel);
         }
     }
 }

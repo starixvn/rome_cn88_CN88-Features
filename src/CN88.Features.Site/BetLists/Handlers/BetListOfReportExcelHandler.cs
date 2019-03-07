@@ -1,0 +1,79 @@
+﻿namespace CN88.Features.Site.BetLists.Handlers
+{
+    using System.Threading.Tasks;
+    using Alpha.SmartPunter.Services;
+    using BetList.Core.Builders;
+    using Fanex.BetList.Core.Builder;
+    using Fanex.BetList.Core.Entities;
+    using Features.BetLists;
+    using Features.BetLists.Models;
+    using Features.BetLists.Params;
+    using Features.BetLists.Resources;
+    using Features.Shared.Models;
+    using MediatR;
+    using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
+    using Requests;
+    using Shared.ViewModels;
+    using ViewModels;
+
+    public class BetListOfReportExcelHandler :
+        BetListExcelBaseHandler,
+        IAsyncRequestHandler<BetListOfReportExcelQuery, ExcelFileViewModel>
+    {
+        private BetListsService service;
+        private ISmartPunterBetListMonitor monitorService;
+        private ITicketHelper ticketHelper;
+        private IBetListCN88HtmlBuilder cn88Builder;
+        private IBetListHTMLBuilder builder;
+
+        private Workbook<TicketDto> workbook;
+
+        public BetListOfReportExcelHandler(
+            IBetListExcelBuilder excelBuilder,
+            BetListsService service,
+            ISmartPunterBetListMonitor monitorService,
+            ITicketHelper ticketHelper,
+            IBetListCN88HtmlBuilder cn88Builder,
+            IBetListHTMLBuilder builder,
+            Workbook<TicketDto> workbook) : base(excelBuilder)
+        {
+            this.service = service;
+            this.monitorService = monitorService;
+            this.ticketHelper = ticketHelper;
+            this.cn88Builder = cn88Builder;
+            this.builder = builder;
+
+            this.workbook = workbook;
+        }
+
+        public async Task<ExcelFileViewModel> Handle(BetListOfReportExcelQuery message)
+        {
+            var viewerLevel = Enumeration.FromValue<UserLevel>(message.ViewerLevelId);
+            var param = new BetListOfReportParam(
+                message.CustId,
+                message.FromDate,
+                message.ToDate,
+                message.SportTypeGroup,
+                message.BetTypeGroup,
+                message.LiveIndicator,
+                message.Type);
+
+            var betlistData = await service.GetBetListOfReport(param);
+            var viewModel =
+                new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+
+            workbook = workbook.UseTemplate(GetTemplateInfo(viewerLevel));
+            RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
+
+            var fileContent = workbook
+                   .Header(BetListsResources.ResourceManager.GetString)
+                   .Title(viewModel.ReportTitle)
+                   //.Body(betlistData.Tickets, GetBodyRowMapper(viewerLevel, viewModel))
+                   //.Footer(new TicketDto(), GetFooterRowMapper(winLossViewModel.Footer))
+                   .ExportToBytes();
+
+            return new ExcelFileViewModel(viewModel.ReportTitle, fileContent);
+        }
+    }
+}

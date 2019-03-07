@@ -16,8 +16,7 @@
         private const string ExcelTemplateDir = "~/BetLists/ExcelTemplates/{0}.{1}";
         private Func<string, string> mapPath;
 
-        public BetListExcelBaseHandler(
-            IBetListExcelBuilder excelBuilder)
+        public BetListExcelBaseHandler(IBetListExcelBuilder excelBuilder)
         {
             ExcelBuilder = excelBuilder;
             RtfHelper = excelBuilder.RTFHelper;
