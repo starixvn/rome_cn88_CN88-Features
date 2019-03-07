@@ -22,6 +22,11 @@
         {
             var command = new ReCheckCustomerPasswordCommand(custId, subAccountId, userPassword);
 
+            if (command.IsInvalid())
+            {
+                return Result.CreateErrorResult();
+            }
+
             dynamicRepository.Execute(command);
 
             return new Result(command.ErrCode, command.ErrMsg);

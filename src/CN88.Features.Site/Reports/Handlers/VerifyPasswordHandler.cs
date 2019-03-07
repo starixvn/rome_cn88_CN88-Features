@@ -30,16 +30,15 @@
         }
 
         public VerifyPasswordViewModel Handle(VerifyPasswordQuery message)
-            => new VerifyPasswordViewModel(message.NickName, GetHashKey());
+            => new VerifyPasswordViewModel(message.NickName, GetHashKey(), message.Result);
 
         public Result Handle(VerifyPasswordCommand message)
         {
+            var rawPassword = AesExtension.Decrypt(message.Password, sessionManager.Get<string>(HashKeySessionKey));
             var result = passwordService.CheckCustomerPassword(
-                message.CustId,
-                message.SubAccountId,
-                AesExtension.Decrypt(
-                    message.Password,
-                    sessionManager.Get<string>(HashKeySessionKey)));
+            message.ViewerId,
+            message.SubAccountId,
+            encryptor.CfsEnCode(rawPassword));
 
             return result;
         }

@@ -250,4 +250,10 @@
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
   </data>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>Sorry, password cannot be empty!!!</value>
+  </data>
+  <data name="PasswordWrongRuleError" xml:space="preserve">
+    <value>Your password does not meet the minimum security requirement.</value>
+  </data>
 </root>

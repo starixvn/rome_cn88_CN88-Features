@@ -5,7 +5,7 @@ class VerifyPassword {
     $formVerifyPassword: JQuery;
     $hashKey: JQuery;
     $messageContainer: JQuery;
-
+    resources: any;
     hashKey: string;
 
     constructor($: JQueryStatic) {
@@ -21,6 +21,11 @@ class VerifyPassword {
     };
 
     cacheDOMElements = () => {
+        this.resources = {
+            passwordCannotEmpty: this.$("#password-cannot-empty").val(),
+            passwordDoesNotMeetMinimunRequirement: this.$("#password-does-not-min-requirement").val()
+        };
+
         this.$txtPassword = this.$("#txtPassword");
         this.$formVerifyPassword = this.$("#formVerifyPwd");
         this.$hashKey = this.$("#HashKey");
@@ -35,20 +40,20 @@ class VerifyPassword {
         let password: string = this.$txtPassword.val();
 
         if (password.length === 0) {
-            this.showError(this.$messageContainer, "");
+            this.showError(this.$messageContainer, this.resources.passwordCannotEmpty);
             this.$txtPassword.focus();
             this.$.unblockUI();
             return false;
         }
 
         if (!this.isValidPassword(password)) {
-            this.showError(this.$messageContainer, "");
+            this.showError(this.$messageContainer, this.resources.passwordDoesNotMeetMinimunRequirement);
             this.$txtPassword.focus();
             this.$.unblockUI();
             return false;
         }
 
-        let encryptedPwd = this.$txtPassword.val().encrypt(this.hashKey);
+        let encryptedPwd = this.encrypt(this.$txtPassword.val(), this.hashKey);
         this.$txtPassword.val(encryptedPwd);
 
         return true;
@@ -74,8 +79,24 @@ class VerifyPassword {
     showError = ($target: any, error: string) => {
         $target.html("<div class='msg msg-error'>" + error + "</div>");
     };
-}
 
+    encrypt = (plainText: string, secretKey: string) => {
+        const passPhrase = "a5s8d2e9c172";
+        let key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
+        let iv = key;
+
+        let pwd = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
+            {
+                keySize: 128 / 8,
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+
+        return pwd.toString();
+    };
+}
+declare var CryptoJS: any;
 $(function () {
     const verifyPwd = new VerifyPassword($);
     verifyPwd.init();

@@ -322,11 +322,29 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your password does not meet the minimum security requirement..
+        /// </summary>
+        public static string PasswordWrongRuleError {
+            get {
+                return ResourceManager.GetString("PasswordWrongRuleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profit Magin.
         /// </summary>
         public static string ProfitMagin {
             get {
                 return ResourceManager.GetString("ProfitMagin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, password cannot be empty!!!.
+        /// </summary>
+        public static string RequiredPasswordError {
+            get {
+                return ResourceManager.GetString("RequiredPasswordError", resourceCulture);
             }
         }
         

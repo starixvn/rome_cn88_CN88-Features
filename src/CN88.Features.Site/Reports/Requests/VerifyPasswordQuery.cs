@@ -10,5 +10,7 @@
         public VerifyPasswordQuery(IUser viewer) : base(viewer)
         {
         }
+
+        public Result Result { get; set; }
     }
 }

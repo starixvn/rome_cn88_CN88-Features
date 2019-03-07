@@ -1,7 +1,7 @@
 ﻿namespace CN88.Features.Models
 {
-    using CN88.Features.Shared.AppResources;
     using System.Net;
+    using CN88.Features.Shared.AppResources;
 
     public class Result
     {
@@ -18,7 +18,7 @@
         public static Result CreateSuccessResult(string message = "")
             => new Result(0, message);
 
-        public static Result CreateErrorResult(int code, string message)
+        public static Result CreateErrorResult(int code = 1, string message = "")
             => new Result(code, message);
 
         public static Result CreateForbiddenResult()

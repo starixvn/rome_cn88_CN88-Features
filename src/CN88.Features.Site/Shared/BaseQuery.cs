@@ -47,6 +47,9 @@
 
         public string Language => viewer.Language;
 
+        public IUser GetViewer()
+            => viewer;
+
         public virtual bool IsValid()
             => ViewerId > 0
             && !string.IsNullOrWhiteSpace(ViewerName)

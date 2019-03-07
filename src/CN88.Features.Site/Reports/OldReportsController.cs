@@ -41,7 +41,7 @@
                 return RedirectToAction(nameof(Index), new { DisplayMode = 1 });
             }
 
-            return Json(result);
+            return await ViewAsync(new VerifyPasswordQuery(message.GetViewer()) { Result = result }, VerifyPasswordViewPath);
         }
 
         [ReCheckPassword]
