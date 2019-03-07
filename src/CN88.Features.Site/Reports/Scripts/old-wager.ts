@@ -1,8 +1,10 @@
-﻿/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="../../shared/scripts/components/pager.ts" />
+﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class OldWagerReport extends OldLegacyReport {
+    $tabSettlement: JQuery;
+
     elements = {
         tabSelectors: null,
         tabContent: null
@@ -13,7 +15,7 @@ class OldWagerReport extends OldLegacyReport {
         accountingPeriodSelectionComponent: SingleSelectionDropdownComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
-        pagerComponent: PagerComponent) {
+        pagerComponent: ClientPagerComponent) {
         super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent, pagerComponent)
     }
 
@@ -23,15 +25,15 @@ class OldWagerReport extends OldLegacyReport {
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId"));
         this.dateRangePickerComponent.render();
-        this.pagerComponent.pageList = this.pagerComponent.pageList;
         this.initTooltip();
-        this.pagerComponent.render();
         this.registerEvents();
+        this.$tabSettlement.click();
         this.$.unblockUI();
     };
 
     public cacheDOMElements() {
         super.cacheDOMElements();
+        this.$tabSettlement = this.$("#tabSettlement");
         this.elements.tabSelectors = $(".tab-selector");
         this.elements.tabContent = $(".tab-content");
     }
@@ -45,6 +47,8 @@ class OldWagerReport extends OldLegacyReport {
             $(this).addClass("active");
             var target = $(this).attr("target-id");
             self.elements.tabContent.addClass("display-none");
+            var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > .tbl-report");
+            self.pagerComponent.render(pagerOption);
             $("#" + target).removeClass("display-none");
         });
     }
@@ -56,7 +60,7 @@ $(function () {
         new SingleSelectionDropdownComponent($),
         new DateRangePickerComponent($),
         new SingleSelectionDropdownComponent($),
-        new PagerComponent($));
+        new ClientPagerComponent($));
 
     oldWagerReport.init();
 })

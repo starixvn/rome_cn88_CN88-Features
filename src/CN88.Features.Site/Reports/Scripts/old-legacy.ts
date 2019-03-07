@@ -1,5 +1,5 @@
-﻿/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="../../shared/scripts/components/pager.ts" />
+﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class OldLegacyReport extends OldBaseReport {
@@ -8,17 +8,18 @@ class OldLegacyReport extends OldBaseReport {
     $exportExcelForm: JQuery;
     $excelIcon: JQuery;
 
-    pagerComponent: PagerComponent;
+    pagerComponent: ClientPagerComponent;
 
     constructor(
         $: JQueryStatic,
         accountingPeriodSelectionComponent: SingleSelectionDropdownComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
-        pagerComponent: PagerComponent) {
+        pagerComponent: ClientPagerComponent) {
         super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent)
 
         this.pagerComponent = pagerComponent;
+        this.pagerComponent.pageList = this.pagerComponent.smallPageList;
     }
 
     init = () => {
@@ -27,7 +28,7 @@ class OldLegacyReport extends OldBaseReport {
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId"));
         this.dateRangePickerComponent.render();
-        this.pagerComponent.pageList = this.pagerComponent.pageList;
+
         this.initTooltip();
         this.pagerComponent.render();
         this.registerEvents();

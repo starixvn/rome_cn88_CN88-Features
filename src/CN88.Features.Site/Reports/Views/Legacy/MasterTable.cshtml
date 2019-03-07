@@ -1,4 +1,7 @@
 ﻿@model ReportBaseViewModel
+@{
+    var total = Model.GrandTotal;
+}
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
         <tr>
@@ -27,38 +30,39 @@
                 <th class="text-right">@ReportResources.SMAStockPercent</th>
             }
         </tr>
+        @if (Model.ReportData.Any())
+        {
+            <tr class="total">
+                <th class="text-left">@ReportResources.Total</th>
+                <th></th>
+                @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Agent)
+                @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
+                @HtmlHelpers.RenderHeaderNumberCell(total.MasterIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(total.MasterResult)
+                @if (Model.IsNotOwner)
+                {
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Super)
+                }
+                @HtmlHelpers.RenderHeaderNumberCell(total.MasterStock)
+                @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                @if (Model.IsNotOwner)
+                {
+                    <th></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperStock)
+                    @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                }
+            </tr>
+        }
     </thead>
     <tbody>
         @if (Model.ReportData.Any())
         {
-            var total = Model.GrandTotal;
-            <tr class="total">
-                <td class="text-left">@ReportResources.Total</td>
-                <td></td>
-                @HtmlHelpers.RenderNumberCell(total.Wagers)
-                @HtmlHelpers.RenderNumberCell(total.Stake)
-                @HtmlHelpers.RenderNumberCell(total.ValidStake)
-                @HtmlHelpers.RenderNumberCell(total.MemberIncome)
-                @HtmlHelpers.RenderNumberCell(total.Agent)
-                @HtmlHelpers.RenderNumberCell(total.AgentResult)
-                @HtmlHelpers.RenderNumberCell(total.MasterIncome)
-                @HtmlHelpers.RenderNumberCell(total.MasterResult)
-                @if (Model.IsNotOwner)
-                {
-                    @HtmlHelpers.RenderNumberCell(total.Super)
-                }
-                @HtmlHelpers.RenderNumberCell(total.MasterStock)
-                @ReportHtmlHelpers.RenderPercentCell(100)
-                @if (Model.IsNotOwner)
-                {
-                    <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.SuperIncome)
-                    @HtmlHelpers.RenderNumberCell(total.SuperResult)
-                    @HtmlHelpers.RenderNumberCell(total.SuperStock)
-                    @ReportHtmlHelpers.RenderPercentCell(100)
-                }
-            </tr>
-
             foreach (var row in Model.ReportData)
             {
                 <tr>

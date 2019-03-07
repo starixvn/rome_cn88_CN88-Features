@@ -161,8 +161,7 @@
                 mapper.Map(H, data => data.Wagers)
                     .Map(I, data => data.Stake)
                     .Map(J, data => data.ValidStake)
-                    .Map(K, data => data.MemberIncome)
-                    .Map(L, data => data.AgentCurrency);
+                    .Map(K, data => data.MemberIncome);
             }
             else
             {
@@ -172,8 +171,7 @@
                     .Map(K, data => data.Wagers)
                     .Map(L, data => data.Stake)
                     .Map(M, data => data.ValidStake)
-                    .Map(N, data => data.MemberIncome)
-                    .Map(O, data => data.AgentCurrency);
+                    .Map(N, data => data.MemberIncome);
             }
 
             return mapper;
@@ -198,7 +196,7 @@
         internal Mapper<ReportModel> GetFooterRowMapper()
             => new Mapper<ReportModel>()
                 .Map(A, data => ReportResources.ProfitMagin)
-                .Map(B, data => CalculatePercentage(data.SuperResult, data.SuperStock));
+                .Map(B, data => CalculatePercentage(data.SuperResult, data.SuperStock).FormatNumber() + " %");
 
         private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
             => new TemplateInfo(

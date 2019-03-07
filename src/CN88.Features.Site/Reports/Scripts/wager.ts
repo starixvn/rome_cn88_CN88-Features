@@ -1,11 +1,14 @@
 ﻿/// <reference path="../../shared/scripts/core.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="../../shared/scripts/components/pager.ts" />
+/// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/link-builder.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class WagerReport extends LegacyReport {
     $reportType: JQuery;
     $tabValidStake: JQuery;
+    $tabSettlement: JQuery;
+    $custLevelId: JQuery;
 
     elements = {
         tabSelectors: null,
@@ -18,27 +21,30 @@ class WagerReport extends LegacyReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
-        pagerComponent: PagerComponent) {
-        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, pagerComponent)
+        linkBuilderComponent: LinkBuilderComponent,
+        pagerComponent: ClientPagerComponent) {
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, linkBuilderComponent, pagerComponent)
     }
 
     init = () => {
         this.$.blockUI();
         this.cacheDOMElements();
+        this.initTooltip();
+
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
-        this.pagerComponent.pageList = this.pagerComponent.pageList;
-        this.initTooltip();
-        this.pagerComponent.render();
+        this.linkBuilderComponent.render();
+
         this.registerEvents();
 
         let reportType = this.$reportType.val();
-        if (reportType == "2"
-            || reportType == "3"
-            || reportType == "4") {
+        let custLevelId = this.$custLevelId.val();
+        if (reportType !== "1" && custLevelId !== "1") {
             this.$tabValidStake.click();
+        } else {
+            this.$tabSettlement.click();
         }
 
         this.$.unblockUI();
@@ -47,7 +53,9 @@ class WagerReport extends LegacyReport {
     public cacheDOMElements() {
         super.cacheDOMElements();
         this.$reportType = this.$("#ReportType");
+        this.$custLevelId = this.$("#CustLevelId");
         this.$tabValidStake = this.$("#tabValidStake");
+        this.$tabSettlement = this.$("#tabSettlement");
         this.elements.tabSelectors = $(".tab-selector");
         this.elements.tabContent = $(".tab-content");
     }
@@ -61,6 +69,8 @@ class WagerReport extends LegacyReport {
             $(this).addClass("active");
             var target = $(this).attr("target-id");
             self.elements.tabContent.addClass("display-none");
+            var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > .tbl-report");
+            self.pagerComponent.render(pagerOption);
             $("#" + target).removeClass("display-none");
         });
     }
@@ -73,7 +83,8 @@ $(function () {
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new PagerComponent($));
+        new LinkBuilderComponent($),
+        new ClientPagerComponent($));
 
     wagerReport.init();
 })

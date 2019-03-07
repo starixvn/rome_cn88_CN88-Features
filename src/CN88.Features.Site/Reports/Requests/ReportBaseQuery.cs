@@ -19,7 +19,7 @@
 
             UserSelectedLiveStatusId = LiveStatusConstants.PreMatchAndInPlay;
 
-            PageSize = 50;
+            PageSize = 10;
             PageIndex = 1;
         }
 

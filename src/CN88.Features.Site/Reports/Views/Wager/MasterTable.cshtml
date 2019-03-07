@@ -1,4 +1,7 @@
 ﻿@model ReportBaseViewModel
+@{
+    var total = Model.GrandTotal;
+}
 <div id="settlement-content" class="tab-content">
     <table class="tbl-noborder tbl-report settlement-report">
         <thead>
@@ -19,28 +22,30 @@
                     <th class="text-right valid-stake">@ReportResources.SMAStockPercent</th>
                 }
             </tr>
+            @if (Model.ReportData.Any())
+            {
+                <tr class="total">
+                    <th class="text-left">@ReportResources.Total</th>
+                    <th></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MasterIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MasterResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MasterStock)
+                    @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                    @if (Model.IsNotOwner)
+                    {
+                        @HtmlHelpers.RenderHeaderNumberCell(total.Super)
+                        <th></th>
+                        @HtmlHelpers.RenderHeaderNumberCell(total.SuperIncome)
+                        @HtmlHelpers.RenderHeaderNumberCell(total.SuperResult)
+                        @HtmlHelpers.RenderHeaderNumberCell(total.SuperStock)
+                        @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                    }
+                </tr>
+            }
         </thead>
         <tbody>
             @if (Model.ReportData.Any())
             {
-                var total = Model.GrandTotal;
-                <tr class="total">
-                    <td class="text-left">@ReportResources.Total</td>
-                    <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.MasterIncome)
-                    @HtmlHelpers.RenderNumberCell(total.MasterResult)
-                    @HtmlHelpers.RenderNumberCell(total.MasterStock)
-                    @ReportHtmlHelpers.RenderPercentCell(100)
-                    @if (Model.IsNotOwner)
-                    {
-                        @HtmlHelpers.RenderNumberCell(total.Super)
-                        <td></td>
-                        @HtmlHelpers.RenderNumberCell(total.SuperIncome)
-                        @HtmlHelpers.RenderNumberCell(total.SuperResult)
-                        @HtmlHelpers.RenderNumberCell(total.SuperStock)
-                        @ReportHtmlHelpers.RenderPercentCell(100)
-                    }
-                </tr>
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
@@ -65,7 +70,7 @@
             else
             {
                 <tr>
-                    <td colspan="6" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@(Model.IsNotOwner?"12":"6")" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
         </tbody>
@@ -84,21 +89,23 @@
                 <th class="text-right valid-stake">@ReportResources.Agent</th>
                 <th class="text-right valid-stake">@ReportResources.AgentResult</th>
             </tr>
+            @if (Model.ReportData.Any())
+            {
+                <tr class="total">
+                    <th class="text-left">@ReportResources.Total</th>
+                    <th></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Agent)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
+                </tr>
+            }
         </thead>
         <tbody>
             @if (Model.ReportData.Any())
             {
-                var total = Model.GrandTotal;
-                <tr class="total">
-                    <td class="text-left">@ReportResources.Total</td>
-                    <td></td>
-                    @HtmlHelpers.RenderNumberCell(total.Wagers)
-                    @HtmlHelpers.RenderNumberCell(total.Stake)
-                    @HtmlHelpers.RenderNumberCell(total.ValidStake)
-                    @HtmlHelpers.RenderNumberCell(total.MemberIncome)
-                    @HtmlHelpers.RenderNumberCell(total.Agent)
-                    @HtmlHelpers.RenderNumberCell(total.AgentResult)
-                </tr>
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
@@ -116,7 +123,7 @@
             else
             {
                 <tr>
-                    <td colspan="7" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="8" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
         </tbody>

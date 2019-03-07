@@ -53,6 +53,14 @@
 
         public SingleSelectionViewModel LiveStatusSelectionViewModel { get; }
 
+        public IEnumerable<SelectListItem> WagerReportTypes => ReportTypeConstants.WagerReportTypes
+            .Select(t => new SelectListItem
+            {
+                Text = ReportResources.ResourceManager.GetString(t.Value),
+                Value = t.Key.ToString(),
+                Selected = t.Key == ReportTypeConstants.SettledWager
+            });
+
         public IEnumerable<SelectListItem> CancelledReportTypes => ReportTypeConstants.CancelledReportTypes
             .Select(t => new SelectListItem
             {

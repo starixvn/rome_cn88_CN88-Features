@@ -6,6 +6,18 @@
 {
     @value.ToString("#,##0")
 }
+@helper RenderHeaderNumberCell(decimal cellValue, string cellClass = "")
+{
+    <th class="text-right @cellClass">
+        @FormatNumber(cellValue)
+    </th>
+}
+@helper RenderHeaderNumberCell(int cellValue, string cellClass = "")
+{
+    <th class="text-right @cellClass">
+        @FormatNumber(cellValue)
+    </th>
+}
 @helper RenderNumberCell(decimal cellValue, string cellClass = "")
 {
     <td class="text-right @cellClass">

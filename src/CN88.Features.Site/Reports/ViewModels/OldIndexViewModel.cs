@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Features.Reports.AppResources;
+    using Features.Reports.Constants;
     using Features.Reports.Models;
     using Requests;
     using Shared.ViewModels.Components;
@@ -23,5 +25,15 @@
         }
 
         public AccountingPeriodSelectionViewModel AccountingPeriodSelectionViewModel { get; }
+
+        public IEnumerable<SelectListItem> WagerReportTypes => new List<SelectListItem>
+        {
+            new SelectListItem
+            {
+                Text = ReportResources.ResourceManager.GetString(nameof(ReportTypeConstants.SettledWager)),
+                Value = ReportTypeConstants.SettledWager.ToString(),
+                Selected = true
+            }
+        };
     }
 }

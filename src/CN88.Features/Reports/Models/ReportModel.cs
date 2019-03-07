@@ -19,7 +19,6 @@ namespace CN88.Features.Reports.Models
             decimal stake,
             decimal validStake,
             decimal memberIncome,
-            decimal agentCurrency,
             decimal agent,
             decimal agentIncome,
             decimal agentResult,
@@ -44,7 +43,6 @@ namespace CN88.Features.Reports.Models
             ValidStake = validStake;
             MemberIncome = memberIncome;
 
-            AgentCurrency = agentCurrency;
             Agent = agent;
             AgentIncome = agentIncome;
             AgentResult = agentResult;
@@ -78,8 +76,6 @@ namespace CN88.Features.Reports.Models
         public decimal ValidStake { get; private set; }
 
         public decimal MemberIncome { get; private set; }
-
-        public decimal AgentCurrency { get; private set; }
 
         public decimal Agent { get; private set; }
 
@@ -139,7 +135,6 @@ namespace CN88.Features.Reports.Models
             ValidStake += winloss.ValidStake;
             MemberIncome += winloss.MemberIncome;
 
-            AgentCurrency += winloss.AgentCurrency;
             Agent += winloss.Agent;
             AgentIncome += winloss.AgentIncome;
             AgentResult += winloss.AgentResult;

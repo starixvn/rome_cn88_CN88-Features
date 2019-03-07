@@ -1,4 +1,7 @@
 ﻿@model ReportBaseViewModel
+@{
+    var total = Model.GrandTotal;
+}
 <div id="settlement-content" class="tab-content">
     <table class="tbl-noborder tbl-report settlement-report">
         <thead>
@@ -18,28 +21,30 @@
                     <th class="text-right valid-stake">@ReportResources.HeadlineStockPercent</th>
                 }
             </tr>
-        </thead>
-        <tbody>
             @if (Model.ReportData.Any())
             {
-                var total = Model.GrandTotal;
                 <tr class="total">
-                    <td class="text-left">@ReportResources.Total</td>
-                    @HtmlHelpers.RenderNumberCell(total.Super)
-                    @HtmlHelpers.RenderNumberCell(total.SuperIncome)
-                    @HtmlHelpers.RenderNumberCell(total.SuperResult)
-                    @HtmlHelpers.RenderNumberCell(total.SuperStock)
+                    <th class="text-left">@ReportResources.Total</th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Super)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperStock)
                     @if (Model.IsNotOwner)
                     {
-                        @ReportHtmlHelpers.RenderPercentCell(100)
-                        <td></td>
-                        @HtmlHelpers.RenderNumberCell(total.HeadlineIncome)
-                        @HtmlHelpers.RenderNumberCell(total.HeadlineResult)
-                        @HtmlHelpers.RenderNumberCell(total.HeadlineStock)
-                        @ReportHtmlHelpers.RenderPercentCell(100)
+                        @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                        <th></th>
+                        @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineIncome)
+                        @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineResult)
+                        @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineStock)
+                        @ReportHtmlHelpers.RenderHeaderPercentCell(100)
                     }
                 </tr>
-                foreach (var data in Model.ReportData)
+            }
+        </thead>
+        @if (Model.ReportData.Any())
+        {
+            <tbody>
+                @foreach (var data in Model.ReportData)
                 {
                     <tr>
                         <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
@@ -58,17 +63,21 @@
                         }
                     </tr>
                 }
+            </tbody>
+            <tfoot>
                 <tr>
-                    <td class="profit-margin" colspan="5" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
+                    <td class="profit-margin" colspan="@(Model.IsNotOwner?"11":"5")" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
                 </tr>
-            }
-            else
-            {
+            </tfoot>
+        }
+        else
+        {
+            <tbody>
                 <tr>
-                    <td colspan="6" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@(Model.IsNotOwner?"11":"5")" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
-            }
-        </tbody>
+            </tbody>
+        }
     </table>
 </div>
 <div id="valid-stake-content" class="tab-content display-none">
@@ -84,22 +93,24 @@
                 <th class="text-right valid-stake">@ReportResources.AgentResult</th>
                 <th class="text-right valid-stake">@ReportResources.MasterAgent</th>
             </tr>
-        </thead>
-        <tbody>
             @if (Model.ReportData.Any())
             {
-                var total = Model.GrandTotal;
                 <tr class="total">
-                    <td class="text-left">@ReportResources.Total</td>
-                    @HtmlHelpers.RenderNumberCell(total.Wagers)
-                    @HtmlHelpers.RenderNumberCell(total.Stake)
-                    @HtmlHelpers.RenderNumberCell(total.ValidStake)
-                    @HtmlHelpers.RenderNumberCell(total.MemberIncome)
-                    @HtmlHelpers.RenderNumberCell(total.Agent)
-                    @HtmlHelpers.RenderNumberCell(total.AgentResult)
-                    @HtmlHelpers.RenderNumberCell(total.Master)
+                    <th class="text-left">@ReportResources.Total</th>
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Agent)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Master)
                 </tr>
-                foreach (var data in Model.ReportData)
+            }
+        </thead>
+        @if (Model.ReportData.Any())
+        {
+            <tbody>
+                @foreach (var data in Model.ReportData)
                 {
                     <tr>
                         <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
@@ -112,16 +123,20 @@
                         @HtmlHelpers.RenderNumberCell(data.Master)
                     </tr>
                 }
+            </tbody>
+            <tfoot>
                 <tr>
                     <td class="profit-margin" colspan="8" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
                 </tr>
-            }
-            else
-            {
+            </tfoot>
+        }
+        else
+        {
+            <tbody>
                 <tr>
                     <td colspan="8" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
-            }
-        </tbody>
+            </tbody>
+        }
     </table>
 </div>

@@ -1,4 +1,7 @@
 ﻿@model ReportBaseViewModel
+@{
+    var total = Model.GrandTotal;
+}
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
         <tr>
@@ -12,22 +15,24 @@
             <th class="text-right">@ReportResources.AgentIncome</th>
             <th class="text-right">@ReportResources.AgentResultA</th>
         </tr>
+        @if (Model.ReportData.Any())
+        {
+            <tr class="total">
+                <th class="text-left">@ReportResources.Total</th>
+                <th></th>
+                @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
+                @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
+                @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                <th></th>
+                @HtmlHelpers.RenderHeaderNumberCell(total.AgentIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
+            </tr>
+        }
     </thead>
     <tbody>
         @if (Model.ReportData.Any())
         {
-            var total = Model.GrandTotal;
-            <tr class="total">
-                <td class="text-left">@ReportResources.Total</td>
-                <td></td>
-                @HtmlHelpers.RenderNumberCell(total.Wagers)
-                @HtmlHelpers.RenderNumberCell(total.Stake)
-                @HtmlHelpers.RenderNumberCell(total.ValidStake)
-                @HtmlHelpers.RenderNumberCell(total.MemberIncome)
-                <td></td>
-                @HtmlHelpers.RenderNumberCell(total.AgentIncome)
-                @HtmlHelpers.RenderNumberCell(total.AgentResult)
-            </tr>
 
             foreach (var row in Model.ReportData)
             {

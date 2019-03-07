@@ -4,7 +4,7 @@
         new SingleSelectionDropdownComponent($),
         new DateRangePickerComponent($),
         new SingleSelectionDropdownComponent($),
-        new PagerComponent($));
+        new ClientPagerComponent($));
 
     oldLegacyReport.init();
 })
