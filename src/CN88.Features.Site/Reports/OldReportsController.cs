@@ -7,6 +7,7 @@
     using MediatR;
     using Requests;
     using Shared.Controllers;
+    using System;
 
     public class OldReportsController : FeatureBaseController
     {
@@ -15,6 +16,7 @@
         private const string WagerViewPath = "~/Reports/Views/OldWager.cshtml";
         private const string LegacyViewPath = "~/Reports/Views/OldLegacy.cshtml";
         private const string VerifyPasswordSessionKey = "OldReports.VerifiedPassword";
+        private const string VerifiedTimeElapsed = "OldReports.VerifiedTimeElapsed";
 
         private readonly SessionManager sessionManager;
 
@@ -25,7 +27,7 @@
         {
             this.sessionManager = sessionManager;
         }
-
+        
         public async Task<ActionResult> VerifyPassword(VerifyPasswordQuery message)
             => await ViewAsync(message, VerifyPasswordViewPath);
 
@@ -35,6 +37,7 @@
             var result = await mediator.Send(message);
 
             sessionManager.Add(VerifyPasswordSessionKey, result.IsSuccess);
+            Checkin();
 
             if (result.IsSuccess)
             {
@@ -55,5 +58,11 @@
         [ReCheckPassword]
         public async Task<ActionResult> Legacy(OldReportQuery message)
             => await ViewAsync(message, LegacyViewPath);
+        
+        public bool Checkin()
+        {
+            sessionManager.Add(VerifiedTimeElapsed, DateTime.Now);
+            return true;
+        }
     }
 }
