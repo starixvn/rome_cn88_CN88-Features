@@ -13,6 +13,7 @@
     using MediatR;
     using NPOI.SS.UserModel;
     using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
     using Requests;
     using Shared.ViewModels;
     using ViewModels;
@@ -50,7 +51,7 @@
                     FooterMapper(parlayDetailViewModel, isTotalWinLost: true))
                 .UseTemplate(GetTemplateInfo(Enumeration.FromValue<UserLevel>(viewerLevelId)));
 
-            RtfHelper = message.RtfHelper ?? InitRTFHelper(workbook.Workbook);
+            RtfHelper = message.RtfHelper ?? InitRTFHelper((onebookWorkbook as NpoiWorkbook<IEnumerable<ParlayDetailWrapper>>).Workbook);
 
             var fileContent = onebookWorkbook
                 .Sheet(parlayDetailViewModel.Title)

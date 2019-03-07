@@ -535,6 +535,7 @@
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
     <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />

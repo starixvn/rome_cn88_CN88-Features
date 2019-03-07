@@ -1,16 +1,19 @@
 ﻿namespace CN88.Features.Site.BetLists.Handlers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
+    using Features.BetLists.Models;
     using Features.BetLists.Params;
     using Features.BetLists.Resources;
     using Features.Shared.Models;
     using MediatR;
     using ONEbook.SpreadSheets;
+    using ONEbook.SpreadSheets.NPOI;
     using Requests;
     using Shared.ViewModels;
     using ViewModels;
@@ -27,9 +30,11 @@
         private IBetListHTMLBuilder builder;
 
         private BetListOfReportWorkbook workbook;
+        private IBetListCN88ExcelBuilder cn88ExcelBuilder;
 
         public BetListOfReportExcelHandler(
             IBetListExcelBuilder excelBuilder,
+            IBetListCN88ExcelBuilder cn88ExcelBuilder,
             BetListsService service,
             ISmartPunterBetListMonitor monitorService,
             ITicketHelper ticketHelper,
@@ -44,6 +49,7 @@
             this.builder = builder;
 
             this.workbook = workbook;
+            this.cn88ExcelBuilder = cn88ExcelBuilder;
         }
 
         public async Task<ExcelFileViewModel> Handle(BetListOfReportExcelQuery message)
@@ -63,10 +69,11 @@
                 new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
 
             var onebookWorkbook = workbook
-                .SetData(viewModel)
+                .SetData(viewModel, ExcelBuilder, cn88ExcelBuilder)
                 .UseTemplate(GetTemplateInfo(viewerLevel));
 
-            RtfHelper = message.RtfHelper ?? InitRTFHelper(workbook.Workbook);
+            RtfHelper = message.RtfHelper ?? InitRTFHelper((onebookWorkbook as NpoiWorkbook<IEnumerable<TicketDto>>).Workbook);
+            workbook.SetRTFHelper(RtfHelper);
 
             var fileContent = onebookWorkbook
                 .Header(BetListsResources.ResourceManager.GetString)

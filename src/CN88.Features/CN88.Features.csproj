@@ -207,6 +207,7 @@
   <ItemGroup>
     <Compile Include="BetLists\BetListsService.cs" />
     <Compile Include="BetLists\Constants\BetListTypeConstant.cs" />
+    <Compile Include="BetLists\Constants\BetTypeIdConstants.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReportCriteria.cs" />
     <Compile Include="BetLists\Criteria\GetParlaySubTicketsCriteria.cs" />
     <Compile Include="BetLists\Criteria\GetParlayDetailCriteria.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterWriteLogNoDataCommand.cs" />
     <Compile Include="BetLists\DataAccesses\BetListsData.cs" />
     <Compile Include="BetLists\DataAccesses\SmartPunterDataAccess.cs" />
+    <Compile Include="BetLists\Helpers\BetTypeHelper.cs" />
     <Compile Include="BetLists\Models\BetListData.cs" />
     <Compile Include="BetLists\Models\MatchDetailModel.cs" />
     <Compile Include="BetLists\Models\NapUserFunctionPermission.cs" />
