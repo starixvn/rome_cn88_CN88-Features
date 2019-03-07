@@ -535,6 +535,7 @@
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
+    <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
@@ -689,6 +690,9 @@
     <Content Include="App_Code\Reports\ReportHtmlHelpers.cshtml" />
     <Content Include="BetLists\ExcelTemplates\ParlayDetail.xls" />
     <Content Include="BetLists\Views\Filter.cshtml" />
+    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Agent.xls" />
+    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Master.xls" />
+    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Super.xls" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

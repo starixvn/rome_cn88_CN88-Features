@@ -75,5 +75,14 @@
 
             return new ExcelFileViewModel(viewModel.ReportTitle, fileContent);
         }
+
+        protected internal override TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
+            => new TemplateInfo(
+                  GetExcelTemplatePath($"BetListOfReport_{viewerLevel.DisplayName}"),
+                  noInfomationText: BetListsResources.NoInformationIsAvailable,
+                  bodyStartIndex: 3,
+                  bodyEndIndex: 4,
+                  footerEndIndex: 5);
+
     }
 }

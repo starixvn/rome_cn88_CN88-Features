@@ -156,7 +156,9 @@
 
             container.RegisterPerWebRequest<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>();
             container.RegisterPerWebRequest<IBetListExcelBuilder>(() => container.GetInstance<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
+
             container.RegisterSingleton<ParlayDetailWorkbook, ParlayDetailWorkbookImpl>();
+            container.RegisterSingleton<BetListOfReportWorkbook, BetListOfReportWorkbookImpl>();
         }
     }
 }
