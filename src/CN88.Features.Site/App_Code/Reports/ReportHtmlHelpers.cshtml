@@ -2,6 +2,12 @@
 {
     @percent.ToString("#,##0.0000")
 }
+@helper RenderHeaderPercentCell(decimal percent, string cellClass = "")
+{
+    <th class="text-right @cellClass">
+        @FormatPercent(percent)
+    </th>
+}
 @helper RenderPercentCell(decimal percent, string cellClass = "")
 {
     <td class="text-right @cellClass">

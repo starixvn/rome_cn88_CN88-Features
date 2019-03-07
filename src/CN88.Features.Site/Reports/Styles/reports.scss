@@ -213,7 +213,7 @@
         padding: 13px 8px;
     }
 
-    > tbody > tr > td {
+    > tbody > tr > td, > tfoot > tr > td {
         padding: 7px 8px;
 
         &.profit-margin span {
@@ -222,9 +222,10 @@
         }
     }
 
-    > tbody > tr.total > td {
+    > thead > tr.total > th {
         color: #fff;
         background-color: #2C3E50;
+        padding: 7px 8px;
     }
 }
 
