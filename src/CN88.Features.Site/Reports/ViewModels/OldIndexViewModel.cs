@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -21,7 +20,7 @@
         {
             var selectPeriod = oldAccountingPeriods.First();
             AccountingPeriodSelectionViewModel = new AccountingPeriodSelectionViewModel(oldAccountingPeriods, selectPeriod.PeriodId);
-            DateRangePickerViewModel = new DateRangePickerViewModel(DateTime.MinValue, selectPeriod.ToDate, selectPeriod.FromDate, selectPeriod.ToDate);
+            DateRangePickerViewModel = new DateRangePickerViewModel(oldAccountingPeriods.Last().FromDate, selectPeriod.ToDate, selectPeriod.FromDate, selectPeriod.ToDate);
         }
 
         public AccountingPeriodSelectionViewModel AccountingPeriodSelectionViewModel { get; }
