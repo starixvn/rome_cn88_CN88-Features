@@ -20,6 +20,10 @@
             => await ViewAsync(message, "~/BetLists/Views/BetListOfReport.cshtml");
 
         [HttpGet]
+        public async Task<ActionResult> BetListOfStatement(BetListOfStatementQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/BetListOfStatement.cshtml");
+
+        [HttpGet]
         public async Task<ActionResult> ParlaySubTickets(GetParlaySubTicketsQuery message)
             => await ViewAsync(message, "~/BetLists/Views/ParlaySubTickets.cshtml");
 

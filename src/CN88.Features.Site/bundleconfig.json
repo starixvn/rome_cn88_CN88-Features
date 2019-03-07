@@ -107,7 +107,7 @@
     "inputFiles": [
       "Shared/Scripts/core.js",
       "Shared/Scripts/components/pager.js",
-      "CustomerList/scripts/online-member.js",
+      "CustomerList/scripts/online-member.js"
     ]
   },
   {
@@ -161,7 +161,25 @@
       "BetLists/Scripts/app-path.js",
       "BetLists/Scripts/utils.js",
       "BetLists/Scripts/popup-details.js",
+      "BetLists/Scripts/base-betlist.js",
       "BetLists/Scripts/betlist-of-report.js",
+      "BetLists/Scripts/result/base-result.js",
+      "BetLists/Scripts/result/sportsbook-result-details.js",
+      "BetLists/Scripts/result/casino-result-details.js",
+      "BetLists/Scripts/result/other-result-details.js",
+      "BetLists/Scripts/details/base-details.js",
+      "BetLists/Scripts/details/sportsbook-details.js",
+      "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js"
+    ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/betlist-of-statement.js",
+    "inputFiles": [
+      "BetLists/Scripts/app-path.js",
+      "BetLists/Scripts/utils.js",
+      "BetLists/Scripts/popup-details.js",
+      "BetLists/Scripts/base-betlist.js",
+      "BetLists/Scripts/betlist-of-statement.js",
       "BetLists/Scripts/result/base-result.js",
       "BetLists/Scripts/result/sportsbook-result-details.js",
       "BetLists/Scripts/result/casino-result-details.js",

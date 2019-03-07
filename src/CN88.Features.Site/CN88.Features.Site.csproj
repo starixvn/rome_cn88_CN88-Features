@@ -528,9 +528,11 @@
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
     <Compile Include="BetLists\Helpers\IPHelper.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
+    <Compile Include="BetLists\Requests\BetListOfStatementQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlaySubTicketsQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
+    <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
@@ -695,6 +697,7 @@
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Master.xls" />
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Super.xls" />
     <Content Include="App_Code\Components\DateTimeSelection.cshtml" />
+    <Content Include="BetLists\Views\BetListOfStatement.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -738,6 +741,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="BetLists\Scripts\base-betlist.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\betlist-of-statement.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\sportsbook-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\base-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\other-result-details.ts" />

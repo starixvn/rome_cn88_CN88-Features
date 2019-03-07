@@ -20,6 +20,7 @@
     public class BetListsHandler :
         BaseHandler,
         IAsyncRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
+        IAsyncRequestHandler<BetListOfStatementQuery, BetListOfStatementViewModel>,
         IAsyncRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
         IAsyncRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>
     {
@@ -84,6 +85,30 @@
                 BuildBetTypeSelectListItems(betTypes, 0),
                 currentPeriod,
                 lastPeriod);
+        }
+
+        public async Task<BetListOfStatementViewModel> Handle(BetListOfStatementQuery message)
+        {
+            var param = new BetListOfStatementParam(
+                message.CustId,
+                message.Date,
+                message.SportTypeGroup);
+
+            var betlistData = await service.GetBetListOfStatement(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            var sportGroups = sportGroupService.GetSportGroups();
+            var betTypes = betTypeService.GetBetTypeGroupsBySport();
+            var currentPeriod = accountingPeriodService.GetCurrentPeriod();
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+
+            return new BetListOfStatementViewModel(
+                message,
+                betlistData,
+                ticketHelper,
+                cn88Builder,
+                builder);
         }
 
         public async Task<ParlayDetailViewModel> Handle(GetParlayDetailQuery message)

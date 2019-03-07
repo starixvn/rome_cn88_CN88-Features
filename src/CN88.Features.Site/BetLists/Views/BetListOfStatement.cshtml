@@ -1,0 +1,101 @@
+﻿@using Fanex.BetList.Core.Utils
+@model BetListOfStatementViewModel
+@{
+    ViewBag.Title = "Bet List";
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+
+@section Styles {
+    @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
+}
+<div class="page-title">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="report-name"></li>
+    </ul>
+</div>
+<table class="tbl-style2 tbl-bet-list">
+    <thead>
+        <tr>
+            <th>@BetListsResources.DateTime</th>
+            <th>@BetListsResources.Member/@BetListsResources.Commission</th>
+            <th>@BetListsResources.BetID/<br />@BetListsResources.BetType</th>
+            <th>@BetListsResources.Details</th>
+            <th>@BetListsResources.Stake</th>
+            <th>@BetListsResources.WinLoss</th>
+            <th>@BetListsResources.Status</th>
+            <th>@BetListsResources.AgentPercent</th>
+
+            @if (Model.CustLevel.IsMasterOrSuperLevel())
+            {
+                <th>@BetListsResources.MAPercent</th>
+            }
+
+            @if (Model.CustLevel.IsSuperLevel())
+            {
+                <th>@BetListsResources.SMAPercent</th>
+                <th>@BetListsResources.CoPercent</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.BetListData.Tickets.Any())
+            {
+                var total = Model.BetListTotal;
+
+            @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
+
+            var tickets = new List<CN88.Features.BetLists.Models.TicketDto>
+            {
+                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket1(),
+                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket2(),
+                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket3(),
+                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket4()
+            };
+
+            for (int i = 0; i < tickets.Count; i++)
+            {
+                var ticket = tickets[i];
+                <tr data-trans-id="@ticket.TransId">
+                    @BetLists.TransDate.Render(ticket)
+                    @BetLists.Comm.Render(ticket)
+                    @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
+                    @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
+                    <td>@Html.Raw(ConvertByBetType.Stake(ticket.Stake))</td>
+                    <td>@Html.Raw(ConvertByBetType.Winloss(ticket.Winlost))</td>
+                    @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
+                    @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking)
+                    @if (Model.CustLevel.IsMasterOrSuperLevel())
+                    {
+                        @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking)
+                    }
+
+                    @if (Model.CustLevel.IsSuperLevel())
+                    {
+                        @HtmlHelpers.RenderNumberCell((int)ticket.SuperPositionTaking)
+                        @HtmlHelpers.RenderNumberCell((int)Model.CompanyPositionTaking(ticket))
+                    }
+                </tr>
+            }
+        }
+        else
+        {
+            @BetLists.NoInfomation.Render(Model.NoOfColumns)
+        }
+    </tbody>
+</table>
+
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
+@Html.Hidden("sport-type-group", Model.SportTypeGroup)
+@Html.Hidden("from-date", Model.Date)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("colossusBets-PopUpDetail-Title", BetListsResources.ColossusBetsPopUpDetailTitle)
+
+@section Scripts{
+    @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-statement")
+}
