@@ -66,6 +66,76 @@ class ReportIndexView extends BaseReport {
         this.$.unblockUI();
     };
 
+    reset = () => {
+        this.resetWagerReportType();
+        this.resetCancelledReportType();
+        this.resetDatePickerToYesterday();
+        this.resetSportType();
+        this.resetBetType();
+        this.resetLiveStatus();
+    };
+
+    resetWagerReportType = () => {
+        (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
+        this.$wagerRptTypeDropdown.multiselect('refresh');
+    };
+
+    resetCancelledReportType = () => {
+        (<HTMLSelectElement>this.$cancelledRptTypeDropdown[0]).selectedIndex = 0;
+        this.$cancelledRptTypeDropdown.multiselect('refresh');
+    };
+
+    resetSportType = () => {
+        (<HTMLSelectElement>this.sportGroupSelectionComponent.$dropdown[0]).selectedIndex = 0;
+        this.sportGroupSelectionComponent.$dropdown.multiselect('refresh');
+    };
+
+    resetBetType = () => {
+        (<HTMLSelectElement>this.betTypeSelectionComponent.$dropdown[0]).selectedIndex = 0;
+        this.betTypeSelectionComponent.$dropdown.multiselect('refresh');
+    };
+
+    resetLiveStatus = () => {
+        (<HTMLSelectElement>this.liveStatusSelectionComponent.$dropdown[0]).selectedIndex = 0;
+        this.liveStatusSelectionComponent.$dropdown.multiselect('refresh');
+    };
+
+    resetDatePickerToYesterday = () => {        
+        let today: Date = new Date();
+        let yesterday: number = today.setDate(today.getDate() - 1);
+
+        this.$fromDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
+        this.$toDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
+
+        this.$yesterdayBtn
+            .removeClass('btn-default')
+            .addClass('btn-secondary');
+
+        this.$todayBtn
+            .removeClass('btn-secondary')
+            .addClass('btn-default');
+
+        this.$tomorrowBtn
+            .removeClass('btn-secondary')
+            .addClass('btn-default');
+
+        this.$thisPeriodBtn
+            .removeClass('btn-secondary')
+            .addClass('btn-default');
+
+        this.$lastPeriodBtn
+            .removeClass('btn-secondary')
+            .addClass('btn-default');
+
+        this.$thisWeekBtn
+            .removeClass('btn-secondary')
+            .addClass('btn-default');
+
+        this.$lastWeekBtn
+            .removeClass('btn-secondary')
+            .addClass('btn-default');
+    };
+
     cachedDOMElements = () => {
         this.$wagerTab = this.$("#wager-tab");
         this.$cancelledTab = this.$("#cancelled-tab");
@@ -171,7 +241,7 @@ class ReportIndexView extends BaseReport {
         });
 
         this.$clearBtn.click(() => {
-            this.$yesterdayBtn.click();
+            this.reset();
         });
     };
 
