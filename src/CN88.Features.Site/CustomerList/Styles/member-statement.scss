@@ -1,9 +1,16 @@
 ﻿.member-statement {
     padding: 20px;
     .page-title {
-        margin-bottom: 12px;
+        margin-bottom: 0;
     }
     .tbl-style2 {
         width: 100%;
+        > tfoot > tr > td {
+            font-weight: bold;
+            background-color: #ecf4e2;
+        }
+        .text-right {
+            text-align: right !important;
+        }
     }
 }
