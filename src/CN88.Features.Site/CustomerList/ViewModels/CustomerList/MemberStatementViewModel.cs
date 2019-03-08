@@ -6,6 +6,8 @@
     using CN88.Features.CustomerList.Models;
     using CN88.Features.Site.CustomerList.Requests;
     using CN88.Features.Site.Shared.ViewModels.Components;
+    using Features.Shared.Extensions;
+
     public class MemberStatementViewModel
     {
         public MemberStatementViewModel(
@@ -16,13 +18,13 @@
             IEnumerable<SelectListItem> toDates)
         {
             Statements = statements;
-            TotalStake = statements.Where(i => i.Stake.HasValue).Sum(i => i.Stake);
-            TotalValidStake = statements.Where(i => i.ValidStake.HasValue).Sum(i => i.ValidStake);
-            TotalWinLoss = statements.Where(i => i.WinLoss.HasValue).Sum(i => i.WinLoss);
+            TotalStake = statements.Sum(i => i.Stake);
+            TotalValidStake = statements.Sum(i => i.ValidStake);
+            TotalWinLoss = statements.Sum(i => i.WinLoss);
             SportTypeSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);            
             FromDateSelectionViewModel = new SingleSelectionViewModel(fromDates, message.UserSelectedFromDate);
             ToDateSelectionViewModel = new SingleSelectionViewModel(toDates, message.UserSelectedToDate);
-            UserName = message.CustName;
+            CustName = message.CustName;
         }
 
         public IEnumerable<MemberStatementModel> Statements { get; }
@@ -35,12 +37,41 @@
 
         public SingleSelectionViewModel ToDateSelectionViewModel { get; }
 
-        public decimal? TotalStake { get; }
+        private decimal? TotalStake { get; }
+        public string TotalStakeStr
+        {
+            get
+            {
+                var hasTicket = Statements.Any(i => i.Stake.HasValue);
 
-        public decimal? TotalValidStake { get; }
+                return hasTicket ? TotalStake.Value.FormatNumber() : "-";
+            }
+        }
 
-        public decimal? TotalWinLoss { get; }
+        private decimal? TotalValidStake { get; }
 
-        public string UserName { get; }
+        public string TotalValidStakeStr
+        {
+            get
+            {
+                var hasTicket = Statements.Any(i => i.ValidStake.HasValue);
+
+                return hasTicket ? TotalValidStake.Value.FormatNumber() : "-";
+            }
+        }
+
+        private decimal? TotalWinLoss { get; }
+
+        public string TotalWinLossStr
+        {
+            get
+            {
+                var hasTicket = Statements.Any(i => i.WinLoss.HasValue);
+
+                return hasTicket ? TotalWinLoss.Value.FormatNumber() : "-";
+            }
+        }
+
+        public string CustName { get; }
     }
 }

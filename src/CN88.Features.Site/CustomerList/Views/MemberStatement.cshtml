@@ -2,15 +2,16 @@
 @model MemberStatementViewModel
 @{
     Layout = "~/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = "Member Statement";
 }
 
 @section Styles {
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/member-statement")
 }
 <div class="member-statement">
-    <div class="page-title">@Model.UserName</div>
+    <div class="page-title">@Model.CustName</div>
     <form class="form-inline filter" role="form">
-        @Html.Hidden("CustName", Model.UserName)
+        @Html.Hidden("CustName", Model.CustName)
         @SportGroupSelection.Render(Model.SportTypeSelectionViewModel, true)
         @DateTimeSelection.Render(Model.FromDateSelectionViewModel, "fromdate", @BetListsResources.Date)
         @DateTimeSelection.Render(Model.ToDateSelectionViewModel, "todate", @SharedResources.To)
@@ -23,23 +24,23 @@
     <table class="tbl-style2">
         <thead>
             <tr>
-                <th>@BetListsResources.Date</th>
-                <th class="text-right">@BetListsResources.Stake</th>
-                <th class="text-right">@ReportResources.ValidStake</th>
-                <th class="text-right">@BetListsResources.WinLoss</th>
+                <th class="text-center">@BetListsResources.Date</th>
+                <th class="text-center">@BetListsResources.Stake</th>
+                <th class="text-center">@ReportResources.ValidStake</th>
+                <th class="text-center">@BetListsResources.WinLoss</th>
             </tr>
         </thead>
         <tbody>
             @if (!Model.Statements.Any())
             {
                 <tr>
-                    <td colspan="4">@SharedResources.NoInformationIsAvailable</td>
+                    <td class="text-center" colspan="4">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
             @foreach (var item in Model.Statements)
             {
                 <tr>
-                    <td>
+                    <td class="text-center">
                         @if (item.HasTicket)
                         {
                             <a href="..">@item.WinLostDateStr</a>
@@ -49,9 +50,9 @@
                             @item.WinLostDateStr
                         }
                     </td>
-                    <td class="text-right">@item.StakeStr</td>
-                    <td class="text-right">@item.ValidStakeStr</td>
-                    <td class="text-right">@Html.Raw(ConvertByBetType.Winloss(item.WinLoss))</td>
+                    <td class="text-center">@item.StakeStr</td>
+                    <td class="text-center">@item.ValidStakeStr</td>
+                    <td class="text-center">@Html.Raw(ConvertByBetType.Winloss(item.WinLoss))</td>
                 </tr>
             }
         </tbody>
@@ -59,10 +60,10 @@
             @if (Model.Statements.Any())
             {
                 <tr>
-                    <td>TOTAL</td>
-                    <td class="text-right">@Model.TotalStake</td>
-                    <td class="text-right">@Model.TotalValidStake</td>
-                    <td class="text-right">@Model.TotalWinLoss</td>
+                    <td class="text-center">@ReportResources.Total</td>
+                    <td class="text-center">@Model.TotalStakeStr</td>
+                    <td class="text-center">@Model.TotalValidStakeStr</td>
+                    <td class="text-center">@Model.TotalWinLossStr</td>
                 </tr>
             }
         </tfoot>
