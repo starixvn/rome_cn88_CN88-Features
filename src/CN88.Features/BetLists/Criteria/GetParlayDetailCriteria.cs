@@ -18,15 +18,6 @@
 
             MoveBetDay = moveBetsDate;
             BalanceUpDay = balanceUpDay;
-
-            // must remove
-            RefNo = "101299489348";
-            TransId = "105931917918";
-            BetId = "0";
-            CustId = 23003440;
-
-            MoveBetDay = new DateTime(2019, 3, 3);
-            BalanceUpDay = new DateTime(2019, 2, 15);
         }
 
         public string RefNo { get; }

@@ -9,10 +9,6 @@
         {
             TransId = param.TransId;
             CustId = param.CustId;
-
-            // must remove
-            TransId = "106028208282";
-            CustId = 19452;
         }
 
         public string TransId { get; }

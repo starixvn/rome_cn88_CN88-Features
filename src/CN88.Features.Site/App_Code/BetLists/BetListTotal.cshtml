@@ -11,7 +11,7 @@
     </tr>
     <tr class="winloss-comm">
         <td colspan="5">@BetListsResources.WinLossWithCommission</td>
-        <td class="text-right">@total</td>
+        <td class="text-right">@(new HtmlString(total))</td>
         <td colspan="@(numberOfColumns- 6)"></td>
     </tr>
 }

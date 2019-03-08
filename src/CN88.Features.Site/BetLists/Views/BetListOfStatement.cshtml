@@ -45,13 +45,7 @@
 
                 @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
 
-                var tickets = new List<CN88.Features.BetLists.Models.TicketDto>
-            {
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket1(),
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket2(),
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket3(),
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket4()
-            };
+                var tickets = Model.BetListData.Tickets.ToList();
 
                 for (int i = 0; i < tickets.Count; i++)
                 {

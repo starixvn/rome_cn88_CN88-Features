@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th class="tex-left">@BetListsResources.DateTime</th>
-                <th class="tex-left">BetListsResources.Member/@BetListsResources.Commission</th>
+                <th class="tex-left">@BetListsResources.Member/@BetListsResources.Commission</th>
                 <th class="tex-left">@BetListsResources.BetID/<br />@BetListsResources.BetType</th>
                 <th class="tex-left">@BetListsResources.Details</th>
                 <th class="tex-right">@BetListsResources.Stake</th>
@@ -40,19 +40,13 @@
             </tr>
         </thead>
         <tbody>
-            @if (!Model.BetListData.Tickets.Any())
+            @if (Model.BetListData.Tickets.Any())
             {
                 var total = Model.BetListTotal;
 
                 @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
 
-                var tickets = new List<CN88.Features.BetLists.Models.TicketDto>
-            {
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket1(),
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket2(),
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket3(),
-                 CN88.Features.BetLists.DataAccesses.BetListsDataSample.Ticket4()
-            };
+                var tickets = Model.BetListData.Tickets.ToList();
 
                 for (int i = 0; i < tickets.Count; i++)
                 {
