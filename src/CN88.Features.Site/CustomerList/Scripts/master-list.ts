@@ -49,8 +49,8 @@
                     "<td>" + customer.Nickname + "</td>" +
                     `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
-                    `<td class='col-status link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
-                    "<td class='col-action'>" +
+                    `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                    "<td class='col-action text-center'>" +
                     `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
                     `<span class='icon-security' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
                     `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? `${editMasterTooltip}` : `${disabledTooltip}`}></span>` +

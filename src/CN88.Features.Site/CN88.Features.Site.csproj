@@ -418,6 +418,8 @@
     <Content Include="BetLists\Styles\bet-lists.min.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
+    <Content Include="BetLists\Styles\images\icon-collapse.png" />
+    <Content Include="BetLists\Styles\images\icon-expand.png" />
     <Content Include="Content\CoreBetListCN88.css" />
     <Content Include="Content\images\add.png" />
     <Content Include="Content\images\minus.png" />

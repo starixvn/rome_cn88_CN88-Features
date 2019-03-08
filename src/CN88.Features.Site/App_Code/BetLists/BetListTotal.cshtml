@@ -2,16 +2,16 @@
 
 @helper Render(string winLoss, string stake, string total, int noOfDetails, int numberOfColumns)
 {
-    <tr class="row-total">
+    <tr class="total">
         <td colspan="3">@BetListsResources.Total</td>
         <td>@noOfDetails.ToString("#,##0")</td>
-        <td>@(new HtmlString(stake))</td>
-        <td>@(new HtmlString(winLoss))</td>
+        <td class="text-right">@(new HtmlString(stake))</td>
+        <td class="text-right winloss">@(new HtmlString(winLoss))</td>
         <td colspan="@(numberOfColumns - 6)"></td>
     </tr>
-    <tr class="row-win-loss-comm">
+    <tr class="winloss-comm">
         <td colspan="5">@BetListsResources.WinLossWithCommission</td>
-        <td>@total</td>
+        <td class="text-right">@total</td>
         <td colspan="@(numberOfColumns- 6)"></td>
     </tr>
 }

@@ -3,8 +3,7 @@
 @helper Render(TicketDto ticket)
 {
     <td>
-        @ticket.UserName
-        <br />
-        <span class="com-info">@ticket.UGroup @ticket.Comm.ToString("#,##0.00")</span>
+        <div>@ticket.UserName</div>
+        <div class="com-info">@ticket.UGroup @ticket.Comm.ToString("#,##0.00")</div>
     </td>
 }
