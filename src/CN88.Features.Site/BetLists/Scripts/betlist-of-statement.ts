@@ -9,7 +9,7 @@
     };
 
     registerEvents = () => {
-        this.$("#btn-submit").off("click").on("click", function () {
+        this.$(".btn-back").off("click").on("click", function () {
             window.history.back();
         });
     };
