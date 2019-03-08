@@ -1,6 +1,7 @@
 ﻿@model ReportFilterViewModel
 <form class="form-inline filter report-form" role="form" id="report-form">
     @RenderHiddenFields()
+    @Html.Hidden("BreadcrumbLevelJson", Model.BreadcrumbLevelJson)
     @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, true)
     @DateRangePicker.Render(Model.DateRangePickerViewModel)
     @BetTypeSelection.Render(Model.BetTypeSelectionViewModel, true)

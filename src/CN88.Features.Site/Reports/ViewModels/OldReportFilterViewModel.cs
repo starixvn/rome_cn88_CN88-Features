@@ -11,11 +11,12 @@
             bool isOwner,
             int custId,
             string custName,
+            string breadcrumbLevelJson,
             UserLevel custLevel,
             SingleSelectionViewModel sportGroupSelectionViewModel,
             AccountingPeriodSelectionViewModel accountingPeriodSelectionViewModel,
             DateRangePickerViewModel dateRangePickerViewModel)
-            : base(displayMode, reportType, isOwner, custId, custName, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
+            : base(displayMode, reportType, isOwner, custId, custName, breadcrumbLevelJson, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
         {
             AccountingPeriodSelectionViewModel = accountingPeriodSelectionViewModel;
         }

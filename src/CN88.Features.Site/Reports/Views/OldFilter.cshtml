@@ -1,6 +1,7 @@
 ﻿@model OldReportFilterViewModel
 <form class="form-inline filter report-form" role="form" id="report-form">
     @RenderHiddenFields()
+    @Html.Hidden("BreadcrumbLevelJson", Model.BreadcrumbLevelJson)
     @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, true)
     @Html.Partial("~/Reports/Views/AccountingPeriodSelection.cshtml", Model.AccountingPeriodSelectionViewModel)
     @DateRangePicker.Render(Model.DateRangePickerViewModel)

@@ -11,6 +11,7 @@
             bool isOwner,
             int custId,
             string custName,
+            string breadcrumbLevelJson,
             UserLevel custLevel,
             SingleSelectionViewModel sportGroupSelectionViewModel,
             DateRangePickerViewModel dateRangePickerViewModel)
@@ -20,6 +21,7 @@
             IsOwner = isOwner;
             CustId = custId;
             CustName = custName;
+            BreadcrumbLevelJson = breadcrumbLevelJson;
             CustLevel = custLevel;
             SportGroupSelectionViewModel = sportGroupSelectionViewModel;
             DateRangePickerViewModel = dateRangePickerViewModel;
@@ -34,6 +36,8 @@
         public int CustId { get; }
 
         public string CustName { get; }
+
+        public string BreadcrumbLevelJson { get; }
 
         public UserLevel CustLevel { get; }
 

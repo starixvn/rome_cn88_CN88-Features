@@ -58,7 +58,7 @@
 
         private string BuildBetListLink(ReportModel model)
            => UrlHelper.AddQueryStringParamsFunc(
-               AppPathHelper.GetAppPath(CN88.Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
+               AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
                GetBetListLinkRouteValues(model));
 
         private string BuildDownlineLink(ReportModel model, string currentLink)
@@ -128,12 +128,16 @@
         private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model)
            => new Dictionary<string, object>
            {
+               //["CustId"] = model.CustId,
+               ["CustName"] = model.Username,
                ["FromDate"] = query.FromDate,
                ["ToDate"] = query.ToDate,
+               ["ReportType"] = query.ReportType,
                ["SportTypeGroup"] = query.UserSelectedSportGroupId,
                ["BetTypeGroup"] = query.UserSelectedBetTypeId,
                ["LiveIndicator"] = query.UserSelectedLiveStatusId,
-               ["Type"] = GetBetListType(query.ReportType)
+               ["Type"] = GetBetListType(query.ReportType),
+               ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
            };
 
         private string BuildReportMainUrl()

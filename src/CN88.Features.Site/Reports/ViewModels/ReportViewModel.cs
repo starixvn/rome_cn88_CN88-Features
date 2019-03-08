@@ -10,6 +10,7 @@
     using Features.Shared.AppResources;
     using Features.Shared.Constants;
     using Requests;
+    using Shared.Helpers;
     using Shared.ViewModels.Components;
 
     public class ReportViewModel : ReportBaseViewModel
@@ -52,6 +53,7 @@
                 query.IsOwner,
                 query.CustId,
                 query.CustName,
+                JsonHelper.ToJsonFunc(query.BreadcrumbLevel),
                 query.CustLevel,
                 sportGroupSelectionViewModel,
                 dateRangePickerViewModel,

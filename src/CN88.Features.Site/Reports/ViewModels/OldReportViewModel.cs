@@ -7,6 +7,7 @@
     using Features.Reports.Constants;
     using Features.Reports.Models;
     using Requests;
+    using Shared.Helpers;
     using Shared.ViewModels.Components;
 
     public class OldReportViewModel : ReportBaseViewModel
@@ -41,6 +42,7 @@
                 query.IsOwner,
                 query.CustId,
                 query.CustName,
+                JsonHelper.ToJsonFunc(query.BreadcrumbLevel),
                 query.CustLevel,
                 sportGroupSelectionViewModel,
                 accountingPeriodSelectionViewModel,

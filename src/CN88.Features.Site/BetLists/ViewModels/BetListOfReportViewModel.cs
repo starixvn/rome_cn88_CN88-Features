@@ -19,6 +19,7 @@
     using Features.Shared.Models;
     using Reports.ViewModels;
     using Requests;
+    using Shared.Helpers;
     using Shared.ViewModels.Components;
 
     public class BetListOfReportViewModel
@@ -104,6 +105,7 @@
                 message.IsOwner,
                 message.CustId,
                 message.CustName,
+                JsonHelper.ToJsonFunc(message.BreadcrumbLevel),
                 message.CustLevel,
                 sportGroupSelectionViewModel,
                 dateRangePickerViewModel,
