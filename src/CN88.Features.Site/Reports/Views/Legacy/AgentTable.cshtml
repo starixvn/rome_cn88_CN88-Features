@@ -1,6 +1,7 @@
 ﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
+    int divisor = Model.Divisor;
 }
 <table class="tbl-noborder tbl-report" id="tbl-report">
     <thead>
@@ -29,20 +30,20 @@
                 <th class="text-left">@ReportResources.Total</th>
                 <th></th>
                 @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
-                @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
-                @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
-                @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
-                @HtmlHelpers.RenderHeaderNumberCell(total.Agent)
+                @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake)
+                @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake)
+                @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MemberIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Agent)
                 <th></th>
-                @HtmlHelpers.RenderHeaderNumberCell(total.AgentIncome)
-                @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
+                @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentIncome)
+                @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult)
                 @if (Model.IsNotOwner)
                 {
                     <th></th>
-                    @HtmlHelpers.RenderHeaderNumberCell(total.MasterIncome)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.MasterResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult)
                 }
-                @HtmlHelpers.RenderHeaderNumberCell(total.AgentStock)
+                @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentStock)
             </tr>
         }
     </thead>
@@ -56,20 +57,20 @@
                     <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
                     <td class="text-left">@row.Name</td>
                     @HtmlHelpers.RenderNumberCell(row.Wagers)
-                    @HtmlHelpers.RenderNumberCell(row.Stake)
-                    @HtmlHelpers.RenderNumberCell(row.ValidStake)
-                    @HtmlHelpers.RenderNumberCell(row.MemberIncome)
-                    @HtmlHelpers.RenderNumberCell(row.Agent)
+                    @HtmlHelpers.RenderNumberCell(divisor, row.Stake)
+                    @HtmlHelpers.RenderNumberCell(divisor, row.ValidStake)
+                    @HtmlHelpers.RenderNumberCell(divisor, row.MemberIncome)
+                    @HtmlHelpers.RenderNumberCell(divisor, row.Agent)
                     <td class="text-right">@row.AgentPoss</td>
-                    @HtmlHelpers.RenderNumberCell(row.AgentIncome)
-                    @HtmlHelpers.RenderNumberCell(row.AgentResult)
+                    @HtmlHelpers.RenderNumberCell(divisor, row.AgentIncome)
+                    @HtmlHelpers.RenderNumberCell(divisor, row.AgentResult)
                     @if (Model.IsNotOwner)
                     {
                         <td class="text-right">@row.MasterPoss</td>
-                        @HtmlHelpers.RenderNumberCell(row.MasterIncome)
-                        @HtmlHelpers.RenderNumberCell(row.MasterResult)
+                        @HtmlHelpers.RenderNumberCell(divisor, row.MasterIncome)
+                        @HtmlHelpers.RenderNumberCell(divisor, row.MasterResult)
                     }
-                    @HtmlHelpers.RenderNumberCell(row.AgentStock)
+                    @HtmlHelpers.RenderNumberCell(divisor, row.AgentStock)
                 </tr>
             }
         }

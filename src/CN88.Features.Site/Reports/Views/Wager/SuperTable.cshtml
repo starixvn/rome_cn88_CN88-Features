@@ -1,6 +1,7 @@
 ﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
+    var divisor = Model.Divisor;
 }
 <div id="settlement-content" class="tab-content">
     <table class="tbl-noborder tbl-report settlement-report">
@@ -25,17 +26,17 @@
             {
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>
-                    @HtmlHelpers.RenderHeaderNumberCell(total.Super)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperIncome)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperResult)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.SuperStock)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Super)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock)
                     @if (Model.IsNotOwner)
                     {
                         @ReportHtmlHelpers.RenderHeaderPercentCell(100)
                         <th></th>
-                        @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineIncome)
-                        @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineResult)
-                        @HtmlHelpers.RenderHeaderNumberCell(total.HeadlineStock)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineIncome)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineResult)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineStock)
                         @ReportHtmlHelpers.RenderHeaderPercentCell(100)
                     }
                 </tr>
@@ -48,17 +49,17 @@
                 {
                     <tr>
                         <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
-                        @HtmlHelpers.RenderNumberCell(data.Super)
-                        @HtmlHelpers.RenderNumberCell(data.SuperIncome)
-                        @HtmlHelpers.RenderNumberCell(data.SuperResult)
-                        @HtmlHelpers.RenderNumberCell(data.SuperStock)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.Super)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.SuperIncome)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.SuperResult)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.SuperStock)
                         @if (Model.IsNotOwner)
                         {
                             @ReportHtmlHelpers.RenderStockPercentCell(data.SuperStock, total.SuperStock)
                             <td class="text-right">@data.HeadlinePoss</td>
-                            @HtmlHelpers.RenderNumberCell(data.HeadlineIncome)
-                            @HtmlHelpers.RenderNumberCell(data.HeadlineResult)
-                            @HtmlHelpers.RenderNumberCell(data.HeadlineStock)
+                            @HtmlHelpers.RenderNumberCell(divisor, data.HeadlineIncome)
+                            @HtmlHelpers.RenderNumberCell(divisor, data.HeadlineResult)
+                            @HtmlHelpers.RenderNumberCell(divisor, data.HeadlineStock)
                             @ReportHtmlHelpers.RenderStockPercentCell(data.HeadlineStock, total.HeadlineStock)
                         }
                     </tr>
@@ -98,12 +99,12 @@
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>
                     @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.Agent)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.Master)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MemberIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Agent)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Master)
                 </tr>
             }
         </thead>
@@ -115,12 +116,12 @@
                     <tr>
                         <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
                         @HtmlHelpers.RenderNumberCell(data.Wagers)
-                        @HtmlHelpers.RenderNumberCell(data.Stake)
-                        @HtmlHelpers.RenderNumberCell(data.ValidStake)
-                        @HtmlHelpers.RenderNumberCell(data.MemberIncome)
-                        @HtmlHelpers.RenderNumberCell(data.Agent)
-                        @HtmlHelpers.RenderNumberCell(data.AgentResult)
-                        @HtmlHelpers.RenderNumberCell(data.Master)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.Stake)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.ValidStake)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.MemberIncome)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.Agent)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.AgentResult)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.Master)
                     </tr>
                 }
             </tbody>

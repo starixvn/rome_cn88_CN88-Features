@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CN88.Features.Shared.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CN88.Features.Shared.Extensions;
 
 namespace CN88.Features.Reports.Models
 {
@@ -173,6 +173,6 @@ namespace CN88.Features.Reports.Models
             }
 
             return builder.ToString();
-        }
+        }       
     }
 }

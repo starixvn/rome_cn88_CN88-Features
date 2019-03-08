@@ -45,7 +45,7 @@
                 .Sheet("Sheet 1")
                 .ExportToBytes();
 
-            return new ExcelFileViewModel(GetExcelFileName(message, param), result);
+            return new ExcelFileViewModel(GetExcelFileName(param), result);
         }
 
         internal Mapper<ReportModel> GetRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
@@ -62,7 +62,7 @@
 
             if (message.CustLevel.IsAgentLevel())
             {
-                return GetAgentRowMapper(message, grandTotal, isTotal);
+                return GetAgentRowMapper(message, isTotal);
             }
 
             return GetMemberRowMapper(isTotal);
@@ -145,7 +145,7 @@
             return mapper;
         }
 
-        internal Mapper<ReportModel> GetAgentRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
+        internal Mapper<ReportModel> GetAgentRowMapper(ReportExcelQuery message, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total : data.Username)
@@ -206,7 +206,7 @@
                 headerStartIndex: 1,
                 bodyStartIndex: 2);
 
-        private string GetExcelFileName(ReportExcelQuery message, ReportParam param)
+        private string GetExcelFileName(ReportParam param)
            => string.Join(
                "_",
                param.FromDate.ToShortDate(),
