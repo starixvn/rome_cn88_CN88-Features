@@ -20,6 +20,5 @@ $(function () {
         new PagerComponent($));
 
     onlineMembers.init();
-    alert('jdjd2');
 })
 
