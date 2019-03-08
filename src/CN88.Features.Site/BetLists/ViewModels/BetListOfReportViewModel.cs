@@ -49,7 +49,7 @@
             CustLevel = message.CustLevel;
             DisplayVNIP = message.DisplayVNIP;
 
-            NoOfColumns = CustLevel.IsSuperLevel() ? 11 : CustLevel.IsMasterLevel() ? 9 : 8;
+            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 11 : CustLevel.IsMasterLevel() ? 9 : 8;
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, excludingTicketStatus);

@@ -24,17 +24,24 @@
                 <th class="text-right">@BetListsResources.Stake</th>
                 <th class="text-right">@BetListsResources.WinLoss</th>
                 <th class="text-center">@BetListsResources.Status</th>
-                <th class="text-right">@BetListsResources.AgentPercent</th>
 
-                @if (Model.CustLevel.IsMasterOrSuperLevel())
+                @if (Model.CustLevel.IsAgentLevel())
                 {
-                    <th class="text-right">@BetListsResources.MAPercent</th>
+                    <th class="tex-right">@BetListsResources.AgentPercent</th>
                 }
 
-                @if (Model.CustLevel.IsSuperLevel())
+                @if (Model.CustLevel.IsMasterLevel())
                 {
-                    <th class="text-right">@BetListsResources.SMAPercent</th>
-                    <th class="text-right">@BetListsResources.CoPercent</th>
+                    <th class="tex-right">@BetListsResources.AgentPercent</th>
+                    <th class="tex-right">@BetListsResources.MAPercent</th>
+                }
+
+                @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
+                {
+                    <th class="tex-right">@BetListsResources.AgentPercent</th>
+                    <th class="tex-right">@BetListsResources.MAPercent</th>
+                    <th class="tex-right">@BetListsResources.SMAPercent</th>
+                    <th class="tex-right">@BetListsResources.CoPercent</th>
                 }
             </tr>
         </thead>
@@ -58,14 +65,21 @@
                         <td class="text-right">@Html.Raw(ConvertByBetType.Stake(ticket.Stake))</td>
                         <td class="text-right">@Html.Raw(ConvertByBetType.Winloss(ticket.Winlost))</td>
                         @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
-                        @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking, "text-right")
-                        @if (Model.CustLevel.IsMasterOrSuperLevel())
+                        @if (Model.CustLevel.IsAgentLevel())
                         {
+                            @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking, "text-right")
+                        }
+
+                        @if (Model.CustLevel.IsMasterLevel())
+                        {
+                            @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking, "text-right")
                             @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking, "text-right")
                         }
 
-                        @if (Model.CustLevel.IsSuperLevel())
+                        @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
                         {
+                            @HtmlHelpers.RenderNumberCell((int)ticket.AgentPositionTaking, "text-right")
+                            @HtmlHelpers.RenderNumberCell((int)ticket.MasterPositionTaking, "text-right")
                             @HtmlHelpers.RenderNumberCell((int)ticket.SuperPositionTaking, "text-right")
                             @HtmlHelpers.RenderNumberCell((int)Model.CompanyPositionTaking(ticket), "text-right")
                         }

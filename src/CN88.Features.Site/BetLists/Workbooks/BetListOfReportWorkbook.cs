@@ -95,15 +95,22 @@
             row.SetCellValue(4, BetListsResources.Stake);
             row.SetCellValue(5, BetListsResources.WinLoss);
             row.SetCellValue(6, BetListsResources.Status);
-            row.SetCellValue(7, BetListsResources.AgentPercent);
 
-            if (BetDataViewModel.CustLevel.IsMasterOrSuperLevel())
+            if (BetDataViewModel.CustLevel.IsAgentLevel())
             {
+                row.SetCellValue(7, BetListsResources.AgentPercent);
+            }
+
+            if (BetDataViewModel.CustLevel.IsMasterLevel())
+            {
+                row.SetCellValue(7, BetListsResources.AgentPercent);
                 row.SetCellValue(8, BetListsResources.MAPercent);
             }
 
-            if (BetDataViewModel.CustLevel.IsSuperLevel())
+            if (BetDataViewModel.CustLevel.IsSuperLevel() || BetDataViewModel.CustLevel.IsHeadline())
             {
+                row.SetCellValue(7, BetListsResources.AgentPercent);
+                row.SetCellValue(8, BetListsResources.MAPercent);
                 row.SetCellValue(9, BetListsResources.SMAPercent);
                 row.SetCellValue(10, BetListsResources.CoPercent);
             }
@@ -178,15 +185,21 @@
                     .RenderRTF(ticket, BetDataViewModel.TicketHelper, null, BetDataViewModel.DisplayVNIP, rtfHelper);
                 row.SetCellValue(colIndex++, cellValue);
 
-                row.SetCellValue(colIndex++, (int)ticket.AgentPositionTaking);
-
-                if (BetDataViewModel.CustLevel.IsMasterOrSuperLevel())
+                if (BetDataViewModel.CustLevel.IsAgentLevel())
                 {
+                    row.SetCellValue(colIndex++, (int)ticket.AgentPositionTaking);
+                }
+
+                if (BetDataViewModel.CustLevel.IsMasterLevel())
+                {
+                    row.SetCellValue(colIndex++, (int)ticket.AgentPositionTaking);
                     row.SetCellValue(colIndex++, (int)ticket.MasterPositionTaking);
                 }
 
-                if (BetDataViewModel.CustLevel.IsSuperLevel())
+                if (BetDataViewModel.CustLevel.IsSuperLevel() || BetDataViewModel.CustLevel.IsHeadline())
                 {
+                    row.SetCellValue(colIndex++, (int)ticket.AgentPositionTaking);
+                    row.SetCellValue(colIndex++, (int)ticket.MasterPositionTaking);
                     row.SetCellValue(colIndex++, (int)ticket.SuperPositionTaking);
                     row.SetCellValue(colIndex++, (int)BetDataViewModel.CompanyPositionTaking(ticket));
                 }
