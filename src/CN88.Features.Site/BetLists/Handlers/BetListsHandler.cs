@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
@@ -20,9 +19,9 @@
     public class BetListsHandler :
         BaseHandler,
         IRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
-        IAsyncRequestHandler<BetListOfStatementQuery, BetListOfStatementViewModel>,
-        IAsyncRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
-        IAsyncRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>
+        IRequestHandler<BetListOfStatementQuery, BetListOfStatementViewModel>,
+        IRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
+        IRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>
     {
         private readonly BetListsService service;
         private readonly ISmartPunterBetListMonitor monitorService;
@@ -87,14 +86,14 @@
                 lastPeriod);
         }
 
-        public async Task<BetListOfStatementViewModel> Handle(BetListOfStatementQuery message)
+        public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)
         {
             var param = new BetListOfStatementParam(
                 message.CustId,
                 message.Date,
                 message.SportTypeGroup);
 
-            var betlistData = await service.GetBetListOfStatement(param);
+            var betlistData = service.GetBetListOfStatement(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -106,7 +105,7 @@
                 builder);
         }
 
-        public async Task<ParlayDetailViewModel> Handle(GetParlayDetailQuery message)
+        public ParlayDetailViewModel Handle(GetParlayDetailQuery message)
         {
             var param = new GetParlayDetailParam(
                 message.RefNo,
@@ -114,16 +113,16 @@
                 message.BetId,
                 message.CustId);
 
-            var parlayDetailData = await service.GetParlayDetails(param);
+            var parlayDetailData = service.GetParlayDetails(param);
 
             return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, isExportingExcel: false);
         }
 
-        public async Task<ParlaySubTicketsViewModel> Handle(GetParlaySubTicketsQuery message)
+        public ParlaySubTicketsViewModel Handle(GetParlaySubTicketsQuery message)
         {
             var param = new GetParlaySubTicketsParam(message.TransId, message.CustId);
 
-            var tickets = await service.GetParlaySubTickets(param);
+            var tickets = service.GetParlaySubTickets(param);
 
             return new ParlaySubTicketsViewModel(message, new BetListData(tickets, null), cn88Builder, builder, ticketHelper);
         }

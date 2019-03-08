@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Criteria;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
@@ -14,11 +13,11 @@
     {
         BetListData GetBetListOfReport(BetListOfReportParam param);
 
-        Task<BetListData> GetBetListOfStatement(BetListOfStatementParam param);
+        BetListData GetBetListOfStatement(BetListOfStatementParam param);
 
-        Task<ParlayDetailReportModel> GetParlayDetails(GetParlayDetailParam param);
+        ParlayDetailReportModel GetParlayDetails(GetParlayDetailParam param);
 
-        Task<IEnumerable<TicketDto>> GetParlaySubTickets(GetParlaySubTicketsParam param);
+        IEnumerable<TicketDto> GetParlaySubTickets(GetParlaySubTicketsParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
@@ -42,27 +41,27 @@
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
-        public async Task<BetListData> GetBetListOfStatement(BetListOfStatementParam param)
+        public BetListData GetBetListOfStatement(BetListOfStatementParam param)
         {
             var criteria = new BetListOfStatementCriteria(param, reportDateService.GetMoveBetsDay());
-            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
-        public async Task<ParlayDetailReportModel> GetParlayDetails(GetParlayDetailParam param)
+        public ParlayDetailReportModel GetParlayDetails(GetParlayDetailParam param)
         {
             var criteria = new GetParlayDetailCriteria(param, reportDateService.GetMoveBetsDay(), reportDateService.GetBalanceUpDay());
 
-            var parlayDetailTuple = await dynamicRepository.FetchMultipleAsync<ParlayDetailModel, MatchDetailModel>(criteria);
+            var parlayDetailTuple = dynamicRepository.FetchMultiple<ParlayDetailModel, MatchDetailModel>(criteria);
 
             return new ParlayDetailReportModel(parlayDetailTuple.Item1, parlayDetailTuple.Item2, criteria.Outstanding);
         }
 
-        public async Task<IEnumerable<TicketDto>> GetParlaySubTickets(GetParlaySubTicketsParam param)
+        public IEnumerable<TicketDto> GetParlaySubTickets(GetParlaySubTicketsParam param)
         {
             var criteria = new GetParlaySubTicketsCriteria(param);
-            var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
+            var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
 
             return tickets;
         }

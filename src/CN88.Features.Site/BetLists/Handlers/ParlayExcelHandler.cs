@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
@@ -20,7 +19,7 @@
     using Workbooks;
     using static ONEbook.SpreadSheets.Column;
 
-    public class ParlayExcelHandler : BetListExcelBaseHandler, IAsyncRequestHandler<GetParlayDetailExcelQuery, ExcelFileViewModel>
+    public class ParlayExcelHandler : BetListExcelBaseHandler, IRequestHandler<GetParlayDetailExcelQuery, ExcelFileViewModel>
     {
         private BetListsService service;
         private ITicketHelper ticketHelper;
@@ -37,10 +36,10 @@
             this.workbook = workbook ?? new ParlayDetailWorkbookImpl();
         }
 
-        public async Task<ExcelFileViewModel> Handle(GetParlayDetailExcelQuery message)
+        public ExcelFileViewModel Handle(GetParlayDetailExcelQuery message)
         {
             var viewerLevelId = message.ViewerLevelId;
-            var parlayDetailViewModel = await GetParlayDetail(message, isExportingExcel: true);
+            var parlayDetailViewModel = GetParlayDetail(message, isExportingExcel: true);
 
             var onebookWorkbook = workbook
                 .SetData(parlayDetailViewModel)
@@ -70,7 +69,7 @@
                   bodyEndIndex: 5,
                   footerEndIndex: 7);
 
-        private async Task<ParlayDetailViewModel> GetParlayDetail(GetParlayDetailExcelQuery message, bool isExportingExcel = false)
+        private ParlayDetailViewModel GetParlayDetail(GetParlayDetailExcelQuery message, bool isExportingExcel = false)
         {
             var param = new GetParlayDetailParam(
                 message.RefNo,
@@ -78,7 +77,7 @@
                 message.BetId,
                 message.CustId);
 
-            var parlayDetailData = await service.GetParlayDetails(param);
+            var parlayDetailData = service.GetParlayDetails(param);
 
             return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, isExportingExcel);
         }

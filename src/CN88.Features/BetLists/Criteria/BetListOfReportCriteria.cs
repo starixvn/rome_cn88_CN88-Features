@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.BetLists.Criteria
 {
     using System;
+    using System.Collections;
     using Constants;
     using Fanex.Data;
     using Fanex.Data.Repository;
@@ -59,6 +60,29 @@
                 default:
                     return "CS_BetList_WinLoss_Mem";
             }
+        }
+
+        public override Hashtable GetSpParams()
+        {
+            var result = new Hashtable
+            {
+                ["custid"] = CustId,
+                ["fromdate"] = FromDate,
+                ["todate"] = ToDate,
+                ["sporttypegroup"] = SportTypeGroup,
+                ["bettypegroup"] = BetTypeGroup,
+                ["liveindicator"] = LiveIndicator,
+                ["outstanding"] = 0
+            };
+
+            if (Type == BetListTypeConstant.Settled ||
+                Type == BetListTypeConstant.Cancelled ||
+                Type == BetListTypeConstant.Abnormal)
+            {
+                result.Add("movebetsday", MoveBetsDay);
+            }
+
+            return result;
         }
 
         public override bool IsValid() => CustId > 0;
