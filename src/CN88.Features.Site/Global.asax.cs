@@ -7,22 +7,22 @@
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Alpha.Auth.Filters;
     using Alpha.CN88.Site.App_Start;
     using Alpha.Web;
     using Alpha.Web.Filters;
     using Alpha.Web.Helpers;
     using App_Start;
+    using CustomerSetting.Client;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
     using Fanex.RemotingRef;
     using Features.Shared.Configurations;
-    using global::CN88.CustomerSetting.Client;
     using ONEbook.UM.Filters;
     using Shared.Helpers;
     using Sunplus.Agent.Model.Entities;
     using Web.Filters;
+    using CN88CheckBelongingFilter = Web.Filters.CheckBelongingFilter;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -52,7 +52,7 @@
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
             GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
-            GlobalFilters.Filters.Add(new CheckBelongingFilter());
+            GlobalFilters.Filters.Add(new CN88CheckBelongingFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
