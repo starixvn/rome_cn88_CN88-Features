@@ -98,11 +98,6 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            var sportGroups = sportGroupService.GetSportGroups();
-            var betTypes = betTypeService.GetBetTypeGroupsBySport();
-            var currentPeriod = accountingPeriodService.GetCurrentPeriod();
-            var lastPeriod = accountingPeriodService.GetLastPeriod();
-
             return new BetListOfStatementViewModel(
                 message,
                 betlistData,

@@ -18,8 +18,6 @@
 
         public int SportTypeGroup { get; set; }
 
-        public int Type { get; set; }
-
         public bool DisplayVNIP { get; }
 
         public int ViewerIdOrViewerAdminId { get; }
