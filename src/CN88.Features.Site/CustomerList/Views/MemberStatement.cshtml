@@ -24,10 +24,10 @@
     <table class="tbl-style2">
         <thead>
             <tr>
-                <th class="text-center">@BetListsResources.Date</th>
-                <th class="text-center">@BetListsResources.Stake</th>
-                <th class="text-center">@ReportResources.ValidStake</th>
-                <th class="text-center">@BetListsResources.WinLoss</th>
+                <th>@BetListsResources.Date</th>
+                <th class="text-right">@BetListsResources.Stake</th>
+                <th class="text-right">@ReportResources.ValidStake</th>
+                <th class="text-right">@BetListsResources.WinLoss</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
             @foreach (var item in Model.Statements)
             {
                 <tr>
-                    <td class="text-center">
+                    <td>
                         @if (item.HasTicket)
                         {
                             <a href="..">@item.WinLostDateStr</a>
@@ -50,9 +50,9 @@
                             @item.WinLostDateStr
                         }
                     </td>
-                    <td class="text-center">@item.StakeStr</td>
-                    <td class="text-center">@item.ValidStakeStr</td>
-                    <td class="text-center">@Html.Raw(ConvertByBetType.Winloss(item.WinLoss))</td>
+                    <td class="text-right">@item.StakeStr</td>
+                    <td class="text-right">@item.ValidStakeStr</td>
+                    <td class="text-right">@Html.Raw(ConvertByBetType.Winloss(item.WinLoss))</td>
                 </tr>
             }
         </tbody>
@@ -60,10 +60,10 @@
             @if (Model.Statements.Any())
             {
                 <tr>
-                    <td class="text-center">@ReportResources.Total</td>
-                    <td class="text-center">@Model.TotalStakeStr</td>
-                    <td class="text-center">@Model.TotalValidStakeStr</td>
-                    <td class="text-center">@Model.TotalWinLossStr</td>
+                    <td>@ReportResources.Total</td>
+                    <td class="text-right">@Model.TotalStakeStr</td>
+                    <td class="text-right">@Model.TotalValidStakeStr</td>
+                    <td class="text-right">@Model.TotalWinLossStr</td>
                 </tr>
             }
         </tfoot>
