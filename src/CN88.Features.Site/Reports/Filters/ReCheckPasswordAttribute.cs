@@ -1,7 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.Filters
 {
     using System.Web.Mvc;
-    using System.Web.Routing;
     using Alpha.Web.Helpers;
     using System;
     using System.Configuration;
@@ -41,13 +40,7 @@
                 }
                 else
                 {
-                    filterContext.Result = new RedirectToRouteResult(
-                        new RouteValueDictionary(
-                            new
-                            {
-                                Controller = "OldReports",
-                                Action = "VerifyPassword"
-                            }));
+                    filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
                 }
             }
             else if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
