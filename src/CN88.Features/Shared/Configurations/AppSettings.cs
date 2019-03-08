@@ -21,6 +21,8 @@
 
         public static string RemoteRefURL => GetConfigValue("RemoteRefURL");
 
+        public static int MemberStatementOfLatestDay => Converter.ToInt(GetConfigValue("MemberStatementOfLatestDay"));
+
         public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
 
         public static bool IsTest => GetConfigValue("LocalTest") == "1";

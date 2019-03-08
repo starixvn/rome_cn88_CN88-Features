@@ -9,6 +9,7 @@
     using CN88.Features.Shared.Services;
     using Fanex.Caching;
     using Fanex.Data.Repository;
+    using Shared.Configurations;
     using Shared.Utils;
 
     public interface MemberStatementService
@@ -52,9 +53,8 @@
                 "CN88.Features.CustomerList.GetAvailableDate",
                 () =>
                 {
-                    var dates = new Dictionary<int, DateTime>();
-                    var numberLatestDay = 8;
-                    for (int i = 0; i < numberLatestDay; i++)
+                    var dates = new Dictionary<int, DateTime>();                    
+                    for (var i = 0; i < AppSettings.MemberStatementOfLatestDay; i++)
                     {
                         dates.Add(i, SystemTime.Today.AddDays(i * -1));
                     }

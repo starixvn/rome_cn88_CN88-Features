@@ -10,8 +10,9 @@
 }
 <div class="member-statement">
     <div class="page-title">@Model.CustName</div>
-    <form class="form-inline filter" role="form">
+    <form class="form-inline filter" role="form" id="report-form">
         @Html.Hidden("CustName", Model.CustName)
+        @Html.Hidden("CustId", Model.CustId)
         @SportGroupSelection.Render(Model.SportTypeSelectionViewModel, true)
         @DateTimeSelection.Render(Model.FromDateSelectionViewModel, "fromdate", @BetListsResources.Date)
         @DateTimeSelection.Render(Model.ToDateSelectionViewModel, "todate", @SharedResources.To)
@@ -43,7 +44,7 @@
                     <td>
                         @if (item.HasTicket)
                         {
-                            <a href="..">@item.WinLostDateStr</a>
+                            <a href="@Model.BetListOfStatementUrl(item.WinLostDate)">@item.WinLostDateStr</a>
                         }
                         else
                         {
@@ -52,7 +53,7 @@
                     </td>
                     <td class="text-right">@item.StakeStr</td>
                     <td class="text-right">@item.ValidStakeStr</td>
-                    <td class="text-right">@Html.Raw(ConvertByBetType.Winloss(item.WinLoss))</td>
+                    <td class="text-right">@Html.Raw(item.WinLossStr)</td>
                 </tr>
             }
         </tbody>
@@ -63,7 +64,7 @@
                     <td>@ReportResources.Total</td>
                     <td class="text-right">@Model.TotalStakeStr</td>
                     <td class="text-right">@Model.TotalValidStakeStr</td>
-                    <td class="text-right">@Model.TotalWinLossStr</td>
+                    <td class="text-right">@Html.Raw(Model.TotalWinLossStr)</td>
                 </tr>
             }
         </tfoot>

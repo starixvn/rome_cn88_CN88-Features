@@ -124,7 +124,7 @@
         var self = this;
         this.$tblReport.find(".view-statement").click(function () {
             var $this = self.$(this);
-            var viewStatementUrl = $("#viewStatementtUrl").val() + "?CustName=" + $this.attr("username");
+            var viewStatementUrl = $("#viewStatementtUrl").val() + "?CustName=" + $this.attr("username") + "&CustId=" + $this.attr("cust-id");
             window.open(viewStatementUrl, "", "height=500,width=1000");
         });
 

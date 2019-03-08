@@ -1,8 +1,10 @@
 ﻿namespace CN88.Features.CustomerList.Models
 {
     using System;
-    using CN88.Features.Shared.Extensions;
     using CN88.Features.Extensions;
+    using CN88.Features.Shared.Extensions;
+    using Fanex.BetList.Core.Utils;
+
     public class MemberStatementModel
     {
         public MemberStatementModel()
@@ -24,7 +26,7 @@
 
         public decimal? WinLoss { get; }
 
-        public string WinLossStr => WinLoss.HasValue ? WinLoss.Value.FormatNumber() : "-";
+        public string WinLossStr => WinLoss.HasValue ? ConvertByBetType.Winloss(WinLoss.Value) : "-";
 
         public bool HasTicket => Stake.HasValue || ValidStake.HasValue || WinLoss.HasValue;
     }

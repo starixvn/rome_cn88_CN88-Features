@@ -1,11 +1,14 @@
 ﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Alpha.Web.Helpers;
     using CN88.Features.CustomerList.Models;
     using CN88.Features.Site.CustomerList.Requests;
     using CN88.Features.Site.Shared.ViewModels.Components;
+    using Fanex.BetList.Core.Utils;
     using Features.Shared.Extensions;
 
     public class MemberStatementViewModel
@@ -21,15 +24,15 @@
             TotalStake = statements.Sum(i => i.Stake);
             TotalValidStake = statements.Sum(i => i.ValidStake);
             TotalWinLoss = statements.Sum(i => i.WinLoss);
-            SportTypeSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);            
+            SportTypeSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);
             FromDateSelectionViewModel = new SingleSelectionViewModel(fromDates, message.UserSelectedFromDate);
             ToDateSelectionViewModel = new SingleSelectionViewModel(toDates, message.UserSelectedToDate);
-            CustName = message.CustName;
+            this.message = message;
         }
 
-        public IEnumerable<MemberStatementModel> Statements { get; }
+        private MemberStatementQuery message;
 
-        public MemberStatementQuery Message { get; }
+        public IEnumerable<MemberStatementModel> Statements { get; }
 
         public SingleSelectionViewModel SportTypeSelectionViewModel { get; }
 
@@ -68,10 +71,22 @@
             {
                 var hasTicket = Statements.Any(i => i.WinLoss.HasValue);
 
-                return hasTicket ? TotalWinLoss.Value.FormatNumber() : "-";
+                return hasTicket ? ConvertByBetType.Winloss(TotalWinLoss.Value) : "-";
             }
         }
 
-        public string CustName { get; }
+        public string CustName => message.CustName;
+
+        public int CustId => message.CustId;
+
+        public string BetListOfStatementUrl(DateTime date)
+            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
+           AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfStatement"),
+           new Dictionary<string, object>
+           {
+               ["CustId"] = CustId,
+               ["Date"] = date,
+               ["SportTypeGroup"] = message.UserSelectedSportGroupId
+           });
     }
 }
