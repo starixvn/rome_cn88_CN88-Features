@@ -38,6 +38,7 @@
     </main>
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-features/default")
+    @StaticResources.RenderScripts("~/Reports/bundles/old-index")
     @RenderSection("Scripts", required: false)
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
     @Html.Hidden("expiredSessionSeconds", ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"])
