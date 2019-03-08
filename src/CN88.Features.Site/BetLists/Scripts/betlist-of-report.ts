@@ -14,7 +14,6 @@ class BetListOfReport {
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
 
-
     elements = {
         excelIcon: null,
         exportExcelForm: null,
@@ -52,9 +51,6 @@ class BetListOfReport {
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "LiveIndicator"));
         this.linkBuilderComponent.render();
         this.pagerComponent.render();
-
-        //var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > .tbl-report");
-        //self.pagerComponent.render(pagerOption);
 
         this.registerEvents();
 
