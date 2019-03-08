@@ -115,8 +115,6 @@
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
-
-            PagerViewModel = new PagerViewModel(1, 50, 203);
         }
 
         public UserLevel CustLevel { get; }
