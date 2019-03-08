@@ -29,5 +29,9 @@
         public bool DisplayVNIP { get; }
 
         public int ViewerIdOrViewerAdminId { get; }
+
+        public int PageIndex { get; set; }
+
+        public int PageSize { get; set; }
     }
 }

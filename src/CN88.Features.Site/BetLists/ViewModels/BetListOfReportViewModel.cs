@@ -109,6 +109,12 @@
                 dateRangePickerViewModel,
                 betTypeSelectionViewModel,
                 liveStatusSelectionViewModel);
+
+            PageIndex = message.PageIndex;
+            PageSize = message.PageSize;
+            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
+
+            PagerViewModel = new PagerViewModel(1, 50, 203);
         }
 
         public UserLevel CustLevel { get; }
@@ -151,6 +157,10 @@
 
         public byte ViewerLevelId { get; }
 
+        public int PageIndex { get; }
+
+        public int PageSize { get; }
+
         public string ReportTitle { get; private set; }
 
         public int DisplayMode { get; private set; }
@@ -161,13 +171,15 @@
 
         public int ReportType { get; private set; }
 
+        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
+            => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
+
+        public PagerViewModel PagerViewModel { get; private set; }
+
         public decimal CompanyPositionTaking(TicketDto ticket)
         {
             return 100 - ticket.AgentPositionTaking - ticket.MasterPositionTaking - ticket.SuperPositionTaking;
         }
-
-        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
-            => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
 
         private string BuildReportMainUrl()
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(

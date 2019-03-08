@@ -169,7 +169,12 @@
       "BetLists/Scripts/result/other-result-details.js",
       "BetLists/Scripts/details/base-details.js",
       "BetLists/Scripts/details/sportsbook-details.js",
-      "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js"
+      "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js",
+      "Shared/Scripts/core.js",
+      "Shared/Scripts/components/link-builder.js",
+      "Shared/Scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/daterangepicker.js",
+      "Shared/Scripts/components/client-pager.js"
     ]
   },
   {
