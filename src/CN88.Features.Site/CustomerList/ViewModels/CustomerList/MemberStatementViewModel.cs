@@ -85,6 +85,7 @@
            new Dictionary<string, object>
            {
                ["CustId"] = CustId,
+               ["CustName"] = CustName,
                ["Date"] = date,
                ["SportTypeGroup"] = message.UserSelectedSportGroupId
            });
