@@ -35,7 +35,9 @@
                 {
                     var betTypes = dynamicRepository.Fetch<BetType>(new GetBetTypeGroupBySportCriteria());
 
-                    return betTypes.Select(betType => new BetType(betType.SportTypeGroupId, betType.Id, betType.Name, getBetTypeDisplayName));
+                    return sportGroupId != 0 ? 
+                        betTypes.Select(betType => new BetType(betType.SportTypeGroup, betType.Id, betType.Name, getBetTypeDisplayName)).Where(i => i.SportTypeGroup == sportGroupId) : 
+                        betTypes.Select(betType => new BetType(betType.SportTypeGroup, betType.Id, betType.Name, getBetTypeDisplayName));
                 },
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
     }

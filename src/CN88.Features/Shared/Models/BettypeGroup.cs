@@ -8,20 +8,20 @@
         {
         }
 
-        public BetType(int sportTypeGroupId, int id, string name)
+        public BetType(int sportTypeGroup, int id, string name)
         {
-            SportTypeGroupId = sportTypeGroupId;
+            SportTypeGroup = sportTypeGroup;
             Id = id;
             Name = name;
         }
 
-        internal BetType(int sportTypeGroupId, int id, string name, Func<int, string> getBetTypeDisplayName)
-            : this(sportTypeGroupId, id, name)
+        internal BetType(int sportTypeGroup, int id, string name, Func<int, string> getBetTypeDisplayName)
+            : this(sportTypeGroup, id, name)
         {
             DisplayName = getBetTypeDisplayName == null ? name : getBetTypeDisplayName(id);
         }
 
-        public int SportTypeGroupId { get; }
+        public int SportTypeGroup { get; }
 
         public int Id { get; }
 
