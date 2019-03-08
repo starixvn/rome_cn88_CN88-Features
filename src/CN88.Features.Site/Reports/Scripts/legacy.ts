@@ -9,6 +9,10 @@ class LegacyReport extends BaseReport {
     $reportForm: JQuery;
     $exportExcelForm: JQuery;
     $excelIcon: JQuery;
+    $ptHistoryUrl: JQuery;
+    $FromDate: JQuery;
+    $ToDate: JQuery;
+    $ptHistory: JQuery;
 
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
@@ -80,11 +84,16 @@ class LegacyReport extends BaseReport {
         this.$reportForm = this.$("#report-form");
         this.$exportExcelForm = this.$("#export-excel-form");
         this.$excelIcon = this.$("#icon-excel");
+        this.$ptHistoryUrl = this.$("#PTHistoryUrl");
+        this.$FromDate = this.$("#FromDate");
+        this.$ToDate = this.$("#ToDate");
+        this.$ptHistory = this.$("#pt-history");
     }
 
     public registerEvents() {
         this.$reportForm.submit(this.onReportSubmit);
         this.$excelIcon.click(this.onExportExcelEvent)
+        this.$(".icon-history").click(this.loadPTHistory);
     }
 
     onReportSubmit = () => {
@@ -96,5 +105,52 @@ class LegacyReport extends BaseReport {
     onExportExcelEvent = () => {
         this.$exportExcelForm.submit();
         this.$.unblockUI();
+    };
+
+    loadPTHistory = (e: JQueryEventObject) => {
+        this.$.blockUI();
+
+        let icon = this.$(e.target);
+        let custId = icon.data("custid");
+        let fromDate = this.$FromDate.val();
+        let toDate = this.$ToDate.val();
+        var self = this;
+
+        this.$.ajax({
+            method: "GET",
+            url: this.$ptHistoryUrl.val(),
+            cache: false,
+            data: { CustId: custId, FromDate: fromDate, ToDate: toDate },
+            success: function (result) {
+                self.renderPTHistory(result);
+                self.showPTHistory(icon.position());
+            },
+            complete: this.$.unblockUI
+        });
+    };
+
+    renderPTHistory = (html: string) => {
+        if (this.$ptHistory) {
+            this.$ptHistory.remove();
+        }
+
+        this.$("body").append(html);
+        this.$ptHistory = this.$("#pt-history");
+    }
+
+    showPTHistory = (position: JQueryCoordinates) => {
+        this.$ptHistory.modal({ show: true, backdrop: false });
+        this.$ptHistory.css({
+            position: "absolute",
+            bottom: "auto",
+            top: position.top,
+            left: position.left - 150
+        });
+
+        this.$ptHistory.find('.modal-dialog').css({
+            transform: 'none',
+            margin: 0,
+            width: "100%"
+        });
     };
 }

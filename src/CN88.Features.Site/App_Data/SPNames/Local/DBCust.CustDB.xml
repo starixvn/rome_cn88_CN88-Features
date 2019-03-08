@@ -12,7 +12,7 @@
     <Setting Key="Age_CustSubUpdInfo" SpName="Age_CustSubUpdInfo" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustSubUpdPageAccess" SpName="Age_CustSubUpdPageAccess" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
-  <Function Name="PT Setting">
+  <Function Name="PT">
     <Setting Key="CS_CustSetting_LegacyReportSetting_Sel" SpName="CS_CustSetting_LegacyReportSetting_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Smart Punter">

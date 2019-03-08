@@ -13,6 +13,7 @@
         private const string MainViewPath = "~/Reports/Views/Index.cshtml";
         private const string WagerViewPath = "~/Reports/Views/Wager.cshtml";
         private const string LegacyViewPath = "~/Reports/Views/Legacy.cshtml";
+        private const string PTHistoryViewPath = "~/Reports/Views/PTHistory.cshtml";
 
         public ReportsController(IMediator mediator)
             : base(mediator)
@@ -31,8 +32,8 @@
         public async Task<ActionResult> Excel(ReportExcelQuery message)
             => await ExcelView(message);
 
-        public async Task<ActionResult> PTHistories(PTHistoryQuery message)
-            => await ViewAsync(message, LegacyViewPath);
+        public async Task<ActionResult> PTHistory(PTHistoryQuery message)
+            => await ViewAsync(message, PTHistoryViewPath);
 
         public async Task<ActionResult> BetType(BettypeQuery message)
             => await ViewAsync(message, "~/Reports/Views/Bettype.cshtml");
