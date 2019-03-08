@@ -1,23 +1,17 @@
 ﻿class BetListOfStatement {
     $: JQueryStatic;
-    elements = {
-        excelIcon: null,
-        exportExcelForm: null
-    };
-
     constructor($: JQueryStatic) {
         this.$ = $;
     }
 
     init = () => {
-        this.cacheDOMElements();
         this.registerEvents();
     };
 
-    cacheDOMElements = () => {
-    };
-
     registerEvents = () => {
+        this.$("#btn-submit").off("click").on("click", function () {
+            window.history.back();
+        });
     };
 }
 

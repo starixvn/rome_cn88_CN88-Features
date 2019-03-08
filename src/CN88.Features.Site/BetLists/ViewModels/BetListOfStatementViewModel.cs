@@ -22,6 +22,7 @@
         {
             CustLevel = message.CustLevel;
             DisplayVNIP = message.DisplayVNIP;
+            CustName = message.CustName;
 
             NoOfColumns = CustLevel.IsSuperLevel() ? 11 : CustLevel.IsMasterLevel() ? 9 : 8;
 
@@ -40,6 +41,8 @@
         }
 
         public UserLevel CustLevel { get; }
+
+        public string CustName { get; }
 
         public int NoOfColumns { get; }
 

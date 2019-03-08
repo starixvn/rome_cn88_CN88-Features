@@ -70,6 +70,15 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet ID.
         /// </summary>
         public static string BetID {
@@ -214,6 +223,15 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member/Commission.
+        /// </summary>
+        public static string Member_Commission {
+            get {
+                return ResourceManager.GetString("Member_Commission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInformationIsAvailable {
@@ -291,6 +309,15 @@ namespace CN88.Features.BetLists.Resources {
         public static string Stake {
             get {
                 return ResourceManager.GetString("Stake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statement.
+        /// </summary>
+        public static string Statement {
+            get {
+                return ResourceManager.GetString("Statement", resourceCulture);
             }
         }
         

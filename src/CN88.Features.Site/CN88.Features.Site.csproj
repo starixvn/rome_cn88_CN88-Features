@@ -408,6 +408,10 @@
     <Content Include="BetLists\bundles\betlist-of-report.min.js">
       <DependentUpon>betlist-of-report.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\betlist-of-statement.js" />
+    <Content Include="BetLists\bundles\betlist-of-statement.min.js">
+      <DependentUpon>betlist-of-statement.js</DependentUpon>
+    </Content>
     <Content Include="BetLists\Styles\bet-lists.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>

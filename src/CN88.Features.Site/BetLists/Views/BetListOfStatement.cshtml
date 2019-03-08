@@ -1,4 +1,5 @@
 ﻿@using Fanex.BetList.Core.Utils
+@using CN88.Features.Extensions
 @model BetListOfStatementViewModel
 @{
     ViewBag.Title = "Bet List";
@@ -9,10 +10,13 @@
     @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
 }
 <div class="page-title">
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="report-name"></li>
-    </ul>
+    @BetListsResources.Statement @Model.CustName | @Model.Date.ToShortDateFormat()
 </div>
+<form class="form-inline filter report-form" role="form" id="report-form">
+    <div class="form-group">
+        <input type="submit" value="@BetListsResources.Back" class="btn-submit" />
+    </div>
+</form>
 <table class="tbl-style2 tbl-bet-list">
     <thead>
         <tr>

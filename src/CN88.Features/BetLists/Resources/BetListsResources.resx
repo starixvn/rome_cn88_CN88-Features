@@ -228,4 +228,10 @@
   <data name="Member_Commission" xml:space="preserve">
     <value>Member/Commission</value>
   </data>
+  <data name="Statement" xml:space="preserve">
+    <value>Statement</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>

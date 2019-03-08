@@ -186,4 +186,25 @@
   <data name="WinLossRoundNote" xml:space="preserve">
     <value>輸贏的進位值僅供參考。因此，所有輸贏相加的總計有可能和小計有差數。</value>
   </data>
+  <data name="Statement" xml:space="preserve">
+    <value>帳目</value>
+  </data>
+  <data name="Member_Commission" xml:space="preserve">
+    <value>會員/佣金</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>投注類別</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>注單</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>退回</value>
+  </data>
 </root>
