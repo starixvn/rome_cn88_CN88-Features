@@ -12,7 +12,7 @@
 
     public interface BetListsService
     {
-        Task<BetListData> GetBetListOfReport(BetListOfReportParam param);
+        BetListData GetBetListOfReport(BetListOfReportParam param);
 
         Task<BetListData> GetBetListOfStatement(BetListOfStatementParam param);
 
@@ -34,10 +34,10 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<BetListData> GetBetListOfReport(BetListOfReportParam param)
+        public BetListData GetBetListOfReport(BetListOfReportParam param)
         {
             var criteria = new BetListOfReportCriteria(param, reportDateService.GetMoveBetsDay());
-            var betListDataTuple = await dynamicRepository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }

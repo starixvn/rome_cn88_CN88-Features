@@ -1,5 +1,7 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Alpha.Web.Helpers;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -8,8 +10,6 @@
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public abstract class ReportBaseViewModel
     {
@@ -23,7 +23,7 @@
             this.query = query;
 
             ReportData = reportData;
-            GrandTotal = grandTotal;           
+            GrandTotal = grandTotal;
             Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
         }
 
@@ -58,7 +58,7 @@
         protected abstract string GetReportMainActionPath();
 
         protected abstract int GetBetListType(int reportType);
-        
+
         private string BuildBetListLink(ReportModel model)
            => UrlHelper.AddQueryStringParamsFunc(
                AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
@@ -131,7 +131,7 @@
         private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model)
            => new Dictionary<string, object>
            {
-               //["CustId"] = model.CustId,
+               ["CustId"] = model.CustId,
                ["CustName"] = model.Username,
                ["FromDate"] = query.FromDate,
                ["ToDate"] = query.ToDate,

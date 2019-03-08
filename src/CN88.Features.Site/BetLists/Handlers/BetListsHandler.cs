@@ -19,16 +19,16 @@
 
     public class BetListsHandler :
         BaseHandler,
-        IAsyncRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
+        IRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
         IAsyncRequestHandler<BetListOfStatementQuery, BetListOfStatementViewModel>,
         IAsyncRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
         IAsyncRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>
     {
-        private BetListsService service;
-        private ISmartPunterBetListMonitor monitorService;
-        private ITicketHelper ticketHelper;
-        private IBetListCN88HtmlBuilder cn88Builder;
-        private IBetListHTMLBuilder builder;
+        private readonly BetListsService service;
+        private readonly ISmartPunterBetListMonitor monitorService;
+        private readonly ITicketHelper ticketHelper;
+        private readonly IBetListCN88HtmlBuilder cn88Builder;
+        private readonly IBetListHTMLBuilder builder;
 
         private readonly SportGroupService sportGroupService;
         private readonly BettypeGroupService betTypeService;
@@ -55,7 +55,7 @@
             this.accountingPeriodService = accountingPeriodService;
         }
 
-        public async Task<BetListOfReportViewModel> Handle(BetListOfReportQuery message)
+        public BetListOfReportViewModel Handle(BetListOfReportQuery message)
         {
             var param = new BetListOfReportParam(
                 message.CustId,
@@ -66,7 +66,7 @@
                 message.LiveIndicator,
                 message.Type);
 
-            var betlistData = await service.GetBetListOfReport(param);
+            var betlistData = service.GetBetListOfReport(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 

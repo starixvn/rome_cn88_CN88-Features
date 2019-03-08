@@ -1,7 +1,6 @@
 ﻿namespace CN88.Features.Site.BetLists.Handlers
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
@@ -21,16 +20,16 @@
 
     public class BetListOfReportExcelHandler :
         BetListExcelBaseHandler,
-        IAsyncRequestHandler<BetListOfReportExcelQuery, ExcelFileViewModel>
+        IRequestHandler<BetListOfReportExcelQuery, ExcelFileViewModel>
     {
-        private BetListsService service;
-        private ISmartPunterBetListMonitor monitorService;
-        private ITicketHelper ticketHelper;
-        private IBetListCN88HtmlBuilder cn88Builder;
-        private IBetListHTMLBuilder builder;
+        private readonly BetListsService service;
+        private readonly ISmartPunterBetListMonitor monitorService;
+        private readonly ITicketHelper ticketHelper;
+        private readonly IBetListCN88HtmlBuilder cn88Builder;
+        private readonly IBetListHTMLBuilder builder;
 
-        private BetListOfReportWorkbook workbook;
-        private IBetListCN88ExcelBuilder cn88ExcelBuilder;
+        private readonly BetListOfReportWorkbook workbook;
+        private readonly IBetListCN88ExcelBuilder cn88ExcelBuilder;
 
         public BetListOfReportExcelHandler(
             IBetListExcelBuilder excelBuilder,
@@ -52,7 +51,7 @@
             this.cn88ExcelBuilder = cn88ExcelBuilder;
         }
 
-        public async Task<ExcelFileViewModel> Handle(BetListOfReportExcelQuery message)
+        public ExcelFileViewModel Handle(BetListOfReportExcelQuery message)
         {
             var viewerLevel = Enumeration.FromValue<UserLevel>(message.ViewerLevelId);
             var param = new BetListOfReportParam(
@@ -64,7 +63,7 @@
                 message.LiveIndicator,
                 message.Type);
 
-            var betlistData = await service.GetBetListOfReport(param);
+            var betlistData = service.GetBetListOfReport(param);
             var viewModel =
                 new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
 
