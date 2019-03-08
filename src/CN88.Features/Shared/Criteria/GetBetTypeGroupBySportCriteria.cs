@@ -4,15 +4,7 @@
     using Fanex.Data.Repository;
 
     public class GetBetTypeGroupBySportCriteria : CriteriaBase
-    {
-        public GetBetTypeGroupBySportCriteria(int sportGroupId)
-        {
-            SportGroupId = sportGroupId;
-        }
-
-        [SpParam(SqlParamName = "SportTypeGroup")]
-        public int SportGroupId { get; }
-
+    {        
         public override string GetSettingKey() => "CS_BetType_Sel";
 
         public override bool IsValid() => true;
