@@ -1,6 +1,7 @@
 ﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
+    int divisor = Model.Divisor;
 }
 <div id="settlement-content" class="tab-content">
     <table class="tbl-noborder tbl-report settlement-report">
@@ -22,12 +23,12 @@
                     <th class="text-left">@ReportResources.Total</th>
                     <th></th>
                     @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.Stake)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.ValidStake)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.MemberIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor,  total.MemberIncome)
                     <th></th>
-                    @HtmlHelpers.RenderHeaderNumberCell(total.AgentIncome)
-                    @HtmlHelpers.RenderHeaderNumberCell(total.AgentResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentIncome)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult)
                 </tr>
             }
         </thead>
@@ -40,12 +41,12 @@
                         <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
                         <td class="text-left">@data.Name</td>
                         @HtmlHelpers.RenderNumberCell(data.Wagers)
-                        @HtmlHelpers.RenderNumberCell(data.Stake)
-                        @HtmlHelpers.RenderNumberCell(data.ValidStake)
-                        @HtmlHelpers.RenderNumberCell(data.MemberIncome)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.Stake)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.ValidStake)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.MemberIncome)
                         <td class="text-right">@data.AgentPoss</td>
-                        @HtmlHelpers.RenderNumberCell(data.AgentIncome)
-                        @HtmlHelpers.RenderNumberCell(data.AgentResult)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.AgentIncome)
+                        @HtmlHelpers.RenderNumberCell(divisor, data.AgentResult)
                     </tr>
                 }
             }

@@ -1,7 +1,5 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Alpha.Web.Helpers;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -10,6 +8,10 @@
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
+    using Sunplus.Agent.Model.BL;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
 
     public abstract class ReportBaseViewModel
     {
@@ -23,12 +25,15 @@
             this.query = query;
 
             ReportData = reportData;
-            GrandTotal = grandTotal;
+            GrandTotal = grandTotal;           
+            Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
         }
 
         public bool IsNotOwner => !query.IsOwner;
 
         public UserLevel ReportLevel => query.CustLevel;
+
+        public int Divisor { get; }
 
         public IEnumerable<ReportModel> ReportData { get; }
 
@@ -55,7 +60,7 @@
         protected abstract string GetReportMainActionPath();
 
         protected abstract int GetBetListType(int reportType);
-
+        
         private string BuildBetListLink(ReportModel model)
            => UrlHelper.AddQueryStringParamsFunc(
                AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
