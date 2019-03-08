@@ -145,6 +145,12 @@
     ]
   },
   {
+    "outputFileName": "CustomerList/bundles/styles/member-statement.css",
+    "inputFiles": [
+      "CustomerList/Styles/member-statement.css"
+    ]
+  },
+  {
     "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
     "inputFiles": [
       "SubAccount/Scripts/sub-account.js"

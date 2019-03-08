@@ -22,6 +22,9 @@
   {
     "outputFile": "BetLists/Styles/bet-lists.css",
     "inputFile": "BetLists/Styles/bet-lists.scss"
+  },
+  {
+    "outputFile": "CustomerList/Styles/member-statement.css",
+    "inputFile": "CustomerList/Styles/member-statement.scss"
   }
-
 ]

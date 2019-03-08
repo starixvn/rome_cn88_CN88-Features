@@ -5,11 +5,11 @@
 }
 
 @section Styles {
-    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+    @StaticResources.RenderStyles("~/CustomerList/bundles/styles/member-statement")
 }
-<div class="report-detail wager-report">
+<div class="member-statement">
     <div class="page-title">@Model.UserName</div>
-    <form class="form-inline filter report-form" role="form" id="report-form">
+    <form class="form-inline filter" role="form">
         @Html.Hidden("CustName", Model.UserName)
         @SportGroupSelection.Render(Model.SportTypeSelectionViewModel, true)
         @DateTimeSelection.Render(Model.FromDateSelectionViewModel, "fromdate", @BetListsResources.Date)

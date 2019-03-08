@@ -447,6 +447,10 @@
     <Content Include="CustomerList\bundles\styles\downline-list.min.css">
       <DependentUpon>downline-list.css</DependentUpon>
     </Content>
+    <Content Include="CustomerList\bundles\styles\member-statement.css" />
+    <Content Include="CustomerList\bundles\styles\member-statement.min.css">
+      <DependentUpon>member-statement.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
@@ -456,6 +460,12 @@
     </Content>
     <Content Include="CustomerList\Styles\downline-list.min.css">
       <DependentUpon>downline-list.css</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\member-statement.css">
+      <DependentUpon>member-statement.scss</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\member-statement.min.css">
+      <DependentUpon>member-statement.css</DependentUpon>
     </Content>
     <Content Include="CustomerList\Styles\popup.css">
       <DependentUpon>popup.scss</DependentUpon>
@@ -734,6 +744,7 @@
     <Content Include="Reports\Views\OldFilter.cshtml" />
     <Content Include="Reports\Views\_OldLayout.cshtml" />
     <Content Include="Reports\Views\OldLegacy.cshtml" />
+    <Content Include="CustomerList\Styles\member-statement.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
