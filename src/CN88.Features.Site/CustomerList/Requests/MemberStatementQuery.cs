@@ -12,10 +12,10 @@
         {
         }
 
-        public int SportType { get; set; }
+        public int UserSelectedSportGroupId { get; set; }
 
-        public DateTime FromDate { get; set; }
+        public int UserSelectedFromDate { get; set; }
 
-        public DateTime ToDate { get; set; }
+        public int UserSelectedToDate { get; set; }
     }
 }

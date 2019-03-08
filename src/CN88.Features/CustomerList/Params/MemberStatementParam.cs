@@ -8,8 +8,8 @@
 
         public int SportType { get; set; }
 
-        public DateTime FromDate { get; set; }
+        public int FromDate { get; set; }
 
-        public DateTime ToDate { get; set; }
+        public int ToDate { get; set; }
     }
 }

@@ -3,12 +3,12 @@
 {
     <div class="form-group">
         <label>@label</label>
-        <select id="@id">
+        <select id="@("dropdown-"+id)">
             @foreach (var group in model.Items)
             {
                 <option value="@group.Value" @(group.Selected ? " selected=\"selected\"" : string.Empty)>@group.Text</option>
             }
         </select>
-        <input type="hidden" name="UserSelectedSportGroupId" id="UserSelected@id" value="@model.UserSelectedId" />
+        <input type="hidden" name="@("UserSelected" + id)" id="@("UserSelected" + id)" value="@model.UserSelectedId" />
     </div>
 }

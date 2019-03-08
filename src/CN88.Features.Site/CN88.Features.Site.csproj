@@ -427,6 +427,10 @@
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
     </Content>
+    <Content Include="CustomerList\bundles\scripts\memberstatement.js" />
+    <Content Include="CustomerList\bundles\scripts\memberstatement.min.js">
+      <DependentUpon>memberstatement.js</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\scripts\onlinemember.js" />
     <Content Include="CustomerList\bundles\scripts\onlinemember.min.js">
       <DependentUpon>onlinemember.js</DependentUpon>
@@ -759,6 +763,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\index.ts" />

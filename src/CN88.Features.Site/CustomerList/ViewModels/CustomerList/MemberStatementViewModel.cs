@@ -6,24 +6,22 @@
     using CN88.Features.CustomerList.Models;
     using CN88.Features.Site.CustomerList.Requests;
     using CN88.Features.Site.Shared.ViewModels.Components;
-    using Features.Shared.Utils;
-    using CN88.Features.Extensions;
     public class MemberStatementViewModel
     {
         public MemberStatementViewModel(
             IEnumerable<MemberStatementModel> statements,
             MemberStatementQuery message,
-            IEnumerable<SelectListItem> sportGroups)
+            IEnumerable<SelectListItem> sportGroups,
+            IEnumerable<SelectListItem> fromDates,
+            IEnumerable<SelectListItem> toDates)
         {
             Statements = statements;
             TotalStake = statements.Where(i => i.Stake.HasValue).Sum(i => i.Stake);
             TotalValidStake = statements.Where(i => i.ValidStake.HasValue).Sum(i => i.ValidStake);
             TotalWinLoss = statements.Where(i => i.WinLoss.HasValue).Sum(i => i.WinLoss);
-            SportTypeSelectionViewModel = new SingleSelectionViewModel(sportGroups, 0);
-
-            var dates = new List<SelectListItem> { new SelectListItem { Text = SystemTime.Today.ToShortDateFormat(), Value = SystemTime.Today.ToString() } };
-            FromDateSelectionViewModel = new SingleSelectionViewModel(dates, 0);
-            ToDateSelectionViewModel = new SingleSelectionViewModel(dates, 0);
+            SportTypeSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);            
+            FromDateSelectionViewModel = new SingleSelectionViewModel(fromDates, message.UserSelectedFromDate);
+            ToDateSelectionViewModel = new SingleSelectionViewModel(toDates, message.UserSelectedToDate);
             UserName = message.CustName;
         }
 

@@ -111,6 +111,14 @@
     ]
   },
   {
+    "outputFileName": "CustomerList/bundles/scripts/memberstatement.js",
+    "inputFiles": [
+      "Shared/Scripts/core.js",
+      "Shared/scripts/components/single-selection-dropdown.js",
+      "CustomerList/scripts/member-statement.js"
+    ]
+  },
+  {
     "outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
     "inputFiles": [
       "CustomerList/scripts/popup/popup-base.js",

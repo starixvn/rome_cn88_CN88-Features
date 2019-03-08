@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.Handlers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -14,7 +15,7 @@
     using Features.Shared.Models;
     using Features.Shared.Services;
     using MediatR;
-
+    using CN88.Features.Extensions;
     public class CustomerListHandler :
          IRequestHandler<IndexQuery, IndexViewModel>,
          IRequestHandler<CustomerListQuery, CustomerListViewModel>,
@@ -101,16 +102,20 @@
             var param = new MemberStatementParam
             {
                 CustId = message.CustId,
-                FromDate = message.FromDate,
-                ToDate = message.ToDate,
-                SportType = message.SportType
+                FromDate = message.UserSelectedFromDate,
+                ToDate = message.UserSelectedToDate,
+                SportType = message.UserSelectedFromDate
             };
             var statements = statementService.Get(param);
             var sportGroups = sportService.GetSportGroups();
+            var fromDates = statementService.GetAvailableDate();
+            var toDates = statementService.GetAvailableDate();
             return new MemberStatementViewModel(
                 statements,
                 message,
-                BuildSportTypeSelectListItems(sportGroups, message.SportType));
+                BuildSportTypeSelectListItems(sportGroups, message.UserSelectedSportGroupId),
+                BuildDateTimeSelectListItems(fromDates, message.UserSelectedFromDate),
+                BuildDateTimeSelectListItems(fromDates, message.UserSelectedToDate));
         }
 
         private IEnumerable<SelectListItem> BuildSportTypeSelectListItems(
@@ -131,6 +136,20 @@
                 Selected = userSelectedSportGroupId == 0
             });
 
+            return items;
+        }
+
+        private IEnumerable<SelectListItem> BuildDateTimeSelectListItems(
+            Dictionary<int,DateTime> sportTypes,
+            int userSelectedSportGroupId)
+        {
+            var items = sportTypes.Select(i => new SelectListItem
+            {
+                Text = i.Value.ToShortDateFormat(),
+                Value = i.Key.ToString(),
+                Selected = i.Key == userSelectedSportGroupId
+            }).ToList();
+            
             return items;
         }
     }
