@@ -134,17 +134,31 @@
                 return;
             }
 
+
             row.CopyCellsFrom(TotalRowTemplate);
             row.SetCellValue(0, BetListsResources.Total);
             row.SetCellValue(3, BetDataViewModel.BetListData.Total);
-            row.SetCellValue(4, BetDataViewModel.BetListTotal.TotalStake);
-            row.SetCellValue(5, BetDataViewModel.BetListTotal.TotalWinLoss);
+
+            var rtfStake = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            rtfStake.Render(BetDataViewModel.BetListTotal.TotalStakeStr);
+            row.SetCellValue(4, rtfHelper.RTFRenderer.Render());
+            rtfHelper.RTFRenderer.Clear();
+
+            var rtfWinLoss = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            rtfWinLoss.Render(BetDataViewModel.BetListTotal.TotalStakeStr);
+            row.SetCellValue(5, rtfHelper.RTFRenderer.Render());
+            rtfHelper.RTFRenderer.Clear();
+
             currentRowIndex++;
 
             row = sheet.GetRow(currentRowIndex);
             row.CopyCellsFrom(WinLossWithCommissionRowTemplate);
             row.SetCellValue(0, BetListsResources.WinLossWithCommission);
-            row.SetCellValue(5, BetDataViewModel.BetListTotal.WinLossWithCommission);
+
+            var rtfWinLoss2 = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            rtfWinLoss2.Render(BetDataViewModel.BetListTotal.TotalStr);
+            row.SetCellValue(5, rtfHelper.RTFRenderer.Render());
+            rtfHelper.RTFRenderer.Clear();
             currentRowIndex++;
 
             var comFont = Workbook.CreateFont();
@@ -174,10 +188,11 @@
                       .RenderRTF(ticket, BetDataViewModel.TicketHelper, null, rtfHelper).FirstOrDefault();
                 row.SetCellValue(colIndex++, cellValue);
 
+                ticket.Stake /= BetDataViewModel.Divisor;
                 cellValue = excelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, rtfHelper);
                 row.SetCellValue(colIndex++, cellValue);
 
-                cellValue = BuildWinLoss(ticket, rtfHelper);
+                cellValue = BuildWinLoss(ticket, rtfHelper, BetDataViewModel.Divisor);
                 row.SetCellValue(colIndex++, cellValue);
 
                 ticket.IP = string.Empty;
@@ -187,30 +202,30 @@
 
                 if (BetDataViewModel.CustLevel.IsAgentLevel())
                 {
-                    row.SetCellValue(colIndex++, (int)ticket.AgentPositionTaking);
+                    row.SetCellValue(colIndex++, (int)(ticket.AgentPositionTaking * 100));
                 }
 
                 if (BetDataViewModel.CustLevel.IsMasterLevel())
                 {
-                    row.SetCellValue(colIndex++, (int)ticket.AgentPositionTaking);
-                    row.SetCellValue(colIndex++, (int)ticket.MasterPositionTaking);
+                    row.SetCellValue(colIndex++, (int)(ticket.AgentPositionTaking * 100));
+                    row.SetCellValue(colIndex++, (int)(ticket.MasterPositionTaking * 100));
                 }
 
                 if (BetDataViewModel.CustLevel.IsSuperLevel() || BetDataViewModel.CustLevel.IsHeadline())
                 {
-                    row.SetCellValue(colIndex++, (int)ticket.AgentPositionTaking);
-                    row.SetCellValue(colIndex++, (int)ticket.MasterPositionTaking);
-                    row.SetCellValue(colIndex++, (int)ticket.SuperPositionTaking);
-                    row.SetCellValue(colIndex++, (int)BetDataViewModel.CompanyPositionTaking(ticket));
+                    row.SetCellValue(colIndex++, (int)(ticket.AgentPositionTaking * 100));
+                    row.SetCellValue(colIndex++, (int)(ticket.MasterPositionTaking * 100));
+                    row.SetCellValue(colIndex++, (int)(ticket.SuperPositionTaking * 100));
+                    row.SetCellValue(colIndex++, (int)(BetDataViewModel.CompanyPositionTaking(ticket) * 100));
                 }
 
                 currentRowIndex++;
             }
         }
 
-        public static IRichTextString BuildWinLoss(ITicket ticket, RTFHelper rtfHelper)
+        public static IRichTextString BuildWinLoss(ITicket ticket, RTFHelper rtfHelper, int divisor)
         {
-            var winLossBlockViewModel = new WinLostBlockViewModel(ticket);
+            var winLossBlockViewModel = new WinLostBlockViewModel(ticket, divisor);
             var comm = winLossBlockViewModel.CommVisibility ? winLossBlockViewModel.Comm : string.Empty;
 
             var rtfNumber = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);

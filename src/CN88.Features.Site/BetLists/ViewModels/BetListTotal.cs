@@ -7,17 +7,17 @@
 
     public class BetListTotal
     {
-        public BetListTotal(BetListData betListData, string[] excludedStatus = null)
+        public BetListTotal(BetListData betListData, int divisor, string[] excludedStatus = null)
         {
             var exStatus = excludedStatus ?? new string[] { };
 
             var tickets = betListData.Tickets.Where(ticket => NotInExcludedStatus(ticket, exStatus));
 
-            TotalWinLoss = tickets.Sum(ticket => ticket.Winlost);
-            TotalStake = tickets.Sum(ticket => ticket.Stake);
+            TotalWinLoss = tickets.Sum(ticket => ticket.Winlost) / divisor;
+            TotalStake = tickets.Sum(ticket => ticket.Stake) / divisor;
             TotalCommission = tickets.Sum(ticket => ticket.PlayerComm);
 
-            WinLossWithCommission = TotalWinLoss + TotalCommission;
+            WinLossWithCommission = TotalWinLoss + TotalCommission / divisor;
         }
 
         public decimal TotalWinLoss { get; }

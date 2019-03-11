@@ -6,9 +6,9 @@
 
     public class WinLostBlockViewModel
     {
-        public WinLostBlockViewModel(ITicket ticket)
+        public WinLostBlockViewModel(ITicket ticket, int divisor)
         {
-            SetData(ticket);
+            SetData(ticket, divisor);
             CommVisibility = DisplayComm(ticket);
         }
 
@@ -20,7 +20,7 @@
 
         private static bool DisplayComm(ITicket ticket) => false;
 
-        private void SetData(ITicket ticket)
+        private void SetData(ITicket ticket, int divisor)
         {
             if (BetTypeHelper.IsJackpotContribution(ticket.BetTypeId))
             {
@@ -51,7 +51,7 @@
                     break;
 
                 default:
-                    WinLost = ticket.BetTypeId == 500 ? "(NW) " + ConvertByBetType.Winloss(ticket.ActualStake) : ConvertByBetType.Winloss(ticket.Winlost);
+                    WinLost = ticket.BetTypeId == 500 ? "(NW) " + ConvertByBetType.Winloss(ticket.ActualStake / divisor) : ConvertByBetType.Winloss(ticket.Winlost / divisor);
                     Comm = ticket.BetTypeId == 500 ? ConvertByBetType.Winloss(ticket.PlayerComm) : ConvertByBetType.Comm(ticket.PlayerComm);
                     break;
             }

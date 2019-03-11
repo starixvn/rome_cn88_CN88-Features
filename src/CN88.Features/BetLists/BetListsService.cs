@@ -35,7 +35,7 @@
 
         public BetListData GetBetListOfReport(BetListOfReportParam param)
         {
-            var criteria = new BetListOfReportCriteria(param, reportDateService.GetMoveBetsDay());
+            var criteria = BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay());
             var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
