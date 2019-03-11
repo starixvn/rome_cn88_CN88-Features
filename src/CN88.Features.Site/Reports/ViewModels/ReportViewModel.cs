@@ -66,9 +66,6 @@
 
         public ReportFilterViewModel ReportFilterViewModel { get; }
 
-        protected override int GetBetListType(int reportType)
-            => BetListTypes[reportType];
-
         protected override string GetReportMainActionPath() => ReportMainActionPath;
 
         protected override bool IsOldReport() => false;

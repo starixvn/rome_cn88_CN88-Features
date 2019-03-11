@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
+    using Features.BetLists.Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
@@ -14,6 +15,14 @@
     public abstract class ReportBaseViewModel
     {
         protected readonly ReportBaseQuery query;
+
+        private readonly IDictionary<int, int> BetListTypes = new Dictionary<int, int>
+        {
+            [ReportTypeConstants.SettledWager] = BetListTypeConstant.Settled,
+            [ReportTypeConstants.UnsettledWager] = BetListTypeConstant.Unsettled,
+            [ReportTypeConstants.CancelledReport] = BetListTypeConstant.Cancelled,
+            [ReportTypeConstants.AbnormalBets] = BetListTypeConstant.Abnormal,
+        };
 
         protected ReportBaseViewModel(
             ReportBaseQuery query,
@@ -56,8 +65,6 @@
             : BuildDownlineLink(model, currentLink);
 
         protected abstract string GetReportMainActionPath();
-
-        protected abstract int GetBetListType(int reportType);
 
         protected abstract bool IsOldReport();
 
@@ -157,5 +164,8 @@
                 {
                     ["DisplayMode"] = query.DisplayMode
                 });
+
+        private int GetBetListType(int reportType)
+            => BetListTypes[reportType];
     }
 }
