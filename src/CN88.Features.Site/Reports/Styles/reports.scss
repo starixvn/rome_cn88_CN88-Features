@@ -160,25 +160,38 @@
 .message-modal {
     
     box-shadow: none;
-    border: 1px solid #ccc;
     position: relative;
     .modal-dialog {
         background-color: #ececec;
+        margin-top: 7px !important;
     }
     .modal-dialog:before {
         content: '';
         display: inline-block;
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-bottom: 7px solid #cccccc;
-        border-bottom-color: rgba(0, 0, 0, 0.2);
-        top: -7px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid #ccc;
+        top: -4px;
         right: 20px;
         position: absolute;
+        z-index: 99999;
+    }
+     .modal-dialog:after {
+        content: '';
+        display: inline-block;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #ececec;
+        top: -3px;
+        right: 21px;
+        position: absolute;
+        z-index: 99999;
     }
     .modal-content {
+        box-shadow: none;
         background-color: inherit;
         padding: 0 8px;
+        border: 1px solid #ccc;
         .modal-header .icon-close {
             background: transparent;
             color: #3b3b3b;
