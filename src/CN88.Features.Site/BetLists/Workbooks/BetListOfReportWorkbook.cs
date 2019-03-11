@@ -232,7 +232,7 @@
 
             if (!string.IsNullOrEmpty(winLossBlockViewModel.WinLost))
             {
-                rtfNumber.Render(winLossBlockViewModel.WinLost + "\n");
+                rtfNumber.Render(winLossBlockViewModel.WinLost);
             }
 
             if (!string.IsNullOrEmpty(comm))

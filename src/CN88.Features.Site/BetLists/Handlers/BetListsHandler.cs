@@ -70,7 +70,7 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             var sportGroups = sportGroupService.GetSportGroups();
-            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
+            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(message.SportTypeGroup);
             var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.SportTypeGroup);
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
@@ -81,11 +81,11 @@
                 ticketHelper,
                 cn88Builder,
                 builder,
-                BuildSportGroupSelectListItems(sportGroups, 0),
-                BuildBetTypeSelectListItems(betTypes, 0),
+                BuildSportGroupSelectListItems(sportGroups, message.SportTypeGroup),
+                BuildBetTypeSelectListItems(betTypes, message.BetTypeGroup),
                 currentPeriod,
                 lastPeriod,
-                BuildBetTypeSelectListItems(allBetTypes, 0));
+                BuildBetTypeSelectListItems(allBetTypes, message.BetTypeGroup));
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)
