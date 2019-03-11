@@ -155,7 +155,11 @@
   {
     "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
     "inputFiles": [
-      "SubAccount/Scripts/sub-account.js"
+      "Shared/Scripts/components/message.js",
+      "SubAccount/Scripts/aes.js",
+      "SubAccount/Scripts/sub-account.js",
+      "SubAccount/Scripts/edit-sub-account.js",
+      "SubAccount/Scripts/create-sub-account.js"
     ]
   },
   {

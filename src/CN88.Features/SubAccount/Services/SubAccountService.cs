@@ -58,6 +58,7 @@
             }
 
             param.Password = subAccountValidator.Encode(rawPassword);
+            param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
 
             return await ExecuteAsync(param.ToCommand());
         }

@@ -11,6 +11,7 @@
     {
         private const string IndexViewPath = "~/SubAccount/Views/Index.cshtml";
         private const string CreateViewPath = "~/SubAccount/Views/_Create.cshtml";
+        private const string UpdateViewPath = "~/SubAccount/Views/_Update.cshtml";
 
         public SubAccountController(IMediator mediator)
             : base(mediator)
@@ -20,12 +21,15 @@
         public async Task<ActionResult> Index(IndexQuery message)
             => await ViewAsync(message, IndexViewPath);
 
-        public ActionResult Create(CreateQuery message)
-            => PartialView(CreateViewPath, mediator.Send(message));
+        public async Task<ActionResult> Create(CreateQuery message)
+            => PartialView(CreateViewPath, await mediator.Send(message));
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Create(CreateCommand message)
             => await JsonDataAsync(message, JsonRequestBehavior.DenyGet);
+
+        public async Task<ActionResult> Update(UpdateQuery message)
+            => await ViewAsync(message, UpdateViewPath);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Update(UpdateCommand message)

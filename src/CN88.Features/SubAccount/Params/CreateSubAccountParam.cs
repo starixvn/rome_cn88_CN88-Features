@@ -49,7 +49,7 @@
 
         public string LastName { get; }
 
-        public string PageAccess { get; }
+        public string PageAccess { get; set; }
 
         public string LanguageKey { get; }
 
@@ -63,8 +63,8 @@
                 LoginSubAccId,
                 UserName,
                 Password,
-                FirstName,
-                LastName,
+                FirstName?.Trim() ?? string.Empty,
+                LastName?.Trim() ?? string.Empty,
                 PageAccess,
                 LanguageKey,
                 IP,

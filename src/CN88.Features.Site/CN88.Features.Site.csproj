@@ -533,6 +533,7 @@
     <Content Include="SubAccount\bundles\styles\sub-account.min.css">
       <DependentUpon>sub-account.css</DependentUpon>
     </Content>
+    <Content Include="SubAccount\Scripts\aes.js" />
     <Content Include="SubAccount\Styles\sub-account.css">
       <DependentUpon>sub-account.scss</DependentUpon>
     </Content>
@@ -605,6 +606,7 @@
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
     <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
     <Compile Include="SubAccount\Requests\UpdatePermissionCommand.cs" />
+    <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
     <Compile Include="SubAccount\SubAccountHandler.cs" />
     <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
@@ -749,6 +751,8 @@
     <Content Include="Reports\Views\OldLegacy.cshtml" />
     <Content Include="Reports\Views\PTHistory.cshtml" />
     <Content Include="CustomerList\Styles\member-statement.scss" />
+    <Content Include="SubAccount\Views\_Update.cshtml" />
+    <Content Include="SubAccount\Views\_Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -803,10 +807,13 @@
     <TypeScriptCompile Include="Reports\Scripts\wager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\link-builder.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\message.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
     <TypeScriptCompile Include="Shared\Scripts\popup-manager.ts" />
+    <TypeScriptCompile Include="SubAccount\Scripts\create-sub-account.ts" />
+    <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\sub-account.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />

@@ -1,0 +1,15 @@
+﻿namespace CN88.Features.Site.SubAccount.Requests
+{
+    using Features.Models;
+    using Features.SubAccount.Models;
+    using MediatR;
+    using Site.Requests;
+
+    public class UpdateQuery : BaseQuery, IRequest<SubAccountItem>
+    {
+        public UpdateQuery(IUser viewer)
+            : base(viewer)
+        {
+        }
+    }
+}

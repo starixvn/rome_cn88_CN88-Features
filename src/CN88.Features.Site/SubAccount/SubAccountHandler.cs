@@ -1,9 +1,11 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Alpha.Web.Helpers;
     using Features.Models;
+    using Features.SubAccount.Models;
     using Features.SubAccount.Params;
     using Features.SubAccount.Services;
     using MediatR;
@@ -14,6 +16,7 @@
     public class SubAccountHandler :
         IAsyncRequestHandler<IndexQuery, IndexViewModel>,
         IRequestHandler<CreateQuery, CreateViewModel>,
+        IAsyncRequestHandler<UpdateQuery, SubAccountItem>,
         IAsyncRequestHandler<CreateCommand, Result>,
         IAsyncRequestHandler<UpdateCommand, Result>,
         IAsyncRequestHandler<UpdatePermissionCommand, Result>
@@ -38,29 +41,32 @@
         {
             var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
 
-            var subAccountsTemp = subAccounts.ToList();
-            for (int i = 0; i < 100; i++)
-            {
-                subAccountsTemp.Add(subAccountsTemp[i]);
-            }
+            //var subaccountstemp = subaccounts.tolist();
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    subaccountstemp.add(subaccountstemp[i]);
+            //}
+
+            //return new indexviewmodel(
+            //    message.usercode,
+            //    message.pageindex,
+            //    message.pagesize,
+            //    15,
+            //    subaccountstemp);
 
             return new IndexViewModel(
                 message.UserCode,
                 message.PageIndex,
                 message.PageSize,
                 15,
-                subAccountsTemp);
-
-            //return new IndexViewModel(
-            //    message.UserCode,
-            //    message.PageIndex,
-            //    message.PageSize,
-            //    15,
-            //    subAccounts);
+                subAccounts);
         }
 
         public CreateViewModel Handle(CreateQuery message)
             => new CreateViewModel(GenerateHashKey());
+
+        public async Task<SubAccountItem> Handle(UpdateQuery message)
+            => await subAccountService.GetSubAccountAsync(message.ViewerId, message.CustId);
 
         public async Task<Result> Handle(CreateCommand message)
             => await subAccountService.CreateSubAccountAsync(new CreateSubAccountParam(
@@ -80,7 +86,7 @@
         public async Task<Result> Handle(UpdateCommand message)
             => await subAccountService.UpdateSubAccountAsync(new UpdateSubAccountParam(
                 message.ViewerId,
-                message.SubAccId,
+                message.CustId,
                 message.SubAccountId,
                 message.FirstName,
                 message.LastName,

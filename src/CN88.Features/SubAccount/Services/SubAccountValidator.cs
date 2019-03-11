@@ -33,7 +33,7 @@
         private static readonly Regex MemberPasswordRule = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$");
         private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
 
-        private static readonly string[] ValidPermissions = new[] { "[A]", "[B]", "[D]", "[E]" };
+        private static readonly string[] ValidPermissions = new[] { "[A]", "[B]", "[D]", "[E]", "[H]" };
 
         private readonly Encryptor encryptor;
 
@@ -78,7 +78,7 @@
         public string FilterWithValidPermissions(string pageAccess)
             => string.IsNullOrWhiteSpace(pageAccess)
             ? string.Empty
-            : string.Join(",", pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Intersect(ValidPermissions));
+            : string.Join("", pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Intersect(ValidPermissions));
 
         private static bool IsEqualsPasswordHint(string password)
             => password.Equals("59D7!4$h", StringComparison.OrdinalIgnoreCase) ||
