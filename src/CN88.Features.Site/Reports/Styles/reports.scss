@@ -158,12 +158,27 @@
     }
 }
 .message-modal {
-    background-color: #ececec;
+    
     box-shadow: none;
     border: 1px solid #ccc;
+    position: relative;
+    .modal-dialog {
+        background-color: #ececec;
+    }
+    .modal-dialog:before {
+        content: '';
+        display: inline-block;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #cccccc;
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        top: -7px;
+        right: 20px;
+        position: absolute;
+    }
     .modal-content {
         background-color: inherit;
-        padding: 6px 8px;
+        padding: 0 8px;
         .modal-header .icon-close {
             background: transparent;
             color: #3b3b3b;
@@ -178,6 +193,12 @@
         }
         .modal-body {
             padding: 0 20px 0 0;
+            .item-history {
+                padding: 6px 0;
+                &:not(:first-child) {
+                    border-top: 1px solid #ccc;
+                }
+            }
         }
     }
 }

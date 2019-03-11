@@ -8,9 +8,11 @@
             <div class="modal-body">
                 @foreach (var item in Model.Histories)
                 {
-                    <div><span>@ReportResources.NewPosses</span>@item.OldPT / @item.NewPT</div>
-                    <div>@ReportResources.DateChanged</div>
-                    <div>@item.EffectiveDate</div>
+                    <div class="item-history">
+                        <strong><span>@ReportResources.NewPosses</span>@item.OldPT / @item.NewPT</strong>
+                        <div>@ReportResources.DateChanged</div>
+                        <div>@item.EffectiveDate</div>
+                    </div>                    
                 }
             </div>
         </div>
