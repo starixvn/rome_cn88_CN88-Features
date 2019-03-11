@@ -14,6 +14,7 @@
     padding: 0;
     line-height: 56px;
     margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
 
     .report-name {
         padding-right: 24px;
@@ -222,5 +223,17 @@
         line-height: 0;
         position: relative;
         top: 5px;
+    }
+}
+
+.report-form {
+
+    .form-group {
+        vertical-align: bottom;
+
+        > label {
+            text-transform: uppercase;
+            display: block;
+        }
     }
 }
