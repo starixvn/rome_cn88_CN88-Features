@@ -43,7 +43,7 @@
       <HintPath>..\..\packages\Alpha.Utilities.3.0.0.1\lib\net40\Alpha.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-beta04\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-beta05\lib\net461\CN88.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.Sportsbook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

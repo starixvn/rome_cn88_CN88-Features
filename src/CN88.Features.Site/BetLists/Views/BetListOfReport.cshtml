@@ -117,4 +117,7 @@
 
 @section Scripts{
     @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-report")
+    <script>
+        var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.ReportFilterViewModel.AllBetTypesSelectionViewModel.Items.GroupBy(i => i.SportTypeGroup)));
+    </script>
 }

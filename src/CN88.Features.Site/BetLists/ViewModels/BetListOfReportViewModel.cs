@@ -85,6 +85,7 @@
             IEnumerable<SelectListItemExt> betTypes,
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
+            IEnumerable<SelectListItemExt> allBetTypes,
             string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, excludingTicketStatus)
         {
             DisplayMode = message.DisplayMode;
@@ -103,6 +104,8 @@
                 });
             var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.LiveIndicator);
 
+            var allBetTypesSelectionViewModel = new SingleSelectionViewModel(allBetTypes, 0);
+
             ReportFilterViewModel = new ReportFilterViewModel(
                 DisplayMode,
                 ReportType,
@@ -114,7 +117,8 @@
                 sportGroupSelectionViewModel,
                 dateRangePickerViewModel,
                 betTypeSelectionViewModel,
-                liveStatusSelectionViewModel);
+                liveStatusSelectionViewModel,
+                allBetTypesSelectionViewModel);
 
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;

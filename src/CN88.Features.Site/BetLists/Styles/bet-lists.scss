@@ -2,9 +2,13 @@
     display: none;
 }
 
+.dropdown-menu {
+    width: 350px;
+}
 
 .betlist-container {
     padding: 0 20px;
+
     &.betlist-statement .page-title {
         margin-top: 12px;
     }
@@ -211,9 +215,11 @@
     background-color: #d2d2d2;
     color: #3b3b3b;
     border: none;
+
     &:hover {
         background-color: lighten(#d2d2d2, 10%);
     }
+
     &:focus {
         outline: none;
     }

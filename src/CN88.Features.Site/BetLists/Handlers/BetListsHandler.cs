@@ -73,6 +73,7 @@
             var betTypes = betTypeService.GetBetTypeGroupsBySport();
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
+            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
 
             return new BetListOfReportViewModel(
                 message,
@@ -83,7 +84,8 @@
                 BuildSportGroupSelectListItems(sportGroups, 0),
                 BuildBetTypeSelectListItems(betTypes, 0),
                 currentPeriod,
-                lastPeriod);
+                lastPeriod,
+                BuildBetTypeSelectListItems(allBetTypes, 0));
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)
