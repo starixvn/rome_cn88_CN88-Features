@@ -4,6 +4,8 @@
     using Features.Shared.Services;
     using MediatR;
     using Requests;
+    using Shared.ViewModels;
+    using System.Linq;
     using ViewModels;
 
     public class ReportsHandler : ReportsBaseHandler,
@@ -54,7 +56,8 @@
         public ReportViewModel Handle(ReportQuery message)
         {
             var sportGroups = sportGroupService.GetSportGroups();
-            var betTypes = betTypeService.GetBetTypeGroupsBySport(message.UserSelectedSportGroupId);
+            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
+            var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
             var lastPeriod = accountingPeriodService.GetLastPeriod();
 
             var param = CreateReportParam(message);
@@ -68,7 +71,8 @@
                 BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 reportData,
                 grandTotal,
-                lastPeriod);
+                lastPeriod,
+                BuildBetTypeSelectListItems(allBetTypes, 0));
         }
 
         public PTHistoryViewModel Handle(PTHistoryQuery message)

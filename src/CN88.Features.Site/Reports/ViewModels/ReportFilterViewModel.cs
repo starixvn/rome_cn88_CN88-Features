@@ -16,15 +16,19 @@
             SingleSelectionViewModel sportGroupSelectionViewModel,
             DateRangePickerViewModel dateRangePickerViewModel,
             SingleSelectionViewModel betTypeSelectionViewModel,
-            SingleSelectionViewModel liveStatusSelectionViewModel)
+            SingleSelectionViewModel liveStatusSelectionViewModel,
+            SingleSelectionViewModel allBetTypesSelectionViewModel = null)
             : base(displayMode, reportType, isOwner, custId, custName, breadcrumbLevelJson, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
         {
             BetTypeSelectionViewModel = betTypeSelectionViewModel;
             LiveStatusSelectionViewModel = liveStatusSelectionViewModel;
+            AllBetTypesSelectionViewModel = allBetTypesSelectionViewModel;
         }
 
         public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
 
         public SingleSelectionViewModel LiveStatusSelectionViewModel { get; }
+
+        public SingleSelectionViewModel AllBetTypesSelectionViewModel { get; }
     }
 }
