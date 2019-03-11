@@ -17,6 +17,7 @@
     {
         private readonly ReportService reportService;
         private readonly ReportsWorkbook workbook;
+        private int divisor = 1;
 
         public ReportsExcelHandler(
             ReportService reportService,
@@ -24,6 +25,7 @@
         {
             this.reportService = reportService;
             this.workbook = workbook;
+           
         }
 
         public ExcelFileViewModel Handle(ReportExcelQuery message)
@@ -32,6 +34,8 @@
             {
                 throw new ArgumentNullException(nameof(message));
             }
+
+            divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
 
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
@@ -72,36 +76,36 @@
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total : data.Username)
-                .Map(B, data => data.Super)
-                .Map(C, data => data.SuperIncome)
-                .Map(D, data => data.SuperResult)
-                .Map(E, data => data.SuperStock);
+                .Map(B, data => data.Super / divisor)
+                .Map(C, data => data.SuperIncome / divisor)
+                .Map(D, data => data.SuperResult / divisor)
+                .Map(E, data => data.SuperStock / divisor);
 
             if (message.IsOwner)
             {
                 mapper.Map(F, data => data.Wagers)
-                    .Map(G, data => data.Stake)
-                    .Map(H, data => data.ValidStake)
-                    .Map(I, data => data.MemberIncome)
-                    .Map(J, data => data.Agent)
-                    .Map(K, data => data.AgentResult)
-                    .Map(L, data => data.Master);
+                    .Map(G, data => data.Stake / divisor)
+                    .Map(H, data => data.ValidStake / divisor)
+                    .Map(I, data => data.MemberIncome / divisor)
+                    .Map(J, data => data.Agent / divisor)
+                    .Map(K, data => data.AgentResult / divisor)
+                    .Map(L, data => data.Master / divisor);
             }
             else
             {
                 mapper.Map(F, data => isTotal ? 100 : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(G, data => isTotal ? string.Empty : data.HeadlinePoss)
-                    .Map(H, data => data.HeadlineIncome)
-                    .Map(I, data => data.HeadlineResult)
-                    .Map(J, data => data.HeadlineStock)
+                    .Map(H, data => data.HeadlineIncome / divisor)
+                    .Map(I, data => data.HeadlineResult / divisor)
+                    .Map(J, data => data.HeadlineStock / divisor)
                     .Map(K, data => isTotal ? 100 : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock))
                     .Map(L, data => data.Wagers)
-                    .Map(M, data => data.Stake)
-                    .Map(N, data => data.ValidStake)
-                    .Map(O, data => data.MemberIncome)
-                    .Map(P, data => data.Agent)
-                    .Map(Q, data => data.AgentResult)
-                    .Map(R, data => data.Master);
+                    .Map(M, data => data.Stake / divisor)
+                    .Map(N, data => data.ValidStake / divisor)
+                    .Map(O, data => data.MemberIncome / divisor)
+                    .Map(P, data => data.Agent / divisor)
+                    .Map(Q, data => data.AgentResult / divisor)
+                    .Map(R, data => data.Master / divisor);
             }
 
             return mapper;
@@ -112,34 +116,34 @@
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
-                .Map(C, data => data.MasterIncome)
-                .Map(D, data => data.MasterResult)
-                .Map(E, data => data.MasterStock)
+                .Map(C, data => data.MasterIncome / divisor)
+                .Map(D, data => data.MasterResult / divisor)
+                .Map(E, data => data.MasterStock / divisor)
                 .Map(F, data => isTotal ? 100 : CalculatePercentage(data.MasterStock, grandTotal.MasterStock));
 
             if (message.IsOwner)
             {
                 mapper.Map(G, data => data.Wagers)
-                    .Map(H, data => data.Stake)
-                    .Map(I, data => data.ValidStake)
-                    .Map(J, data => data.MemberIncome)
-                    .Map(K, data => data.Agent)
-                    .Map(L, data => data.AgentResult);
+                    .Map(H, data => data.Stake / divisor)
+                    .Map(I, data => data.ValidStake / divisor)
+                    .Map(J, data => data.MemberIncome / divisor)
+                    .Map(K, data => data.Agent / divisor)
+                    .Map(L, data => data.AgentResult / divisor);
             }
             else
             {
                 mapper.Map(G, data => data.Super)
                     .Map(H, data => isTotal ? string.Empty : data.SuperPoss)
-                    .Map(I, data => data.SuperIncome)
-                    .Map(J, data => data.SuperResult)
-                    .Map(K, data => data.SuperStock)
+                    .Map(I, data => data.SuperIncome / divisor)
+                    .Map(J, data => data.SuperResult / divisor)
+                    .Map(K, data => data.SuperStock / divisor)
                     .Map(L, data => isTotal ? 100 : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(M, data => data.Wagers)
-                    .Map(N, data => data.Stake)
-                    .Map(O, data => data.ValidStake)
-                    .Map(P, data => data.MemberIncome)
-                    .Map(Q, data => data.Agent)
-                    .Map(R, data => data.AgentResult);
+                    .Map(N, data => data.Stake / divisor)
+                    .Map(O, data => data.ValidStake / divisor)
+                    .Map(P, data => data.MemberIncome / divisor)
+                    .Map(Q, data => data.Agent / divisor)
+                    .Map(R, data => data.AgentResult / divisor);
             }
 
             return mapper;
@@ -150,28 +154,28 @@
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
-                .Map(C, data => data.Agent)
+                .Map(C, data => data.Agent / divisor)
                 .Map(D, data => data.AgentPoss)
-                .Map(E, data => data.AgentIncome)
-                .Map(F, data => data.AgentResult)
-                .Map(G, data => data.AgentStock);
+                .Map(E, data => data.AgentIncome / divisor)
+                .Map(F, data => data.AgentResult / divisor)
+                .Map(G, data => data.AgentStock / divisor);
 
             if (message.IsOwner)
             {
                 mapper.Map(H, data => data.Wagers)
-                    .Map(I, data => data.Stake)
-                    .Map(J, data => data.ValidStake)
-                    .Map(K, data => data.MemberIncome);
+                    .Map(I, data => data.Stake / divisor)
+                    .Map(J, data => data.ValidStake / divisor)
+                    .Map(K, data => data.MemberIncome / divisor);
             }
             else
             {
                 mapper.Map(H, data => isTotal ? string.Empty : data.MasterPoss)
-                    .Map(I, data => data.MasterIncome)
-                    .Map(J, data => data.MasterResult)
+                    .Map(I, data => data.MasterIncome / divisor)
+                    .Map(J, data => data.MasterResult / divisor)
                     .Map(K, data => data.Wagers)
-                    .Map(L, data => data.Stake)
-                    .Map(M, data => data.ValidStake)
-                    .Map(N, data => data.MemberIncome);
+                    .Map(L, data => data.Stake / divisor)
+                    .Map(M, data => data.ValidStake / divisor)
+                    .Map(N, data => data.MemberIncome / divisor);
             }
 
             return mapper;
@@ -183,12 +187,12 @@
                 .Map(A, data => isTotal ? ReportResources.Total : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
                 .Map(C, data => data.Wagers)
-                .Map(D, data => data.Stake)
-                .Map(E, data => data.ValidStake)
-                .Map(F, data => data.MemberIncome)
+                .Map(D, data => data.Stake / divisor)
+                .Map(E, data => data.ValidStake / divisor)
+                .Map(F, data => data.MemberIncome / divisor)
                 .Map(G, data => isTotal ? string.Empty : data.AgentPoss)
-                .Map(H, data => data.AgentIncome)
-                .Map(I, data => data.AgentResult);
+                .Map(H, data => data.AgentIncome / divisor)
+                .Map(I, data => data.AgentResult / divisor);
 
             return mapper;
         }
