@@ -151,6 +151,70 @@
     }
 }
 
+.icon-history{
+    font-size: 16px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.message-modal {
+    
+    box-shadow: none;
+    position: relative;
+    .modal-dialog {
+        background-color: #ececec;
+        margin-top: 7px !important;
+    }
+    .modal-dialog:before {
+        content: '';
+        display: inline-block;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid #ccc;
+        top: -4px;
+        right: 20px;
+        position: absolute;
+        z-index: 99999;
+    }
+     .modal-dialog:after {
+        content: '';
+        display: inline-block;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #ececec;
+        top: -3px;
+        right: 21px;
+        position: absolute;
+        z-index: 99999;
+    }
+    .modal-content {
+        box-shadow: none;
+        background-color: inherit;
+        padding: 0 8px;
+        border: 1px solid #ccc;
+        .modal-header .icon-close {
+            background: transparent;
+            color: #3b3b3b;
+            width: unset;
+            height: unset;
+            right: 8px;
+            top: 12px;
+            &:before {
+                font-size: 10px;
+                font-weight: bold;
+            }
+        }
+        .modal-body {
+            padding: 0 20px 0 0;
+            .item-history {
+                padding: 6px 0;
+                &:not(:first-child) {
+                    border-top: 1px solid #ccc;
+                }
+            }
+        }
+    }
+}
 .report-form {
     padding-top: 16px;
     border-bottom: 1px solid #c8c8c8;

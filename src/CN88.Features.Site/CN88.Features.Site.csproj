@@ -747,6 +747,7 @@
     <Content Include="Reports\Views\OldFilter.cshtml" />
     <Content Include="Reports\Views\_OldLayout.cshtml" />
     <Content Include="Reports\Views\OldLegacy.cshtml" />
+    <Content Include="Reports\Views\PTHistory.cshtml" />
     <Content Include="CustomerList\Styles\member-statement.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -788,6 +789,7 @@
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
+    <TypeScriptCompile Include="Reports\Scripts\pt-history.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\client-pager.ts" />
     <TypeScriptCompile Include="Reports\Scripts\index.ts" />
     <TypeScriptCompile Include="Reports\Scripts\legacy-init.ts" />

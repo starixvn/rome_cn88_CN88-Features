@@ -256,4 +256,10 @@
   <data name="PasswordWrongRuleError" xml:space="preserve">
     <value>Your password does not meet the minimum security requirement.</value>
   </data>
+  <data name="NewPosses" xml:space="preserve">
+    <value>New Possess</value>
+  </data>
+  <data name="DateChanged" xml:space="preserve">
+    <value>Date Changed</value>
+  </data>
 </root>

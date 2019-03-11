@@ -1,4 +1,5 @@
 ﻿/// <reference path="../../shared/scripts/core.ts" />
+/// <reference path="pt-history.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="../../shared/scripts/components/link-builder.ts" />
@@ -12,6 +13,7 @@ class LegacyReport extends BaseReport {
 
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
+    ptHistory: PTHistory;
 
     constructor(
         $: JQueryStatic,
@@ -40,7 +42,11 @@ class LegacyReport extends BaseReport {
         this.linkBuilderComponent.render();
         this.pagerComponent.render();
 
+        this.ptHistory = new PTHistory(this.$);
+        this.ptHistory.init();
+
         this.registerEvents();
+
         this.$.unblockUI();
     };
 

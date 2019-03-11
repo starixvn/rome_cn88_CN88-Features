@@ -23,6 +23,7 @@
                 <th class="text-right">@ReportResources.MAResult</th>
             }
             <th class="text-right">@ReportResources.AgentStock</th>
+            <th></th>
         </tr>
         @if (Model.ReportData.Any())
         {
@@ -44,6 +45,7 @@
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult)
                 }
                 @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentStock)
+                <th></th>
             </tr>
         }
     </thead>
@@ -71,14 +73,16 @@
                         @HtmlHelpers.RenderNumberCell(divisor, row.MasterResult)
                     }
                     @HtmlHelpers.RenderNumberCell(divisor, row.AgentStock)
+                    <td><span class="icon-history" data-custid="@row.CustId" data-toggle="tooltip" data-placement="top" title="History Possess" ></span></td>
                 </tr>
             }
         }
         else
         {
             <tr>
-                <td colspan="@(Model.IsNotOwner ? "14" : "11")" align="center">@SharedResources.NoInformationIsAvailable</td>
+                <td colspan="@(Model.IsNotOwner ? "15" : "12")" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
         }
     </tbody>
 </table>
+@Html.Hidden("PTHistoryUrl", Url.Action("PTHistory", "Reports"))

@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="pt-history.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class OldLegacyReport extends OldBaseReport {
@@ -9,6 +10,7 @@ class OldLegacyReport extends OldBaseReport {
     $excelIcon: JQuery;
 
     pagerComponent: ClientPagerComponent;
+    ptHistory: PTHistory;
 
     constructor(
         $: JQueryStatic,
@@ -31,6 +33,8 @@ class OldLegacyReport extends OldBaseReport {
 
         this.initTooltip();
         this.pagerComponent.render();
+        this.ptHistory = new PTHistory(this.$);
+        this.ptHistory.init();
         this.registerEvents();
 
         this.$.unblockUI();

@@ -10,6 +10,6 @@
             Histories = histories;
         }
 
-        private IEnumerable<PTHistory> Histories { get; }
+        public IEnumerable<PTHistory> Histories { get; }
     }
 }
