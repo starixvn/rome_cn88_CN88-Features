@@ -6,14 +6,14 @@
     public class SingleSelectionViewModel
     {
         public SingleSelectionViewModel(
-            IEnumerable<SelectListItem> items,
+            IEnumerable<SelectListItemExt> items,
             int userSelectedId)
         {
             Items = items;
             UserSelectedId = userSelectedId;
         }
 
-        public IEnumerable<SelectListItem> Items { get; }
+        public IEnumerable<SelectListItemExt> Items { get; }
 
         public int UserSelectedId { get; }
     }

@@ -10,15 +10,16 @@
     using CN88.Features.Site.Shared.ViewModels.Components;
     using Fanex.BetList.Core.Utils;
     using Features.Shared.Extensions;
+    using Shared.ViewModels;
 
     public class MemberStatementViewModel
     {
         public MemberStatementViewModel(
             IEnumerable<MemberStatementModel> statements,
             MemberStatementQuery message,
-            IEnumerable<SelectListItem> sportGroups,
-            IEnumerable<SelectListItem> fromDates,
-            IEnumerable<SelectListItem> toDates)
+            IEnumerable<SelectListItemExt> sportGroups,
+            IEnumerable<SelectListItemExt> fromDates,
+            IEnumerable<SelectListItemExt> toDates)
         {
             Statements = statements;
             TotalStake = statements.Sum(i => i.Stake);

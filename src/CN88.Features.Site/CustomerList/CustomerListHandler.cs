@@ -16,6 +16,8 @@
     using Features.Shared.Services;
     using MediatR;
     using CN88.Features.Extensions;
+    using Shared.ViewModels;
+
     public class CustomerListHandler :
          IRequestHandler<IndexQuery, IndexViewModel>,
          IRequestHandler<CustomerListQuery, CustomerListViewModel>,
@@ -79,15 +81,15 @@
                    message.Language,
                    message.IP));
 
-        public Result Handle(CustomerStatusCommand command)
+        public Result Handle(CustomerStatusCommand message)
             => service.UpdateCustomerStatus(new UpdateCustomerStatusParam(
-               command.CustId,
-               command.ViewerId,
-               command.SubAccountId,
-               command.UpdateStatusId,
-               command.Language,
-               command.IP,
-               command.ViewerName));
+               message.CustId,
+               message.ViewerId,
+               message.SubAccountId,
+               message.UpdateStatusId,
+               message.Language,
+               message.IP,
+               message.ViewerName));
 
         public OnlineMemberViewModel Handle(OnlineMembersQuery message)
         {
@@ -118,18 +120,18 @@
                 BuildDateTimeSelectListItems(fromDates, message.UserSelectedToDate));
         }
 
-        private IEnumerable<SelectListItem> BuildSportTypeSelectListItems(
+        private IEnumerable<SelectListItemExt> BuildSportTypeSelectListItems(
             IEnumerable<SportGroup> sportTypes,
             int userSelectedSportGroupId)
         {
-            var items = sportTypes.Select(i => new SelectListItem
+            var items = sportTypes.Select(i => new SelectListItemExt
             {
                 Text = i.DisplayName,
                 Value = i.Id.ToString(),
                 Selected = i.Id == userSelectedSportGroupId
             }).ToList();
 
-            items.Insert(0, new SelectListItem
+            items.Insert(0, new SelectListItemExt
             {
                 Text = SharedResources.AllSports,
                 Value = "0",
@@ -139,11 +141,11 @@
             return items;
         }
 
-        private IEnumerable<SelectListItem> BuildDateTimeSelectListItems(
+        private IEnumerable<SelectListItemExt> BuildDateTimeSelectListItems(
             Dictionary<int,DateTime> sportTypes,
             int userSelectedSportGroupId)
         {
-            var items = sportTypes.Select(i => new SelectListItem
+            var items = sportTypes.Select(i => new SelectListItemExt
             {
                 Text = i.Value.ToShortDateFormat(),
                 Value = i.Key.ToString(),

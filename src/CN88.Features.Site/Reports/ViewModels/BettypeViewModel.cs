@@ -3,10 +3,11 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Shared.ViewModels.Components;
+    using Shared.ViewModels;
 
     public class BettypeViewModel
     {
-        public BettypeViewModel(IEnumerable<SelectListItem> betTypes)
+        public BettypeViewModel(IEnumerable<SelectListItemExt> betTypes)
         {           
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
         }    

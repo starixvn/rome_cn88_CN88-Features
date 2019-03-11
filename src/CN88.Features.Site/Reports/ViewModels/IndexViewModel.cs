@@ -12,6 +12,7 @@
     using Features.Shared.Utils;
     using Requests;
     using Shared.ViewModels.Components;
+    using Shared.ViewModels;
 
     public class IndexViewModel : IndexBaseViewModel
     {
@@ -21,8 +22,8 @@
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
-            IEnumerable<SelectListItem> sportGroups,
-            IEnumerable<SelectListItem> betTypes)
+            IEnumerable<SelectListItemExt> sportGroups,
+            IEnumerable<SelectListItemExt> betTypes)
             : base(query, accountingPeriodGroups, sportGroups)
         {
             CurrentPeriod = currentPeriod;
@@ -37,7 +38,7 @@
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
-                .Select(s => new SelectListItem
+                .Select(s => new SelectListItemExt
                 {
                     Text = SharedResources.ResourceManager.GetString(s.Value),
                     Value = s.Key.ToString(),

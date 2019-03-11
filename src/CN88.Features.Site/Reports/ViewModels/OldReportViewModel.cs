@@ -9,6 +9,7 @@
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
+    using Shared.ViewModels;
 
     public class OldReportViewModel : ReportBaseViewModel
     {
@@ -24,7 +25,7 @@
 
         public OldReportViewModel(
             OldReportQuery query,
-            IEnumerable<SelectListItem> sportGroups,
+            IEnumerable<SelectListItemExt> sportGroups,
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
             IEnumerable<AccountingPeriod> oldAccountingPeriods)

@@ -8,6 +8,7 @@
     using Features.Reports.Models;
     using Requests;
     using Shared.ViewModels.Components;
+    using Shared.ViewModels;
 
     public class OldIndexViewModel : IndexBaseViewModel
     {
@@ -15,7 +16,7 @@
             OldIndexQuery query,
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
             IEnumerable<AccountingPeriod> oldAccountingPeriods,
-            IEnumerable<SelectListItem> sportGroups)
+            IEnumerable<SelectListItemExt> sportGroups)
             : base(query, accountingPeriodGroups, sportGroups)
         {
             var selectPeriod = oldAccountingPeriods.First();

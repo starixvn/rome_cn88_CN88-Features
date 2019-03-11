@@ -592,6 +592,7 @@
     <Compile Include="BetLists\Handlers\BetListsHandler.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfReportViewModel.cs" />
+    <Compile Include="Shared\ViewModels\SelectListItemExt.cs" />
     <Compile Include="SubAccount\Requests\CreateCommand.cs" />
     <Compile Include="CustomerList\Requests\OnlineMembersQuery.cs" />
     <Compile Include="CustomerList\ViewModels\OnlineMemberViewModel.cs" />

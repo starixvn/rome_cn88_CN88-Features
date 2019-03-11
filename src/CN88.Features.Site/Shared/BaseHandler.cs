@@ -8,6 +8,7 @@
     using System.Web.Mvc;
     using Features.Shared.AppResources;
     using Features.Shared.Models;
+    using ViewModels;
 
     public class BaseHandler
     {
@@ -22,34 +23,35 @@
 
         internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
 
-        protected internal IEnumerable<SelectListItem> BuildSportGroupSelectListItems(
+        protected internal IEnumerable<SelectListItemExt> BuildSportGroupSelectListItems(
             IEnumerable<SportGroup> sportGroups,
             int userSelectedSportGroupId)
         {
-            var items = sportGroups.Select(sportGroup => new SelectListItem
+            var items = sportGroups.Select(sportGroup => new SelectListItemExt
             {
                 Text = sportGroup.DisplayName,
                 Value = sportGroup.Id.ToString(),
                 Selected = sportGroup.Id == userSelectedSportGroupId
             }).ToList();
 
-            items.Insert(0, new SelectListItem { Text = SharedResources.AllSports, Value = "0", Selected = userSelectedSportGroupId == 0 });
+            items.Insert(0, new SelectListItemExt { Text = SharedResources.AllSports, Value = "0", Selected = userSelectedSportGroupId == 0 });
 
             return items;
         }
 
-        protected internal IEnumerable<SelectListItem> BuildBetTypeSelectListItems(
+        protected internal IEnumerable<SelectListItemExt> BuildBetTypeSelectListItems(
             IEnumerable<BetType> betTypes,
             int userSelectedBetTypeId)
         {
-            var items = betTypes.Select(betType => new SelectListItem
+            var items = betTypes.Select(betType => new SelectListItemExt
             {
+                SportTypeGroup = betType.SportTypeGroup,
                 Text = betType.DisplayName,
                 Value = betType.Id.ToString(),
                 Selected = betType.Id == userSelectedBetTypeId
             }).ToList();
 
-            items.Insert(0, new SelectListItem { Text = SharedResources.AllBetTypes, Value = "0", Selected = userSelectedBetTypeId == 0 });
+            items.Insert(0, new SelectListItemExt { Text = SharedResources.AllBetTypes, Value = "0", Selected = userSelectedBetTypeId == 0 });
 
             return items;
         }

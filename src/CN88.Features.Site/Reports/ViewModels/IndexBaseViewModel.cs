@@ -7,13 +7,14 @@
     using Features.Shared.Models;
     using Requests;
     using Shared.ViewModels.Components;
+    using Shared.ViewModels;
 
     public abstract class IndexBaseViewModel
     {
         protected IndexBaseViewModel(
             ReportBaseQuery query,
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
-            IEnumerable<SelectListItem> sportGroups)
+            IEnumerable<SelectListItemExt> sportGroups)
         {
             DisplayMode = query.DisplayMode;
             CustLevelId = query.ActorLevel.IsHeadline() ? UserLevel.Super.Value : query.ActorLevel.Value;

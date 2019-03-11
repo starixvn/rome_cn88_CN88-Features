@@ -21,6 +21,7 @@
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
+    using Shared.ViewModels;
 
     public class BetListOfReportViewModel
     {
@@ -77,8 +78,8 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
-            IEnumerable<SelectListItem> sportGroups,
-            IEnumerable<SelectListItem> betTypes,
+            IEnumerable<SelectListItemExt> sportGroups,
+            IEnumerable<SelectListItemExt> betTypes,
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
             string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, excludingTicketStatus)
@@ -91,7 +92,7 @@
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, message.BetTypeGroup);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
-                .Select(s => new SelectListItem
+                .Select(s => new SelectListItemExt
                 {
                     Text = SharedResources.ResourceManager.GetString(s.Value),
                     Value = s.Key.ToString(),

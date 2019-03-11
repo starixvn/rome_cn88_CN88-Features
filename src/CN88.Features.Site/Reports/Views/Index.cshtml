@@ -30,4 +30,7 @@
 </div>
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/index")
+    <script>
+        var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BetTypeSelectionViewModel.Items.GroupBy(i => i.SportTypeGroup)));
+    </script>
 }

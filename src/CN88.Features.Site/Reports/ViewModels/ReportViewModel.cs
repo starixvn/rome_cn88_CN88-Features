@@ -12,6 +12,7 @@
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
+    using Shared.ViewModels;
 
     public class ReportViewModel : ReportBaseViewModel
     {
@@ -27,8 +28,8 @@
 
         public ReportViewModel(
             ReportQuery query,
-            IEnumerable<SelectListItem> sportGroups,
-            IEnumerable<SelectListItem> betTypes,
+            IEnumerable<SelectListItemExt> sportGroups,
+            IEnumerable<SelectListItemExt> betTypes,
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
             AccountingPeriod lastPeriod)
@@ -39,7 +40,7 @@
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, query.UserSelectedBetTypeId);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
-                .Select(s => new SelectListItem
+                .Select(s => new SelectListItemExt
                 {
                     Text = SharedResources.ResourceManager.GetString(s.Value),
                     Value = s.Key.ToString(),
