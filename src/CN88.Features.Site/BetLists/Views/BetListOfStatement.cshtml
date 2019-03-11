@@ -44,14 +44,16 @@
                     <th class="tex-right">@BetListsResources.CoPercent</th>
                 }
             </tr>
-        </thead>
-        <tbody>
             @if (Model.BetListData.Tickets.Any())
             {
                 var total = Model.BetListTotal;
 
                 @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
-
+            }
+        </thead>
+        <tbody>
+            @if (Model.BetListData.Tickets.Any())
+            {
                 var tickets = Model.BetListData.Tickets.ToList();
 
                 for (int i = 0; i < tickets.Count; i++)
