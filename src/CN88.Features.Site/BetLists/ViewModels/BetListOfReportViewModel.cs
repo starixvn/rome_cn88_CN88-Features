@@ -83,8 +83,8 @@
             AccountingPeriod lastPeriod,
             string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, excludingTicketStatus)
         {
-            DisplayMode = 1;
-            ReportMainActionPath = "~/Reports/Index";
+            DisplayMode = message.DisplayMode;
+            ReportMainActionPath = message.ReportMainActionPath;
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportTypeGroup);
             var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);

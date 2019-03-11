@@ -140,7 +140,11 @@
                ["BetTypeGroup"] = query.UserSelectedBetTypeId,
                ["LiveIndicator"] = query.UserSelectedLiveStatusId,
                ["Type"] = GetBetListType(query.ReportType),
-               ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
+               ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model)),
+               ["DisplayMode"] = query.DisplayMode,
+               ["PageIndex"] = query.PageIndex,
+               ["PageSize"] = query.PageSize,
+               ["ReportMainActionPath"] = GetReportMainActionPath()
            };
 
         private string BuildReportMainUrl()

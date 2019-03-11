@@ -33,5 +33,9 @@
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }
+
+        public int DisplayMode { get; set; }
+
+        public string ReportMainActionPath { get; set; }
     }
 }
