@@ -151,6 +151,24 @@
     }
 }
 
+.icon-history{
+    font-size: 16px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.message-modal {
+    background-color: #ececec;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    .modal-content {
+        background-color: inherit;
+        .modal-header .icon-close {
+            background: transparent;
+            color: #3b3b3b;
+        }
+    }
+}
 .report-form {
     padding-top: 16px;
     border-bottom: 1px solid #c8c8c8;

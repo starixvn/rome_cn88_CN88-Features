@@ -143,7 +143,7 @@ class LegacyReport extends BaseReport {
         this.$ptHistory.css({
             position: "absolute",
             bottom: "auto",
-            top: position.top,
+            top: position.top + 25,
             left: position.left - 150
         });
 
