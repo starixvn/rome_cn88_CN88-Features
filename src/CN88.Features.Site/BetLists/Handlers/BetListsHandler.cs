@@ -70,10 +70,10 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             var sportGroups = sportGroupService.GetSportGroups();
-            var betTypes = betTypeService.GetBetTypeGroupsBySport();
+            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
+            var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.SportTypeGroup);
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
-            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
 
             return new BetListOfReportViewModel(
                 message,
