@@ -66,6 +66,7 @@
             BetTypeGroup = message.BetTypeGroup;
             CustId = message.CustId;
             Type = message.Type;
+            IsOwner = message.IsOwner;
 
             ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
             ViewerLevelId = message.ViewerLevelId;
@@ -119,6 +120,8 @@
             PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
         }
+
+        public bool IsOwner { get; set; }
 
         public UserLevel CustLevel { get; }
 

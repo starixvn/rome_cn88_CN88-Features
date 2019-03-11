@@ -12,6 +12,8 @@
         {
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
+            PageSize = 50;
+            PageIndex = 1;
         }
 
         public DateTime FromDate { get; set; }
