@@ -12,7 +12,7 @@
 
     <div class="page-title title-report-detail">
         <span class="report-name">@Model.ReportTitle</span>
-        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
+        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel)
     </div>
     @Html.Partial("~/BetLists/Views/Filter.cshtml", Model)
     <table id="tbl-report" class="tbl-noborder tbl-betlists">

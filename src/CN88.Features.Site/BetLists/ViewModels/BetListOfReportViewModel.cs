@@ -22,6 +22,7 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
     using Shared.ViewModels;
+    using Reports.Constants;
 
     public class BetListOfReportViewModel
     {
@@ -119,6 +120,16 @@
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
+
+            var reportActionName = DisplayMode == ReportDisplayModeConstants.Wager ? "Wager" : "Legacy";
+            var reportPath = $"~/Reports/{reportActionName}";
+
+            BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
+                Enumerable.Repeat(reportPath, 4) :
+                CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 3) :
+                CustLevel.IsMasterLevel() ? Enumerable.Repeat(reportPath, 2) :
+                CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 1) :
+                Enumerable.Empty<string>();
         }
 
         public bool IsOwner { get; set; }
@@ -183,6 +194,8 @@
             => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
 
         public PagerViewModel PagerViewModel { get; private set; }
+
+        public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
 
         public decimal CompanyPositionTaking(TicketDto ticket)
         {
