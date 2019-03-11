@@ -145,7 +145,7 @@
             rtfHelper.RTFRenderer.Clear();
 
             var rtfWinLoss = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
-            rtfWinLoss.Render(BetDataViewModel.BetListTotal.TotalStakeStr);
+            rtfWinLoss.Render(BetDataViewModel.BetListTotal.TotalWinLossStr);
             row.SetCellValue(5, rtfHelper.RTFRenderer.Render());
             rtfHelper.RTFRenderer.Clear();
 
