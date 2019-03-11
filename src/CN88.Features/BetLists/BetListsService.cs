@@ -1,8 +1,10 @@
 ﻿namespace CN88.Features.BetLists
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Criteria;
+    using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.Data.Repository;
     using Models;
@@ -35,8 +37,30 @@
 
         public BetListData GetBetListOfReport(BetListOfReportParam param)
         {
-            var criteria = BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay());
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+            var balanceUpDate = reportDateService.GetBalanceUpDay();
+            var previousBalanceUpDate = balanceUpDate.AddDays(-1);
+            Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> betListDataTuple;
+            var fromDate = param.FromDate.GetGreaterDate(param.LimitedDate);
+            if (fromDate.IsBefore(balanceUpDate))
+            {
+                if (param.ToDate.IsBeforeOrEqual(previousBalanceUpDate))
+                {
+                    betListDataTuple = GetBetListBeforeBalanceUpDay(param, fromDate: fromDate, toDate: param.ToDate);
+                }
+                else
+                {
+                    betListDataTuple = GetBetList(param, fromDate: balanceUpDate);
+                    var oldBetListDataTuple = GetBetListBeforeBalanceUpDay(param, fromDate: fromDate, toDate: previousBalanceUpDate);
+
+                    return new BetListData(
+                        betListDataTuple.Item1.Concat(oldBetListDataTuple.Item1),
+                        betListDataTuple.Item2.Concat(oldBetListDataTuple.Item2).ToList<ITicketData>());
+                }
+            }
+            else
+            {
+                betListDataTuple = GetBetList(param, fromDate);
+            }
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
@@ -65,5 +89,13 @@
 
             return tickets;
         }
+
+        private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetListBeforeBalanceUpDay(BetListOfReportParam param, DateTime fromDate, DateTime toDate)
+          => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
+              BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), isBackup: true));
+
+        private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetList(BetListOfReportParam param, DateTime fromDate)
+            => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
+                BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), isBackup: false));
     }
 }

@@ -14,6 +14,7 @@
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
             PageSize = 50;
             PageIndex = 1;
+            LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         }
 
         public DateTime FromDate { get; set; }
@@ -41,5 +42,7 @@
         public string ReportMainActionPath { get; set; }
 
         public bool IsOldReport { get; set; }
+
+        public DateTime LimitedDateToShowInfo { get; }
     }
 }

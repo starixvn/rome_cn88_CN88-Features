@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.Models
 {
+    using System;
     using Features.Models;
     using Sunplus.Agent.Model.Entities;
 
@@ -40,5 +41,7 @@
         public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
 
         public int AdminId => userSession.AdminId;
+
+        public DateTime LimitedDateToShowInfo => userSession.GetProperty<DateTime>("CustomerDateLimit");
     }
 }

@@ -11,7 +11,8 @@
             int sportTypeGroup,
             int betTypeGroup,
             int liveIndicator,
-            int type)
+            int type,
+            DateTime limitedDate)
         {
             CustId = custId;
             FromDate = fromDate;
@@ -20,6 +21,7 @@
             BetTypeGroup = betTypeGroup;
             LiveIndicator = liveIndicator;
             Type = type;
+            LimitedDate = limitedDate;
         }
 
         public int CustId { get; }
@@ -35,5 +37,7 @@
         public int LiveIndicator { get; }
 
         public int Type { get; }
+
+        public DateTime LimitedDate { get; }
     }
 }

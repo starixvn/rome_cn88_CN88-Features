@@ -63,7 +63,8 @@
                 message.SportTypeGroup,
                 message.BetTypeGroup,
                 message.LiveIndicator,
-                message.Type);
+                message.Type,
+                message.LimitedDateToShowInfo);
 
             var betlistData = service.GetBetListOfReport(param);
 

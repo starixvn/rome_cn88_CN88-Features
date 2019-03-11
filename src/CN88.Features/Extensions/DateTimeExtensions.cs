@@ -27,5 +27,14 @@
 
         public static string ToLongDateTime24h(this DateTime dateTime)
             => dateTime.ToString(LongDateTime24h);
+
+        public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
+            => fromDate < limitedDate ? limitedDate : fromDate;
+
+        public static bool IsBefore(this DateTime dateTime, DateTime otherDateTime)
+            => dateTime < otherDateTime;
+
+        public static bool IsBeforeOrEqual(this DateTime dateTime, DateTime otherDateTime)
+            => dateTime <= otherDateTime;
     }
 }

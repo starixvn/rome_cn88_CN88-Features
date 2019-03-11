@@ -7,24 +7,35 @@
 
     public static class BetListOfReportCriteriaFactory
     {
-        public static CriteriaBase CreateCriteria(BetListOfReportParam param, DateTime moveBetsDate)
+        public static CriteriaBase CreateCriteria(BetListOfReportParam param, DateTime moveBetsDate, bool isBackup)
         {
+            if (isBackup)
+            {
+                switch (param.Type)
+                {
+                    case BetListTypeConstant.Settled:
+                        return new OldSettledBetListCriteria(param);
+                    case BetListTypeConstant.Unsettled:
+                        return new UnsettledBetListCriteria(param);
+                    case BetListTypeConstant.Cancelled:
+                        return new OldCancelledBetListCriteria(param);
+                    case BetListTypeConstant.Abnormal:
+                        return new OldAbnormalBetListCriteria(param);
+                    default:
+                        return new SettledBetListCriteria(param, moveBetsDate);
+                }
+            }
+
             switch (param.Type)
             {
                 case BetListTypeConstant.Settled:
                     return new SettledBetListCriteria(param, moveBetsDate);
-                case BetListTypeConstant.OldSettled:
-                    return new OldSettledBetListCriteria(param);
                 case BetListTypeConstant.Unsettled:
                     return new UnsettledBetListCriteria(param);
                 case BetListTypeConstant.Cancelled:
                     return new CancelledBetListCriteria(param, moveBetsDate);
-                case BetListTypeConstant.OldCancelled:
-                    return new OldCancelledBetListCriteria(param);
                 case BetListTypeConstant.Abnormal:
                     return new AbnormalBetListCriteria(param, moveBetsDate);
-                case BetListTypeConstant.OldAbnormal:
-                    return new OldAbnormalBetListCriteria(param);
                 default:
                     return new SettledBetListCriteria(param, moveBetsDate);
             }

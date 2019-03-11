@@ -1,5 +1,7 @@
 ﻿namespace CN88.Features.Models
 {
+    using System;
+
     public interface IUser
     {
         int Id { get; }
@@ -27,5 +29,7 @@
         bool IsAdminCanViewVNIP { get; }
 
         int AdminId { get; }
+
+        DateTime LimitedDateToShowInfo { get; }
     }
 }
