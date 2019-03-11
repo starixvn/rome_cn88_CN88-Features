@@ -59,6 +59,8 @@
 
         protected abstract int GetBetListType(int reportType);
 
+        protected abstract bool IsOldReport();
+
         private string BuildBetListLink(ReportModel model)
            => UrlHelper.AddQueryStringParamsFunc(
                AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
@@ -144,7 +146,8 @@
                ["DisplayMode"] = query.DisplayMode,
                ["PageIndex"] = query.PageIndex,
                ["PageSize"] = query.PageSize,
-               ["ReportMainActionPath"] = GetReportMainActionPath()
+               ["ReportMainActionPath"] = GetReportMainActionPath(),
+               ["IsOldReport"] = IsOldReport()
            };
 
         private string BuildReportMainUrl()

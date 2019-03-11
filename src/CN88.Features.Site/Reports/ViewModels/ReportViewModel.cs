@@ -71,5 +71,7 @@
             => BetListTypes[reportType];
 
         protected override string GetReportMainActionPath() => ReportMainActionPath;
+
+        protected override bool IsOldReport() => false;
     }
 }

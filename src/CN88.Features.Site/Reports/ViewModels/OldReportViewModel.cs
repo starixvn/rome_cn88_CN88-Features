@@ -56,5 +56,7 @@
             => OldBetListTypes[reportType];
 
         protected override string GetReportMainActionPath() => OldReportMainActionPath;
+
+        protected override bool IsOldReport() => true;
     }
 }

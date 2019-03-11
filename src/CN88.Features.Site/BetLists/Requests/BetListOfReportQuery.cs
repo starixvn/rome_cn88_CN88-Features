@@ -39,5 +39,7 @@
         public int DisplayMode { get; set; }
 
         public string ReportMainActionPath { get; set; }
+
+        public bool IsOldReport { get; set; }
     }
 }

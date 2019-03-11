@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
@@ -17,12 +16,12 @@
     using Features.Shared.Configurations;
     using Features.Shared.Constants;
     using Features.Shared.Models;
+    using Reports.Constants;
     using Reports.ViewModels;
     using Requests;
     using Shared.Helpers;
-    using Shared.ViewModels.Components;
     using Shared.ViewModels;
-    using Reports.Constants;
+    using Shared.ViewModels.Components;
 
     public class BetListOfReportViewModel
     {
@@ -122,7 +121,10 @@
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             var reportActionName = DisplayMode == ReportDisplayModeConstants.Wager ? "Wager" : "Legacy";
-            var reportPath = $"~/Reports/{reportActionName}";
+            IsOldReport = message.IsOldReport;
+            var reportActionController = message.IsOldReport ? "OldReports" : "Reports";
+
+            var reportPath = $"~/{reportActionController}/{reportActionName}";
 
             BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
                 Enumerable.Repeat(reportPath, 4) :
@@ -131,6 +133,8 @@
                 CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 1) :
                 Enumerable.Empty<string>();
         }
+
+        public bool IsOldReport { get; set; }
 
         public bool IsOwner { get; set; }
 
