@@ -1,20 +1,23 @@
 ﻿@model PTHistoryViewModel
-<div class="modal fade message-modal" id="pt-history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-            </div>
-            <div class="modal-body">
-                @foreach (var item in Model.Histories)
+@if (Model.Histories.Any())
+{
+    <div class="modal fade message-modal" id="pt-history" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                </div>
+                <div class="modal-body">
+                    @foreach (var item in Model.Histories)
                 {
-                    <div class="item-history">
-                        <strong><span>@ReportResources.NewPosses</span>@item.OldPT / @item.NewPT</strong>
-                        <div>@ReportResources.DateChanged</div>
-                        <div>@item.EffectiveDate</div>
-                    </div>                    
-                }
+                        <div class="item-history">
+                            <strong><span>@ReportResources.NewPosses</span> @item.OldPT / @item.NewPT</strong>
+                            <div>@ReportResources.DateChanged</div>
+                            <div>@item.EffectiveDate</div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

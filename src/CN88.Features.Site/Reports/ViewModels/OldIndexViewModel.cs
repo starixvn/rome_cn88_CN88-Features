@@ -7,8 +7,8 @@
     using Features.Reports.Constants;
     using Features.Reports.Models;
     using Requests;
-    using Shared.ViewModels.Components;
     using Shared.ViewModels;
+    using Shared.ViewModels.Components;
 
     public class OldIndexViewModel : IndexBaseViewModel
     {

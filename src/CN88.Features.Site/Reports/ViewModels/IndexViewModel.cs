@@ -11,8 +11,8 @@
     using Features.Shared.Constants;
     using Features.Shared.Utils;
     using Requests;
-    using Shared.ViewModels.Components;
     using Shared.ViewModels;
+    using Shared.ViewModels.Components;
 
     public class IndexViewModel : IndexBaseViewModel
     {

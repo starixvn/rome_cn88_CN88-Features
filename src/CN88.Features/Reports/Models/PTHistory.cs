@@ -13,8 +13,8 @@
             int sportType,
             int betType,
             int productId,
-            decimal newPT,
-            decimal oldPT)
+            int newPT,
+            int oldPT)
         {
             EffectiveDate = effectiveDate;
             SportType = sportType;
@@ -32,8 +32,8 @@
 
         public int ProductId { get; }
 
-        public decimal NewPT { get; }
+        public int NewPT { get; }
 
-        public decimal OldPT { get; }
+        public int OldPT { get; }
     }
 }

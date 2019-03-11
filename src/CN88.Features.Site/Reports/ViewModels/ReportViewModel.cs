@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using Features.BetLists.Constants;
     using Features.Reports.Constants;
     using Features.Reports.Models;
@@ -11,8 +10,8 @@
     using Features.Shared.Constants;
     using Requests;
     using Shared.Helpers;
-    using Shared.ViewModels.Components;
     using Shared.ViewModels;
+    using Shared.ViewModels.Components;
 
     public class ReportViewModel : ReportBaseViewModel
     {
