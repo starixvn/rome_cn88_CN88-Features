@@ -176,7 +176,7 @@
                 row.SetCellValue(colIndex++, $"{ticket.TransDate.ToShortDateFormat()}\n{ticket.TransDate.ToLongTime24h()}");
 
                 var comm = ticket.Comm.ToString("#,##0.00");
-                var richString = new HSSFRichTextString($"{ticket.UserName}\n{ ticket.UGroup } { comm }");
+                var richString = new HSSFRichTextString($"{ticket.UserName}\n{ ticket.UGroup.ToUpper() } { comm }");
                 richString.ApplyFont(ticket.UserName.Length, ticket.UserName.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
                 row.SetCellValue(colIndex++, richString);
 

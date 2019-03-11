@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
     using System;
+    using System.Linq;
     using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
@@ -9,6 +10,7 @@
     using Features.Shared.Configurations;
     using Features.Shared.Models;
     using Requests;
+    using Shared.ViewModels.Components;
 
     public class BetListOfStatementViewModel
     {
@@ -40,6 +42,10 @@
 
             ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
             ViewerLevelId = message.ViewerLevelId;
+
+            PageIndex = message.PageIndex;
+            PageSize = message.PageSize;
+            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
         }
 
         public UserLevel CustLevel { get; }
@@ -60,6 +66,10 @@
 
         public bool DisplayVNIP { get; }
 
+        public int PageIndex { get; }
+
+        public int PageSize { get; }
+
         public string OldMainPath => MicroSites.OldMainUrl("~");
 
         public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
@@ -77,6 +87,8 @@
         public byte ViewerLevelId { get; }
 
         public int Divisor { get; }
+
+        public PagerViewModel PagerViewModel { get; private set; }
 
         public decimal CompanyPositionTaking(TicketDto ticket)
         {

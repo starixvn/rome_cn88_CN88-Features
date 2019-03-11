@@ -15,7 +15,7 @@
         @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
     </div>
     @Html.Partial("~/BetLists/Views/Filter.cshtml", Model)
-    <table class="tbl-noborder tbl-betlists">
+    <table id="tbl-report" class="tbl-noborder tbl-betlists">
         <thead>
             <tr>
                 <th class="tex-left">@BetListsResources.DateTime</th>

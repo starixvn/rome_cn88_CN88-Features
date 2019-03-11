@@ -12,9 +12,9 @@
 <div class="betlist-container">
     <div class="page-title">
         <button class="btn-back"><span class="icon-chevron-left"></span>@BetListsResources.Back</button>
-        @BetListsResources.Statement @Model.CustName | @Model.Date.ToShortDateFormat()
+        @BetListsResources.Statement @Model.CustName | @Model.Date.ToLongDay()
     </div>
-    <table class="tbl-noborder tbl-betlists">
+    <table id="tbl-report" class="tbl-noborder tbl-betlists">
         <thead>
             <tr>
                 <th class="text-left">@BetListsResources.DateTime</th>
@@ -92,6 +92,7 @@
             }
         </tbody>
     </table>
+    @Pager.Render(Model.PagerViewModel)
 </div>
 
 <div id="mainPopup" class="modal" tabindex="-1" role="dialog">

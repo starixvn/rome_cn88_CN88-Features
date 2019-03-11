@@ -1,11 +1,18 @@
 ﻿class BetListOfStatement {
     $: JQueryStatic;
-    constructor($: JQueryStatic) {
+    pagerComponent: ClientPagerComponent;
+
+    constructor(
+        $: JQueryStatic,
+        pagerComponent: ClientPagerComponent) {
         this.$ = $;
+        this.pagerComponent = pagerComponent;
+        this.pagerComponent.pageList = this.pagerComponent.smallPageList;
     }
 
     init = () => {
         this.registerEvents();
+        this.pagerComponent.render();
     };
 
     registerEvents = () => {
@@ -16,6 +23,6 @@
 }
 
 $(document).ready(() => {
-    const betListOfStatement = new BetListOfStatement($);
+    const betListOfStatement = new BetListOfStatement($, new ClientPagerComponent($));
     betListOfStatement.init();
 })
