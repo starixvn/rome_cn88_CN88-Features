@@ -163,9 +163,21 @@
     border: 1px solid #ccc;
     .modal-content {
         background-color: inherit;
+        padding: 6px 8px;
         .modal-header .icon-close {
             background: transparent;
             color: #3b3b3b;
+            width: unset;
+            height: unset;
+            right: 8px;
+            top: 12px;
+            &:before {
+                font-size: 10px;
+                font-weight: bold;
+            }
+        }
+        .modal-body {
+            padding: 0 20px 0 0;
         }
     }
 }

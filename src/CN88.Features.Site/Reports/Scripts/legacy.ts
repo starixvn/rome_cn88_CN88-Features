@@ -144,7 +144,9 @@ class LegacyReport extends BaseReport {
             position: "absolute",
             bottom: "auto",
             top: position.top + 25,
-            left: position.left - 150
+            left: "unset", 
+            right: 20
+
         });
 
         this.$ptHistory.find('.modal-dialog').css({
