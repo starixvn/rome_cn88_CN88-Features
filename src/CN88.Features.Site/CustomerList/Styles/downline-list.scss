@@ -79,30 +79,26 @@ body {
 
 // Status
 
-.closed-wrongPwdOthers {
+// LogInFailedOrExpired
+.row-closed.reason-0 {
     background-color: $status-closed;
 }
 
-.closed-wrongPwdOthers {
-    background-color: $status-closedby-pwd-others;
-}
-
-.closed-byAdmin {
+// Closed by Admin 
+.row-closed.reason-1 {
     background-color: $status-closedby-admin;
 }
 
-.closed-byUpline {
+// Closed by upline 
+.row-closed.reason-2 {
     background-color: $status-closedby-upline;
 }
 
-.closed-wrongOTPSC {
+// Closed by wrong security code
+.row-closed.reason-3 {
     background-color: $status-closedby-otp-sc;
 }
 
-.RowBgSuspended {
+.row-suspended {
     background-color: $status-suspended;
-}
-
-.RowBgDisabled {
-    background-color: $status-disabled;
 }
