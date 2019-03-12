@@ -98,7 +98,22 @@
     </table>
     @Pager.Render(Model.PagerViewModel)
 </div>
-
+@if (Model.IsOldReport)
+{
+    <div id="mainPopup" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe width="100%" height="100%" frameborder="0" class="embed-responsive-item" src="" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
 @Html.Hidden("old-main-path", Model.OldMainPath)
@@ -117,6 +132,11 @@
 
 @section Scripts{
     @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-report")
+    @if (Model.IsOldReport)
+    {
+        @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-report-old")
+    }
+
     <script>
         var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.ReportFilterViewModel.AllBetTypesSelectionViewModel.Items.GroupBy(i => i.SportTypeGroup)));
     </script>

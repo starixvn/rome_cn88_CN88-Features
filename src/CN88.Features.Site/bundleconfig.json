@@ -253,5 +253,11 @@
       "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js",
       "Shared/Scripts/components/client-pager.js"
     ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/betlist-of-report-old.js",
+    "inputFiles": [
+      "Shared/Scripts/popup-manager.js"
+    ]
   }
 ]
