@@ -24,4 +24,22 @@
         this.$subMenuWager = this.$("#sub-menu-wager");
         this.$subMenuLegacy = this.$("#sub-menu-legacy");
     }
+
+    init = () => {
+        let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
+        let $this = this;
+
+        setInterval(function () {
+            $this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
+        }, expiredSessionSeconds * 1000);
+    }
 }
+$(function () {
+    const oldBaseReport = new OldBaseReport(
+        $,
+        new SingleSelectionDropdownComponent($),
+        new DateRangePickerComponent($),
+        new SingleSelectionDropdownComponent($));
+
+    oldBaseReport.init();
+})

@@ -6,7 +6,6 @@ class OldReportIndexView extends OldBaseReport {
     $reportType: JQuery;
     $createRptForm: JQuery;
     $wagerRptTypeDropdown: JQuery;
-    expiredSessionSeconds: number;
 
     constructor(
         $: JQueryStatic,
@@ -18,7 +17,6 @@ class OldReportIndexView extends OldBaseReport {
 
     init = () => {
         this.$.blockUI();
-        this.expiredSessionSeconds = this.$('#expiredSessionSeconds').val();
         this.cachedDOMElements();
         this.renderRptTypeDropdown();
         this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId"));
@@ -56,7 +54,6 @@ class OldReportIndexView extends OldBaseReport {
 
     registerEvents = () => {
         this.$createRptForm.submit(this.onSubmit);
-        this.checkIn();
     }
 
     onSubmit = () => {
@@ -64,13 +61,7 @@ class OldReportIndexView extends OldBaseReport {
         this.$reportType.val(reportType);
         this.accountingPeriodSelectionComponent.updateSelectedValue();
         this.sportGroupSelectionComponent.updateSelectedValue();
-    }
-
-    checkIn = () => {
-        setInterval(function () {
-            this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
-        }, this.expiredSessionSeconds * 1000);
-    }
+    }    
 }
 
 $(function () {
