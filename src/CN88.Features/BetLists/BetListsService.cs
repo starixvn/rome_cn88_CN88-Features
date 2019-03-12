@@ -22,6 +22,8 @@
         IEnumerable<TicketDto> GetParlaySubTickets(GetParlaySubTicketsParam param);
 
         BetListData GetBetListByAccount(BetListByAccountParam param);
+
+        BetListData GetWagerDetails(WagerDetailsParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
@@ -78,6 +80,14 @@
         public BetListData GetBetListByAccount(BetListByAccountParam param)
         {
             var criteria = new BetListByAccountCriteria(param, reportDateService.GetMoveBetsDay());
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+        }
+
+        public BetListData GetWagerDetails(WagerDetailsParam param)
+        {
+            var criteria = new WagerDetailsCriteria(param, reportDateService.GetMoveBetsDay());
             var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());

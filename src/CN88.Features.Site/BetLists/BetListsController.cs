@@ -40,5 +40,9 @@
         [HttpGet]
         public async Task<ActionResult> BetListByAccount(BetListByAccountQuery message)
             => await ViewAsync(message, "~/BetLists/Views/BetListByAccount.cshtml");
+
+        [HttpGet]
+        public async Task<ActionResult> WagerDetails(WagerDetailsQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/WagerDetails.cshtml");
     }
 }

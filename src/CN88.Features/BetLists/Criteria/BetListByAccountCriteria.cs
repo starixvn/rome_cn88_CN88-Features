@@ -12,7 +12,7 @@
             MoveBetsDay = moveBetsDate;
 
             // must remove
-            CustId = 34239892; // 34239336;
+            CustId = 34239892;
             FromDate = new DateTime(2019, 3, 11);
             ToDate = new DateTime(2019, 3, 11);
             SportTypeGroup = 0;
