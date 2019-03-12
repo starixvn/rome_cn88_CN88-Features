@@ -21,37 +21,36 @@
         {
             base.OnAuthorization(filterContext);
 
+            var request = filterContext.RequestContext.HttpContext.Request;
             var isOldReport = filterContext.RequestContext.HttpContext.Request.Params["IsOldReport"];
-            if (string.IsNullOrWhiteSpace(isOldReport) || !bool.Parse(isOldReport))
+            if (request.Url.PathAndQuery.Contains("OldReport") || !string.IsNullOrWhiteSpace(isOldReport) || bool.Parse(isOldReport))
             {
-                return;
-            }
-
-            var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
+                var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
                 elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
-            var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
+                var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
 
-            if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
-                DateTime.Now.Subtract(elapsed).Seconds >= expiredSeconds)
-            {
-                if (filterContext.HttpContext.Request.IsAjaxRequest())
+                if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
+                    DateTime.Now.Subtract(elapsed).Seconds >= expiredSeconds)
                 {
-                    filterContext.HttpContext.Response.StatusCode = 302;
-                    filterContext.HttpContext.Response.End();
-                    filterContext.Result = new JsonResult
+                    if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
-                        Data = new { message = "You are not authorized on this function!" },
-                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                    };
+                        filterContext.HttpContext.Response.StatusCode = 302;
+                        filterContext.HttpContext.Response.End();
+                        filterContext.Result = new JsonResult
+                        {
+                            Data = new { message = "You are not authorized on this function!" },
+                            JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                        };
+                    }
+                    else
+                    {
+                        filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
+                    }
                 }
-                else
+                else if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
                 {
-                    filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
+                    filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
                 }
-            }
-            else if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
-            {
-                filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
             }
         }
     }
