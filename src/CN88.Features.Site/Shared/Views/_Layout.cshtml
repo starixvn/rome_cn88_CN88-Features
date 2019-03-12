@@ -14,6 +14,5 @@
     @StaticResources.AssetScripts.Render("/bundles/site-features/default")
     @RenderSection("Scripts", required: false)
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
-    @Html.Hidden("expiredSessionSeconds", ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"])
 </body>
 </html>

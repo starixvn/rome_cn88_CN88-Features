@@ -70,14 +70,16 @@ class BetListOfReport {
 
         this.elements.excelIcon.click(this.onExportExcelEvent);
 
-        this.checkIn();
-
         let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
-        let $this = this;
+        if (!isNaN(expiredSessionSeconds)){
+            this.checkIn();
+                        
+            let $this = this;
 
-        setInterval(function () {
-            $this.checkIn();
-        }, expiredSessionSeconds * 1000);
+            setInterval(function () {
+                $this.checkIn();
+            }, expiredSessionSeconds * 1000);
+        }
     };
 
     onReportSubmit = () => {

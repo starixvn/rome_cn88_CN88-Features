@@ -21,6 +21,12 @@
         {
             base.OnAuthorization(filterContext);
 
+            var isOldReport = filterContext.RequestContext.HttpContext.Request.Params["IsOldReport"];
+            if (string.IsNullOrWhiteSpace(isOldReport) || !bool.Parse(isOldReport))
+            {
+                return;
+            }
+
             var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
                 elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
             var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
