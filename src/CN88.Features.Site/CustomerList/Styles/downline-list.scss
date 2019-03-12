@@ -1,4 +1,6 @@
-﻿body {
+﻿@import "variables";
+
+body {
     padding: 14px;
 }
 
@@ -73,4 +75,34 @@
 
 .icon-edit {
     font-size: 19px;
+}
+
+// Status
+
+.closed-wrongPwdOthers {
+    background-color: $status-closed;
+}
+
+.closed-wrongPwdOthers {
+    background-color: $status-closedby-pwd-others;
+}
+
+.closed-byAdmin {
+    background-color: $status-closedby-admin;
+}
+
+.closed-byUpline {
+    background-color: $status-closedby-upline;
+}
+
+.closed-wrongOTPSC {
+    background-color: $status-closedby-otp-sc;
+}
+
+.RowBgSuspended {
+    background-color: $status-suspended;
+}
+
+.RowBgDisabled {
+    background-color: $status-disabled;
 }
