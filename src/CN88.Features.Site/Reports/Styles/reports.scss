@@ -80,6 +80,9 @@
 }
 
 .dropdown-menu {
+    min-width: 170px;
+}
+.filter-container .dropdown-menu {
     width: 350px;
 }
 
@@ -328,8 +331,13 @@
         width: 416px;
     }
 }
-.accountingsheet-control .multiselect .multiselect-selected-text {
-    width: 180px;
+.accountingsheet-control {
+    .multiselect .multiselect-selected-text {
+        width: 180px;
+    }
+    .dropdown-menu {
+        width: 212px;
+    }
 }
 
 @media all and (min-width: 768px) {
