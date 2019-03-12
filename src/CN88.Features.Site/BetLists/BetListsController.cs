@@ -6,6 +6,7 @@
     using MediatR;
     using Requests;
     using Shared.Controllers;
+    using Reports.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
@@ -15,7 +16,7 @@
         {
         }
 
-        [HttpGet]
+        [HttpGet, ReCheckPassword]
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
             => await ViewAsync(message, "~/BetLists/Views/BetListOfReport.cshtml");
 
@@ -34,6 +35,7 @@
         public async Task<ActionResult> ParlayDetailExcel(GetParlayDetailExcelQuery message)
             => await ExcelView(message);
 
+        [ReCheckPassword]
         public async Task<FileContentResult> BetListOfReportExcel(BetListOfReportExcelQuery message)
             => await ExcelView(message);
 

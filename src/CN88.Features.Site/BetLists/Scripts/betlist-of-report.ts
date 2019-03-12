@@ -69,6 +69,15 @@ class BetListOfReport {
         this.elements.reportForm.submit(this.onReportSubmit);
 
         this.elements.excelIcon.click(this.onExportExcelEvent);
+
+        this.checkIn();
+
+        let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
+        let $this = this;
+
+        setInterval(function () {
+            $this.checkIn();
+        }, expiredSessionSeconds * 1000);
     };
 
     onReportSubmit = () => {
@@ -112,6 +121,10 @@ class BetListOfReport {
             includeSelectAllOption: false
         });
     };
+    
+    checkIn = () => {
+        this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
+    }
 }
 
 $(document).ready(() => {
