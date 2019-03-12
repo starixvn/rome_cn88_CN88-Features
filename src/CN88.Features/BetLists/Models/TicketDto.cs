@@ -5,5 +5,7 @@
     public class TicketDto : Ticket
     {
         public string UGroup { get; set; }
+
+        public decimal PlayerDiscount { get; set; }
     }
 }

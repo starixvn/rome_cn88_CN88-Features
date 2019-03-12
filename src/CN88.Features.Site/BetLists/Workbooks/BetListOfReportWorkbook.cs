@@ -174,7 +174,7 @@
                 row.CopyCellsFrom(BodyRowTemplate);
                 row.SetCellValue(colIndex++, $"{ticket.TransDate.ToShortDateFormat()}\n{ticket.TransDate.ToLongTime24h()}");
 
-                var comm = ticket.PlayerComm.ToString("#,##0.00");
+                var comm = ticket.PlayerDiscount.ToString("#,##0.00");
                 var username = ticket.UserName ?? string.Empty;
                 var richString = new HSSFRichTextString($"{username}\n{ ticket.UGroup.ToUpper() } { comm }");
                 richString.ApplyFont(username.Length, username.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
