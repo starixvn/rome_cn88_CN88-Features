@@ -404,6 +404,10 @@
     <Content Include="BetLists\bundles\betlist-by-account.min.js">
       <DependentUpon>betlist-by-account.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\betlist-of-report-old.js" />
+    <Content Include="BetLists\bundles\betlist-of-report-old.min.js">
+      <DependentUpon>betlist-of-report-old.js</DependentUpon>
+    </Content>
     <Content Include="BetLists\bundles\betlist-of-report.css" />
     <Content Include="BetLists\bundles\betlist-of-report.js" />
     <Content Include="BetLists\bundles\betlist-of-report.min.css">
@@ -783,6 +787,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="BetLists\Scripts\base-betlist.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report-old.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-by-account.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-statement.ts" />

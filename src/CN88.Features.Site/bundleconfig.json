@@ -257,7 +257,8 @@
   {
     "outputFileName": "BetLists/bundles/betlist-of-report-old.js",
     "inputFiles": [
-      "Shared/Scripts/popup-manager.js"
+      "Shared/Scripts/popup-manager.js",
+      "BetLists/Scripts/betlist-of-report-old.js"
     ]
   }
 ]
