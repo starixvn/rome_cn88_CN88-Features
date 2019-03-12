@@ -332,7 +332,7 @@ class ReportIndexView extends BaseReport {
         this.$reportType.val(selected[0]);
     };
 
-    public onSubmit() {
+    onSubmit = () => {
         this.updateReportTypeValue();
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.betTypeSelectionComponent.updateSelectedValue();

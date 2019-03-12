@@ -58,6 +58,7 @@ class SingleSelectionDropdownComponent {
         return selected.length ? selected[0].toString() : "";
     };
     updateSelectedValue = () => {
+        this.selectedValue = this.getSelectedItem();
         this.$hiddenInput.val(this.selectedValue);
     };
 
