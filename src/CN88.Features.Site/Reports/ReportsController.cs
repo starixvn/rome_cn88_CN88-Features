@@ -2,10 +2,10 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using MediatR;
     using Requests;
     using Shared.Controllers;
-    using System.Web.SessionState;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : FeatureBaseController

@@ -37,10 +37,13 @@ class OldLegacyReport extends OldBaseReport {
         this.ptHistory.init();
         this.registerEvents();
 
+        this.$subMenuLegacy.parent().addClass("active");
+
         this.$.unblockUI();
     };
 
     public cacheDOMElements() {
+        super.cacheDOMElements();
         this.$tooltip = this.$('[data-toggle="tooltip"]');
         this.$reportForm = this.$("#report-form");
         this.$exportExcelForm = this.$("#export-excel-form");

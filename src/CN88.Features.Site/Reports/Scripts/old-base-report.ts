@@ -1,5 +1,8 @@
 ﻿class OldBaseReport {
     $: JQueryStatic;
+    $subMenuItems: JQuery;
+    $subMenuWager: JQuery;
+    $subMenuLegacy: JQuery;
 
     accountingPeriodSelectionComponent: SingleSelectionDropdownComponent;
     dateRangePickerComponent: DateRangePickerComponent;
@@ -14,5 +17,11 @@
         this.accountingPeriodSelectionComponent = accountingPeriodSelectionComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
+    }
+
+    public cacheDOMElements() {
+        this.$subMenuItems = this.$(".sub-menu-item");
+        this.$subMenuWager = this.$("#sub-menu-wager");
+        this.$subMenuLegacy = this.$("#sub-menu-legacy");
     }
 }

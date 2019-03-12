@@ -2,6 +2,7 @@
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class OldReportIndexView extends OldBaseReport {
+    $displayMode: JQuery;
     $reportType: JQuery;
     $createRptForm: JQuery;
     $wagerRptTypeDropdown: JQuery;
@@ -25,10 +26,20 @@ class OldReportIndexView extends OldBaseReport {
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.registerEvents();
 
+        let displayMode = this.$displayMode.val();
+        this.$subMenuItems.removeClass("active");
+        if (displayMode === "1") {
+            this.$subMenuWager.parent().addClass("active");
+        } else {
+            this.$subMenuLegacy.parent().addClass("active");
+        }
+
         this.$.unblockUI();
     }
 
     cachedDOMElements = () => {
+        super.cacheDOMElements();
+        this.$displayMode = this.$("#DisplayMode");
         this.$reportType = this.$("#ReportType");
         this.$createRptForm = this.$("#create-rpt-form");
         this.$wagerRptTypeDropdown = this.$("#dropdown-wagerRptType");

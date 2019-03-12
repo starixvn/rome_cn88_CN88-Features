@@ -28,6 +28,8 @@ class OldWagerReport extends OldLegacyReport {
         this.initTooltip();
         this.registerEvents();
         this.$tabSettlement.click();
+
+        this.$subMenuWager.parent().addClass("active");
         this.$.unblockUI();
     };
 
