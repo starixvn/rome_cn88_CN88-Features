@@ -26,12 +26,18 @@
     }
 
     init = () => {
+        this.checkIn();
+
         let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
         let $this = this;
 
         setInterval(function () {
-            $this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
+            $this.checkIn();
         }, expiredSessionSeconds * 1000);
+    }
+
+    checkIn = () => {
+        this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
     }
 }
 $(function () {
