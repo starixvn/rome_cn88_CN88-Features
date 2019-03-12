@@ -7,8 +7,9 @@ class OldReportIndexView extends OldBaseReport {
     $createRptForm: JQuery;
     $wagerRptTypeDropdown: JQuery;
     $clearBtn: JQuery;
-    $fromDate: number;
-    $toDate: number;
+
+    fromDate: number;
+    toDate: number;
 
     constructor(
         $: JQueryStatic,
@@ -22,10 +23,13 @@ class OldReportIndexView extends OldBaseReport {
         this.$.blockUI();
         this.cachedDOMElements();
         this.renderRptTypeDropdown();
-        this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId"));
+        this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId", this.onPeriodChange));
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
         this.registerEvents();
+
+        this.fromDate = this.$fromDate.val();
+        this.toDate = this.$toDate.val();
 
         let displayMode = this.$displayMode.val();
         this.$subMenuItems.removeClass("active");
@@ -45,9 +49,6 @@ class OldReportIndexView extends OldBaseReport {
         this.$createRptForm = this.$("#create-rpt-form");
         this.$wagerRptTypeDropdown = this.$("#dropdown-wagerRptType");
         this.$clearBtn = this.$("#btn-clear");
-
-        this.$fromDate = this.$("#from-date").val();
-        this.$toDate = this.$("#to-date").val();
     };
 
     renderRptTypeDropdown = () => {
@@ -91,8 +92,8 @@ class OldReportIndexView extends OldBaseReport {
     }
 
     resetDatePicker = () => {
-        this.$("#from-date").val(this.$fromDate);
-        this.$("#to-date").val(this.$toDate);
+        this.$fromDate.val(this.fromDate);
+        this.$toDate.val(this.toDate);
     }
 
     resetSportType = () => {

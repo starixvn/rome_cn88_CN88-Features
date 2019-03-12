@@ -1,13 +1,12 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
     using Constants;
     using Features.Reports.Models;
     using Features.Shared.Models;
     using Requests;
-    using Shared.ViewModels.Components;
     using Shared.ViewModels;
+    using Shared.ViewModels.Components;
 
     public abstract class IndexBaseViewModel
     {

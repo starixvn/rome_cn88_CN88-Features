@@ -28,7 +28,7 @@ class OldLegacyReport extends OldBaseReport {
         this.$.blockUI();
         this.cacheDOMElements();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
-        this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId"));
+        this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId", this.onPeriodChange));
         this.dateRangePickerComponent.render();
 
         this.initTooltip();

@@ -3,6 +3,8 @@
     $subMenuItems: JQuery;
     $subMenuWager: JQuery;
     $subMenuLegacy: JQuery;
+    $fromDate: JQuery;
+    $toDate: JQuery;
 
     accountingPeriodSelectionComponent: SingleSelectionDropdownComponent;
     dateRangePickerComponent: DateRangePickerComponent;
@@ -23,6 +25,16 @@
         this.$subMenuItems = this.$(".sub-menu-item");
         this.$subMenuWager = this.$("#sub-menu-wager");
         this.$subMenuLegacy = this.$("#sub-menu-legacy");
+        this.$fromDate = this.$("#from-date");
+        this.$toDate = this.$("#to-date");
+    }
+
+    onPeriodChange = () => {
+        let $this = this.accountingPeriodSelectionComponent.$dropdown.children("option:selected");
+        let fromDate = new Date($this.data("fromdate"));
+        let toDate = new Date($this.data("todate"));
+        this.$fromDate.val(moment(fromDate).format(cn88Features.format.shortDate_DatePicker));
+        this.$toDate.val(moment(toDate).format(cn88Features.format.shortDate_DatePicker));
     }
 
     init = () => {
