@@ -22,8 +22,8 @@
             base.OnAuthorization(filterContext);
 
             var request = filterContext.RequestContext.HttpContext.Request;
-            var isOldReport = filterContext.RequestContext.HttpContext.Request.Params["IsOldReport"];
-            if (request.Url.PathAndQuery.Contains("OldReport") || !string.IsNullOrWhiteSpace(isOldReport) || bool.Parse(isOldReport))
+            var isOldReport = !string.IsNullOrWhiteSpace(request.Params["IsOldReport"]) && bool.Parse(request.Params["IsOldReport"]);
+            if (request.Url.PathAndQuery.Contains("OldReport") || isOldReport)
             {
                 var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
                 elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
