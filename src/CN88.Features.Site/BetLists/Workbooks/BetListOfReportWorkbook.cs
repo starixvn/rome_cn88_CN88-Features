@@ -134,7 +134,6 @@
                 return;
             }
 
-
             row.CopyCellsFrom(TotalRowTemplate);
             row.SetCellValue(0, BetListsResources.Total);
             row.SetCellValue(3, BetDataViewModel.BetListData.Total);
@@ -175,7 +174,7 @@
                 row.CopyCellsFrom(BodyRowTemplate);
                 row.SetCellValue(colIndex++, $"{ticket.TransDate.ToShortDateFormat()}\n{ticket.TransDate.ToLongTime24h()}");
 
-                var comm = ticket.Comm.ToString("#,##0.00");
+                var comm = ticket.PlayerComm.ToString("#,##0.00");
                 var richString = new HSSFRichTextString($"{ticket.UserName}\n{ ticket.UGroup.ToUpper() } { comm }");
                 richString.ApplyFont(ticket.UserName.Length, ticket.UserName.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
                 row.SetCellValue(colIndex++, richString);
