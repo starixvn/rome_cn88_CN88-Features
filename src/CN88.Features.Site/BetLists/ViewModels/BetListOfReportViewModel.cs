@@ -49,7 +49,7 @@
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
 
             this.message = message;
-            CustLevel = message.CustLevel;
+            CustLevel = message.ActorLevel;
             DisplayVNIP = message.DisplayVNIP;
 
             NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 11 : CustLevel.IsMasterLevel() ? 9 : 8;
