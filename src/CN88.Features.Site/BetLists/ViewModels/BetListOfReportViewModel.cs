@@ -227,11 +227,6 @@
             {
                 foreach (var custInfo in message.BreadcrumbLevel)
                 {
-                    if (custInfo.CustLevelId == message.CustLevelId)
-                    {
-                        break;
-                    }
-
                     breadcrumbLevel.Add(custInfo);
                 }
             }
