@@ -41,6 +41,7 @@
 
             if (result.IsSuccess)
             {
+                ControllerContext.Controller.ViewData["area"] = string.Empty;
                 return RedirectToAction(nameof(Index), new { DisplayMode = 1 });
             }
 

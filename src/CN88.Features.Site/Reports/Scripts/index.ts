@@ -74,24 +74,27 @@ class ReportIndexView extends BaseReport {
             var betTypeGroup = betTypes[i];
             if (betTypeGroup[0].SportTypeGroup == 0) {
                 this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[0].Value + '>' + betTypeGroup[0].Text + '</option>');
+
+                if (sportType == 0)
+                    break;
             }
 
             if (betTypeGroup[0].SportTypeGroup == sportType) {
                 for (var j = 0; j < betTypeGroup.length; j++) {
                     this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[j].Value + '>' + betTypeGroup[j].Text + '</option>');
                 }
-
-                this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
-                this.betTypeSelectionComponent.$dropdown.multiselect({
-                    multiple: false,
-                    maxHeight: 300,
-                    numberDisplayed: 1,
-                    includeSelectAllOption: false
-                });
                 
                 break;
             }
         }
+
+        this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
+        this.betTypeSelectionComponent.$dropdown.multiselect({
+            multiple: false,
+            maxHeight: 300,
+            numberDisplayed: 1,
+            includeSelectAllOption: false
+        });
     };
 
     reset = () => {
