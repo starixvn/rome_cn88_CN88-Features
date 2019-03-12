@@ -2,13 +2,13 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Alpha.Web;
     using Features.Models;
     using MediatR;
     using Requests;
     using ViewModels;
+    using Web.Controllers;
 
-    public abstract class FeatureBaseController : BaseController
+    public abstract class FeatureBaseController : CN88BaseController
     {
         private const string NoInformationPageViewPath = "~/Shared/Views/NoInformation.cshtml";
         private const string InvalidExcelFileName = "Invalid";
