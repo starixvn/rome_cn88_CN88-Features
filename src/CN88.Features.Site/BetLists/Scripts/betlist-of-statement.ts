@@ -17,7 +17,7 @@
 
     registerEvents = () => {
         this.$(".btn-back").off("click").on("click", function () {
-            window.history.back();
+            window.location.href = document.referrer;
         });
     };
 }
