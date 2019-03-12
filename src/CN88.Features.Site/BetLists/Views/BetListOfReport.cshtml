@@ -2,7 +2,7 @@
 @model BetListOfReportViewModel
 @{
     ViewBag.Title = "Bet List";
-    Layout = "~/Shared/Views/_Layout.cshtml";
+    Layout = Model.IsOldReport ? "~/Reports/Views/_OldLayout.cshtml" : "~/Shared/Views/_Layout.cshtml";
 }
 
 @section Styles {
