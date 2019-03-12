@@ -6,6 +6,9 @@ class OldReportIndexView extends OldBaseReport {
     $reportType: JQuery;
     $createRptForm: JQuery;
     $wagerRptTypeDropdown: JQuery;
+    $clearBtn: JQuery;
+    $fromDate: number;
+    $toDate: number;
 
     constructor(
         $: JQueryStatic,
@@ -41,6 +44,10 @@ class OldReportIndexView extends OldBaseReport {
         this.$reportType = this.$("#ReportType");
         this.$createRptForm = this.$("#create-rpt-form");
         this.$wagerRptTypeDropdown = this.$("#dropdown-wagerRptType");
+        this.$clearBtn = this.$("#btn-clear");
+
+        this.$fromDate = this.$("#from-date").val();
+        this.$toDate = this.$("#to-date").val();
     };
 
     renderRptTypeDropdown = () => {
@@ -54,6 +61,7 @@ class OldReportIndexView extends OldBaseReport {
 
     registerEvents = () => {
         this.$createRptForm.submit(this.onSubmit);
+        this.reset();
     }
 
     onSubmit = () => {
@@ -61,7 +69,36 @@ class OldReportIndexView extends OldBaseReport {
         this.$reportType.val(reportType);
         this.accountingPeriodSelectionComponent.updateSelectedValue();
         this.sportGroupSelectionComponent.updateSelectedValue();
-    }    
+    }
+
+    reset = () => {
+        this.$clearBtn.click(() => {
+            this.resetReportType();
+            this.resetAccountingSheet();
+            this.resetDatePicker();
+            this.resetSportType();
+        });
+    }
+
+    resetReportType = () => {
+        (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
+        this.$wagerRptTypeDropdown.multiselect("refresh");
+    }
+
+    resetAccountingSheet = () => {
+        (<HTMLSelectElement>this.accountingPeriodSelectionComponent.$dropdown[0]).selectedIndex = 0;
+        this.accountingPeriodSelectionComponent.$dropdown.multiselect("refresh");
+    }
+
+    resetDatePicker = () => {
+        this.$("#from-date").val(this.$fromDate);
+        this.$("#to-date").val(this.$toDate);
+    }
+
+    resetSportType = () => {
+        (<HTMLSelectElement>this.sportGroupSelectionComponent.$dropdown[0]).selectedIndex = 0;
+        this.sportGroupSelectionComponent.$dropdown.multiselect("refresh");
+    }
 }
 
 $(function () {
