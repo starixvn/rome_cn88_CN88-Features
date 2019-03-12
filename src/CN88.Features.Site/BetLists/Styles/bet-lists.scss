@@ -231,8 +231,19 @@
             text-transform: uppercase;
             display: block;
         }
+
         .control.date {
             margin: 0;
         }
+    }
+}
+
+.betlist-by-account {
+    #nav-tabs {
+        padding-top: 14px;
+    }
+
+    #tbl-report {
+        margin-top: 30px;
     }
 }

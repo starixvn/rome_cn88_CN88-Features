@@ -2,10 +2,10 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using MediatR;
     using Requests;
     using Shared.Controllers;
-    using System.Web.SessionState;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
@@ -36,5 +36,9 @@
 
         public async Task<FileContentResult> BetListOfReportExcel(BetListOfReportExcelQuery message)
             => await ExcelView(message);
+
+        [HttpGet]
+        public async Task<ActionResult> BetListByAccount(BetListByAccountQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/BetListByAccount.cshtml");
     }
 }

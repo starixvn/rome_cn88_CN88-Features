@@ -400,6 +400,10 @@
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBTXN.BODB02.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
+    <Content Include="BetLists\bundles\betlist-by-account.js" />
+    <Content Include="BetLists\bundles\betlist-by-account.min.js">
+      <DependentUpon>betlist-by-account.js</DependentUpon>
+    </Content>
     <Content Include="BetLists\bundles\betlist-of-report.css" />
     <Content Include="BetLists\bundles\betlist-of-report.js" />
     <Content Include="BetLists\bundles\betlist-of-report.min.css">
@@ -549,10 +553,12 @@
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
     <Compile Include="BetLists\Helpers\IPHelper.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
+    <Compile Include="BetLists\Requests\BetListByAccountQuery.cs" />
     <Compile Include="BetLists\Requests\BetListOfStatementQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlaySubTicketsQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
+    <Compile Include="BetLists\ViewModels\BetListByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
@@ -721,6 +727,7 @@
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Super.xls" />
     <Content Include="App_Code\Components\DateTimeSelection.cshtml" />
     <Content Include="BetLists\Views\BetListOfStatement.cshtml" />
+    <Content Include="BetLists\Views\BetListByAccount.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -769,6 +776,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="BetLists\Scripts\base-betlist.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\betlist-by-account.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-statement.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\sportsbook-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\base-details.ts" />

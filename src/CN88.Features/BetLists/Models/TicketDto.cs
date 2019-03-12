@@ -7,5 +7,8 @@
         public string UGroup { get; set; }
 
         public decimal PlayerDiscount { get; set; }
+
+        public decimal CompanyPositionTaking()
+            => 1 - AgentPositionTaking - MasterPositionTaking - SuperPositionTaking;
     }
 }

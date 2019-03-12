@@ -21,7 +21,8 @@
         IRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
         IRequestHandler<BetListOfStatementQuery, BetListOfStatementViewModel>,
         IRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
-        IRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>
+        IRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>,
+        IRequestHandler<BetListByAccountQuery, BetListByAccountViewModel>
     {
         private readonly BetListsService service;
         private readonly ISmartPunterBetListMonitor monitorService;
@@ -128,6 +129,17 @@
             var tickets = service.GetParlaySubTickets(param);
 
             return new ParlaySubTicketsViewModel(message, new BetListData(tickets, null), cn88Builder, builder, ticketHelper);
+        }
+
+        public BetListByAccountViewModel Handle(BetListByAccountQuery message)
+        {
+            var param = new BetListByAccountParam(message.CustId, message.LimitedDateToShowInfo);
+
+            var betlistData = service.GetBetListByAccount(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return new BetListByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)

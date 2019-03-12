@@ -358,6 +358,24 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View by Account.
+        /// </summary>
+        public static string ViewByAccount {
+            get {
+                return ResourceManager.GetString("ViewByAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Wager Details.
+        /// </summary>
+        public static string ViewWagerDetails {
+            get {
+                return ResourceManager.GetString("ViewWagerDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Void.
         /// </summary>
         public static string Void {

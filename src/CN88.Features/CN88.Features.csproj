@@ -218,6 +218,7 @@
     <Compile Include="BetLists\Criteria\GetParlayDetailCriteria.cs" />
     <Compile Include="BetLists\Criteria\OldSettledBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\CancelledBetListCriteria.cs" />
+    <Compile Include="BetLists\Criteria\BetListByAccountCriteria.cs" />
     <Compile Include="BetLists\Criteria\UnsettledBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\SettledBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\SmartPunter\InternalAdminCheckerCommand.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="BetLists\Models\ParlayDetailModel.cs" />
     <Compile Include="BetLists\Models\ParlayDetailReportModel.cs" />
     <Compile Include="BetLists\Models\TicketDto.cs" />
+    <Compile Include="BetLists\Params\BetListByAccountParam.cs" />
     <Compile Include="BetLists\Params\BetListOfReportParam.cs" />
     <Compile Include="BetLists\Params\BetListOfStatementParam.cs" />
     <Compile Include="BetLists\Params\GetParlaySubTicketsParam.cs" />

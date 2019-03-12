@@ -234,4 +234,10 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="ViewByAccount" xml:space="preserve">
+    <value>View by Account</value>
+  </data>
+  <data name="ViewWagerDetails" xml:space="preserve">
+    <value>View Wager Details</value>
+  </data>
 </root>
