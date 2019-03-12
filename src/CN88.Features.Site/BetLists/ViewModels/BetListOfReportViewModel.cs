@@ -132,9 +132,9 @@
 
             BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
                 Enumerable.Repeat(reportPath, 4) :
-                CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 3) :
-                CustLevel.IsMasterLevel() ? Enumerable.Repeat(reportPath, 2) :
-                CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 1) :
+                CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 4) :
+                CustLevel.IsMasterLevel() ? Enumerable.Repeat(reportPath, 3) :
+                CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 2) :
                 Enumerable.Empty<string>();
         }
 

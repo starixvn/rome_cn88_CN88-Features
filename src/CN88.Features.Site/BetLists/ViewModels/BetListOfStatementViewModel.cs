@@ -24,7 +24,7 @@
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
 
-            CustLevel = message.CustLevel;
+            CustLevel = message.ActorLevel;
             DisplayVNIP = message.DisplayVNIP;
             CustName = message.CustName;
 

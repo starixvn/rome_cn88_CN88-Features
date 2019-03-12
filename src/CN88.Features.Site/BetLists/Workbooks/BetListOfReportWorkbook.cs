@@ -175,8 +175,9 @@
                 row.SetCellValue(colIndex++, $"{ticket.TransDate.ToShortDateFormat()}\n{ticket.TransDate.ToLongTime24h()}");
 
                 var comm = ticket.PlayerComm.ToString("#,##0.00");
-                var richString = new HSSFRichTextString($"{ticket.UserName}\n{ ticket.UGroup.ToUpper() } { comm }");
-                richString.ApplyFont(ticket.UserName.Length, ticket.UserName.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
+                var username = ticket.UserName ?? string.Empty;
+                var richString = new HSSFRichTextString($"{username}\n{ ticket.UGroup.ToUpper() } { comm }");
+                richString.ApplyFont(username.Length, username.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
                 row.SetCellValue(colIndex++, richString);
 
                 var cellValue = cn88ExcelBuilder.CreateBetInfoBuilder(ticket.BetTypeId)
