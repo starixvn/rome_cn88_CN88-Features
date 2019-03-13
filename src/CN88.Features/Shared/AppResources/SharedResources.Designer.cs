@@ -79,6 +79,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AllMarkets.
+        /// </summary>
+        public static string AllMarkets {
+            get {
+                return ResourceManager.GetString("AllMarkets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Sports.
         /// </summary>
         public static string AllSports {
@@ -187,6 +196,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Market.
+        /// </summary>
+        public static string Market {
+            get {
+                return ResourceManager.GetString("Market", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
         public static string Member {
@@ -273,24 +291,6 @@ namespace CN88.Features.Shared.AppResources {
         public static string PreMatch {
             get {
                 return ResourceManager.GetString("PreMatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pre-Match &amp; In-Play.
-        /// </summary>
-        public static string PreMatchAndInPlay {
-            get {
-                return ResourceManager.GetString("PreMatchAndInPlay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pre-Match / In-Play.
-        /// </summary>
-        public static string PreMatchOrInPlay {
-            get {
-                return ResourceManager.GetString("PreMatchOrInPlay", resourceCulture);
             }
         }
         

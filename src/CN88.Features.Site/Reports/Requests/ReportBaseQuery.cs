@@ -17,7 +17,7 @@
             FromDate = SystemTime.Today;
             ToDate = SystemTime.Today;
 
-            UserSelectedLiveStatusId = LiveStatusConstants.PreMatchAndInPlay;
+            UserSelectedLiveStatusId = LiveStatusConstants.AllMarkets;
 
             PageSize = 10;
             PageIndex = 1;

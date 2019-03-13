@@ -189,11 +189,11 @@
   <data name="PreMatch" xml:space="preserve">
     <value>Pre-Match</value>
   </data>
-  <data name="PreMatchAndInPlay" xml:space="preserve">
-    <value>Pre-Match &amp; In-Play</value>
+  <data name="AllMarkets" xml:space="preserve">
+    <value>All Markets</value>
   </data>
-  <data name="PreMatchOrInPlay" xml:space="preserve">
-    <value>Pre-Match / In-Play</value>
+  <data name="Market" xml:space="preserve">
+    <value>Market</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>

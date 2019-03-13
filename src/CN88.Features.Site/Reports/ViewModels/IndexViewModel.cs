@@ -43,7 +43,7 @@
                     Text = SharedResources.ResourceManager.GetString(s.Value),
                     Value = s.Key.ToString(),
                 });
-            LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, LiveStatusConstants.PreMatchAndInPlay);
+            LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, LiveStatusConstants.AllMarkets);
         }
 
         public AccountingPeriod CurrentPeriod { get; }
