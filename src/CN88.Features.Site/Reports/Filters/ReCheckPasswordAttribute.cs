@@ -30,7 +30,7 @@
                 var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
 
                 if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
-                    DateTime.Now.Subtract(elapsed).Seconds >= expiredSeconds)
+                    (DateTime.Now - elapsed).TotalSeconds >= expiredSeconds)
                 {
                     if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
