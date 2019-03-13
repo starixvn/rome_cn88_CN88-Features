@@ -26,4 +26,8 @@
     @Html.Hidden("IsOwner", Model.IsOwner)
     @Html.Hidden("ReportType", Model.ReportType)
     @Html.Hidden("DisplayMode", Model.DisplayMode)
+
+    var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
+
+    @Html.Hidden("IsSettlement", isSettlement)
 }

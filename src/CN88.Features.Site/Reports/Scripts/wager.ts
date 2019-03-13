@@ -41,6 +41,7 @@ class WagerReport extends LegacyReport {
         
         if (location.search.indexOf("IsSettlement=True") != -1 || 
             location.search.indexOf("CustLevelId=1") != -1 ||
+            this.$("IsSettlement").val() == "True" ||
             this.$tabSettlement.hasClass("active")) {
             this.activateSettlementTab();
         } else {
@@ -71,6 +72,8 @@ class WagerReport extends LegacyReport {
 
         this.$tabValidStake.click();
     };
+
+
 
     onchangeSportType = () => {
         let sportType = this.sportGroupSelectionComponent.$dropdown.val();
@@ -113,6 +116,15 @@ class WagerReport extends LegacyReport {
     }
 
     public registerEvents() {
+        this.$tabSettlement.on("click touchend", () => {
+            if (location.search.indexOf("CustLevelId=1") == -1)
+                this.$("#IsSettlement").val("True");
+        });
+
+        this.$tabValidStake.on("click touchend", () => {
+            this.$("#IsSettlement").val("False");
+        });
+
         let self = this;
         super.registerEvents();
 

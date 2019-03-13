@@ -33,6 +33,7 @@ class OldWagerReport extends OldLegacyReport {
 
         if (location.search.indexOf("IsSettlement=True") != -1 ||
             location.search.indexOf("CustLevelId=1") != -1 ||
+            this.$("IsSettlement").val() == "True" ||
             this.$tabSettlement.hasClass("active")) {
             this.activateSettlementTab();
         } else {
@@ -75,6 +76,15 @@ class OldWagerReport extends OldLegacyReport {
     public registerEvents() {
         let self = this;
         super.registerEvents();
+
+        this.$tabSettlement.on("click touchend", () => {
+            if (location.search.indexOf("CustLevelId=1") == -1)
+                this.$("#IsSettlement").val("True");
+        });
+
+        this.$tabValidStake.on("click touchend", () => {
+            this.$("#IsSettlement").val("False");
+        });
 
         this.elements.tabSelectors.on("click touchend", function () {
             self.elements.tabSelectors.removeClass("active");
