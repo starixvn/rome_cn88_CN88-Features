@@ -4,6 +4,7 @@
 "use strict";
 class OldWagerReport extends OldLegacyReport {
     $tabSettlement: JQuery;
+    $tabValidStake: JQuery;
 
     elements = {
         tabSelectors: null,
@@ -27,17 +28,48 @@ class OldWagerReport extends OldLegacyReport {
         this.dateRangePickerComponent.render();
         this.initTooltip();
         this.registerEvents();
-        this.$tabSettlement.click();
 
         this.$subMenuWager.parent().addClass("active");
+
+        if (location.search.indexOf("IsSettlement=True") != -1 ||
+            location.search.indexOf("CustLevelId=1") != -1 ||
+            this.$tabSettlement.hasClass("active")) {
+            this.activateSettlementTab();
+        } else {
+            this.activateValidStakeTab();
+        }
+
         this.$.unblockUI();
+    };
+
+    activateSettlementTab = () => {
+        this.$tabSettlement
+            .removeClass("active")
+            .addClass("active");
+
+        this.$tabValidStake
+            .removeClass("active");
+
+        this.$tabSettlement.click();
+    };
+
+    activateValidStakeTab = () => {
+        this.$tabValidStake
+            .removeClass("active")
+            .addClass("active");
+
+        this.$tabSettlement
+            .removeClass("active");
+
+        this.$tabValidStake.click();
     };
 
     public cacheDOMElements() {
         super.cacheDOMElements();
         this.$tabSettlement = this.$("#tabSettlement");
+        this.$tabValidStake = this.$("#tabValidStake");
         this.elements.tabSelectors = $(".tab-selector");
-        this.elements.tabContent = $(".tab-content");
+        this.elements.tabContent = $(".tab-content");        
     }
 
     public registerEvents() {
