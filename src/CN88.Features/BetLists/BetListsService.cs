@@ -24,6 +24,8 @@
         BetListData GetBetListByAccount(BetListByAccountParam param);
 
         BetListData GetWagerDetails(WagerDetailsParam param);
+
+        BetListData GetTotalBetParlay(GetTotalBetParlayParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
@@ -108,6 +110,14 @@
             var tickets = dynamicRepository.Fetch<TicketDto>(criteria);
 
             return tickets;
+        }
+
+        public BetListData GetTotalBetParlay(GetTotalBetParlayParam param)
+        {
+            var criteria = new TotalBetParlayCriteria(param, reportDateService.GetMoveBetsDay());
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetListBeforeBalanceUpDay(BetListOfReportParam param, DateTime fromDate, DateTime toDate)

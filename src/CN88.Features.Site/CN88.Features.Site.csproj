@@ -420,6 +420,10 @@
     <Content Include="BetLists\bundles\betlist-of-statement.min.js">
       <DependentUpon>betlist-of-statement.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\total-bet-parlay.js" />
+    <Content Include="BetLists\bundles\total-bet-parlay.min.js">
+      <DependentUpon>total-bet-parlay.js</DependentUpon>
+    </Content>
     <Content Include="BetLists\bundles\wager-details.js" />
     <Content Include="BetLists\bundles\wager-details.min.js">
       <DependentUpon>wager-details.js</DependentUpon>
@@ -566,6 +570,7 @@
     <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlaySubTicketsQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
+    <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
     <Compile Include="BetLists\Requests\WagerDetailsQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
@@ -573,6 +578,7 @@
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\TotalBetParlayViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
     <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
@@ -739,6 +745,7 @@
     <Content Include="BetLists\Views\BetListOfStatement.cshtml" />
     <Content Include="BetLists\Views\BetListByAccount.cshtml" />
     <Content Include="BetLists\Views\WagerDetails.cshtml" />
+    <Content Include="BetLists\Views\TotalBetParlay.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -788,6 +795,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="BetLists\Scripts\base-betlist.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report-old.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\total-bet-parlay.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-by-account.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-statement.ts" />

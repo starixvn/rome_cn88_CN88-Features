@@ -23,7 +23,8 @@
         IRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
         IRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>,
         IRequestHandler<BetListByAccountQuery, BetListByAccountViewModel>,
-        IRequestHandler<WagerDetailsQuery, WagerDetailsViewModel>
+        IRequestHandler<WagerDetailsQuery, WagerDetailsViewModel>,
+        IRequestHandler<TotalBetParlayQuery, TotalBetParlayViewModel>
     {
         private readonly BetListsService service;
         private readonly ISmartPunterBetListMonitor monitorService;
@@ -152,6 +153,30 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new WagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+        }
+
+        public TotalBetParlayViewModel Handle(TotalBetParlayQuery message)
+        {
+            var param = new GetTotalBetParlayParam(
+                message.CustId,
+                message.LimitedDateToShowInfo,
+                message.SportGroupId,
+                message.ViewMode,
+                message.StakeMode,
+                message.StakeLimit);
+
+            var betlistData = service.GetTotalBetParlay(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            var sportGroups = sportGroupService.GetSportGroups();
+            return new TotalBetParlayViewModel(
+                message,
+                betlistData,
+                ticketHelper,
+                cn88Builder,
+                builder,
+                BuildSportGroupSelectListItems(sportGroups, message.SportGroupId));
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)

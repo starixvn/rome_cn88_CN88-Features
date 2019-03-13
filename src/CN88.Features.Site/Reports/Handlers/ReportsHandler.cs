@@ -1,11 +1,10 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
+    using System.Linq;
     using Features.Reports.Services;
     using Features.Shared.Services;
     using MediatR;
     using Requests;
-    using Shared.ViewModels;
-    using System.Linq;
     using ViewModels;
 
     public class ReportsHandler : ReportsBaseHandler,

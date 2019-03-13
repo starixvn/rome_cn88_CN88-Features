@@ -4,9 +4,9 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
     using MediatR;
+    using Reports.Filters;
     using Requests;
     using Shared.Controllers;
-    using Reports.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
@@ -46,5 +46,9 @@
         [HttpGet]
         public async Task<ActionResult> WagerDetails(WagerDetailsQuery message)
             => await ViewAsync(message, "~/BetLists/Views/WagerDetails.cshtml");
+
+        [HttpGet]
+        public async Task<ActionResult> TotalBetParlay(TotalBetParlayQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/TotalBetParlay.cshtml");
     }
 }

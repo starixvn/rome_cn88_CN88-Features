@@ -260,5 +260,24 @@
       "Shared/Scripts/popup-manager.js",
       "BetLists/Scripts/betlist-of-report-old.js"
     ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/total-bet-parlay.js",
+    "inputFiles": [
+      "Shared/Scripts/popup-manager.js",
+      "BetLists/Scripts/app-path.js",
+      "BetLists/Scripts/utils.js",
+      "BetLists/Scripts/popup-details.js",
+      "BetLists/Scripts/base-betlist.js",
+      "BetLists/Scripts/total-bet-parlay.js",
+      "BetLists/Scripts/result/base-result.js",
+      "BetLists/Scripts/result/sportsbook-result-details.js",
+      "BetLists/Scripts/result/casino-result-details.js",
+      "BetLists/Scripts/result/other-result-details.js",
+      "BetLists/Scripts/details/base-details.js",
+      "BetLists/Scripts/details/sportsbook-details.js",
+      "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js",
+      "Shared/Scripts/components/client-pager.js"
+    ]
   }
 ]
