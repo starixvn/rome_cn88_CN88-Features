@@ -67,6 +67,18 @@
             return items;
         }
 
+        protected internal IEnumerable<SelectListItemExt> BuildPercentageViewModeSelectListItems(IEnumerable<int> modes, int userSelectedViewMode)
+        {
+            var items = modes.Select(mode => new SelectListItemExt
+            {
+                Text = SharedResources.ResourceManager.GetString($"PercentageViewMode_{mode}"),
+                Value = mode.ToString(),
+                Selected = mode == userSelectedViewMode
+            }).ToList();
+
+            return items;
+        }
+
         protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
         {
             if (string.IsNullOrWhiteSpace(templateName))

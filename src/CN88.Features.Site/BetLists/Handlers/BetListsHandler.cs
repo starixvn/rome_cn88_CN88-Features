@@ -178,7 +178,8 @@
                 cn88Builder,
                 builder,
                 BuildSportGroupSelectListItems(sportGroups, message.SportGroupId),
-                BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.SportGroupId));
+                BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.SportGroupId),
+                BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.Modes, message.ViewMode));
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)

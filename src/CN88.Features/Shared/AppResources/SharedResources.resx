@@ -243,4 +243,31 @@
   <data name="StakeMode_5" xml:space="preserve">
     <value>&gt;=</value>
   </data>
+  <data name="PercentageViewMode_1" xml:space="preserve">
+    <value>Full Percentage</value>
+  </data>
+  <data name="PercentageViewMode_2" xml:space="preserve">
+    <value>Company %</value>
+  </data>
+  <data name="PercentageViewMode_3" xml:space="preserve">
+    <value>SMA %</value>
+  </data>
+  <data name="PercentageViewMode_4" xml:space="preserve">
+    <value>MA %</value>
+  </data>
+  <data name="PercentageViewMode_5" xml:space="preserve">
+    <value>Agent %</value>
+  </data>
+  <data name="PercentageViewMode_6" xml:space="preserve">
+    <value>SMA + MA + Agent %</value>
+  </data>
+  <data name="PercentageViewMode_7" xml:space="preserve">
+    <value>SMA + MA %</value>
+  </data>
+  <data name="PercentageViewMode_8" xml:space="preserve">
+    <value>MA + Agent %</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>

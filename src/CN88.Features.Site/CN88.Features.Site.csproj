@@ -748,6 +748,7 @@
     <Content Include="BetLists\Views\WagerDetails.cshtml" />
     <Content Include="BetLists\Views\TotalBetParlay.cshtml" />
     <Content Include="App_Code\Components\StakeSelection.cshtml" />
+    <Content Include="App_Code\Components\ViewModeSelection.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

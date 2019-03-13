@@ -6,7 +6,6 @@
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Features.BetLists.Constants;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
     using Features.Shared.Models;
@@ -24,6 +23,7 @@
             IBetListHTMLBuilder builder,
             IEnumerable<SelectListItemExt> sportGroups,
             IEnumerable<SelectListItemExt> stakeModes,
+            IEnumerable<SelectListItemExt> viewModes,
             string[] excludingTicketStatus = null)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
@@ -54,6 +54,7 @@
 
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportGroupId);
             StakeSelectionViewModel = new StakeSelectionViewModel(stakeModes, message.StakeMode, message.StakeLimit);
+            ViewModeSelectionViewModel = new SingleSelectionViewModel(viewModes, message.ViewMode);
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
         }
 
@@ -106,5 +107,7 @@
         public PagerViewModel PagerViewModel { get; private set; }
 
         public StakeSelectionViewModel StakeSelectionViewModel { get; }
+
+        public SingleSelectionViewModel ViewModeSelectionViewModel { get; }
     }
 }

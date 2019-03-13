@@ -286,6 +286,78 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full Percentage.
+        /// </summary>
+        public static string PercentageViewMode_1 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company %.
+        /// </summary>
+        public static string PercentageViewMode_2 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA %.
+        /// </summary>
+        public static string PercentageViewMode_3 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MA %.
+        /// </summary>
+        public static string PercentageViewMode_4 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent %.
+        /// </summary>
+        public static string PercentageViewMode_5 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA + MA + Agent %.
+        /// </summary>
+        public static string PercentageViewMode_6 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA + MA %.
+        /// </summary>
+        public static string PercentageViewMode_7 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MA + Agent %.
+        /// </summary>
+        public static string PercentageViewMode_8 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pre-Match.
         /// </summary>
         public static string PreMatch {
@@ -426,6 +498,15 @@ namespace CN88.Features.Shared.AppResources {
         public static string UserCode {
             get {
                 return ResourceManager.GetString("UserCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
             }
         }
         

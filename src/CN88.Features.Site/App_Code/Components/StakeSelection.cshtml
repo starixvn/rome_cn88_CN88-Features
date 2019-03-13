@@ -7,7 +7,7 @@
         {
             <label>@SharedResources.Stake</label>
         }
-        <select id="dropdown-sportgroup">
+        <select id="dropdown-stake-mode">
             @foreach (var group in model.Items)
             {
                 <option value="@group.Value" @(group.Selected ? " selected=\"selected\"" : string.Empty)>@group.Text</option>

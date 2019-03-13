@@ -277,7 +277,8 @@
       "BetLists/Scripts/details/base-details.js",
       "BetLists/Scripts/details/sportsbook-details.js",
       "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js",
-      "Shared/Scripts/components/client-pager.js"
+      "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/single-selection-dropdown.js"
     ]
   }
 ]

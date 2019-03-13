@@ -1,0 +1,18 @@
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Site.Shared.ViewModels.Components
+@helper Render(SingleSelectionViewModel model, bool showLabel)
+{
+    <div class="form-group">
+        @if (showLabel)
+        {
+            <label>@SharedResources.View</label>
+        }
+        <select id="dropdown-view-mode">
+            @foreach (var group in model.Items)
+            {
+                <option value="@group.Value" @(group.Selected ? " selected=\"selected\"" : string.Empty)>@group.Text</option>
+            }
+        </select>
+        <input type="hidden" name="ViewMode" id="ViewMode" value="@model.UserSelectedId" />
+    </div>
+}
