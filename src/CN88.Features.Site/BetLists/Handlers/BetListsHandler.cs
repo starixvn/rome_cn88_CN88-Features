@@ -10,6 +10,7 @@
     using Features.BetLists.Models;
     using Features.BetLists.Params;
     using Features.Reports.Services;
+    using Features.Shared.Constants;
     using Features.Shared.Services;
     using MediatR;
     using Requests;
@@ -176,7 +177,8 @@
                 ticketHelper,
                 cn88Builder,
                 builder,
-                BuildSportGroupSelectListItems(sportGroups, message.SportGroupId));
+                BuildSportGroupSelectListItems(sportGroups, message.SportGroupId),
+                BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.SportGroupId));
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)

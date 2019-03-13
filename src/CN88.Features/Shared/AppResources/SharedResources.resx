@@ -225,4 +225,22 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Stake" xml:space="preserve">
+    <value>Stake</value>
+  </data>
+  <data name="StakeMode_1" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="StakeMode_2" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="StakeMode_3" xml:space="preserve">
+    <value>=</value>
+  </data>
+  <data name="StakeMode_4" xml:space="preserve">
+    <value>&lt;=</value>
+  </data>
+  <data name="StakeMode_5" xml:space="preserve">
+    <value>&gt;=</value>
+  </data>
 </root>

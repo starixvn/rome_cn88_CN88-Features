@@ -207,4 +207,7 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>修改密码</value>
   </data>
+  <data name="Stake" xml:space="preserve">
+    <value>投注额</value>
+  </data>
 </root>

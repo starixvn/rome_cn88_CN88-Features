@@ -610,6 +610,7 @@
     <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
+    <Compile Include="Shared\ViewModels\Components\StakeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
     <Compile Include="BetLists\Handlers\BetListsHandler.cs" />
@@ -746,6 +747,7 @@
     <Content Include="BetLists\Views\BetListByAccount.cshtml" />
     <Content Include="BetLists\Views\WagerDetails.cshtml" />
     <Content Include="BetLists\Views\TotalBetParlay.cshtml" />
+    <Content Include="App_Code\Components\StakeSelection.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

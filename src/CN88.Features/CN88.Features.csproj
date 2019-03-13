@@ -209,6 +209,7 @@
     <Compile Include="BetLists\BetListsService.cs" />
     <Compile Include="BetLists\Constants\BetListTypeConstant.cs" />
     <Compile Include="BetLists\Constants\BetTypeIdConstants.cs" />
+    <Compile Include="Shared\Constants\StakeModeConstant.cs" />
     <Compile Include="BetLists\Criteria\OldAbnormalBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReportCriteriaFactory.cs" />
     <Compile Include="BetLists\Criteria\BetListOfStatementCriteria.cs" />

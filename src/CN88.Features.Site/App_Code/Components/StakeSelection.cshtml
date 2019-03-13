@@ -1,0 +1,19 @@
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Site.Shared.ViewModels.Components
+@helper Render(StakeSelectionViewModel model, bool showLabel)
+{
+    <div class="form-group">
+        @if (showLabel)
+        {
+            <label>@SharedResources.Stake</label>
+        }
+        <select id="dropdown-sportgroup">
+            @foreach (var group in model.Items)
+            {
+                <option value="@group.Value" @(group.Selected ? " selected=\"selected\"" : string.Empty)>@group.Text</option>
+            }
+        </select>
+        <input type="text" name="StakeLimit" id="StakeLimit" value="@model.StakeLimit" />
+        <input type="hidden" name="StakeMode" id="StakeMode" value="@model.StakeMode" />
+    </div>
+}

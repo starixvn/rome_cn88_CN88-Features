@@ -5,7 +5,6 @@
     using System.IO;
     using System.Linq;
     using System.Web;
-    using System.Web.Mvc;
     using Features.Shared.AppResources;
     using Features.Shared.Models;
     using ViewModels;
@@ -52,6 +51,18 @@
             }).ToList();
 
             items.Insert(0, new SelectListItemExt { Text = SharedResources.AllBetTypes, Value = "0", Selected = userSelectedBetTypeId == 0 });
+
+            return items;
+        }
+
+        protected internal IEnumerable<SelectListItemExt> BuildStakeModeSelectListItems(IEnumerable<int> modes, int userSelectedStakeMode)
+        {
+            var items = modes.Select(mode => new SelectListItemExt
+            {
+                Text = SharedResources.ResourceManager.GetString($"StakeMode_{mode}"),
+                Value = mode.ToString(),
+                Selected = mode == userSelectedStakeMode
+            }).ToList();
 
             return items;
         }

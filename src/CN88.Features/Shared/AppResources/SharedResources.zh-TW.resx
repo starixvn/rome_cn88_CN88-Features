@@ -159,4 +159,7 @@
   <data name="ExportToExcel" xml:space="preserve">
     <value>導出到Excel</value>
   </data>
+  <data name="Stake" xml:space="preserve">
+    <value>投注額 </value>
+  </data>
 </root>

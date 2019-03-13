@@ -79,7 +79,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AllMarkets.
+        ///   Looks up a localized string similar to All Markets.
         /// </summary>
         public static string AllMarkets {
             get {
@@ -309,6 +309,60 @@ namespace CN88.Features.Shared.AppResources {
         public static string Sport {
             get {
                 return ResourceManager.GetString("Sport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stake.
+        /// </summary>
+        public static string Stake {
+            get {
+                return ResourceManager.GetString("Stake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;.
+        /// </summary>
+        public static string StakeMode_1 {
+            get {
+                return ResourceManager.GetString("StakeMode_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;.
+        /// </summary>
+        public static string StakeMode_2 {
+            get {
+                return ResourceManager.GetString("StakeMode_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to =.
+        /// </summary>
+        public static string StakeMode_3 {
+            get {
+                return ResourceManager.GetString("StakeMode_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;=.
+        /// </summary>
+        public static string StakeMode_4 {
+            get {
+                return ResourceManager.GetString("StakeMode_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;=.
+        /// </summary>
+        public static string StakeMode_5 {
+            get {
+                return ResourceManager.GetString("StakeMode_5", resourceCulture);
             }
         }
         
