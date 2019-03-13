@@ -59,19 +59,19 @@
 
         public string Title => ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[query.ReportType]);
 
-        public string BuildDrillDownLink(ReportModel model, string currentLink, bool isSettlement = false)
+        public string BuildDrillDownLink(ReportModel model, string currentLink, bool isDrillDownFromSettlement = false)
             => ReportLevel.IsMemberLevel()
-            ? BuildBetListLink(model)
-            : BuildDownlineLink(model, currentLink, isSettlement);
+            ? BuildBetListLink(model, isDrillDownFromSettlement)
+            : BuildDownlineLink(model, currentLink, isDrillDownFromSettlement);
 
         protected abstract string GetReportMainActionPath();
 
         protected abstract bool IsOldReport();
 
-        private string BuildBetListLink(ReportModel model)
+        private string BuildBetListLink(ReportModel model, bool isDrillDownFromSettlement = false)
            => UrlHelper.AddQueryStringParamsFunc(
                AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
-               GetBetListLinkRouteValues(model));
+               GetBetListLinkRouteValues(model, isDrillDownFromSettlement));
 
         private string BuildDownlineLink(ReportModel model, string currentLink, bool isSettlement = false)
         {
@@ -138,7 +138,7 @@
             return breadcrumbLevel;
         }
 
-        private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model)
+        private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model, bool isDrillDownFromSettlement = false)
         {
             var routeValues = GetDownlineLinkRouteValues(model);
 
@@ -149,7 +149,8 @@
                 ["PageIndex"] = query.PageIndex,
                 ["PageSize"] = query.PageSize,
                 ["ReportMainActionPath"] = GetReportMainActionPath(),
-                ["IsOldReport"] = IsOldReport()
+                ["IsOldReport"] = IsOldReport(),
+                ["IsSettlement"] = isDrillDownFromSettlement
             };
         }
 

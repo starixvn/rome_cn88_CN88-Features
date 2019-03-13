@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Bet List";
     Layout = Model.IsOldReport ? "~/Reports/Views/_OldLayout.cshtml" : "~/Shared/Views/_Layout.cshtml";
+
+    var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);    
 }
 
 @section Styles {
@@ -12,7 +14,7 @@
 
     <div class="page-title title-report-detail">
         <span class="report-name">@Model.ReportTitle</span>
-        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel)
+        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel, isSettlement)
     </div>
     @Html.Partial("~/BetLists/Views/Filter.cshtml", Model)
     <table id="tbl-report" class="tbl-noborder tbl-betlists">

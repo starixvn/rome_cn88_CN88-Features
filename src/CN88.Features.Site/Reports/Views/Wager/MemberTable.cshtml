@@ -2,6 +2,8 @@
 @{
     var total = Model.GrandTotal;
     int divisor = Model.Divisor;
+
+    var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
 }
 <div id="settlement-content" class="tab-content">
     <table class="tbl-noborder tbl-report settlement-report">
@@ -38,7 +40,7 @@
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
-                        <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query, true)">@data.Username</a></td>
+                        <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query, isSettlement)">@data.Username</a></td>
                         <td class="text-left">@data.Name</td>
                         @HtmlHelpers.RenderNumberCell(data.Wagers)
                         @HtmlHelpers.RenderNumberCell(divisor, data.Stake)
