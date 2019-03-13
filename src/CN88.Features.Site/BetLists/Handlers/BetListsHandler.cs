@@ -64,9 +64,9 @@
                 message.CustId,
                 message.FromDate,
                 message.ToDate,
-                message.SportTypeGroup,
-                message.BetTypeGroup,
-                message.LiveIndicator,
+                message.UserSelectedSportGroupId,
+                message.UserSelectedBetTypeId,
+                message.UserSelectedLiveStatusId,
                 message.Type,
                 message.LimitedDateToShowInfo);
 
@@ -75,8 +75,8 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             var sportGroups = sportGroupService.GetSportGroups();
-            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(message.SportTypeGroup);
-            var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.SportTypeGroup);
+            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(message.UserSelectedSportGroupId);
+            var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
 
@@ -86,11 +86,11 @@
                 ticketHelper,
                 cn88Builder,
                 builder,
-                BuildSportGroupSelectListItems(sportGroups, message.SportTypeGroup),
-                BuildBetTypeSelectListItems(betTypes, message.BetTypeGroup),
+                BuildSportGroupSelectListItems(sportGroups, message.UserSelectedSportGroupId),
+                BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 currentPeriod,
                 lastPeriod,
-                BuildBetTypeSelectListItems(allBetTypes, message.BetTypeGroup));
+                BuildBetTypeSelectListItems(allBetTypes, message.UserSelectedBetTypeId));
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)

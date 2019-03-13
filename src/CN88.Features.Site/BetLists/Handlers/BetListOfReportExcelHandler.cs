@@ -58,9 +58,9 @@
                 message.CustId,
                 message.FromDate,
                 message.ToDate,
-                message.SportTypeGroup,
-                message.BetTypeGroup,
-                message.LiveIndicator,
+                message.UserSelectedSportGroupId,
+                message.UserSelectedBetTypeId,
+                message.UserSelectedLiveStatusId,
                 message.Type,
                 message.LimitedDateToShowInfo);
 

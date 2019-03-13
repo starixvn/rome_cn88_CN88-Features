@@ -46,9 +46,9 @@ class BetListOfReport {
         this.cacheDOMElements();
 
         this.dateRangePickerComponent.render();
-        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "SportTypeGroup", this.onchangeSportType));
-        this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "BetTypeGroup"));
-        this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "LiveIndicator"));
+        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onchangeSportType));
+        this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
+        this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.linkBuilderComponent.render();
         this.pagerComponent.render();
 
@@ -71,9 +71,9 @@ class BetListOfReport {
         this.elements.excelIcon.click(this.onExportExcelEvent);
 
         let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
-        if (!isNaN(expiredSessionSeconds)){
+        if (!isNaN(expiredSessionSeconds)) {
             this.checkIn();
-                        
+
             let $this = this;
 
             setInterval(function () {
@@ -123,7 +123,7 @@ class BetListOfReport {
             includeSelectAllOption: false
         });
     };
-    
+
     checkIn = () => {
         this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
     }

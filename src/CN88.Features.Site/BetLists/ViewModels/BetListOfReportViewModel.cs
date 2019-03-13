@@ -62,8 +62,8 @@
 
             FromDate = message.FromDate;
             ToDate = message.ToDate;
-            SportTypeGroup = message.SportTypeGroup;
-            BetTypeGroup = message.BetTypeGroup;
+            SportTypeGroup = message.UserSelectedSportGroupId;
+            BetTypeGroup = message.UserSelectedBetTypeId;
             CustId = message.CustId;
             Type = message.Type;
             IsOwner = message.IsOwner;
@@ -91,18 +91,18 @@
             DisplayMode = message.DisplayMode;
             ReportMainActionPath = message.ReportMainActionPath;
 
-            var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportTypeGroup);
+            var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);
-            var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, message.BetTypeGroup);
+            var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, message.UserSelectedBetTypeId);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
                 .Select(s => new SelectListItemExt
                 {
                     Text = SharedResources.ResourceManager.GetString(s.Value),
                     Value = s.Key.ToString(),
-                    Selected = s.Key == message.LiveIndicator
+                    Selected = s.Key == message.UserSelectedLiveStatusId
                 });
-            var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.LiveIndicator);
+            var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.UserSelectedLiveStatusId);
 
             var allBetTypesSelectionViewModel = new SingleSelectionViewModel(allBetTypes, 0);
 

@@ -21,11 +21,11 @@
 
         public DateTime ToDate { get; set; }
 
-        public int SportTypeGroup { get; set; }
+        public int UserSelectedSportGroupId { get; set; }
 
-        public int BetTypeGroup { get; set; }
+        public int UserSelectedBetTypeId { get; set; }
 
-        public int LiveIndicator { get; set; }
+        public int UserSelectedLiveStatusId { get; set; }
 
         public int Type { get; set; }
 

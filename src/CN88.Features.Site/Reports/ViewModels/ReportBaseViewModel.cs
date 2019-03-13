@@ -75,17 +75,18 @@
 
         private string BuildDownlineLink(ReportModel model, string currentLink, bool isSettlement = false)
         {
-            var routeValues = GetDownlineLinkRouteValues(model, isSettlement);
+            var routeValues = GetDownlineLinkRouteValues(model);
             return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                 currentLink,
                 new Dictionary<string, object>(routeValues)
                 {
+                    ["IsSettlement"] = isSettlement,
                     ["CustLevelId"] = ReportLevel.GetDirectDownLineLevel().Value,
                     ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
                 });
         }
 
-        private IDictionary<string, object> GetDownlineLinkRouteValues(ReportModel model, bool isSettlement = false)
+        private IDictionary<string, object> GetDownlineLinkRouteValues(ReportModel model)
             => new Dictionary<string, object>
             {
                 ["CustId"] = model.CustId,
@@ -97,7 +98,6 @@
                 ["UserSelectedSportGroupId"] = query.UserSelectedSportGroupId,
                 ["UserSelectedBetTypeId"] = query.UserSelectedBetTypeId,
                 ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId,
-                ["IsSettlement"] = isSettlement,
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
             };
 
@@ -139,24 +139,19 @@
         }
 
         private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model)
-           => new Dictionary<string, object>
-           {
-               ["CustId"] = model.CustId,
-               ["CustName"] = model.Username,
-               ["FromDate"] = query.FromDate,
-               ["ToDate"] = query.ToDate,
-               ["ReportType"] = query.ReportType,
-               ["SportTypeGroup"] = query.UserSelectedSportGroupId,
-               ["BetTypeGroup"] = query.UserSelectedBetTypeId,
-               ["LiveIndicator"] = query.UserSelectedLiveStatusId,
-               ["Type"] = GetBetListType(query.ReportType),
-               ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model)),
-               ["DisplayMode"] = query.DisplayMode,
-               ["PageIndex"] = query.PageIndex,
-               ["PageSize"] = query.PageSize,
-               ["ReportMainActionPath"] = GetReportMainActionPath(),
-               ["IsOldReport"] = IsOldReport()
-           };
+        {
+            var routeValues = GetDownlineLinkRouteValues(model);
+
+            return new Dictionary<string, object>(routeValues)
+            {
+                ["Type"] = GetBetListType(query.ReportType),
+                ["DisplayMode"] = query.DisplayMode,
+                ["PageIndex"] = query.PageIndex,
+                ["PageSize"] = query.PageSize,
+                ["ReportMainActionPath"] = GetReportMainActionPath(),
+                ["IsOldReport"] = IsOldReport()
+            };
+        }
 
         private string BuildReportMainUrl()
             => UrlHelper.AddQueryStringParamsFunc(

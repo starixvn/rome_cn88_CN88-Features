@@ -18,8 +18,10 @@
     @RenderHiddenFields()
     @Html.Hidden("FromDate", Model.ReportFilterViewModel.DateRangePickerViewModel.FromDate)
     @Html.Hidden("ToDate", Model.ReportFilterViewModel.DateRangePickerViewModel.ToDate)
+    @Html.Hidden("UserSelectedSportGroupId", Model.ReportFilterViewModel.SportGroupSelectionViewModel.UserSelectedId)
+    @Html.Hidden("UserSelectedLiveStatusId", Model.ReportFilterViewModel.BetTypeSelectionViewModel.UserSelectedId)
+    @Html.Hidden("LiveIndicator", Model.ReportFilterViewModel.LiveStatusSelectionViewModel.UserSelectedId)
 </form>
-
 @helper RenderHiddenFields()
 {
     @Html.Hidden("CustId", Model.CustId)
@@ -31,7 +33,4 @@
     @Html.Hidden("ReportMainActionPath", Model.ReportMainActionPath)
     @Html.Hidden("IsOldReport", Model.IsOldReport)
     @Html.Hidden("Type", Model.Type)
-    @Html.Hidden("SportTypeGroup", Model.ReportFilterViewModel.SportGroupSelectionViewModel.UserSelectedId)
-    @Html.Hidden("BetTypeGroup", Model.ReportFilterViewModel.BetTypeSelectionViewModel.UserSelectedId)
-    @Html.Hidden("LiveIndicator", Model.ReportFilterViewModel.LiveStatusSelectionViewModel.UserSelectedId)
 }
