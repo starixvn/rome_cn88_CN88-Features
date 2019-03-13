@@ -4,6 +4,7 @@
     using Alpha.Web.Helpers;
     using System;
     using System.Configuration;
+    using System.Linq;
 
     public class ReCheckPasswordAttribute : AuthorizeAttribute
     {
@@ -20,10 +21,13 @@
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-
+                        
             var request = filterContext.RequestContext.HttpContext.Request;
-            var isOldReport = !string.IsNullOrWhiteSpace(request.Params["IsOldReport"]) && bool.Parse(request.Params["IsOldReport"]);
-            if (request.Url.PathAndQuery.Contains("OldReport") || isOldReport)
+            var isViewBetlistOldReport = request.Params.AllKeys.Contains("IsOldReport", StringComparer.OrdinalIgnoreCase) &&
+                bool.Parse(request.Params["IsOldReport"]);
+            var isOldReport = !request.Params.AllKeys.Contains("IsOldReport", StringComparer.OrdinalIgnoreCase) &&
+                request.Url.PathAndQuery.Contains("OldReports");
+            if (isOldReport || isViewBetlistOldReport)
             {
                 var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
                 elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
