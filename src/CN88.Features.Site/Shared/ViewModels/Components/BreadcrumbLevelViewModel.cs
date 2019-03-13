@@ -23,7 +23,7 @@
 
         public string BreadcrumbLevelJson { get; }
 
-        public string BuildBreadcrumbLink(CustInfo model, string currentLink, IEnumerable<string> breadcrumbParamByLevel, int breadcrumbIndex)
+        public string BuildBreadcrumbLink(CustInfo model, string currentLink, IEnumerable<string> breadcrumbParamByLevel, int breadcrumbIndex, bool isSettlement)
         {
             var url = breadcrumbParamByLevel == null
                 ? currentLink
@@ -37,7 +37,8 @@
                     ["CustName"] = model.CustName,
                     ["CustLevelId"] = model.CustLevelId,
                     ["IsOwner"] = model.IsOwner,
-                    ["BreadcrumbLevelJson"] = BreadcrumbLevelJson
+                    ["BreadcrumbLevelJson"] = BreadcrumbLevelJson,
+                    ["IsSettlement"] = isSettlement
                 });
         }
     }

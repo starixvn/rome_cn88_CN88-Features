@@ -1,6 +1,6 @@
 ﻿@using CN88.Features.Shared.AppResources
 @using CN88.Features.Site.Shared.ViewModels.Components
-@helper Render(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel)
+@helper Render(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel, bool isSettlement = false)
 {
 var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
 var linkIndex = 0;
@@ -18,7 +18,7 @@ var linkIndex = 0;
             {
                 <li>
                     <a class="breadcrumb-link"
-                       href="@(viewModel.BuildBreadcrumbLink(custinfo, currentRequestUrl, breadcrumbParamByLevel, linkIndex))">
+                       href="@(viewModel.BuildBreadcrumbLink(custinfo, currentRequestUrl, breadcrumbParamByLevel, linkIndex, isSettlement))">
                         @(custinfo.CustName)
                     </a>
                 </li>

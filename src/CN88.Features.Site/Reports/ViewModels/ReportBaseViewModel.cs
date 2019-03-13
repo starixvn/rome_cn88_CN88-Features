@@ -59,10 +59,10 @@
 
         public string Title => ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[query.ReportType]);
 
-        public string BuildDrillDownLink(ReportModel model, string currentLink)
+        public string BuildDrillDownLink(ReportModel model, string currentLink, bool isSettlement = false)
             => ReportLevel.IsMemberLevel()
             ? BuildBetListLink(model)
-            : BuildDownlineLink(model, currentLink);
+            : BuildDownlineLink(model, currentLink, isSettlement);
 
         protected abstract string GetReportMainActionPath();
 
@@ -73,9 +73,9 @@
                AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
                GetBetListLinkRouteValues(model));
 
-        private string BuildDownlineLink(ReportModel model, string currentLink)
+        private string BuildDownlineLink(ReportModel model, string currentLink, bool isSettlement = false)
         {
-            var routeValues = GetDownlineLinkRouteValues(model);
+            var routeValues = GetDownlineLinkRouteValues(model, isSettlement);
             return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                 currentLink,
                 new Dictionary<string, object>(routeValues)
@@ -85,7 +85,7 @@
                 });
         }
 
-        private IDictionary<string, object> GetDownlineLinkRouteValues(ReportModel model)
+        private IDictionary<string, object> GetDownlineLinkRouteValues(ReportModel model, bool isSettlement = false)
             => new Dictionary<string, object>
             {
                 ["CustId"] = model.CustId,
@@ -97,6 +97,7 @@
                 ["UserSelectedSportGroupId"] = query.UserSelectedSportGroupId,
                 ["UserSelectedBetTypeId"] = query.UserSelectedBetTypeId,
                 ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId,
+                ["IsSettlement"] = isSettlement,
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
             };
 

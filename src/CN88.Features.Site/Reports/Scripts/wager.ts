@@ -38,16 +38,38 @@ class WagerReport extends LegacyReport {
         this.linkBuilderComponent.render();
 
         this.registerEvents();
-
-        let reportType = this.$reportType.val();
-        let custLevelId = this.$custLevelId.val();
-        if (reportType !== "1" && custLevelId !== "1") {
-            this.$tabValidStake.click();
+        
+        if (location.search.indexOf("IsSettlement=True") != -1 || 
+            location.search.indexOf("CustLevelId=1") != -1 ||
+            this.$tabSettlement.hasClass("active")) {
+            this.activateSettlementTab();
         } else {
-            this.$tabSettlement.click();
+            this.activateValidStakeTab();
         }
 
         this.$.unblockUI();
+    };
+
+    activateSettlementTab = () => {
+        this.$tabSettlement
+            .removeClass("active")
+            .addClass("active");
+
+        this.$tabValidStake
+            .removeClass("active");
+
+        this.$tabSettlement.click();
+    };
+
+    activateValidStakeTab = () => {
+        this.$tabValidStake
+            .removeClass("active")
+            .addClass("active");
+
+        this.$tabSettlement
+            .removeClass("active");
+
+        this.$tabValidStake.click();
     };
 
     onchangeSportType = () => {
