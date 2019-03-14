@@ -51,7 +51,7 @@
                     break;
 
                 default:
-                    WinLost = ticket.BetTypeId == 500 ? "(NW) " + ConvertByBetType.Winloss(ticket.ActualStake / divisor) : ConvertByBetType.Winloss(ticket.Winlost / divisor);
+                    WinLost = ticket.BetTypeId == 500 ? "(NW) " + ConvertByBetType.Winloss(ticket.ActualStake / divisor) : ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor);
                     Comm = ticket.BetTypeId == 500 ? ConvertByBetType.Winloss(ticket.PlayerComm) : ConvertByBetType.Comm(ticket.PlayerComm);
                     break;
             }
