@@ -238,15 +238,18 @@
     .list-menu {
         overflow: hidden;
         width: 100%;
+
         .menu-item {
             float: left;
             border: none;
+
             &:first-child {
                 background: inherit;
                 padding: 12px 20px 11px;
             }
         }
     }
+
     .sub-menu {
         padding: 0;
         background-color: #fff;
@@ -256,12 +259,13 @@
 .dropdown-menu {
     min-width: 170px;
 }
+
 .filter-container .multiselect-container.dropdown-menu {
     width: 350px;
 }
 
 
-.betlist-by-account {
+.betlist-by-account, .betlist-wager-details {
     #nav-tabs {
         padding-top: 14px;
     }

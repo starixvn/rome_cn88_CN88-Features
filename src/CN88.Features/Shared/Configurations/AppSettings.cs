@@ -37,6 +37,8 @@
 
         public static string TotalBetsForecastAppPath => GetConfigValue("ExTotalBetsForecastAppPath") ?? "ex-totalbetsforecast";
 
+        public static string TotalBetAppPath => GetConfigValue("TotalBetAppPath") ?? "site-totalbets";
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify() => Require(StoredProcedurePath, nameof(StoredProcedurePath));
