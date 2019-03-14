@@ -4,7 +4,7 @@
     ViewBag.Title = "Bet List";
     Layout = Model.IsOldReport ? "~/Reports/Views/_OldLayout.cshtml" : "~/Shared/Views/_Layout.cshtml";
 
-    var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);    
+    var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
 }
 
 @section Styles {
@@ -21,7 +21,7 @@
         <thead>
             <tr>
                 <th class="text-left">@BetListsResources.DateTime</th>
-                <th class="text-left">@BetListsResources.Member/@BetListsResources.Commission</th>
+                <th class="text-left">@BetListsResources.Member/<br />@BetListsResources.Commission</th>
                 <th class="text-left">@BetListsResources.BetID/<br />@BetListsResources.BetType</th>
                 <th class="text-left">@BetListsResources.Details</th>
                 <th class="text-right">@BetListsResources.Stake</th>
