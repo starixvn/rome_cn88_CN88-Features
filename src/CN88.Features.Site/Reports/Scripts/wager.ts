@@ -38,10 +38,17 @@ class WagerReport extends LegacyReport {
         this.linkBuilderComponent.render();
 
         this.registerEvents();
-        
-        if (location.search.indexOf("IsSettlement=True") != -1 || 
-            location.search.indexOf("CustLevelId=1") != -1 ||
-            this.$("IsSettlement").val() == "True" ||
+
+        let reportType = this.$reportType.val();
+        let custLevelId = this.$custLevelId.val();
+        if (reportType !== "1" &&
+            custLevelId !== "1" &&
+            location.search.indexOf("IsSettlement=True") === -1) {
+            this.activateValidStakeTab();
+        }
+        else if (location.search.indexOf("IsSettlement=True") != -1 || 
+            this.$custLevelId.val() === "1" ||
+            this.$("IsSettlement").val() === "True" ||
             this.$tabSettlement.hasClass("active")) {
             this.activateSettlementTab();
         } else {
@@ -117,7 +124,7 @@ class WagerReport extends LegacyReport {
 
     public registerEvents() {
         this.$tabSettlement.on("click touchend", () => {
-            if (location.search.indexOf("CustLevelId=1") == -1)
+            if (this.$custLevelId.val() !== "1")
                 this.$("#IsSettlement").val("True");
         });
 
