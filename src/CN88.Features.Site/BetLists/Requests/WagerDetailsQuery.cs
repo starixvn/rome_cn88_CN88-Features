@@ -26,5 +26,17 @@
         public int PageSize { get; set; }
 
         public DateTime LimitedDateToShowInfo { get; }
+
+        public int MatchId { get; }
+
+        public int BetTypeGroup { get; }
+
+        public int LiveIndicator { get; }
+
+        public string BetTeam { get; }
+
+        public int StakeCondition { get; }
+
+        public decimal Stake { get; }
     }
 }

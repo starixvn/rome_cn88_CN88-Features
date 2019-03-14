@@ -136,7 +136,16 @@
 
         public BetListByAccountViewModel Handle(BetListByAccountQuery message)
         {
-            var param = new BetListByAccountParam(message.CustId, message.LimitedDateToShowInfo);
+            var param = new BetListByAccountParam(
+                message.CustId,
+                message.LimitedDateToShowInfo,
+                message.CustLevelId,
+                message.MatchId,
+                message.BetTypeGroup,
+                message.LiveIndicator,
+                message.BetTeam,
+                message.StakeCondition,
+                message.Stake);
 
             var betlistData = service.GetBetListByAccount(param);
 
@@ -147,7 +156,16 @@
 
         public WagerDetailsViewModel Handle(WagerDetailsQuery message)
         {
-            var param = new WagerDetailsParam(message.CustId, message.LimitedDateToShowInfo);
+            var param = new WagerDetailsParam(
+                message.CustId,
+                message.LimitedDateToShowInfo,
+                message.CustLevelId,
+                message.MatchId,
+                message.BetTypeGroup,
+                message.LiveIndicator,
+                message.BetTeam,
+                message.StakeCondition,
+                message.Stake);
 
             var betlistData = service.GetWagerDetails(param);
 
