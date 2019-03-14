@@ -3,5 +3,5 @@
 
 @helper Render(ITicket ticket, int divisor)
 {
-    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor))</td>
+    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))</td>
 }
