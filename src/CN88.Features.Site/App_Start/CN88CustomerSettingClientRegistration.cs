@@ -33,8 +33,7 @@
                 SubAccountId = currentUserSession.SubAccId,
                 Language = currentUserSession.Language,
                 Domain = HttpContext.Current.Request.Url.Host,
-                IP = IPHelper.CustomerIp(),
-                HashKey = HttpContext.Current.Session.SessionID
+                IP = IPHelper.CustomerIp()
             };
         }
 
