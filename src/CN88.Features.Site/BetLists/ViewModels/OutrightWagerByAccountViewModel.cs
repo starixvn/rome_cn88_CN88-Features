@@ -51,7 +51,7 @@
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             this.message = message;
-            var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index");
+            var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByOutright");
             BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
                 Enumerable.Repeat(reportPath, 4) :
                 CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 4) :
@@ -112,7 +112,7 @@
         public string WagerDetailsLink()
         {
             return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
-                  AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/WagerDetails"),
+                  AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/OutrightWagerDetails"),
                   new Dictionary<string, object>()
                   {
                       ["CustId"] = message.ViewerId,

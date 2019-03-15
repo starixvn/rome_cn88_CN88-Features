@@ -54,7 +54,7 @@
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             this.message = message;
-            var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index");
+            var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent");
             BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
                 Enumerable.Repeat(reportPath, 4) :
                 CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 4) :
@@ -137,7 +137,7 @@
 
         private string BuildBreadcrumbUrl()
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
-                AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index"),
+                AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                 new Dictionary<string, object>
                 {
                     ["CustId"] = CustId,

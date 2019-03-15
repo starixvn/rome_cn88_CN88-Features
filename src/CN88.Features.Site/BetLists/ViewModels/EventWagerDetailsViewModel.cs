@@ -105,7 +105,7 @@
         public string WagerByAccountLink()
         {
             return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
-                  AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index"),
+                  AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                   new Dictionary<string, object>()
                   {
                       ["CustId"] = CustId,
