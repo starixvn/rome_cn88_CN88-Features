@@ -157,9 +157,6 @@
   <data name="AgentStock" xml:space="preserve">
     <value>Agent Stock</value>
   </data>
-  <data name="AgentCurrency" xml:space="preserve">
-    <value>Agent Currency</value>
-  </data>
   <data name="MemberUsername" xml:space="preserve">
     <value>Member Username</value>
   </data>
@@ -194,7 +191,7 @@
     <value>MA Income</value>
   </data>
   <data name="MAResult" xml:space="preserve">
-    <value>MAResult</value>
+    <value>MA Result</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
