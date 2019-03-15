@@ -14,10 +14,11 @@
         <li class="lnk-changetab active" role="presentation">
             <a>@BetListsResources.ViewByAccount</a>
         </li>
-        <li id="lnk-wager-details" class="lnk-changetab" role="presentation" data-url="@HttpContext.Current.Response.ApplyAppPathModifier("~/BetLists/WagerDetails")">
+        <li id="lnk-wager-details" class="lnk-changetab" role="presentation" data-url="@Model.WagerDetailsLink()">
             <a>@BetListsResources.ViewWagerDetails</a>
         </li>
     </ul>
+    @BetLists.TotalBetBreadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel)
     <table id="tbl-report" class="tbl-noborder tbl-betlists">
         <thead>
             <tr>

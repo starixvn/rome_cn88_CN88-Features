@@ -10,6 +10,7 @@
     using Features.Shared.Configurations;
     using Features.Shared.Models;
     using Requests;
+    using Shared.Helpers;
     using Shared.ViewModels.Components;
 
     public class BetListByAccountViewModel
@@ -48,6 +49,15 @@
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
+
+            this.message = message;
+            var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index");
+            BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
+                Enumerable.Repeat(reportPath, 4) :
+                CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 4) :
+                CustLevel.IsMasterLevel() ? Enumerable.Repeat(reportPath, 3) :
+                CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 2) :
+                Enumerable.Empty<string>();
         }
 
         public UserLevel CustLevel { get; }
@@ -94,8 +104,24 @@
 
         public PagerViewModel PagerViewModel { get; private set; }
 
+        public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
+
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
             => new BreadcrumbLevelViewModel(BuildBreadcrumbUrl(), GetBreadcrumbLevel());
+
+        public string WagerDetailsLink()
+        {
+            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+                  AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/WagerDetails"),
+                  new Dictionary<string, object>()
+                  {
+                      ["CustId"] = message.ViewerId,
+                      ["CustLevelId"] = message.ActorLevel.Value,
+                      ["MatchId"] = MatchId,
+                      ["Stake"] = Stake,
+                      ["StakeCondition"] = StakeCondition
+                  });
+        }
 
         private string BuildBreadcrumbUrl()
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(

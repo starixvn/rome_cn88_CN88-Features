@@ -753,6 +753,7 @@
     <Content Include="App_Code\Components\StakeSelection.cshtml" />
     <Content Include="App_Code\Components\ViewModeSelection.cshtml" />
     <Content Include="App_Code\BetLists\WinLoss.cshtml" />
+    <Content Include="App_Code\BetLists\TotalBetBreadcrumb.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
