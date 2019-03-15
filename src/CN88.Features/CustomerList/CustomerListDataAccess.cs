@@ -26,6 +26,7 @@
 
             var totalCustomers = 0;
             var customers = new List<CustomerModel>();
+            var uplineId = 0;
 
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
@@ -51,10 +52,12 @@
                     }
                 }
 
-                totalCustomers = Converter.ToInt(objectDb.GetOuputParams()["totalrows"]);
+                var outputParams = objectDb.GetOuputParams();
+                totalCustomers = Converter.ToInt(outputParams["totalrows"]);
+                uplineId = Converter.ToInt(outputParams["uplineid"]);
             }
 
-            return new CustomerListModel(totalCustomers, customers);
+            return new CustomerListModel(totalCustomers, customers, uplineId);
         }
 
         public Result UpdateNonQuery(NonQueryCommand command)

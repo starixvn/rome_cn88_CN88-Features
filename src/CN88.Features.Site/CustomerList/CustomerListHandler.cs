@@ -59,7 +59,7 @@
 
             return new CustomerListViewModel(
                 model,
-                message.CustId.Equals(0) ? message.ViewerId : message.CustId,
+                model.UplineId,
                 message.Username,
                 message.DownlineUsername);
         }

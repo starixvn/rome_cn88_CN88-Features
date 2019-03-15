@@ -11,11 +11,14 @@
             Customers = Enumerable.Empty<CustomerModel>();
         }
 
-        public CustomerListModel(int totalCustomers, IEnumerable<CustomerModel> customers)
+        public CustomerListModel(int totalCustomers, IEnumerable<CustomerModel> customers, int uplineId)
         {
             TotalCustomers = totalCustomers;
             Customers = customers;
+            UplineId = uplineId;
         }
+
+        public int UplineId { get; }
 
         public int TotalCustomers { get; }
 

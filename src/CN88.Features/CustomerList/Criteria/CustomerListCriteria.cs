@@ -37,6 +37,8 @@
         [SpParam(SqlParamName = "TotalRows")]
         public int TotalCustomers { get; set; }
 
+        public int UplineId { get; set; }
+
         public override string GetSettingKey()
             => "CS_Customer_DownlineList_Sel";
 
