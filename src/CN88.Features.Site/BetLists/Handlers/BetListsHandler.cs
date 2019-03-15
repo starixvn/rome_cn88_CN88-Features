@@ -159,7 +159,7 @@
             var param = new WagerDetailsParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
-                message.CustLevelId,
+                message.ViewerLevelId,
                 message.MatchId,
                 message.BetTypeGroup,
                 message.LiveIndicator,
