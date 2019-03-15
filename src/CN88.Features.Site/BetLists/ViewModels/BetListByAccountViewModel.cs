@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
     using BetList.Core.Builders;
@@ -13,6 +14,8 @@
 
     public class BetListByAccountViewModel
     {
+        protected readonly BetListByAccountQuery message;
+
         public BetListByAccountViewModel(
               BetListByAccountQuery message,
               BetListData betListData,
@@ -80,6 +83,41 @@
 
         public int Divisor { get; }
 
+        public decimal Stake { get; }
+
+        public int StakeCondition { get; }
+
         public PagerViewModel PagerViewModel { get; private set; }
+
+        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
+            => new BreadcrumbLevelViewModel(BuildBreadcrumbUrl(), GetBreadcrumbLevel());
+
+        private string BuildBreadcrumbUrl()
+            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
+                AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index"),
+                new Dictionary<string, object>
+                {
+                    ["CustId"] = CustId,
+                    ["CustLevelId"] = CustLevel.Value,
+                    ["MatchId"] = CustLevel.Value,
+                    ["Stake"] = Stake,
+                    ["StakeCondition"] = StakeCondition
+                });
+
+        private IEnumerable<CustInfo> GetBreadcrumbLevel()
+        {
+            var breadcrumbLevel = new List<CustInfo>();
+
+            if (message.BreadcrumbLevel != null
+                && message.BreadcrumbLevel.Any())
+            {
+                foreach (var custInfo in message.BreadcrumbLevel)
+                {
+                    breadcrumbLevel.Add(custInfo);
+                }
+            }
+
+            return breadcrumbLevel;
+        }
     }
 }
