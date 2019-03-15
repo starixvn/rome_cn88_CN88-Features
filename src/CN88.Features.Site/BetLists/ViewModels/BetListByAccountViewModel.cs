@@ -30,7 +30,7 @@
             DisplayVNIP = message.DisplayVNIP;
             CustName = message.CustName;
             CustId = message.CustId;
-            Stake = message.CustId;
+            Stake = message.Stake;
             StakeCondition = message.StakeCondition;
             MatchId = message.MatchId;
 
