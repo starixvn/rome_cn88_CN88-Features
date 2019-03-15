@@ -30,6 +30,8 @@
             DisplayVNIP = message.DisplayVNIP;
             CustName = message.CustName;
             CustId = message.CustId;
+            Stake = message.CustId;
+            StakeCondition = message.StakeCondition;
 
             NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 9 : CustLevel.IsMasterLevel() ? 7 : 6;
 
@@ -99,7 +101,7 @@
                 {
                     ["CustId"] = CustId,
                     ["CustLevelId"] = CustLevel.Value,
-                    ["MatchId"] = CustLevel.Value,
+                    ["MatchId"] = MatchId,
                     ["Stake"] = Stake,
                     ["StakeCondition"] = StakeCondition
                 });
