@@ -10,14 +10,14 @@
         {
             CustId = param.CustId;
             RoleId = param.RoleId;
-            OutrightId = param.OutrightId;
+            MatchId = param.MatchId;
             StakeCondition = param.StakeCondition;
             Stake = param.Stake;
 
             // must remove
             CustId = 1382348;
             RoleId = 1;
-            OutrightId = 7398486;
+            MatchId = 7398486;
             StakeCondition = 1;
             Stake = 100;
         }
@@ -27,7 +27,7 @@
         public int RoleId { get; }
 
         [SpParam(SqlParamName = "OrId")]
-        public int OutrightId { get; }
+        public int MatchId { get; }
 
         public int StakeCondition { get; }
 

@@ -8,14 +8,14 @@
             int custId,
             DateTime limitedDate,
             int roleId,
-            int outrightId,
+            int matchId,
             int stakeCondition,
             decimal stake)
         {
             CustId = custId;
             LimitedDate = limitedDate;
             RoleId = roleId;
-            OutrightId = outrightId;
+            MatchId = matchId;
             StakeCondition = stakeCondition;
             Stake = stake;
         }
@@ -26,7 +26,7 @@
 
         public int RoleId { get; }
 
-        public int OutrightId { get; }
+        public int MatchId { get; }
 
         public int StakeCondition { get; }
 

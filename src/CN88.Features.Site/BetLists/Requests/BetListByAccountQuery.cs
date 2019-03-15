@@ -27,7 +27,7 @@
 
         public DateTime LimitedDateToShowInfo { get; }
 
-        public int OutrightId { get; set; }
+        public int MatchId { get; set; }
 
         public int StakeCondition { get; set; }
 

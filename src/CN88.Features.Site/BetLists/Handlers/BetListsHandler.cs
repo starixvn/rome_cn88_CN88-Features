@@ -140,7 +140,7 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
-                message.OutrightId,
+                message.MatchId,
                 message.StakeCondition,
                 message.Stake);
 
@@ -157,7 +157,7 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
-                message.OutrightId,
+                message.MatchId,
                 message.StakeCondition,
                 message.Stake);
 

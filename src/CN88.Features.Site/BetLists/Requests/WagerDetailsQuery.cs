@@ -27,8 +27,6 @@
 
         public DateTime LimitedDateToShowInfo { get; }
 
-        public int OutrightId { get; set; }
-
         public int StakeCondition { get; set; }
 
         public decimal Stake { get; set; }
