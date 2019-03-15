@@ -13,13 +13,6 @@
             MatchId = param.MatchId;
             StakeCondition = param.StakeCondition;
             Stake = param.Stake;
-
-            // must remove
-            CustId = 1382348;
-            RoleId = 1;
-            MatchId = 7398486;
-            StakeCondition = 1;
-            Stake = 100;
         }
 
         public int CustId { get; }

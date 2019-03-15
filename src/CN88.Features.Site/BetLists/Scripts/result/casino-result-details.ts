@@ -27,7 +27,7 @@
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 835,
-                height: 800
+                height: 850
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
@@ -59,7 +59,7 @@
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
                 width: 835,
-                height: 675
+                height: 725
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
@@ -91,7 +91,7 @@
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
                 width: 835,
-                height: 675
+                height: 725
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
@@ -123,7 +123,7 @@
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
                 width: 835,
-                height: 675
+                height: 725
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
@@ -155,7 +155,7 @@
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
                 width: 835,
-                height: 675
+                height: 725
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
@@ -187,7 +187,7 @@
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
                 width: 835,
-                height: 675
+                height: 725
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);

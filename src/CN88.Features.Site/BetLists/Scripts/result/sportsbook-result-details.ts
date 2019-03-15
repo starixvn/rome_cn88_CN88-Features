@@ -28,7 +28,7 @@
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 730,
-                height: 250
+                height: 300
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
@@ -60,7 +60,7 @@
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 800,
-                height: 500
+                height: 550
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
@@ -98,7 +98,7 @@
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 730,
-                height: 250
+                height: 300
             };
 
             Common.PopupDetails.Instance(window.top).Show(options);
