@@ -394,15 +394,6 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View.
-        /// </summary>
-        public static string View {
-            get {
-                return ResourceManager.GetString("View", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to View by Account.
         /// </summary>
         public static string ViewByAccount {
@@ -426,6 +417,15 @@ namespace CN88.Features.BetLists.Resources {
         public static string Void {
             get {
                 return ResourceManager.GetString("Void", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager Details.
+        /// </summary>
+        public static string WagerDetails {
+            get {
+                return ResourceManager.GetString("WagerDetails", resourceCulture);
             }
         }
         

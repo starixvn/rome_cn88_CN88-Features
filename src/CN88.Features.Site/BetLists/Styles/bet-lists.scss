@@ -5,8 +5,10 @@
 .betlist-container {
     padding: 0 20px;
 
-    &.betlist-statement .page-title {
-        margin-top: 12px;
+    &.betlist-statement, &.betlist-by-account, &.betlist-wager-details {
+        .page-title {
+            margin-top: 12px;
+        }
     }
 }
 

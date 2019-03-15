@@ -252,4 +252,7 @@
   <data name="EstPayout" xml:space="preserve">
     <value>Est. Payout</value>
   </data>
+  <data name="WagerDetails" xml:space="preserve">
+    <value>Wager Details</value>
+  </data>
 </root>

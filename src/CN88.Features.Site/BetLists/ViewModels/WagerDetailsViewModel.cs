@@ -99,7 +99,7 @@
                   {
                       ["CustId"] = CustId,
                       ["CustLevelId"] = CustLevel.Value,
-                      ["MatchId"] = CustLevel.Value,
+                      ["MatchId"] = MatchId,
                       ["Stake"] = Stake,
                       ["StakeCondition"] = StakeCondition
                   });
