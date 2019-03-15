@@ -32,6 +32,7 @@
             CustId = message.CustId;
             Stake = message.CustId;
             StakeCondition = message.StakeCondition;
+            MatchId = message.MatchId;
 
             NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 9 : CustLevel.IsMasterLevel() ? 7 : 6;
 
@@ -88,6 +89,8 @@
         public decimal Stake { get; }
 
         public int StakeCondition { get; }
+
+        public int MatchId { get; }
 
         public PagerViewModel PagerViewModel { get; private set; }
 
