@@ -13,10 +13,10 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class WagerDetailsViewModel
+    public class OutrightWagerDetailsViewModel
     {
-        public WagerDetailsViewModel(
-              WagerDetailsQuery message,
+        public OutrightWagerDetailsViewModel(
+              OutrightWagerDetailsQuery message,
               BetListData betListData,
               ITicketHelper ticketHelper,
               IBetListCN88HtmlBuilder cn88Builder,

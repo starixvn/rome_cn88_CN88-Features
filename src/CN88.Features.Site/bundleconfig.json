@@ -217,14 +217,14 @@
     ]
   },
   {
-    "outputFileName": "BetLists/bundles/betlist-by-account.js",
+    "outputFileName": "BetLists/bundles/wager-by-account.js",
     "inputFiles": [
       "Shared/Scripts/popup-manager.js",
       "BetLists/Scripts/app-path.js",
       "BetLists/Scripts/utils.js",
       "BetLists/Scripts/popup-details.js",
       "BetLists/Scripts/base-betlist.js",
-      "BetLists/Scripts/betlist-by-account.js",
+      "BetLists/Scripts/wager-by-account.js",
       "BetLists/Scripts/result/base-result.js",
       "BetLists/Scripts/result/sportsbook-result-details.js",
       "BetLists/Scripts/result/casino-result-details.js",

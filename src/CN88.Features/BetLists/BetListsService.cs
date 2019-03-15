@@ -21,9 +21,13 @@
 
         IEnumerable<TicketDto> GetParlaySubTickets(GetParlaySubTicketsParam param);
 
-        BetListData GetBetListByAccount(BetListByAccountParam param);
+        BetListData GetOutrightWagerByAccount(OutrightWagerByAccountParam param);
 
-        BetListData GetWagerDetails(WagerDetailsParam param);
+        BetListData GetOutrightWagerDetails(OutrightWagerDetailsParam param);
+
+        BetListData GetEventWagerByAccount(EventWagerByAccountParam param);
+
+        BetListData GetEventWagerDetails(EventWagerDetailsParam param);
 
         BetListData GetTotalBetParlay(GetTotalBetParlayParam param);
     }
@@ -79,17 +83,33 @@
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
-        public BetListData GetBetListByAccount(BetListByAccountParam param)
+        public BetListData GetOutrightWagerByAccount(OutrightWagerByAccountParam param)
         {
-            var criteria = new BetListByAccountCriteria(param);
+            var criteria = new OutrightWagerByAccountCriteria(param);
             var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
         }
 
-        public BetListData GetWagerDetails(WagerDetailsParam param)
+        public BetListData GetOutrightWagerDetails(OutrightWagerDetailsParam param)
         {
-            var criteria = new WagerDetailsCriteria(param);
+            var criteria = new OutrightWagerDetailsCriteria(param);
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+        }
+
+        public BetListData GetEventWagerByAccount(EventWagerByAccountParam param)
+        {
+            var criteria = new EventWagerByAccountCriteria(param);
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+        }
+
+        public BetListData GetEventWagerDetails(EventWagerDetailsParam param)
+        {
+            var criteria = new EventWagerDetailsCriteria(param);
             var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());

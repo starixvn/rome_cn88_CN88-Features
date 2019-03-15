@@ -1,4 +1,4 @@
-﻿class BetListByAccount {
+﻿class WagerByAccount {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
 
@@ -26,6 +26,6 @@
 }
 
 $(document).ready(() => {
-    const betListByAccount = new BetListByAccount($, new ClientPagerComponent($));
+    const betListByAccount = new WagerByAccount($, new ClientPagerComponent($));
     betListByAccount.init();
 })

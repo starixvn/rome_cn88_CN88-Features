@@ -2,13 +2,16 @@
 {
     using System;
 
-    public class BetListByAccountParam
+    public class EventWagerByAccountParam
     {
-        public BetListByAccountParam(
+        public EventWagerByAccountParam(
             int custId,
             DateTime limitedDate,
             int roleId,
             int matchId,
+            int betType,
+            int liveIndicator,
+            string betTeam,
             int stakeCondition,
             decimal stake)
         {
@@ -16,6 +19,9 @@
             LimitedDate = limitedDate;
             RoleId = roleId;
             MatchId = matchId;
+            BetType = betType;
+            LiveIndicator = liveIndicator;
+            BetTeam = betTeam;
             StakeCondition = stakeCondition;
             Stake = stake;
         }
@@ -27,6 +33,12 @@
         public int RoleId { get; }
 
         public int MatchId { get; }
+
+        public int BetType { get; }
+
+        public int LiveIndicator { get; }
+
+        public string BetTeam { get; }
 
         public int StakeCondition { get; }
 

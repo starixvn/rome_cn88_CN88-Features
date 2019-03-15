@@ -40,12 +40,20 @@
             => await ExcelView(message);
 
         [HttpGet]
-        public async Task<ActionResult> BetListByAccount(BetListByAccountQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/BetListByAccount.cshtml");
+        public async Task<ActionResult> OutrightWagerByAccount(OutrightWagerByAccountQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/OutrightWagerByAccount.cshtml");
 
         [HttpGet]
-        public async Task<ActionResult> WagerDetails(WagerDetailsQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/WagerDetails.cshtml");
+        public async Task<ActionResult> OutrightWagerDetails(OutrightWagerDetailsQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/OutrightWagerDetails.cshtml");
+
+        [HttpGet]
+        public async Task<ActionResult> EventWagerByAccount(EventWagerByAccountQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/EventWagerByAccount.cshtml");
+
+        [HttpGet]
+        public async Task<ActionResult> EventWagerDetails(EventWagerDetailsQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/EventWagerDetails.cshtml");
 
         [HttpGet]
         public async Task<ActionResult> TotalBetParlay(TotalBetParlayQuery message)

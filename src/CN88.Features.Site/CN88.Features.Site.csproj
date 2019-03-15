@@ -403,10 +403,6 @@
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBTXN.BODB02.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
-    <Content Include="BetLists\bundles\betlist-by-account.js" />
-    <Content Include="BetLists\bundles\betlist-by-account.min.js">
-      <DependentUpon>betlist-by-account.js</DependentUpon>
-    </Content>
     <Content Include="BetLists\bundles\betlist-of-report-old.js" />
     <Content Include="BetLists\bundles\betlist-of-report-old.min.js">
       <DependentUpon>betlist-of-report-old.js</DependentUpon>
@@ -426,6 +422,10 @@
     <Content Include="BetLists\bundles\total-bet-parlay.js" />
     <Content Include="BetLists\bundles\total-bet-parlay.min.js">
       <DependentUpon>total-bet-parlay.js</DependentUpon>
+    </Content>
+    <Content Include="BetLists\bundles\wager-by-account.js" />
+    <Content Include="BetLists\bundles\wager-by-account.min.js">
+      <DependentUpon>wager-by-account.js</DependentUpon>
     </Content>
     <Content Include="BetLists\bundles\wager-details.js" />
     <Content Include="BetLists\bundles\wager-details.min.js">
@@ -568,21 +568,25 @@
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
     <Compile Include="BetLists\Helpers\IPHelper.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
-    <Compile Include="BetLists\Requests\BetListByAccountQuery.cs" />
+    <Compile Include="BetLists\Requests\EventWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\Requests\EventWagerByAccountQuery.cs" />
+    <Compile Include="BetLists\Requests\OutrightWagerByAccountQuery.cs" />
     <Compile Include="BetLists\Requests\BetListOfStatementQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlaySubTicketsQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
-    <Compile Include="BetLists\Requests\WagerDetailsQuery.cs" />
-    <Compile Include="BetLists\ViewModels\BetListByAccountViewModel.cs" />
+    <Compile Include="BetLists\Requests\OutrightWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\ViewModels\EventWagerByAccountViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\OutrightWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
+    <Compile Include="BetLists\ViewModels\EventWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\TotalBetParlayViewModel.cs" />
-    <Compile Include="BetLists\ViewModels\WagerDetailsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\OutrightWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
     <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
@@ -747,13 +751,15 @@
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Super.xls" />
     <Content Include="App_Code\Components\DateTimeSelection.cshtml" />
     <Content Include="BetLists\Views\BetListOfStatement.cshtml" />
-    <Content Include="BetLists\Views\BetListByAccount.cshtml" />
-    <Content Include="BetLists\Views\WagerDetails.cshtml" />
+    <Content Include="BetLists\Views\OutrightWagerByAccount.cshtml" />
+    <Content Include="BetLists\Views\OutrightWagerDetails.cshtml" />
     <Content Include="BetLists\Views\TotalBetParlay.cshtml" />
     <Content Include="App_Code\Components\StakeSelection.cshtml" />
     <Content Include="App_Code\Components\ViewModeSelection.cshtml" />
     <Content Include="App_Code\BetLists\WinLoss.cshtml" />
     <Content Include="App_Code\BetLists\TotalBetBreadcrumb.cshtml" />
+    <Content Include="BetLists\Views\EventWagerDetails.cshtml" />
+    <Content Include="BetLists\Views\EventWagerByAccount.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -805,7 +811,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report-old.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\total-bet-parlay.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-details.ts" />
-    <TypeScriptCompile Include="BetLists\Scripts\betlist-by-account.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-by-account.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-statement.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\sportsbook-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\base-details.ts" />

@@ -13,12 +13,12 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class BetListByAccountViewModel
+    public class OutrightWagerByAccountViewModel
     {
-        protected readonly BetListByAccountQuery message;
+        protected readonly OutrightWagerByAccountQuery message;
 
-        public BetListByAccountViewModel(
-              BetListByAccountQuery message,
+        public OutrightWagerByAccountViewModel(
+              OutrightWagerByAccountQuery message,
               BetListData betListData,
               ITicketHelper ticketHelper,
               IBetListCN88HtmlBuilder cn88Builder,

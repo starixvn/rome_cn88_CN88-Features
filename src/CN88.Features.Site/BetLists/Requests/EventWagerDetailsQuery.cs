@@ -6,9 +6,9 @@
     using Site.Requests;
     using ViewModels;
 
-    public class WagerDetailsQuery : BaseQuery, IRequest<WagerDetailsViewModel>
+    public class EventWagerDetailsQuery : BaseQuery, IRequest<EventWagerDetailsViewModel>
     {
-        public WagerDetailsQuery(IUser viewer) : base(viewer)
+        public EventWagerDetailsQuery(IUser viewer) : base(viewer)
         {
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
@@ -32,5 +32,11 @@
         public decimal Stake { get; set; }
 
         public int MatchId { get; set; }
+
+        public int BetType { get; set; }
+
+        public int LiveIndicator { get; set; }
+
+        public string BetTeam { get; set; }
     }
 }

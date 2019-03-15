@@ -23,8 +23,10 @@
         IRequestHandler<BetListOfStatementQuery, BetListOfStatementViewModel>,
         IRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
         IRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>,
-        IRequestHandler<BetListByAccountQuery, BetListByAccountViewModel>,
-        IRequestHandler<WagerDetailsQuery, WagerDetailsViewModel>,
+        IRequestHandler<OutrightWagerByAccountQuery, OutrightWagerByAccountViewModel>,
+        IRequestHandler<OutrightWagerDetailsQuery, OutrightWagerDetailsViewModel>,
+        IRequestHandler<EventWagerByAccountQuery, EventWagerByAccountViewModel>,
+        IRequestHandler<EventWagerDetailsQuery, EventWagerDetailsViewModel>,
         IRequestHandler<TotalBetParlayQuery, TotalBetParlayViewModel>
     {
         private readonly BetListsService service;
@@ -134,9 +136,9 @@
             return new ParlaySubTicketsViewModel(message, new BetListData(tickets, null), cn88Builder, builder, ticketHelper);
         }
 
-        public BetListByAccountViewModel Handle(BetListByAccountQuery message)
+        public OutrightWagerByAccountViewModel Handle(OutrightWagerByAccountQuery message)
         {
-            var param = new BetListByAccountParam(
+            var param = new OutrightWagerByAccountParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
@@ -144,16 +146,16 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetBetListByAccount(param);
+            var betlistData = service.GetOutrightWagerByAccount(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new BetListByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }
 
-        public WagerDetailsViewModel Handle(WagerDetailsQuery message)
+        public OutrightWagerDetailsViewModel Handle(OutrightWagerDetailsQuery message)
         {
-            var param = new WagerDetailsParam(
+            var param = new OutrightWagerDetailsParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
@@ -161,11 +163,51 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetWagerDetails(param);
+            var betlistData = service.GetOutrightWagerDetails(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new WagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+        }
+
+        public EventWagerByAccountViewModel Handle(EventWagerByAccountQuery message)
+        {
+            var param = new EventWagerByAccountParam(
+                message.CustId,
+                message.LimitedDateToShowInfo,
+                message.CustLevelId,
+                message.MatchId,
+                message.BetType,
+                message.LiveIndicator,
+                message.BetTeam,
+                message.StakeCondition,
+                message.Stake);
+
+            var betlistData = service.GetEventWagerByAccount(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return new EventWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+        }
+
+        public EventWagerDetailsViewModel Handle(EventWagerDetailsQuery message)
+        {
+            var param = new EventWagerDetailsParam(
+                message.CustId,
+                message.LimitedDateToShowInfo,
+                message.ViewerLevelId,
+                message.MatchId,
+                message.BetType,
+                message.LiveIndicator,
+                message.BetTeam,
+                message.StakeCondition,
+                message.Stake);
+
+            var betlistData = service.GetEventWagerDetails(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }
 
         public TotalBetParlayViewModel Handle(TotalBetParlayQuery message)

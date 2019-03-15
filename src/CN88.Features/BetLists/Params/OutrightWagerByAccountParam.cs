@@ -2,9 +2,9 @@
 {
     using System;
 
-    public class WagerDetailsParam
+    public class OutrightWagerByAccountParam
     {
-        public WagerDetailsParam(
+        public OutrightWagerByAccountParam(
             int custId,
             DateTime limitedDate,
             int roleId,

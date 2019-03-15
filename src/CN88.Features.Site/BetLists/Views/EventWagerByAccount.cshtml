@@ -1,5 +1,5 @@
 ﻿@using Fanex.BetList.Core.Utils
-@model BetListByAccountViewModel
+@model EventWagerByAccountViewModel
 @{
     ViewBag.Title = "Bet List";
     Layout = "~/Shared/Views/_Layout.cshtml";
@@ -113,5 +113,5 @@
 @Html.Hidden("colossusBets-PopUpDetail-Title", BetListsResources.ColossusBetsPopUpDetailTitle)
 
 @section Scripts{
-    @StaticResources.RenderScripts("~/BetLists/bundles/betlist-by-account")
+    @StaticResources.RenderScripts("~/BetLists/bundles/wager-by-account")
 }
