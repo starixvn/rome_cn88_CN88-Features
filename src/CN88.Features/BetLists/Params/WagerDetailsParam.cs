@@ -8,20 +8,14 @@
             int custId,
             DateTime limitedDate,
             int roleId,
-            int matchId,
-            int betTypeGroup,
-            int liveIndicator,
-            string betTeam,
+            int outrightId,
             int stakeCondition,
             decimal stake)
         {
             CustId = custId;
             LimitedDate = limitedDate;
             RoleId = roleId;
-            MatchId = matchId;
-            BetTypeGroup = betTypeGroup;
-            LiveIndicator = liveIndicator;
-            BetTeam = betTeam;
+            OutrightId = outrightId;
             StakeCondition = stakeCondition;
             Stake = stake;
         }
@@ -32,13 +26,7 @@
 
         public int RoleId { get; }
 
-        public int MatchId { get; }
-
-        public int BetTypeGroup { get; }
-
-        public int LiveIndicator { get; }
-
-        public string BetTeam { get; }
+        public int OutrightId { get; }
 
         public int StakeCondition { get; }
 

@@ -12,7 +12,7 @@
 }
 <div class="betlist-container betlist-wager-details">
     <ul id="nav-tabs" class="nav nav-tabs-style2" role="tablist">
-        <li id="lnk-bet-list-by-account" class="lnk-changetab " role="presentation" data-url="@AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/Outright/Index")">
+        <li id="lnk-bet-list-by-account" class="lnk-changetab " role="presentation" data-url="@Model.WagerByAccountLink()">
             <a>@BetListsResources.ViewByAccount</a>
         </li>
         <li class="lnk-changetab active" role="presentation">
@@ -43,8 +43,8 @@
                 {
                     <th class="tex-right">@BetListsResources.AgentPercent</th>
                     <th class="tex-right">@BetListsResources.MAPercent</th>
-                        <th class="tex-right">@BetListsResources.SMAPercent</th>
-                        <th class="tex-right">@BetListsResources.CoPercent</th>
+                    <th class="tex-right">@BetListsResources.SMAPercent</th>
+                    <th class="tex-right">@BetListsResources.CoPercent</th>
                 }
             </tr>
             @if (Model.BetListData.Tickets.Any())

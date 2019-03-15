@@ -27,16 +27,12 @@
 
         public DateTime LimitedDateToShowInfo { get; }
 
-        public int MatchId { get; }
+        public int OutrightId { get; set; }
 
-        public int BetTypeGroup { get; }
+        public int StakeCondition { get; set; }
 
-        public int LiveIndicator { get; }
+        public decimal Stake { get; set; }
 
-        public string BetTeam { get; }
-
-        public int StakeCondition { get; }
-
-        public decimal Stake { get; }
+        public int MatchId { get; set; }
     }
 }

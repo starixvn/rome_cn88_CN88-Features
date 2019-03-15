@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
+    using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
     using BetList.Core.Builders;
@@ -9,6 +10,7 @@
     using Features.Shared.Configurations;
     using Features.Shared.Models;
     using Requests;
+    using Shared.Helpers;
     using Shared.ViewModels.Components;
 
     public class WagerDetailsViewModel
@@ -41,6 +43,7 @@
 
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;
+            MatchId = message.MatchId;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
         }
 
@@ -81,5 +84,25 @@
         public int Divisor { get; }
 
         public PagerViewModel PagerViewModel { get; private set; }
+
+        public int MatchId { get; }
+
+        public decimal Stake { get; }
+
+        public int StakeCondition { get; }
+
+        public string WagerByAccountLink()
+        {
+            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+                  AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index"),
+                  new Dictionary<string, object>()
+                  {
+                      ["CustId"] = CustId,
+                      ["CustLevelId"] = CustLevel.Value,
+                      ["MatchId"] = CustLevel.Value,
+                      ["Stake"] = Stake,
+                      ["StakeCondition"] = StakeCondition
+                  });
+        }
     }
 }

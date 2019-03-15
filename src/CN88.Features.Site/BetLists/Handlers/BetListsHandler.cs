@@ -140,10 +140,7 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
-                message.MatchId,
-                message.BetTypeGroup,
-                message.LiveIndicator,
-                message.BetTeam,
+                message.OutrightId,
                 message.StakeCondition,
                 message.Stake);
 
@@ -160,10 +157,7 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
-                message.MatchId,
-                message.BetTypeGroup,
-                message.LiveIndicator,
-                message.BetTeam,
+                message.OutrightId,
                 message.StakeCondition,
                 message.Stake);
 
