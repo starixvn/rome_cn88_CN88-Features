@@ -21,8 +21,8 @@
 
         public bool HasAddNewPermission => query.HasAddNewPermission;
 
-        public string UsernameAutoSuggestionPath => string.Empty;
-        //    => MicroSites.OldMainUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
+        public string UsernameAutoSuggestionPath
+            => MicroSites.MainUrl("~/Suggestion/Index");
 
         public string EditCustomerLink => $"{SiteFeaturePath}CN88CustomerSetting/ViewCN88CustomerSetting/Edit";
 

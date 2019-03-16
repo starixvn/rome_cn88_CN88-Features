@@ -1,4 +1,8 @@
 ﻿class MasterList extends BaseList {
+    searchSuggestionMaster: JQuery;
+    usernameAutoSuggestionPath: string;
+    $output: JQuery;
+
     constructor(
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
@@ -14,8 +18,16 @@
             this.renderMasterList,
             siteInfrastructure.roleId.master,
             indexManager.viewMaster,
-			indexManager.addNewDownline);
+            indexManager.addNewDownline);
+
+        this.cacheDOM();
     }
+
+    cacheDOM = () => {
+        this.searchSuggestionMaster = this.$("#txt-username-master");
+        this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
+        this.$output = this.$("#output");
+    };
 
 	renderMasterList = (rs: any) => {
 		if (!rs.Customers) {
@@ -75,5 +87,11 @@
 
         this.viewList();
     };
+    initAutoComplete = () => {
+        var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
+            this.$.param({ isDir: true, issub: false, ismember: false });
+        initAutoComplete(this.searchSuggestionMaster[0], queryUsernameURL);
+        this.$output.css("top", this.searchSuggestionMaster.offset().top + 30);
+        this.$output.css("left", this.searchSuggestionMaster.offset().left);
+    };
 }
-

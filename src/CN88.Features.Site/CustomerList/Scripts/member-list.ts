@@ -124,7 +124,7 @@
     };
     initAutoComplete = () => {
         var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
-            this.$.param({ isDir: this.directDownline == siteInfrastructure.roleId.agent ? 1 : 0, issub: 0, ismember: 1 });
+            this.$.param({ isDir: this.directDownline == siteInfrastructure.roleId.agent, issub: false, ismember: true });
         initAutoComplete(this.$viewedAgent[0], queryUsernameURL);
 
         this.$output.css("top", this.$viewedAgent.offset().top + 30);

@@ -179,11 +179,14 @@
         this.$(".tab-content[level='" + level + "']").removeClass("display-none");
 
         switch (parseInt(level)) {
+            case siteInfrastructure.roleId.master:
+                //this.masterList.initAutoComplete();
+                break;
             case siteInfrastructure.roleId.agent:
-                this.agentList.initAutoComplete();
+                //this.agentList.initAutoComplete();
                 break;
             case siteInfrastructure.roleId.member:
-                this.memberList.initAutoComplete();
+                //this.memberList.initAutoComplete();
                 break;
         }
     };
