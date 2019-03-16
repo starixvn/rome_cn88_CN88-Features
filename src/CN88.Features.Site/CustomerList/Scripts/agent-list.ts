@@ -35,7 +35,7 @@ class AgentList extends BaseList {
 		});
 
         if (this.directDownline >= siteInfrastructure.roleId.master) {
-            this.initAutoComplete();
+            //this.initAutoComplete();
         }
     }
 

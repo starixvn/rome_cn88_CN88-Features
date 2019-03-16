@@ -32,7 +32,7 @@
 			self.viewMembers(self.reportParam.CustId);
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
-            this.initAutoComplete();
+            //this.initAutoComplete();
         }        
     }
 
