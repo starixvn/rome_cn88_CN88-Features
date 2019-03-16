@@ -103,9 +103,17 @@
                     this.masterList.reloadState(this.reportParam);
                     break;
                 case siteInfrastructure.roleId.agent:
+                    this.$("#btn-submit-master").click();
                     this.agentList.reloadState(this.reportParam);
                     break;
                 case siteInfrastructure.roleId.member:
+                    this.$("#btn-submit-master").click();
+
+                    var memberUsername = location.search.split(/[?&]/)[1].split('=')[1];
+                    var agentUsername = memberUsername.substr(0, memberUsername.length - 2);
+                    this.agentList.$viewedMaster.val(agentUsername);
+                    this.$("#btn-submit-agent").click();
+
                     this.memberList.reloadState(this.reportParam);
                     break;
             }
@@ -114,7 +122,7 @@
                 case siteInfrastructure.roleId.master:
                     this.masterList.viewList();
                     break;
-                case siteInfrastructure.roleId.agent:
+                case siteInfrastructure.roleId.agent:                    
                     this.agentList.viewAgents(this.reportParam.CustId);
                     break;
                 case siteInfrastructure.roleId.member:
