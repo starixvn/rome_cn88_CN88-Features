@@ -13,7 +13,7 @@
                 <option value="@group.Value" @(group.Selected ? " selected=\"selected\"" : string.Empty)>@group.Text</option>
             }
         </select>
-        <input type="text" name="StakeLimit" id="StakeLimit" value="@model.StakeLimit" />
+        <input type="text" name="StakeLimit" id="StakeLimit" value="@model.StakeLimit" maxlength="20" />
         <input type="hidden" name="StakeMode" id="StakeMode" value="@model.StakeMode" />
     </div>
 }

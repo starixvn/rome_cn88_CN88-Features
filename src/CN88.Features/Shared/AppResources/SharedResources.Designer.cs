@@ -394,7 +394,16 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;.
+        ///   Looks up a localized string similar to =.
+        /// </summary>
+        public static string StakeMode_0 {
+            get {
+                return ResourceManager.GetString("StakeMode_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;.
         /// </summary>
         public static string StakeMode_1 {
             get {
@@ -403,7 +412,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &gt;.
+        ///   Looks up a localized string similar to &lt;.
         /// </summary>
         public static string StakeMode_2 {
             get {
@@ -412,7 +421,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to =.
+        ///   Looks up a localized string similar to &lt;=.
         /// </summary>
         public static string StakeMode_3 {
             get {
@@ -421,20 +430,11 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;=.
+        ///   Looks up a localized string similar to &gt;=.
         /// </summary>
         public static string StakeMode_4 {
             get {
                 return ResourceManager.GetString("StakeMode_4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &gt;=.
-        /// </summary>
-        public static string StakeMode_5 {
-            get {
-                return ResourceManager.GetString("StakeMode_5", resourceCulture);
             }
         }
         

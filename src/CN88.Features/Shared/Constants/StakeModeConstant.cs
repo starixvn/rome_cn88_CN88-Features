@@ -4,13 +4,13 @@
 
     public static class StakeModeConstant
     {
-        public const int LessThan = 1;
-        public const int GreaterThan = 2;
-        public const int Equal = 3;
-        public const int LessThanOrEqual = 4;
-        public const int GreaterThanOrEqual = 5;
+        public const int GreaterThan = 1;
+        public const int LessThan = 2;
+        public const int Equal = 0;
+        public const int LessThanOrEqual = 3;
+        public const int GreaterThanOrEqual = 4;
 
         public static IEnumerable<int> Modes =
-            new List<int> { GreaterThanOrEqual, GreaterThan, Equal, LessThanOrEqual, LessThan };
+            new List<int> { GreaterThan, LessThan, Equal };
     }
 }

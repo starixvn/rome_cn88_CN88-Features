@@ -31,7 +31,7 @@
 
         public int ViewMode { get; set; }
 
-        public int StakeMode { get; set; }
+        public int StakeMode { get; set; } = 1;
 
         public decimal StakeLimit { get; set; }
     }
