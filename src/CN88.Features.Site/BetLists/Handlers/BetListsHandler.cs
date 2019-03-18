@@ -232,7 +232,7 @@
                 cn88Builder,
                 builder,
                 BuildSportGroupSelectListItems(sportGroups, message.SportGroupId),
-                BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.SportGroupId),
+                BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.StakeMode),
                 BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.Modes, message.ViewMode));
         }
 
