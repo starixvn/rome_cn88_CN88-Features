@@ -3,11 +3,11 @@
 }
 
 .betlist-container {
-    padding: 0 20px;
+    padding: 0 15px;
 
     &.betlist-statement, &.betlist-by-account, &.betlist-wager-details {
         .page-title {
-            margin-top: 12px;
+            margin: 15px 0;
         }
     }
 }
@@ -269,7 +269,7 @@
 
 .betlist-by-account, .betlist-wager-details {
     #nav-tabs {
-        padding-top: 14px;
+        padding-top: 0;
     }
 
     #tbl-report {
