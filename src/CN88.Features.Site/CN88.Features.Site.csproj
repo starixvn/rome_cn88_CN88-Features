@@ -544,6 +544,14 @@
       <DependentUpon>security.css</DependentUpon>
     </Content>
     <Content Include="Reports\Scripts\aes.js" />
+    <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
+    <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
+      <DependentUpon>edit-sub-account.js</DependentUpon>
+    </Content>
+    <Content Include="SubAccount\bundles\scripts\new-sub-account.js" />
+    <Content Include="SubAccount\bundles\scripts\new-sub-account.min.js">
+      <DependentUpon>new-sub-account.js</DependentUpon>
+    </Content>
     <Content Include="SubAccount\bundles\scripts\sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\sub-account.min.js">
       <DependentUpon>sub-account.js</DependentUpon>
@@ -624,7 +632,7 @@
     <Compile Include="BetLists\Requests\BetListOfReportQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfReportViewModel.cs" />
     <Compile Include="Shared\ViewModels\SelectListItemExt.cs" />
-    <Compile Include="SubAccount\Requests\CreateCommand.cs" />
+    <Compile Include="SubAccount\Requests\NewCommand.cs" />
     <Compile Include="CustomerList\Requests\OnlineMembersQuery.cs" />
     <Compile Include="CustomerList\ViewModels\OnlineMemberViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\BreadcrumbLevelViewModel.cs" />
@@ -632,10 +640,10 @@
     <Compile Include="Shared\Helpers\UrlHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\PagerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
-    <Compile Include="SubAccount\Requests\CreateQuery.cs" />
+    <Compile Include="SubAccount\Requests\NewQuery.cs" />
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
     <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
-    <Compile Include="SubAccount\Requests\UpdatePermissionCommand.cs" />
+    <Compile Include="SubAccount\Requests\DeleteCommand.cs" />
     <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
     <Compile Include="SubAccount\SubAccountHandler.cs" />
@@ -674,7 +682,7 @@
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
-    <Compile Include="SubAccount\ViewModels\CreateViewModel.cs" />
+    <Compile Include="SubAccount\ViewModels\NewViewModel.cs" />
     <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -790,8 +798,9 @@
     <Content Include="Reports\Views\OldLegacy.cshtml" />
     <Content Include="Reports\Views\PTHistory.cshtml" />
     <Content Include="CustomerList\Styles\member-statement.scss" />
-    <Content Include="SubAccount\Views\Update.cshtml" />
-    <Content Include="SubAccount\Views\Create.cshtml" />
+    <Content Include="SubAccount\Views\Edit.cshtml" />
+    <Content Include="SubAccount\Views\New.cshtml" />
+    <Content Include="SubAccount\Views\_Permissions.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -855,7 +864,8 @@
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
     <TypeScriptCompile Include="Shared\Scripts\popup-manager.ts" />
-    <TypeScriptCompile Include="SubAccount\Scripts\create-sub-account.ts" />
+    <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
+    <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\sub-account.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />

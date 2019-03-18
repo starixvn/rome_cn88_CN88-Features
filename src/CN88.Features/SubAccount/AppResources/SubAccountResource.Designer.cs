@@ -88,11 +88,29 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password was not correctly confirmed..
+        /// </summary>
+        public static string ConfirmPasswordError {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created Date.
         /// </summary>
         public static string CreatedDate {
             get {
                 return ResourceManager.GetString("CreatedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Sub Account.
+        /// </summary>
+        public static string DeleteSubAccount {
+            get {
+                return ResourceManager.GetString("DeleteSubAccount", resourceCulture);
             }
         }
         

@@ -1,8 +1,6 @@
 ﻿namespace CN88.Features.Site.SubAccount.ViewModels
 {
     using System.Collections.Generic;
-    using Alpha.Auth.Configurations;
-    using Alpha.Web.Helpers;
     using Features.SubAccount.Models;
     using Shared.Helpers;
 
@@ -32,16 +30,19 @@
 
         public IEnumerable<SubAccountItem> SubAccounts { get; }
 
-        public string FeaturesAppPath
-            => UrlHelper.GetFeaturesAppPath("~");
+        public string NewSubAccountLink
+            => UrlHelper.GetFeaturesAppPath("~/SubAccount/New");
+
+        public string EditSubAccountLink
+            => UrlHelper.GetFeaturesAppPath("~/SubAccount/Edit");
+
+        public string DeleteSubAccountLink
+            => UrlHelper.GetFeaturesAppPath("~/SubAccount/Delete");
 
         public string ResetPasswordLink
-            => BuildFullMainAppPath("Password/ResetSubAccountPassword");
+            => UrlHelper.GetMainAppPath("~/Password/ResetSubAccountPassword");
 
         public string ResetSecurityCodeLink
-            => BuildFullMainAppPath("SecurityCode/ResetSecurityCode");
-
-        private static string BuildFullMainAppPath(string url)
-            => $"{AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~")}{url}";
+            => UrlHelper.GetMainAppPath("~/SecurityCode/ResetSecurityCode");
     }
 }

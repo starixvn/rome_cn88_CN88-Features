@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+@model Sunplus.Agent.Model.Entities.PageAccess
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="[D]" id="totalBets" @(Model.ViewTotalBets ? "checked=checked" : string.Empty)> @SubAccountResource.TotalBets
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+            <label>
+                <input
+                       type="checkbox"
+                       value="[H]" id="acManagementViewOnly"
+                       @(Model.ViewMemberInfo ? "checked=checked" : string.Empty)> @SubAccountResource.ACManagementViewOnly
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+            <label>
+                <input
+                       type="checkbox"
+                       value="[A],[B],[H]"
+                       id="acManagementEditView"
+                       @(Model.ViewTotalBets && Model.CreateAccount && Model.UpdateAccount ? "checked=checked" : string.Empty)> @SubAccountResource.ACManagementEditView
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+            <label>
+                <input
+                       type="checkbox"
+                       value="[E]"
+                       id="reports"
+                       @(Model.ViewReports ? "checked=checked" : string.Empty)> @SubAccountResource.Reports
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+            <label>
+                <input
+                       type="checkbox"
+                       value="[G]"
+                       id="viewLog"
+                       @(Model.ViewLog ? "checked=checked" : string.Empty)> @SubAccountResource.Log
+            </label>
+        </div>
+    </div>
+</div>
+<div class="list-button">
+    <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
+    <input type="submit" class="btn-submit" value="@SharedResources.Submit" />
+</div>

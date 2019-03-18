@@ -5,9 +5,9 @@
     using Site.Requests;
     using ViewModels;
 
-    public class CreateQuery : BaseQuery, IRequest<CreateViewModel>
+    public class NewQuery : BaseQuery, IRequest<NewViewModel>
     {
-        public CreateQuery(IUser viewer)
+        public NewQuery(IUser viewer)
             : base(viewer)
         {
         }

@@ -23,6 +23,8 @@
 
         public static int MemberStatementOfLatestDay => Converter.ToInt(GetConfigValue("MemberStatementOfLatestDay"));
 
+        public static string MainAppPath => GetConfigValue("MainAppPath");
+
         public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
 
         public static bool IsTest => GetConfigValue("LocalTest") == "1";

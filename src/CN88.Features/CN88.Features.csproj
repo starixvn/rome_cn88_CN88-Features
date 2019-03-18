@@ -358,7 +358,7 @@
     <Compile Include="SubAccount\Models\SubAccountItem.cs" />
     <Compile Include="SubAccount\Params\CreateSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\UpdateSubAccountParam.cs" />
-    <Compile Include="SubAccount\Params\UpdateSubAccountPermissionParam.cs" />
+    <Compile Include="SubAccount\Params\DeleteSubAccountParam.cs" />
     <Compile Include="SubAccount\Services\SubAccountValidator.cs" />
     <Compile Include="SubAccount\Services\SubAccountService.cs" />
   </ItemGroup>

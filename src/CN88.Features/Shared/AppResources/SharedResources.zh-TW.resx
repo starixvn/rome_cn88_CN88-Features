@@ -192,4 +192,7 @@
   <data name="PercentageViewMode_8" xml:space="preserve">
     <value>總代理 + 代理商占成</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
 </root>

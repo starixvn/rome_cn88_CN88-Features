@@ -126,8 +126,14 @@
   <data name="Action" xml:space="preserve">
     <value>Action</value>
   </data>
+  <data name="ConfirmPasswordError" xml:space="preserve">
+    <value>The password was not correctly confirmed.</value>
+  </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>
+  </data>
+  <data name="DeleteSubAccount" xml:space="preserve">
+    <value>Delete Sub Account</value>
   </data>
   <data name="EditSubAccount" xml:space="preserve">
     <value>Edit Sub Account</value>

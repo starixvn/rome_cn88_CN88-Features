@@ -155,11 +155,24 @@
   {
     "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
     "inputFiles": [
-      "Shared/Scripts/components/message.js",
+      "SubAccount/Scripts/sub-account.js"
+    ]
+  },
+  {
+    "outputFileName": "SubAccount/bundles/scripts/new-sub-account.js",
+    "inputFiles": [
       "SubAccount/Scripts/aes.js",
-      "SubAccount/Scripts/sub-account.js",
-      "SubAccount/Scripts/edit-sub-account.js",
-      "SubAccount/Scripts/create-sub-account.js"
+      "Shared/Scripts/components/message.js",
+      "SubAccount/Scripts/base-sub-account.js",
+      "SubAccount/Scripts/new-sub-account.js"
+    ]
+  },
+  {
+    "outputFileName": "SubAccount/bundles/scripts/edit-sub-account.js",
+    "inputFiles": [
+      "Shared/Scripts/components/message.js",
+      "SubAccount/Scripts/base-sub-account.js",
+      "SubAccount/Scripts/edit-sub-account.js"
     ]
   },
   {

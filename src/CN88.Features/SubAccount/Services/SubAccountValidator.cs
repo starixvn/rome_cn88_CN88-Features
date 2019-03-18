@@ -20,6 +20,8 @@
         Result IsMatchPasswordRules(string password, IEnumerable<string> invalidPasswords);
 
         string FilterWithValidPermissions(string pageAccess);
+
+        Result ValidateSuffix(string suffix1, string suffix2);
     }
 
     public class SubAccountValidatorImpl : SubAccountValidator
@@ -33,7 +35,7 @@
         private static readonly Regex MemberPasswordRule = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$");
         private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
 
-        private static readonly string[] ValidPermissions = new[] { "[A]", "[B]", "[D]", "[E]", "[H]" };
+        private static readonly string[] ValidPermissions = new[] { "[A]", "[B]", "[D]", "[E]", "[G]", "[H]" };
 
         private readonly Encryptor encryptor;
 
@@ -86,5 +88,17 @@
 
         private static bool IsContainsInvalidChars(string password, IEnumerable<string> invalidPasswords)
             => invalidPasswords.Any(item => password.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
+
+        public Result ValidateSuffix(string suffix1, string suffix2)
+            => ValidateSuffix(suffix1) && ValidateSuffix(suffix2)
+            ? Result.CreateSuccessResult()
+            : Result.CreateForbiddenResult();
+
+        private static bool ValidateSuffix(string suffix)
+        {
+            int value;
+
+            return suffix?.Length == 1 && int.TryParse(suffix, out value);
+        }
     }
 }

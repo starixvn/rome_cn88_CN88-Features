@@ -1,21 +1,15 @@
 ﻿namespace CN88.Features.SubAccount.Criteria
 {
+    using Params;
+
     public class UpdateSubAccountCommand : BaseSubAccountCommand
     {
-        public UpdateSubAccountCommand(
-            int custId,
-            int subAccId,
-            int loginSubAccId,
-            string firstName,
-            string lastName,
-            bool closed,
-            string languageKey,
-            string loginIP,
-            int userId) : base(custId, subAccId, loginSubAccId, languageKey, loginIP, userId)
+        public UpdateSubAccountCommand(UpdateSubAccountParam param)
+            : base(param.CustId, param.SubAccId, param.LoginSubAccId, param.LanguageKey, param.IP, param.ActorId)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Closed = closed;
+            FirstName = param.FirstName;
+            LastName = param.LastName;
+            Closed = param.Closed;
         }
 
         public string FirstName { get; }

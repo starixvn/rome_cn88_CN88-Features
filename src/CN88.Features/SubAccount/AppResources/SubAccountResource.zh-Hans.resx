@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConfirmPasswordError" xml:space="preserve">
+    <value>The password was not correctly confirmed.</value>
+  </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>新增日期</value>
+  </data>
+  <data name="DeleteSubAccount" xml:space="preserve">
+    <value>Delete Sub Account</value>
   </data>
   <data name="EditSubAccount" xml:space="preserve">
     <value>Edit Sub Account</value>

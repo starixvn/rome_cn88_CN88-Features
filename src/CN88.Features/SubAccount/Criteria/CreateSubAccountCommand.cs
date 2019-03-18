@@ -1,24 +1,17 @@
 ﻿namespace CN88.Features.SubAccount.Criteria
 {
+    using Params;
+
     public class CreateSubAccountCommand : BaseSubAccountCommand
     {
-        public CreateSubAccountCommand(
-            int custId,
-            int loginSubAccId,
-            string userName,
-            string userPwd,
-            string firstName,
-            string lastName,
-            string pageAccess,
-            string languageKey,
-            string loginIP,
-            int userId) : base(custId, 0, loginSubAccId, languageKey, loginIP, userId)
+        public CreateSubAccountCommand(CreateSubAccountParam param)
+            : base(param.CustId, 0, param.LoginSubAccId, param.LanguageKey, param.IP, param.ActorId)
         {
-            UserName = userName;
-            UserPwd = userPwd;
-            FirstName = firstName;
-            LastName = lastName;
-            PageAccess = pageAccess;
+            UserName = param.UserName;
+            UserPwd = param.Password;
+            FirstName = param.FirstName;
+            LastName = param.LastName;
+            PageAccess = param.PageAccess;
         }
 
         public string UserName { get; }

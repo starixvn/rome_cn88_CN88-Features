@@ -1,7 +1,5 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
-    using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using Alpha.Web.Helpers;
     using Features.Models;
@@ -15,11 +13,11 @@
 
     public class SubAccountHandler :
         IAsyncRequestHandler<IndexQuery, IndexViewModel>,
-        IRequestHandler<CreateQuery, CreateViewModel>,
+        IRequestHandler<NewQuery, NewViewModel>,
         IAsyncRequestHandler<UpdateQuery, SubAccountItem>,
-        IAsyncRequestHandler<CreateCommand, Result>,
+        IAsyncRequestHandler<NewCommand, Result>,
         IAsyncRequestHandler<UpdateCommand, Result>,
-        IAsyncRequestHandler<UpdatePermissionCommand, Result>
+        IAsyncRequestHandler<DeleteCommand, Result>
     {
         private const string HashKeySessionKey = "Alpha.CN88.Site.Handlers.PasswordHandler.PasswordHash";
 
@@ -62,17 +60,18 @@
                 subAccounts);
         }
 
-        public CreateViewModel Handle(CreateQuery message)
-            => new CreateViewModel(GenerateHashKey());
+        public NewViewModel Handle(NewQuery message)
+            => new NewViewModel(GenerateHashKey());
 
         public async Task<SubAccountItem> Handle(UpdateQuery message)
             => await subAccountService.GetSubAccountAsync(message.ViewerId, message.CustId);
 
-        public async Task<Result> Handle(CreateCommand message)
+        public async Task<Result> Handle(NewCommand message)
             => await subAccountService.CreateSubAccountAsync(new CreateSubAccountParam(
                 message.ViewerId,
                 message.SubAccountId,
-                message.UserName,
+                message.Suffix1,
+                message.Suffix2,
                 message.Password,
                 HashKey,
                 message.InvalidPasswords,
@@ -81,7 +80,8 @@
                 message.PageAccess,
                 message.LanguageKey,
                 message.IP,
-                message.ViewerId));
+                message.ViewerId,
+                message.ViewerName));
 
         public async Task<Result> Handle(UpdateCommand message)
             => await subAccountService.UpdateSubAccountAsync(new UpdateSubAccountParam(
@@ -95,15 +95,10 @@
                 message.IP,
                 message.ViewerId));
 
-        public async Task<Result> Handle(UpdatePermissionCommand message)
-            => await subAccountService.UpdateSubAccountPermissionAsync(new UpdateSubAccountPermissionParam(
-                message.ViewerId,
-                message.SubAccId,
-                message.SubAccountId,
-                message.PageAccess,
-                message.LanguageKey,
-                message.IP,
-                message.ViewerId));
+        public async Task<Result> Handle(DeleteCommand message)
+        {
+            throw new System.NotImplementedException();
+        }
 
         private string GenerateHashKey()
         {

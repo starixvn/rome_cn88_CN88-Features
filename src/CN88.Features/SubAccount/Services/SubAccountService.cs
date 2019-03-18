@@ -18,11 +18,13 @@
 
         Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param);
 
-        Task<Result> UpdateSubAccountPermissionAsync(UpdateSubAccountPermissionParam param);
+        Task<Result> DeleteSubAccountAsync(DeleteSubAccountParam param);
     }
 
     public class SubAccountServiceImpl : SubAccountService
     {
+        private const string SubAccountSuffix = "Sub";
+
         private readonly IDynamicRepository dynamicRepository;
         private readonly SubAccountValidator subAccountValidator;
 
@@ -57,16 +59,24 @@
                 return result;
             }
 
+            result = subAccountValidator.ValidateSuffix(param.Suffix1, param.Suffix1);
+
+            if (!result.IsSuccess)
+            {
+                return result;
+            }
+
+            param.UserName = $"{param.ActorName}{SubAccountSuffix}{param.Suffix1}{param.Suffix2}";
             param.Password = subAccountValidator.Encode(rawPassword);
             param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
 
-            return await ExecuteAsync(param.ToCommand());
+            return await ExecuteAsync(new CreateSubAccountCommand(param));
         }
 
         public async Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param)
-            => await ExecuteAsync(param.ToCommand());
+            => await ExecuteAsync(new UpdateSubAccountCommand(param));
 
-        public async Task<Result> UpdateSubAccountPermissionAsync(UpdateSubAccountPermissionParam param)
+        public async Task<Result> DeleteSubAccountAsync(DeleteSubAccountParam param)
             => await ExecuteAsync(param.ToCommand());
 
         private async Task<Result> ExecuteAsync(CreateSubAccountCommand command)
@@ -83,6 +93,15 @@
             await dynamicRepository.ExecuteAsync(command);
 
             return new Result(command.ErrCode, command.ErrMsg);
+        }
+
+        private static string GetSuffix(string suffix, string defaultValue)
+        {
+            int value;
+
+            return int.TryParse(suffix, out value)
+                ? suffix
+                : defaultValue;
         }
     }
 }

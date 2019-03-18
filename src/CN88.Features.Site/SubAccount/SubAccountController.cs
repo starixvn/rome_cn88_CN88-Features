@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using Alpha.Web.Filters;
     using Features.Models;
     using MediatR;
     using Requests;
@@ -10,8 +11,8 @@
     public class SubAccountController : FeatureBaseController
     {
         private const string IndexViewPath = "~/SubAccount/Views/Index.cshtml";
-        private const string CreateViewPath = "~/SubAccount/Views/Create.cshtml";
-        private const string UpdateViewPath = "~/SubAccount/Views/Update.cshtml";
+        private const string NewViewPath = "~/SubAccount/Views/New.cshtml";
+        private const string EditViewPath = "~/SubAccount/Views/Edit.cshtml";
 
         public SubAccountController(IMediator mediator)
             : base(mediator)
@@ -23,38 +24,32 @@
                 ? View(IndexViewPath, await mediator.Send(message))
                 : View(NoInformationPageViewPath);
 
-        public async Task<ActionResult> Create(CreateQuery message)
+        public async Task<ActionResult> New(NewQuery message)
             => message.IsValid()
-                ? View(CreateViewPath, await mediator.Send(message))
+                ? View(NewViewPath, await mediator.Send(message))
                 : View(NoInformationPageViewPath);
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreateCommand message)
-        {
-            var result = message.IsValid()
-                ? await mediator.Send(message)
-                : Result.CreateForbiddenResult();
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> New(NewCommand message)
+            => Json(
+                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
+                JsonRequestBehavior.DenyGet);
 
-            return View(nameof(Create), new CreateQuery(message.GetViewer()) { Result = result });
-        }
-
-        public async Task<ActionResult> Update(UpdateQuery message)
+        public async Task<ActionResult> Edit(UpdateQuery message)
             => message.IsValid()
-                ? View(UpdateViewPath, await mediator.Send(message))
+                ? View(EditViewPath, await mediator.Send(message))
                 : View(NoInformationPageViewPath);
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Update(UpdateCommand message)
-        {
-            var result = message.IsValid()
-                ? await mediator.Send(message)
-                : Result.CreateForbiddenResult();
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> Edit(UpdateCommand message)
+            => Json(
+                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
+                JsonRequestBehavior.DenyGet);
 
-            return View(nameof(Update), new UpdateQuery(message.GetViewer()) { Result = result });
-        }
-
-        //[HttpPost, AntiXsrfFilter]
-        //public async Task<ActionResult> UpdatePermission(UpdatePermissionCommand message)
-        //    => await JsonDataAsync(message, JsonRequestBehavior.DenyGet);
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> Delete(DeleteCommand message)
+            => Json(
+                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
+                JsonRequestBehavior.DenyGet);
     }
 }

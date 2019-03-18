@@ -2,9 +2,9 @@
 {
     using Criteria;
 
-    public class UpdateSubAccountPermissionParam
+    public class DeleteSubAccountParam
     {
-        public UpdateSubAccountPermissionParam(
+        public DeleteSubAccountParam(
             int custId,
             int subAccId,
             int loginSubAccId,

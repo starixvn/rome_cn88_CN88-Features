@@ -1,7 +1,5 @@
 ﻿namespace CN88.Features.SubAccount.Params
 {
-    using Criteria;
-
     public class UpdateSubAccountParam
     {
         public UpdateSubAccountParam(
@@ -43,17 +41,5 @@
         public string IP { get; }
 
         public int ActorId { get; }
-
-        public BaseSubAccountCommand ToCommand()
-            => new UpdateSubAccountCommand(
-                CustId,
-                SubAccId,
-                LoginSubAccId,
-                FirstName?.Trim() ?? string.Empty,
-                LastName?.Trim() ?? string.Empty,
-                Closed,
-                LanguageKey,
-                IP,
-                ActorId);
     }
 }

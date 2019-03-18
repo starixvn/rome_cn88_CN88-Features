@@ -5,21 +5,23 @@
     using MediatR;
     using Site.Requests;
 
-    public class CreateCommand : BaseQuery, IRequest<Result>
+    public class NewCommand : BaseQuery, IRequest<Result>
     {
-        public CreateCommand(IUser viewer)
+        public NewCommand(IUser viewer)
             : base(viewer)
         {
             LanguageKey = viewer.LanguageKey;
         }
 
-        public string UserName { get; set; }
+        public string Suffix1 { get; set; }
 
-        public string Password { get; set; }
+        public string Suffix2 { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public string Password { get; set; }
 
         public string PageAccess { get; set; }
 
@@ -31,7 +33,6 @@
             {
                 yield return ViewerName;
                 yield return NickName;
-                yield return UserName;
             }
         }
 

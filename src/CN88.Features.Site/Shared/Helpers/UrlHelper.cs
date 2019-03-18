@@ -91,6 +91,9 @@
             return link + $"&{paramName}={paramValue}";
         }
 
+        public static string GetMainAppPath(string virtualPath = "~/")
+            => AppPathHelper.GetAppPath(AppSettings.MainAppPath, virtualPath);
+
         public static string GetFeaturesAppPath(string virtualPath = "~/")
             => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, virtualPath);
 

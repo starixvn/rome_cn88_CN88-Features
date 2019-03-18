@@ -19,19 +19,20 @@
                 <th>@SubAccountResource.UserCode</th>
                 <th>@SubAccountResource.Name</th>
                 <th>@SubAccountResource.LoginId</th>
-                <th>@SubAccountResource.TotalBets</th>
-                <th>@SubAccountResource.ACManagementViewOnly</th>
-                <th>@SubAccountResource.ACManagementEditView</th>
-                <th>@SubAccountResource.Reports</th>
-                <th>@SubAccountResource.CreatedDate</th>
-                <th>@SubAccountResource.Action</th>
+                <th class="text-center">@SubAccountResource.TotalBets</th>
+                <th class="text-center">@SubAccountResource.ACManagementViewOnly</th>
+                <th class="text-center">@SubAccountResource.ACManagementEditView</th>
+                <th class="text-center">@SubAccountResource.Reports</th>
+                <th class="text-center">@SubAccountResource.Log</th>
+                <th class="text-center">@SubAccountResource.CreatedDate</th>
+                <th class="text-center">@SubAccountResource.Action</th>
             </tr>
         </thead>
         <tbody>
             @if (Model.TotalItems == 0)
             {
                 <tr>
-                    <td colspan="9" class="text-center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="10" class="text-center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
             else
@@ -43,15 +44,24 @@
                         <td>@item.UserName</td>
                         <td>@item.FirstName @item.LastName</td>
                         <td>N/A</td>
-                        @RenderPermissionCell(permission.ViewTotalBets)
-                        @RenderPermissionCell(permission.ViewMemberInfo)
-                        @RenderPermissionCell(permission.UpdateAccount)
-                        @RenderPermissionCell(permission.ViewReports)
+                        <td class="text-center">
+                            @RenderPermissionCell(permission.ViewTotalBets)
+                        </td>
+                        <td class="text-center">
+                            @RenderPermissionCell(permission.ViewMemberInfo)
+                        </td>
+                        <td class="text-center">
+                            @RenderPermissionCell(permission.UpdateAccount)
+                        </td>
+                        <td class="text-center">
+                            @RenderPermissionCell(permission.ViewReports)
+                        </td>
+                        <td class="text-center">
+                            @RenderPermissionCell(permission.ViewLog)
+                        </td>
                         <td>@item.CreateDateString</td>
-                        <td data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
-                            <span class="icon-pass" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetPassword"></span>
-                            <span class="icon-security" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetSecurityCode"></span>
-                            <span class="icon-edit" data-toggle="tooltip" data-placement="top" title="@SharedResources.Edit"></span>
+                        <td class="text-center" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
+                            @RenderActionCell()
                         </td>
                     </tr>
                 }
@@ -59,17 +69,26 @@
         </tbody>
     </table>
 </div>
-@Html.Hidden(nameof(Model.FeaturesAppPath), Model.FeaturesAppPath)
 @Html.Hidden(nameof(SubAccountResource.NewSubAccount), SubAccountResource.NewSubAccount)
 @Html.Hidden(nameof(SubAccountResource.EditSubAccount), SubAccountResource.EditSubAccount)
+@Html.Hidden(nameof(SubAccountResource.DeleteSubAccount), SubAccountResource.DeleteSubAccount)
 @Html.Hidden(nameof(SubAccountResource.ResetPassword), SubAccountResource.ResetPassword)
-@Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(SubAccountResource.ResetSecurityCode), SubAccountResource.ResetSecurityCode)
+
+@Html.Hidden(nameof(Model.NewSubAccountLink), Model.NewSubAccountLink)
+@Html.Hidden(nameof(Model.EditSubAccountLink), Model.EditSubAccountLink)
+@Html.Hidden(nameof(Model.DeleteSubAccountLink), Model.DeleteSubAccountLink)
+@Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
 
 @helper RenderPermissionCell(bool hasPermission)
 {
-    <td class="text-center">
-        <span class="@(hasPermission ? "icon-success " : "icon-minus")"></span>
-    </td>
+    <span class="@(hasPermission ? "icon-success " : "icon-minus")"></span>
+}
+@helper RenderActionCell()
+{
+    <span class="icon-pass" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetPassword"></span>
+    <span class="icon-security" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetSecurityCode"></span>
+    <span class="icon-edit" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.EditSubAccount"></span>
+    <span class="icon-delete" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.DeleteSubAccount"></span>
 }

@@ -1,14 +1,14 @@
 ﻿namespace CN88.Features.SubAccount.Params
 {
     using System.Collections.Generic;
-    using Criteria;
 
     public class CreateSubAccountParam
     {
         public CreateSubAccountParam(
             int custId,
             int loginSubAccId,
-            string userName,
+            string suffix1,
+            string suffix2,
             string password,
             string hashKey,
             IEnumerable<string> invalidPasswords,
@@ -17,11 +17,13 @@
             string pageAccess,
             string languageKey,
             string ip,
-            int actorId)
+            int actorId,
+            string actorName)
         {
             CustId = custId;
             LoginSubAccId = loginSubAccId;
-            UserName = userName;
+            Suffix1 = suffix1;
+            Suffix2 = suffix2;
             Password = password;
             HashKey = hashKey;
             InvalidPasswords = invalidPasswords;
@@ -31,13 +33,18 @@
             LanguageKey = languageKey;
             IP = ip;
             ActorId = actorId;
+            ActorName = actorName;
         }
 
         public int CustId { get; }
 
         public int LoginSubAccId { get; }
 
-        public string UserName { get; }
+        public string Suffix1 { get; }
+
+        public string Suffix2 { get; }
+
+        public string UserName { get; set; }
 
         public string Password { get; set; }
 
@@ -57,17 +64,6 @@
 
         public int ActorId { get; }
 
-        public CreateSubAccountCommand ToCommand()
-            => new CreateSubAccountCommand(
-                CustId,
-                LoginSubAccId,
-                UserName,
-                Password,
-                FirstName?.Trim() ?? string.Empty,
-                LastName?.Trim() ?? string.Empty,
-                PageAccess,
-                LanguageKey,
-                IP,
-                ActorId);
+        public string ActorName { get; }
     }
 }

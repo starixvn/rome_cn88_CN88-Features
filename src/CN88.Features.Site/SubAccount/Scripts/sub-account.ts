@@ -31,7 +31,9 @@ class SubAccount {
         };
 
         this.urls = {
-            featuresAppPath: this.$("#FeaturesAppPath").val(),
+            newSubAccount: this.$("#NewSubAccountLink").val(),
+            editSubAccount: this.$("#EditSubAccountLink").val(),
+            deleteSubAccount: this.$("#DeleteSubAccountLink").val(),
             resetPassword: this.$("#ResetPasswordLink").val(),
             resetSecurityCode: this.$("#ResetSecurityCodeLink").val()
         };
@@ -66,13 +68,13 @@ class SubAccount {
             let param: ISubAccountParam = self.getSubAccountParam(this);
             self.openPopup(
                 `${self.resources.editSubAccount} - ${param.subAccountName}`,
-                `${self.urls.featuresAppPath}SubAccount/Update?custId=${param.subAccountId}`,
+                `${self.urls.editSubAccount}?custId=${param.subAccountId}`,
                 1000,
                 350);
         });
 
         this.$("#btnNewSubAccount").click(function (): void {
-            self.openPopup(self.resources.newSubAccount, `${self.urls.featuresAppPath}SubAccount/Create`, 1000, 350);
+            self.openPopup(self.resources.newSubAccount, self.urls.newSubAccount, 1000, 350);
         });
 
         //this.$.ajaxSetup({
