@@ -10,7 +10,7 @@
             CustId = param.CustId;
             RoleId = param.RoleId;
             MatchId = param.MatchId;
-            BetType = param.BetType;
+            BetTypeGroup = param.BetType;
             LiveIndicator = param.LiveIndicator;
             BetTeam = param.BetTeam;
             StakeCondition = param.StakeCondition;
@@ -23,7 +23,7 @@
 
         public int MatchId { get; }
 
-        public int BetType { get; }
+        public int BetTypeGroup { get; }
 
         public int LiveIndicator { get; }
 
