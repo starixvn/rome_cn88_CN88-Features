@@ -100,6 +100,7 @@
                   new Dictionary<string, object>()
                   {
                       ["CustId"] = CustId,
+                      ["CustName"] = CustName,
                       ["CustLevelId"] = CustLevel.Value,
                       ["MatchId"] = MatchId,
                       ["Stake"] = Stake,

@@ -125,6 +125,7 @@
                   new Dictionary<string, object>()
                   {
                       ["CustId"] = message.ViewerId,
+                      ["CustName"] = CustName,
                       ["CustLevelId"] = message.ActorLevel.Value,
                       ["MatchId"] = MatchId,
                       ["BetTypeGroup"] = BetType,
@@ -141,6 +142,7 @@
                 new Dictionary<string, object>
                 {
                     ["CustId"] = CustId,
+                    ["CustName"] = CustName,
                     ["CustLevelId"] = CustLevel.Value,
                     ["MatchId"] = MatchId,
                     ["BetTypeGroup"] = BetType,

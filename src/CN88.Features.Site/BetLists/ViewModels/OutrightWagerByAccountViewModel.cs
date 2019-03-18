@@ -116,6 +116,7 @@
                   new Dictionary<string, object>()
                   {
                       ["CustId"] = message.ViewerId,
+                      ["CustName"] = CustName,
                       ["CustLevelId"] = message.ActorLevel.Value,
                       ["MatchId"] = MatchId,
                       ["Stake"] = Stake,
@@ -125,10 +126,11 @@
 
         private string BuildBreadcrumbUrl()
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
-                AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/Index"),
+                AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByOutright"),
                 new Dictionary<string, object>
                 {
                     ["CustId"] = CustId,
+                    ["CustName"] = CustName,
                     ["CustLevelId"] = CustLevel.Value,
                     ["MatchId"] = MatchId,
                     ["Stake"] = Stake,
