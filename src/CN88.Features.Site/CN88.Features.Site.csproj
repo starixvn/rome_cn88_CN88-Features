@@ -790,8 +790,8 @@
     <Content Include="Reports\Views\OldLegacy.cshtml" />
     <Content Include="Reports\Views\PTHistory.cshtml" />
     <Content Include="CustomerList\Styles\member-statement.scss" />
-    <Content Include="SubAccount\Views\_Update.cshtml" />
-    <Content Include="SubAccount\Views\_Create.cshtml" />
+    <Content Include="SubAccount\Views\Update.cshtml" />
+    <Content Include="SubAccount\Views\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

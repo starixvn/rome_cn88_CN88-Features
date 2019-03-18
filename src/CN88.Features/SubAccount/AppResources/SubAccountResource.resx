@@ -129,6 +129,12 @@
   <data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>
   </data>
+  <data name="EditSubAccount" xml:space="preserve">
+    <value>Edit Sub Account</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
   <data name="LoginId" xml:space="preserve">
     <value>Login ID</value>
   </data>
@@ -137,6 +143,9 @@
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
     <value>Your password must not contain your username or nickname.</value>
+  </data>
+  <data name="NewSubAccount" xml:space="preserve">
+    <value>New Sub Account</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
     <value>Your password does not meet the minimum security requirement.</value>

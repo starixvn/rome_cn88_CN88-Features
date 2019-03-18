@@ -120,11 +120,20 @@
   <data name="CreatedDate" xml:space="preserve">
     <value>新增日期</value>
   </data>
+  <data name="EditSubAccount" xml:space="preserve">
+    <value>修改子帳號</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>名</value>
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
     <value>您的密码不能包含您的用户名或昵称。</value>
+  </data>
+  <data name="NewSubAccount" xml:space="preserve">
+    <value>New Sub Account</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
     <value>您的密码不符合最低安全要求</value>

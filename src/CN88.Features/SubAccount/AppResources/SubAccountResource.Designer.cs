@@ -97,6 +97,24 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Sub Account.
+        /// </summary>
+        public static string EditSubAccount {
+            get {
+                return ResourceManager.GetString("EditSubAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log.
+        /// </summary>
+        public static string Log {
+            get {
+                return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login ID.
         /// </summary>
         public static string LoginId {
@@ -120,6 +138,15 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string NewPwdContainsUserNameOrNickNameError {
             get {
                 return ResourceManager.GetString("NewPwdContainsUserNameOrNickNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Sub Account.
+        /// </summary>
+        public static string NewSubAccount {
+            get {
+                return ResourceManager.GetString("NewSubAccount", resourceCulture);
             }
         }
         

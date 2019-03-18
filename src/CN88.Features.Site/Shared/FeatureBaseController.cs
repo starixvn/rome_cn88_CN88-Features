@@ -10,7 +10,7 @@
 
     public abstract class FeatureBaseController : CN88BaseController
     {
-        private const string NoInformationPageViewPath = "~/Shared/Views/NoInformation.cshtml";
+        protected const string NoInformationPageViewPath = "~/Shared/Views/NoInformation.cshtml";
         private const string InvalidExcelFileName = "Invalid";
 
         protected readonly IMediator mediator;

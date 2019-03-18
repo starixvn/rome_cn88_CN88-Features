@@ -36,6 +36,6 @@
         }
 
         public override bool IsValid()
-            => base.IsValid() && SubAccountId == 0;
+            => base.IsValid() && SubAccountId == 0 && !GetViewer().IsInternal;
     }
 }

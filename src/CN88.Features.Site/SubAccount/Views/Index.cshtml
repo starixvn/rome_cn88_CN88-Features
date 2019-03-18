@@ -10,8 +10,8 @@
 @model IndexViewModel
 <div class="subacc-page">
     <div>
-        <button class="btn-submit add-new" id="btnCreateSubAccount">
-            <span class="icon-add"></span>Create Sub Account</button>
+        <button class="btn-submit add-new" id="btnNewSubAccount">
+            <span class="icon-add"></span>@SubAccountResource.NewSubAccount</button>
     </div>
     <table class="tbl-style2" id="tbl-subaccount">
         <thead>
@@ -59,8 +59,9 @@
         </tbody>
     </table>
 </div>
-
 @Html.Hidden(nameof(Model.FeaturesAppPath), Model.FeaturesAppPath)
+@Html.Hidden(nameof(SubAccountResource.NewSubAccount), SubAccountResource.NewSubAccount)
+@Html.Hidden(nameof(SubAccountResource.EditSubAccount), SubAccountResource.EditSubAccount)
 @Html.Hidden(nameof(SubAccountResource.ResetPassword), SubAccountResource.ResetPassword)
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(SubAccountResource.ResetSecurityCode), SubAccountResource.ResetSecurityCode)

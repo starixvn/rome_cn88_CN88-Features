@@ -16,11 +16,13 @@
 
         public string LastName { get; set; }
 
+        public string[] PageAccess { get; set; }
+
         public bool Closed { get; set; }
 
         public string LanguageKey { get; }
 
         public override bool IsValid()
-            => base.IsValid() && CustId > 0;
+            => base.IsValid() && SubAccountId == 0 && !GetViewer().IsInternal;
     }
 }
