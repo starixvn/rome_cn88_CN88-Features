@@ -9,6 +9,7 @@
         public const string TimeFormat = "HH:mm:ss";
         private const string LongTime24h = "HH:mm:ss";
         private const string LongDateTime24h = "yyyy-MM-dd HH:mm:ss";
+        private const string GlobalShowtime = "yyyy-MM-dd HH:mm";
 
         public static string ToShortDateFormat(this DateTime date)
             => date.ToString(ShortDateFormat);
@@ -27,6 +28,9 @@
 
         public static string ToLongDateTime24h(this DateTime dateTime)
             => dateTime.ToString(LongDateTime24h);
+
+        public static string ToLGlobalShowtime(this DateTime dateTime)
+            => dateTime.ToString(GlobalShowtime);
 
         public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
             => fromDate < limitedDate ? limitedDate : fromDate;
