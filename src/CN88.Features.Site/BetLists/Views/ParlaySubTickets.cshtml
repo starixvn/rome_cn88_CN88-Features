@@ -20,7 +20,7 @@
         <div class="ticket-list">
             @Model.Builder.CreateChoiceBuilder(ticket.BetTypeId).GetBetTypeName(ticket, Model.TicketHelper, null)
             @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, null)))
-            <div class="event-date">@ticket.EventDate.GlobalShowtime()</div>
+            <div class="event-date">@ticket.EventDate.ToGlobalShowtime()</div>
             @Html.Raw(Model.Builder.CreateStatusBuilder(ticket.BetTypeId).RenderStatusResultText(ticket, null))
         </div>
 
