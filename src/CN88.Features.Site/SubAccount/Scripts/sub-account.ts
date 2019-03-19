@@ -26,6 +26,7 @@ class SubAccount {
         this.resources = {
             newSubAccount: this.$("#NewSubAccount").val(),
             editSubAccount: this.$("#EditSubAccount").val(),
+            deleteSubAccount: this.$("#DeleteSubAccount").val(),
             resetPassword: this.$("#ResetPassword").val(),
             resetSecurityCode: this.$("#ResetSecurityCode").val()
         };
@@ -71,6 +72,16 @@ class SubAccount {
                 `${self.urls.editSubAccount}?custId=${param.subAccountId}`,
                 1000,
                 350);
+        });
+
+        this.tableSubAccount.find(".icon-delete").click(function (): void {
+            let param: ISubAccountParam = self.getSubAccountParam(this);
+            self.top.popupManager.init(self.$, self.top);
+            self.top.popupManager.bootboxConfirm(
+                `${self.resources.deleteSubAccount} - ${param.subAccountName}`,
+                "Are you sure you want to delete sub account " + param.subAccountName,
+                function () { alert(1); }
+            );
         });
 
         this.$("#btnNewSubAccount").click(function (): void {
