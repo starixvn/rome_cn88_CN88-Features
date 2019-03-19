@@ -7,6 +7,7 @@
         public GetTotalBetParlayParam(
             int custId,
             DateTime limitedDate,
+            int roleId,
             int sportGroupId,
             int viewMode,
             int stakeMode,
@@ -24,12 +25,14 @@
 
         public DateTime LimitedDate { get; }
 
-        public int SportGroupId { get; }
+        public int RoleId { get; }
 
-        public int ViewMode { get; }
+        public int SportGroupId { get; }
 
         public int StakeMode { get; }
 
         public decimal StakeLimit { get; }
+
+        public int ViewMode { get; }
     }
 }

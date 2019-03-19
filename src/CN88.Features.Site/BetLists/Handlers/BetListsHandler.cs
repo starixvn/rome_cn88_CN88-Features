@@ -215,6 +215,7 @@
             var param = new GetTotalBetParlayParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
+                message.CustLevelId,
                 message.SportGroupId,
                 message.ViewMode,
                 message.StakeMode,
