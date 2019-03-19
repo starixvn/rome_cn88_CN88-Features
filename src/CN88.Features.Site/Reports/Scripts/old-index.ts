@@ -22,7 +22,7 @@ class OldReportIndexView extends OldBaseReport {
     init(): void {
         this.$.blockUI();
 
-        this.init();
+        this.reCheckIn();
 
         this.cachedDOMElements();
         this.renderComponents();
