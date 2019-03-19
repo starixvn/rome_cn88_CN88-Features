@@ -72,9 +72,6 @@
 			return;
 		}
 
-		this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
-		this.$formReport.find("#add-directdownline").attr("username", rs.Username);
-		this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
         this.$tblReport.removeClass("display-none");
 
         var html = "";
@@ -83,6 +80,10 @@
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='9' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
+            this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
+            this.$formReport.find("#add-directdownline").attr("username", rs.Username);
+            this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
+
             let disabledTooltip = `disabled title='${this.indexManager.viewResources.Disabled}'`,              
                 editMemberTooltip = ` title='${this.indexManager.viewResources.EditMember}'`;
             for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
