@@ -106,7 +106,7 @@
                 CustId = message.CustId,
                 FromDate = message.UserSelectedFromDate,
                 ToDate = message.UserSelectedToDate,
-                SportType = message.UserSelectedFromDate
+                SportType = message.UserSelectedSportGroupId
             };
             var statements = statementService.Get(param);
             var sportGroups = sportService.GetSportGroups();
