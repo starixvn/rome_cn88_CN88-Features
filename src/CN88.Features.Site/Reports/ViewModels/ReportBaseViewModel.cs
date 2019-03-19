@@ -146,8 +146,6 @@
             {
                 ["Type"] = GetBetListType(query.ReportType),
                 ["DisplayMode"] = query.DisplayMode,
-                ["PageIndex"] = query.PageIndex,
-                ["PageSize"] = query.PageSize,
                 ["ReportMainActionPath"] = GetReportMainActionPath(),
                 ["IsOldReport"] = IsOldReport(),
                 ["IsSettlement"] = isDrillDownFromSettlement

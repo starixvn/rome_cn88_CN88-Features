@@ -14,7 +14,7 @@
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
             PageSize = PagerConstant.DefaultPageSize;
-            PageIndex = 1;
+            PageIndex = PagerConstant.DefaultPageIndex;
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         }
 

@@ -2,6 +2,7 @@
 {
     using System;
     using Features.Models;
+    using Features.Shared.Constants;
     using MediatR;
     using Site.Requests;
     using ViewModels;
@@ -12,8 +13,8 @@
         {
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
-            PageSize = 50;
-            PageIndex = 1;
+            PageSize = PagerConstant.DefaultPageSize;
+            PageIndex = PagerConstant.DefaultPageIndex;
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         }
 
