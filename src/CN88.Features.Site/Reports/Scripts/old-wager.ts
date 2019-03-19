@@ -17,16 +17,15 @@ class OldWagerReport extends OldLegacyReport {
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         pagerComponent: ClientPagerComponent) {
-        super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent, pagerComponent)
+        super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent, pagerComponent);
     }
 
-    init = () => {
+    init(): void {
         this.$.blockUI();
+
+        this.reCheckIn();
         this.cacheDOMElements();
-        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
-        this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId", this.onPeriodChange));
-        this.dateRangePickerComponent.render();
-        this.initTooltip();
+        this.renderComponents();
         this.registerEvents();
 
         this.$subMenuWager.parent().addClass("active");
@@ -65,15 +64,15 @@ class OldWagerReport extends OldLegacyReport {
         this.$tabValidStake.click();
     };
 
-    public cacheDOMElements() {
+    cacheDOMElements(): void {
         super.cacheDOMElements();
         this.$tabSettlement = this.$("#tabSettlement");
         this.$tabValidStake = this.$("#tabValidStake");
         this.elements.tabSelectors = $(".tab-selector");
-        this.elements.tabContent = $(".tab-content");        
+        this.elements.tabContent = $(".tab-content");
     }
 
-    public registerEvents() {
+    registerEvents(): void {
         let self = this;
         super.registerEvents();
 

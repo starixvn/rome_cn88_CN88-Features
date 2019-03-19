@@ -23,7 +23,7 @@ class LegacyReport extends BaseReport {
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
         linkBuilderComponent: LinkBuilderComponent,
         pagerComponent: ClientPagerComponent) {
-        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent)
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent);
 
         this.linkBuilderComponent = linkBuilderComponent;
         this.pagerComponent = pagerComponent;
@@ -32,53 +32,22 @@ class LegacyReport extends BaseReport {
 
     init = () => {
         this.$.blockUI();
+
         this.cacheDOMElements();
-        this.initTooltip();
-
-        this.dateRangePickerComponent.render();
-        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onchangeSportType));
-        this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
-        this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
-        this.linkBuilderComponent.render();
-        this.pagerComponent.render();
-
+        this.renderComponents();
         this.ptHistory = new PTHistory(this.$);
         this.ptHistory.init();
-
         this.registerEvents();
 
         this.$.unblockUI();
     };
 
-    onchangeSportType = () => {
-        let sportType = this.sportGroupSelectionComponent.$dropdown.val();
-        this.betTypeSelectionComponent.$dropdown.empty();
-        for (var i = 0; i < betTypes.length; i++) {
-            var betTypeGroup = betTypes[i];
-            if (betTypeGroup[0].SportTypeGroup == 0) {
-                this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[0].Value + '>' + betTypeGroup[0].Text + '</option>');
-
-                if (sportType == 0)
-                    break;
-            }
-
-            if (betTypeGroup[0].SportTypeGroup == sportType) {
-                for (var j = 0; j < betTypeGroup.length; j++) {
-                    this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[j].Value + '>' + betTypeGroup[j].Text + '</option>');
-                }
-
-                break;
-            }
-        }
-
-        this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
-        this.betTypeSelectionComponent.$dropdown.multiselect({
-            multiple: false,
-            maxHeight: 300,
-            numberDisplayed: 1,
-            includeSelectAllOption: false
-        });
-    };
+    renderComponents(): void {
+        this.initTooltip();
+        super.renderComponents();
+        this.linkBuilderComponent.render();
+        this.pagerComponent.render();
+    }
 
     initTooltip = () => {
         this.$tooltip.tooltip();

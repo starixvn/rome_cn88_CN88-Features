@@ -2,7 +2,7 @@
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
-var betTypes:any = betTypes;
+var betTypes: any = betTypes;
 class ReportIndexView extends BaseReport {
     $wagerTab: JQuery;
     $cancelledTab: JQuery;
@@ -48,140 +48,26 @@ class ReportIndexView extends BaseReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent) {
-        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent)
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent);
     }
 
     init = () => {
         this.$.blockUI();
 
         this.cachedDOMElements();
-        this.renderRptTypeDropdown();
-        this.dateRangePickerComponent.render();
-        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onchangeSportType));
-        this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
-        this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
+        this.renderComponents();
         this.calculatedDate();
-
         this.registerEvents();
 
         this.$.unblockUI();
     };
 
-    onchangeSportType = () => {
-        let sportType = this.sportGroupSelectionComponent.$dropdown.val();
-        this.betTypeSelectionComponent.$dropdown.empty();
-        for (var i = 0; i < betTypes.length; i++) {
-            var betTypeGroup = betTypes[i];
-            if (betTypeGroup[0].SportTypeGroup == 0) {
-                this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[0].Value + '>' + betTypeGroup[0].Text + '</option>');
+    renderComponents(): void {
+        this.renderRptTypeDropdown();
+        super.renderComponents();
+    }
 
-                if (sportType == 0)
-                    break;
-            }
-
-            if (betTypeGroup[0].SportTypeGroup == sportType) {
-                for (var j = 0; j < betTypeGroup.length; j++) {
-                    this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[j].Value + '>' + betTypeGroup[j].Text + '</option>');
-                }
-                
-                break;
-            }
-        }
-
-        this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
-        this.betTypeSelectionComponent.$dropdown.multiselect({
-            multiple: false,
-            maxHeight: 300,
-            numberDisplayed: 1,
-            includeSelectAllOption: false
-        });
-    };
-
-    reset = () => {
-        this.resetWagerReportType();
-        this.resetCancelledReportType();
-        this.resetDatePickerToYesterday();
-        this.resetSportType();
-        this.resetBetType();
-        this.resetLiveStatus();
-    };
-
-    resetWagerReportType = () => {
-        (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
-        this.$wagerRptTypeDropdown.multiselect('refresh');
-    };
-
-    resetCancelledReportType = () => {
-        (<HTMLSelectElement>this.$cancelledRptTypeDropdown[0]).selectedIndex = 0;
-        this.$cancelledRptTypeDropdown.multiselect('refresh');
-    };
-
-    resetSportType = () => {
-        (<HTMLSelectElement>this.sportGroupSelectionComponent.$dropdown[0]).selectedIndex = 0;
-        this.sportGroupSelectionComponent.$dropdown.multiselect('refresh');
-    };
-
-    resetBetType = () => {
-        this.betTypeSelectionComponent.$dropdown.empty();
-        for (var i = 0; i < betTypes.length; i++) {
-            var betTypeGroup = betTypes[i];
-            if (betTypeGroup[0].SportTypeGroup == 0) {
-                this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[0].Value + '>' + betTypeGroup[0].Text + '</option>');
-                this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
-                this.betTypeSelectionComponent.$dropdown.multiselect({
-                    multiple: false,
-                    maxHeight: 300,
-                    numberDisplayed: 1,
-                    includeSelectAllOption: false
-                });
-
-                break;
-            }
-        }
-    };
-
-    resetLiveStatus = () => {
-        (<HTMLSelectElement>this.liveStatusSelectionComponent.$dropdown[0]).selectedIndex = 0;
-        this.liveStatusSelectionComponent.$dropdown.multiselect('refresh');
-    };
-
-    resetDatePickerToYesterday = () => {        
-        let today: Date = new Date();
-        let yesterday: number = today.setDate(today.getDate() - 1);
-
-        this.$fromDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
-        this.$toDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
-
-        this.$yesterdayBtn
-            .removeClass('btn-default')
-            .addClass('btn-secondary');
-
-        this.$todayBtn
-            .removeClass('btn-secondary')
-            .addClass('btn-default');
-
-        this.$tomorrowBtn
-            .removeClass('btn-secondary')
-            .addClass('btn-default');
-
-        this.$thisPeriodBtn
-            .removeClass('btn-secondary')
-            .addClass('btn-default');
-
-        this.$lastPeriodBtn
-            .removeClass('btn-secondary')
-            .addClass('btn-default');
-
-        this.$thisWeekBtn
-            .removeClass('btn-secondary')
-            .addClass('btn-default');
-
-        this.$lastWeekBtn
-            .removeClass('btn-secondary')
-            .addClass('btn-default');
-    };
-
-    cachedDOMElements = () => {
+    cachedDOMElements(): void {
         this.$wagerTab = this.$("#wager-tab");
         this.$cancelledTab = this.$("#cancelled-tab");
         this.$reportType = this.$("#ReportType");
@@ -202,7 +88,7 @@ class ReportIndexView extends BaseReport {
         this.$clearBtn = this.$("#btn-clear");
     };
 
-    calculatedDate = () => {
+    calculatedDate(): void {
         let dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
         this.today = new Date(dateRangePicker.data("currentdate"));
         this.minDate = new Date(dateRangePicker.data("mindate"));
@@ -219,7 +105,7 @@ class ReportIndexView extends BaseReport {
         this.lastPeriod.toDate = new Date(this.$("#LastPeriod_ToDate").val())
     }
 
-    renderRptTypeDropdown = () => {
+    renderRptTypeDropdown(): void {
         this.$wagerRptTypeDropdown.multiselect({
             multiple: false,
             maxHeight: 300,
@@ -235,7 +121,7 @@ class ReportIndexView extends BaseReport {
         });
     };
 
-    registerEvents = () => {
+    registerEvents(): void {
         this.$createRptForm.submit(() => this.onSubmit());
 
         this.$todayBtn.click((e) => {
@@ -290,23 +176,84 @@ class ReportIndexView extends BaseReport {
         });
     };
 
-    getYesterday = (date: Date) => {
+    getYesterday(date: Date): Date {
         date.setDate(date.getDate() - 1);
         return date;
     }
 
-    getTomorrow = (date: Date) => {
+    getTomorrow(date: Date): Date {
         date.setDate(date.getDate() + 1);
         return date;
     }
 
-    changeDateRange = (e: JQueryEventObject, fromDate, toDate) => {
+    changeDateRange(e: JQueryEventObject, fromDate, toDate): void {
         var button = this.$(e.target);
         this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
         button.removeClass("btn-default").addClass("btn-secondary");
         this.$fromDate.val(moment(fromDate).format(cn88Features.format.shortDate_DatePicker));
         this.$toDate.val(moment(toDate).format(cn88Features.format.shortDate_DatePicker));
     };
+
+    reset = () => {
+        this.resetWagerReportType();
+        this.resetCancelledReportType();
+        this.resetDatePickerToYesterday();
+        this.sportGroupSelectionComponent.changeSelection(0);
+        this.resetBetType();
+        this.liveStatusSelectionComponent.changeSelection(2);
+    };
+
+    resetWagerReportType(): void {
+        (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
+        this.$wagerRptTypeDropdown.multiselect('refresh');
+    }
+
+    resetCancelledReportType(): void {
+        (<HTMLSelectElement>this.$cancelledRptTypeDropdown[0]).selectedIndex = 0;
+        this.$cancelledRptTypeDropdown.multiselect('refresh');
+    }
+
+    resetBetType(): void {
+        this.betTypeSelectionComponent.$dropdown.empty();
+        for (var i = 0; i < betTypes.length; i++) {
+            var betTypeGroup = betTypes[i];
+            if (betTypeGroup[0].SportTypeGroup == 0) {
+                this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[0].Value + '>' + betTypeGroup[0].Text + '</option>');
+                this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
+                this.betTypeSelectionComponent.$dropdown.multiselect({
+                    multiple: false,
+                    maxHeight: 300,
+                    numberDisplayed: 1,
+                    includeSelectAllOption: false
+                });
+
+                break;
+            }
+        }
+    }
+
+    resetDatePickerToYesterday(): void {
+        let today: Date = new Date();
+        let yesterday: number = today.setDate(today.getDate() - 1);
+
+        this.$fromDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
+        this.$toDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
+
+        this.$choiceBtn
+            .removeClass("btn-secondary")
+            .addClass("btn-default");
+
+        this.$yesterdayBtn
+            .removeClass('btn-default')
+            .addClass('btn-secondary');
+    }
+
+    onSubmit = () => {
+        this.updateReportTypeValue();
+        this.sportGroupSelectionComponent.updateSelectedValue();
+        this.betTypeSelectionComponent.updateSelectedValue();
+        this.liveStatusSelectionComponent.updateSelectedValue();
+    }
 
     updateReportTypeValue = () => {
         let selected = [];
@@ -331,13 +278,6 @@ class ReportIndexView extends BaseReport {
 
         this.$reportType.val(selected[0]);
     };
-
-    onSubmit = () => {
-        this.updateReportTypeValue();
-        this.sportGroupSelectionComponent.updateSelectedValue();
-        this.betTypeSelectionComponent.updateSelectedValue();
-        this.liveStatusSelectionComponent.updateSelectedValue();
-    }
 }
 $(function () {
     const reportIndexView = new ReportIndexView(

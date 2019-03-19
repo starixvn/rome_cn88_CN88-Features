@@ -18,31 +18,30 @@ class OldLegacyReport extends OldBaseReport {
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         pagerComponent: ClientPagerComponent) {
-        super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent)
+        super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent);
 
         this.pagerComponent = pagerComponent;
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
     }
 
-    init = () => {
+    init(): void {
         this.$.blockUI();
-        this.cacheDOMElements();
-        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
-        this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId", this.onPeriodChange));
-        this.dateRangePickerComponent.render();
 
-        this.initTooltip();
-        this.pagerComponent.render();
+        this.reCheckIn();
+        this.cacheDOMElements();
+        this.renderComponents();
+
         this.ptHistory = new PTHistory(this.$);
         this.ptHistory.init();
+
         this.registerEvents();
 
         this.$subMenuLegacy.parent().addClass("active");
 
         this.$.unblockUI();
-    };
+    }
 
-    public cacheDOMElements() {
+    cacheDOMElements(): void {
         super.cacheDOMElements();
         this.$tooltip = this.$('[data-toggle="tooltip"]');
         this.$reportForm = this.$("#report-form");
@@ -50,21 +49,27 @@ class OldLegacyReport extends OldBaseReport {
         this.$excelIcon = this.$("#icon-excel");
     }
 
-    initTooltip = () => {
+    renderComponents(): void {
+        this.initTooltip();
+        super.renderComponents();
+        this.pagerComponent.render();
+    }
+
+    initTooltip(): void {
         this.$tooltip.tooltip();
     }
 
-    public registerEvents() {
-        this.$reportForm.submit(this.onReportSubmit);
-        this.$excelIcon.click(this.onExportExcelEvent)
+    registerEvents(): void {
+        this.$reportForm.submit(() => { this.onReportSubmit(); });
+        this.$excelIcon.click(() => { this.onExportExcelEvent(); })
     }
 
-    onReportSubmit = () => {
+    onReportSubmit(): void {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.accountingPeriodSelectionComponent.updateSelectedValue();
-    };
+    }
 
-    onExportExcelEvent = () => {
+    onExportExcelEvent(): void {
         this.$exportExcelForm.submit();
         this.$.unblockUI();
     };

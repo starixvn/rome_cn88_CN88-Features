@@ -19,13 +19,13 @@ class OldReportIndexView extends OldBaseReport {
         super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent);
     }
 
-    init = () => {
+    init(): void {
         this.$.blockUI();
+
+        this.init();
+
         this.cachedDOMElements();
-        this.renderRptTypeDropdown();
-        this.accountingPeriodSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId", this.onPeriodChange));
-        this.dateRangePickerComponent.render();
-        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
+        this.renderComponents();
         this.registerEvents();
 
         this.fromDate = this.$fromDate.val();
@@ -42,63 +42,61 @@ class OldReportIndexView extends OldBaseReport {
         this.$.unblockUI();
     }
 
-    cachedDOMElements = () => {
+    cachedDOMElements(): void {
         super.cacheDOMElements();
         this.$displayMode = this.$("#DisplayMode");
         this.$reportType = this.$("#ReportType");
         this.$createRptForm = this.$("#create-rpt-form");
         this.$wagerRptTypeDropdown = this.$("#dropdown-wagerRptType");
         this.$clearBtn = this.$("#btn-clear");
-    };
+    }
 
-    renderRptTypeDropdown = () => {
+    renderComponents(): void {
+        this.renderRptTypeDropdown();
+        super.renderComponents();
+    }
+
+    renderRptTypeDropdown(): void {
         this.$wagerRptTypeDropdown.multiselect({
             multiple: false,
             maxHeight: 300,
             numberDisplayed: 1,
             includeSelectAllOption: false,
         });
-    };
-
-    registerEvents = () => {
-        this.$createRptForm.submit(this.onSubmit);
-        this.reset();
     }
 
-    onSubmit = () => {
+    registerEvents = () => {
+        this.$createRptForm.submit(() => { this.onSubmit(); });
+        this.$clearBtn.click(() => { this.reset(); })
+    }
+
+    onSubmit(): void {
         let reportType = this.$wagerRptTypeDropdown.children("option:selected").val();
         this.$reportType.val(reportType);
         this.accountingPeriodSelectionComponent.updateSelectedValue();
         this.sportGroupSelectionComponent.updateSelectedValue();
     }
 
-    reset = () => {
-        this.$clearBtn.click(() => {
-            this.resetReportType();
-            this.resetAccountingSheet();
-            this.resetDatePicker();
-            this.resetSportType();
-        });
+    reset(): void {
+        this.resetReportType();
+        this.resetAccountingSheet();
+        this.resetDatePicker();
+        this.sportGroupSelectionComponent.changeSelection(0);
     }
 
-    resetReportType = () => {
+    resetReportType(): void {
         (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
         this.$wagerRptTypeDropdown.multiselect("refresh");
     }
 
-    resetAccountingSheet = () => {
+    resetAccountingSheet(): void {
         (<HTMLSelectElement>this.accountingPeriodSelectionComponent.$dropdown[0]).selectedIndex = 0;
         this.accountingPeriodSelectionComponent.$dropdown.multiselect("refresh");
     }
 
-    resetDatePicker = () => {
+    resetDatePicker(): void {
         this.$fromDate.val(this.fromDate);
         this.$toDate.val(this.toDate);
-    }
-
-    resetSportType = () => {
-        (<HTMLSelectElement>this.sportGroupSelectionComponent.$dropdown[0]).selectedIndex = 0;
-        this.sportGroupSelectionComponent.$dropdown.multiselect("refresh");
     }
 }
 

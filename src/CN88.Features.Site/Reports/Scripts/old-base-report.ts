@@ -21,7 +21,7 @@
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
     }
 
-    public cacheDOMElements() {
+    cacheDOMElements(): void {
         this.$subMenuItems = this.$(".sub-menu-item");
         this.$subMenuWager = this.$("#sub-menu-wager");
         this.$subMenuLegacy = this.$("#sub-menu-legacy");
@@ -29,7 +29,14 @@
         this.$toDate = this.$("#to-date");
     }
 
-    onPeriodChange = () => {
+    renderComponents(): void {
+        this.accountingPeriodSelectionComponent.render(
+            new SingleSelectionDropdownOption("dropdown-period", "UserSelectedPeriodId", () => { this.onPeriodChange(); }));
+        this.dateRangePickerComponent.render();
+        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId"));
+    }
+
+    onPeriodChange(): void {
         let $this = this.accountingPeriodSelectionComponent.$dropdown.children("option:selected");
         let fromDate = new Date($this.data("fromdate"));
         let toDate = new Date($this.data("todate"));
@@ -37,7 +44,7 @@
         this.$toDate.val(moment(toDate).format(cn88Features.format.shortDate_DatePicker));
     }
 
-    init = () => {
+    reCheckIn(): void {
         this.checkIn();
 
         let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
@@ -48,16 +55,7 @@
         }, expiredSessionSeconds * 1000);
     }
 
-    checkIn = () => {
+    checkIn(): void {
         this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
     }
 }
-$(function () {
-    const oldBaseReport = new OldBaseReport(
-        $,
-        new SingleSelectionDropdownComponent($),
-        new DateRangePickerComponent($),
-        new SingleSelectionDropdownComponent($));
-
-    oldBaseReport.init();
-})
