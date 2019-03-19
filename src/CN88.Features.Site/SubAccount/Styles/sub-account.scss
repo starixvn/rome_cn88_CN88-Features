@@ -16,4 +16,10 @@
             cursor: pointer;
         }
     }
+    .col-action [class*="icon"] {
+        margin: 0 9px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
 }
