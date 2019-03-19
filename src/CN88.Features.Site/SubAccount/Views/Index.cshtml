@@ -9,6 +9,7 @@
 }
 @model IndexViewModel
 <div class="subacc-page">
+    <div id="message-container"></div>
     <div>
         <button class="btn-submit add-new" id="btnNewSubAccount">
             <span class="icon-add"></span>@SubAccountResource.NewSubAccount</button>
@@ -20,8 +21,8 @@
                 <th>@SubAccountResource.Name</th>
                 <th>@SubAccountResource.LoginId</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
-                <th class="text-center">@SubAccountResource.ACManagementViewOnly</th>
-                <th class="text-center">@SubAccountResource.ACManagementEditView</th>
+                <th class="text-center">@SubAccountResource.ACManagement @SubAccountResource.ViewOnly</th>
+                <th class="text-center">@SubAccountResource.ACManagement @SubAccountResource.EditView</th>
                 <th class="text-center">@SubAccountResource.Reports</th>
                 <th class="text-center">@SubAccountResource.Log</th>
                 <th class="text-center">@SubAccountResource.CreatedDate</th>
@@ -72,6 +73,7 @@
 @Html.Hidden(nameof(SubAccountResource.NewSubAccount), SubAccountResource.NewSubAccount)
 @Html.Hidden(nameof(SubAccountResource.EditSubAccount), SubAccountResource.EditSubAccount)
 @Html.Hidden(nameof(SubAccountResource.DeleteSubAccount), SubAccountResource.DeleteSubAccount)
+@Html.Hidden(nameof(SubAccountResource.ConfirmDeleteSubAccount), SubAccountResource.ConfirmDeleteSubAccount)
 @Html.Hidden(nameof(SubAccountResource.ResetPassword), SubAccountResource.ResetPassword)
 @Html.Hidden(nameof(SubAccountResource.ResetSecurityCode), SubAccountResource.ResetSecurityCode)
 

@@ -61,6 +61,24 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Details.
+        /// </summary>
+        public static string AccountDetails {
+            get {
+                return ResourceManager.GetString("AccountDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A/C Management.
+        /// </summary>
+        public static string ACManagement {
+            get {
+                return ResourceManager.GetString("ACManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A/C Management Edit &amp; View.
         /// </summary>
         public static string ACManagementEditView {
@@ -84,6 +102,24 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string Action {
             get {
                 return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this account?.
+        /// </summary>
+        public static string ConfirmDeleteSubAccount {
+            get {
+                return ResourceManager.GetString("ConfirmDeleteSubAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Password.
+        /// </summary>
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
             }
         }
         
@@ -120,6 +156,24 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string EditSubAccount {
             get {
                 return ResourceManager.GetString("EditSubAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit &amp; View.
+        /// </summary>
+        public static string EditView {
+            get {
+                return ResourceManager.GetString("EditView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Data.
+        /// </summary>
+        public static string GeneralData {
+            get {
+                return ResourceManager.GetString("GeneralData", resourceCulture);
             }
         }
         
@@ -169,11 +223,29 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your password does not meet the minimum security requirement..
         /// </summary>
         public static string PasswordWrongRuleError {
             get {
                 return ResourceManager.GetString("PasswordWrongRuleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permissions.
+        /// </summary>
+        public static string Permissions {
+            get {
+                return ResourceManager.GetString("Permissions", resourceCulture);
             }
         }
         
@@ -228,6 +300,15 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string UserCode {
             get {
                 return ResourceManager.GetString("UserCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Only.
+        /// </summary>
+        public static string ViewOnly {
+            get {
+                return ResourceManager.GetString("ViewOnly", resourceCulture);
             }
         }
     }

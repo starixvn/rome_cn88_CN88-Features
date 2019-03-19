@@ -155,6 +155,7 @@
   {
     "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
     "inputFiles": [
+      "Shared/Scripts/components/message.js",
       "SubAccount/Scripts/sub-account.js"
     ]
   },
