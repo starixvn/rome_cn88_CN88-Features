@@ -1,0 +1,5 @@
+﻿<Functions SiteId="115" SiteName="CN88">
+  <Function Name="Customer List">
+    <Setting Key="CS_MemberUsedCredit_Sel" SpName="CS_MemberUsedCredit_Sel" DbName="DBTXN.BODB02.BODBDownlineNet" Plain="0" /> 
+  </Function> 
+</Functions>

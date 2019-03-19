@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Bet Lists">
+    <Setting Key="CS_BetList_Parlay_GetSubTickets" SpName="CS_BetList_Parlay_GetSubTickets" DbName="DBACC.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_BetList_Parlay_TicketDetail" SpName="CS_BetList_Parlay_TicketDetail" DbName="DBACC.bodb02.BODBDownlineNetView" Plain="0" />
+  </Function>
+</Functions>

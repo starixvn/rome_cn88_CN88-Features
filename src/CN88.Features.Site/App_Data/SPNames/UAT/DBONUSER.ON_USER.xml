@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="OnlineMember">
+    <Setting Key="CS_Customer_OnlineUserList_Sel" SpName="CS_Customer_OnlineUserList_Sel" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
+  </Function>  
+</Functions>

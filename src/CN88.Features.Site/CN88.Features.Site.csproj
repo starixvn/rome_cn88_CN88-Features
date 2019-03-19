@@ -391,6 +391,56 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SPNames\Internal\DB042.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBPOL.NAP_UserControl.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBPRO.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBTXN.BODB02.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\PRO\DB042.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\PRO\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBAGE.bodb02.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBONUSER.ON_USER.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBPOL.NAP_UserControl.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBPRO.bodb02.xml" />
+    <Content Include="App_Data\SPNames\PRO\DBTXN.BODB02.xml" />
+    <Content Include="App_Data\SPNames\UAT\DB042.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\UAT\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBPOL.NAP_UserControl.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBPRO.bodb02.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBTXN.BODB02.xml" />
+    <Content Include="App_Data\SPNames\SIT\DB042.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBLOG.bodb_CustomerLog.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBPOL.NAP_UserControl.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBPRO.bodb02.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBTXN.BODB02.xml" />
     <Content Include="App_Data\SPNames\Local\DBACC.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.xml" />
     <Content Include="App_Data\SPNames\Local\DB042.bodb02.xml">
@@ -803,12 +853,20 @@
     <Content Include="SubAccount\Views\Edit.cshtml" />
     <Content Include="SubAccount\Views\New.cshtml" />
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
+    <Content Include="Web.AppSettings.napinternal.config" />
+    <Content Include="Web.AppSettings.pro.config" />
+    <Content Include="Web.AppSettings.sit.config" />
+    <Content Include="Web.AppSettings.uat.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.napinternal.config" />
+    <Content Include="Web.pro.config" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.sit.config" />
+    <Content Include="Web.uat.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
