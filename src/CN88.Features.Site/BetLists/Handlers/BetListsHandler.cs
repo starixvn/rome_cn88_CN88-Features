@@ -77,7 +77,7 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             var sportGroups = sportGroupService.GetSportGroups();
-            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(message.UserSelectedSportGroupId);
+            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
             var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
@@ -92,7 +92,7 @@
                 BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 currentPeriod,
                 lastPeriod,
-                BuildBetTypeSelectListItems(allBetTypes, message.UserSelectedBetTypeId));
+                BuildBetTypeSelectListItems(allBetTypes, 0));
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)
