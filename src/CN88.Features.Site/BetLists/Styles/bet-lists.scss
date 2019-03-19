@@ -291,3 +291,15 @@
 #StakeLimit {
     width: 150px;
 }
+
+
+.breadcrumb-container {
+    float: right;
+    margin-bottom: 15px;
+
+    .breadcrumb li {
+        &:last-child {
+            color: inherit;
+        }
+    }
+}

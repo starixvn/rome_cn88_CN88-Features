@@ -4,17 +4,28 @@
 {
 var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
 var linkIndex = 0;
+var lastLinkIndex = linkLength - 1;
 
     <div class="breadcrumb-container">
         <ul class="breadcrumb">
             @foreach (var custinfo in viewModel.BreadcrumbLevel)
             {
-                <li>
-                    <a class="breadcrumb-link"
-                       href="@(viewModel.BuildBreadcrumbLink(custinfo, currentRequestUrl, breadcrumbParamByLevel, linkIndex,false))">
+                if (linkIndex == lastLinkIndex)
+                {
+                    <li>
                         @(custinfo.CustName)
-                    </a>
-                </li>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="breadcrumb-link"
+                           href="@(viewModel.BuildBreadcrumbLink(custinfo, currentRequestUrl, breadcrumbParamByLevel, linkIndex,false))">
+                            @(custinfo.CustName)
+                        </a>
+                    </li>
+
+                }
 
                 linkIndex++;
             }
