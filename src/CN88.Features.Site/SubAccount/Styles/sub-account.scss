@@ -3,10 +3,32 @@
     width: 1240px;
 }
 
+.add-new {
+    float: right;
+    margin-right: 0;
+    margin-bottom: 15px;
+    padding: 0 10px;
+
+    .icon-add {
+        position: relative;
+        top: 1px;
+        margin-right: 10px;
+        color: #fff;
+
+        &:after {
+            display: none;
+        }
+    }
+}
+
 #tbl-subaccount {
     width: 100%;
     .icon-minus {
         color: #ff0e24;
+        font-size: 13px;
+    }
+    .icon-minus {
+
     }
     .icon-success {
         color: #2da57f;
@@ -16,10 +38,14 @@
             cursor: pointer;
         }
     }
-    .col-action [class*="icon"] {
-        margin: 0 9px;
-        &:first-child {
-            margin-left: 0;
+    .col-action {
+        width: 170px;
+        [class*="icon"] {
+            margin: 0 9px;
         }
     }
+    th {
+        padding: 4px 8px;
+    }
 }
+

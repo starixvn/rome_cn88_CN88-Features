@@ -21,11 +21,11 @@
                 <th>@SubAccountResource.Name</th>
                 <th>@SubAccountResource.LoginId</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
-                <th class="text-center">@SubAccountResource.ACManagement @SubAccountResource.ViewOnly</th>
-                <th class="text-center">@SubAccountResource.ACManagement @SubAccountResource.EditView</th>
+                <th class="text-center">@SubAccountResource.ACManagement <br /> @SubAccountResource.ViewOnly</th>
+                <th class="text-center">@SubAccountResource.ACManagement <br /> @SubAccountResource.EditView</th>
                 <th class="text-center">@SubAccountResource.Reports</th>
                 <th class="text-center">@SubAccountResource.Log</th>
-                <th class="text-center">@SubAccountResource.CreatedDate</th>
+                <th>@SubAccountResource.CreatedDate</th>
                 <th class="text-center">@SubAccountResource.Action</th>
             </tr>
         </thead>
@@ -57,7 +57,7 @@
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewReports)
                         </td>
-                        <td class="text-center">
+                        <td>
                             @RenderPermissionCell(permission.ViewLog)
                         </td>
                         <td>@item.CreateDateString</td>
