@@ -27,7 +27,7 @@
             var options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
-                width: 730,
+                width: 750,
                 height: 300
             };
 
@@ -59,7 +59,7 @@
             var options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
-                width: 800,
+                width: 820,
                 height: 550
             };
 
@@ -97,7 +97,7 @@
             var options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
-                width: 730,
+                width: 750,
                 height: 300
             };
 

@@ -26,7 +26,7 @@
             var options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
-                width: 835,
+                width: 855,
                 height: 850
             };
 
@@ -58,7 +58,7 @@
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
-                width: 835,
+                width: 855,
                 height: 725
             };
 
@@ -90,7 +90,7 @@
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
-                width: 835,
+                width: 855,
                 height: 725
             };
 
@@ -122,7 +122,7 @@
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
-                width: 835,
+                width: 855,
                 height: 725
             };
 
@@ -154,7 +154,7 @@
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
-                width: 835,
+                width: 855,
                 height: 725
             };
 
@@ -186,7 +186,7 @@
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
                 title: "",
-                width: 835,
+                width: 855,
                 height: 725
             };
 

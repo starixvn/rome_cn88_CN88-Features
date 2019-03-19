@@ -17,7 +17,7 @@
             var options = {
                 url: Common.AppPath.ResultsAppPath() + 'ng2/TicketDetail' + params,
                 title: "",
-                width: 500,
+                width: 520,
                 height: 450
             };
 
@@ -51,7 +51,7 @@
                 url: Common.AppPath.ResultsAppPath() + 'pokergames/Index' + params,
                 title: "",
                 width: 1099,
-                height: 550,
+                height: 570,
                 resizable: true
             };
 
