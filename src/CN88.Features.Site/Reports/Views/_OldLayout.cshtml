@@ -41,5 +41,6 @@
     @RenderSection("Scripts", required: false)
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
     @Html.Hidden("expiredSessionSeconds", ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"])
+    @Html.Hidden("CheckinURL", AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/Checkin"))
 </body>
 </html>

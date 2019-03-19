@@ -56,6 +56,6 @@
     }
 
     checkIn(): void {
-        this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
+        this.$.ajax({ url: this.$("#CheckinURL").val(), type: 'POST' });
     }
 }
