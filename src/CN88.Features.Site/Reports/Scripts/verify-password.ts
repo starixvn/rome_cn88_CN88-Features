@@ -45,14 +45,7 @@ class VerifyPassword {
             this.$.unblockUI();
             return false;
         }
-
-        if (!this.isValidPassword(password)) {
-            this.showError(this.$messageContainer, this.resources.passwordDoesNotMeetMinimunRequirement);
-            this.$txtPassword.focus();
-            this.$.unblockUI();
-            return false;
-        }
-
+        
         let encryptedPwd = this.encrypt(this.$txtPassword.val(), this.hashKey);
         this.$txtPassword.val(encryptedPwd);
 
