@@ -17,7 +17,8 @@ class BetListOfReport {
     elements = {
         excelIcon: null,
         exportExcelForm: null,
-        reportForm: null
+        reportForm: null,
+        pageIndex: null
     };
 
     constructor(
@@ -50,7 +51,9 @@ class BetListOfReport {
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.linkBuilderComponent.render();
+
         this.pagerComponent.render();
+        this.elements.pageIndex = this.$("#PageIndex");
 
         this.registerEvents();
 
@@ -86,6 +89,7 @@ class BetListOfReport {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.betTypeSelectionComponent.updateSelectedValue();
         this.liveStatusSelectionComponent.updateSelectedValue();
+        this.elements.pageIndex.val(1);
     };
 
     onExportExcelEvent = () => {
