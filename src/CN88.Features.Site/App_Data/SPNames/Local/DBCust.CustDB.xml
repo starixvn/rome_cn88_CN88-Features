@@ -1,6 +1,6 @@
 ﻿<Functions SiteId="115" SiteName="CN88">
   <Function Name="Check belonging for Headline">
-    <Setting Key="CS_Customer_CheckBelonging_Sel" SpName="CS_Customer_CheckBelonging_Sel_uat3" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Customer_CheckBelonging_Sel" SpName="CS_Customer_CheckBelonging_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Customer List">
     <Setting Key="CS_Customer_DownlineList_Sel" SpName="CS_Customer_DownlineList_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
