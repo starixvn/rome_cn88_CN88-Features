@@ -26,7 +26,7 @@
         this.$.blockUI();
 
         this.pagerComponent.render();
-        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "SportTypeGroup"));
+        this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "SportGroupId"));
         this.stakeModeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-stake-mode", "StakeMode"));
         this.viewModeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-view-mode", "ViewMode"));
 
