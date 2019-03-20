@@ -253,4 +253,10 @@
   <data name="WinLossWithCommission" xml:space="preserve">
     <value>佣金結果</value>
   </data>
+  <data name="TotalBetParlaySport_0" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="TotalBetParlaySport_1" xml:space="preserve">
+    <value>足球</value>
+  </data>
 </root>
