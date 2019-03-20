@@ -6,6 +6,7 @@
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
     using Features.Shared.Models;
@@ -56,6 +57,8 @@
             StakeSelectionViewModel = new StakeSelectionViewModel(stakeModes, message.StakeMode, message.StakeLimit);
             ViewModeSelectionViewModel = new SingleSelectionViewModel(viewModes, message.ViewMode);
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
+
+            TotalPayout = BetListData.Tickets.Sum(ticket => ticket.Payout) / Divisor;
         }
 
         public UserLevel CustLevel { get; }
@@ -109,5 +112,9 @@
         public StakeSelectionViewModel StakeSelectionViewModel { get; }
 
         public SingleSelectionViewModel ViewModeSelectionViewModel { get; }
+
+        public decimal TotalPayout { get; }
+
+        public string TotalPayoutStr => ConvertByBetType.Winloss(TotalPayout);
     }
 }

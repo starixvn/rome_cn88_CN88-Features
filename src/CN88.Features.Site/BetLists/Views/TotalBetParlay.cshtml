@@ -58,7 +58,7 @@
                     <th colspan="3">@BetListsResources.Total</th>
                     <th>@Model.BetListData.Total.ToString("#,##0")</th>
                     <th class="text-right">@(new HtmlString(Model.BetListTotal.TotalStakeStr))</th>
-                    <th class="text-right">@(new HtmlString(Model.BetListTotal.TotalStakeStr))</th>
+                    <th class="text-right">@(new HtmlString(Model.TotalPayoutStr))</th>
                     <th colspan="@(Model.NoOfColumns - 6)"></th>
                 </tr>
             }
@@ -77,7 +77,7 @@
                         @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
                         @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
                         <td class="text-right">@Html.Raw(ConvertByBetType.Stake(ticket.Stake / Model.Divisor))</td>
-                        @BetLists.WinLoss.Render(ticket, Model.Divisor)
+                        @BetLists.Payout.Render(ticket, Model.Divisor)
                         @if (Model.CustLevel.IsAgentLevel())
                         {
                             @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")

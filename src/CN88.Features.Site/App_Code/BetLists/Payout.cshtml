@@ -1,0 +1,7 @@
+﻿@using CN88.Features.BetLists.Models
+@using Fanex.BetList.Core.Utils
+
+@helper Render(TicketDto ticket, int divisor)
+{
+    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
+}

@@ -820,6 +820,7 @@
     <Content Include="App_Code\BetLists\TotalBetBreadcrumb.cshtml" />
     <Content Include="BetLists\Views\EventWagerDetails.cshtml" />
     <Content Include="BetLists\Views\EventWagerByAccount.cshtml" />
+    <Content Include="App_Code\BetLists\Payout.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

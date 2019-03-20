@@ -8,6 +8,8 @@
 
         public decimal PlayerDiscount { get; set; }
 
+        public decimal Payout { get; set; }
+
         public decimal CompanyPositionTaking()
             => 1 - AgentPositionTaking - MasterPositionTaking - SuperPositionTaking;
     }
