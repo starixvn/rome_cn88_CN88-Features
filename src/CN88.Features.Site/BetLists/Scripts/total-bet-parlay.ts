@@ -6,6 +6,7 @@
     stakeModeSelectionComponent: SingleSelectionDropdownComponent;
     viewModeSelectionComponent: SingleSelectionDropdownComponent;
     cleaveStakeLimit: any;
+    $stakeLimit: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -37,6 +38,7 @@
             delimiter: ','
         });
 
+        this.$stakeLimit = this.$("#StakeLimit");
         this.$("#report-form").submit(this.onReportSubmit);
         this.$.unblockUI();
     };
@@ -45,6 +47,9 @@
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.stakeModeSelectionComponent.updateSelectedValue();
         this.viewModeSelectionComponent.updateSelectedValue();
+
+        let stake = parseFloat(this.cleaveStakeLimit.getRawValue()) || 0;
+        this.$stakeLimit.val(stake);
     };
 }
 
