@@ -8,6 +8,7 @@
     using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
     using Features.BetLists.Resources;
+    using Helpers;
     using Requests;
 
     public class ParlayDetailViewModel
@@ -31,7 +32,7 @@
                         .Select(d => new ParlayDetailWrapper(d, parlayDetailData.MatchDetails, ticketHelper)));
                 ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate);
 
-                OutStanding = ConvertByBetType.Stake(parlayDetailData.Outstanding);
+                OutStanding = BetListHelpers.Stake(parlayDetailData.Outstanding);
                 TotalWinLost = ConvertByBetType.Winloss(parlayDetailData.ParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
                 IsRunningTicket = !parlayDetailData.ParlayDetails.Any();
             }

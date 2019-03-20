@@ -67,7 +67,7 @@
                         @BetLists.Comm.Render(ticket)
                         @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
                         @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
-                        <td class="text-right">@Html.Raw(ConvertByBetType.Stake(ticket.Stake / Model.Divisor))</td>
+                        @BetLists.Stake.Render(ticket, Model.Divisor)
                         @BetLists.WinLoss.Render(ticket, Model.Divisor)
                         @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
 

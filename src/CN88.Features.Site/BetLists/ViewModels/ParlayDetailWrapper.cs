@@ -7,6 +7,7 @@
     using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
     using Features.BetLists.Resources;
+    using Helpers;
 
     public class ParlayDetailWrapper
     {
@@ -36,7 +37,7 @@
             WinLostDate = parlayDetail.WinLostDate.ToShortDateFormat();
             WinLost = ConvertByBetType.Winloss(parlayDetail.WinLost);
             Comm = ConvertByBetType.Comm(parlayDetail.PlayerComm);
-            Stake = ConvertByBetType.Stake(parlayDetail.Stake);
+            Stake = BetListHelpers.Stake(parlayDetail.Stake);
         }
 
         public ParlayDetailModel ParlayDetail { get; }

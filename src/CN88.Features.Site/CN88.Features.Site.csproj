@@ -638,6 +638,7 @@
       <DependentUpon>sub-account.css</DependentUpon>
     </Content>
     <Content Include="Web.local.config" />
+    <Content Include="App_Code\BetLists\Stake.cshtml" />
     <None Include="Web.uat.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </None>
@@ -660,6 +661,7 @@
     <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="BetLists\Handlers\BetListOfReportExcelHandler.cs" />
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
+    <Compile Include="BetLists\Helpers\BetListHelpers.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
     <Compile Include="BetLists\Requests\EventWagerDetailsQuery.cs" />
     <Compile Include="BetLists\Requests\EventWagerByAccountQuery.cs" />

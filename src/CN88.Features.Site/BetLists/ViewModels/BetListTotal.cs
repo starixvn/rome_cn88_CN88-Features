@@ -4,6 +4,7 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
+    using Helpers;
 
     public class BetListTotal
     {
@@ -30,7 +31,7 @@
 
         public string TotalWinLossStr => ConvertByBetType.Winloss(TotalWinLoss);
 
-        public string TotalStakeStr => ConvertByBetType.Stake(TotalStake);
+        public string TotalStakeStr => BetListHelpers.Stake(TotalStake);
 
         public string TotalStr => ConvertByBetType.Winloss(WinLossWithCommission);
 

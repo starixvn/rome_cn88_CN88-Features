@@ -189,8 +189,7 @@
                 row.SetCellValue(colIndex++, cellValue);
 
                 ticket.Stake /= BetDataViewModel.Divisor;
-                cellValue = excelBuilder.CreateStakeBuilder(ticket.BetTypeId).RenderRTF(ticket, rtfHelper);
-                row.SetCellValue(colIndex++, cellValue);
+                row.SetCellValue(colIndex++, ticket.Stake.ToString("#,##0.00"));
 
                 cellValue = BuildWinLoss(ticket, rtfHelper, BetDataViewModel.Divisor);
                 row.SetCellValue(colIndex++, cellValue);

@@ -1,0 +1,6 @@
+﻿@using Fanex.BetList.Core.Entities
+@using CN88.Features.Site.BetLists.Helpers
+@helper Render(ITicket ticket, int divisor)
+{
+    <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
+}
