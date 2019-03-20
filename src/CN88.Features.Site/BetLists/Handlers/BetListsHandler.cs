@@ -7,14 +7,17 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
+    using Features.BetLists.Constants;
     using Features.BetLists.Models;
     using Features.BetLists.Params;
+    using Features.BetLists.Resources;
     using Features.Reports.Services;
     using Features.Shared.Constants;
     using Features.Shared.Services;
     using MediatR;
     using Requests;
     using Shared;
+    using Shared.ViewModels;
     using ViewModels;
 
     public class BetListsHandler :
@@ -225,19 +228,30 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            var sportGroups = sportGroupService.GetSportGroups();
             return new TotalBetParlayViewModel(
                 message,
                 betlistData,
                 ticketHelper,
                 cn88Builder,
                 builder,
-                BuildSportGroupSelectListItems(sportGroups, message.SportGroupId),
+                BuildSportsSelectListItems(TotalBetParlaySport.Sports, message.SportGroupId),
                 BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.StakeMode),
                 BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.Modes, message.ViewMode));
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
              => monitorService.WriteLog(custId, tickets.ToList<ITicket>());
+
+        protected internal IEnumerable<SelectListItemExt> BuildSportsSelectListItems(IEnumerable<int> sports, int userSelectedSport)
+        {
+            var items = sports.Select(sport => new SelectListItemExt
+            {
+                Text = BetListsResources.ResourceManager.GetString($"TotalBetParlaySport_{sport}"),
+                Value = sport.ToString(),
+                Selected = sport == userSelectedSport
+            }).ToList();
+
+            return items;
+        }
     }
 }

@@ -255,4 +255,16 @@
   <data name="WagerDetails" xml:space="preserve">
     <value>Wager Details</value>
   </data>
+  <data name="TotalBetParlaySport_0" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="TotalBetParlaySport_1" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
+  <data name="TotalBetParlaySport_2" xml:space="preserve">
+    <value>Non-Soccer</value>
+  </data>
+  <data name="TotalBetParlaySport_3" xml:space="preserve">
+    <value>Mix Sports</value>
+  </data>
 </root>

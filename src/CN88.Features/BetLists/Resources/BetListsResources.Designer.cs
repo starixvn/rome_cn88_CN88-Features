@@ -394,6 +394,42 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string TotalBetParlaySport_0 {
+            get {
+                return ResourceManager.GetString("TotalBetParlaySport_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soccer.
+        /// </summary>
+        public static string TotalBetParlaySport_1 {
+            get {
+                return ResourceManager.GetString("TotalBetParlaySport_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non-Soccer.
+        /// </summary>
+        public static string TotalBetParlaySport_2 {
+            get {
+                return ResourceManager.GetString("TotalBetParlaySport_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mix Sports.
+        /// </summary>
+        public static string TotalBetParlaySport_3 {
+            get {
+                return ResourceManager.GetString("TotalBetParlaySport_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View by Account.
         /// </summary>
         public static string ViewByAccount {
