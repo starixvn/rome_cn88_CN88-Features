@@ -489,11 +489,11 @@
     </Content>
     <Content Include="BetLists\Styles\images\icon-collapse.png" />
     <Content Include="BetLists\Styles\images\icon-expand.png" />
-    <Content Include="Content\CoreBetListCN88.css" />
-    <Content Include="Content\images\add.png" />
-    <Content Include="Content\images\minus.png" />
-    <Content Include="Content\images\q_Icon2_1.png" />
-    <Content Include="Content\images\q_Icon_2.png" />
+    <Content Include="BetLists\Content\CoreBetListCN88.css" />
+    <Content Include="BetLists\Content\images\add.png" />
+    <Content Include="BetLists\Content\images\minus.png" />
+    <Content Include="BetLists\Content\images\q_Icon2_1.png" />
+    <Content Include="BetLists\Content\images\q_Icon_2.png" />
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
