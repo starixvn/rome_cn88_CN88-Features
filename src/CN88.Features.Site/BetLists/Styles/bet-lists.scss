@@ -288,11 +288,6 @@
     }
 }
 
-#StakeLimit {
-    width: 150px;
-}
-
-
 .breadcrumb-container {
     float: right;
     margin-bottom: 15px;
@@ -301,5 +296,23 @@
         &:last-child {
             color: inherit;
         }
+    }
+}
+
+.dropdown-stake-condition {
+    .multiselect {
+        min-width: unset;
+
+        .multiselect-selected-text {
+            width: 30px;
+        }
+    }
+    .btn-group, input[type="text"] {
+        vertical-align: bottom;
+    }
+
+    .dropdown-menu {
+        width: 62px;
+        min-width: unset;
     }
 }
