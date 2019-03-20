@@ -1,13 +1,13 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
+    using System.Text.RegularExpressions;
+    using System.Web;
     using Fanex.Common;
     using global::CN88.CustomerSetting.Client;
     using global::CN88.CustomerSetting.Client.Models;
-    using global::CN88.Features.Site.Helpers;
+    using global::CN88.Features.Site.Shared.Helpers;
     using Sunplus.Agent.Model.BL;
     using Sunplus.Agent.Model.Entities.Permission;
-    using System.Text.RegularExpressions;
-    using System.Web;
 
     public class CN88CustomerSettingClientRegistration : CN88CustomerSettingRegistration
     {
@@ -22,9 +22,8 @@
 
         public override SettingContext FetchSettingContext()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             var currentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
-#pragma warning restore CS0618 // Type or member is obsolete
+
             return new SettingContext()
             {
                 ActorId = currentUserSession.UserId,
@@ -33,16 +32,15 @@
                 SubAccountId = currentUserSession.SubAccId,
                 Language = currentUserSession.Language,
                 Domain = HttpContext.Current.Request.Url.Host,
-                IP = IPHelper.CustomerIp()
+                IP = IPHelper.CustomerIP()
             };
         }
 
         private bool IsAllowPermissionBasedOnSubAccAndInternalAcc()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             var currentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
-#pragma warning restore CS0618 // Type or member is obsolete
             bool subAccountPermission = !currentUserSession.IsSubAcc || currentUserSession.SubPageAccess.UpdateAccount;
+
             return !currentUserSession.IsInternal && subAccountPermission;
         }
 
@@ -50,9 +48,7 @@
         {
             var productId = GetProductId(permissionContext);
 
-#pragma warning disable CS0618 // Type or member is obsolete
             return productId == 0 ? true : UserPermission.HasPermissionOnProduct(productId);
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         private int GetProductId(PermissionContext permissionContext)

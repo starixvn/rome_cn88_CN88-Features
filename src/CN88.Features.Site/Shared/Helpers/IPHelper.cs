@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.Site.BetLists.Helpers
+﻿namespace CN88.Features.Site.Shared.Helpers
 {
     using System.Web;
     using Features.Shared.Configurations;

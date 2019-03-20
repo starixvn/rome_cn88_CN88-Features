@@ -617,6 +617,22 @@
     <Content Include="SubAccount\Styles\sub-account.min.css">
       <DependentUpon>sub-account.css</DependentUpon>
     </Content>
+    <Content Include="Web.local.config" />
+    <None Include="Web.uat.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </None>
+    <None Include="Web.AppSettings.napinternal.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
+    <None Include="Web.AppSettings.pro.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
+    <None Include="Web.AppSettings.sit.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
+    <None Include="Web.AppSettings.uat.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -624,7 +640,6 @@
     <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="BetLists\Handlers\BetListOfReportExcelHandler.cs" />
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
-    <Compile Include="BetLists\Helpers\IPHelper.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
     <Compile Include="BetLists\Requests\EventWagerDetailsQuery.cs" />
     <Compile Include="BetLists\Requests\EventWagerByAccountQuery.cs" />
@@ -716,7 +731,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\IPHelper.cs" />
+    <Compile Include="Shared\Helpers\IPHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Constants\ReportDisplayModeConstants.cs" />
     <Compile Include="Reports\ReportsController.cs" />
@@ -854,20 +869,21 @@
     <Content Include="SubAccount\Views\Edit.cshtml" />
     <Content Include="SubAccount\Views\New.cshtml" />
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
-    <Content Include="Web.AppSettings.napinternal.config" />
-    <Content Include="Web.AppSettings.pro.config" />
-    <Content Include="Web.AppSettings.sit.config" />
-    <Content Include="Web.AppSettings.uat.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.napinternal.config" />
-    <Content Include="Web.pro.config" />
+    <None Include="Web.napinternal.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.sit.config" />
-    <Content Include="Web.uat.config" />
+    <None Include="Web.pro.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </None>
+    <None Include="Web.sit.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
