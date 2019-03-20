@@ -15,6 +15,7 @@
         {
             CustId = custId;
             LimitedDate = limitedDate;
+            RoleId = roleId;
             SportGroupId = sportGroupId;
             ViewMode = viewMode;
             StakeMode = stakeMode;
