@@ -3,13 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using Alpha.Web.Helpers;
     using CN88.Features.CustomerList.Models;
     using CN88.Features.Site.CustomerList.Requests;
     using CN88.Features.Site.Shared.ViewModels.Components;
+    using Extensions;
     using Fanex.BetList.Core.Utils;
-    using Features.Shared.Extensions;
     using Shared.ViewModels;
 
     public class MemberStatementViewModel
@@ -48,7 +47,7 @@
             {
                 var hasTicket = Statements.Any(i => i.Stake.HasValue);
 
-                return hasTicket ? TotalStake.Value.FormatNumber() : "-";
+                return hasTicket ? TotalStake.Value.ToNumberWithoutDecimal() : "-";
             }
         }
 
@@ -60,7 +59,7 @@
             {
                 var hasTicket = Statements.Any(i => i.ValidStake.HasValue);
 
-                return hasTicket ? TotalValidStake.Value.FormatNumber() : "-";
+                return hasTicket ? TotalValidStake.Value.ToNumberWithoutDecimal() : "-";
             }
         }
 

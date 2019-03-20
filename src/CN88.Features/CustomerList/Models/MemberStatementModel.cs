@@ -18,11 +18,11 @@
 
         public decimal? Stake { get; }
 
-        public string StakeStr => Stake.HasValue ? Stake.Value.FormatNumber() : "-";
+        public string StakeStr => Stake.HasValue ? Stake.Value.ToNumberWithoutDecimal() : "-";
 
         public decimal? ValidStake { get; }
 
-        public string ValidStakeStr => ValidStake.HasValue ? ValidStake.Value.FormatNumber() : "-";
+        public string ValidStakeStr => ValidStake.HasValue ? ValidStake.Value.ToNumberWithoutDecimal() : "-";
 
         public decimal? WinLoss { get; }
 
