@@ -11,6 +11,10 @@
     {
         public TotalBetParlayQuery(IUser viewer) : base(viewer)
         {
+            CustId = viewer.Id;
+            CustName = viewer.Name;
+            CustLevelId = viewer.LevelId;
+
             DisplayVNIP = viewer.IsAdminCanViewVNIP;
             ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
             PageSize = PagerConstant.DefaultPageSize;
