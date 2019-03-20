@@ -41,8 +41,8 @@
                 param.SportType,
                 fromDate,
                 toDate,
-                reportDateService.GetBalanceUpDay(),
-                reportDateService.GetMoveBetsDay());
+                reportDateService.GetMoveBetsDay(),
+                reportDateService.GetBalanceUpDay());
 
             return dynamicRepository.Fetch<MemberStatementModel>(criteria);
         }
