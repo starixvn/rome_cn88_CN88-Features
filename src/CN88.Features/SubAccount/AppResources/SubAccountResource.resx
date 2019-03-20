@@ -120,12 +120,6 @@
   <data name="AccountDetails" xml:space="preserve">
     <value>Account Details</value>
   </data>
-  <data name="ACManagementEditView" xml:space="preserve">
-    <value>A/C Management Edit &amp; View</value>
-  </data>
-  <data name="ACManagementViewOnly" xml:space="preserve">
-    <value>A/C Management View Only</value>
-  </data>
   <data name="Action" xml:space="preserve">
     <value>Action</value>
   </data>
@@ -149,12 +143,6 @@
   </data>
   <data name="GeneralData" xml:space="preserve">
     <value>General Data</value>
-  </data>
-  <data name="Log" xml:space="preserve">
-    <value>Log</value>
-  </data>
-  <data name="LoginId" xml:space="preserve">
-    <value>Login ID</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -189,8 +177,8 @@
   <data name="TotalBets" xml:space="preserve">
     <value>Total Bets</value>
   </data>
-  <data name="UserCode" xml:space="preserve">
-    <value>User Code</value>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="ACManagement" xml:space="preserve">
     <value>A/C Management</value>
@@ -200,5 +188,8 @@
   </data>
   <data name="ViewOnly" xml:space="preserve">
     <value>View Only</value>
+  </data>
+  <data name="CreateSubAccountSuccessfully" xml:space="preserve">
+    <value>Account successfully created.</value>
   </data>
 </root>

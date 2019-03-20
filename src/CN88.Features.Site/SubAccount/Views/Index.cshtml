@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = "Sub Account";
 }
 @section Styles {
     @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
@@ -17,14 +18,12 @@
     <table class="tbl-style2" id="tbl-subaccount">
         <thead>
             <tr>
-                <th>@SubAccountResource.UserCode</th>
+                <th>@SubAccountResource.UserName</th>
                 <th>@SubAccountResource.Name</th>
-                <th>@SubAccountResource.LoginId</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
                 <th class="text-center">@SubAccountResource.ACManagement <br /> @SubAccountResource.ViewOnly</th>
                 <th class="text-center">@SubAccountResource.ACManagement <br /> @SubAccountResource.EditView</th>
                 <th class="text-center">@SubAccountResource.Reports</th>
-                <th class="text-center">@SubAccountResource.Log</th>
                 <th>@SubAccountResource.CreatedDate</th>
                 <th class="text-center">@SubAccountResource.Action</th>
             </tr>
@@ -33,7 +32,7 @@
             @if (Model.TotalItems == 0)
             {
                 <tr>
-                    <td colspan="10" class="text-center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="8" class="text-center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
             else
@@ -44,7 +43,6 @@
                     <tr>
                         <td>@item.UserName</td>
                         <td>@item.FirstName @item.LastName</td>
-                        <td>N/A</td>
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewTotalBets)
                         </td>
@@ -56,9 +54,6 @@
                         </td>
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewReports)
-                        </td>
-                        <td>
-                            @RenderPermissionCell(permission.ViewLog)
                         </td>
                         <td>@item.CreateDateString</td>
                         <td class="text-center col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">

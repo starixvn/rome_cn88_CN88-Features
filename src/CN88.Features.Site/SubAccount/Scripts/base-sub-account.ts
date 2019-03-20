@@ -18,12 +18,11 @@
     protected cacheElements(): void {
         this.elements = {
             messageContainer: this.$("#message-container"),
-            name: this.$("#firstName"),
+            name: this.$("#name"),
             totalBets: this.$("#totalBets"),
             acManagementViewOnly: this.$("#acManagementViewOnly"),
             acManagementEditView: this.$("#acManagementEditView"),
-            reports: this.$("#reports"),
-            viewLog: this.$("#viewLog")
+            reports: this.$("#reports")
         };
     }
 
@@ -47,8 +46,7 @@
             let formData: any = self.getFormData();
 
             if (self.validateFormData(formData)) {
-                console.dir(formData);
-                //self.submitForm(self.$(this), formData);
+                self.submitForm(self.$(this), formData);
             }
         });
 
@@ -91,7 +89,7 @@
             }
         }
 
-        for (let item of [this.elements.totalBets, this.elements.reports, this.elements.viewLog]) {
+        for (let item of [this.elements.totalBets, this.elements.reports]) {
             if (item.is(":checked")) {
                 permissions.push(item.val());
             }
@@ -115,7 +113,12 @@
                     data = { Code: data.ErrCode, Message: data.ErrMsg };
                 }
 
-                self.message.showMessage(self.elements.messageContainer, new Result(data));
+                let result: Result = new Result(data);
+                self.message.showMessage(self.elements.messageContainer, result);
+
+                if (result.IsSuccessful) {
+                    setTimeout(function () { self.top.popupManager.close(); }, 1000 * 3);
+                }
             },
             error: function (xhr: any): void {
                 if (xhr.status === 401) {

@@ -42,9 +42,10 @@
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Edit(UpdateCommand message)
-            => Json(
-                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
-                JsonRequestBehavior.DenyGet);
+            => Json(Result.CreateSuccessResult("Account successfully updated."));
+            //=> Json(
+            //    message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
+            //    JsonRequestBehavior.DenyGet);
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> Delete(DeleteCommand message)

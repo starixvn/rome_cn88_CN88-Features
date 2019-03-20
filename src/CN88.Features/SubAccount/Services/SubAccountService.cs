@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using AppResources;
     using Criteria;
     using Fanex.Data.Repository;
     using Features.Models;
@@ -84,7 +85,7 @@
             await dynamicRepository.ExecuteAsync(command);
 
             return command.Success && command.SubAccId > 0
-                ? Result.CreateSuccessResult()
+                ? Result.CreateSuccessResult(SubAccountResource.CreateSubAccountSuccessfully)
                 : Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 

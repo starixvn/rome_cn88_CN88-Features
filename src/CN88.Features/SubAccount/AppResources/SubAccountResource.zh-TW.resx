@@ -147,9 +147,6 @@
   <data name="GeneralData" xml:space="preserve">
     <value>General Data</value>
   </data>
-  <data name="Log" xml:space="preserve">
-    <value>Log</value>
-  </data>
   <data name="Name" xml:space="preserve">
     <value>名</value>
   </data>
@@ -185,5 +182,11 @@
   </data>
   <data name="ViewOnly" xml:space="preserve">
     <value>View Only</value>
+  </data>
+  <data name="CreateSubAccountSuccessfully" xml:space="preserve">
+    <value>Account successfully created.</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用戶名</value>
   </data>
 </root>

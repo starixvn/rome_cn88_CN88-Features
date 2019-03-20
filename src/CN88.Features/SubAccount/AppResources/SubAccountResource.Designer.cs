@@ -79,24 +79,6 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A/C Management Edit &amp; View.
-        /// </summary>
-        public static string ACManagementEditView {
-            get {
-                return ResourceManager.GetString("ACManagementEditView", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A/C Management View Only.
-        /// </summary>
-        public static string ACManagementViewOnly {
-            get {
-                return ResourceManager.GetString("ACManagementViewOnly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string Action {
@@ -142,6 +124,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account successfully created..
+        /// </summary>
+        public static string CreateSubAccountSuccessfully {
+            get {
+                return ResourceManager.GetString("CreateSubAccountSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Sub Account.
         /// </summary>
         public static string DeleteSubAccount {
@@ -174,24 +165,6 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string GeneralData {
             get {
                 return ResourceManager.GetString("GeneralData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Log.
-        /// </summary>
-        public static string Log {
-            get {
-                return ResourceManager.GetString("Log", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Login ID.
-        /// </summary>
-        public static string LoginId {
-            get {
-                return ResourceManager.GetString("LoginId", resourceCulture);
             }
         }
         
@@ -295,11 +268,11 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Code.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
-        public static string UserCode {
+        public static string UserName {
             get {
-                return ResourceManager.GetString("UserCode", resourceCulture);
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         
