@@ -3,14 +3,15 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Alpha.Web.Filters;
     using CustomerList;
     using CustomerList.Requests;
     using MediatR;
     using Shared.Controllers;
-    using System.Web.SessionState;
+    using Web.Filters;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
+    [SessionState(SessionStateBehavior.ReadOnly), RestrictHeadlineFilter]
     public class CustomerListController : FeatureBaseController
     {
         private const string CustomerListPath = "~/CustomerList/Views/Index.cshtml";

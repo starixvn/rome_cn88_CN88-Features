@@ -7,6 +7,7 @@
     using Reports.Filters;
     using Requests;
     using Shared.Controllers;
+    using Web.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
@@ -20,7 +21,7 @@
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
             => await ViewAsync(message, "~/BetLists/Views/BetListOfReport.cshtml");
 
-        [HttpGet]
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> BetListOfStatement(BetListOfStatementQuery message)
             => await ViewAsync(message, "~/BetLists/Views/BetListOfStatement.cshtml");
 
@@ -39,23 +40,23 @@
         public async Task<FileContentResult> BetListOfReportExcel(BetListOfReportExcelQuery message)
             => await ExcelView(message);
 
-        [HttpGet]
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> OutrightWagerByAccount(OutrightWagerByAccountQuery message)
             => await ViewAsync(message, "~/BetLists/Views/OutrightWagerByAccount.cshtml");
 
-        [HttpGet]
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> OutrightWagerDetails(OutrightWagerDetailsQuery message)
             => await ViewAsync(message, "~/BetLists/Views/OutrightWagerDetails.cshtml");
 
-        [HttpGet]
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> EventWagerByAccount(EventWagerByAccountQuery message)
             => await ViewAsync(message, "~/BetLists/Views/EventWagerByAccount.cshtml");
 
-        [HttpGet]
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> EventWagerDetails(EventWagerDetailsQuery message)
             => await ViewAsync(message, "~/BetLists/Views/EventWagerDetails.cshtml");
 
-        [HttpGet]
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> TotalBetParlay(TotalBetParlayQuery message)
             => await ViewAsync(message, "~/BetLists/Views/TotalBetParlay.cshtml");
     }

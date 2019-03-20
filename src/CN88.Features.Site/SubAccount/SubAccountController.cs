@@ -2,12 +2,15 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using Alpha.Web.Filters;
     using Features.Models;
     using MediatR;
     using Requests;
     using Shared.Controllers;
+    using Web.Filters;
 
+    [SessionState(SessionStateBehavior.ReadOnly), RestrictHeadlineFilter]
     public class SubAccountController : FeatureBaseController
     {
         private const string IndexViewPath = "~/SubAccount/Views/Index.cshtml";
