@@ -54,7 +54,7 @@
                 () =>
                 {
                     var dates = new Dictionary<int, DateTime>();
-                    for (var i = AppSettings.MemberStatementOfLatestDay - 1; i >= 0; i --)
+                    for (var i = 0; i < AppSettings.MemberStatementOfLatestDay; i++)
                     {
                         dates.Add(i, SystemTime.Today.AddDays(i * -1));
                     }

@@ -43,6 +43,7 @@
             SportType >= 0 &&
             FromDate > DateTime.MinValue &&
             ToDate > DateTime.MinValue &&
+            FromDate <= ToDate &&
             MoveBetsDay > DateTime.MinValue &&
             BalanceUpDay > DateTime.MinValue;
     }

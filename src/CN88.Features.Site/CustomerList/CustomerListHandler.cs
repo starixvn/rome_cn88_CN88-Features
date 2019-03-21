@@ -150,7 +150,7 @@
                 Text = i.Value.ToShortDateFormat(),
                 Value = i.Key.ToString(),
                 Selected = i.Key == userSelectedSportGroupId
-            }).ToList();
+            }).OrderByDescending(i => i.Value);
 
             return items;
         }

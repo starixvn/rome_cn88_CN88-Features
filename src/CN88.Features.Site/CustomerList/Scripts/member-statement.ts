@@ -1,6 +1,7 @@
 ﻿class MemberStatement {
     $: JQueryStatic;
     $reportForm: JQuery;
+    topWindow: any;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
     fromDateSelectionComponent: SingleSelectionDropdownComponent;
     toDateSelectionComponent: SingleSelectionDropdownComponent;
@@ -9,8 +10,10 @@
         $: JQueryStatic,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         fromDateSelectionComponent: SingleSelectionDropdownComponent,
-        toDateSelectionComponent: SingleSelectionDropdownComponent) {
+        toDateSelectionComponent: SingleSelectionDropdownComponent,
+        topWindow: any) {
         this.$ = $;
+        this.topWindow = topWindow;
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
         this.fromDateSelectionComponent = fromDateSelectionComponent;
         this.toDateSelectionComponent = toDateSelectionComponent;
@@ -22,13 +25,19 @@
         this.toDateSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-todate", "UserSelectedtodate"));
         this.$reportForm = this.$("#report-form");
         this.$reportForm.submit(this.onReportSubmit);
-        
-    }    
+
+    }
 
     public onReportSubmit = () => {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.fromDateSelectionComponent.updateSelectedValue();
         this.toDateSelectionComponent.updateSelectedValue();
+        var fromValue = this.$("#UserSelectedfromdate").val();
+        var toValue = this.$("#UserSelectedtodate").val();
+        if (fromValue < toValue) {
+            this.topWindow.popupManager.bootboxAlert("Warning", "Invalid date range.");
+            return false;
+        }            
     };
 }
 
@@ -37,6 +46,7 @@ $(function () {
         $,
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new SingleSelectionDropdownComponent($));
+        new SingleSelectionDropdownComponent($),
+        window.top);
     memberStatement.init();
 })

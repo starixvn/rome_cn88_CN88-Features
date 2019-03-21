@@ -117,7 +117,8 @@
     "inputFiles": [
       "Shared/Scripts/core.js",
       "Shared/scripts/components/single-selection-dropdown.js",
-      "CustomerList/scripts/member-statement.js"
+      "CustomerList/scripts/member-statement.js",
+      "Shared/Scripts/popup-manager.js"
     ]
   },
   {

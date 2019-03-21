@@ -319,6 +319,46 @@ class PopupManager {
             }
         });
     };
+
+    bootboxConfirm = (title: string, message: string, callback: Function, width: number = undefined) => {
+        let dialog = bootbox.confirm({
+            title: title,
+            message: message,
+            animate: false,
+            buttons: {
+                cancel: {
+                    //label: "Cancel",
+                    className: "btn-cancel"
+                },
+                confirm: {
+                    //label: "Submit",
+                    className: "btn-submit"
+                }
+            },
+            callback: function (result) {
+                result && callback();
+            }
+        });
+
+        width && dialog.find("div.modal-dialog").css("width", width + "px");
+    
+    };
+    bootboxAlert = (title: string, htmlContent: Function) => {
+        let dialog = bootbox.dialog({
+            title: title,
+            message: "<p>Loading...</p>",
+            buttons: {
+                cancel: {
+                    label: "OK",
+                    className: "btn-submit"
+                }
+            }
+        });
+
+        dialog.init(function () {
+            dialog.find(".bootbox-body").html(htmlContent);
+        });
+    };
     hasPopupOpen = (): boolean => this.activePopups.length > 0;
     revertLatestPopupTitle = (): void => {
         if (this.hasPopupOpen()) {
