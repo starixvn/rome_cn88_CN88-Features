@@ -142,16 +142,16 @@
         }
 
         private IEnumerable<SelectListItemExt> BuildDateTimeSelectListItems(
-            Dictionary<int,DateTime> sportTypes,
+            Dictionary<int, DateTime> dateTimes,
             int userSelectedSportGroupId)
         {
-            var items = sportTypes.Select(i => new SelectListItemExt
+            var items = dateTimes.Select(i => new SelectListItemExt
             {
                 Text = i.Value.ToShortDateFormat(),
                 Value = i.Key.ToString(),
                 Selected = i.Key == userSelectedSportGroupId
             }).ToList();
-            
+
             return items;
         }
     }
