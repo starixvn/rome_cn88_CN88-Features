@@ -71,6 +71,12 @@ class AgentList extends BaseList {
         this.loadData();
     };
     renderAgentList = (rs: any) => {
+        if (rs.SearchAccountId > 0) {
+            this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
+            this.$formReport.find("#add-directdownline").attr("username", rs.Username);
+            this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
+        }
+
         if (!rs.Customers) {
             return;
         }
@@ -83,10 +89,6 @@ class AgentList extends BaseList {
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
-            this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
-            this.$formReport.find("#add-directdownline").attr("username", rs.Username);
-            this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
-
             let disabledTooltip = `disabled title='${this.indexManager.viewResources.Disabled}'`,
                 newMemberTooltip = ` title='${this.indexManager.viewResources.NewMember}'`,
                 editAgentTooltip = ` title='${this.indexManager.viewResources.EditAgent}'`;

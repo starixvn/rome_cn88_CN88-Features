@@ -172,7 +172,7 @@
 				self.addDownlineFunction($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
 			});
 
-            if (rs.Customers.length > 0) {
+            if (rs.SearchAccountId > 0) {
                 this.$formReport.find("#add-directdownline").click(function () {
                     var $this = self.$(this);
 
