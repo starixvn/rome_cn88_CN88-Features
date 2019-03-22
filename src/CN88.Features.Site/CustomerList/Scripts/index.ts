@@ -338,7 +338,7 @@
     };
     storeCurrentPage = (reportParam: any) => {
         var currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
-        siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", currentPage);
+        siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
 };
 

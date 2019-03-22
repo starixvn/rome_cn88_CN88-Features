@@ -97,11 +97,13 @@ class CN88Features {
 
     localStorage = {
         get: (key: string) => {
-            return this.store.enabled ? this.store.get(key) : this.$.cookie(key);
+            var result = this.store.enabled ? this.store.get(key) : this.$.cookie(key);
+            return result ? JSON.parse(result) : undefined;
         },
 
         set: (key: string, value: any) => {
-            this.store.enabled ? this.store.set(key, value) : this.$.cookie(key, value, this.localStorage.getCookieExpireOptions());
+            var data = JSON.stringify(value);
+            this.store.enabled ? this.store.set(key, data) : this.$.cookie(key, data, this.localStorage.getCookieExpireOptions());
         },
 
         getCookieExpireOptions: () => {
