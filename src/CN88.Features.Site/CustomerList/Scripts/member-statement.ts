@@ -35,9 +35,9 @@
         var fromValue = this.$("#UserSelectedfromdate").val();
         var toValue = this.$("#UserSelectedtodate").val();
         if (fromValue < toValue) {
-            this.topWindow.popupManager.bootboxAlert("Warning", "Invalid date range.");
+            this.topWindow.popupManager.bootboxAlert("Warning", "Invalid date range.", null, 400);
             return false;
-        }            
+        }
     };
 }
 
