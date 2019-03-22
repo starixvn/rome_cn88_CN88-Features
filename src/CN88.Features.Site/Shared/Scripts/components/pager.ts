@@ -10,7 +10,7 @@ class PagerOption {
         public formId: string = "report-form",
         public pageIndexId: string = "PageIndex",
         public pageSizeId: string = "PageSize",
-        public pageList: number[] = [50, 100, 200, 500]) {
+        public pageList: number[] = [10, 50, 100, 500]) {
     }
 }
 

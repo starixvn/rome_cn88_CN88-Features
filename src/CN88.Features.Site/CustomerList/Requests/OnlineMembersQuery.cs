@@ -10,7 +10,7 @@
         public OnlineMembersQuery(IUser viewer) : base(viewer)
         {
             PageIndex = 1;
-            PageSize = 50;
+            PageSize = 10;
         }
 
         public int PageSize { get; set; }
