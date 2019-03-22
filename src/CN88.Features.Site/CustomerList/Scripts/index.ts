@@ -122,7 +122,7 @@
                 case siteInfrastructure.roleId.master:
                     this.masterList.viewList();
                     break;
-                case siteInfrastructure.roleId.agent:                    
+                case siteInfrastructure.roleId.agent:
                     this.agentList.viewAgents(this.reportParam.CustId);
                     break;
                 case siteInfrastructure.roleId.member:
@@ -338,13 +338,7 @@
     };
     storeCurrentPage = (reportParam: any) => {
         var currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
-        var $currentPage = this.topWindow.$("body #reloadCN88CustomerListCallBackUrl");
-
-        if ($currentPage.length == 0) {
-            this.topWindow.$("body").append("<input id='reloadCN88CustomerListCallBackUrl' type='hidden' value='' />");
-        }
-
-        this.topWindow.$("body #reloadCN88CustomerListCallBackUrl").val(currentPage);
+        siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", currentPage);
     };
 };
 
