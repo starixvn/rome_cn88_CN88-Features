@@ -639,21 +639,21 @@
     </Content>
     <Content Include="Web.local.config" />
     <Content Include="App_Code\BetLists\Stake.cshtml" />
-    <None Include="Web.uat.config">
+    <Content Include="Web.uat.config">
       <DependentUpon>Web.local.config</DependentUpon>
-    </None>
-    <None Include="Web.AppSettings.napinternal.config">
+    </Content>
+    <Content Include="Web.AppSettings.napinternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </None>
-    <None Include="Web.AppSettings.pro.config">
+    </Content>
+    <Content Include="Web.AppSettings.pro.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </None>
-    <None Include="Web.AppSettings.sit.config">
+    </Content>
+    <Content Include="Web.AppSettings.sit.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </None>
-    <None Include="Web.AppSettings.uat.config">
+    </Content>
+    <Content Include="Web.AppSettings.uat.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </None>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -894,18 +894,18 @@
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.napinternal.config">
+    <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
-    </None>
+    </Content>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.pro.config">
+    <Content Include="Web.pro.config">
       <DependentUpon>Web.local.config</DependentUpon>
-    </None>
-    <None Include="Web.sit.config">
+    </Content>
+    <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
