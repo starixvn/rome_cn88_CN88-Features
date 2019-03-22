@@ -154,7 +154,7 @@
     <value>会员</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>名</value>
+    <value>名称</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>没资料显示</value>
@@ -193,7 +193,7 @@
     <value>已用額度</value>
   </data>
   <data name="Nickname" xml:space="preserve">
-    <value>Nickname</value>
+    <value>昵称</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>限额</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="Date" xml:space="preserve">
     <value>日期</value>
+  </data>
+  <data name="ValidStake" xml:space="preserve">
+    <value>有效金额</value>
   </data>
 </root>

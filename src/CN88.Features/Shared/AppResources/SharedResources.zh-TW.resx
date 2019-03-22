@@ -196,7 +196,7 @@
     <value>取消</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>保存</value>
   </data>
   <data name="InPlay" xml:space="preserve">
     <value>滾球</value>
@@ -212,5 +212,8 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>密碼</value>
+  </data>
+  <data name="SMA" xml:space="preserve">
+    <value>投注額 </value>
   </data>
 </root>

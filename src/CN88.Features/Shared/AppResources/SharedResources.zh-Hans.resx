@@ -127,7 +127,7 @@
     <value>至</value>
   </data>
   <data name="Today" xml:space="preserve">
-    <value>今日</value>
+    <value>今天</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>昨天</value>
@@ -142,7 +142,7 @@
     <value>保存</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>帐号</value>
+    <value>会员</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>代理商</value>
@@ -187,7 +187,7 @@
     <value>总代理 + 代理商占成</value>
   </data>
   <data name="Parlay" xml:space="preserve">
-    <value>综合过关</value>
+    <value>过关</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>游览</value>
@@ -196,7 +196,7 @@
     <value>取消</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>保存</value>
   </data>
   <data name="Tomorrow" xml:space="preserve">
     <value>明日</value>
@@ -217,13 +217,13 @@
     <value>所有球类</value>
   </data>
   <data name="BetType" xml:space="preserve">
-    <value>球类</value>
+    <value>玩法</value>
   </data>
   <data name="UserCode" xml:space="preserve">
     <value>帐号</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>股东</value>
+    <value>下注金额</value>
   </data>
   <data name="Main" xml:space="preserve">
     <value>主页</value>

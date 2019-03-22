@@ -139,7 +139,7 @@
     <value>輸</value>
   </data>
   <data name="Draw" xml:space="preserve">
-    <value>和</value>
+    <value>和局</value>
   </data>
   <data name="Waiting" xml:space="preserve">
     <value>等待中</value>
@@ -193,22 +193,22 @@
     <value>會員/佣金</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>佣金</value>
+    <value>退水</value>
   </data>
   <data name="BetType" xml:space="preserve">
     <value>投注類別</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>注單</value>
+    <value>投注历史</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>會員</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>退回</value>
+    <value>回上一頁</value>
   </data>
   <data name="DateTime" xml:space="preserve">
-    <value>日期</value>
+    <value>日期時間</value>
   </data>
   <data name="BetID" xml:space="preserve">
     <value>注單號</value>
@@ -217,20 +217,16 @@
     <value>內容</value>
   </data>
   <data name="AgentPercent" xml:space="preserve">
-    <value>代理商
-佔成</value>
+    <value>代理商 (佔成)</value>
   </data>
   <data name="MAPercent" xml:space="preserve">
-    <value>總代理
-佔成</value>
+    <value>總代理 (佔成)</value>
   </data>
   <data name="SMAPercent" xml:space="preserve">
-    <value>股東
-佔成</value>
+    <value>股東 (佔成)</value>
   </data>
   <data name="CoPercent" xml:space="preserve">
-    <value>公司
-佔成</value>
+    <value>公司 (佔成)</value>
   </data>
   <data name="EstPayout" xml:space="preserve">
     <value>可贏金額</value>
@@ -258,5 +254,8 @@
   </data>
   <data name="TotalBetParlaySport_1" xml:space="preserve">
     <value>足球</value>
+  </data>
+  <data name="ColossusBetsPopUpDetailTitle" xml:space="preserve">
+    <value>注單詳細內容:</value>
   </data>
 </root>

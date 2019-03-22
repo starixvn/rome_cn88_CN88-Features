@@ -127,10 +127,10 @@
     <value>Are you sure you want to delete this account?</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>確定密碼</value>
+    <value>確認密碼</value>
   </data>
   <data name="ConfirmPasswordError" xml:space="preserve">
-    <value>您的密碼不能被確認</value>
+    <value>密碼未正確確認。</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>新增日期</value>
@@ -145,13 +145,13 @@
     <value>Edit &amp; View</value>
   </data>
   <data name="GeneralData" xml:space="preserve">
-    <value>General Data</value>
+    <value>基本資料</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>名</value>
+    <value>名稱</value>
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
-    <value>您的密码不能包含您的用户名或昵称。</value>
+    <value>您的密碼不得包含您的用戶名或暱稱。</value>
   </data>
   <data name="NewSubAccount" xml:space="preserve">
     <value>New Sub Account</value>
@@ -160,7 +160,7 @@
     <value>密碼</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
-    <value>您的密码不符合最低安全要求</value>
+    <value>您的密碼不符合最低安全要求。</value>
   </data>
   <data name="Permissions" xml:space="preserve">
     <value>Permissions</value>
@@ -169,10 +169,10 @@
     <value>报告</value>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
-    <value>密碼不能留空</value>
+    <value>對不起，密碼欄位不能為空！</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>顯示密碼</value>
+    <value>更改密碼</value>
   </data>
   <data name="ResetSecurityCode" xml:space="preserve">
     <value>重置保安碼</value>
@@ -187,6 +187,9 @@
     <value>Account successfully created.</value>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>用戶名</value>
+    <value>帳戶</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>動作</value>
   </data>
 </root>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Total" xml:space="preserve">
-    <value>总和</value>
+    <value>总计</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>没资料显示</value>
@@ -139,7 +139,7 @@
     <value>输</value>
   </data>
   <data name="Draw" xml:space="preserve">
-    <value>和</value>
+    <value>和局</value>
   </data>
   <data name="Waiting" xml:space="preserve">
     <value>等待中</value>
@@ -166,7 +166,7 @@
     <value>赔率</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注额</value>
+    <value>下注金额</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
     <value>输赢</value>
@@ -193,19 +193,19 @@
     <value>会员/佣金</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>佣金</value>
+    <value>退水</value>
   </data>
   <data name="BetType" xml:space="preserve">
-    <value>投注类别</value>
+    <value>玩法</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>注单</value>
+    <value>投注历史</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>会员</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>退回</value>
+    <value>回上一页</value>
   </data>
   <data name="ViewByAccount" xml:space="preserve">
     <value>查看帐号</value>
@@ -214,26 +214,22 @@
     <value>查看细单</value>
   </data>
   <data name="DateTime" xml:space="preserve">
-    <value>日期</value>
+    <value>日期时间</value>
   </data>
   <data name="BetID" xml:space="preserve">
     <value>注单号</value>
   </data>
   <data name="AgentPercent" xml:space="preserve">
-    <value>代理商
-占成</value>
+    <value>代理商 (占成)</value>
   </data>
   <data name="MAPercent" xml:space="preserve">
-    <value>总代理
-占成</value>
+    <value>总代理 (占成)</value>
   </data>
   <data name="SMAPercent" xml:space="preserve">
-    <value>股东
-占成</value>
+    <value>股东 (占成)</value>
   </data>
   <data name="CoPercent" xml:space="preserve">
-    <value>公司
-占成</value>
+    <value>公司 (占成)</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>内容</value>
@@ -258,5 +254,8 @@
   </data>
   <data name="TotalBetParlaySport_1" xml:space="preserve">
     <value>足球</value>
+  </data>
+  <data name="ColossusBetsPopUpDetailTitle" xml:space="preserve">
+    <value>注单详细内容:</value>
   </data>
 </root>
