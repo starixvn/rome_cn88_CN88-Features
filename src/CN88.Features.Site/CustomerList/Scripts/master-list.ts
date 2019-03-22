@@ -81,7 +81,7 @@
     };
     reloadState = (reportParam: any) => {
         this.$username.val(reportParam.Username);
-        this.$dropdownStatus.val(reportParam.Status);
+        this.$dropdownStatus.val(this.$("#dropdown-status-master").val());
         this.reportParam.PageSize = reportParam.PageSize;
         this.reportParam.PageIndex = reportParam.PageIndex;
 

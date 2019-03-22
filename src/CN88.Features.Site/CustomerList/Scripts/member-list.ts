@@ -136,7 +136,7 @@
     reloadState = (reportParam: any) => {
         this.$("#txt-viewed-agent").val(reportParam.DownlineUsername);
         this.$username.val(reportParam.Username);
-        this.$dropdownStatus.val(reportParam.Status);
+        this.$dropdownStatus.val(this.$("#dropdown-status-member").val());
         this.reportParam.PageSize = reportParam.PageSize;
         this.reportParam.PageIndex = reportParam.PageIndex;
 

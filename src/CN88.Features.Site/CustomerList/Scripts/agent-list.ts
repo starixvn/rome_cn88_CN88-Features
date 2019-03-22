@@ -141,7 +141,7 @@ class AgentList extends BaseList {
     reloadState = (reportParam: any) => {
         this.$("#txt-viewed-master").val(reportParam.DownlineUsername);
         this.$username.val(reportParam.Username);
-        this.$dropdownStatus.val(reportParam.Status);
+        this.$dropdownStatus.val(this.$("#dropdown-status-agent").val());
         this.reportParam.PageSize = reportParam.PageSize;
         this.reportParam.PageIndex = reportParam.PageIndex;
 
