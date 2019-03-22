@@ -215,7 +215,6 @@
   {
     "outputFileName": "BetLists/bundles/betlist-of-statement.js",
     "inputFiles": [
-      "Shared/Scripts/popup-manager.js",
       "BetLists/Scripts/app-path.js",
       "BetLists/Scripts/utils.js",
       "BetLists/Scripts/popup-details.js",
@@ -234,7 +233,6 @@
   {
     "outputFileName": "BetLists/bundles/wager-by-account.js",
     "inputFiles": [
-      "Shared/Scripts/popup-manager.js",
       "BetLists/Scripts/app-path.js",
       "BetLists/Scripts/utils.js",
       "BetLists/Scripts/popup-details.js",
@@ -253,7 +251,6 @@
   {
     "outputFileName": "BetLists/bundles/wager-details.js",
     "inputFiles": [
-      "Shared/Scripts/popup-manager.js",
       "BetLists/Scripts/app-path.js",
       "BetLists/Scripts/utils.js",
       "BetLists/Scripts/popup-details.js",
@@ -272,14 +269,12 @@
   {
     "outputFileName": "BetLists/bundles/betlist-of-report-old.js",
     "inputFiles": [
-      "Shared/Scripts/popup-manager.js",
       "BetLists/Scripts/betlist-of-report-old.js"
     ]
   },
   {
     "outputFileName": "BetLists/bundles/total-bet-parlay.js",
     "inputFiles": [
-      "Shared/Scripts/popup-manager.js",
       "BetLists/Scripts/app-path.js",
       "BetLists/Scripts/utils.js",
       "BetLists/Scripts/popup-details.js",
