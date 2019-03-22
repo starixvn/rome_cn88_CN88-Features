@@ -962,7 +962,6 @@
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
-    <TypeScriptCompile Include="Shared\Scripts\popup-manager.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
