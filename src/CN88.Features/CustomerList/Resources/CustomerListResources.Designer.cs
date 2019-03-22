@@ -313,7 +313,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nick Name.
+        ///   Looks up a localized string similar to Nickname.
         /// </summary>
         public static string Nickname {
             get {

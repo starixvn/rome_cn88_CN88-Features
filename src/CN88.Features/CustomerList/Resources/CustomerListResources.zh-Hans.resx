@@ -192,6 +192,9 @@
   <data name="UsedCredit" xml:space="preserve">
     <value>已用額度</value>
   </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
   <data name="BetCredit" xml:space="preserve">
     <value>限额</value>
   </data>
