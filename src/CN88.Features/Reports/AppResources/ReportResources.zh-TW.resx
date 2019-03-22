@@ -119,9 +119,9 @@
     <value>代理</value>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
-    <value>密碼不能留空</value>
+    <value>對不起，密碼欄位不能為空！</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
-    <value>您的密码不符合最低安全要求</value>
+    <value>您的密碼不符合最低安全要求。</value>
   </data>
 </root>

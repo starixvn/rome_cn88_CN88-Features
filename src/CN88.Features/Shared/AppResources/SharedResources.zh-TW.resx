@@ -139,7 +139,7 @@
     <value>運動</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>提交</value>
+    <value>保存</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>會員</value>
@@ -160,10 +160,10 @@
     <value>導出到Excel</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注額 </value>
+    <value>投注額</value>
   </data>
   <data name="Parlay" xml:space="preserve">
-    <value>過關</value>
+    <value>綜合過關</value>
   </data>
   <data name="PercentageViewMode_0" xml:space="preserve">
     <value>顯示所有</value>
@@ -172,13 +172,13 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>股東占成</value>
+    <value>股東 (佔成)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
-    <value>總代理占成</value>
+    <value>總代理 (佔成)</value>
   </data>
   <data name="PercentageViewMode_4" xml:space="preserve">
-    <value>代理商占成</value>
+    <value>代理商 (佔成)</value>
   </data>
   <data name="PercentageViewMode_5" xml:space="preserve">
     <value>股東 + 總代理 + 代理商占成</value>
@@ -187,7 +187,7 @@
     <value>股東 + 總代理占成</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>觀看</value>
+    <value>瀏覽</value>
   </data>
   <data name="PercentageViewMode_7" xml:space="preserve">
     <value>總代理 + 代理商占成</value>
@@ -197,5 +197,20 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="InPlay" xml:space="preserve">
+    <value>滾球</value>
+  </data>
+  <data name="AllSports" xml:space="preserve">
+    <value>所有球類</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>投注類別</value>
+  </data>
+  <data name="NickName" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密碼</value>
   </data>
 </root>

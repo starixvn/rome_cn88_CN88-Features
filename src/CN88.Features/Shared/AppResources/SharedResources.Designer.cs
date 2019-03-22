@@ -297,6 +297,15 @@ namespace CN88.Features.Shared.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Full Percentage.
         /// </summary>
+        public static string PercentageViewMode_0 {
+            get {
+                return ResourceManager.GetString("PercentageViewMode_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company %.
+        /// </summary>
         public static string PercentageViewMode_1 {
             get {
                 return ResourceManager.GetString("PercentageViewMode_1", resourceCulture);
@@ -304,7 +313,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company %.
+        ///   Looks up a localized string similar to SMA %.
         /// </summary>
         public static string PercentageViewMode_2 {
             get {
@@ -313,7 +322,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SMA %.
+        ///   Looks up a localized string similar to MA %.
         /// </summary>
         public static string PercentageViewMode_3 {
             get {
@@ -322,7 +331,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MA %.
+        ///   Looks up a localized string similar to Agent %.
         /// </summary>
         public static string PercentageViewMode_4 {
             get {
@@ -331,7 +340,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent %.
+        ///   Looks up a localized string similar to SMA + MA + Agent %.
         /// </summary>
         public static string PercentageViewMode_5 {
             get {
@@ -340,7 +349,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SMA + MA + Agent %.
+        ///   Looks up a localized string similar to SMA + MA %.
         /// </summary>
         public static string PercentageViewMode_6 {
             get {
@@ -349,20 +358,11 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SMA + MA %.
+        ///   Looks up a localized string similar to MA + Agent %.
         /// </summary>
         public static string PercentageViewMode_7 {
             get {
                 return ResourceManager.GetString("PercentageViewMode_7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MA + Agent %.
-        /// </summary>
-        public static string PercentageViewMode_8 {
-            get {
-                return ResourceManager.GetString("PercentageViewMode_8", resourceCulture);
             }
         }
         

@@ -142,6 +142,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string Disabled {
@@ -421,6 +430,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stake.
+        /// </summary>
+        public static string Stake {
+            get {
+                return ResourceManager.GetString("Stake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Status {
@@ -453,15 +471,6 @@ namespace CN88.Features.CustomerList.Resources {
         public static string ThereIsNoChange {
             get {
                 return ResourceManager.GetString("ThereIsNoChange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total.
-        /// </summary>
-        public static string Total {
-            get {
-                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         
@@ -525,6 +534,24 @@ namespace CN88.Features.CustomerList.Resources {
         public static string UsernameOrNameContains {
             get {
                 return ResourceManager.GetString("UsernameOrNameContains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid Stake.
+        /// </summary>
+        public static string ValidStake {
+            get {
+                return ResourceManager.GetString("ValidStake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win/Loss.
+        /// </summary>
+        public static string WinLoss {
+            get {
+                return ResourceManager.GetString("WinLoss", resourceCulture);
             }
         }
     }

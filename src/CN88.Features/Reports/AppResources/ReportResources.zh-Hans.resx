@@ -98,30 +98,120 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>名</value>
+    <value>名称</value>
   </data>
   <data name="Today" xml:space="preserve">
-    <value>今日赛事</value>
+    <value>今日</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>昨天</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>总和</value>
+    <value>总计</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注额</value>
+    <value>下注金额</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>会员</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>代理</value>
+    <value>代理商</value>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
-    <value>密码不能留空</value>
+    <value>对不起，密码栏位不能为空！</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
-    <value>您的密码不符合最低安全要求</value>
+    <value>您的密码不符合最低安全要求。</value>
+  </data>
+  <data name="SettledWager" xml:space="preserve">
+    <value>有结果</value>
+  </data>
+  <data name="UnsettledWager" xml:space="preserve">
+    <value>未有结果</value>
+  </data>
+  <data name="CancelledReport" xml:space="preserve">
+    <value>取消单分析</value>
+  </data>
+  <data name="AbnormalBets" xml:space="preserve">
+    <value>非正常投注单</value>
+  </data>
+  <data name="ViewReport" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="WagerReport" xml:space="preserve">
+    <value>注单报表</value>
+  </data>
+  <data name="SettlementSummary" xml:space="preserve">
+    <value>赛事结果概要</value>
+  </data>
+  <data name="AccountingSheet" xml:space="preserve">
+    <value>月帐期数表</value>
+  </data>
+  <data name="ValidStake" xml:space="preserve">
+    <value>有效金额</value>
+  </data>
+  <data name="AgentResult" xml:space="preserve">
+    <value>代理商结果</value>
+  </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>总代理</value>
+  </data>
+  <data name="SMAResult" xml:space="preserve">
+    <value>股东结果</value>
+  </data>
+  <data name="SMAStock" xml:space="preserve">
+    <value>股东实货量</value>
+  </data>
+  <data name="Settlement" xml:space="preserve">
+    <value>交收</value>
+  </data>
+  <data name="AgentPoss" xml:space="preserve">
+    <value>代理商成数</value>
+  </data>
+  <data name="AgentResultA" xml:space="preserve">
+    <value>代理商结果 A</value>
+  </data>
+  <data name="AgentStock" xml:space="preserve">
+    <value>代理商实货量</value>
+  </data>
+  <data name="Incomplete" xml:space="preserve">
+    <value>未完成</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="Unsettled" xml:space="preserve">
+    <value>未有结果</value>
+  </data>
+  <data name="Settled" xml:space="preserve">
+    <value>有结果</value>
+  </data>
+  <data name="MAPoss" xml:space="preserve">
+    <value>总代理成数</value>
+  </data>
+  <data name="MAResult" xml:space="preserve">
+    <value>总代理结果</value>
+  </data>
+  <data name="MAStock" xml:space="preserve">
+    <value>总代理实货量</value>
+  </data>
+  <data name="MAStockPercent" xml:space="preserve">
+    <value>总代理百分比</value>
+  </data>
+  <data name="SMAPoss" xml:space="preserve">
+    <value>股东成数</value>
+  </data>
+  <data name="SMAStockPercent" xml:space="preserve">
+    <value>股东百分比</value>
+  </data>
+  <data name="ProfitMagin" xml:space="preserve">
+    <value>获利率</value>
+  </data>
+  <data name="SMA" xml:space="preserve">
+    <value>股东</value>
+  </data>
+  <data name="Wagers" xml:space="preserve">
+    <value>笔数</value>
   </data>
 </root>

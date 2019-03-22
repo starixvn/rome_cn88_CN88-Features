@@ -178,13 +178,13 @@
     <value>狀態</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>提交</value>
+    <value>保存</value>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>暂停</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>用戶名</value>
+    <value>帳戶</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
@@ -192,22 +192,58 @@
   <data name="UsedCredit" xml:space="preserve">
     <value>已用額度</value>
   </data>
-  <data name="Nickname" xml:space="preserve">
-    <value>Nick Name</value>
-  </data>
   <data name="BetCredit" xml:space="preserve">
-    <value>Bet Credit</value>
+    <value>限額</value>
   </data>
   <data name="InvalidCredit" xml:space="preserve">
-    <value>New Credit is out of range, please refresh the form and try again.</value>
+    <value>新的信用額度超出範圍，請更新表單後重試。</value>
   </data>
   <data name="ResetSecurityCode" xml:space="preserve">
-    <value>重置保安碼</value>
+    <value>重置安全代碼</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>顯示密碼</value>
+    <value>更改密碼</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注額 </value>
+    <value>投注額</value>
+  </data>
+  <data name="AgentIsRequired" xml:space="preserve">
+    <value>需要代理商</value>
+  </data>
+  <data name="ExceededAgentCredit" xml:space="preserve">
+    <value>對不起，增加信用額度失敗。您已超出代理商額度。</value>
+  </data>
+  <data name="MasterIsRequired" xml:space="preserve">
+    <value>需要總代理</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>編號</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>沒有任何的異動需要更新。</value>
+  </data>
+  <data name="UpdateCredit" xml:space="preserve">
+    <value>更新信用額度</value>
+  </data>
+  <data name="UpdateStatus" xml:space="preserve">
+    <value>更新狀態</value>
+  </data>
+  <data name="UsernameOrNameContains" xml:space="preserve">
+    <value>帳戶或名稱含有</value>
+  </data>
+  <data name="NewAgent" xml:space="preserve">
+    <value>新增代理</value>
+  </data>
+  <data name="NewMasterAgent" xml:space="preserve">
+    <value>新增總代理</value>
+  </data>
+  <data name="NewMember" xml:space="preserve">
+    <value>新增會員</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
   </data>
 </root>

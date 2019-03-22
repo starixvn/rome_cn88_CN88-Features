@@ -124,10 +124,10 @@
     <value>您没有使用此功能的权限.</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>到</value>
+    <value>至</value>
   </data>
   <data name="Today" xml:space="preserve">
-    <value>今日赛事</value>
+    <value>今日</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>昨天</value>
@@ -136,16 +136,16 @@
     <value>从</value>
   </data>
   <data name="Sport" xml:space="preserve">
-    <value>运动</value>
+    <value>球类</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>提交</value>
+    <value>保存</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>会员</value>
+    <value>帐号</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>代理</value>
+    <value>代理商</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>页</value>
@@ -154,10 +154,10 @@
     <value>之第</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
-    <value>上周</value>
+    <value>上星期</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
-    <value>导出到Excel</value>
+    <value>导出Excel</value>
   </data>
   <data name="Stake" xml:space="preserve">
     <value>投注额</value>
@@ -169,13 +169,13 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>股东</value>
+    <value>股东 (占成)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
-    <value>总代理占成</value>
+    <value>总代理 (占成)</value>
   </data>
   <data name="PercentageViewMode_4" xml:space="preserve">
-    <value>代理商占成</value>
+    <value>代理商 (占成)</value>
   </data>
   <data name="PercentageViewMode_5" xml:space="preserve">
     <value>股东 + 总代理 + 代理商占成</value>
@@ -187,15 +187,51 @@
     <value>总代理 + 代理商占成</value>
   </data>
   <data name="Parlay" xml:space="preserve">
-    <value>过关</value>
+    <value>综合过关</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>观看</value>
+    <value>游览</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>明日</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>本星期</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="InPlay" xml:space="preserve">
+    <value>滚球</value>
+  </data>
+  <data name="AllBetTypes" xml:space="preserve">
+    <value>所有玩法</value>
+  </data>
+  <data name="AllSports" xml:space="preserve">
+    <value>所有球类</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>球类</value>
+  </data>
+  <data name="UserCode" xml:space="preserve">
+    <value>帐号</value>
+  </data>
+  <data name="SMA" xml:space="preserve">
+    <value>股东</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="NickName" xml:space="preserve">
+    <value>昵称</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
   </data>
 </root>
