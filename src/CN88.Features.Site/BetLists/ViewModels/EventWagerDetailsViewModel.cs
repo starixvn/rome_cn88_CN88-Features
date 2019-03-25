@@ -112,7 +112,7 @@
                       ["CustName"] = CustName,
                       ["CustLevelId"] = CustLevel.Value,
                       ["MatchId"] = MatchId,
-                      ["BetTypeGroup"] = BetType,
+                      ["BetType"] = BetType,
                       ["LiveIndicator"] = LiveIndicator,
                       ["BetTeam"] = BetTeam,
                       ["Stake"] = Stake,
