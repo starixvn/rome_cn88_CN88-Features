@@ -249,4 +249,10 @@
   <data name="Date" xml:space="preserve">
     <value>日期</value>
   </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>已用額度</value>
+  </data>
+  <data name="UserCode" xml:space="preserve">
+    <value>帳戶</value>
+  </data>
 </root>

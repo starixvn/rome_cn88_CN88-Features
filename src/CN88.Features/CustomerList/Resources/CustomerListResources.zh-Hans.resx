@@ -252,4 +252,7 @@
   <data name="ValidStake" xml:space="preserve">
     <value>有效金额</value>
   </data>
+  <data name="UserCode" xml:space="preserve">
+    <value>帐户</value>
+  </data>
 </root>
