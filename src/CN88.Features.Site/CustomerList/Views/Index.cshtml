@@ -95,10 +95,10 @@
                     <div class="form-group">
                         <label>@CustomerListResources.Status</label>
                         <select id="dropdown-status-agent" class="control">
-                            <option value="@CustomerStatus.All">@CustomerListResources.All</option>
-                            <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
-                            <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
-                            <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
+                            <option value="@CustomerStatus.All" @(Model.Status == CustomerStatus.All ? "selected=\"selected\"" : "")>@CustomerListResources.All</option>
+                            <option value="@CustomerStatus.Open" @(Model.Status == CustomerStatus.Open ? "selected=\"selected\"" : "")>@CustomerListResources.Open</option>
+                            <option value="@CustomerStatus.Closed" @(Model.Status == CustomerStatus.Closed ? "selected=\"selected\"" : "")>@CustomerListResources.Closed</option>
+                            <option value="@CustomerStatus.Suspended" @(Model.Status == CustomerStatus.Suspended ? "selected=\"selected\"" : "")>@CustomerListResources.Suspended</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -147,10 +147,10 @@
                 <div class="form-group">
                     <label>@CustomerListResources.Status</label>
                     <select id="dropdown-status-member" class="control">
-                        <option value="@CustomerStatus.All">@CustomerListResources.All</option>
-                        <option value="@CustomerStatus.Open">@CustomerListResources.Open</option>
-                        <option value="@CustomerStatus.Closed">@CustomerListResources.Closed</option>
-                        <option value="@CustomerStatus.Suspended">@CustomerListResources.Suspended</option>
+                        <option value="@CustomerStatus.All" @(Model.Status == CustomerStatus.All ? "selected=\"selected\"" : "")>@CustomerListResources.All</option>
+                        <option value="@CustomerStatus.Open" @(Model.Status == CustomerStatus.Open ? "selected=\"selected\"" : "")>@CustomerListResources.Open</option>
+                        <option value="@CustomerStatus.Closed" @(Model.Status == CustomerStatus.Closed ? "selected=\"selected\"" : "")>@CustomerListResources.Closed</option>
+                        <option value="@CustomerStatus.Suspended" @(Model.Status == CustomerStatus.Suspended ? "selected=\"selected\"" : "")>@CustomerListResources.Suspended</option>
                     </select>
                 </div>
                 <div class="form-group">
