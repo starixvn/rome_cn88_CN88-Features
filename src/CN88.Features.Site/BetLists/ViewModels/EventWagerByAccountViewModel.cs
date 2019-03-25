@@ -128,7 +128,7 @@
                       ["CustName"] = CustName,
                       ["CustLevelId"] = message.ActorLevel.Value,
                       ["MatchId"] = MatchId,
-                      ["BetTypeGroup"] = BetType,
+                      ["BetType"] = BetType,
                       ["LiveIndicator"] = LiveIndicator,
                       ["BetTeam"] = BetTeam,
                       ["Stake"] = Stake,
