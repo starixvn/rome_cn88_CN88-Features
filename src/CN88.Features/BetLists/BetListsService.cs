@@ -142,10 +142,10 @@
 
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetListBeforeBalanceUpDay(BetListOfReportParam param, DateTime fromDate, DateTime toDate)
           => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
-              BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), isBackup: true));
+              BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), fromDate, toDate, isBackup: true));
 
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetList(BetListOfReportParam param, DateTime fromDate)
             => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
-                BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), isBackup: false));
+                BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), fromDate, param.ToDate, isBackup: false));
     }
 }
