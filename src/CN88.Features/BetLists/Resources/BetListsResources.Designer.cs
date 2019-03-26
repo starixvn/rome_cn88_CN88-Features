@@ -259,6 +259,15 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Member Bet List.
+        /// </summary>
+        public static string MemberBetList {
+            get {
+                return ResourceManager.GetString("MemberBetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInformationIsAvailable {

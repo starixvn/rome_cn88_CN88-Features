@@ -89,8 +89,8 @@
             var row = sheet.GetRow(TemplateInfo.HeaderStartIndex);
 
             row.SetCellValue(0, BetListsResources.DateTime);
-            row.SetCellValue(1, BetListsResources.Member + "/" + BetListsResources.Commission);
-            row.SetCellValue(2, BetListsResources.BetID + "/" + BetListsResources.BetType);
+            row.SetCellValue(1, BetListsResources.Member + "/\r\n" + BetListsResources.Commission);
+            row.SetCellValue(2, BetListsResources.BetID + "/\r\n" + BetListsResources.BetType);
             row.SetCellValue(3, BetListsResources.Details);
             row.SetCellValue(4, BetListsResources.Stake);
             row.SetCellValue(5, BetListsResources.WinLoss);

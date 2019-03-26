@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
+    using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
@@ -75,12 +76,15 @@
             RtfHelper = message.RtfHelper ?? InitRTFHelper((onebookWorkbook as NpoiWorkbook<IEnumerable<TicketDto>>).Workbook);
             workbook.SetRTFHelper(RtfHelper);
 
+            var title = $"{BetListsResources.MemberBetList.ToUpperInvariant()} {message.CustName}|{message.FromDate.ToShortDateFormat()} --> {message.ToDate.ToShortDateFormat()}";
             var fileContent = onebookWorkbook
                 .Header(BetListsResources.ResourceManager.GetString)
-                .Title(viewModel.ReportTitle)
+                .Title(title)
                 .ExportToBytes();
 
-            return new ExcelFileViewModel(viewModel.ReportTitle, fileContent);
+            var fileName = $"{BetListsResources.BetList.ToUpperInvariant()} - {message.CustName} - {message.FromDate.ToShortDateFormat()} -- {message.ToDate.ToShortDateFormat()}";
+
+            return new ExcelFileViewModel(fileName, fileContent);
         }
 
         protected internal override TemplateInfo GetTemplateInfo(UserLevel viewerLevel)

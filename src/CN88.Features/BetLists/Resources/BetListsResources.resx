@@ -267,4 +267,7 @@
   <data name="TotalBetParlaySport_3" xml:space="preserve">
     <value>Mix Sports</value>
   </data>
+  <data name="MemberBetList" xml:space="preserve">
+    <value>Member Bet List</value>
+  </data>
 </root>
