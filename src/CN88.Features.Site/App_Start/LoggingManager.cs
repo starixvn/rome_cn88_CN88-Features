@@ -1,4 +1,5 @@
-﻿using Fanex.Logging;
+﻿using Alpha.Web.Configurations;
+using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.Database;
 using Fanex.Logging.Extensions.Web;
@@ -24,7 +25,7 @@ namespace CN88.Features.Site.App_Start
                 logEngines.Add(new SentryLogging(new SentryEngineOptions
                 {
                     Dsn = new SharpRaven.Dsn(sentryUrl)
-                }));
+                }, $"{AppSettings.AssetAppPath}/bundles/common/raven.min.js"));
             }
 
             LogManager
