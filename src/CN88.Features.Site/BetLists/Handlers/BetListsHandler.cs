@@ -84,6 +84,7 @@
             var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
+            var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
 
             return new BetListOfReportViewModel(
                 message,
@@ -95,7 +96,8 @@
                 BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 currentPeriod,
                 lastPeriod,
-                BuildBetTypeSelectListItems(allBetTypes, 0));
+                BuildBetTypeSelectListItems(allBetTypes, 0),
+                oldAccountingPeriods);
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)

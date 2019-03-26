@@ -86,13 +86,18 @@
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
             IEnumerable<SelectListItemExt> allBetTypes,
+            IEnumerable<AccountingPeriod> oldAccountingPeriods,
             string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, excludingTicketStatus)
         {
             DisplayMode = message.DisplayMode;
             ReportMainActionPath = message.ReportMainActionPath;
+            IsOldReport = message.IsOldReport;
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);
-            var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);
+
+            var dateRangePickerViewModel = message.IsOldReport
+                ? new DateRangePickerViewModel(oldAccountingPeriods.Last().FromDate, oldAccountingPeriods.First().ToDate, message.FromDate, message.ToDate)
+                : new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, message.UserSelectedBetTypeId);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
@@ -125,7 +130,6 @@
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             var reportActionName = DisplayMode == ReportDisplayModeConstants.Wager ? "Wager" : "Legacy";
-            IsOldReport = message.IsOldReport;
             var reportActionController = message.IsOldReport ? "OldReports" : "Reports";
 
             var reportPath = $"~/{reportActionController}/{reportActionName}";
