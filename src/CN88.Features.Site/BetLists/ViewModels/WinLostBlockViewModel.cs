@@ -41,7 +41,7 @@
                     break;
 
                 case BetStatus.Void:
-                    WinLost = ticket.BetTypeId == 500 ? "(NW) 0.00" : string.Empty;
+                    WinLost = ticket.BetTypeId == 500 ? "(NW) 0.00" : "0.00";
                     Comm = "0.00";
                     break;
 
