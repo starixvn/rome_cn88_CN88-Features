@@ -6,7 +6,7 @@ body {
     font-size: $font-size;
     margin: 0;
     padding-top: 8%;
-    color: #666;
+    color: #3b3b3b;
     @include box-sizing;
 }
 
@@ -17,19 +17,19 @@ input, button {
 }
 
 .block {
-    width: 450px;
+    width: 398px;
     background: #E2E2E2;
-    color: #323232;
     margin: auto;
 
     .title-box {
         background: #7B0F0F;
-        height: 40px;
-        line-height: 40px;
+        height: 60px;
+        line-height: 60px;
         color: #fff;
-        padding-left: 20px;
         text-transform: uppercase;
         letter-spacing: 1px;
+        text-align: center;
+        font-weight: bold;
     }
 
     .msg {
@@ -42,9 +42,10 @@ input, button {
 
     .txt {
         outline: none;
-        padding: 0 0 0 12px;
-        color: #323232;
-        width: 268px;
+        padding: 0 0 0 10px;
+        width: 269px;
+        background-color: #fff;
+        height: 40px;
 
         &.error ~ .validation, &.valid ~ .validation {
             right: 0;
@@ -53,88 +54,28 @@ input, button {
     }
 
     .list-button {
-        padding-top: 8px;
-        text-align: center;
+        padding-top: 10px;
+        padding-left: 89px;
     }
 
     .rowlg {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         position: relative;
 
         .lb-title {
-            width: 136px;
-        }
-    }
-
-    .rules {
-        margin-bottom: 20px;
-
-        .list-rules {
-            padding-left: 0;
-            list-style: none;
-            counter-reset: item;
-
-            li {
-                margin-bottom: 12px;
-                counter-increment: item;
-                line-height: 18px;
-
-                &:before {
-                    font-weight: bold;
-                    content: counter(item)".";
-                    padding-right: 8px;
-                }
-            }
-        }
-    }
-
-    .note-txt {
-        margin-bottom: 12px;
-    }
-
-    .help-rules {
-        .error {
-            position: relative;
-
-            .icon-rules {
-                color: $link-color;
-                cursor: pointer;
-                font-size: 16px;
-                position: relative;
-                top: 4px;
-                left: auto;
-                padding: 8px 12px 8px 8px;
-
-                &:hover {
-                    color: darken($link-color, 15%);
-                }
-            }
+            width: 85px;
         }
     }
 
     [class^="btn-"] {
-        font-size: $font-size + 2;
         margin-right: 0;
-        width: 46%;
-        //text-transform: uppercase;
-        height: 36px;
-        line-height: 34px;
-
-        &:first-child {
-            margin-right: 6%;
-        }
+        text-transform: uppercase;
+        height: 30px;
+        line-height: 30px;
+        width: 269px;
     }
 
     label {
         font-weight: normal;
-    }
-
-    .note {
-        color: #666;
-        margin-top: 16px;
-
-        span {
-            color: #7B0F0F;
-        }
     }
 }
