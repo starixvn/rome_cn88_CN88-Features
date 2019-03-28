@@ -124,4 +124,139 @@
   <data name="PasswordWrongRuleError" xml:space="preserve">
     <value>您的密碼不符合最低安全要求。</value>
   </data>
+  <data name="SettledWager" xml:space="preserve">
+    <value>有結果</value>
+  </data>
+  <data name="Unsettled" xml:space="preserve">
+    <value>未有結果</value>
+  </data>
+  <data name="NewPosses" xml:space="preserve">
+    <value>新佔成數</value>
+  </data>
+  <data name="Settled" xml:space="preserve">
+    <value>有結果</value>
+  </data>
+  <data name="AgentUsername" xml:space="preserve">
+    <value>代理商用戶名</value>
+  </data>
+  <data name="MAPoss" xml:space="preserve">
+    <value>總代理成數</value>
+  </data>
+  <data name="MAIncome" xml:space="preserve">
+    <value>總代理收入</value>
+  </data>
+  <data name="MAResult" xml:space="preserve">
+    <value>總代理結果</value>
+  </data>
+  <data name="MAUsername" xml:space="preserve">
+    <value>總代理用戶名</value>
+  </data>
+  <data name="MAStock" xml:space="preserve">
+    <value>總代理實貨量</value>
+  </data>
+  <data name="MAStockPercent" xml:space="preserve">
+    <value>總代理實貨量(%)</value>
+  </data>
+  <data name="Complete" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="SMAPoss" xml:space="preserve">
+    <value>超級代理佔成數</value>
+  </data>
+  <data name="SMAUsername" xml:space="preserve">
+    <value>超級代理用戶名</value>
+  </data>
+  <data name="HeadlinePoss" xml:space="preserve">
+    <value>股東成數</value>
+  </data>
+  <data name="HeadlineIncome" xml:space="preserve">
+    <value>股東收入</value>
+  </data>
+  <data name="HeadlineResult" xml:space="preserve">
+    <value>股東結果</value>
+  </data>
+  <data name="HeadlineStock" xml:space="preserve">
+    <value>股東實貨量</value>
+  </data>
+  <data name="HeadlineStockPercent" xml:space="preserve">
+    <value>股東實貨量(%)</value>
+  </data>
+  <data name="ProfitMagin" xml:space="preserve">
+    <value>毛利</value>
+  </data>
+  <data name="Wagers" xml:space="preserve">
+    <value>注單</value>
+  </data>
+  <data name="SMA" xml:space="preserve">
+    <value>超級代理</value>
+  </data>
+  <data name="SMAStockPercent" xml:space="preserve">
+    <value>超級代理實貨量(%)</value>
+  </data>
+  <data name="Incomplete" xml:space="preserve">
+    <value>未完成</value>
+  </data>
+  <data name="DateChanged" xml:space="preserve">
+    <value>日期已變更</value>
+  </data>
+  <data name="AgentResult" xml:space="preserve">
+    <value>代理商結果</value>
+  </data>
+  <data name="SettlementSummary" xml:space="preserve">
+    <value>賽事結果概要</value>
+  </data>
+  <data name="AccountingSheet" xml:space="preserve">
+    <value>月帳期數表</value>
+  </data>
+  <data name="ValidStake" xml:space="preserve">
+    <value>有效金額</value>
+  </data>
+  <data name="AbnormalBets" xml:space="preserve">
+    <value>非正規注單</value>
+  </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>總代理</value>
+  </data>
+  <data name="SMAResult" xml:space="preserve">
+    <value>超級代理結果</value>
+  </data>
+  <data name="SMAStock" xml:space="preserve">
+    <value>超級代理實貨量</value>
+  </data>
+  <data name="Settlement" xml:space="preserve">
+    <value>交收</value>
+  </data>
+  <data name="MemberIncome" xml:space="preserve">
+    <value>會員收入</value>
+  </data>
+  <data name="CancelledReport" xml:space="preserve">
+    <value>取消單分析</value>
+  </data>
+  <data name="SMAIncome" xml:space="preserve">
+    <value>超級代理收入</value>
+  </data>
+  <data name="AgentPoss" xml:space="preserve">
+    <value>代理商成數</value>
+  </data>
+  <data name="AgentIncome" xml:space="preserve">
+    <value>代理商收入</value>
+  </data>
+  <data name="AgentResultA" xml:space="preserve">
+    <value>代理商結果A</value>
+  </data>
+  <data name="AgentStock" xml:space="preserve">
+    <value>代理商實貨量</value>
+  </data>
+  <data name="MemberUsername" xml:space="preserve">
+    <value>會員用戶名</value>
+  </data>
+  <data name="UnsettledWager" xml:space="preserve">
+    <value>未有結果</value>
+  </data>
+  <data name="WagerReport" xml:space="preserve">
+    <value>注單報表</value>
+  </data>
+  <data name="ViewReport" xml:space="preserve">
+    <value>查詢</value>
+  </data>
 </root>

@@ -134,7 +134,7 @@
     <value>取消单分析</value>
   </data>
   <data name="AbnormalBets" xml:space="preserve">
-    <value>非正常投注单</value>
+    <value>非正规注单</value>
   </data>
   <data name="ViewReport" xml:space="preserve">
     <value>查询</value>
@@ -158,10 +158,10 @@
     <value>总代理</value>
   </data>
   <data name="SMAResult" xml:space="preserve">
-    <value>股东结果</value>
+    <value>超级代理结果</value>
   </data>
   <data name="SMAStock" xml:space="preserve">
-    <value>股东实货量</value>
+    <value>超级代理实货量</value>
   </data>
   <data name="Settlement" xml:space="preserve">
     <value>交收</value>
@@ -170,7 +170,7 @@
     <value>代理商成数</value>
   </data>
   <data name="AgentResultA" xml:space="preserve">
-    <value>代理商结果 A</value>
+    <value>代理商结果A</value>
   </data>
   <data name="AgentStock" xml:space="preserve">
     <value>代理商实货量</value>
@@ -197,21 +197,66 @@
     <value>总代理实货量</value>
   </data>
   <data name="MAStockPercent" xml:space="preserve">
-    <value>总代理百分比</value>
+    <value>总代理实货量(%)</value>
   </data>
   <data name="SMAPoss" xml:space="preserve">
-    <value>股东成数</value>
+    <value>超级代理占成数</value>
   </data>
   <data name="SMAStockPercent" xml:space="preserve">
-    <value>股东百分比</value>
+    <value>超级代理实货量(%)</value>
   </data>
   <data name="ProfitMagin" xml:space="preserve">
-    <value>获利率</value>
+    <value>毛利</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>股东</value>
+    <value>超级代理</value>
   </data>
   <data name="Wagers" xml:space="preserve">
-    <value>笔数</value>
+    <value>注单</value>
+  </data>
+  <data name="NewPosses" xml:space="preserve">
+    <value>新占成数</value>
+  </data>
+  <data name="AgentUsername" xml:space="preserve">
+    <value>代理商用户名</value>
+  </data>
+  <data name="MAIncome" xml:space="preserve">
+    <value>总代理收入</value>
+  </data>
+  <data name="MAUsername" xml:space="preserve">
+    <value>总代理用户名</value>
+  </data>
+  <data name="SMAUsername" xml:space="preserve">
+    <value>超级代理用户名</value>
+  </data>
+  <data name="HeadlinePoss" xml:space="preserve">
+    <value>股东成数</value>
+  </data>
+  <data name="HeadlineIncome" xml:space="preserve">
+    <value>股东收入</value>
+  </data>
+  <data name="HeadlineResult" xml:space="preserve">
+    <value>股东结果</value>
+  </data>
+  <data name="HeadlineStock" xml:space="preserve">
+    <value>股东实货量</value>
+  </data>
+  <data name="HeadlineStockPercent" xml:space="preserve">
+    <value>股东实货量(%)</value>
+  </data>
+  <data name="DateChanged" xml:space="preserve">
+    <value>日期已变更</value>
+  </data>
+  <data name="MemberIncome" xml:space="preserve">
+    <value>会员收入</value>
+  </data>
+  <data name="SMAIncome" xml:space="preserve">
+    <value>超级代理收入</value>
+  </data>
+  <data name="AgentIncome" xml:space="preserve">
+    <value>代理商收入</value>
+  </data>
+  <data name="MemberUsername" xml:space="preserve">
+    <value>会员用户名</value>
   </data>
 </root>
