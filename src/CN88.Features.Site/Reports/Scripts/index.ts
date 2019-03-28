@@ -10,6 +10,7 @@ class ReportIndexView extends BaseReport {
     $createRptForm: JQuery;
     $wagerRptTypeDropdown: JQuery;
     $cancelledRptTypeDropdown: JQuery;
+    $dateRangePicker: JQuery;
 
     $choiceBtn: JQuery;
     $todayBtn: JQuery;
@@ -24,7 +25,6 @@ class ReportIndexView extends BaseReport {
     $clearBtn: JQuery;
 
     minDate: Date;
-    today: Date;
     thisWeek = {
         fromDate: null,
         toDate: null
@@ -86,14 +86,15 @@ class ReportIndexView extends BaseReport {
         this.$thisPeriodBtn = this.$("#btn-this-period");
         this.$lastPeriodBtn = this.$("#btn-last-period");
         this.$clearBtn = this.$("#btn-clear");
+
+        this.$dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
     };
 
     calculatedDate(): void {
-        let dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
-        this.today = new Date(dateRangePicker.data("currentdate"));
-        this.minDate = new Date(dateRangePicker.data("mindate"));
+        this.minDate = new Date(this.$dateRangePicker.data("mindate"));
 
-        var first = this.today.getDate() - this.today.getDay() + 1;
+        let today = this.getToday();
+        var first = today.getDate() - today.getDay() + 1;
         this.thisWeek.fromDate = new Date().setDate(first);
         this.thisWeek.toDate = new Date().setDate(first + 6);
         this.lastWeek.fromDate = new Date().setDate(first - 7);
@@ -125,7 +126,7 @@ class ReportIndexView extends BaseReport {
         this.$createRptForm.submit(() => this.onSubmit());
 
         this.$todayBtn.click((e) => {
-            this.changeDateRange(e, this.today, this.today);
+            this.changeDateRange(e, this.getToday(), this.getToday());
         });
 
         this.$yesterdayBtn.click((e) => {
@@ -134,7 +135,7 @@ class ReportIndexView extends BaseReport {
             if (this.$fromDate.val() === this.$toDate.val()) {
                 yesterday = this.getYesterday(new Date(this.$fromDate.val()));
             } else {
-                yesterday = this.getYesterday(this.today);
+                yesterday = this.getYesterday(this.getToday());
             }
 
             if (yesterday < this.minDate) {
@@ -149,7 +150,7 @@ class ReportIndexView extends BaseReport {
             if (this.$fromDate.val() === this.$toDate.val()) {
                 tomorrow = this.getTomorrow(new Date(this.$fromDate.val()));
             } else {
-                tomorrow = this.getTomorrow(this.today);
+                tomorrow = this.getTomorrow(this.getToday());
             }
 
             this.changeDateRange(e, tomorrow, tomorrow);
@@ -176,14 +177,18 @@ class ReportIndexView extends BaseReport {
         });
     };
 
+    getToday(): Date {
+        return new Date(this.$dateRangePicker.data("currentdate"));
+    }
+
     getYesterday(date: Date): Date {
-        let yesterday = new Date();
+        let yesterday = date;
         yesterday.setDate(date.getDate() - 1);
         return yesterday;
     }
 
     getTomorrow(date: Date): Date {
-        let tomorrow = new Date();
+        let tomorrow = date;
         tomorrow.setDate(date.getDate() + 1);
         return tomorrow;
     }
@@ -194,6 +199,7 @@ class ReportIndexView extends BaseReport {
         button.removeClass("btn-default").addClass("btn-secondary");
         this.$fromDate.val(moment(fromDate).format(cn88Features.format.shortDate_DatePicker));
         this.$toDate.val(moment(toDate).format(cn88Features.format.shortDate_DatePicker));
+        this.dateRangePickerComponent.render();
     };
 
     reset = () => {
