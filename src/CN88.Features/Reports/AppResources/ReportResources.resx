@@ -259,4 +259,7 @@
   <data name="DateChanged" xml:space="preserve">
     <value>Date Changed</value>
   </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Create Report</value>
+  </data>
 </root>
