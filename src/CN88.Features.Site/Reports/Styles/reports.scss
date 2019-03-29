@@ -8,13 +8,13 @@
 .wager-report {
     padding: 20px;
 
-    .nav-tabs, .breadcrumb-container {
+    /*.nav-tabs, .breadcrumb-container {
         display: table-cell;
-    }
+    }*/
 
-    .nav-tabs {
+    /*.nav-tabs {
         border-bottom: none;
-    }
+    }*/
 }
 
 .filter-container {
@@ -94,8 +94,7 @@
     }
 
     .current {
-        background: #828282;
-        color: #fff;
+        background: #d7f4ff;
     }
 }
 
@@ -104,7 +103,10 @@
     border-bottom: 1px solid #ddd;
     line-height: 56px;
     margin-bottom: 0;
-
+    .nav-tabs {
+        float: left;
+        border-bottom: none;
+    }
     .nav-tabs > li > a {
         line-height: inherit;
         padding: 0 16px;
@@ -257,13 +259,25 @@
         }
 
         &:nth-child(2) th {
-            padding-top: 0;
+            padding: 4px 0 10px;
             font-size: 12px;
         }
 
         > th {
             font-weight: normal;
+            text-align: center;
+            [class*="-settlement"] {
+                padding-bottom: 8px;
+            }
         }
+    }
+    > tbody > tr > td {
+        text-align: center;
+        &:first-child {
+            text-align:  left;
+            padding: 12px;
+            width: 150px;
+        }        
     }
 }
 
@@ -300,14 +314,16 @@
     }
 }
 
-#tblAccountingSheet, #tblSettlementSummary {
-    > thead > tr > th, > tbody > tr > td {
+#tblAccountingSheet {
+    > thead > tr > th {
         text-align: center;
+        font-weight: normal;
+        color: #3b3b3b;
     }
-}
-
-.title-report-detail .nav-tabs {
-    float: left;
+    > tbody > tr > td {
+        text-align: left;
+        padding: 12px;
+    }
 }
 
 .old-report {
@@ -344,6 +360,9 @@
         .filter-container {
             width: 400px;
             margin-right: 20px;
+        }
+        .result-container {
+            width: 480px;
         }
 
         .filter-container, .result-container {

@@ -7,18 +7,16 @@
         <tr>
             <th></th>
             <th colspan="2">
-                <span class="@(report.Yesterday.IsComplete ? "complete-settlement" : "incomplete-settlement")">
+                <div class="@(report.Yesterday.IsComplete ? "complete-settlement" : "incomplete-settlement")">
                     @(report.Yesterday.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
-                </span>
-                <br />
-                <span>@report.Yesterday.Name</span>
+                </div>
+                <div>@report.Yesterday.Name</div>
             </th>
             <th colspan="2">
-                <span class="@(report.Today.IsComplete ? "complete-settlement" : "incomplete-settlement")">
+                <div class="@(report.Today.IsComplete ? "complete-settlement" : "incomplete-settlement")">
                     @(report.Today.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
-                </span>
-                <br />
-                <span>@report.Today.Name</span>
+                </div>
+                <div>@report.Today.Name</div>
             </th>
         </tr>
         <tr>
@@ -34,7 +32,7 @@
         {
             var sportGroup = report.SportGroups[i];
             <tr>
-                <td>@sportGroup</td>
+                <td class="text-left">@sportGroup</td>
                 <td class="incomplete-settlement">@report.Yesterday.Settlements[i].Unsettled</td>
                 <td>@report.Yesterday.Settlements[i].Settled</td>
                 <td class="incomplete-settlement">@report.Today.Settlements[i].Unsettled</td>
