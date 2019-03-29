@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Shared.Constants
 {
     using System.Collections.Generic;
+    using Models;
 
     public static class PercentageViewModeConstant
     {
@@ -13,7 +14,7 @@
         public static int SuperMasterPercentage = 6;
         public static int MasterAgentPercentage = 7;
 
-        public static IEnumerable<int> Modes = new List<int>
+        private static IEnumerable<int> superModes = new List<int>
         {
             FullPercentage,
             CompanyPercentage,
@@ -23,6 +24,27 @@
             SuperMasterAgentPercentage,
             SuperMasterPercentage,
             MasterAgentPercentage
+        };
+
+        private static IEnumerable<int> masterModes = new List<int>
+        {
+            FullPercentage,
+            MasterPercentage,
+            AgentPercentage,
+            MasterAgentPercentage
+        };
+
+        private static IEnumerable<int> agentModes = new List<int>
+        {
+            FullPercentage,
+            AgentPercentage
+        };
+
+        public static IDictionary<UserLevel, IEnumerable<int>> ModesByLevel { get; } = new Dictionary<UserLevel, IEnumerable<int>>
+        {
+            [UserLevel.Super] = superModes,
+            [UserLevel.Master] = masterModes,
+            [UserLevel.Agent] = agentModes
         };
     }
 }

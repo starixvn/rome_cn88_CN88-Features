@@ -238,7 +238,7 @@
                 builder,
                 BuildSportsSelectListItems(TotalBetParlaySport.Sports, message.SportGroupId),
                 BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.StakeMode),
-                BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.Modes, message.ViewMode));
+                BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.ModesByLevel[message.ActorLevel], message.ViewMode));
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
