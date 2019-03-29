@@ -403,7 +403,7 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All.
+        ///   Looks up a localized string similar to All Parlays.
         /// </summary>
         public static string TotalBetParlaySport_0 {
             get {
@@ -421,7 +421,7 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Non Soccer.
+        ///   Looks up a localized string similar to Non-Soccer.
         /// </summary>
         public static string TotalBetParlaySport_2 {
             get {
