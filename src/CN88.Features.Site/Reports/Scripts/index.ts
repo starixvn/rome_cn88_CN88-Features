@@ -3,6 +3,7 @@
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 var betTypes: any = betTypes;
+let NexDatePickerHelper: any;
 class ReportIndexView extends BaseReport {
     $wagerTab: JQuery;
     $cancelledTab: JQuery;
@@ -25,14 +26,6 @@ class ReportIndexView extends BaseReport {
     $clearBtn: JQuery;
 
     minDate: Date;
-    thisWeek = {
-        fromDate: null,
-        toDate: null
-    };
-    lastWeek = {
-        fromDate: null,
-        toDate: null
-    };
     thisPeriod = {
         fromDate: null,
         toDate: null
@@ -92,14 +85,6 @@ class ReportIndexView extends BaseReport {
 
     calculatedDate(): void {
         this.minDate = new Date(this.$dateRangePicker.data("mindate"));
-
-        let today = this.getToday();
-        var first = today.getDate() - today.getDay() + 1;
-        this.thisWeek.fromDate = new Date().setDate(first);
-        this.thisWeek.toDate = new Date().setDate(first + 6);
-        this.lastWeek.fromDate = new Date().setDate(first - 7);
-        this.lastWeek.toDate = new Date().setDate(first - 1);
-
         this.thisPeriod.fromDate = new Date(this.$("#ThisPeriod_FromDate").val())
         this.thisPeriod.toDate = new Date(this.$("#ThisPeriod_ToDate").val())
         this.lastPeriod.fromDate = new Date(this.$("#LastPeriod_FromDate").val())
@@ -157,11 +142,13 @@ class ReportIndexView extends BaseReport {
         });
 
         this.$thisWeekBtn.click((e) => {
-            this.changeDateRange(e, this.thisWeek.fromDate, this.thisWeek.toDate);
+            let dateRange = this.getDateRangeOfCurrentWeek(this.getToday());
+            this.changeDateRange(e, dateRange[0], dateRange[1]);
         });
 
         this.$lastWeekBtn.click((e) => {
-            this.changeDateRange(e, this.lastWeek.fromDate, this.lastWeek.toDate);
+            let dateRange = NexDatePickerHelper.getDateRangeOfLastWeek(this.getToday());
+            this.changeDateRange(e, dateRange[0], dateRange[1]);
         });
 
         this.$thisPeriodBtn.click((e) => {
@@ -191,6 +178,15 @@ class ReportIndexView extends BaseReport {
         let tomorrow = date;
         tomorrow.setDate(date.getDate() + 1);
         return tomorrow;
+    }
+
+    getDateRangeOfCurrentWeek(today: Date): [Date, Date] {
+        let date = today;
+        let baseDate = NexDatePickerHelper.getBaseDateOfWeek(today);
+        let startDate = new Date(date.setDate(baseDate));
+        let lastDate = new Date(date.setDate(date.getDate() + 6));
+
+        return [startDate, lastDate];
     }
 
     changeDateRange(e: JQueryEventObject, fromDate, toDate): void {
