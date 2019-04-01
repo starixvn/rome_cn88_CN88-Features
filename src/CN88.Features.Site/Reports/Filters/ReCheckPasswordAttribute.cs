@@ -5,6 +5,7 @@
     using System;
     using System.Configuration;
     using System.Linq;
+    using Sunplus.Agent.Model.Entities;
 
     public class ReCheckPasswordAttribute : AuthorizeAttribute
     {
@@ -21,7 +22,12 @@
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-                        
+            
+            if (UserSession.Current?.IsInternal == true)
+            {
+                return;
+            }
+
             var request = filterContext.RequestContext.HttpContext.Request;
             var isViewBetlistOldReport = request.Params.AllKeys.Contains("IsOldReport", StringComparer.OrdinalIgnoreCase) &&
                 bool.Parse(request.Params["IsOldReport"]);
