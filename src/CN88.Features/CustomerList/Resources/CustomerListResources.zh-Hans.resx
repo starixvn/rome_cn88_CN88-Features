@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Action" xml:space="preserve">
-    <value>动作</value>
+    <value>功能</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>代理商</value>
@@ -254,5 +254,32 @@
   </data>
   <data name="UserCode" xml:space="preserve">
     <value>帐户</value>
+  </data>
+  <data name="InputNumberError" xml:space="preserve">
+    <value>请输入数值</value>
+  </data>
+  <data name="OnlineMembers" xml:space="preserve">
+    <value>在线会员</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>显示{from}到{to}，共{total}笔</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>赢/输</value>
+  </data>
+  <data name="EditMember" xml:space="preserve">
+    <value>编辑会员</value>
+  </data>
+  <data name="EditMasterAgent" xml:space="preserve">
+    <value>编辑总代理</value>
+  </data>
+  <data name="EditAgent" xml:space="preserve">
+    <value>编辑代理商</value>
+  </data>
+  <data name="LoginDateTime" xml:space="preserve">
+    <value>登入时间</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>成功更新</value>
   </data>
 </root>

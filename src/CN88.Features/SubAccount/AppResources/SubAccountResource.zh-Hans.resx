@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountDetails" xml:space="preserve">
-    <value>Account Details</value>
+    <value>帐户详细</value>
   </data>
   <data name="ACManagement" xml:space="preserve">
-    <value>A/C Management</value>
+    <value>账户管理</value>
   </data>
   <data name="ConfirmDeleteSubAccount" xml:space="preserve">
     <value>Are you sure you want to delete this account?</value>
@@ -142,7 +142,7 @@
     <value>Edit Sub Account</value>
   </data>
   <data name="EditView" xml:space="preserve">
-    <value>Edit &amp; View</value>
+    <value>编辑 &amp; 检视</value>
   </data>
   <data name="GeneralData" xml:space="preserve">
     <value>基本资料</value>
@@ -154,7 +154,7 @@
     <value>您的密码不得包含您的用户名或昵称。</value>
   </data>
   <data name="NewSubAccount" xml:space="preserve">
-    <value>New Sub Account</value>
+    <value>新子账户</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密码</value>
@@ -163,7 +163,7 @@
     <value>您的密码不符合最低安全要求。</value>
   </data>
   <data name="Permissions" xml:space="preserve">
-    <value>Permissions</value>
+    <value>权限</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>报告</value>
@@ -181,12 +181,15 @@
     <value>总投注</value>
   </data>
   <data name="ViewOnly" xml:space="preserve">
-    <value>View Only</value>
+    <value>只能看帐</value>
   </data>
   <data name="CreateSubAccountSuccessfully" xml:space="preserve">
-    <value>Account successfully created.</value>
+    <value>成功创建账户</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>帐户</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>功能</value>
   </data>
 </root>

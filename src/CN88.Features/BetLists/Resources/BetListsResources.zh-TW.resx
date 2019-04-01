@@ -258,4 +258,16 @@
   <data name="ColossusBetsPopUpDetailTitle" xml:space="preserve">
     <value>注單詳細內容:</value>
   </data>
+  <data name="TotalBetParlaySport_3" xml:space="preserve">
+    <value>混合體育</value>
+  </data>
+  <data name="MemberBetList" xml:space="preserve">
+    <value>會員投注歷史</value>
+  </data>
+  <data name="WagerDetails" xml:space="preserve">
+    <value>投注內容</value>
+  </data>
+  <data name="TotalBetParlaySport_2" xml:space="preserve">
+    <value>非足球</value>
+  </data>
 </root>

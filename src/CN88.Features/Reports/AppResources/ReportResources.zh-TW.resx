@@ -101,10 +101,10 @@
     <value>名</value>
   </data>
   <data name="Today" xml:space="preserve">
-    <value>今日賽事</value>
+    <value>今日</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
-    <value>昨天</value>
+    <value>昨日</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>總和</value>
@@ -258,5 +258,8 @@
   </data>
   <data name="ViewReport" xml:space="preserve">
     <value>查詢</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>創建報表</value>
   </data>
 </root>

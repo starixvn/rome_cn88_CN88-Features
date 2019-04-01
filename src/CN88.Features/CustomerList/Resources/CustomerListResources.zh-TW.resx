@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Action" xml:space="preserve">
-    <value>動作</value>
+    <value>功能</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>代理</value>
@@ -250,9 +250,36 @@
     <value>日期</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>已用額度</value>
+    <value>成功更新</value>
   </data>
   <data name="UserCode" xml:space="preserve">
     <value>帳戶</value>
+  </data>
+  <data name="InputNumberError" xml:space="preserve">
+    <value>請輸入數值</value>
+  </data>
+  <data name="OnlineMembers" xml:space="preserve">
+    <value>線上會員</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>顯示{from}到{to}，共{total}筆</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>贏/輸</value>
+  </data>
+  <data name="ValidStake" xml:space="preserve">
+    <value>有效金額</value>
+  </data>
+  <data name="EditMember" xml:space="preserve">
+    <value>編輯會員</value>
+  </data>
+  <data name="EditMasterAgent" xml:space="preserve">
+    <value>編輯總代理</value>
+  </data>
+  <data name="EditAgent" xml:space="preserve">
+    <value>編輯代理商</value>
+  </data>
+  <data name="LoginDateTime" xml:space="preserve">
+    <value>登入時間</value>
   </data>
 </root>

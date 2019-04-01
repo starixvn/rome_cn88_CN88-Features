@@ -127,10 +127,10 @@
     <value>到</value>
   </data>
   <data name="Today" xml:space="preserve">
-    <value>今日賽事</value>
+    <value>今日</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
-    <value>昨天</value>
+    <value>昨日</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>從</value>
@@ -154,7 +154,7 @@
     <value>之第</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
-    <value>上週</value>
+    <value>上星期</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>導出到Excel</value>
@@ -245,5 +245,20 @@
   </data>
   <data name="AllMarkets" xml:space="preserve">
     <value>所有盤口類型</value>
+  </data>
+  <data name="LastPeriod" xml:space="preserve">
+    <value>上期</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="ThisPeriod" xml:space="preserve">
+    <value>本期</value>
   </data>
 </root>
