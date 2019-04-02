@@ -261,4 +261,7 @@
   <data name="ThisPeriod" xml:space="preserve">
     <value>本期</value>
   </data>
+  <data name="MemberStake" xml:space="preserve">
+    <value>会员投注额</value>
+  </data>
 </root>
