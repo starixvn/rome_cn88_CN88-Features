@@ -24,7 +24,7 @@ class CreditPopup extends PopupBase {
 
 	getResource() {
 		super.getResource();
-		this.resources.ExceededAgentCredit = this.$("#ExceededAgentCredit").val();
+        this.resources.InvalidCredit = this.$("#InvalidCredit").val();
 		this.resources.InputNumberError = this.$("#InputNumberError").val();
 	}
 
@@ -46,7 +46,7 @@ class CreditPopup extends PopupBase {
 		}
 
 		if (credit < minCredit || credit > maxCredit) {
-			this.showFailedMessage(this.resources.ExceededAgentCredit);
+            this.showFailedMessage(this.resources.InvalidCredit);
 			return;
 		}
 

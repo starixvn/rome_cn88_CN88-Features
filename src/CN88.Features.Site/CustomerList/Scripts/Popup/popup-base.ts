@@ -3,7 +3,7 @@
     public topWindow: any;
     resources = {
         UpdateSuccessfully: '',
-        ExceededAgentCredit: '',
+        InvalidCredit: '',
         InputNumberError: '',
         ThereIsNoChange: ''
     };
