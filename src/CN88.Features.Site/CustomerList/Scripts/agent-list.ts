@@ -61,7 +61,8 @@ class AgentList extends BaseList {
         };
 
         if (this.directDownline != siteInfrastructure.roleId.agent &&
-            this.reportParam.DownlineUsername == "") {
+            (this.reportParam.DownlineUsername == "" ||
+            this.reportParam.DownlineUsername == undefined)) {
             this.$errAgent.removeClass("display-none");
             this.$.unblockUI();
             return;

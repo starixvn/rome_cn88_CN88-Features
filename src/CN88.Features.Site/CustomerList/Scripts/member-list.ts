@@ -57,8 +57,9 @@
             PageIndex: this.reportParam.PageIndex
         };
 
-        if (this.directDownline != siteInfrastructure.roleId.agent &&
-            this.reportParam.DownlineUsername == "") {
+        if (this.directDownline != siteInfrastructure.roleId.member &&
+            (this.reportParam.DownlineUsername == "" ||
+            this.reportParam.DownlineUsername == undefined)) {
             this.$errMember.removeClass("display-none");
             this.$.unblockUI();
             return;
