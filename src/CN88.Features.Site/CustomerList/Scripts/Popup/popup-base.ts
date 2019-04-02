@@ -42,7 +42,7 @@
             }
         })
             .done(function (data) {
-                data.Result.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Message);
+                data.Result.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Result.Message);
             })
             .always(function () { self.$.unblockUI(); });
     }
