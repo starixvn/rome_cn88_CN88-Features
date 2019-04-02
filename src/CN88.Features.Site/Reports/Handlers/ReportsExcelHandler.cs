@@ -25,7 +25,6 @@
         {
             this.reportService = reportService;
             this.workbook = workbook;
-           
         }
 
         public ExcelFileViewModel Handle(ReportExcelQuery message)
@@ -132,7 +131,7 @@
             }
             else
             {
-                mapper.Map(G, data => data.Super)
+                mapper.Map(G, data => data.Super / divisor)
                     .Map(H, data => isTotal ? string.Empty : data.SuperPoss)
                     .Map(I, data => data.SuperIncome / divisor)
                     .Map(J, data => data.SuperResult / divisor)
