@@ -259,7 +259,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master is required..
+        ///   Looks up a localized string similar to Master Agent is required..
         /// </summary>
         public static string MasterIsRequired {
             get {

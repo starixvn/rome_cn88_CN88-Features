@@ -163,7 +163,7 @@
     <value>Master Agent</value>
   </data>
   <data name="MasterIsRequired" xml:space="preserve">
-    <value>Master is required.</value>
+    <value>Master Agent is required.</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
