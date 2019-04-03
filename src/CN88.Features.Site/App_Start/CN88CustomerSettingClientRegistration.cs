@@ -8,7 +8,10 @@
     using global::CN88.Features.Site.Shared.Helpers;
     using Sunplus.Agent.Model.BL;
     using Sunplus.Agent.Model.Entities.Permission;
+    using global::CN88.Web.Filters;
+    using Web.Filters;
 
+    [NoCacheFilter, AfterLoginFlowFilter]
     public class CN88CustomerSettingClientRegistration : CN88CustomerSettingRegistration
     {
         public override bool VerifyQueryPermission(PermissionContext permissionContext)
