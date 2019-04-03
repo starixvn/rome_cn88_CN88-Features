@@ -1,10 +1,5 @@
 ﻿@{
     Layout = "~/Reports/Views/_OldLayout.cshtml";
-    var settlementActiveClass = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase) ?
-    "active" : string.Empty;
-    var validStakeActiveClass = string.Equals(Request["IsSettlement"], bool.FalseString, StringComparison.OrdinalIgnoreCase) ?
-        "active" : string.Empty;
-    var isSettlement = string.Equals(settlementActiveClass, "active", StringComparison.OrdinalIgnoreCase);
 }
 @section Styles {
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
@@ -14,19 +9,25 @@
     <div class="page-title title-report-detail">
         <ul class="nav nav-tabs" role="tablist">
             <li class="report-name">@Model.Title</li>
-            <li role="presentation" id="tabSettlement" class="@settlementActiveClass tab-selector" target-id="settlement-content">
+            <li role="presentation" id="tabSettlement" class="tab-selector">
                 <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
             </li>
             @if (Model.ReportLevel.IsNotMemberLevel())
             {
-                <li role="presentation" id="tabValidStake" class="@validStakeActiveClass tab-selector" target-id="valid-stake-content">
+                <li role="presentation" id="tabValidStake" class="tab-selector">
                     <a data-toggle="tab" href="#">@ReportResources.ValidStake</a>
                 </li>
             }
         </ul>
-        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null, isSettlement)
+        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null, Model.IsSettlement)
     </div>
-    @Html.Partial("~/Reports/Views/OldFilter.cshtml", Model.OldReportFilterViewModel)
+    @Html.Partial("~/Reports/Views/OldFilter.cshtml", Model.OldReportFilterViewModel,
+    new ViewDataDictionary
+    {
+        { "IsDescendingSort", Model.IsDescendingSort },
+        { "SortPropertyName", Model.SortPropertyName },
+        { "IsSettlement", Model.IsSettlement }
+    })
     @{
         if (Model.ReportLevel.IsSuperLevel())
         {

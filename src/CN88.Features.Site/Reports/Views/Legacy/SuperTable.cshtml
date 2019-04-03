@@ -1,31 +1,37 @@
 ﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
-    int divisor = Model.Divisor;
+    var divisor = Model.Divisor;
+    var colIndex = 0;
 }
-<table class="tbl-noborder tbl-report" id="tbl-report">
-    <thead>
+<table class="tbl-noborder tbl-report" id="tbl-report"
+       data-totalrecords="@Model.ReportData.Count()"
+       data-sortedcolumn="@Model.SortPropertyName"
+       data-descendingsort="@Model.IsDescendingSort">
+    <thead class="tableFloatingHeaderOriginal">
         <tr>
-            <th class="text-left">@ReportResources.SMAUsername</th>
-            <th class="text-right">@ReportResources.Wagers</th>
-            <th class="text-right">@ReportResources.Stake</th>
-            <th class="text-right">@ReportResources.ValidStake</th>
-            <th class="text-right">@ReportResources.MemberIncome</th>
-            <th class="text-right">@ReportResources.Agent</th>
-            <th class="text-right">@ReportResources.AgentResult</th>
-            <th class="text-right">@ReportResources.MasterAgent</th>
-            <th class="text-right">@ReportResources.SMA</th>
-            <th class="text-right">@ReportResources.SMAIncome</th>
-            <th class="text-right">@ReportResources.SMAResult</th>
-            <th class="text-right">@ReportResources.SMAStock</th>
+            <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.SMAUsername</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Wagers">@ReportResources.Wagers</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.Stake</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="ValidStake">@ReportResources.ValidStake</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Agent">@ReportResources.Agent</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResult">@ReportResources.AgentResult</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MasterAgent">@ReportResources.MasterAgent</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="SMA">@ReportResources.SMA</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAIncome">@ReportResources.SMAIncome</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAResult">@ReportResources.SMAResult</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAStock">@ReportResources.SMAStock</th>
             @if (Model.IsNotOwner)
             {
-                <th class="text-right">@ReportResources.SMAStockPercent</th>
-                <th class="text-right">@ReportResources.HeadlinePoss</th>
-                <th class="text-right">@ReportResources.HeadlineIncome</th>
-                <th class="text-right">@ReportResources.HeadlineResult</th>
-                <th class="text-right">@ReportResources.HeadlineStock</th>
-                <th class="text-right">@ReportResources.HeadlineStockPercent</th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAStockPercent">@ReportResources.SMAStockPercent</th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlinePoss">
+                    @ReportResources.HeadlinePoss <span class="icon-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess"></span>
+                </th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineIncome">@ReportResources.HeadlineIncome</th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineResult">@ReportResources.HeadlineResult</th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineStock">@ReportResources.HeadlineStock</th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineStockPercent">@ReportResources.HeadlineStockPercent</th>
             }
         </tr>
         @if (Model.ReportData.Any())
@@ -61,7 +67,7 @@
             @foreach (var row in Model.ReportData)
             {
                 <tr>
-                    <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
+                    <td><a class="downline-link" href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
                     @HtmlHelpers.RenderNumberCell(row.Wagers)
                     @HtmlHelpers.RenderNumberCell(divisor, row.Stake)
                     @HtmlHelpers.RenderNumberCell(divisor, row.ValidStake)

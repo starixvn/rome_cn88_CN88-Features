@@ -5,19 +5,18 @@
 class OldWagerReport extends OldLegacyReport {
     $tabSettlement: JQuery;
     $tabValidStake: JQuery;
-
-    elements = {
-        tabSelectors: null,
-        tabContent: null
-    };
+    $custLevelId: JQuery;
+    $isSettlement: JQuery;
 
     constructor(
         $: JQueryStatic,
         accountingPeriodSelectionComponent: SingleSelectionDropdownComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
+        sortComponent: SortComponent,
+        linkBuilderComponent: LinkBuilderComponent,
         pagerComponent: ClientPagerComponent) {
-        super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent, pagerComponent);
+        super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent, sortComponent, linkBuilderComponent, pagerComponent);
     }
 
     init(): void {
@@ -30,13 +29,11 @@ class OldWagerReport extends OldLegacyReport {
 
         this.$subMenuWager.parent().addClass("active");
 
-        if (location.search.indexOf("IsSettlement=True") != -1 ||
-            location.search.indexOf("CustLevelId=1") != -1 ||
-            this.$("IsSettlement").val() == "True" ||
-            this.$tabSettlement.hasClass("active")) {
-            this.activateSettlementTab();
+        if (cn88Features.convertAttributeToBool(this.$isSettlement.val())
+            || this.$custLevelId.val() == "1") {
+            this.$tabSettlement.click();
         } else {
-            this.activateValidStakeTab();
+            this.$tabValidStake.click();
         }
 
         this.$.unblockUI();
@@ -66,43 +63,51 @@ class OldWagerReport extends OldLegacyReport {
 
     cacheDOMElements(): void {
         super.cacheDOMElements();
-        this.$tabSettlement = this.$("#tabSettlement");
+        this.$custLevelId = this.$("#CustLevelId");
         this.$tabValidStake = this.$("#tabValidStake");
-        this.elements.tabSelectors = $(".tab-selector");
-        this.elements.tabContent = $(".tab-content");
+        this.$tabSettlement = this.$("#tabSettlement");
+        this.$isSettlement = this.$("#IsSettlement");
     }
 
     registerEvents(): void {
-        let self = this;
-        super.registerEvents();
-
         this.$tabSettlement.on("click touchend", () => {
-            if (location.search.indexOf("CustLevelId=1") == -1)
-                this.$("#IsSettlement").val("True");
+            if (this.$custLevelId.val() !== "1") {
+                this.$isSettlement.val("True");
+            }
+
+            this.$(".tab-selector").removeClass("active")
+            this.$tabSettlement.addClass("active");
+            this.$tableReport.find(".valid-stake").hide();
+            this.$tableReport.find(".settlement").show();
+            this.linkBuilderComponent.updateParam("IsSettlement", "True");
         });
 
         this.$tabValidStake.on("click touchend", () => {
-            this.$("#IsSettlement").val("False");
+            this.$isSettlement.val("False");
+            this.$(".tab-selector").removeClass("active")
+            this.$tabValidStake.addClass("active");
+            this.$tableReport.find(".settlement").hide();
+            this.$tableReport.find(".valid-stake").show();
+            this.linkBuilderComponent.updateParam("IsSettlement", "False");
+
+            if (this.$custLevelId.val() == "4") {
+                this.$("#profit-margin").attr("colspan", 8);
+            }
         });
 
-        this.elements.tabSelectors.on("click touchend", function () {
-            self.elements.tabSelectors.removeClass("active");
-            $(this).addClass("active");
-            var target = $(this).attr("target-id");
-            self.elements.tabContent.addClass("display-none");
-            var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > .tbl-report");
-            self.pagerComponent.render(pagerOption);
-            $("#" + target).removeClass("display-none");
-        });
+        super.registerEvents();
     }
 }
 
 $(function () {
+    const linkBuilderComponent = new LinkBuilderComponent($);
     const oldWagerReport = new OldWagerReport(
         $,
         new SingleSelectionDropdownComponent($),
         new DateRangePickerComponent($),
         new SingleSelectionDropdownComponent($),
+        new SortComponent($, linkBuilderComponent),
+        linkBuilderComponent,
         new ClientPagerComponent($));
 
     oldWagerReport.init();

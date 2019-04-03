@@ -41,6 +41,10 @@
 
         public static string TotalBetAppPath => GetConfigValue("TotalBetAppPath") ?? "site-totalbets";
 
+        public static int WagerMonitoringExpirationCacheInMinutes => Converter.ToInt(GetConfigValue("WagerMonitoringExpirationCacheInMinutes"));
+
+        public static int WagerMonitoringPageSize => Converter.ToInt(GetConfigValue("WagerMonitoringPageSize"));
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify() => Require(StoredProcedurePath, nameof(StoredProcedurePath));

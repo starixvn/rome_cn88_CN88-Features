@@ -13,10 +13,13 @@
         {
             this.viewer = viewer;
 
-            // Default data, if query string had data, then get from query string.
-            //CustId = viewer.Id;
-            //CustName = viewer.Name;
-            //CustLevelId = viewer.LevelId;
+            ViewerId = viewer.Id;
+            ViewerName = viewer.Name;
+            NickName = viewer.NickName;
+            ViewerLevelId = viewer.LevelId;
+            SubAccountId = viewer.SubAccountId;
+            IP = viewer.IP;
+            Language = viewer.Language;
         }
 
         public int CustId { get; set; }
@@ -29,26 +32,23 @@
 
         public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 
-        public int ViewerId => viewer.Id;
+        public int ViewerId { get; }
 
-        public string ViewerName => viewer.Name;
+        public string ViewerName { get; }
 
-        public string NickName => viewer.NickName;
+        public string NickName { get; }
 
-        public byte ViewerLevelId => viewer.LevelId;
+        public byte ViewerLevelId { get; }
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
 
         public IEnumerable<CustInfo> BreadcrumbLevel { get; set; } = Enumerable.Empty<CustInfo>();
 
-        public int SubAccountId => viewer.SubAccountId;
+        public int SubAccountId { get; }
 
-        public string IP => viewer.IP;
+        public string IP { get; }
 
-        public string Language => viewer.Language;
-
-        public IUser GetViewer()
-            => viewer;
+        public string Language { get; }
 
         public virtual bool IsValid()
             => ViewerId > 0

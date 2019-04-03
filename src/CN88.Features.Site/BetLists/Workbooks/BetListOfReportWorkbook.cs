@@ -8,6 +8,7 @@
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
+    using Features.BetLists.Helpers;
     using Features.BetLists.Models;
     using Features.BetLists.Resources;
     using NPOI.HSSF.UserModel;
@@ -176,9 +177,17 @@
 
                 var comm = (ticket.PlayerDiscount * 100).ToString("#,##0.00");
                 var username = ticket.UserName ?? string.Empty;
-                var richString = new HSSFRichTextString($"{username}\n{ ticket.UGroup.ToUpper() } { comm }");
-                richString.ApplyFont(username.Length, username.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
-                row.SetCellValue(colIndex++, richString);
+                if (BetTypeHelper.NotShowComm(ticket.BetTypeId))
+                {
+                    var richString = new HSSFRichTextString(username);
+                    row.SetCellValue(colIndex++, richString);
+                }
+                else
+                {
+                    var richString = new HSSFRichTextString($"{username}\n{ ticket.UGroup.ToUpper() } { comm }");
+                    richString.ApplyFont(username.Length, username.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
+                    row.SetCellValue(colIndex++, richString);
+                }
 
                 var cellValue = cn88ExcelBuilder.CreateBetInfoBuilder(ticket.BetTypeId)
                       .RenderRTF(ticket, BetDataViewModel.TicketHelper, BetDataViewModel.TicketHelper.GetOddsTypeNameById, rtfHelper);

@@ -5,15 +5,10 @@
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
 class WagerReport extends LegacyReport {
-    $reportType: JQuery;
     $tabValidStake: JQuery;
     $tabSettlement: JQuery;
     $custLevelId: JQuery;
-
-    elements = {
-        tabSelectors: null,
-        tabContent: null
-    };
+    $isSettlement: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -21,9 +16,10 @@ class WagerReport extends LegacyReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
+        sortComponent: SortComponent,
         linkBuilderComponent: LinkBuilderComponent,
         pagerComponent: ClientPagerComponent) {
-        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, linkBuilderComponent, pagerComponent);
+        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, sortComponent, linkBuilderComponent, pagerComponent);
     }
 
     init = () => {
@@ -33,90 +29,64 @@ class WagerReport extends LegacyReport {
         this.renderComponents();
         this.registerEvents();
 
-        let reportType = this.$reportType.val();
-        let custLevelId = this.$custLevelId.val();
-        if (reportType !== "1" &&
-            custLevelId !== "1" &&
-            location.search.indexOf("IsSettlement=True") === -1) {
-            this.activateValidStakeTab();
-        }
-        else if (location.search.indexOf("IsSettlement=True") != -1 ||
-            this.$custLevelId.val() === "1" ||
-            this.$("IsSettlement").val() === "True" ||
-            this.$tabSettlement.hasClass("active")) {
-            this.activateSettlementTab();
+        if (cn88Features.convertAttributeToBool(this.$isSettlement.val())
+            || this.$custLevelId.val() == "1") {
+            this.$tabSettlement.click();
         } else {
-            this.activateValidStakeTab();
+            this.$tabValidStake.click();
         }
 
         this.$.unblockUI();
     };
 
-    activateSettlementTab = () => {
-        this.$tabSettlement
-            .removeClass("active")
-            .addClass("active");
-
-        this.$tabValidStake
-            .removeClass("active");
-
-        this.$tabSettlement.click();
-    };
-
-    activateValidStakeTab = () => {
-        this.$tabValidStake
-            .removeClass("active")
-            .addClass("active");
-
-        this.$tabSettlement
-            .removeClass("active");
-
-        this.$tabValidStake.click();
-    };
-
     public cacheDOMElements() {
         super.cacheDOMElements();
-        this.$reportType = this.$("#ReportType");
         this.$custLevelId = this.$("#CustLevelId");
         this.$tabValidStake = this.$("#tabValidStake");
         this.$tabSettlement = this.$("#tabSettlement");
-        this.elements.tabSelectors = this.$(".tab-selector");
-        this.elements.tabContent = this.$(".tab-content");
+        this.$isSettlement = this.$("#IsSettlement");
     }
 
     public registerEvents() {
         this.$tabSettlement.on("click touchend", () => {
-            if (this.$custLevelId.val() !== "1")
-                this.$("#IsSettlement").val("True");
+            if (this.$custLevelId.val() !== "1") {
+                this.$isSettlement.val("True");
+            }
+
+            this.$(".tab-selector").removeClass("active")
+            this.$tabSettlement.addClass("active");
+            this.$tableReport.find(".valid-stake").hide();
+            this.$tableReport.find(".settlement").show();
+            this.linkBuilderComponent.updateParam("IsSettlement", "True");
         });
 
         this.$tabValidStake.on("click touchend", () => {
-            this.$("#IsSettlement").val("False");
+            this.$isSettlement.val("False");
+            this.$(".tab-selector").removeClass("active")
+            this.$tabValidStake.addClass("active");
+            this.$tableReport.find(".settlement").hide();
+            this.$tableReport.find(".valid-stake").show();
+            this.linkBuilderComponent.updateParam("IsSettlement", "False");
+
+            if (this.$custLevelId.val() == "4") {
+                this.$("#profit-margin").attr("colspan", 8);
+            }
         });
 
-        let self = this;
         super.registerEvents();
-
-        this.elements.tabSelectors.on("click touchend", function () {
-            self.elements.tabSelectors.removeClass("active");
-            $(this).addClass("active");
-            var target = $(this).attr("target-id");
-            self.elements.tabContent.addClass("display-none");
-            var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > .tbl-report");
-            self.pagerComponent.render(pagerOption);
-            $("#" + target).removeClass("display-none");
-        });
     }
 }
 
 $(function () {
+    const linkBuilderComponent = new LinkBuilderComponent($);
     const wagerReport = new WagerReport(
         $,
         new DateRangePickerComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new LinkBuilderComponent($),
+        new SortComponent($, linkBuilderComponent),
+        linkBuilderComponent,
         new ClientPagerComponent($));
 
     wagerReport.init();

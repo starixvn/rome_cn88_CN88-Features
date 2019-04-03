@@ -12,7 +12,12 @@
             @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null)
         </div>
     </div>
-    @Html.Partial("~/Reports/Views/OldFilter.cshtml", Model.OldReportFilterViewModel)
+    @Html.Partial("~/Reports/Views/OldFilter.cshtml", Model.OldReportFilterViewModel,
+    new ViewDataDictionary
+    {
+        { "IsDescendingSort", Model.IsDescendingSort },
+        { "SortPropertyName", Model.SortPropertyName }
+    })
     @{
         if (Model.ReportLevel.IsMemberLevel())
         {

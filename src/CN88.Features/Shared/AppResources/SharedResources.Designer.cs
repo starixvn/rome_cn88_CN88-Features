@@ -133,6 +133,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Early.
+        /// </summary>
+        public static string Early {
+            get {
+                return ResourceManager.GetString("Early", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
@@ -385,11 +394,29 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Per Sports.
+        /// </summary>
+        public static string PerSports {
+            get {
+                return ResourceManager.GetString("PerSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pre-Match.
         /// </summary>
         public static string PreMatch {
             get {
                 return ResourceManager.GetString("PreMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to Default.
+        /// </summary>
+        public static string ResetToDefault {
+            get {
+                return ResourceManager.GetString("ResetToDefault", resourceCulture);
             }
         }
         
@@ -484,6 +511,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops... you are here because of a system error, please notify system administrator..
+        /// </summary>
+        public static string SystemErrorMessage {
+            get {
+                return ResourceManager.GetString("SystemErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This Period.
         /// </summary>
         public static string ThisPeriod {
@@ -543,6 +579,15 @@ namespace CN88.Features.Shared.AppResources {
         public static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Sports.
+        /// </summary>
+        public static string VirtualSports {
+            get {
+                return ResourceManager.GetString("VirtualSports", resourceCulture);
             }
         }
         

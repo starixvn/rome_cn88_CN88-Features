@@ -1,36 +1,40 @@
 ﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
-    int divisor = Model.Divisor;
-
-    var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
+    var divisor = Model.Divisor;
+    var colIndex = 0;
 }
-<div id="settlement-content" class="tab-content">
-    <table class="tbl-noborder tbl-report settlement-report">
-        <thead>
+<div class="tab-content">
+    <table class="tbl-noborder tbl-report" id="tbl-report"
+           data-totalrecords="@Model.ReportData.Count()"
+           data-sortedcolumn="@Model.SortPropertyName"
+           data-descendingsort="@Model.IsDescendingSort">
+        <thead class="tableFloatingHeaderOriginal">
             <tr>
-                <th class="text-left">@ReportResources.MemberUsername</th>
-                <th class="text-left">@ReportResources.Name</th>
-                <th class="text-right valid-stake">@ReportResources.Wagers</th>
-                <th class="text-right valid-stake">@ReportResources.Stake</th>
-                <th class="text-right valid-stake">@ReportResources.ValidStake</th>
-                <th class="text-right valid-stake">@ReportResources.MemberIncome</th>
-                <th class="text-right valid-stake">@ReportResources.AgentPoss</th>
-                <th class="text-right valid-stake">@ReportResources.AgentIncome</th>
-                <th class="text-right valid-stake">@ReportResources.AgentResultA</th>
+                <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.MemberUsername</th>
+                <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Name">@ReportResources.Name</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="Wagers">@ReportResources.Wagers</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.Stake</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="ValidStake">@ReportResources.ValidStake</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentPoss">
+                    @ReportResources.AgentPoss <span class="icon-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess"></span>
+                </th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentIncome">@ReportResources.AgentIncome</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResultA">@ReportResources.AgentResultA</th>
             </tr>
             @if (Model.ReportData.Any())
             {
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>
                     <th></th>
-                    @HtmlHelpers.RenderHeaderNumberCell(total.Wagers)
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake)
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake)
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor,  total.MemberIncome)
-                    <th></th>
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentIncome)
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MemberIncome, "settlement")
+                    <th class="settlement"></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentIncome, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult, "settlement")
                 </tr>
             }
         </thead>
@@ -40,15 +44,15 @@
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
-                        <td><a href="@Model.BuildDrillDownLink(data, Request.Url.Query, isSettlement)">@data.Username</a></td>
+                        <td><a class="downline-link" href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
                         <td class="text-left">@data.Name</td>
-                        @HtmlHelpers.RenderNumberCell(data.Wagers)
-                        @HtmlHelpers.RenderNumberCell(divisor, data.Stake)
-                        @HtmlHelpers.RenderNumberCell(divisor, data.ValidStake)
-                        @HtmlHelpers.RenderNumberCell(divisor, data.MemberIncome)
-                        <td class="text-right">@data.AgentPoss</td>
-                        @HtmlHelpers.RenderNumberCell(divisor, data.AgentIncome)
-                        @HtmlHelpers.RenderNumberCell(divisor, data.AgentResult)
+                        @HtmlHelpers.RenderNumberCell(data.Wagers, "settlement")
+                        @HtmlHelpers.RenderNumberCell(divisor, data.Stake, "settlement")
+                        @HtmlHelpers.RenderNumberCell(divisor, data.ValidStake, "settlement")
+                        @HtmlHelpers.RenderNumberCell(divisor, data.MemberIncome, "settlement")
+                        <td class="text-right settlement">@data.AgentPoss</td>
+                        @HtmlHelpers.RenderNumberCell(divisor, data.AgentIncome, "settlement")
+                        @HtmlHelpers.RenderNumberCell(divisor, data.AgentResult, "settlement")
                     </tr>
                 }
             }

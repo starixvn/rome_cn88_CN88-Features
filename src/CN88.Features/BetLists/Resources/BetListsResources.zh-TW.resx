@@ -270,4 +270,10 @@
   <data name="TotalBetParlaySport_2" xml:space="preserve">
     <value>非足球</value>
   </data>
+  <data name="League" xml:space="preserve">
+    <value>聯賽</value>
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
+    <value>所有聯盟</value>
+  </data>
 </root>

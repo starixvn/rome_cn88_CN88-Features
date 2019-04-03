@@ -23,6 +23,7 @@
 }
 
 $(document).ready(() => {
+
     const betListOfStatement = new BetListOfStatement($, new ClientPagerComponent($));
     betListOfStatement.init();
 })
