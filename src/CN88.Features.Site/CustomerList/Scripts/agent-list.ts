@@ -29,7 +29,6 @@ class AgentList extends BaseList {
 
         var self = this;
         this.$("#btn-submit-agent").off("click").on("click", function () {
-            self.reportParam.PageSize = 100;
 			self.reportParam.PageIndex = 1;
 			self.viewAgents(self.reportParam.CustId);
 		});

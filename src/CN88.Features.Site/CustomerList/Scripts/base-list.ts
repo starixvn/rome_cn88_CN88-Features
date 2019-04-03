@@ -72,7 +72,6 @@
         this.$tblReport.stickyTableHeaders();      
         var self = this;
         this.$("#btn-submit-" + this.levelName.toLowerCase()).click(function () {
-            self.reportParam.PageSize = 100;
             self.reportParam.PageIndex = 1;
             self.viewList();
         });

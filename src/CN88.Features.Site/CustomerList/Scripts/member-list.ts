@@ -27,7 +27,6 @@
 
         var self = this;
         this.$("#btn-submit-member").off("click").on("click", function () {
-            self.reportParam.PageSize = 100;
 			self.reportParam.PageIndex = 1;
 			self.viewMembers(self.reportParam.CustId);
         });
