@@ -133,7 +133,7 @@
     <value>密碼未正確確認。</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>新增日期</value>
+    <value>建立日期</value>
   </data>
   <data name="DeleteSubAccount" xml:space="preserve">
     <value>Delete Sub Account</value>
