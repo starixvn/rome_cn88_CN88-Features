@@ -121,7 +121,7 @@
     <value>功能</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>代理</value>
+    <value>代理商</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
@@ -130,7 +130,7 @@
     <value>關閉</value>
   </data>
   <data name="CreationDate" xml:space="preserve">
-    <value>新增日期</value>
+    <value>建立日期</value>
   </data>
   <data name="Credit" xml:space="preserve">
     <value>信用額度</value>
@@ -181,7 +181,7 @@
     <value>保存</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>暂停</value>
+    <value>暫停</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>帳戶</value>

@@ -130,7 +130,7 @@
     <value>关闭</value>
   </data>
   <data name="CreationDate" xml:space="preserve">
-    <value>新增日期</value>
+    <value>创建日期</value>
   </data>
   <data name="Credit" xml:space="preserve">
     <value>信用额度</value>
@@ -181,7 +181,7 @@
     <value>保存</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>暫停</value>
+    <value>暂停</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>帐户</value>
