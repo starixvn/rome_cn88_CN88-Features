@@ -24,7 +24,7 @@
 
         public string Language => userSession.Language;
 
-        public string LanguageKey => userSession.Language;
+        public string LanguageKey => userSession.LangKey;
 
         public byte LevelId => userSession.RoleId;
 

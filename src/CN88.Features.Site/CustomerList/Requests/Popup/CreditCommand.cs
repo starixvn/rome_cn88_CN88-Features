@@ -1,17 +1,18 @@
 ﻿namespace CN88.Features.Site.CustomerList
 {
-    using CN88.Features.Models;
-    using CN88.Features.Site.Requests;
+    using Features.Models;
     using MediatR;
+    using Site.Requests;
 
     public class CreditCommand : BaseQuery, IRequest<Result>
     {
-        private readonly IUser viewer;
-
-        public CreditCommand(IUser viewer) : base(viewer)
+        public CreditCommand(IUser viewer)
+            : base(viewer)
         {
-            this.viewer = viewer;
+            LanguageKey = viewer.LanguageKey;
         }
+
+        public string LanguageKey { get; }
 
         public decimal CreditAmount { get; set; }
     }

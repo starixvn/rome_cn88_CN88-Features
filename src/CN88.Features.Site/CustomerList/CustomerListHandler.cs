@@ -3,19 +3,18 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
-    using CN88.Features.CustomerList.Params;
-    using CN88.Features.CustomerList.Services;
-    using CN88.Features.Models;
-    using CN88.Features.Site.CustomerList;
-    using CN88.Features.Site.CustomerList.ViewModels;
+    using CustomerList;
     using CustomerList.Requests;
+    using CustomerList.ViewModels;
+    using Extensions;
     using Features.CustomerList;
+    using Features.CustomerList.Params;
+    using Features.CustomerList.Services;
+    using Features.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Models;
     using Features.Shared.Services;
     using MediatR;
-    using CN88.Features.Extensions;
     using Shared.ViewModels;
 
     public class CustomerListHandler :
@@ -71,15 +70,14 @@
          => new StatusPopupViewModel(message);
 
         public Result Handle(CreditCommand message)
-         => service.UpdateCredit(
-               new UpdateCreditParam(
-                   message.CustId,
-                   message.CustLevelId,
-                   message.CreditAmount,
-                   message.ViewerId,
-                   message.SubAccountId,
-                   message.Language,
-                   message.IP));
+         => service.UpdateCredit(new UpdateCreditParam(
+                message.CustId,
+                message.CustLevelId,
+                message.CreditAmount,
+                message.ViewerId,
+                message.SubAccountId,
+                message.LanguageKey,
+                message.IP));
 
         public Result Handle(CustomerStatusCommand message)
             => service.UpdateCustomerStatus(new UpdateCustomerStatusParam(
@@ -87,7 +85,7 @@
                message.ViewerId,
                message.SubAccountId,
                message.UpdateStatusId,
-               message.Language,
+               message.LanguageKey,
                message.IP,
                message.ViewerName));
 
