@@ -37,6 +37,13 @@ body {
 
     .form-group {
         margin: 0 0 15px;
+        &.list-buttons {
+            width: 350px;
+            text-align: right;
+            .btn-submit {
+                margin-right: 0;
+            }
+        }
 
         &.btn-ex-group {
             .btn-default, .btn-secondary {
@@ -365,5 +372,18 @@ body {
             display: inline-block;
             vertical-align: top;
         }
+    }
+}
+
+@media only screen and (max-device-width: 743px) {
+    .input-group.date{
+        .form-control {
+            height: 30px;
+            box-shadow: none;
+        }
+        .icon-calendar {
+            font-size: 16px;
+        }
+        
     }
 }
