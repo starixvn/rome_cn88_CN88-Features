@@ -157,7 +157,7 @@
     <value>名稱</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
-    <value>沒資料顯示</value>
+    <value>無資料</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>您沒有使用此功能的權限.</value>
