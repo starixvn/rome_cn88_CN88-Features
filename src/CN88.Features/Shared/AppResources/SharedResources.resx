@@ -279,4 +279,7 @@
   <data name="MemberStake" xml:space="preserve">
     <value>Member Stake</value>
   </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
 </root>

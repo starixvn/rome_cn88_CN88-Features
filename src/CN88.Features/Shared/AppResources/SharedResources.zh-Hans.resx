@@ -264,4 +264,7 @@
   <data name="MemberStake" xml:space="preserve">
     <value>会员投注额</value>
   </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
 </root>

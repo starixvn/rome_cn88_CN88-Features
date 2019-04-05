@@ -5,6 +5,8 @@
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
     fromDateSelectionComponent: SingleSelectionDropdownComponent;
     toDateSelectionComponent: SingleSelectionDropdownComponent;
+    warning: string;
+    invalidDateRange: string;
 
     constructor(
         $: JQueryStatic,
@@ -25,7 +27,8 @@
         this.toDateSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-todate", "UserSelectedtodate"));
         this.$reportForm = this.$("#report-form");
         this.$reportForm.submit(this.onReportSubmit);
-
+        this.warning = this.$("#Warning").val();
+        this.invalidDateRange = this.$("#InvalidDateRange").val();
     }
 
     public onReportSubmit = () => {
@@ -35,7 +38,7 @@
         var fromValue = this.$("#UserSelectedfromdate").val();
         var toValue = this.$("#UserSelectedtodate").val();
         if (fromValue < toValue) {
-            this.topWindow.popupManager.bootboxAlert("Warning", "Invalid date range.", null, 400);
+            this.topWindow.popupManager.bootboxAlert(this.warning, this.invalidDateRange, null, 400);
             return false;
         }
     };

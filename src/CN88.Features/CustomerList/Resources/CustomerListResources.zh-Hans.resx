@@ -145,7 +145,7 @@
     <value>修改</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>组别</value>
+    <value>群组</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>总代理</value>
@@ -281,5 +281,32 @@
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>成功更新</value>
+  </data>
+  <data name="InvalidDateRange" xml:space="preserve">
+    <value>Invalid date range.</value>
+  </data>
+  <data name="MemberStatement" xml:space="preserve">
+    <value>Member Statement</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
   </data>
 </root>

@@ -1,8 +1,7 @@
-﻿@using Fanex.BetList.Core.Utils
-@model MemberStatementViewModel
+﻿@model MemberStatementViewModel
 @{
     Layout = "~/Shared/Views/_Layout.cshtml";
-    ViewBag.Title = "Member Statement";
+    ViewBag.Title = CustomerListResources.MemberStatement;
 }
 
 @section Styles {
@@ -20,8 +19,6 @@
             <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
         </div>
     </form>
-
-
     <table class="tbl-style2">
         <thead>
             <tr>
@@ -69,8 +66,9 @@
             }
         </tfoot>
     </table>
-
 </div>
+@Html.Hidden("Warning", SharedResources.Warning)
+@Html.Hidden("InvalidDateRange", CustomerListResources.InvalidDateRange)
 @section Scripts {
     @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/memberstatement")
 }
