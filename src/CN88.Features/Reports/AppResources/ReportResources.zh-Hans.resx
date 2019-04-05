@@ -268,4 +268,7 @@
   <data name="OldReport" xml:space="preserve">
     <value>旧帐</value>
   </data>
+  <data name="Reports" xml:space="preserve">
+    <value>报表</value>
+  </data>
 </root>

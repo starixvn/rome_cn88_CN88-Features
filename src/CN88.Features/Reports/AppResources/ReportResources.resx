@@ -268,4 +268,7 @@
   <data name="OldReport" xml:space="preserve">
     <value>Old Report</value>
   </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
 </root>
