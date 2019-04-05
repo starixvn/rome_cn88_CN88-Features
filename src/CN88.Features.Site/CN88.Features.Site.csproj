@@ -858,6 +858,7 @@
     <Content Include="BetLists\Views\EventWagerDetails.cshtml" />
     <Content Include="BetLists\Views\EventWagerByAccount.cshtml" />
     <Content Include="App_Code\BetLists\Payout.cshtml" />
+    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Headline.xls" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
