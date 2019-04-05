@@ -232,6 +232,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legacy Report.
+        /// </summary>
+        public static string LegacyReport {
+            get {
+                return ResourceManager.GetString("LegacyReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MA Income.
         /// </summary>
         public static string MAIncome {
@@ -336,6 +345,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string NewPosses {
             get {
                 return ResourceManager.GetString("NewPosses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Report.
+        /// </summary>
+        public static string OldReport {
+            get {
+                return ResourceManager.GetString("OldReport", resourceCulture);
             }
         }
         

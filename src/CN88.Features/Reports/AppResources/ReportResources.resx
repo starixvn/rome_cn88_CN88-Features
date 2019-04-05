@@ -262,4 +262,10 @@
   <data name="CreateReport" xml:space="preserve">
     <value>Create Report</value>
   </data>
+  <data name="LegacyReport" xml:space="preserve">
+    <value>Legacy Report</value>
+  </data>
+  <data name="OldReport" xml:space="preserve">
+    <value>Old Report</value>
+  </data>
 </root>

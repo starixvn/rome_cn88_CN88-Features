@@ -262,4 +262,10 @@
   <data name="CreateReport" xml:space="preserve">
     <value>创建报表</value>
   </data>
+  <data name="LegacyReport" xml:space="preserve">
+    <value>传统报表</value>
+  </data>
+  <data name="OldReport" xml:space="preserve">
+    <value>旧帐</value>
+  </data>
 </root>
