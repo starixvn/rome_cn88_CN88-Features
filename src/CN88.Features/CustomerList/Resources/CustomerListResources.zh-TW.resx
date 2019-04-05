@@ -163,7 +163,7 @@
     <value>您沒有使用此功能的權限.</value>
   </data>
   <data name="of" xml:space="preserve">
-    <value>之第</value>
+    <value>之</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>開啟</value>
@@ -208,7 +208,7 @@
     <value>更改密碼</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注額</value>
+    <value>下注金額</value>
   </data>
   <data name="AgentIsRequired" xml:space="preserve">
     <value>需要代理商</value>

@@ -98,7 +98,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Name" xml:space="preserve">
-    <value>名</value>
+    <value>名稱</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>今日</value>
@@ -107,10 +107,10 @@
     <value>昨日</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>總和</value>
+    <value>總計</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注額 </value>
+    <value>下注金額</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>會員</value>

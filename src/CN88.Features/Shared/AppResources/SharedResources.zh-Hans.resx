@@ -151,7 +151,7 @@
     <value>页</value>
   </data>
   <data name="of" xml:space="preserve">
-    <value>之第</value>
+    <value>之</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
     <value>上星期</value>
@@ -160,7 +160,7 @@
     <value>导出Excel</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注额</value>
+    <value>下注金额</value>
   </data>
   <data name="PercentageViewMode_0" xml:space="preserve">
     <value>显示所有</value>

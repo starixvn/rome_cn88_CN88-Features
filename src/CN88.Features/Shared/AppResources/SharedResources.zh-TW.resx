@@ -151,16 +151,16 @@
     <value>頁</value>
   </data>
   <data name="of" xml:space="preserve">
-    <value>之第</value>
+    <value>之</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
     <value>上星期</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
-    <value>導出到Excel</value>
+    <value>導出Excel</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>投注額</value>
+    <value>下注金額</value>
   </data>
   <data name="Parlay" xml:space="preserve">
     <value>綜合過關</value>
@@ -205,7 +205,7 @@
     <value>所有球類</value>
   </data>
   <data name="BetType" xml:space="preserve">
-    <value>投注類別</value>
+    <value>玩法</value>
   </data>
   <data name="NickName" xml:space="preserve">
     <value>暱稱</value>
