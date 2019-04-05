@@ -169,7 +169,7 @@
     <value>下注金额</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
-    <value>输赢</value>
+    <value>赢/输</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状态</value>

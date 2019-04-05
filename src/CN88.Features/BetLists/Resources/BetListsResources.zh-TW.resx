@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Total" xml:space="preserve">
-    <value>總計</value>
+    <value>總和</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>無資料</value>
@@ -169,7 +169,7 @@
     <value>下注金額</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
-    <value>輸贏</value>
+    <value>贏/輸</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>狀態</value>
