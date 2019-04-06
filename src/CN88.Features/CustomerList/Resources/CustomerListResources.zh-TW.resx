@@ -217,7 +217,7 @@
     <value>對不起，增加信用額度失敗。您已超出代理商額度。</value>
   </data>
   <data name="MasterIsRequired" xml:space="preserve">
-    <value>需要總代理</value>
+    <value>「總代理」必填。</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>編號</value>

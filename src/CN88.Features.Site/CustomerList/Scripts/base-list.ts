@@ -34,6 +34,7 @@
     viewDownlineFunction: Function;
 	addDownlineFunction: Function;
     reportColSpan: number;
+    minPageSize: number = 10;
 
     constructor(
         $: JQueryStatic,
@@ -60,7 +61,7 @@
         this.indexManager = indexManager;
         this.renderList = renderList;
         this.levelId = levelId;
-        this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 8 : 7;
+        this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 9 : 8;
         this.viewDownlineFunction = viewDownlineFunction;
 		this.addDownlineFunction = addDownlineFunction;
 
@@ -132,6 +133,7 @@
 
             self.viewDownlineFunction($this.attr("cust-id"), $this.html());
         });
+
         this.$tblReport.find(".col-credit").click(function () {
             var $this = self.$(this);
 
@@ -183,7 +185,7 @@
         this.$tblReport.find("> tfoot").empty();
         this.$("#PageIndex" + this.levelName).remove();
         this.$("#PageSize" + this.levelName).remove();
-        if (rs.TotalCustomers >= siteInfrastructure.pageList[0]) {
+        if (rs.TotalCustomers >= this.minPageSize) {
             var footer = "<tr>" +
                 "<td colspan='" + this.reportColSpan + "'><div id='report-pager-" + this.levelNameLowerCase + "' " +
                 "data-labelpage='" + this.viewResources.Page + "'" +
