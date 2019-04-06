@@ -108,8 +108,11 @@
             };
             var statements = statementService.Get(param);
             var sportGroups = sportService.GetSportGroups();
-            var fromDates = statementService.GetAvailableDate();
-            var toDates = statementService.GetAvailableDate();
+
+            var availableDate = statementService.GetAvailableDate();
+            var fromDates = availableDate;
+            var toDates = availableDate;
+
             return new MemberStatementViewModel(
                 statements,
                 message,

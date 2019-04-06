@@ -2,12 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using Alpha.Utilities.Extensions;
     using CN88.Features.CustomerList.Criteria;
     using CN88.Features.CustomerList.Models;
     using CN88.Features.CustomerList.Params;
     using CN88.Features.Shared.Services;
-    using Fanex.Caching;
     using Fanex.Data.Repository;
     using Shared.Configurations;
     using Shared.Utils;
@@ -34,8 +32,10 @@
 
         public IEnumerable<MemberStatementModel> Get(MemberStatementParam param)
         {
-            var fromDate = GetAvailableDate()[param.FromDate];
-            var toDate = GetAvailableDate()[param.ToDate];
+            var availableDates = GetAvailableDate();
+            var fromDate = availableDates[param.FromDate];
+            var toDate = availableDates[param.ToDate];
+
             var criteria = new GetMemberStatementCriteria(
                 param.CustId,
                 param.SportType,
@@ -49,19 +49,14 @@
 
         public Dictionary<int, DateTime> GetAvailableDate()
         {
-            return ConfiguredCacheService.GetOrSet(
-                "CN88.Features.CustomerList.GetAvailableDate",
-                () =>
-                {
-                    var dates = new Dictionary<int, DateTime>();
-                    for (var i = 0; i < AppSettings.MemberStatementOfLatestDay; i++)
-                    {
-                        dates.Add(i, SystemTime.Today.AddDays(i * -1));
-                    }
+            var dates = new Dictionary<int, DateTime>();
 
-                    return dates;
-                },
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
+            for (var i = 0; i < AppSettings.MemberStatementOfLatestDay; i++)
+            {
+                dates.Add(i, SystemTime.Today.AddDays(i * -1));
+            }
+
+            return dates;
         }
     }
 }
