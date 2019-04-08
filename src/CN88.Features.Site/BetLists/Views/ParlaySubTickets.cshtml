@@ -18,7 +18,7 @@
     foreach (var ticket in Model.BetListData.Tickets)
     {
         <div class="ticket-list">
-            @Model.Builder.CreateChoiceBuilder(ticket.BetTypeId).GetBetTypeName(ticket, Model.TicketHelper, null)
+            <div class="bet-type">@Model.Builder.CreateChoiceBuilder(ticket.BetTypeId).GetBetTypeName(ticket, Model.TicketHelper, null)</div>
             @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, null)))
             <div class="event-date">@ticket.EventDate.ToGlobalShowtime()</div>
             @Html.Raw(Model.Builder.CreateStatusBuilder(ticket.BetTypeId).RenderStatusResultText(ticket, null))
