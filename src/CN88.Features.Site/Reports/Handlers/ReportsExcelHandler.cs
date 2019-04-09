@@ -74,7 +74,7 @@
         internal Mapper<ReportModel> GetSuperRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
-                .Map(A, data => isTotal ? ReportResources.Total : data.Username)
+                .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => data.Super / divisor)
                 .Map(C, data => data.SuperIncome / divisor)
                 .Map(D, data => data.SuperResult / divisor)
@@ -113,7 +113,7 @@
         internal Mapper<ReportModel> GetMasterRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
-                .Map(A, data => isTotal ? ReportResources.Total : data.Username)
+                .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
                 .Map(C, data => data.MasterIncome / divisor)
                 .Map(D, data => data.MasterResult / divisor)
@@ -151,7 +151,7 @@
         internal Mapper<ReportModel> GetAgentRowMapper(ReportExcelQuery message, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
-                .Map(A, data => isTotal ? ReportResources.Total : data.Username)
+                .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
                 .Map(C, data => data.Agent / divisor)
                 .Map(D, data => data.AgentPoss)
@@ -183,7 +183,7 @@
         internal Mapper<ReportModel> GetMemberRowMapper(bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
-                .Map(A, data => isTotal ? ReportResources.Total : data.Username)
+                .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
                 .Map(C, data => data.Wagers)
                 .Map(D, data => data.Stake / divisor)
