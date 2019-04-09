@@ -172,10 +172,10 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>股東 (佔成)</value>
+    <value>超級代理 (%)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
-    <value>總代理 (佔成)</value>
+    <value>總代理 (%)</value>
   </data>
   <data name="PercentageViewMode_4" xml:space="preserve">
     <value>代理商 (佔成)</value>
@@ -199,13 +199,13 @@
     <value>保存</value>
   </data>
   <data name="InPlay" xml:space="preserve">
-    <value>滾球</value>
+    <value>進行中</value>
   </data>
   <data name="AllSports" xml:space="preserve">
     <value>所有球類</value>
   </data>
   <data name="BetType" xml:space="preserve">
-    <value>玩法</value>
+    <value>投注類別</value>
   </data>
   <data name="NickName" xml:space="preserve">
     <value>暱稱</value>

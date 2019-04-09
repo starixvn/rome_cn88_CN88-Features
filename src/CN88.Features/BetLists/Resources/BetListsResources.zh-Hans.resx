@@ -211,7 +211,7 @@
     <value>查看帐号</value>
   </data>
   <data name="ViewWagerDetails" xml:space="preserve">
-    <value>查看细单</value>
+    <value>检视注单內容</value>
   </data>
   <data name="DateTime" xml:space="preserve">
     <value>日期时间</value>
@@ -220,16 +220,16 @@
     <value>注单号</value>
   </data>
   <data name="AgentPercent" xml:space="preserve">
-    <value>代理商 (占成)</value>
+    <value>代理商 (%)</value>
   </data>
   <data name="MAPercent" xml:space="preserve">
-    <value>总代理 (占成)</value>
+    <value>总代理 (%)</value>
   </data>
   <data name="SMAPercent" xml:space="preserve">
-    <value> 超级代理 (占成)</value>
+    <value>超级代理 (%)</value>
   </data>
   <data name="CoPercent" xml:space="preserve">
-    <value>公司 (占成)</value>
+    <value>公司 (%)</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>内容</value>
@@ -241,16 +241,16 @@
     <value>显示所有</value>
   </data>
   <data name="CompanyPercent" xml:space="preserve">
-    <value>公司占成</value>
+    <value>公司(%)</value>
   </data>
   <data name="Sport" xml:space="preserve">
     <value>球类</value>
   </data>
   <data name="WinLossWithCommission" xml:space="preserve">
-    <value>佣金结果</value>
+    <value>退水结果</value>
   </data>
   <data name="TotalBetParlaySport_0" xml:space="preserve">
-    <value>全部</value>
+    <value>所有过关</value>
   </data>
   <data name="TotalBetParlaySport_1" xml:space="preserve">
     <value>足球</value>

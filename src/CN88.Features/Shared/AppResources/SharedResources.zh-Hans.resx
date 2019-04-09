@@ -169,10 +169,10 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>股东 (占成)</value>
+    <value>超级代理 (%)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
-    <value>总代理 (占成)</value>
+    <value>总代理 (%)</value>
   </data>
   <data name="PercentageViewMode_4" xml:space="preserve">
     <value>代理商 (占成)</value>
