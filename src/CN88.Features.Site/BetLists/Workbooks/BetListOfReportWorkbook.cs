@@ -135,7 +135,7 @@
             }
 
             row.CopyCellsFrom(TotalRowTemplate);
-            row.SetCellValue(0, BetListsResources.Total);
+            row.SetCellValue(0, BetListsResources.Total.ToUpperInvariant());
             row.SetCellValue(3, BetDataViewModel.BetListData.Total);
 
             var rtfStake = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
