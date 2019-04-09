@@ -6,6 +6,7 @@
     fromDateSelectionComponent: SingleSelectionDropdownComponent;
     toDateSelectionComponent: SingleSelectionDropdownComponent;
     warning: string;
+    ok: string;
     invalidDateRange: string;
 
     constructor(
@@ -28,6 +29,7 @@
         this.$reportForm = this.$("#report-form");
         this.$reportForm.submit(this.onReportSubmit);
         this.warning = this.$("#Warning").val();
+        this.ok = this.$("#OK").val();
         this.invalidDateRange = this.$("#InvalidDateRange").val();
     }
 
@@ -38,7 +40,7 @@
         var fromValue = this.$("#UserSelectedfromdate").val();
         var toValue = this.$("#UserSelectedtodate").val();
         if (fromValue < toValue) {
-            this.topWindow.popupManager.bootboxAlert(this.warning, this.invalidDateRange, null, 400);
+            this.topWindow.popupManager.bootboxAlert(this.warning, this.invalidDateRange, null, 400, this.ok);
             return false;
         }
     };
