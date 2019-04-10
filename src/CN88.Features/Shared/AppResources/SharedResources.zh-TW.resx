@@ -121,7 +121,7 @@
     <value>無資料</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
-    <value>您沒有使用此功能的權限.</value>
+    <value>您無權限使用此功能</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>到</value>
