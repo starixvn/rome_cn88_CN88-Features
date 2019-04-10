@@ -9,7 +9,8 @@
            int actorId,
            int subAccountId,
            string language,
-           string ip)
+           string ip,
+           bool isInternal)
         {
             SearchAccountId = searchAccountId;
             SearchAccountRoleId = searchAccountRoleId;
@@ -18,6 +19,7 @@
             Language = language;
             IP = ip;
             CreditAmount = creditAmount;
+            IsInternal = isInternal;
         }
 
         public int SearchAccountId { get; }
@@ -33,5 +35,7 @@
         public string IP { get; }
 
         public decimal CreditAmount { get; }
+
+        public bool IsInternal { get; }
     }
 }

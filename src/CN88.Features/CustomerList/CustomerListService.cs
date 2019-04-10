@@ -61,6 +61,11 @@
 
         public Result UpdateCredit(UpdateCreditParam param)
         {
+            if (param.IsInternal)
+            {
+                return Result.CreateErrorResult(101, CustomerListResources.NotAuthorized);
+            }
+
             var credit = GetCreditRangeModel(param.SearchAccountId, param.SearchAccountRoleId == UserLevel.Member.Value);
             if (param.CreditAmount < credit.MinCredit || param.CreditAmount > credit.MaxCredit)
             {
@@ -84,6 +89,11 @@
 
         public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
+            if (param.IsInternal)
+            {
+                return Result.CreateErrorResult(101, CustomerListResources.NotAuthorized);
+            }
+
             var command = new UpdateCustomerStatusCriteria(
                     param.SearchAccountId,
                     param.ActorId,

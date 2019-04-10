@@ -9,7 +9,8 @@
             byte updateStatusId,
             string language,
             string ip,
-            string actorName)
+            string actorName,
+            bool isInternal)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
@@ -18,6 +19,7 @@
             Language = language;
             IP = ip;
             ActorName = actorName;
+            IsInternal = isInternal;
         }
 
         public int SearchAccountId { get; }
@@ -33,5 +35,7 @@
         public string IP { get; }
 
         public string ActorName { get; }
+
+        public bool IsInternal { get; }
     }
 }

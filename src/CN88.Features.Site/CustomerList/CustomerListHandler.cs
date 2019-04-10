@@ -77,7 +77,8 @@
                 message.ViewerId,
                 message.SubAccountId,
                 message.LanguageKey,
-                message.IP));
+                message.IP,
+                message.IsInternal));
 
         public Result Handle(CustomerStatusCommand message)
             => service.UpdateCustomerStatus(new UpdateCustomerStatusParam(
@@ -87,7 +88,8 @@
                message.UpdateStatusId,
                message.LanguageKey,
                message.IP,
-               message.ViewerName));
+               message.ViewerName,
+               message.IsInternal));
 
         public OnlineMemberViewModel Handle(OnlineMembersQuery message)
         {
