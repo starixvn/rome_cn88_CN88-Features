@@ -211,7 +211,7 @@
     <value>下注金额</value>
   </data>
   <data name="AgentIsRequired" xml:space="preserve">
-    <value>需要代理商</value>
+    <value>「代理」必填。</value>
   </data>
   <data name="ExceededAgentCredit" xml:space="preserve">
     <value>对不起，增加信用额度失败。您已超出代理商額度。</value>
