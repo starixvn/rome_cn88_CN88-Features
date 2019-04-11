@@ -11,7 +11,10 @@ class ReportIndexView extends BaseReport {
     $createRptForm: JQuery;
     $wagerRptTypeDropdown: JQuery;
     $cancelledRptTypeDropdown: JQuery;
+
     $dateRangePicker: JQuery;
+    $fromDateContainer: JQuery;
+    $toDateContainer: JQuery;
 
     $choiceBtn: JQuery;
     $todayBtn: JQuery;
@@ -81,6 +84,8 @@ class ReportIndexView extends BaseReport {
         this.$clearBtn = this.$("#btn-clear");
 
         this.$dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
+        this.$fromDateContainer = this.$("#from-date-container");
+        this.$toDateContainer = this.$("#to-date-container");
     };
 
     calculatedDate(): void {
@@ -193,19 +198,27 @@ class ReportIndexView extends BaseReport {
         var button = this.$(e.target);
         this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
         button.removeClass("btn-default").addClass("btn-secondary");
-        this.$fromDate.val(moment(fromDate).format(cn88Features.format.shortDate_DatePicker));
-        this.$toDate.val(moment(toDate).format(cn88Features.format.shortDate_DatePicker));
-        this.dateRangePickerComponent.render();
+
+        let minDate = new Date(this.$dateRangePicker.data("mindate"));
+        let maxDate = new Date(this.$dateRangePicker.data("maxdate"));
+        let fDate = NexDatePickerHelper.correctDateInRange(fromDate, minDate, maxDate);
+        let tDate = NexDatePickerHelper.correctDateInRange(toDate, minDate, maxDate);
+
+        this.$fromDateContainer.data("DateTimePicker").maxDate(tDate);
+        this.$fromDateContainer.data("DateTimePicker").date(fDate);
+
+        this.$toDateContainer.data("DateTimePicker").minDate(fDate);
+        this.$toDateContainer.data("DateTimePicker").date(tDate);
     };
 
-    reset = () => {
+    reset(): void {
         this.resetWagerReportType();
         this.resetCancelledReportType();
-        this.resetDatePickerToYesterday();
+        this.$yesterdayBtn.click();
         this.sportGroupSelectionComponent.changeSelection(0);
         this.resetBetType();
         this.liveStatusSelectionComponent.changeSelection(2);
-    };
+    }
 
     resetWagerReportType(): void {
         (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
@@ -234,22 +247,6 @@ class ReportIndexView extends BaseReport {
                 break;
             }
         }
-    }
-
-    resetDatePickerToYesterday(): void {
-        let today: Date = new Date();
-        let yesterday: number = today.setDate(today.getDate() - 1);
-
-        this.$fromDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
-        this.$toDate.val(moment(yesterday).format(cn88Features.format.shortDate_DatePicker));
-
-        this.$choiceBtn
-            .removeClass("btn-secondary")
-            .addClass("btn-default");
-
-        this.$yesterdayBtn
-            .removeClass('btn-default')
-            .addClass('btn-secondary');
     }
 
     onSubmit = () => {
