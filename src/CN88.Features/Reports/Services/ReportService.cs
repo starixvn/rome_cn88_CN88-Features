@@ -68,7 +68,6 @@
 
         private ICriteria CreateReportCriteria(ReportParam param)
         {
-            var balanceUpDay = reportDateService.GetBalanceUpDay();
             var moveBetsDay = reportDateService.GetMoveBetsDay();
             var archiveDate = reportDateService.GetArchiveDate();
 
@@ -106,7 +105,7 @@
                 param.IsOwner,
                 param.FromDate,
                 param.ToDate,
-                balanceUpDay,
+                archiveDate,
                 moveBetsDay,
                 param.SportGroupId,
                 param.BetTypeId,
