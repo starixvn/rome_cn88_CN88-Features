@@ -10,15 +10,32 @@ class SubAccount {
     tableSubAccount: JQuery;
     resources: any;
     urls: any;
+    sortComponent: SortComponent;
 
-    constructor($: JQueryStatic, top: any) {
+    constructor(
+        $: JQueryStatic,
+        top: any,
+        sortComponent: SortComponent) {
         this.$ = $;
         this.top = top;
+        this.sortComponent = sortComponent;
     }
 
     init(): void {
         this.cacheElements();
         this.bindEvents();
+
+        this.sortComponent.render(
+            new SortOption(
+                this.tableSubAccount,
+                this.tableSubAccount.data("totalrecords") > 1,
+                true,
+                this.sortComponent.afterSort,
+                {
+                    0: { sorter: "text" },
+                    1: { sorter: "text" },
+                    6: { sorter: "text" }
+                }));
     }
 
     cacheElements(): void {
@@ -27,8 +44,6 @@ class SubAccount {
         this.resources = {
             newSubAccount: this.$("#NewSubAccount").val(),
             editSubAccount: this.$("#EditSubAccount").val(),
-            deleteSubAccount: this.$("#DeleteSubAccount").val(),
-            confirmDeleteSubAccount: this.$("#ConfirmDeleteSubAccount").val(),
             resetPassword: this.$("#ResetPassword").val(),
             resetSecurityCode: this.$("#ResetSecurityCode").val()
         };
@@ -36,7 +51,6 @@ class SubAccount {
         this.urls = {
             newSubAccount: this.$("#NewSubAccountLink").val(),
             editSubAccount: this.$("#EditSubAccountLink").val(),
-            deleteSubAccount: this.$("#DeleteSubAccountLink").val(),
             resetPassword: this.$("#ResetPasswordLink").val(),
             resetSecurityCode: this.$("#ResetSecurityCodeLink").val()
         };
@@ -72,25 +86,12 @@ class SubAccount {
             self.openPopup(
                 `${self.resources.editSubAccount} - ${param.subAccountName}`,
                 `${self.urls.editSubAccount}?custId=${param.subAccountId}`,
-                1000,
-                350);
-        });
-
-        this.tableSubAccount.find(".icon-delete").click(function (): void {
-            let param: ISubAccountParam = self.getSubAccountParam(this);
-
-            self.top.popupManager.init(self.$, self.top);
-            self.top.popupManager.bootboxConfirm(
-                `${self.resources.deleteSubAccount} - ${param.subAccountName}`,
-                self.resources.confirmDeleteSubAccount,
-                function () {
-                    self.deleteSubAccount(self.setupAntiXSRF(), param.subAccountId)
-                },
-                450);
+                948,
+                470);
         });
 
         this.$("#btnNewSubAccount").click(function (): void {
-            self.openPopup(self.resources.newSubAccount, self.urls.newSubAccount, 1000, 350);
+            self.openPopup(self.resources.newSubAccount, self.urls.newSubAccount, 948, 470);
         });
     }
 
@@ -112,51 +113,8 @@ class SubAccount {
             height: height
         });
     }
-
-    deleteSubAccount(headers: any, subAccountId: number): void {
-        this.$.blockUI();
-        let self: any = this;
-
-        this.$.ajax({
-            type: "POST",
-            url: this.urls.deleteSubAccount,
-            headers: headers,
-            data: { custId: subAccountId },
-            dataType: "json",
-            success: function (data: any): void {
-                if (data.ErrCode) {
-                    data = { Code: data.ErrCode, Message: data.ErrMsg };
-                }
-
-                let result: Result = new Result(data);
-                let message: Message = new Message();
-                message.showMessage(self.$("#message-container"), result);
-
-                if (result.IsSuccessful) {
-                    setTimeout(function (): void {
-                        location.reload(true);
-                    }, 1000 * 3);
-                }
-            },
-            error: function (xhr: any): void {
-                if (xhr.status === 401) {
-                    alert("Oops... you are here because of a system error, please notify the administrators.");
-                    self.top.siteInfrastructure.logout();
-                }
-            },
-            complete: self.$.unblockUI
-        });
-    }
-
-    private setupAntiXSRF(): any {
-        let token = this.$("input[name=__RequestVerificationToken]").val();
-        let headers = {};
-        //headers["__RequestVerificationToken"] = token;
-
-        return headers;
-    }
 }
 
 $(() => {
-    new SubAccount($, top).init();
+    new SubAccount($, top, new SortComponent($, new LinkBuilderComponent($))).init();
 });

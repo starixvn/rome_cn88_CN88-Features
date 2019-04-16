@@ -3,47 +3,66 @@
     ViewBag.Title = "Sub Account";
 }
 @section Styles {
-    @*@StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")*@
+    @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
 }
 @section Scripts {
     @StaticResources.RenderScripts("~/SubAccount/bundles/scripts/new-sub-account")
 }
 @model NewViewModel
-<div class="subacc-page">
+<div class="modal-sub-account">
     <div id="message-container"></div>
+    <div class="head-title">@SubAccountResource.AccountDetails</div>
     @using (Html.BeginForm("New", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
-        <div class="form-group">
-            <label class="col-sm-2 control-label">@SubAccountResource.UserName</label>
-            <div class="col-sm-10">
-                <label>StarkSub</label>
-                @Html.DropDownList("suffix1", Model.Suffix1, new { id = "suffix1" })
-                @Html.DropDownList("suffix2", Model.Suffix2, new { id = "suffix2" })
+        <div class="general-info account-data">
+            <div class="title">@SubAccountResource.GeneralData</div>
+            <div class="account-data-content">
+                <div class="form-group">
+                    <label class="control-label required">@SubAccountResource.UserName <span class="star">*</span></label>
+                    <div class="content-control pull-right username-box">
+                        <label class="name">@Model.SubAccountName</label>
+                        @Html.DropDownList("suffix1", Model.Suffix1, new { id = "suffix1" })
+                        @Html.DropDownList("suffix2", Model.Suffix2, new { id = "suffix2" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">@SubAccountResource.Name <span class="star">*</span></label>
+                    <div class="content-control">
+                        <input type="text" class="control" maxlength="50" id="name" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="control-label">@SubAccountResource.Password <span class="star">*</span>
+                        <span class="icon-info" data-toggle="tooltip" data-placement="right" id="pass-rule" data-html="true" title="@SubAccountResource.PasswordRule"></span>
+                    </label>
+                    <div class="content-control">
+                        <input type="password" class="control" maxlength="16" id="password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="control-label">@SubAccountResource.ConfirmPassword <span class="star">*</span></label>
+                    <div class="content-control">
+                        <input type="password" class="control" maxlength="16" id="confirmPassword" />
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">@SubAccountResource.Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" maxlength="50" id="name" />
-            </div>
+        {
+            var pageAccess = new Sunplus.Agent.Model.Entities.PageAccess();
+            pageAccess.ViewTotalBets = true;
+            pageAccess.UpdateAccount = true;
+            pageAccess.ViewReports = true;
+            Html.RenderPartial("~/SubAccount/Views/_Permissions.cshtml", pageAccess);
+        }
+        <div class="list-button text-right">
+            <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
+            <input type="submit" class="btn-submit" value="@SharedResources.Save" />
         </div>
-        <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">@SubAccountResource.Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" maxlength="16" id="password" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword" class="col-sm-2 control-label">@SubAccountResource.ConfirmPassword</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" maxlength="16" id="confirmPassword" />
-            </div>
-        </div>
-        { Html.RenderPartial("~/SubAccount/Views/_Permissions.cshtml", new Sunplus.Agent.Model.Entities.PageAccess()); }
     }
 </div>
 @Html.Hidden(nameof(Model.HashKey), Model.HashKey)
+@Html.Hidden(nameof(SubAccountResource.RequiredNameError), SubAccountResource.RequiredNameError)
 @Html.Hidden(nameof(SubAccountResource.RequiredPasswordError), SubAccountResource.RequiredPasswordError)
 @Html.Hidden(nameof(SubAccountResource.PasswordWrongRuleError), SubAccountResource.PasswordWrongRuleError)
 @Html.Hidden(nameof(SubAccountResource.ConfirmPasswordError), SubAccountResource.ConfirmPasswordError)

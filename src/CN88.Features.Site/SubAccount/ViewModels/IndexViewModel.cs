@@ -6,27 +6,10 @@
 
     public class IndexViewModel
     {
-        public IndexViewModel(
-            string userCode,
-            int pageIndex,
-            int pageSize,
-            int totalItems,
-            IEnumerable<SubAccountItem> subAccounts)
+        public IndexViewModel(IEnumerable<SubAccountItem> subAccounts)
         {
-            UserCode = userCode;
-            PageIndex = pageIndex;
-            PageSize = pageSize;
-            TotalItems = totalItems;
             SubAccounts = subAccounts;
         }
-
-        public string UserCode { get; }
-
-        public int PageIndex { get; }
-
-        public int PageSize { get; }
-
-        public int TotalItems { get; }
 
         public IEnumerable<SubAccountItem> SubAccounts { get; }
 
@@ -36,13 +19,10 @@
         public string EditSubAccountLink
             => UrlHelper.GetFeaturesAppPath("~/SubAccount/Edit");
 
-        public string DeleteSubAccountLink
-            => UrlHelper.GetFeaturesAppPath("~/SubAccount/Delete");
-
         public string ResetPasswordLink
             => UrlHelper.GetMainAppPath("~/Password/ResetSubAccountPassword");
 
         public string ResetSecurityCodeLink
-            => UrlHelper.GetMainAppPath("~/SecurityCode/ResetSecurityCode");
+            => UrlHelper.GetMainAppPath("~/SecurityCode/ResetSubAccountSecurityCode");
     }
 }

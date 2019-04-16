@@ -70,6 +70,24 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Management.
+        /// </summary>
+        public static string AccountManagement {
+            get {
+                return ResourceManager.GetString("AccountManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account successfully created..
+        /// </summary>
+        public static string AccountSuccessfullyCreated {
+            get {
+                return ResourceManager.GetString("AccountSuccessfullyCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A/C Management.
         /// </summary>
         public static string ACManagement {
@@ -84,15 +102,6 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string Action {
             get {
                 return ResourceManager.GetString("Action", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete this account?.
-        /// </summary>
-        public static string ConfirmDeleteSubAccount {
-            get {
-                return ResourceManager.GetString("ConfirmDeleteSubAccount", resourceCulture);
             }
         }
         
@@ -120,24 +129,6 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string CreatedDate {
             get {
                 return ResourceManager.GetString("CreatedDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Account successfully created..
-        /// </summary>
-        public static string CreateSubAccountSuccessfully {
-            get {
-                return ResourceManager.GetString("CreateSubAccountSuccessfully", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete Sub Account.
-        /// </summary>
-        public static string DeleteSubAccount {
-            get {
-                return ResourceManager.GetString("DeleteSubAccount", resourceCulture);
             }
         }
         
@@ -205,6 +196,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;&lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;&lt;li&gt;Numeric [0-9]&lt;/li&gt;&lt;li&gt;Special character (!,,#,etc..)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: your password is cAsE sEnSiTiVe&lt;/p&gt;.
+        /// </summary>
+        public static string PasswordRule {
+            get {
+                return ResourceManager.GetString("PasswordRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your password does not meet the minimum security requirement..
         /// </summary>
         public static string PasswordWrongRuleError {
@@ -228,6 +228,15 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string Reports {
             get {
                 return ResourceManager.GetString("Reports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is required..
+        /// </summary>
+        public static string RequiredNameError {
+            get {
+                return ResourceManager.GetString("RequiredNameError", resourceCulture);
             }
         }
         
@@ -264,6 +273,15 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string TotalBets {
             get {
                 return ResourceManager.GetString("TotalBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Successfully!.
+        /// </summary>
+        public static string UpdateSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdateSuccessfully", resourceCulture);
             }
         }
         

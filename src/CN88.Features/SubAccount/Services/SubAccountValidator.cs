@@ -7,6 +7,7 @@
     using AppResources;
     using Fanex.Cryptography.Aes;
     using Features.Models;
+    using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
 
     public interface SubAccountValidator
@@ -15,19 +16,19 @@
 
         string Decrypt(string password, string encryptKey);
 
-        Result ValidateEmpty(string password);
+        Result ValidateEmptyPassword(string password);
 
         Result IsMatchPasswordRules(string password, IEnumerable<string> invalidPasswords);
 
         string FilterWithValidPermissions(string pageAccess);
 
         Result ValidateSuffix(string suffix1, string suffix2);
+
+        Result ValidateEmptyName(string name);
     }
 
     public class SubAccountValidatorImpl : SubAccountValidator
     {
-        private const int InvalidPasswordRulesErrorCode = 1001;
-
         private static readonly Regex PasswordRule1 = new Regex(@"^(?=.*\d).{8,100}$");
         private static readonly Regex PasswordRule2 = new Regex(@"^(?=.*[a-z]).{8,100}$");
         private static readonly Regex PasswordRule3 = new Regex(@"^(?=.*[A-Z]).{8,100}$");
@@ -35,7 +36,18 @@
         private static readonly Regex MemberPasswordRule = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$");
         private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
 
-        private static readonly string[] ValidPermissions = new[] { "[A]", "[B]", "[D]", "[E]", "[G]", "[H]" };
+        /* [B]: Account Management Edit & View
+         * [D]: Total Bets
+         * [E]: Reports
+         * [H]: Account Management View Only
+         */
+        private static readonly string[] ValidPermissions = new[]
+        {
+            PageAccessType.UpdateAccount,
+            PageAccessType.ViewTotalBets,
+            PageAccessType.ViewReports,
+            PageAccessType.ViewMemberInfo
+        };
 
         private readonly Encryptor encryptor;
 
@@ -50,21 +62,21 @@
         public string Decrypt(string password, string encryptKey)
             => AesExtension.Decrypt(password, encryptKey);
 
-        public Result ValidateEmpty(string newPassword)
-            => string.IsNullOrWhiteSpace(newPassword)
-            ? Result.CreateErrorResult(InvalidPasswordRulesErrorCode, SubAccountResource.RequiredPasswordError)
+        public Result ValidateEmptyPassword(string password)
+            => string.IsNullOrWhiteSpace(password)
+            ? Result.CreateErrorResult(message: SubAccountResource.RequiredPasswordError)
             : Result.CreateSuccessResult();
 
         public Result IsMatchPasswordRules(string password, IEnumerable<string> invalidPasswords)
         {
             if (IsEqualsPasswordHint(password))
             {
-                return Result.CreateErrorResult(InvalidPasswordRulesErrorCode, SubAccountResource.PasswordWrongRuleError);
+                return Result.CreateErrorResult(message: SubAccountResource.PasswordWrongRuleError);
             }
 
             if (IsContainsInvalidChars(password, invalidPasswords))
             {
-                return Result.CreateErrorResult(InvalidPasswordRulesErrorCode, SubAccountResource.NewPwdContainsUserNameOrNickNameError);
+                return Result.CreateErrorResult(message: SubAccountResource.NewPwdContainsUserNameOrNickNameError);
             }
 
             var rule1 = PasswordRule1.Match(password).Success ? 1 : 0;
@@ -74,7 +86,7 @@
 
             return (rule1 + rule2 + rule3 + rule4 >= 3) && NoWhiteSpace.Match(password).Success
                 ? Result.CreateSuccessResult()
-                : Result.CreateErrorResult(InvalidPasswordRulesErrorCode, SubAccountResource.PasswordWrongRuleError);
+                : Result.CreateErrorResult(message: SubAccountResource.PasswordWrongRuleError);
         }
 
         public string FilterWithValidPermissions(string pageAccess)
@@ -100,5 +112,10 @@
 
             return suffix?.Length == 1 && int.TryParse(suffix, out value);
         }
+
+        public Result ValidateEmptyName(string name)
+            => string.IsNullOrWhiteSpace(name)
+            ? Result.CreateErrorResult(message: SubAccountResource.RequiredNameError)
+            : Result.CreateSuccessResult();
     }
 }

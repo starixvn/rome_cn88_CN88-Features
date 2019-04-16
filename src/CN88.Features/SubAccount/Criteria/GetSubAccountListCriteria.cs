@@ -12,7 +12,7 @@
         public int CustId { get; }
 
         public override string GetSettingKey()
-            => "Age_CustSubSel";
+            => "CS_CustSubSel";
 
         public override bool IsValid()
             => CustId > 0;

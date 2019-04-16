@@ -6,10 +6,13 @@
 
     public class NewViewModel
     {
-        public NewViewModel(string hashKey)
+        public NewViewModel(string subAccountName, string hashKey)
         {
+            SubAccountName = subAccountName;
             HashKey = hashKey;
         }
+
+        public string SubAccountName { get; }
 
         public string HashKey { get; }
 

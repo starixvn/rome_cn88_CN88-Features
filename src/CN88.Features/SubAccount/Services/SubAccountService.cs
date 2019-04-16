@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using AppResources;
+    using Constants;
     using Criteria;
     using Fanex.Data.Repository;
     using Features.Models;
@@ -18,14 +19,10 @@
         Task<Result> CreateSubAccountAsync(CreateSubAccountParam param);
 
         Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param);
-
-        Task<Result> DeleteSubAccountAsync(DeleteSubAccountParam param);
     }
 
     public class SubAccountServiceImpl : SubAccountService
     {
-        private const string SubAccountSuffix = "Sub";
-
         private readonly IDynamicRepository dynamicRepository;
         private readonly SubAccountValidator subAccountValidator;
 
@@ -41,11 +38,59 @@
             => await dynamicRepository.FetchAsync<SubAccountItem>(new GetSubAccountListCriteria(custId));
 
         public async Task<SubAccountItem> GetSubAccountAsync(int custId, int subAccId)
-            => await dynamicRepository.GetAsync<SubAccountItem>(new GetSubAccountCriteria(custId, subAccId));
+        {
+            var subAccount = await dynamicRepository.GetAsync<SubAccountItem>(new GetSubAccountCriteria(custId, subAccId));
+
+            if (subAccount != null)
+            {
+                subAccount.SubAccId = subAccId;
+            }
+
+            return subAccount;
+        }
 
         public async Task<Result> CreateSubAccountAsync(CreateSubAccountParam param)
         {
-            var result = subAccountValidator.ValidateEmpty(param.Password);
+            var result = ValidateCreateSubAccountParam(param);
+
+            if (result.IsSuccess)
+            {
+                param.UserName = $"{param.ActorName}{SubAccountConst.SubAccountPadding}{param.Suffix1}{param.Suffix2}";
+                param.Password = subAccountValidator.Encode(param.Password);
+                param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+
+                result = await ExecuteAsync(new CreateSubAccountCommand(param));
+            }
+
+            return result;
+        }
+
+        public async Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param)
+        {
+            var result = subAccountValidator.ValidateEmptyName(param.Name);
+
+            if (!result.IsSuccess)
+            {
+                return result;
+            }
+
+            var subAccount = await GetSubAccountAsync(param.ActorId, param.SubAccId);
+
+            return subAccount != null
+                ? await UpdateSubAccountAndKickoutAsync(param, subAccount.PageAccess)
+                : Result.CreateSuccessResult(message: SubAccountResource.UpdateSuccessfully);
+        }
+
+        private Result ValidateCreateSubAccountParam(CreateSubAccountParam param)
+        {
+            var result = subAccountValidator.ValidateEmptyName(param.Name);
+
+            if (!result.IsSuccess)
+            {
+                return result;
+            }
+
+            result = subAccountValidator.ValidateEmptyPassword(param.Password);
 
             if (!result.IsSuccess)
             {
@@ -67,42 +112,36 @@
                 return result;
             }
 
-            param.UserName = $"{param.ActorName}{SubAccountSuffix}{param.Suffix1}{param.Suffix2}";
-            param.Password = subAccountValidator.Encode(rawPassword);
-            param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
-
-            return await ExecuteAsync(new CreateSubAccountCommand(param));
+            param.Password = rawPassword;
+            return Result.CreateSuccessResult();
         }
 
-        public async Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param)
-            => await ExecuteAsync(new UpdateSubAccountCommand(param));
-
-        public async Task<Result> DeleteSubAccountAsync(DeleteSubAccountParam param)
-            => await ExecuteAsync(param.ToCommand());
-
-        private async Task<Result> ExecuteAsync(CreateSubAccountCommand command)
+        private async Task<Result> UpdateSubAccountAndKickoutAsync(UpdateSubAccountParam param, string oldPageAccess)
         {
-            await dynamicRepository.ExecuteAsync(command);
+            param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+            var result = await ExecuteAsync(new UpdateSubAccountCommand(param));
 
-            return command.Success && command.SubAccId > 0
-                ? Result.CreateSuccessResult(SubAccountResource.CreateSubAccountSuccessfully)
-                : Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+            // Kickout when updating Permissions.
+            if (result.IsSuccess && oldPageAccess != param.PageAccess)
+            {
+                await dynamicRepository.ExecuteAsync(
+                    new KickoutSubAccountCommand(param.ActorId, param.SubAccId));
+            }
+
+            return result;
         }
 
         private async Task<Result> ExecuteAsync(BaseSubAccountCommand command)
         {
             await dynamicRepository.ExecuteAsync(command);
 
-            return new Result(command.ErrCode, command.ErrMsg);
-        }
-
-        private static string GetSuffix(string suffix, string defaultValue)
-        {
-            int value;
-
-            return int.TryParse(suffix, out value)
-                ? suffix
-                : defaultValue;
+            return new Result(
+                command.ErrCode,
+                command.ErrCode == 0
+                ? (command is CreateSubAccountCommand
+                    ? SubAccountResource.AccountSuccessfullyCreated
+                    : SubAccountResource.UpdateSuccessfully)
+                : command.ErrMsg);
         }
     }
 }

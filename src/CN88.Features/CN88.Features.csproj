@@ -350,16 +350,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SubAccountResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="SubAccount\Constants\SubAccountConst.cs" />
     <Compile Include="SubAccount\Criteria\BaseSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\CreateSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\GetSubAccountCriteria.cs" />
     <Compile Include="SubAccount\Criteria\GetSubAccountListCriteria.cs" />
+    <Compile Include="SubAccount\Criteria\KickoutSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\UpdateSubAccountCommand.cs" />
-    <Compile Include="SubAccount\Criteria\UpdateSubAccountPermissionCommand.cs" />
     <Compile Include="SubAccount\Models\SubAccountItem.cs" />
+    <Compile Include="SubAccount\Params\BaseSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\CreateSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\UpdateSubAccountParam.cs" />
-    <Compile Include="SubAccount\Params\DeleteSubAccountParam.cs" />
     <Compile Include="SubAccount\Services\SubAccountValidator.cs" />
     <Compile Include="SubAccount\Services\SubAccountService.cs" />
   </ItemGroup>

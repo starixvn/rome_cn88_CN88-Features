@@ -7,15 +7,15 @@
     {
         public BaseSubAccountCommand(
             int custId,
-            int subAccId,
-            int loginSubAccId,
+            string name,
+            string pageAccess,
             string languageKey,
             string loginIP,
             int userId)
         {
             CustId = custId;
-            SubAccId = subAccId;
-            LoginSubAccId = loginSubAccId;
+            Name = name;
+            PageAccess = pageAccess;
             LanguageKey = languageKey;
             LoginIP = loginIP;
             UserId = userId;
@@ -23,9 +23,10 @@
 
         public int CustId { get; }
 
-        public int SubAccId { get; set; }
+        [SpParam(SqlParamName = "firstname")]
+        public string Name { get; }
 
-        public int LoginSubAccId { get; }
+        public string PageAccess { get; }
 
         [SpParam(SqlParamName = "Language")]
         public string LanguageKey { get; }
@@ -40,7 +41,6 @@
 
         public override bool IsValid()
             => CustId > 0
-            && LoginSubAccId >= 0
             && UserId > 0;
     }
 }

@@ -22,7 +22,8 @@
             totalBets: this.$("#totalBets"),
             acManagementViewOnly: this.$("#acManagementViewOnly"),
             acManagementEditView: this.$("#acManagementEditView"),
-            reports: this.$("#reports")
+            reports: this.$("#reports"),
+            requiredNameError: this.$("#RequiredNameError").val()
         };
     }
 
@@ -30,14 +31,14 @@
         let self: any = this;
 
         this.elements.acManagementViewOnly.change(function (): void {
-            if (!this.checked) {
+            if (this.checked) {
                 self.elements.acManagementEditView.prop("checked", false);
             }
         });
 
         this.elements.acManagementEditView.change(function (): void {
             if (this.checked) {
-                self.elements.acManagementViewOnly.prop("checked", true);
+                self.elements.acManagementViewOnly.prop("checked", false);
             }
         });
 
@@ -66,7 +67,7 @@
         this.message.hideMessage(this.elements.messageContainer);
 
         if (formData.name.length === 0) {
-            this.showError("This field is required.");
+            this.showError(this.elements.requiredNameError);
             this.elements.name.focus();
             return false;
         }
@@ -78,7 +79,7 @@
         this.message.showError(this.elements.messageContainer, error);
     }
 
-    private getPageAccess(): string {
+    protected getPageAccess(): string {
         let permissions: string[] = [];
 
         if (this.elements.acManagementEditView.is(":checked")) {
@@ -117,12 +118,11 @@
                 self.message.showMessage(self.elements.messageContainer, result);
 
                 if (result.IsSuccessful) {
-                    setTimeout(function () { self.top.popupManager.close(); }, 1000 * 3);
+                    self.top.indexManager.closePopupAndReloadMainIframe();
                 }
             },
             error: function (xhr: any): void {
-                if (xhr.status === 401) {
-                    alert("Oops... you are here because of a system error, please notify the administrators.");
+                if (xhr.status === 401 || xhr.status === 403) {
                     self.top.siteInfrastructure.logout();
                 }
             },
@@ -131,8 +131,8 @@
     }
 
     private setupAntiXSRF(): any {
-        let token = this.$("input[name=__RequestVerificationToken]").val();
-        let headers = {};
+        let token: string = this.$("input[name=__RequestVerificationToken]").val();
+        let headers: any = {};
         headers["__RequestVerificationToken"] = token;
 
         return headers;

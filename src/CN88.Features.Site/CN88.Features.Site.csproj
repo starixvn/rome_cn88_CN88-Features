@@ -82,8 +82,8 @@
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta14\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.0-beta11\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.0.1-subacc03\lib\net461\CN88.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -729,7 +729,6 @@
     <Compile Include="BetLists\Requests\BetListOfReportQuery.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfReportViewModel.cs" />
     <Compile Include="Shared\ViewModels\SelectListItemExt.cs" />
-    <Compile Include="SubAccount\Requests\NewCommand.cs" />
     <Compile Include="CustomerList\Requests\OnlineMembersQuery.cs" />
     <Compile Include="CustomerList\ViewModels\OnlineMemberViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\BreadcrumbLevelViewModel.cs" />
@@ -737,10 +736,10 @@
     <Compile Include="Shared\Helpers\UrlHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\PagerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
-    <Compile Include="SubAccount\Requests\NewQuery.cs" />
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
+    <Compile Include="SubAccount\Requests\NewCommand.cs" />
+    <Compile Include="SubAccount\Requests\NewQuery.cs" />
     <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
-    <Compile Include="SubAccount\Requests\DeleteCommand.cs" />
     <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
     <Compile Include="SubAccount\SubAccountHandler.cs" />
@@ -821,7 +820,6 @@
     <Content Include="Reports\Views\Wager.cshtml" />
     <Content Include="Reports\Views\Legacy.cshtml" />
     <Content Include="Reports\Views\Filter.cshtml" />
-    <Content Include="SubAccount\Views\Index.cshtml" />
     <Content Include="SubAccount\Views\Web.config" />
     <Content Include="CustomerList\Styles\downline-list.scss" />
     <Content Include="SubAccount\Styles\sub-account.scss" />
@@ -900,6 +898,7 @@
     <Content Include="Reports\Views\PTHistory.cshtml" />
     <Content Include="CustomerList\Styles\member-statement.scss" />
     <Content Include="SubAccount\Views\Edit.cshtml" />
+    <Content Include="SubAccount\Views\Index.cshtml" />
     <Content Include="SubAccount\Views\New.cshtml" />
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
     <Content Include="CustomerList\Styles\customizeDCSCN88.scss" />
@@ -973,6 +972,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\message.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />

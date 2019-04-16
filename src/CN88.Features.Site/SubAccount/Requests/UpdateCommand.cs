@@ -10,19 +10,18 @@
             : base(viewer)
         {
             LanguageKey = viewer.LanguageKey;
+            IsInternal = viewer.IsInternal;
         }
 
-        public string FirstName { get; set; }
+        public string Name { get; set; }
 
-        public string LastName { get; set; }
-
-        public string[] PageAccess { get; set; }
-
-        public bool Closed { get; set; }
+        public string PageAccess { get; set; }
 
         public string LanguageKey { get; }
 
+        public bool IsInternal { get; }
+
         public override bool IsValid()
-            => base.IsValid() && SubAccountId == 0 && !GetViewer().IsInternal;
+            => base.IsValid() && SubAccountId == 0 && !IsInternal;
     }
 }
