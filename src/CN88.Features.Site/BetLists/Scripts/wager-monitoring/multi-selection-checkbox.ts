@@ -1,0 +1,82 @@
+﻿"use strict";
+class MultiSelectionCheckboxOption {
+    constructor(
+        public checkboxAllId: string = "checkbox-all",
+        public listItemId: string = "ListId",
+        public hiddenInputId: string = "HiddenInputId") {
+    }
+}
+
+class MultiSelectionCheckboxComponent {
+    $: JQueryStatic;
+    $hiddenInput: JQuery;
+    $checkboxAll: JQuery;
+    $listItem: JQuery;
+
+    options = new MultiSelectionCheckboxOption();
+
+    constructor($: JQueryStatic) {
+        this.$ = $;
+    }
+
+    render = (options: MultiSelectionCheckboxOption = new MultiSelectionCheckboxOption()) => {
+        this.options = <MultiSelectionCheckboxOption>this.$.extend({}, this.options, options);
+
+        let $checkboxAll = this.$("#" + this.options.checkboxAllId);
+        this.$checkboxAll = $checkboxAll;
+        this.$listItem = this.$("#" + this.options.listItemId);
+        this.$hiddenInput = this.$("#" + this.options.hiddenInputId);
+
+        let self = this;
+        let $checkboxes = this.$listItem.find("input[type='checkbox']");
+        this.$checkboxAll.change(function () {
+            $checkboxes.prop("checked", this.checked);
+
+            if (this.checked) {
+                $checkboxes.attr("disabled", "disabled");
+            } else {
+                $checkboxes.removeAttr("disabled");
+            }
+        });
+
+        $checkboxes.click(function () {
+            if (this.checked) {
+                let isAllChecked = true;
+
+                $checkboxes.each(function () {
+                    if (!this.checked) {
+                        isAllChecked = false;
+                    }
+                })
+
+                if (isAllChecked) {
+                    $checkboxAll.prop("checked", true);
+                    $checkboxes.attr("disabled", "disabled");
+                }
+            } else {
+                $checkboxAll.prop("checked", false);
+            }
+        });
+    };
+
+    getSelectedItems = () => {
+        let selected = [];
+
+        if (this.$checkboxAll.is(":checked")) {
+            return selected;
+        }
+
+        let selectedOptions = this.$listItem.find("input:checked");
+        let this$ = this.$;
+
+        selectedOptions.each(function () {
+            selected.push([this$(this).val()]);
+        });
+
+        return selected;
+    };
+
+    updateSelectedValues = () => {
+        this.$hiddenInput.val(this.getSelectedItems().join(","));
+    };
+}

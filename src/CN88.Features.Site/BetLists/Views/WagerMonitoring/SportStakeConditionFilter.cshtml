@@ -1,0 +1,35 @@
+﻿@model SportStakeConditionViewModel
+<input name="stake-filter-option" value="true" type="radio" @(Model.IsSelectAllSports ? " checked=\"checked\"" : string.Empty) />@SharedResources.AllSports
+<ul class="lists list-block list-stake" id="list-allsports">
+    <li class="item">
+        <div class="dropdown-stake-condition">
+            <label class="sport-name">@SharedResources.MemberStake</label>
+            <select id="AllSportStakeMode" @(!Model.IsSelectAllSports ? " disabled=\"disabeld\"" : string.Empty)>
+                @foreach (var mode in Model.StakeModes)
+                {
+                    <option value="@mode.Value" @(mode.Value.Equals(Model.AllSportsStakeMode.ToString()) ? " selected=\"selected\"" : string.Empty)>@mode.Text</option>
+                }
+            </select>
+            <input type="text" id="AllSportsStakeLimit" name="AllSportsStakeLimit" value="@Model.AllSportsStakeLimit" @(!Model.IsSelectAllSports ? " disabled=\"disabeld\"" : string.Empty) />
+        </div>
+    </li>
+</ul>
+<input name="stake-filter-option" value="false" type="radio" @(!Model.IsSelectAllSports ? " checked=\"checked\"" : string.Empty) />@SharedResources.PerSports
+<ul class="lists list-block list-stake" id="list-persports">
+    @foreach (var condition in Model.PerSportsStakeConditions)
+    {
+        <li class="item sport-item" data-id="@condition.SportGroupId">
+            <label class="sport-name">@condition.SportGroupName</label>
+            <div class="dropdown-stake-condition">
+                <label>@SharedResources.MemberStake</label>
+                <select @(Model.IsSelectAllSports ? "disabled=\"disabled\"" : string.Empty)>
+                    @foreach (var mode in Model.StakeModes)
+                    {
+                        <option value="@mode.Value" @(mode.Value.Equals(condition.StakeMode.ToString()) ? " selected=\"selected\"" : string.Empty)>@mode.Text</option>
+                    }
+                </select>
+                <input type="text" class="StakeLimit" value="@condition.StakeLimit" @(Model.IsSelectAllSports ? "disabled=\"disabled\"" : string.Empty) />
+            </div>
+        </li>
+    }
+</ul>

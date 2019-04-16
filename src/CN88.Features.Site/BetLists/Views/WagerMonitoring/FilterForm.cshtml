@@ -1,0 +1,32 @@
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
+@model FilterFormViewModel
+<div class="form-group">
+    <label>@BetListsResources.Stake</label>
+    <a class="link" data-target="#stake-tab">@Model.StakeLinkText</a>
+</div>
+<div class="form-group">
+    <label>@SharedResources.Market</label>
+    <a class="link" data-target="#market-tab">@Model.MarketLinkText</a>
+</div>
+<div class="form-group">
+    <label>@BetListsResources.League</label>
+    <a class="link" data-target="#league-tab">@Model.LeagueLinkText</a>
+</div>
+<div class="form-group">
+    <label>@BetListsResources.Event</label>
+    <a class="link" data-target="#event-tab">@Model.EventLinkText</a>
+</div>
+<div class="form-group">
+    <label>@SharedResources.BetType</label>
+    <a class="link" data-target="#bettype-tab">@Model.BetTypeLinkText</a>
+</div>
+@Html.Hidden(nameof(Model.SportGroup), Model.SportGroup)
+@Html.Hidden(nameof(Model.IsSelectAllSports), Model.IsSelectAllSports)
+@Html.Hidden(nameof(Model.StakeMode), Model.StakeMode)
+@Html.Hidden(nameof(Model.StakeLimit), Model.StakeLimit)
+@Html.Hidden(nameof(Model.Market), Model.Market)
+@Html.Hidden(nameof(Model.LeagueIds), Model.LeagueIds)
+@Html.Hidden(nameof(Model.MatchIds), Model.MatchIds)
+@Html.Hidden(nameof(Model.BetTypeGroupIds), Model.BetTypeGroupIds)
+@Html.Hidden(nameof(Model.SportStakeConditions), Model.SportStakeConditions)

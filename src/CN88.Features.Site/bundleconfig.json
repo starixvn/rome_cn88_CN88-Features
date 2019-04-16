@@ -302,5 +302,33 @@
       "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/single-selection-dropdown.js"
     ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/wager-monitoring.css",
+    "inputFiles": [
+      "BetLists/Content/CoreBetListCN88.css",
+      "BetLists/Styles/bet-lists.css",
+      "BetLists/Styles/wager-monitor-console.css"
+    ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/wager-monitoring.js",
+    "inputFiles": [
+      "BetLists/Scripts/app-path.js",
+      "BetLists/Scripts/utils.js",
+      "BetLists/Scripts/popup-details.js",
+      "BetLists/Scripts/base-betlist.js",
+      "BetLists/Scripts/wager-monitoring/multi-selection-checkbox.js",
+      "BetLists/Scripts/wager-monitoring/wager-monitoring.js",
+      "BetLists/Scripts/result/base-result.js",
+      "BetLists/Scripts/result/sportsbook-result-details.js",
+      "BetLists/Scripts/result/casino-result-details.js",
+      "BetLists/Scripts/result/other-result-details.js",
+      "BetLists/Scripts/details/base-details.js",
+      "BetLists/Scripts/details/sportsbook-details.js",
+      "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js",
+      "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/single-selection-dropdown.js"
+    ]
   }
 ]

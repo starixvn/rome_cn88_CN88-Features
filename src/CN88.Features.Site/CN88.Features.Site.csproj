@@ -517,6 +517,14 @@
     <Content Include="BetLists\bundles\wager-details.min.js">
       <DependentUpon>wager-details.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\wager-monitoring.css" />
+    <Content Include="BetLists\bundles\wager-monitoring.js" />
+    <Content Include="BetLists\bundles\wager-monitoring.min.css">
+      <DependentUpon>wager-monitoring.css</DependentUpon>
+    </Content>
+    <Content Include="BetLists\bundles\wager-monitoring.min.js">
+      <DependentUpon>wager-monitoring.js</DependentUpon>
+    </Content>
     <Content Include="BetLists\Styles\bet-lists.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
@@ -530,6 +538,12 @@
     <Content Include="BetLists\Content\images\minus.png" />
     <Content Include="BetLists\Content\images\q_Icon2_1.png" />
     <Content Include="BetLists\Content\images\q_Icon_2.png" />
+    <Content Include="BetLists\Styles\wager-monitor-console.css">
+      <DependentUpon>wager-monitor-console.scss</DependentUpon>
+    </Content>
+    <Content Include="BetLists\Styles\wager-monitor-console.min.css">
+      <DependentUpon>wager-monitor-console.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
@@ -689,7 +703,9 @@
     <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="BetLists\Handlers\BetListOfReportExcelHandler.cs" />
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
+    <Compile Include="BetLists\Handlers\WagerMonitoringHandler.cs" />
     <Compile Include="BetLists\Helpers\BetListHelpers.cs" />
+    <Compile Include="BetLists\Models\SportStakeCondition.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
     <Compile Include="BetLists\Requests\StartedWagerDetailsQuery.cs" />
     <Compile Include="BetLists\Requests\StartedWagerByAccountQuery.cs" />
@@ -704,6 +720,9 @@
     <Compile Include="BetLists\Requests\OutrightWagerDetailsQuery.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerByAccountViewModel.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringBaseQuery.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringFilterQuery.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringQuery.cs" />
     <Compile Include="BetLists\ViewModels\EventWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\OutrightWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
@@ -712,9 +731,15 @@
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\SportStakeConditionViewModel.cs" />
     <Compile Include="BetLists\ViewModels\TotalBetParlayViewModel.cs" />
     <Compile Include="BetLists\ViewModels\OutrightWagerDetailsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\BetTypeSelectListItem.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\FilterFormViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\WagerMonitoringFilterViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\WagerMonitoringViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
+    <Compile Include="BetLists\WagerMonitoringController.cs" />
     <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
@@ -891,6 +916,12 @@
     <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
     <Content Include="App_Data\securitycode.pro.json" />
     <Content Include="App_Data\securitycode.napinternal.json" />
+    <Content Include="BetLists\Views\WagerMonitoring\FilterForm.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\FilterModal.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\SportStakeConditionFilter.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\Index.cshtml" />
+    <Content Include="BetLists\Styles\wager-monitor-console.scss" />
+    <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -969,6 +1000,8 @@
     <TypeScriptCompile Include="BetLists\Scripts\utils.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
