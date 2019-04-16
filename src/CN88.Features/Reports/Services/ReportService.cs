@@ -43,7 +43,7 @@
                 var ptSettings = dynamicRepository.Fetch<PTSetting>(
                     new GetCustomerPTSettingCriteria(param.ReportLevel.Value, custIds, AppSettings.IsTest));
 
-                var ptSettingGroups = ptSettings.GroupBy(pt => pt.CustId);
+                var ptSettingGroups = ptSettings?.GroupBy(pt => pt.CustId);
 
                 if (ptSettingGroups == null || !ptSettingGroups.Any())
                 {
@@ -54,12 +54,15 @@
                 {
                     var group = ptSettingGroups
                         .FirstOrDefault(g => g.Key == item.CustId)
-                        .OrderBy(g => g.SportType);
+                        ?.OrderBy(g => g.SportType);
 
-                    item.ExtraPT = group.Select(g => g.ExtraPT);
-                    item.SuperPT = group.Select(g => g.SuperPT);
-                    item.MasterPT = group.Select(g => g.MasterPT);
-                    item.AgentPT = group.Select(g => g.AgentPT);
+                    if (group != null)
+                    {
+                        item.ExtraPT = group.Select(g => g.ExtraPT);
+                        item.SuperPT = group.Select(g => g.SuperPT);
+                        item.MasterPT = group.Select(g => g.MasterPT);
+                        item.AgentPT = group.Select(g => g.AgentPT);
+                    }
                 }
             }
 
