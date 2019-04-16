@@ -141,6 +141,12 @@
     ]
   },
   {
+    "outputFileName": "CustomerList/bundles/styles/customizeDCSCN88.css",
+    "inputFiles": [
+      "CustomerList/Styles/customizeDCSCN88.css"
+    ]
+  },
+  {
     "outputFileName": "CustomerList/bundles/styles/downline-list.css",
     "inputFiles": [
       "CustomerList/Styles/downline-list.css"

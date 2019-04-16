@@ -534,6 +534,10 @@
     <Content Include="CustomerList\bundles\scripts\popup\status-popup.min.js">
       <DependentUpon>status-popup.js</DependentUpon>
     </Content>
+    <Content Include="CustomerList\bundles\styles\customizeDCSCN88.css" />
+    <Content Include="CustomerList\bundles\styles\customizeDCSCN88.min.css">
+      <DependentUpon>customizeDCSCN88.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\styles\downline-list.css" />
     <Content Include="CustomerList\bundles\styles\downline-list.min.css">
       <DependentUpon>downline-list.css</DependentUpon>
@@ -545,6 +549,12 @@
     <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\customizeDCSCN88.css">
+      <DependentUpon>customizeDCSCN88.scss</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\customizeDCSCN88.min.css">
+      <DependentUpon>customizeDCSCN88.css</DependentUpon>
     </Content>
     <Content Include="CustomerList\Styles\downline-list.css">
       <DependentUpon>downline-list.scss</DependentUpon>
@@ -892,6 +902,7 @@
     <Content Include="SubAccount\Views\Edit.cshtml" />
     <Content Include="SubAccount\Views\New.cshtml" />
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
+    <Content Include="CustomerList\Styles\customizeDCSCN88.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
