@@ -10,7 +10,7 @@ class OldLegacyReport extends OldBaseReport {
     $excelIcon: JQuery;
 
     pagerComponent: ClientPagerComponent;
-    ptHistory: PTHistory;
+    //ptHistory: PTHistory;
 
     constructor(
         $: JQueryStatic,
@@ -31,8 +31,8 @@ class OldLegacyReport extends OldBaseReport {
         this.cacheDOMElements();
         this.renderComponents();
 
-        this.ptHistory = new PTHistory(this.$);
-        this.ptHistory.init();
+        //this.ptHistory = new PTHistory(this.$);
+        //this.ptHistory.init();
 
         this.registerEvents();
 

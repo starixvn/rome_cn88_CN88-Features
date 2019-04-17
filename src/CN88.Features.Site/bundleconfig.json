@@ -73,7 +73,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Reports/Scripts/base-report.js",
-      "Reports/Scripts/pt-history.js",
+      //"Reports/Scripts/pt-history.js",
       "Reports/Scripts/legacy.js",
       "Reports/Scripts/legacy-init.js"
     ]
@@ -86,7 +86,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Reports/Scripts/old-base-report.js",
-      "Reports/Scripts/pt-history.js",
+      //"Reports/Scripts/pt-history.js",
       "Reports/Scripts/old-legacy.js",
       "Reports/Scripts/old-legacy-init.js"
     ]

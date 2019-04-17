@@ -13,7 +13,7 @@ class LegacyReport extends BaseReport {
 
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
-    ptHistory: PTHistory;
+    //ptHistory: PTHistory;
 
     constructor(
         $: JQueryStatic,
@@ -35,8 +35,8 @@ class LegacyReport extends BaseReport {
 
         this.cacheDOMElements();
         this.renderComponents();
-        this.ptHistory = new PTHistory(this.$);
-        this.ptHistory.init();
+        //this.ptHistory = new PTHistory(this.$);
+        //this.ptHistory.init();
         this.registerEvents();
 
         this.$.unblockUI();

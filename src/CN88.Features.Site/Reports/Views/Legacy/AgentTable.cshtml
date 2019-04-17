@@ -23,7 +23,7 @@
                 <th class="text-right">@ReportResources.MAResult</th>
             }
             <th class="text-right">@ReportResources.AgentStock</th>
-            <th></th>
+            @*<th></th>*@
         </tr>
         @if (Model.ReportData.Any())
         {
@@ -45,7 +45,7 @@
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult)
                 }
                 @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentStock)
-                <th></th>
+                @*<th></th>*@
             </tr>
         }
     </thead>
@@ -73,7 +73,7 @@
                         @HtmlHelpers.RenderNumberCell(divisor, row.MasterResult)
                     }
                     @HtmlHelpers.RenderNumberCell(divisor, row.AgentStock)
-                    <td><span class="icon-history" data-custid="@row.CustId" data-toggle="tooltip" data-placement="top" title="History Possess" ></span></td>
+                    @*<td><span class="icon-history" data-custid="@row.CustId" data-toggle="tooltip" data-placement="top" title="History Possess" ></span></td>*@
                 </tr>
             }
         }
