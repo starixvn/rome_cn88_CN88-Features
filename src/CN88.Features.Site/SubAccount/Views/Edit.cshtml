@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label for="name" class="control-label">@SubAccountResource.Name <span class="star">*</span></label>
                     <div class="content-control">
-                        <input type="text" class="control" maxlength="50" value="@Model.FirstName" id="name" autocomplete="off" />
+                        <input type="text" class="control" maxlength="50" value="@WebUtility.HtmlDecode(Model.FirstName)" id="name" autocomplete="off" />
                     </div>
                 </div>                
             </div>

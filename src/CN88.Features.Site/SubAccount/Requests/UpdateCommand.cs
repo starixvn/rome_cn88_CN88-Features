@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.SubAccount.Requests
 {
+    using System.Web.Mvc;
     using Features.Models;
     using MediatR;
     using Site.Requests;
@@ -13,6 +14,7 @@
             IsInternal = viewer.IsInternal;
         }
 
+        [AllowHtml]
         public string Name { get; set; }
 
         public string PageAccess { get; set; }

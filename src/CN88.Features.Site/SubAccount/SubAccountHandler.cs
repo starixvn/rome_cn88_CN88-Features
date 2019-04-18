@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
+    using System.Net;
     using System.Threading.Tasks;
     using Alpha.Web.Helpers;
     using Features.Models;
@@ -51,7 +52,7 @@
                 message.Password,
                 HashKey,
                 message.InvalidPasswords,
-                message.Name,
+                HtmlEncodeText(message.Name),
                 message.PageAccess,
                 message.LanguageKey,
                 message.IP,
@@ -61,7 +62,7 @@
         public async Task<Result> Handle(UpdateCommand message)
             => await subAccountService.UpdateSubAccountAsync(new UpdateSubAccountParam(
                 message.CustId,
-                message.Name,
+                HtmlEncodeText(message.Name),
                 message.PageAccess,
                 message.LanguageKey,
                 message.IP,
@@ -77,5 +78,8 @@
 
         private string HashKey
             => sessionManager.Get<string>(HashKeySessionKey);
+
+        private static string HtmlEncodeText(string text)
+            => string.IsNullOrWhiteSpace(text) ? text : WebUtility.HtmlEncode(text);
     }
 }

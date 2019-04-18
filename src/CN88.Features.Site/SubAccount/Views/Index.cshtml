@@ -40,7 +40,7 @@
                     var permission = item.Permissions;
                     <tr>
                         <td>@item.UserName</td>
-                        <td>@item.FirstName</td>
+                        <td>@WebUtility.HtmlDecode(item.FirstName)</td>
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewTotalBets)
                         </td>
