@@ -34,6 +34,7 @@
             ReportData = reportData;
             GrandTotal = grandTotal;
             Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
+            TotalStockPercent = query.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
         }
 
         public bool IsNotOwner => !query.IsOwner;
@@ -41,6 +42,8 @@
         public UserLevel ReportLevel => query.CustLevel;
 
         public int Divisor { get; }
+
+        public int TotalStockPercent { get; }
 
         public IEnumerable<ReportModel> ReportData { get; }
 

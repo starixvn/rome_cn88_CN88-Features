@@ -2,6 +2,7 @@
 {
     using System;
     using Features.Reports.AppResources;
+    using Features.Reports.Constants;
     using Features.Reports.Models;
     using Features.Reports.Params;
     using Features.Reports.Services;
@@ -18,6 +19,7 @@
         private readonly ReportService reportService;
         private readonly ReportsWorkbook workbook;
         private int divisor = 1;
+        private int totalStockPercent;
 
         public ReportsExcelHandler(
             ReportService reportService,
@@ -35,6 +37,7 @@
             }
 
             divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
+            totalStockPercent = message.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
 
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
@@ -89,12 +92,12 @@
 
             if (!message.IsOwner)
             {
-                mapper.Map(M, data => isTotal ? 100 : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
+                mapper.Map(M, data => isTotal ? totalStockPercent : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(N, data => isTotal ? string.Empty : data.HeadlinePoss)
                     .Map(O, data => data.HeadlineIncome / divisor)
                     .Map(P, data => data.HeadlineResult / divisor)
                     .Map(Q, data => data.HeadlineStock / divisor)
-                    .Map(R, data => isTotal ? 100 : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock));
+                    .Map(R, data => isTotal ? totalStockPercent : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock));
             }
 
             return mapper;
@@ -117,18 +120,18 @@
             if (message.IsOwner)
             {
                 mapper.Map(K, data => data.MasterStock / divisor)
-                    .Map(L, data => isTotal ? 100 : CalculatePercentage(data.MasterStock, grandTotal.MasterStock));
+                    .Map(L, data => isTotal ? totalStockPercent : CalculatePercentage(data.MasterStock, grandTotal.MasterStock));
             }
             else
             {
                 mapper.Map(K, data => data.Super / divisor)
                     .Map(L, data => data.MasterStock / divisor)
-                    .Map(M, data => isTotal ? 100 : CalculatePercentage(data.MasterStock, grandTotal.MasterStock))
+                    .Map(M, data => isTotal ? totalStockPercent : CalculatePercentage(data.MasterStock, grandTotal.MasterStock))
                     .Map(N, data => isTotal ? string.Empty : data.SuperPoss)
                     .Map(O, data => data.SuperIncome / divisor)
                     .Map(P, data => data.SuperResult / divisor)
                     .Map(Q, data => data.SuperStock / divisor)
-                    .Map(R, data => isTotal ? 100 : CalculatePercentage(data.SuperStock, grandTotal.SuperStock));
+                    .Map(R, data => isTotal ? totalStockPercent : CalculatePercentage(data.SuperStock, grandTotal.SuperStock));
             }
 
             return mapper;
