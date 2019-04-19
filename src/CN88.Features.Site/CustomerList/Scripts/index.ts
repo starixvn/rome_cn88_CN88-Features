@@ -11,6 +11,7 @@
     CreateCustomerLink: string;
     UpdateCreditLink: string;
     UpdateStatusLink: string;
+    AccessDenyPage: string;
 
     CurrentLink: string;
     ResetPasswordLink: string;
@@ -159,6 +160,7 @@
         this.CurrentLink = this.$("#CurrentLink").val();
         this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
         this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
+        this.AccessDenyPage = this.$("#AccessDenyPage").val();
 
         this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
         this.Language = this.$("#Language").val();
@@ -267,23 +269,27 @@
         });
     };
     addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
-        reportParam.CustId = custId;
-        reportParam.Username = username;
-        reportParam.SearchRoleId = custLevelId;
-        reportParam.DownlineUsername = downlineUsername;
+        if (this.AccountManagementEditView) {
+            reportParam.CustId = custId;
+            reportParam.Username = username;
+            reportParam.SearchRoleId = custLevelId;
+            reportParam.DownlineUsername = downlineUsername;
 
-        this.storeCurrentPage(reportParam);
-        this.topWindow.showCN88CancelButton = true;
+            this.storeCurrentPage(reportParam);
+            this.topWindow.showCN88CancelButton = true;
 
-        window.location.href = this.CreateCustomerLink + "?" + this.$.param({
-            Language: this.Language,
-            ProductId: 1,
-            CustomerLevel: custLevelId,
-            CustomerId: custId,
-            IsReadOnly: !this.AccountManagementEditView,
-            UplineId: custId,
-            ActorLevel: this.ActorLevel
-        });
+            window.location.href = this.CreateCustomerLink + "?" + this.$.param({
+                Language: this.Language,
+                ProductId: 1,
+                CustomerLevel: custLevelId,
+                CustomerId: custId,
+                IsReadOnly: !this.AccountManagementEditView,
+                UplineId: custId,
+                ActorLevel: this.ActorLevel
+            });
+        } else {
+            window.location.href = this.AccessDenyPage;
+        }
     };
     getStatusName = (status: number) => {
         if (status == siteInfrastructure.customerStatus.open) {

@@ -33,14 +33,13 @@
         public string UpdateStatusLink => $"{SiteFeaturePath}CustomerList/StatusPopup";
 
         public string ResetPasswordLink
-            => $"{AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~")}Password/ResetDownlinePassword";
+            => $"{SiteMainPath}Password/ResetDownlinePassword";
 
         public string ResetSecurityCodeLink
-            => $"{AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~")}SecurityCode/ResetSecurityCode";
+            => $"{SiteMainPath}SecurityCode/ResetSecurityCode";
 
-        //public string AddNewMasterLink
-        //    => $"{CreateCustomerLink}?Language={Language}&ProductId=1&CustomerLevel={customerLevel}" +
-        //       $"&CustomerId={custId}&IsReadOnly={isReadOnly}&UplineId={uplineId}&ActorLevel={actorLevel}";
+        public string AccessDenyPage
+            => $"{SiteMainPath}AccessDenied.aspx";
 
         public string Language => query.Language;
 
@@ -60,8 +59,6 @@
 
         private string SiteFeaturePath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("FeaturesAppPath"), "~");
 
-        //private string BuildAddNewLink(byte actorLevelId)
-        //   => $"{CreateCustomerLink}?Language={Language}&ProductId=1&CustomerLevel={customerLevel}" +
-        //      $"&CustomerId={custId}&IsReadOnly={isReadOnly}&UplineId={uplineId}&ActorLevel={actorLevelId}";
+        private string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~");
     }
 }

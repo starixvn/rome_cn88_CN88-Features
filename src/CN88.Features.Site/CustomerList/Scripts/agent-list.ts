@@ -105,8 +105,8 @@ class AgentList extends BaseList {
                     "<td class='col-action text-center'>" +
                     `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='2'></span>` +
                     `<span class='icon-security' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
-                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} title=${this.indexManager.viewResources.EditAgent}></span>` +
-                    `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} title=${this.indexManager.viewResources.NewMember}></span>` +
+                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.EditAgent}'></span>` +
+                    `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.NewMember}'></span>` +
                     "</td>" +
                     "</tr>";
             }
