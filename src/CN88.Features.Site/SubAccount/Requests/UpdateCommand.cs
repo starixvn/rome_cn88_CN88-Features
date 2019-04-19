@@ -24,6 +24,6 @@
         public bool IsInternal { get; }
 
         public override bool IsValid()
-            => base.IsValid() && SubAccountId == 0 && !IsInternal;
+            => base.IsValid() && !IsInternal;
     }
 }

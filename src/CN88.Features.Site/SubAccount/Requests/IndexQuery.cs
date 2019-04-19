@@ -11,8 +11,5 @@
             : base(viewer)
         {
         }
-
-        public override bool IsValid()
-            => base.IsValid() && SubAccountId == 0;
     }
 }

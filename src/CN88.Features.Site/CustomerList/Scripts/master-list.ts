@@ -42,17 +42,13 @@
 
         this.$tblReport.removeClass("display-none");
 
-        var html = "";
-        var customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
+        let html = "";
+        let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
-            let disabledTooltip = `disabled title='${this.indexManager.viewResources.Disabled}'`,
-                newAgentTooltip = ` title='${this.indexManager.viewResources.NewAgent}'`,
-                editMasterTooltip = ` title='${this.indexManager.viewResources.EditMasterAgent}'`;
-
-            for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
+            for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 let customer = rs.Customers[i],
                     custId = customer.CustId,
                     username = customer.Username;               
@@ -68,8 +64,8 @@
                     "<td class='col-action text-center'>" +
                     `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='3'></span>` +
                     `<span class='icon-security' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
-                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? `${editMasterTooltip}` : `${disabledTooltip}`}></span>` +
-                    `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? `${newAgentTooltip}` : `${disabledTooltip}`}></span>` +
+                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} title=${this.indexManager.viewResources.EditMasterAgent}></span>` +
+                    `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} title=${this.indexManager.viewResources.NewAgent}></span>` +
                     "</td>" +
                     "</tr>";
             }
@@ -91,7 +87,7 @@
         this.viewList();
     };
     initAutoComplete = () => {
-        var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
+        let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
             this.$.param({ isDir: true, issub: false, ismember: false });
         initAutoComplete(this.searchSuggestionMaster[0], queryUsernameURL);
         this.$output.css("top", this.searchSuggestionMaster.offset().top + 30);

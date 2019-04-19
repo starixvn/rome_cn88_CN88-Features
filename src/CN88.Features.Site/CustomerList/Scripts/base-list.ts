@@ -23,8 +23,6 @@
 
     viewResources: any;
     indexManager = null;
-    HasUpdatePermission: boolean;
-    HasAddNewPermission: boolean;
 
     levelName: string;
     levelNameLowerCase: string;
@@ -83,8 +81,6 @@
         this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
         this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
         this.$formReport = this.$("#form-" + this.levelNameLowerCase);
-        this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
-        this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
     };
     public loadData() {
         this.$.ajax({
@@ -159,32 +155,28 @@
             self.indexManager.resetSecurityCode($this.attr("cust-id"), $this.attr("username"));
         });
 
-        if (this.HasUpdatePermission) {
-            this.$tblReport.find(".icon-edit").click(function () {
+        this.$tblReport.find(".icon-edit").click(function () {
+            var $this = self.$(this);
+
+            self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam);
+        });
+
+        this.$tblReport.find(".icon-add").click(function () {
+            var $this = self.$(this);
+
+            self.addDownlineFunction($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
+        });
+
+        if (rs.SearchAccountId > 0) {
+            this.$formReport.find("#add-directdownline").removeAttr("disabled");
+            this.$formReport.find("#add-directdownline").click(function () {
                 var $this = self.$(this);
 
-                self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam);
+                self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam, $this.attr("downline-username"));
             });
         }
-
-        if (this.HasAddNewPermission) {
-            this.$tblReport.find(".icon-add").click(function () {
-                var $this = self.$(this);
-
-                self.addDownlineFunction($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
-            });
-
-            if (rs.SearchAccountId > 0) {
-                this.$formReport.find("#add-directdownline").removeAttr("disabled");
-                this.$formReport.find("#add-directdownline").click(function () {
-                    var $this = self.$(this);
-
-                    self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam, $this.attr("downline-username"));
-                });
-            }
-            else {
-                this.$formReport.find("#add-directdownline").attr("disabled", "disabled");
-            }
+        else {
+            this.$formReport.find("#add-directdownline").attr("disabled", "disabled");
         }
 
         this.$tblReport.find("> tfoot").empty();

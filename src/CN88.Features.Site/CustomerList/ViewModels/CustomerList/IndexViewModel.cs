@@ -2,7 +2,7 @@
 {
     using Alpha.Auth.Configurations;
     using Alpha.Web.Helpers;
-    using CN88.Features.Shared.Models;
+    using Features.Shared.Models;
 
     public class IndexViewModel
     {
@@ -17,9 +17,7 @@
 
         public bool IsInternal => query.IsInternal;
 
-        public bool HasUpdatePermission => query.HasUpdatePermission;
-
-        public bool HasAddNewPermission => query.HasAddNewPermission;
+        public bool AccountManagementEditView => query.AccountManagementEditView;
 
         public string UsernameAutoSuggestionPath
             => MicroSites.MainUrl("~/Suggestion/Index");

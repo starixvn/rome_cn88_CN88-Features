@@ -217,8 +217,7 @@
 
 @Html.Hidden("ResetSecurityCode", CustomerListResources.ResetSecurityCode)
 @Html.Hidden("Disabled", CustomerListResources.Disabled)
-@Html.Hidden("HasUpdatePermission", Model.HasUpdatePermission ? 1 : 0)
-@Html.Hidden("HasAddNewPermission", Model.HasAddNewPermission ? 1 : 0)
+@Html.Hidden("AccountManagementEditView", Model.AccountManagementEditView ? 1 : 0)
 @Html.Hidden("Language", Model.Language)
 @Html.Hidden("ViewerId", Model.ViewerId)
 @Html.Hidden("ActorLevel", Model.ActorLevel.Value)

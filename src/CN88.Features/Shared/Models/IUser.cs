@@ -22,9 +22,9 @@
 
         string IP { get; }
 
-        bool HasUpdatePermission { get; }
+        bool AccountManagementEditView { get; }
 
-        bool HasAddNewPermission { get; }
+        bool AccountManagementViewOnly { get; }
 
         bool IsAdminCanViewVNIP { get; }
 

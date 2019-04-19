@@ -15,8 +15,6 @@
         public Result Result { get; set; }
 
         public override bool IsValid()
-            => base.IsValid()
-            && SubAccountId == 0
-            && CustId != ViewerId;
+            => base.IsValid() && CustId != ViewerId;
     }
 }

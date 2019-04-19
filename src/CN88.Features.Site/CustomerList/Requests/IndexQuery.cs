@@ -1,29 +1,28 @@
 ﻿namespace CN88.Features.Site.CustomerList
 {
-    using CN88.Features.Models;
-    using CN88.Features.Site.CustomerList.ViewModels;
-    using CN88.Features.Site.Requests;
+    using Features.Models;
     using MediatR;
+    using Site.Requests;
+    using ViewModels;
 
     public class IndexQuery : BaseQuery, IRequest<IndexViewModel>
     {
-        private IUser viewer;
+        private readonly IUser viewer;
 
-        public IndexQuery() : this(null)
+        public IndexQuery()
+            : this(null)
         {
-
         }
 
-        public IndexQuery(IUser viewer) : base(viewer)
+        public IndexQuery(IUser viewer)
+            : base(viewer)
         {
             this.viewer = viewer;
         }
 
         public bool IsInternal => viewer.IsInternal;
 
-        public bool HasUpdatePermission => viewer.HasUpdatePermission;
-
-        public bool HasAddNewPermission => viewer.HasAddNewPermission;
+        public bool AccountManagementEditView => viewer.AccountManagementEditView;
 
         public int ActorId => viewer.Id;
 

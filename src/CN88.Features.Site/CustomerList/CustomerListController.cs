@@ -57,7 +57,7 @@
                 $"&ProductId=1",
                 $"&CustomerLevel={message.CustLevelId}",
                 $"&CustomerId={message.ViewerId}",
-                $"&IsReadOnly={!message.HasAddNewPermission}",
+                $"&IsReadOnly={!message.AccountManagementEditView}",
                 $"&UplineId={message.ViewerId}",
                 $"&ActorLevel={message.ViewerLevelId}"
             };
