@@ -210,6 +210,7 @@
     <Compile Include="BetLists\Constants\BetListTypeConstant.cs" />
     <Compile Include="BetLists\Constants\BetTypeIdConstants.cs" />
     <Compile Include="BetLists\Constants\TotalBetParlaySport.cs" />
+    <Compile Include="BetLists\Constants\TotalBetTypeConstants.cs" />
     <Compile Include="BetLists\Criteria\StartedWagerByAccountCriteria.cs" />
     <Compile Include="BetLists\Criteria\EventWagerByAccountCriteria.cs" />
     <Compile Include="BetLists\Criteria\StartedWagerDetailsCriteria.cs" />

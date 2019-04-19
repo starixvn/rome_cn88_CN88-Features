@@ -6,6 +6,7 @@
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Features.BetLists.Constants;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
     using Features.Shared.Models;
@@ -105,7 +106,7 @@
         public string WagerByAccountLink()
         {
             return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
-                  AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByStarted"),
+                  AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                   new Dictionary<string, object>()
                   {
                       ["CustId"] = CustId,
@@ -116,7 +117,8 @@
                       ["LiveIndicator"] = LiveIndicator,
                       ["BetTeam"] = BetTeam,
                       ["Stake"] = Stake,
-                      ["StakeCondition"] = StakeCondition
+                      ["StakeCondition"] = StakeCondition,
+                      ["Type"] = TotalBetTypeConstants.Started
                   });
         }
     }

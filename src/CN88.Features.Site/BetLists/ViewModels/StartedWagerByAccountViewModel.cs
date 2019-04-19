@@ -6,6 +6,7 @@
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Features.BetLists.Constants;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
     using Features.Shared.Models;
@@ -54,7 +55,7 @@
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             this.message = message;
-            var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByStarted");
+            var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent");
             BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
                 Enumerable.Repeat(reportPath, 4) :
                 CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 4) :
@@ -138,7 +139,7 @@
 
         private string BuildBreadcrumbUrl()
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
-                AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByStarted"),
+                AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                 new Dictionary<string, object>
                 {
                     ["CustId"] = CustId,
@@ -149,7 +150,8 @@
                     ["LiveIndicator"] = LiveIndicator,
                     ["BetTeam"] = BetTeam,
                     ["Stake"] = Stake,
-                    ["StakeCondition"] = StakeCondition
+                    ["StakeCondition"] = StakeCondition,
+                    ["Type"] = TotalBetTypeConstants.Started
                 });
 
         private IEnumerable<CustInfo> GetBreadcrumbLevel()

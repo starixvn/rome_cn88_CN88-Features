@@ -140,7 +140,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="CS_BetList_TotalBets_Started" SpName="CS_BetList_TotalBets_Started_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_TotalBets_Started" SpName="CS_BetList_TotalBets_Started" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
