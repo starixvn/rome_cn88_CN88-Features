@@ -57,6 +57,14 @@
             => await ViewAsync(message, "~/BetLists/Views/EventWagerDetails.cshtml");
 
         [HttpGet, RestrictHeadlineFilter]
+        public async Task<ActionResult> StartedWagerByAccount(StartedWagerByAccountQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/StartedWagerByAccount.cshtml");
+
+        [HttpGet, RestrictHeadlineFilter]
+        public async Task<ActionResult> StartedWagerDetails(StartedWagerDetailsQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/StartedWagerDetails.cshtml");
+
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> TotalBetParlay(TotalBetParlayQuery message)
             => await ViewAsync(message, "~/BetLists/Views/TotalBetParlay.cshtml");
     }

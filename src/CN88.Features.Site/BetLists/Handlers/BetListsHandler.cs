@@ -30,7 +30,9 @@
         IRequestHandler<OutrightWagerDetailsQuery, OutrightWagerDetailsViewModel>,
         IRequestHandler<EventWagerByAccountQuery, EventWagerByAccountViewModel>,
         IRequestHandler<EventWagerDetailsQuery, EventWagerDetailsViewModel>,
-        IRequestHandler<TotalBetParlayQuery, TotalBetParlayViewModel>
+        IRequestHandler<TotalBetParlayQuery, TotalBetParlayViewModel>,
+        IRequestHandler<StartedWagerByAccountQuery, StartedWagerByAccountViewModel>,
+        IRequestHandler<StartedWagerDetailsQuery, StartedWagerDetailsViewModel>
     {
         private readonly BetListsService service;
         private readonly ISmartPunterBetListMonitor monitorService;
@@ -213,6 +215,46 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+        }
+
+        public StartedWagerByAccountViewModel Handle(StartedWagerByAccountQuery message)
+        {
+            var param = new StartedWagerByAccountParam(
+                message.CustId,
+                message.LimitedDateToShowInfo,
+                message.CustLevelId,
+                message.MatchId,
+                message.BetType,
+                message.LiveIndicator,
+                message.BetTeam,
+                message.StakeCondition,
+                message.Stake);
+
+            var betlistData = service.GetStartedWagerByAccount(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+        }
+
+        public StartedWagerDetailsViewModel Handle(StartedWagerDetailsQuery message)
+        {
+            var param = new StartedWagerDetailsParam(
+                message.CustId,
+                message.LimitedDateToShowInfo,
+                message.ViewerLevelId,
+                message.MatchId,
+                message.BetType,
+                message.LiveIndicator,
+                message.BetTeam,
+                message.StakeCondition,
+                message.Stake);
+
+            var betlistData = service.GetStartedWagerDetails(param);
+
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+            return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
         }
 
         public TotalBetParlayViewModel Handle(TotalBetParlayQuery message)

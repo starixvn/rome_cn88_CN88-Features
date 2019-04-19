@@ -30,6 +30,10 @@
         BetListData GetEventWagerDetails(EventWagerDetailsParam param);
 
         BetListData GetTotalBetParlay(GetTotalBetParlayParam param);
+
+        BetListData GetStartedWagerByAccount(StartedWagerByAccountParam param);
+
+        BetListData GetStartedWagerDetails(StartedWagerDetailsParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
@@ -135,6 +139,22 @@
         public BetListData GetTotalBetParlay(GetTotalBetParlayParam param)
         {
             var criteria = new TotalBetParlayCriteria(param, reportDateService.GetMoveBetsDay());
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+        }
+
+        public BetListData GetStartedWagerByAccount(StartedWagerByAccountParam param)
+        {
+            var criteria = new StartedWagerByAccountCriteria(param);
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+        }
+
+        public BetListData GetStartedWagerDetails(StartedWagerDetailsParam param)
+        {
+            var criteria = new StartedWagerDetailsCriteria(param);
             var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
 
             return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());

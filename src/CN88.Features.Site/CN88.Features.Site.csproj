@@ -673,6 +673,8 @@
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
     <Compile Include="BetLists\Helpers\BetListHelpers.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
+    <Compile Include="BetLists\Requests\StartedWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\Requests\StartedWagerByAccountQuery.cs" />
     <Compile Include="BetLists\Requests\EventWagerDetailsQuery.cs" />
     <Compile Include="BetLists\Requests\EventWagerByAccountQuery.cs" />
     <Compile Include="BetLists\Requests\OutrightWagerByAccountQuery.cs" />
@@ -682,6 +684,8 @@
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
     <Compile Include="BetLists\Requests\OutrightWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\ViewModels\StartedWagerDetailsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\StartedWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\EventWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\OutrightWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
@@ -867,6 +871,8 @@
     <Content Include="BetLists\Views\EventWagerByAccount.cshtml" />
     <Content Include="App_Code\BetLists\Payout.cshtml" />
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Headline.xls" />
+    <Content Include="BetLists\Views\StartedWagerByAccount.cshtml" />
+    <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

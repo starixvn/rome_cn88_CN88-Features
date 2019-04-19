@@ -210,8 +210,12 @@
     <Compile Include="BetLists\Constants\BetListTypeConstant.cs" />
     <Compile Include="BetLists\Constants\BetTypeIdConstants.cs" />
     <Compile Include="BetLists\Constants\TotalBetParlaySport.cs" />
+    <Compile Include="BetLists\Criteria\StartedWagerByAccountCriteria.cs" />
     <Compile Include="BetLists\Criteria\EventWagerByAccountCriteria.cs" />
+    <Compile Include="BetLists\Criteria\StartedWagerDetailsCriteria.cs" />
     <Compile Include="BetLists\Criteria\EventWagerDetailsCriteria.cs" />
+    <Compile Include="BetLists\Params\StartedWagerDetailsParam.cs" />
+    <Compile Include="BetLists\Params\StartedWagerByAccountParam.cs" />
     <Compile Include="BetLists\Params\EventWagerDetailsParam.cs" />
     <Compile Include="BetLists\Params\EventWagerByAccountParam.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
