@@ -48,8 +48,7 @@
     masterList: MasterList;
     agentList: AgentList;
     memberList: MemberList;
-    HasUpdatePermission: boolean;
-    HasAddNewPermission: boolean;
+    AccountManagementEditView: boolean;
     Language: string;
     ViewerId: string;
     ActorLevel: string;
@@ -81,9 +80,9 @@
         this.$navTabs.find("li[level='" + this.directDownline + "']").addClass("active");
         this.$(".tab-content[level='" + this.directDownline + "']").removeClass("display-none");
 
-        var self = this;
+        let self = this;
         this.$(".lnk-changetab").click(function () {
-            var $this = self.$(this);
+            let $this = self.$(this);
             self.$navTabs.find("> li").removeClass("active");
             $this.addClass("active");
 
@@ -109,8 +108,8 @@
                 case siteInfrastructure.roleId.member:
                     this.$("#btn-submit-master").click();
 
-                    var memberUsername = location.search.split(/[?&]/)[1].split('=')[1];
-                    var agentUsername = memberUsername.substr(0, memberUsername.length - 2);
+                    let memberUsername = location.search.split(/[?&]/)[1].split('=')[1];
+                    let agentUsername = memberUsername.substr(0, memberUsername.length - 2);
                     this.agentList.$viewedMaster.val(agentUsername);
                     this.$("#btn-submit-agent").click();
 
@@ -161,10 +160,7 @@
         this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
         this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
 
-
-
-        this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
-        this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
+        this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
         this.Language = this.$("#Language").val();
         this.ViewerId = this.$("#ViewerId").val();
         this.ActorLevel = this.$("#ActorLevel").val();
@@ -265,7 +261,7 @@
             ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
-            IsReadOnly: !this.HasUpdatePermission,
+            IsReadOnly: !this.AccountManagementEditView,
             UplineId: this.ViewerId,
             ActorLevel: this.ActorLevel
         });
@@ -284,7 +280,7 @@
             ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
-            IsReadOnly: !this.HasAddNewPermission,
+            IsReadOnly: !this.AccountManagementEditView,
             UplineId: custId,
             ActorLevel: this.ActorLevel
         });
@@ -316,7 +312,7 @@
         this.$(".col-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
     };
     reloadStatusValue = (custId: any, newValue: any) => {
-        var column = this.$(".col-status[cust-id='" + custId + "']");
+        let column = this.$(".col-status[cust-id='" + custId + "']");
         column.html(this.getStatusName(newValue));
         column.attr("current-status", newValue);
 
@@ -337,7 +333,7 @@
         return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Upline;
     };
     storeCurrentPage = (reportParam: any) => {
-        var currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
+        let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
 };

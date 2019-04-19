@@ -50,9 +50,7 @@
         </div>
         {
             var pageAccess = new Sunplus.Agent.Model.Entities.PageAccess();
-            pageAccess.ViewTotalBets = true;
-            pageAccess.UpdateAccount = true;
-            pageAccess.ViewReports = true;
+            pageAccess.SetFullPermission();
             Html.RenderPartial("~/SubAccount/Views/_Permissions.cshtml", pageAccess);
         }
         <div class="list-button text-right">

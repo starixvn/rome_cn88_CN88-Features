@@ -31,14 +31,14 @@
         let self: any = this;
 
         this.elements.acManagementViewOnly.change(function (): void {
-            if (this.checked) {
+            if (!this.checked) {
                 self.elements.acManagementEditView.prop("checked", false);
             }
         });
 
         this.elements.acManagementEditView.change(function (): void {
             if (this.checked) {
-                self.elements.acManagementViewOnly.prop("checked", false);
+                self.elements.acManagementViewOnly.prop("checked", true);
             }
         });
 
@@ -81,16 +81,13 @@
 
     protected getPageAccess(): string {
         let permissions: string[] = [];
+        let pageAccesses: JQuery[] = [
+            this.elements.totalBets,
+            this.elements.acManagementViewOnly,
+            this.elements.acManagementEditView,
+            this.elements.reports];
 
-        if (this.elements.acManagementEditView.is(":checked")) {
-            permissions.push(this.elements.acManagementEditView.val());
-        } else {
-            if (this.elements.acManagementViewOnly.is(":checked")) {
-                permissions.push(this.elements.acManagementViewOnly.val());
-            }
-        }
-
-        for (let item of [this.elements.totalBets, this.elements.reports]) {
+        for (let item of pageAccesses) {
             if (item.is(":checked")) {
                 permissions.push(item.val());
             }
