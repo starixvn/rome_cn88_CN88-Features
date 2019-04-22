@@ -27,27 +27,28 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="control-label">@SubAccountResource.Name <span class="star">*</span></label>
+                    <label for="name" class="control-label">@SubAccountResource.Name</label>
                     <div class="content-control">
                         <input type="text" class="control" maxlength="50" id="name" autocomplete="off" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="control-label">@SubAccountResource.Password <span class="star">*</span>
-                        <span class="icon-info" data-toggle="tooltip" data-placement="right" id="pass-rule" data-html="true" title="@SubAccountResource.PasswordRule"></span>
-                    </label>
-                    <div class="content-control">
-                        <input type="password" class="control" maxlength="16" id="password" />
-                    </div>
+                    <label for="password" class="control-label">
+                        @SubAccountResource.Password <span class="star">*</span>
+                    <span class="icon-info" data-toggle="tooltip" data-placement="right" id="pass-rule" data-html="true" title="@SubAccountResource.PasswordRule"></span>
+                </label>
+                <div class="content-control">
+                    <input type="password" class="control" maxlength="16" id="password" />
                 </div>
-                <div class="form-group">
-                    <label for="confirmPassword" class="control-label">@SubAccountResource.ConfirmPassword <span class="star">*</span></label>
-                    <div class="content-control">
-                        <input type="password" class="control" maxlength="16" id="confirmPassword" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword" class="control-label">@SubAccountResource.ConfirmPassword <span class="star">*</span></label>
+                <div class="content-control">
+                    <input type="password" class="control" maxlength="16" id="confirmPassword" />
                 </div>
             </div>
         </div>
+    </div>
         {
             var pageAccess = new Sunplus.Agent.Model.Entities.PageAccess();
             pageAccess.SetFullPermission();

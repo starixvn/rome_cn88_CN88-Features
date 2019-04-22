@@ -14,7 +14,7 @@
             int userId)
         {
             CustId = custId;
-            Name = name;
+            Name = name ?? string.Empty;
             PageAccess = pageAccess;
             LanguageKey = languageKey;
             LoginIP = loginIP;

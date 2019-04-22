@@ -66,12 +66,6 @@
     protected validateFormData(formData: any): boolean {
         this.message.hideMessage(this.elements.messageContainer);
 
-        if (formData.name.length === 0) {
-            this.showError(this.elements.requiredNameError);
-            this.elements.name.focus();
-            return false;
-        }
-
         return true;
     }
 

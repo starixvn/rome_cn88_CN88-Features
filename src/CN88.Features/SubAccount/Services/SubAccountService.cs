@@ -67,13 +67,6 @@
 
         public async Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param)
         {
-            var result = subAccountValidator.ValidateEmptyName(param.Name);
-
-            if (!result.IsSuccess)
-            {
-                return result;
-            }
-
             var subAccount = await GetSubAccountAsync(param.ActorId, param.SubAccId);
 
             return subAccount != null
@@ -83,14 +76,7 @@
 
         private Result ValidateCreateSubAccountParam(CreateSubAccountParam param)
         {
-            var result = subAccountValidator.ValidateEmptyName(param.Name);
-
-            if (!result.IsSuccess)
-            {
-                return result;
-            }
-
-            result = subAccountValidator.ValidateEmptyPassword(param.Password);
+            var result = subAccountValidator.ValidateEmptyPassword(param.Password);
 
             if (!result.IsSuccess)
             {

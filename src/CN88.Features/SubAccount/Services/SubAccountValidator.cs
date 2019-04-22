@@ -23,8 +23,6 @@
         string FilterWithValidPermissions(string pageAccess);
 
         Result ValidateSuffix(string suffix1, string suffix2);
-
-        Result ValidateEmptyName(string name);
     }
 
     public class SubAccountValidatorImpl : SubAccountValidator
@@ -112,10 +110,5 @@
 
             return suffix?.Length == 1 && int.TryParse(suffix, out value);
         }
-
-        public Result ValidateEmptyName(string name)
-            => string.IsNullOrWhiteSpace(name)
-            ? Result.CreateErrorResult(message: SubAccountResource.RequiredNameError)
-            : Result.CreateSuccessResult();
     }
 }
