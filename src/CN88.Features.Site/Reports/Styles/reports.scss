@@ -353,8 +353,13 @@ body {
         padding: 0;
         background-color: #fff;
     }
+
+    .new-page-content {
+         min-width: 420px;
+    }
+
     #tblAccountingSheet {
-        width: 416px;
+        width: 100%;
     }
 }
 .report-detail .accountingsheet-control {
