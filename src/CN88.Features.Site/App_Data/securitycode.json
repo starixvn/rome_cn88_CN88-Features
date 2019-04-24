@@ -1,6 +1,6 @@
 {
   "isActive": true,
-  "siteMainApp": "/main",
+  "siteMainApp": "/site-cn88",
   "paths": [
     "CustomerList/CreditPopup",
     "CustomerList/StatusPopup",

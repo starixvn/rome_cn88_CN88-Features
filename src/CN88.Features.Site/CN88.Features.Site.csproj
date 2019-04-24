@@ -873,6 +873,8 @@
     <Content Include="BetLists\ExcelTemplates\BetListOfReport_Headline.xls" />
     <Content Include="BetLists\Views\StartedWagerByAccount.cshtml" />
     <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
+    <Content Include="App_Data\securitycode.pro.json" />
+    <Content Include="App_Data\securitycode.napinternal.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
