@@ -123,9 +123,6 @@
   <data name="ACManagement" xml:space="preserve">
     <value>账户管理</value>
   </data>
-  <data name="ConfirmDeleteSubAccount" xml:space="preserve">
-    <value>Are you sure you want to delete this account?</value>
-  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>确认密码</value>
   </data>
@@ -135,11 +132,8 @@
   <data name="CreatedDate" xml:space="preserve">
     <value>创建日期</value>
   </data>
-  <data name="DeleteSubAccount" xml:space="preserve">
-    <value>Delete Sub Account</value>
-  </data>
   <data name="EditSubAccount" xml:space="preserve">
-    <value>Edit Sub Account</value>
+    <value>编辑子账户</value>
   </data>
   <data name="EditView" xml:space="preserve">
     <value>编辑 &amp; 检视</value>
@@ -175,21 +169,33 @@
     <value>更改密码</value>
   </data>
   <data name="ResetSecurityCode" xml:space="preserve">
-    <value>重置保安码</value>
+    <value>重置安全代码</value>
   </data>
   <data name="TotalBets" xml:space="preserve">
-    <value>总投注</value>
+    <value>即时注单</value>
   </data>
   <data name="ViewOnly" xml:space="preserve">
     <value>只能看帐</value>
-  </data>
-  <data name="CreateSubAccountSuccessfully" xml:space="preserve">
-    <value>成功创建账户</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>帐户</value>
   </data>
   <data name="Action" xml:space="preserve">
     <value>功能</value>
+  </data>
+  <data name="AccountManagement" xml:space="preserve">
+    <value>账户管理</value>
+  </data>
+  <data name="PasswordRule" xml:space="preserve">
+    <value>&lt;p&gt;密码必须至少为8个字符且没有空格，并且至少包含以下3个条件：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;大写字母[A-Z]&lt;/li&gt;&lt;li&gt;小写字母[a-z]&lt;/li&gt;&lt;li&gt;数字[0-9]&lt;/li&gt;&lt;li&gt;特殊字符（!,,#等...）&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;：59D7!4$h，493abcDE&lt;/p&gt;&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：您的密码输入的时候要注意字母的大小写&lt;/p&gt;</value>
+  </data>
+  <data name="RequiredNameError" xml:space="preserve">
+    <value>「名称」必填</value>
+  </data>
+  <data name="AccountSuccessfullyCreated" xml:space="preserve">
+    <value>成功创建账户</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>成功更新</value>
   </data>
 </root>

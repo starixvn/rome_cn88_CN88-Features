@@ -15,34 +15,32 @@
         <button class="btn-submit add-new" id="btnNewSubAccount">
             <span class="icon-add"></span>@SubAccountResource.NewSubAccount</button>
     </div>
-    <table class="tbl-style2" id="tbl-subaccount">
-        <thead>
+    <table class="tbl-style2"
+           id="tbl-subaccount"
+           data-totalrecords="@Model.SubAccounts.Count()"
+           data-sortedcolumn="UserName"
+           data-descendingsort="false">
+        <thead class="tableFloatingHeaderOriginal">
             <tr>
-                <th>@SubAccountResource.UserName</th>
-                <th>@SubAccountResource.Name</th>
+                <th class="header sorting" data-colindex="0" data-sortedname="UserName">@SubAccountResource.UserName</th>
+                <th class="header sorting" data-colindex="1" data-sortedname="FirstName">@SubAccountResource.Name</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
-                <th class="text-center">@SubAccountResource.ACManagement <br /> @SubAccountResource.ViewOnly</th>
-                <th class="text-center">@SubAccountResource.ACManagement <br /> @SubAccountResource.EditView</th>
+                <th class="text-center">@SubAccountResource.ACManagement<br/>@SubAccountResource.ViewOnly</th>
+                <th class="text-center">@SubAccountResource.ACManagement<br/>@SubAccountResource.EditView</th>
                 <th class="text-center">@SubAccountResource.Reports</th>
-                <th>@SubAccountResource.CreatedDate</th>
+                <th class="header sorting" data-colindex="6" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
                 <th class="text-center">@SubAccountResource.Action</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model.TotalItems == 0)
-            {
-                <tr>
-                    <td colspan="8" class="text-center">@SharedResources.NoInformationIsAvailable</td>
-                </tr>
-            }
-            else
+            @if (Model.SubAccounts.Any())
             {
                 foreach (var item in Model.SubAccounts)
                 {
                     var permission = item.Permissions;
                     <tr>
                         <td>@item.UserName</td>
-                        <td>@item.FirstName @item.LastName</td>
+                        <td>@WebUtility.HtmlDecode(item.FirstName)</td>
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewTotalBets)
                         </td>
@@ -62,19 +60,22 @@
                     </tr>
                 }
             }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="text-center">@SharedResources.NoInformationIsAvailable</td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
 @Html.Hidden(nameof(SubAccountResource.NewSubAccount), SubAccountResource.NewSubAccount)
 @Html.Hidden(nameof(SubAccountResource.EditSubAccount), SubAccountResource.EditSubAccount)
-@Html.Hidden(nameof(SubAccountResource.DeleteSubAccount), SubAccountResource.DeleteSubAccount)
-@Html.Hidden(nameof(SubAccountResource.ConfirmDeleteSubAccount), SubAccountResource.ConfirmDeleteSubAccount)
 @Html.Hidden(nameof(SubAccountResource.ResetPassword), SubAccountResource.ResetPassword)
 @Html.Hidden(nameof(SubAccountResource.ResetSecurityCode), SubAccountResource.ResetSecurityCode)
 
 @Html.Hidden(nameof(Model.NewSubAccountLink), Model.NewSubAccountLink)
 @Html.Hidden(nameof(Model.EditSubAccountLink), Model.EditSubAccountLink)
-@Html.Hidden(nameof(Model.DeleteSubAccountLink), Model.DeleteSubAccountLink)
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
 
@@ -87,5 +88,4 @@
     <span class="icon-pass" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetPassword"></span>
     <span class="icon-security" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetSecurityCode"></span>
     <span class="icon-edit" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.EditSubAccount"></span>
-    <span class="icon-delete" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.DeleteSubAccount"></span>
 }

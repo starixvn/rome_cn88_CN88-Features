@@ -27,7 +27,7 @@
     @Html.Partial("~/Reports/Views/AccountingPeriodSelection.cshtml", Model.AccountingPeriodSelectionViewModel)
     @DateRangePicker.Render(Model.DateRangePickerViewModel)
     @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
-    <div class="form-group pull-right">
+    <div class="form-group list-buttons">
         <input id="btn-clear" type="button" value="@SharedResources.Clear" class="btn btn-default" />
         <input type="submit" value="@ReportResources.ViewReport" class="btn-submit" />
     </div>

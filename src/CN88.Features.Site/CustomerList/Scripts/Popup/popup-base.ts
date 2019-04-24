@@ -44,6 +44,11 @@
             .done(function (data) {
                 data.Result.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Result.Message);
             })
+            .fail(function (jqXHR: JQueryXHR) {
+                if (jqXHR.status === 403) {
+                    self.showFailedMessage(jqXHR.responseJSON.message);
+                }
+            })
             .always(function () { self.$.unblockUI(); });
     }
 

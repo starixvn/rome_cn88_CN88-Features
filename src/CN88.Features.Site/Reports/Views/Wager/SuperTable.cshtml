@@ -32,12 +32,12 @@
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock)
                     @if (Model.IsNotOwner)
                     {
-                        @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                        @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent)
                         <th></th>
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineIncome)
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineResult)
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineStock)
-                        @ReportHtmlHelpers.RenderHeaderPercentCell(100)
+                        @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent)
                     }
                 </tr>
             }

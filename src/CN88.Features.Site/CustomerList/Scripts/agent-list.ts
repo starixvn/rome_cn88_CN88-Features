@@ -83,17 +83,13 @@ class AgentList extends BaseList {
 	
         this.$tblReport.removeClass("display-none");
 
-        var html = "";
-        var customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
+        let html = "";
+        let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
-            let disabledTooltip = `disabled title='${this.indexManager.viewResources.Disabled}'`,
-                newMemberTooltip = ` title='${this.indexManager.viewResources.NewMember}'`,
-                editAgentTooltip = ` title='${this.indexManager.viewResources.EditAgent}'`;
-
-            for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
+            for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 let customer = rs.Customers[i],
                     custId = customer.CustId,
                     username = customer.Username;                  
@@ -109,8 +105,8 @@ class AgentList extends BaseList {
                     "<td class='col-action text-center'>" +
                     `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='2'></span>` +
                     `<span class='icon-security' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
-                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? `${editAgentTooltip}` : `${disabledTooltip}`}></span>` +
-                    `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasAddNewPermission ? `${newMemberTooltip}` : `${disabledTooltip}`}></span>` +
+                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.EditAgent}'></span>` +
+                    `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.NewMember}'></span>` +
                     "</td>" +
                     "</tr>";
             }
@@ -132,7 +128,7 @@ class AgentList extends BaseList {
 		this.viewAgents(custId);
     };
     initAutoComplete = () => {
-        var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
+        let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
             this.$.param({ isDir: true, issub: false, ismember: false });
         initAutoComplete(this.$viewedMaster[0], queryUsernameURL);
         this.$output.css("top", this.$viewedMaster.offset().top + 30);

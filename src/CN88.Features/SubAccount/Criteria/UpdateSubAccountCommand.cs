@@ -5,21 +5,15 @@
     public class UpdateSubAccountCommand : BaseSubAccountCommand
     {
         public UpdateSubAccountCommand(UpdateSubAccountParam param)
-            : base(param.CustId, param.SubAccId, param.LoginSubAccId, param.LanguageKey, param.IP, param.ActorId)
+            : base(param.ActorId, param.Name, param.PageAccess, param.LanguageKey, param.IP, param.ActorId)
         {
-            FirstName = param.FirstName;
-            LastName = param.LastName;
-            Closed = param.Closed;
+            SubAccId = param.SubAccId;
         }
 
-        public string FirstName { get; }
-
-        public string LastName { get; }
-
-        public bool Closed { get; }
+        public int SubAccId { get; }
 
         public override string GetSettingKey()
-               => "Age_CustSubUpdInfo";
+            => "CS_CustSubUpd";
 
         public override bool IsValid()
             => base.IsValid() && SubAccId > 0;

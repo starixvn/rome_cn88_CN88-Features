@@ -26,5 +26,9 @@
   {
     "outputFile": "CustomerList/Styles/member-statement.css",
     "inputFile": "CustomerList/Styles/member-statement.scss"
+  },
+  {
+    "outputFile": "CustomerList/Styles/customizeDCSCN88.css",
+    "inputFile": "CustomerList/Styles/customizeDCSCN88.scss"
   }
 ]

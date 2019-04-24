@@ -2,6 +2,10 @@
     display: none;
 }
 
+.no-wrap {
+    white-space: nowrap;
+}
+
 .betlist-container {
     padding: 0 15px;
 
@@ -188,6 +192,10 @@
 }
 
 // parlay detail
+.popup-modal {
+    padding: 16px 20px;
+}
+
 .text-red {
     display: inline-block;
     padding-right: 4px;

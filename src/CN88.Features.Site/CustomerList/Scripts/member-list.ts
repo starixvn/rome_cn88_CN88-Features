@@ -80,15 +80,13 @@
 
         this.$tblReport.removeClass("display-none");
 
-        var html = "";
-        var customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
+        let html = "";
+        let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='9' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
-            let disabledTooltip = `disabled title='${this.indexManager.viewResources.Disabled}'`,              
-                editMemberTooltip = ` title='${this.indexManager.viewResources.EditMember}'`;
-            for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
+            for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 let customer = rs.Customers[i],
                     custId = customer.CustId,
                     username = customer.Username;
@@ -104,7 +102,7 @@
                     `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='col-action text-center'>" +
                     `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='1'></span>` +
-                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id=${custId} username=${username} ${this.HasUpdatePermission ? `${editMemberTooltip}` : `${disabledTooltip}`}></span>` +
+                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.EditMember}'></span>` +
                     "</td>" +
                     "</tr>";
             }
@@ -126,7 +124,7 @@
 		this.viewMembers(custId);
     };
     initAutoComplete = () => {
-        var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
+        let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
             this.$.param({ isDir: this.directDownline == siteInfrastructure.roleId.agent, issub: false, ismember: true });
         initAutoComplete(this.$viewedAgent[0], queryUsernameURL);
 

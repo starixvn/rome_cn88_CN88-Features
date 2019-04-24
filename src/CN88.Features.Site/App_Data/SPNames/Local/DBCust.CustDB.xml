@@ -9,11 +9,10 @@
     <Setting Key="CS_Customer_Status_Upd" SpName="CS_Customer_Status_Upd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Sub Account">
-    <Setting Key="Age_CustSubSel" SpName="Age_CustSubSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustSubSelInfo" SpName="Age_CustSubSelInfo" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustSubIns" SpName="Age_CustSubIns" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustSubUpdInfo" SpName="Age_CustSubUpdInfo" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustSubUpdPageAccess" SpName="Age_CustSubUpdPageAccess" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubSel" SpName="CS_CustSubSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubSelInfo" SpName="CS_CustSubSelInfo" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubIns" SpName="CS_CustSubIns" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubUpd" SpName="CS_CustSubUpd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="PT">
     <Setting Key="CS_CustSetting_LegacyReportSetting_Sel" SpName="CS_CustSetting_LegacyReportSetting_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />

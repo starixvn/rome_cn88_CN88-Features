@@ -3,7 +3,7 @@
 
 @helper Render(ITicket ticket)
 {
-    <td class="text-left">
+    <td class="text-left no-wrap">
         @ticket.TransDate.ToShortDateFormat()
         <br />
         @ticket.TransDate.ToLongTime24h()

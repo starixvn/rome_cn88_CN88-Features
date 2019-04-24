@@ -13,6 +13,7 @@ body {
 }
 
 .filter-container {
+    margin-bottom: 20px;
     background-color: #fff0d7;
 
     .tab-content {
@@ -28,6 +29,13 @@ body {
     }
 }
 
+.tblSettlementSummary,
+.tblAccountingSheet {
+    > tbody > tr:last-child > td {
+        border-bottom: none;
+    }
+}
+
 .result-container {
     background-color: #fff;
 }
@@ -37,6 +45,13 @@ body {
 
     .form-group {
         margin: 0 0 15px;
+        &.list-buttons {
+            width: 350px;
+            text-align: right;
+            .btn-submit {
+                margin-right: 0;
+            }
+        }
 
         &.btn-ex-group {
             .btn-default, .btn-secondary {
@@ -338,8 +353,14 @@ body {
         padding: 0;
         background-color: #fff;
     }
+
+    .new-page-content {
+         min-width: 424px;
+    }
+
     #tblAccountingSheet {
-        width: 416px;
+        width: 100%;
+        white-space: nowrap;
     }
 }
 .report-detail .accountingsheet-control {
@@ -367,3 +388,16 @@ body {
         }
     }
 }
+
+/*@media only screen and (max-device-width: 743px) {
+    .input-group.date{
+        .form-control {
+            height: 30px;
+            box-shadow: none;
+        }
+        .icon-calendar {
+            font-size: 16px;
+        }
+        
+    }
+}*/

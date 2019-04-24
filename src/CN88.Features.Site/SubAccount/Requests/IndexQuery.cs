@@ -11,14 +11,5 @@
             : base(viewer)
         {
         }
-
-        public string UserCode { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int PageSize { get; set; }
-
-        public override bool IsValid()
-            => base.IsValid() && SubAccountId == 0;
     }
 }

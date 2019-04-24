@@ -204,6 +204,7 @@
 @Html.Hidden("CurrentLink", Model.CurrentLink)
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
+@Html.Hidden("AccessDenyPage", Model.AccessDenyPage)
 
 @Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
 @Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
@@ -217,8 +218,7 @@
 
 @Html.Hidden("ResetSecurityCode", CustomerListResources.ResetSecurityCode)
 @Html.Hidden("Disabled", CustomerListResources.Disabled)
-@Html.Hidden("HasUpdatePermission", Model.HasUpdatePermission ? 1 : 0)
-@Html.Hidden("HasAddNewPermission", Model.HasAddNewPermission ? 1 : 0)
+@Html.Hidden("AccountManagementEditView", Model.AccountManagementEditView ? 1 : 0)
 @Html.Hidden("Language", Model.Language)
 @Html.Hidden("ViewerId", Model.ViewerId)
 @Html.Hidden("ActorLevel", Model.ActorLevel.Value)

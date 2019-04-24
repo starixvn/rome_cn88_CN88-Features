@@ -73,7 +73,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Reports/Scripts/base-report.js",
-      "Reports/Scripts/pt-history.js",
+      //"Reports/Scripts/pt-history.js",
       "Reports/Scripts/legacy.js",
       "Reports/Scripts/legacy-init.js"
     ]
@@ -86,7 +86,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Reports/Scripts/old-base-report.js",
-      "Reports/Scripts/pt-history.js",
+      //"Reports/Scripts/pt-history.js",
       "Reports/Scripts/old-legacy.js",
       "Reports/Scripts/old-legacy-init.js"
     ]
@@ -141,6 +141,12 @@
     ]
   },
   {
+    "outputFileName": "CustomerList/bundles/styles/customizeDCSCN88.css",
+    "inputFiles": [
+      "CustomerList/Styles/customizeDCSCN88.css"
+    ]
+  },
+  {
     "outputFileName": "CustomerList/bundles/styles/downline-list.css",
     "inputFiles": [
       "CustomerList/Styles/downline-list.css"
@@ -156,6 +162,8 @@
     "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
     "inputFiles": [
       "Shared/Scripts/components/message.js",
+      "Shared/Scripts/components/sort.js",
+      "Shared/Scripts/components/link-builder.js",
       "SubAccount/Scripts/sub-account.js"
     ]
   },

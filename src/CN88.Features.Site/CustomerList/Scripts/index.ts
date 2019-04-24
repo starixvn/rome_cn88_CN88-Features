@@ -11,6 +11,7 @@
     CreateCustomerLink: string;
     UpdateCreditLink: string;
     UpdateStatusLink: string;
+    AccessDenyPage: string;
 
     CurrentLink: string;
     ResetPasswordLink: string;
@@ -48,8 +49,7 @@
     masterList: MasterList;
     agentList: AgentList;
     memberList: MemberList;
-    HasUpdatePermission: boolean;
-    HasAddNewPermission: boolean;
+    AccountManagementEditView: boolean;
     Language: string;
     ViewerId: string;
     ActorLevel: string;
@@ -81,9 +81,9 @@
         this.$navTabs.find("li[level='" + this.directDownline + "']").addClass("active");
         this.$(".tab-content[level='" + this.directDownline + "']").removeClass("display-none");
 
-        var self = this;
+        let self = this;
         this.$(".lnk-changetab").click(function () {
-            var $this = self.$(this);
+            let $this = self.$(this);
             self.$navTabs.find("> li").removeClass("active");
             $this.addClass("active");
 
@@ -109,8 +109,8 @@
                 case siteInfrastructure.roleId.member:
                     this.$("#btn-submit-master").click();
 
-                    var memberUsername = location.search.split(/[?&]/)[1].split('=')[1];
-                    var agentUsername = memberUsername.substr(0, memberUsername.length - 2);
+                    let memberUsername = location.search.split(/[?&]/)[1].split('=')[1];
+                    let agentUsername = memberUsername.substr(0, memberUsername.length - 2);
                     this.agentList.$viewedMaster.val(agentUsername);
                     this.$("#btn-submit-agent").click();
 
@@ -160,11 +160,9 @@
         this.CurrentLink = this.$("#CurrentLink").val();
         this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
         this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
+        this.AccessDenyPage = this.$("#AccessDenyPage").val();
 
-
-
-        this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
-        this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
+        this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
         this.Language = this.$("#Language").val();
         this.ViewerId = this.$("#ViewerId").val();
         this.ActorLevel = this.$("#ActorLevel").val();
@@ -265,29 +263,33 @@
             ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
-            IsReadOnly: !this.HasUpdatePermission,
+            IsReadOnly: !this.AccountManagementEditView,
             UplineId: this.ViewerId,
             ActorLevel: this.ActorLevel
         });
     };
     addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
-        reportParam.CustId = custId;
-        reportParam.Username = username;
-        reportParam.SearchRoleId = custLevelId;
-        reportParam.DownlineUsername = downlineUsername;
+        if (this.AccountManagementEditView) {
+            reportParam.CustId = custId;
+            reportParam.Username = username;
+            reportParam.SearchRoleId = custLevelId;
+            reportParam.DownlineUsername = downlineUsername;
 
-        this.storeCurrentPage(reportParam);
-        this.topWindow.showCN88CancelButton = true;
+            this.storeCurrentPage(reportParam);
+            this.topWindow.showCN88CancelButton = true;
 
-        window.location.href = this.CreateCustomerLink + "?" + this.$.param({
-            Language: this.Language,
-            ProductId: 1,
-            CustomerLevel: custLevelId,
-            CustomerId: custId,
-            IsReadOnly: !this.HasAddNewPermission,
-            UplineId: custId,
-            ActorLevel: this.ActorLevel
-        });
+            window.location.href = this.CreateCustomerLink + "?" + this.$.param({
+                Language: this.Language,
+                ProductId: 1,
+                CustomerLevel: custLevelId,
+                CustomerId: custId,
+                IsReadOnly: !this.AccountManagementEditView,
+                UplineId: custId,
+                ActorLevel: this.ActorLevel
+            });
+        } else {
+            window.location.href = this.AccessDenyPage;
+        }
     };
     getStatusName = (status: number) => {
         if (status == siteInfrastructure.customerStatus.open) {
@@ -316,7 +318,7 @@
         this.$(".col-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
     };
     reloadStatusValue = (custId: any, newValue: any) => {
-        var column = this.$(".col-status[cust-id='" + custId + "']");
+        let column = this.$(".col-status[cust-id='" + custId + "']");
         column.html(this.getStatusName(newValue));
         column.attr("current-status", newValue);
 
@@ -337,7 +339,7 @@
         return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Upline;
     };
     storeCurrentPage = (reportParam: any) => {
-        var currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
+        let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
 };

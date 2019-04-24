@@ -6,11 +6,11 @@ declare var CryptoJS: any;
 
 String.prototype.encrypt = function (secretKey: string): string {
     let plainText: string = this.toString();
-    const passPhrase: string = "a5s8d2e9c172";
-    let key: string = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
-    let iv: string = key;
+    const passPhrase = "a5s8d2e9c172";
+    let key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
+    let iv = key;
 
-    let pwd: any = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
+    let pwd = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
         {
             keySize: 128 / 8,
             iv: iv,
@@ -28,6 +28,8 @@ class NewSubAccount extends BaseSubAccount {
 
     protected cacheElements(): void {
         super.cacheElements();
+        this.elements.passRule = this.$("#pass-rule");
+        this.elements.passRule.tooltip();
         this.elements.requiredPasswordError = this.$("#RequiredPasswordError").val();
         this.elements.passwordWrongRuleError = this.$("#PasswordWrongRuleError").val();
         this.elements.confirmPasswordError = this.$("#ConfirmPasswordError").val();
@@ -39,11 +41,12 @@ class NewSubAccount extends BaseSubAccount {
     }
 
     protected getFormData(): any {
-        var formData: any = super.getFormData();
+        let hashKey: string = this.elements.hashKey;
+        let password: string = this.elements.password.val();
+        let formData: any = super.getFormData();
         formData.suffix1 = this.elements.suffix1.val();
         formData.suffix2 = this.elements.suffix2.val();
-        formData.password = this.elements.password.val();
-        formData.confirmPassword = this.elements.confirmPassword.val();
+        formData.password = password.encrypt(hashKey);
 
         return formData;
     }
@@ -55,19 +58,21 @@ class NewSubAccount extends BaseSubAccount {
             return false;
         }
 
-        if (formData.password.length === 0) {
+        let passwordValue = this.elements.password.val();
+
+        if (passwordValue.length === 0) {
             this.showError(this.elements.requiredPasswordError);
             this.elements.password.focus();
             return false;
         }
 
-        if (!this.isValidPassword(formData.password)) {
+        if (!this.isValidPassword(passwordValue)) {
             this.showError(this.elements.passwordWrongRuleError);
             this.elements.password.focus();
             return false;
         }
 
-        if (formData.password !== formData.confirmPassword) {
+        if (passwordValue !== this.elements.confirmPassword.val()) {
             this.showError(this.elements.confirmPasswordError);
             this.elements.confirmPassword.focus();
 

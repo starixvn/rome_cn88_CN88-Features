@@ -38,6 +38,9 @@ class ReportIndexView extends BaseReport {
         toDate: null
     };
 
+    defaultFromDate: Date;
+    defaultToDate: Date;
+
     constructor(
         $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
@@ -90,10 +93,12 @@ class ReportIndexView extends BaseReport {
 
     calculatedDate(): void {
         this.minDate = new Date(this.$dateRangePicker.data("mindate"));
-        this.thisPeriod.fromDate = new Date(this.$("#ThisPeriod_FromDate").val())
-        this.thisPeriod.toDate = new Date(this.$("#ThisPeriod_ToDate").val())
-        this.lastPeriod.fromDate = new Date(this.$("#LastPeriod_FromDate").val())
-        this.lastPeriod.toDate = new Date(this.$("#LastPeriod_ToDate").val())
+        this.thisPeriod.fromDate = new Date(this.$("#ThisPeriod_FromDate").val());
+        this.thisPeriod.toDate = new Date(this.$("#ThisPeriod_ToDate").val());
+        this.lastPeriod.fromDate = new Date(this.$("#LastPeriod_FromDate").val());
+        this.lastPeriod.toDate = new Date(this.$("#LastPeriod_ToDate").val());
+        this.defaultFromDate = new Date(this.$fromDate.val());
+        this.defaultToDate = new Date(this.$toDate.val());
     }
 
     renderRptTypeDropdown(): void {
@@ -116,7 +121,7 @@ class ReportIndexView extends BaseReport {
         this.$createRptForm.submit(() => this.onSubmit());
 
         this.$todayBtn.click((e) => {
-            this.changeDateRange(e, this.getToday(), this.getToday());
+            this.onQuickChoiceClick(e, this.getToday(), this.getToday());
         });
 
         this.$yesterdayBtn.click((e) => {
@@ -132,7 +137,7 @@ class ReportIndexView extends BaseReport {
                 return;
             }
 
-            this.changeDateRange(e, yesterday, yesterday);
+            this.onQuickChoiceClick(e, yesterday, yesterday);
         });
 
         this.$tomorrowBtn.click((e) => {
@@ -143,25 +148,25 @@ class ReportIndexView extends BaseReport {
                 tomorrow = this.getTomorrow(this.getToday());
             }
 
-            this.changeDateRange(e, tomorrow, tomorrow);
+            this.onQuickChoiceClick(e, tomorrow, tomorrow);
         });
 
         this.$thisWeekBtn.click((e) => {
             let dateRange = this.getDateRangeOfCurrentWeek(this.getToday());
-            this.changeDateRange(e, dateRange[0], dateRange[1]);
+            this.onQuickChoiceClick(e, dateRange[0], dateRange[1]);
         });
 
         this.$lastWeekBtn.click((e) => {
             let dateRange = NexDatePickerHelper.getDateRangeOfLastWeek(this.getToday());
-            this.changeDateRange(e, dateRange[0], dateRange[1]);
+            this.onQuickChoiceClick(e, dateRange[0], dateRange[1]);
         });
 
         this.$thisPeriodBtn.click((e) => {
-            this.changeDateRange(e, this.thisPeriod.fromDate, this.thisPeriod.toDate);
+            this.onQuickChoiceClick(e, this.thisPeriod.fromDate, this.thisPeriod.toDate);
         });
 
         this.$lastPeriodBtn.click((e) => {
-            this.changeDateRange(e, this.lastPeriod.fromDate, this.lastPeriod.toDate);
+            this.onQuickChoiceClick(e, this.lastPeriod.fromDate, this.lastPeriod.toDate);
         });
 
         this.$clearBtn.click(() => {
@@ -194,11 +199,15 @@ class ReportIndexView extends BaseReport {
         return [startDate, lastDate];
     }
 
-    changeDateRange(e: JQueryEventObject, fromDate, toDate): void {
+    onQuickChoiceClick(e: JQueryEventObject, fromDate, toDate): void {
         var button = this.$(e.target);
         this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
         button.removeClass("btn-default").addClass("btn-secondary");
 
+        this.changeDateRange(fromDate, toDate);
+    }
+
+    changeDateRange(fromDate, toDate): void {
         let minDate = new Date(this.$dateRangePicker.data("mindate"));
         let maxDate = new Date(this.$dateRangePicker.data("maxdate"));
         let fDate = NexDatePickerHelper.correctDateInRange(fromDate, minDate, maxDate);
@@ -209,12 +218,14 @@ class ReportIndexView extends BaseReport {
 
         this.$toDateContainer.data("DateTimePicker").minDate(fDate);
         this.$toDateContainer.data("DateTimePicker").date(tDate);
-    };
+    }
 
     reset(): void {
         this.resetWagerReportType();
         this.resetCancelledReportType();
-        this.$yesterdayBtn.click();
+        this.changeDateRange(this.defaultFromDate, this.defaultToDate);
+        this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
+        this.$yesterdayBtn.addClass("btn-secondary");
         this.sportGroupSelectionComponent.changeSelection(0);
         this.resetBetType();
         this.liveStatusSelectionComponent.changeSelection(2);
