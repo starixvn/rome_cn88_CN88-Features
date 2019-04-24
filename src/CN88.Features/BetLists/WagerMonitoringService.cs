@@ -101,6 +101,7 @@
                 ConfiguredCacheService.Get<long>(MinTransIdCachesKey));
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
+            tickets = DataAccesses.BetListsData.GetMonitorBets(param);
 
             ConfiguredCacheService.Set<long>(MinTransIdCachesKey, criteria.MinTransId);
 

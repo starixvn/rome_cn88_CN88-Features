@@ -244,6 +244,7 @@
     <Compile Include="BetLists\Criteria\EventWagerByAccountCriteria.cs" />
     <Compile Include="BetLists\Criteria\StartedWagerDetailsCriteria.cs" />
     <Compile Include="BetLists\Criteria\EventWagerDetailsCriteria.cs" />
+    <Compile Include="BetLists\DataAccesses\BetListsData.cs" />
     <Compile Include="BetLists\Params\StartedWagerDetailsParam.cs" />
     <Compile Include="BetLists\Params\StartedWagerByAccountParam.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMatchByIdCriteria.cs" />
