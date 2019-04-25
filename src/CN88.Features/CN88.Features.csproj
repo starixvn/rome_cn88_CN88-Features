@@ -63,7 +63,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.Sportsbook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0-ns01\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0-ns02\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
