@@ -1,37 +1,70 @@
-﻿class FilterModal {
-    $: JQueryStatic;
-    $stakeFilterOption: JQuery;
-    $filterFormPath: JQuery;
+﻿class FilterParam {
+    constructor(
+        public sportGroup: number = 0,
+        public isSelectAllSports: boolean = true,
+        public stakeMode: number = 1,
+        public stakeLimit: number = 0,
+        public sportStakeConditions: string = "",
+        public market: string = "",
+        public leagueIds: string = "",
+        public matchIds: string = "",
+        public betTypeGroupIds: string = "") {
+    }
+}
 
+class FilterModal {
+    $: JQueryStatic;
+    $filterModalContainer: JQuery;
+    $filterModalPath: JQuery;
+    onSubmit: Function;
+
+    filterParam: FilterParam;
     marketMultiSelectionComponent: MultiSelectionCheckboxComponent;
     leagueMultiSelectionComponent: MultiSelectionCheckboxComponent;
     eventMultiSelectionComponent: MultiSelectionCheckboxComponent;
     betTypeMultiSelectionComponent: MultiSelectionCheckboxComponent;
 
     sportGroup: number;
-    onSubmitSuccess: Function;
 
     constructor($: JQueryStatic) {
         this.$ = $;
-
+        this.$filterModalContainer = $("#filter-modal");
+        this.$filterModalPath = $("#FilterFormPath");
         this.marketMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.leagueMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.eventMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.betTypeMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
     }
 
-    render(onSubmitSuccess: Function): void {
-        this.onSubmitSuccess = onSubmitSuccess;
+    show = (targetTabId: string, filterParam: FilterParam = new FilterParam(), onSubmit: Function = null) => {
+        this.filterParam = <FilterParam>this.$.extend({}, this.filterParam, filterParam);
+        this.onSubmit = onSubmit;
 
-        this.cacheDOMElements();
+        this.$.blockUI();
+        this.$.ajax({
+            method: "GET",
+            url: this.$filterModalPath.val(),
+            cache: false,
+            data: this.filterParam,
+            success: (result) => {
+                this.showFilterModal(result, targetTabId);
+            },
+            complete: this.$.unblockUI
+        });
+    }
+
+    hide(): void {
+        this.$filterModalContainer.modal("hide");
+    }
+
+    showFilterModal(html: string, targetTab: string): void {
+        this.$filterModalContainer.html(html);
         this.renderComponents();
         this.registerEvents();
+        this.$(targetTab).click();
+        this.$filterModalContainer.modal({ show: true, backdrop: false });
     }
-
-    cacheDOMElements(): void {
-        this.$stakeFilterOption = this.$("input[name='stake-filter-option']");
-        this.$filterFormPath = this.$("#FilterFormPath");
-    }
+    
 
     renderComponents(): void {
         this.$(".dropdown-stake-condition > select").multiselect({
@@ -48,7 +81,7 @@
     }
 
     registerEvents(): void {
-        this.$stakeFilterOption.change(() => {
+        this.$("input[name='stake-filter-option']").change(() => {
             this.onStakeFilterOptionChange();
         });
 
@@ -107,49 +140,43 @@
             });
         }
 
-        this.$("#btn-submit").click((): void => {
-            this.$.blockUI();
-
-            let conditions = [];
-            let isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
-            if (!isSelectAllSports) {
-                let $perSportsConditions = this.$("#list-persports").children();
-                $perSportsConditions.each(function () {
-                    let sportGroupId = $(this).data("id");
-                    let stakeMode = $(this).find("select").children("option:selected").val();
-                    let stakeLimit = $(this).find(".StakeLimit").val();
-                    conditions.push({
-                        sportGroupId: sportGroupId,
-                        stakeMode: stakeMode,
-                        stakeLimit: stakeLimit
-                    });
-                });
-            }
-
-            let param = {
-                sportGroup: this.sportGroup,
-                isSelectAllSports: isSelectAllSports,
-                stakeMode: this.$("#AllSportStakeMode").children("option:selected").val(),
-                stakeLimit: this.$("#AllSportsStakeLimit").val(),
-                sportStakeConditions: JSON.stringify(conditions),
-                market: this.marketMultiSelectionComponent.getSelectedItems().join(","),
-                leagueIds: this.leagueMultiSelectionComponent.getSelectedItems().join(","),
-                matchIds: this.eventMultiSelectionComponent.getSelectedItems().join(","),
-                betTypeGroupIds: this.betTypeMultiSelectionComponent.getSelectedItems().join(",")
-            };
-
-            this.$.ajax({
-                method: "GET",
-                url: this.$filterFormPath.val(),
-                cache: false,
-                data: param,
-                success: (html) => {
-                    this.onSubmitSuccess(html);
-                },
-                complete: this.$.unblockUI
-            });
+        this.$("#btn-submit").click(() => {
+            this.onSubmit();
         });
+
+
     }
+
+    getParameters = () => {
+        let conditions = [];
+        let isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
+        if (!isSelectAllSports) {
+            let $perSportsConditions = this.$("#list-persports").children();
+            let $this = this.$;
+            $perSportsConditions.each(function () {
+                let sportGroupId = $this(this).data("id");
+                let stakeMode = $this(this).find("select").children("option:selected").val();
+                let stakeLimit = $this(this).find(".StakeLimit").val();
+                conditions.push({
+                    sportGroupId: sportGroupId,
+                    stakeMode: stakeMode,
+                    stakeLimit: stakeLimit
+                });
+            });
+        }
+
+        return {
+            sportGroup: this.sportGroup,
+            isSelectAllSports: isSelectAllSports,
+            stakeMode: this.$("#AllSportStakeMode").children("option:selected").val(),
+            stakeLimit: this.$("#AllSportsStakeLimit").val(),
+            sportStakeConditions: JSON.stringify(conditions),
+            market: this.marketMultiSelectionComponent.getSelectedItems().join(","),
+            leagueIds: this.leagueMultiSelectionComponent.getSelectedItems().join(","),
+            matchIds: this.eventMultiSelectionComponent.getSelectedItems().join(","),
+            betTypeGroupIds: this.betTypeMultiSelectionComponent.getSelectedItems().join(",")
+        };
+    };
 
     onStakeFilterOptionChange(): void {
         let listAllSportsId = "#list-allsports";

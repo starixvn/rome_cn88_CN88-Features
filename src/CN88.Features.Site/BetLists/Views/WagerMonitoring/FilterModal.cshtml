@@ -51,8 +51,8 @@
                     <div>
                         <div class="input-group search-group">
                             <input type="text" id="txtSearchLeague" class="form-control" aria-describedby="basic-addon2">
-                            <span class="input-group-addon" id="basic-addon2"><i class="icon-search"></i></span>
-                            <span class="icon-close"></span>
+                            <span class="input-group-addon" id="btnSearchLeague"><i class="icon-search"></i></span>
+                            <span class="icon-close" id="btnClearSearchLeague"></span>
                         </div>
                     </div>                    
                     <input type="checkbox" id="check-all-leagues" @(Model.SelectedAllLeagues ? "checked=\"checked\"" : string.Empty) value="" />@BetListsResources.AllLeagues

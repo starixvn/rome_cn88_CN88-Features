@@ -2,12 +2,10 @@
     $: JQueryStatic;
     $tblBetList: JQuery;
     $filterForm: JQuery;
-    $filterModal: JQuery;
-
-    $filterModalPath: JQuery;
+    $filterFormPath: JQuery;
     $wagerMonitoringPath: JQuery;
-
     ajaxRequest: JQueryXHR;
+
     filterModal: FilterModal;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
 
@@ -44,8 +42,7 @@
     cacheElements(): void {
         this.$tblBetList = this.$("#tbl-betlist");
         this.$filterForm = this.$("#filter-form");
-        this.$filterModal = this.$("#filter-modal");
-        this.$filterModalPath = this.$("#FilterModalPath");
+        this.$filterFormPath = this.$("#FilterFormPath");
         this.$wagerMonitoringPath = this.$("#WagerMonitoringPath");
     }
 
@@ -64,52 +61,46 @@
 
         this.$filterForm.find(".link").on("click", function () {
             let link = $(this);
-            self.loadFilterModal(link.data("target"));
+            self.filterModal.show(link.data("target"), self.getParam());
         });
     }
 
-    loadFilterModal(targetTab: string): void {
+    getParam = () => {
+        return new FilterParam(
+            this.sportGroup,
+            this.$("#IsSelectAllSports").val(),
+            this.$("#StakeMode").val(),
+            this.$("#StakeLimit").val(),
+            this.$("#SportStakeConditions").val(),
+            this.$("#Market").val(),
+            this.$("#LeagueIds").val(),
+            this.$("#MatchIds").val(),
+            this.$("#BetTypeGroupIds").val()
+        );
+    }
+
+    onSubmit(): void {
         this.$.blockUI();
-        this.isOpeningFilter = true;
-        let param = {
-            sportGroup: this.sportGroup,
-            isSelectAllSports: this.$("#IsSelectAllSports").val(),
-            stakeMode: this.$("#StakeMode").val(),
-            stakeLimit: this.$("#StakeLimit").val(),
-            sportStakeConditions: this.$("#SportStakeConditions").val(),
-            market: this.$("#Market").val(),
-            leagueIds: this.$("#LeagueIds").val(),
-            matchIds: this.$("#MatchIds").val(),
-            betTypeGroupIds: this.$("#BetTypeGroupIds").val()
-        };
 
         this.$.ajax({
             method: "GET",
-            url: this.$filterModalPath.val(),
+            url: this.$filterFormPath.val(),
             cache: false,
-            data: param,
-            success: (result) => {
-                this.showFilterModal(result, targetTab);
+            data: this.filterModal.getParameters(),
+            success: (html) => {
+                this.onSubmitSuccess(html);
             },
             complete: this.$.unblockUI
         });
     }
 
-    showFilterModal(html: string, targetTab: string): void {
-        this.$filterModal.html(html);
-        this.filterModal.render(this.onSubmitSuccess);
-        this.$(targetTab).click();
-        this.$filterModal.modal({ show: true, backdrop: false });
-        this.isOpeningFilter = false;
+    onSubmitSuccess(html: string): void {
+        this.$filterForm.html(html);
+        this.registerEvents();
+
+        this.filterModal.hide();
     }
 
-    onSubmitSuccess(html: string): void {
-        this.$filterForm = this.$("#filter-form");
-        this.$filterForm.html(html);
-        this.$filterModal = this.$("#filter-modal");
-        this.$filterModal.modal("hide");
-        this.registerEvents();
-    }
 
     getLastBets(): void {
         if (this.isOpeningFilter) {
