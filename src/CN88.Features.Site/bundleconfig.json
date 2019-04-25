@@ -319,6 +319,7 @@
       "BetLists/Scripts/popup-details.js",
       "BetLists/Scripts/base-betlist.js",
       "BetLists/Scripts/wager-monitoring/multi-selection-checkbox.js",
+      "BetLists/Scripts/wager-monitoring/filter-modal.js",
       "BetLists/Scripts/wager-monitoring/wager-monitoring.js",
       "BetLists/Scripts/result/base-result.js",
       "BetLists/Scripts/result/sportsbook-result-details.js",

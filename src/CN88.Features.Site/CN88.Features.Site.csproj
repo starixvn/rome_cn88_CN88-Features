@@ -1001,6 +1001,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\utils.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\filter-modal.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
