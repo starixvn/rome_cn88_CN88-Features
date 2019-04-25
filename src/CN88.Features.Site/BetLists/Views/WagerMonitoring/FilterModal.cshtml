@@ -50,7 +50,7 @@
                 <div class="tab-pane fade" id="league" role="tabpanel" aria-labelledby="league-tab">
                     <div>
                         <div class="input-group search-group">
-                            <input type="text" class="form-control" aria-describedby="basic-addon2">
+                            <input type="text" id="txtSearchLeague" class="form-control" aria-describedby="basic-addon2">
                             <span class="input-group-addon" id="basic-addon2"><i class="icon-search"></i></span>
                             <span class="icon-close"></span>
                         </div>
@@ -79,24 +79,20 @@
                         @{
                             if (Model.SportGroup == SportGroupConstants.AllSports)
                             {
-                                var mainBetTypes = Model.BetTypeGroups.Where(x => x.IsMainMarket);
-                                var selectedAllMainBetTypes = !mainBetTypes.Any(x => !x.Selected);
-                                var otherBetTypes = Model.BetTypeGroups.Where(x => !x.IsMainMarket);
-                                var selectedAllOtherBetTypes = !otherBetTypes.Any(x => !x.Selected);
                                 <div class="bettype-group item">
                                     <div class="group-name">
-                                        <input type="checkbox" @(selectedAllMainBetTypes ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.MainMarkets
+                                        <input type="checkbox" @(Model.IsSelectedAllMainBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.MainMarkets
                                     </div>
                                     <ul class="group-details">
-                                        @RenderSelectListItem(mainBetTypes, Model.SelectedAllBetTypes)
+                                        @RenderSelectListItem(Model.MainBetTypeGroups, Model.SelectedAllBetTypes)
                                     </ul>
                                 </div>
                                 <div class="bettype-group item">
                                     <div class="group-name">
-                                        <input type="checkbox" @(selectedAllOtherBetTypes ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.OtherMarkets
+                                        <input type="checkbox" @(Model.IsSelectedAllOtherBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.OtherMarkets
                                     </div>
                                     <ul class="group-details">
-                                        @RenderSelectListItem(otherBetTypes, Model.SelectedAllBetTypes)
+                                        @RenderSelectListItem(Model.OtherBetTypeGroups, Model.SelectedAllBetTypes)
                                     </ul>
                                 </div>
                             }

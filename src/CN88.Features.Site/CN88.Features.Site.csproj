@@ -700,6 +700,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
+    <Compile Include="BetLists\Extensions\SelectListItemExtensions.cs" />
     <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="BetLists\Handlers\BetListOfReportExcelHandler.cs" />
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />

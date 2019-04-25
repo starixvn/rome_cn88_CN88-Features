@@ -71,10 +71,10 @@
         public async Task<IEnumerable<MatchInfo>> GetMatches(int sportGroup)
         {
             var otherEvents = await GetOtherMatches();
-            var orightEvents = await GetOutrightMatches();
+            var outrightEvents = await GetOutrightMatches();
 
             var events = new List<MatchInfo>(otherEvents);
-            events.AddRange(orightEvents);
+            events.AddRange(outrightEvents);
 
             return sportGroup == 0
                 ? events

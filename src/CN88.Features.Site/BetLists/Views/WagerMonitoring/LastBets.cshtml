@@ -11,7 +11,6 @@
             @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
             @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, new List<ITicketData>())
             @BetLists.Stake.Render(ticket, Model.Divisor)
-            @BetLists.Payout.Render(ticket, Model.Divisor)
             @if (Model.CustLevel.IsAgentLevel())
             {
                 @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")

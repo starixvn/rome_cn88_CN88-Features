@@ -1,11 +1,13 @@
 ﻿namespace CN88.Features.Site.BetLists.Handlers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using BetList.Core.Builders;
+    using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
@@ -77,8 +79,8 @@
             foreach (var sportGroup in sportGroups)
             {
                 var condition = sportStakeConditions?.FirstOrDefault(c => c.SportGroupId == sportGroup.Id);
-                var stakeMode = condition != null ? condition.StakeMode : StakeModeConstant.GreaterThan;
-                var stakeLimit = condition != null ? condition.StakeLimit : 0;
+                var stakeMode = condition?.StakeMode ?? StakeModeConstant.GreaterThan;
+                var stakeLimit = condition?.StakeLimit ?? 0;
 
                 conditions.Add(new SportStakeCondition
                 {
@@ -106,11 +108,9 @@
 
                 return FormatStakeConditions(conditions);
             }
-            else
-            {
-                return FormatStakeConditions(
-                    JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions));
-            }
+
+            return FormatStakeConditions(
+                JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions));
         }
 
         private string FormatStakeConditions(IEnumerable<SportStakeCondition> conditions)
@@ -134,68 +134,26 @@
 
             return new WagerMonitoringFilterViewModel(
                 message,
-                BuildMarketSelectListItems(message.Market.ToListInt()),
-                BuildLeagueSelectListItems(leagues, message.LeagueIds.ToListInt()),
-                BuildMatchSelectListItems(matches, message.MatchIds.ToListInt()),
-                BuildBetTypeGroupSelectListItems(betTypeGroups, message.BetTypeGroupIds.ToListInt()),
+                BuildSelectListItems(WagerMonitoringMarket.Markets, message.Market, SelectListItemExtensions.Create),
+                BuildSelectListItems(leagues, message.LeagueIds, SelectListItemExtensions.Create),
+                BuildSelectListItems(matches, message.MatchIds, SelectListItemExtensions.Create),
+                BuildSelectListItems(betTypeGroups, message.BetTypeGroupIds, SelectListItemExtensions.Create),
                 BuildSportStakeConditions(
                     sportGroups,
                     JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions ?? string.Empty)));
         }
 
-        private IEnumerable<SelectListItem> BuildMarketSelectListItems(IEnumerable<int> selectedMarkets)
-            => WagerMonitoringMarket.Markets.Select(
-                market => new SelectListItem
-                {
-                    Value = market.Key.ToString(),
-                    Text = SharedResources.ResourceManager.GetString(market.Value),
-                    Selected = !selectedMarkets.Any() || selectedMarkets.Contains(market.Key)
-                });
-
-        private IEnumerable<SelectListItem> BuildLeagueSelectListItems(IEnumerable<League> leagues, IEnumerable<int> selectedLeagueIds)
+        private IEnumerable<SelectListItem> BuildSelectListItems<T>(
+            IEnumerable<T> sources,
+            string selectedIds,
+            Func<T, IEnumerable<int>, SelectListItem> createItemFunc)
         {
-            if (leagues == null || !leagues.Any())
+            if (sources == null || !sources.Any())
             {
                 return Enumerable.Empty<SelectListItem>();
             }
 
-            return leagues.Select(league => new SelectListItem
-            {
-                Value = league.Id.ToString(),
-                Text = league.Name,
-                Selected = !selectedLeagueIds.Any() || selectedLeagueIds.Contains(league.Id)
-            });
-        }
-
-        private IEnumerable<SelectListItem> BuildMatchSelectListItems(IEnumerable<MatchInfo> matches, IEnumerable<int> selectedMatchIds)
-        {
-            if (matches == null || !matches.Any())
-            {
-                return Enumerable.Empty<SelectListItem>();
-            }
-
-            return matches.Select(match => new SelectListItem
-            {
-                Value = match.MatchId.ToString(),
-                Text = match.MatchName,
-                Selected = !selectedMatchIds.Any() || selectedMatchIds.Contains(match.MatchId)
-            });
-        }
-
-        private IEnumerable<BetTypeSelectListItem> BuildBetTypeGroupSelectListItems(IEnumerable<MonitorBetTypeGroup> betTypeGroups, IEnumerable<int> selectedBetTypeGroupIds)
-        {
-            if (betTypeGroups == null || !betTypeGroups.Any())
-            {
-                return Enumerable.Empty<BetTypeSelectListItem>();
-            }
-
-            return betTypeGroups.Select(group => new BetTypeSelectListItem
-            {
-                Value = group.DisplayBetTypeGroup.ToString(),
-                Text = group.DisplayName,
-                IsMainMarket = group.IsMainMarket,
-                Selected = !selectedBetTypeGroupIds.Any() || selectedBetTypeGroupIds.Contains(group.DisplayBetTypeGroup)
-            });
+            return sources.Select(item => createItemFunc(item, selectedIds.ToListInt()));
         }
     }
 }

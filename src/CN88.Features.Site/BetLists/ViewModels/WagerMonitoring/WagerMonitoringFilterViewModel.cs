@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Models;
     using Requests.WagerMonitoring;
@@ -12,7 +13,7 @@
             IEnumerable<SelectListItem> markets,
             IEnumerable<SelectListItem> leagues,
             IEnumerable<SelectListItem> matches,
-            IEnumerable<BetTypeSelectListItem> betTypeGroups,
+            IEnumerable<SelectListItem> betTypeGroups,
             IEnumerable<SportStakeCondition> sportStakeConditions)
         {
             SportGroup = query.SportGroup;
@@ -25,9 +26,13 @@
             Markets = markets;
             Leagues = leagues;
             Matches = matches;
-            BetTypeGroups = betTypeGroups;
+            BetTypeGroups = betTypeGroups.Select(x=> (BetTypeSelectListItem)x);
 
-            SportStakeConditionViewModel = new SportStakeConditionViewModel(query.IsSelectAllSports, query.StakeMode, query.StakeLimit, sportStakeConditions);
+            SportStakeConditionViewModel = new SportStakeConditionViewModel(
+                query.IsSelectAllSports, 
+                query.StakeMode, 
+                query.StakeLimit, 
+                sportStakeConditions);
         }
 
         public int SportGroup { get; }
@@ -47,6 +52,14 @@
         public IEnumerable<SelectListItem> Matches { get; }
 
         public IEnumerable<BetTypeSelectListItem> BetTypeGroups { get; }
+
+        public IEnumerable<BetTypeSelectListItem> MainBetTypeGroups => BetTypeGroups.Where(x => x.IsMainMarket);
+
+        public bool IsSelectedAllMainBetTypeGroups => !MainBetTypeGroups.Any(x => !x.Selected);
+
+        public IEnumerable<BetTypeSelectListItem> OtherBetTypeGroups => BetTypeGroups.Where(x => !x.IsMainMarket);
+
+        public bool IsSelectedAllOtherBetTypeGroups => !OtherBetTypeGroups.Any(x => !x.Selected);
 
         public SportStakeConditionViewModel SportStakeConditionViewModel { get; }
     }

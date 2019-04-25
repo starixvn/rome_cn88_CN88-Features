@@ -9,9 +9,9 @@
 }
 <div class="betlist-container wager-monitoring">
     <div class="function-group">
-        <div class="btn-function"><span class="icon-delete"></span>Clear</div>
-        <div class="btn-function"><span class="icon-pause"></span>Pause</div>
-        <div class="btn-function"><span class="icon-audio-speaker-on"></span>On</div>
+        <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
+        <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
+        <div class="btn-function"><span class="icon-audio-speaker-on"></span>@SharedResources.On</div>
     </div>
     <div class="page-title">
         @BetListsResources.WagerMonitoringConsole
@@ -59,7 +59,6 @@
                         @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
                         @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, new List<ITicketData>())
                         @BetLists.Stake.Render(ticket, Model.Divisor)
-                        @BetLists.Payout.Render(ticket, Model.Divisor)
                         @if (Model.CustLevel.IsAgentLevel())
                         {
                             @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
