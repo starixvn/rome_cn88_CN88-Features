@@ -225,5 +225,13 @@ class FilterModal {
         $AllSportsStakeLimit.val(0);
 
         $(".StakeLimit").val(0);
+
+        $("#checkbox-all-markets").click();
+        $("#check-all-leagues").click();
+        $("#checkbox-all-events").click();
+        $("#checkbox-all-bettypes").click();
+
+        $("#txtSearchLeague").val("");
+        $("#txtSearchEvent").val("");
     }
 }
