@@ -29,7 +29,7 @@ class FilterModal {
     constructor($: JQueryStatic) {
         this.$ = $;
         this.$filterModalContainer = $("#filter-modal");
-        this.$filterModalPath = $("#FilterFormPath");
+        this.$filterModalPath = $("#FilterModalPath");
         this.marketMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.leagueMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.eventMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
