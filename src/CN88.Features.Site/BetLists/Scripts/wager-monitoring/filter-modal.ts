@@ -64,7 +64,7 @@ class FilterModal {
         this.$(targetTab).click();
         this.$filterModalContainer.modal({ show: true, backdrop: false });
     }
-    
+
 
     renderComponents(): void {
         this.$(".dropdown-stake-condition > select").multiselect({
@@ -143,8 +143,6 @@ class FilterModal {
         this.$("#btn-submit").click(() => {
             this.onSubmit();
         });
-
-
     }
 
     getParameters = () => {

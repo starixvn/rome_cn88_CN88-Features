@@ -61,7 +61,7 @@
 
         this.$filterForm.find(".link").on("click", function () {
             let link = $(this);
-            self.filterModal.show(link.data("target"), self.getParam());
+            self.filterModal.show(link.data("target"), self.getParam(), self.updateFilterForm);
         });
     }
 
@@ -79,7 +79,7 @@
         );
     }
 
-    onSubmit(): void {
+    updateFilterForm(): void {
         this.$.blockUI();
 
         this.$.ajax({
