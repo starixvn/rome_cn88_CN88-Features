@@ -11,6 +11,16 @@
     $eventLnk: JQuery;
     $betTypeLnk: JQuery;
 
+    $sportGroup: JQuery;
+    $isSelectAllSports: JQuery;
+    $stakeMode: JQuery;
+    $stakeLimit: JQuery;
+    $market: JQuery;
+    $leagueIds: JQuery;
+    $matchIds: JQuery;
+    $betTypeGroupIds: JQuery;
+    $sportStakeConditions: JQuery;
+
     ajaxRequest: JQueryXHR;
 
     filterModal: FilterModal;
@@ -54,7 +64,6 @@
         this.pageSize = this.$("#PageSize").val();
         this.getBetsUrl = this.$("#get-bets-url").val();
         this.intervalTime = this.$("#IntervalTime").val();
-        this.sportGroup = parseInt(this.$("#SportGroup").val());
 
         setInterval(() => { this.getLastBets() }, this.intervalTime * 1000);
 
@@ -72,6 +81,16 @@
         this.$leagueLnk = $(".link[data-target='#league-tab'");
         this.$eventLnk = $(".link[data-target='#event-tab'");
         this.$betTypeLnk = $(".link[data-target='#bettype-tab'");
+
+        this.$sportGroup = this.$("#SportGroup");
+        this.$isSelectAllSports = this.$("#IsSelectAllSports");
+        this.$stakeMode = this.$("#StakeMode");
+        this.$stakeLimit = this.$("#StakeLimit");
+        this.$market = this.$("#Market");
+        this.$leagueIds = this.$("#LeagueIds");
+        this.$matchIds = this.$("#MatchIds");
+        this.$betTypeGroupIds = this.$("#BetTypeGroupIds");
+        this.$sportStakeConditions = this.$("#SportStakeConditions");
 
         this.resources = {
             lblStakeMode_0: $("#lbl-StakeMode_0").val(),
@@ -111,15 +130,15 @@
 
     getParam = () => {
         return new FilterParam(
-            this.sportGroup,
-            this.$("#IsSelectAllSports").val(),
-            this.$("#StakeMode").val(),
-            this.$("#StakeLimit").val(),
-            this.$("#SportStakeConditions").val(),
-            this.$("#Market").val(),
-            this.$("#LeagueIds").val(),
-            this.$("#MatchIds").val(),
-            this.$("#BetTypeGroupIds").val()
+            this.$sportGroup.val(),
+            this.$isSelectAllSports.val(),
+            this.$stakeMode.val(),
+            this.$stakeLimit.val(),
+            this.$sportStakeConditions.val(),
+            this.$market.val(),
+            this.$leagueIds.val(),
+            this.$matchIds.val(),
+            this.$betTypeGroupIds.val()
         );
     }
 
@@ -133,6 +152,15 @@
         this.$leagueLnk.html(param.leagueIds.length ? `${this.resources.lblLeague} (${param.leagueIds.length})` : this.resources.lblAllLeagues);
         this.$eventLnk.html(param.matchIds.length ? `${this.resources.lblEvent} (${param.matchIds.length})` : this.resources.lblAllEvents);
         this.$betTypeLnk.html(param.betTypeGroupIds.length ? `${this.resources.lblBetType} (${param.betTypeGroupIds.length})` : this.resources.lblAllBetTypes);
+
+        this.$isSelectAllSports.val(param.isSelectAllSports.toString());
+        this.$stakeMode.val(param.stakeMode);
+        this.$stakeLimit.val(param.stakeLimit);
+        this.$market.val(param.marketIds);
+        this.$leagueIds.val(param.leagueIds);
+        this.$matchIds.val(param.matchIds);
+        this.$betTypeGroupIds.val(param.betTypeGroupIds);
+        this.$sportStakeConditions.val(param.sportStakeConditions);
 
         this.filterModal.hide();
         this.$.unblockUI();

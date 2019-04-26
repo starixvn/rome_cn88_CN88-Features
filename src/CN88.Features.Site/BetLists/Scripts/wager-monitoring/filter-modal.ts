@@ -172,9 +172,10 @@ class FilterModal {
             stakeLimit: this.$("#AllSportsStakeLimit").val(),
             sportStakeConditions: JSON.stringify(conditions),
             markets: this.marketMultiSelectionComponent.getSelectedItemTexts().join(","),
-            leagueIds: this.leagueMultiSelectionComponent.getSelectedItemTexts(),
-            matchIds: this.eventMultiSelectionComponent.getSelectedItemTexts(),
-            betTypeGroupIds: this.betTypeMultiSelectionComponent.getSelectedItemTexts()
+            marketIds: this.marketMultiSelectionComponent.getSelectedItems().join(","),
+            leagueIds: this.leagueMultiSelectionComponent.getSelectedItems(),
+            matchIds: this.eventMultiSelectionComponent.getSelectedItems(),
+            betTypeGroupIds: this.betTypeMultiSelectionComponent.getSelectedItems()
         };
     };
 
