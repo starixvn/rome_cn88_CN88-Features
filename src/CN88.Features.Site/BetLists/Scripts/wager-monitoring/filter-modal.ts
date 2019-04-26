@@ -25,6 +25,7 @@ class FilterModal {
     betTypeMultiSelectionComponent: MultiSelectionCheckboxComponent;
 
     sportGroup: number;
+    isOpeningFilter: boolean = false;
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -41,6 +42,7 @@ class FilterModal {
         this.onSubmit = onSubmit;
 
         this.$.blockUI();
+        this.isOpeningFilter = true;
         this.$.ajax({
             method: "GET",
             url: this.$filterModalPath.val(),
@@ -63,8 +65,8 @@ class FilterModal {
         this.registerEvents();
         this.$(targetTab).click();
         this.$filterModalContainer.modal({ show: true, backdrop: false });
+        this.isOpeningFilter = false;
     }
-
 
     renderComponents(): void {
         this.$(".dropdown-stake-condition > select").multiselect({
@@ -169,10 +171,10 @@ class FilterModal {
             stakeMode: this.$("#AllSportStakeMode").children("option:selected").val(),
             stakeLimit: this.$("#AllSportsStakeLimit").val(),
             sportStakeConditions: JSON.stringify(conditions),
-            market: this.marketMultiSelectionComponent.getSelectedItems().join(","),
-            leagueIds: this.leagueMultiSelectionComponent.getSelectedItems().join(","),
-            matchIds: this.eventMultiSelectionComponent.getSelectedItems().join(","),
-            betTypeGroupIds: this.betTypeMultiSelectionComponent.getSelectedItems().join(",")
+            markets: this.marketMultiSelectionComponent.getSelectedItemTexts().join(","),
+            leagueIds: this.leagueMultiSelectionComponent.getSelectedItemTexts(),
+            matchIds: this.eventMultiSelectionComponent.getSelectedItemTexts(),
+            betTypeGroupIds: this.betTypeMultiSelectionComponent.getSelectedItemTexts()
         };
     };
 

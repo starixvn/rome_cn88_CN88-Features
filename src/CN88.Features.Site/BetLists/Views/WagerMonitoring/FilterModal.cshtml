@@ -54,7 +54,7 @@
                             <span class="input-group-addon" id="btnSearchLeague"><i class="icon-search"></i></span>
                             <span class="icon-close" id="btnClearSearchLeague"></span>
                         </div>
-                    </div>                    
+                    </div>
                     <input type="checkbox" id="check-all-leagues" @(Model.SelectedAllLeagues ? "checked=\"checked\"" : string.Empty) value="" />@BetListsResources.AllLeagues
                     <ul class="lists list-league" id="list-league">
                         @RenderSelectListItem(Model.Leagues, Model.SelectedAllLeagues)
@@ -67,7 +67,7 @@
                             <span class="input-group-addon" id="basic-addon2"><i class="icon-search"></i></span>
                             <span class="icon-close"></span>
                         </div>
-                    </div>   
+                    </div>
                     <input type="checkbox" id="checkbox-all-events" @(Model.SelectedAllMatches ? "checked=\"checked\"" : string.Empty) value="" />@BetListsResources.AllEvents
                     <ul class="lists list-event" id="list-event">
                         @RenderSelectListItem(Model.Matches, Model.SelectedAllMatches)
@@ -118,10 +118,10 @@
 </div>
 @helper RenderSelectListItem(IEnumerable<SelectListItem> items, bool selectedAllItems)
 {
-    foreach (var item in items)
-    {
+foreach (var item in items)
+{
         <li class="item">
-            <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) @(selectedAllItems ? "disabled=\"disabled\"" : string.Empty) />@item.Text
+            <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) @(selectedAllItems ? "disabled=\"disabled\"" : string.Empty) data-text="@item.Text" />@item.Text
         </li>
-    }
+}
 }

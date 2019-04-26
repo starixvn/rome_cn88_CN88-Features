@@ -76,6 +76,24 @@ class MultiSelectionCheckboxComponent {
         return selected;
     };
 
+    getSelectedItemTexts = () => {
+        let selected = [];
+
+        if (this.$checkboxAll.is(":checked")) {
+            return selected;
+        }
+
+        let selectedOptions = this.$listItem.find("input:checked");
+        let this$ = this.$;
+
+        selectedOptions.each(function () {
+            debugger;
+            selected.push([this$(this).attr("data-text")]);
+        });
+
+        return selected;
+    };
+
     updateSelectedValues = () => {
         this.$hiddenInput.val(this.getSelectedItems().join(","));
     };

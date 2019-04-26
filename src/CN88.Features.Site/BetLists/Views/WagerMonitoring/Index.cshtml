@@ -94,6 +94,21 @@
 @Html.Hidden(nameof(Model.FilterModalPath), Model.FilterModalPath)
 @Html.Hidden(nameof(Model.WagerMonitoringPath), Model.WagerMonitoringPath)
 @Html.Hidden("get-bets-url", Url.Action("LastBets", "WagerMonitoring"))
+
+@Html.Hidden("lbl-StakeMode_0", SharedResources.StakeMode_0)
+@Html.Hidden("lbl-StakeMode_1", SharedResources.StakeMode_1)
+@Html.Hidden("lbl-StakeMode_2", SharedResources.StakeMode_2)
+@Html.Hidden("lbl-StakeMode_3", SharedResources.StakeMode_3)
+@Html.Hidden("lbl-StakeMode_4", SharedResources.StakeMode_4)
+@Html.Hidden("lbl-Markets", WagerMonitoringMarket.Markets)
+@Html.Hidden("lbl-AllMarkets", SharedResources.AllMarkets)
+@Html.Hidden("lbl-League", BetListsResources.League)
+@Html.Hidden("lbl-AllLeagues", BetListsResources.AllLeagues)
+@Html.Hidden("lbl-Event", BetListsResources.Event)
+@Html.Hidden("lbl-AllEvents", BetListsResources.AllEvents)
+@Html.Hidden("lbl-BetType", SharedResources.BetType)
+@Html.Hidden("lbl-AllBetTypes", SharedResources.AllBetTypes)
+
 @section Scripts{
     @StaticResources.RenderScripts("~/BetLists/bundles/wager-monitoring")
 }

@@ -4,6 +4,13 @@
     $filterForm: JQuery;
     $filterFormPath: JQuery;
     $wagerMonitoringPath: JQuery;
+
+    $stakeLnk: JQuery;
+    $maketLnk: JQuery;
+    $leagueLnk: JQuery;
+    $eventLnk: JQuery;
+    $betTypeLnk: JQuery;
+
     ajaxRequest: JQueryXHR;
 
     filterModal: FilterModal;
@@ -14,7 +21,22 @@
     getBetsUrl: string;
     intervalTime: number;
     isCalling: boolean = false;
-    isOpeningFilter: boolean = false;
+    
+    resources = {
+        lblStakeMode_0: '',
+        lblStakeMode_1: '',
+        lblStakeMode_2: '',
+        lblStakeMode_3: '',
+        lblStakeMode_4: '',
+        lblMarkets: '',
+        lblAllMarkets: '',
+        lblLeague: '',
+        lblAllLeagues: '',
+        lblEvent: '',
+        lblAllEvents: '',
+        lblBetType: '',
+        lblAllBetTypes: ''
+    };
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -44,6 +66,28 @@
         this.$filterForm = this.$("#filter-form");
         this.$filterFormPath = this.$("#FilterFormPath");
         this.$wagerMonitoringPath = this.$("#WagerMonitoringPath");
+
+        this.$stakeLnk = $(".link[data-target='#stake-tab'");
+        this.$maketLnk = $(".link[data-target='#market-tab'");
+        this.$leagueLnk = $(".link[data-target='#league-tab'");
+        this.$eventLnk = $(".link[data-target='#event-tab'");
+        this.$betTypeLnk = $(".link[data-target='#bettype-tab'");
+
+        this.resources = {
+            lblStakeMode_0: $("#lbl-StakeMode_0").val(),
+            lblStakeMode_1: $("#lbl-StakeMode_1").val(),
+            lblStakeMode_2: $("#lbl-StakeMode_2").val(),
+            lblStakeMode_3: $("#lbl-StakeMode_3").val(),
+            lblStakeMode_4: $("#lbl-StakeMode_4").val(),
+            lblMarkets: $("#lbl-Markets").val(),
+            lblAllMarkets: $("#lbl-AllMarkets").val(),
+            lblLeague: $("#lbl-League").val(),
+            lblAllLeagues: $("#lbl-AllLeagues").val(),
+            lblEvent: $("#lbl-Event").val(),
+            lblAllEvents: $("#lbl-AllEvents").val(),
+            lblBetType: $("#lbl-BetType").val(),
+            lblAllBetTypes: $("#lbl-AllBetTypes").val()
+        };
     }
 
     renderComponents(): void {
@@ -61,7 +105,7 @@
 
         this.$filterForm.find(".link").on("click", function () {
             let link = $(this);
-            self.filterModal.show(link.data("target"), self.getParam(), self.updateFilterForm);
+            self.filterModal.show(link.data("target"), self.getParam(), () => { self.updateFilterForm(); });
         });
     }
 
@@ -82,28 +126,20 @@
     updateFilterForm(): void {
         this.$.blockUI();
 
-        this.$.ajax({
-            method: "GET",
-            url: this.$filterFormPath.val(),
-            cache: false,
-            data: this.filterModal.getParameters(),
-            success: (html) => {
-                this.onSubmitSuccess(html);
-            },
-            complete: this.$.unblockUI
-        });
-    }
+        var param = this.filterModal.getParameters();
 
-    onSubmitSuccess(html: string): void {
-        this.$filterForm.html(html);
-        this.registerEvents();
+        this.$stakeLnk.html(param.isSelectAllSports ? `${this.resources["lblStakeMode_" + param.stakeMode]} ${param.stakeLimit}` : "");
+        this.$maketLnk.html(param.markets.length ? param.markets : this.resources.lblAllMarkets);
+        this.$leagueLnk.html(param.leagueIds.length ? `${this.resources.lblLeague} (${param.leagueIds.length})` : this.resources.lblAllLeagues);
+        this.$eventLnk.html(param.matchIds.length ? `${this.resources.lblEvent} (${param.matchIds.length})` : this.resources.lblAllEvents);
+        this.$betTypeLnk.html(param.betTypeGroupIds.length ? `${this.resources.lblBetType} (${param.betTypeGroupIds.length})` : this.resources.lblAllBetTypes);
 
         this.filterModal.hide();
+        this.$.unblockUI();
     }
 
-
     getLastBets(): void {
-        if (this.isOpeningFilter) {
+        if (this.filterModal.isOpeningFilter) {
             return;
         }
 
