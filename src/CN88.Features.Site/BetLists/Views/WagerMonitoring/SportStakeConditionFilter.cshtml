@@ -1,5 +1,5 @@
 ﻿@model SportStakeConditionViewModel
-<input name="stake-filter-option" value="true" type="radio" @(Model.IsSelectAllSports ? " checked=\"checked\"" : string.Empty) />@SharedResources.AllSports
+<input id="rd-all-sports" name="stake-filter-option" value="true" type="radio" @(Model.IsSelectAllSports ? " checked=\"checked\"" : string.Empty) />@SharedResources.AllSports
 <ul class="lists list-block list-stake" id="list-allsports">
     <li class="item">
         <div class="dropdown-stake-condition">
@@ -14,7 +14,7 @@
         </div>
     </li>
 </ul>
-<input name="stake-filter-option" value="false" type="radio" @(!Model.IsSelectAllSports ? " checked=\"checked\"" : string.Empty) />@SharedResources.PerSports
+<input id="rd-sports" name="stake-filter-option" value="false" type="radio" @(!Model.IsSelectAllSports ? " checked=\"checked\"" : string.Empty) />@SharedResources.PerSports
 <ul class="lists list-block list-stake" id="list-persports">
     @foreach (var condition in Model.PerSportsStakeConditions)
     {

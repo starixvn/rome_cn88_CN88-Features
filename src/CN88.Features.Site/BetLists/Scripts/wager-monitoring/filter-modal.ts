@@ -145,6 +145,8 @@ class FilterModal {
         this.$("#btn-submit").click(() => {
             this.onSubmit();
         });
+
+        this.$("#btn-reset").on("click touchend", this.resetFilter);
     }
 
     getParameters = () => {
@@ -212,5 +214,16 @@ class FilterModal {
             $(this).find("input")
                 .attr("disabled", "disabled");
         });
+    }
+
+    resetFilter(): void {
+        $("#rd-all-sports").click();
+
+        $(".dropdown-stake-condition > select").multiselect("select", 1);
+
+        var $AllSportsStakeLimit = $("#AllSportsStakeLimit");
+        $AllSportsStakeLimit.val(0);
+
+        $(".StakeLimit").val(0);
     }
 }
