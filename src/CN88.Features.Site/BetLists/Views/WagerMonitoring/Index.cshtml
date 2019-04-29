@@ -11,7 +11,7 @@
     <div class="function-group">
         <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
         <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
-        <div class="btn-function"><span class="icon-audio-speaker-on"></span>@SharedResources.On</div>
+        <div class="btn-function"><span class="icon-audio-speaker icon-audio-speaker-on"></span>@SharedResources.On</div>
     </div>
     <div class="page-title">
         @BetListsResources.WagerMonitoringConsole
@@ -87,6 +87,7 @@
 </div>
 <div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
+<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autoplay="false" class="hide"></audio>
 
 @Html.Hidden(nameof(Model.PageSize), Model.PageSize)
 @Html.Hidden(nameof(Model.IntervalTime), Model.IntervalTime)

@@ -21,6 +21,12 @@
     $betTypeGroupIds: JQuery;
     $sportStakeConditions: JQuery;
 
+    $iconPause: JQuery;
+    $iconDelete: JQuery;
+    $iconSpeaker: JQuery;
+    $sound: any;
+
+
     ajaxRequest: JQueryXHR;
 
     filterModal: FilterModal;
@@ -31,7 +37,9 @@
     getBetsUrl: string;
     intervalTime: number;
     isCalling: boolean = false;
-    
+    isPausing: boolean = false;
+    isSpeakOn: boolean = true;
+
     resources = {
         lblStakeMode_0: '',
         lblStakeMode_1: '',
@@ -92,6 +100,11 @@
         this.$betTypeGroupIds = this.$("#BetTypeGroupIds");
         this.$sportStakeConditions = this.$("#SportStakeConditions");
 
+        this.$iconPause = this.$(".icon-pause");
+        this.$iconDelete = this.$(".icon-delete");
+        this.$iconSpeaker = this.$(".icon-audio-speaker");
+        this.$sound = document.getElementById("audio");
+
         this.resources = {
             lblStakeMode_0: $("#lbl-StakeMode_0").val(),
             lblStakeMode_1: $("#lbl-StakeMode_1").val(),
@@ -122,9 +135,31 @@
     registerEvents(): void {
         let self = this;
 
-        this.$filterForm.find(".link").on("click", function () {
+        this.$filterForm.find(".link").on("click touchend", function () {
             let link = $(this);
             self.filterModal.show(link.data("target"), self.getParam(), () => { self.updateFilterForm(); });
+        });
+
+        this.$iconPause.parent().on("click touchend", () => {
+            this.isPausing = !this.isPausing;
+
+            if (this.isPausing) {
+                this.$iconPause.addClass("active");
+            } else {
+                this.$iconPause.removeClass("active");
+            }
+        });
+        this.$iconDelete.parent().on("click touchend", () => {
+            this.$tblBetList.find("tbody").empty();
+        });
+        this.$iconSpeaker.parent().on("click touchend", () => {
+            this.isSpeakOn = !this.isSpeakOn;
+
+            if (this.isSpeakOn) {
+                this.$iconSpeaker.removeClass("icon-audio-speaker-off").addClass("icon-audio-speaker-on");
+            } else {
+                this.$iconSpeaker.removeClass("icon-audio-speaker-on").addClass("icon-audio-speaker-off");
+            }
         });
     }
 
@@ -167,6 +202,10 @@
     }
 
     getLastBets(): void {
+        if (this.isPausing) {
+            return;
+        }
+
         if (this.filterModal.isOpeningFilter) {
             return;
         }
@@ -216,6 +255,10 @@
 
         if (numberOfRows > this.pageSize) {
             this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
+        }
+
+        if (this.isSpeakOn) {
+            this.$sound.play();
         }
 
         this.isCalling = false;
