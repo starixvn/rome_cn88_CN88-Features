@@ -17,7 +17,7 @@
             IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
             IEnumerable<AccountingPeriod> oldAccountingPeriods,
             IEnumerable<SelectListItemExt> sportGroups)
-            : base(query, accountingPeriodGroups, sportGroups)
+            : base(query, sportGroups)
         {
             var selectPeriod = oldAccountingPeriods.First();
             AccountingPeriodSelectionViewModel = new AccountingPeriodSelectionViewModel(oldAccountingPeriods, selectPeriod.PeriodId);

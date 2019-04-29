@@ -717,6 +717,7 @@
     <Compile Include="Reports\Requests\VerifyPasswordCommand.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
     <Compile Include="Reports\ViewModels\AccountingPeriodSelectionViewModel.cs" />
+    <Compile Include="Reports\ViewModels\AccountingSheetViewModel.cs" />
     <Compile Include="Reports\ViewModels\BettypeViewModel.cs" />
     <Compile Include="Reports\ViewModels\IndexBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\OldIndexViewModel.cs" />

@@ -14,6 +14,9 @@
         private const string WagerViewPath = "~/Reports/Views/Wager.cshtml";
         private const string LegacyViewPath = "~/Reports/Views/Legacy.cshtml";
         private const string PTHistoryViewPath = "~/Reports/Views/PTHistory.cshtml";
+        private const string SettlementSummaryPath = "~/Reports/Views/Index/SettlementSummary.cshtml";
+        private const string AccountingSheetPath = "~/Reports/Views/Index/AccountingSheet.cshtml";
+        private const string ViewBetTypePath = "~/Reports/Views/Bettype.cshtml";
 
         public ReportsController(IMediator mediator)
             : base(mediator)
@@ -22,6 +25,12 @@
 
         public async Task<ActionResult> Index(IndexQuery message)
             => await ViewAsync(message, MainViewPath);
+
+        public async Task<ActionResult> SettlementSummary(SettlementSummaryQuery message)
+            => await ViewAsync(message, SettlementSummaryPath);
+
+        public async Task<ActionResult> AccountingSheet(AccountingSheetQuery message)
+            => await ViewAsync(message, AccountingSheetPath);
 
         public async Task<ActionResult> Wager(ReportQuery message)
             => await ViewAsync(message, WagerViewPath);
@@ -36,6 +45,6 @@
             => await ViewAsync(message, PTHistoryViewPath);
 
         public async Task<ActionResult> BetType(BettypeQuery message)
-            => await ViewAsync(message, "~/Reports/Views/Bettype.cshtml");
+            => await ViewAsync(message, ViewBetTypePath);
     }
 }

@@ -20,10 +20,10 @@
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="settlementSumary">
-                @Html.Partial("~/Reports/Views/Index/SettlementSummary.cshtml")
+                @Html.Action("SettlementSummary")
             </div>
             <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
-                @Html.Partial("~/Reports/Views/Index/AccountingSheet.cshtml")
+                @Html.Action("AccountingSheet")
             </div>
         </div>
     </div>

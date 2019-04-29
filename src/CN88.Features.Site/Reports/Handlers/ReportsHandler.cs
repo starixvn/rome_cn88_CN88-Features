@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
     using System.Linq;
+    using CN88.Features.Reports.Models;
     using Features.Reports.Services;
     using Features.Shared.Services;
     using MediatR;
@@ -11,7 +12,9 @@
         IRequestHandler<IndexQuery, IndexViewModel>,
         IRequestHandler<ReportQuery, ReportViewModel>,
         IRequestHandler<PTHistoryQuery, PTHistoryViewModel>,
-        IRequestHandler<BettypeQuery, BettypeViewModel>
+        IRequestHandler<BettypeQuery, BettypeViewModel>,
+        IRequestHandler<SettlementSummaryQuery, SettlementSummaryReport>,
+        IRequestHandler<AccountingSheetQuery, AccountingSheetViewModel>
     {
         private readonly SportGroupService sportGroupService;
         private readonly BettypeGroupService betTypeService;
@@ -35,17 +38,13 @@
 
         public IndexViewModel Handle(IndexQuery message)
         {
-            var settlementSummary = settlementSummaryService.GetSettlementSummaryReport();
-            var accountingPeriods = accountingPeriodService.GetAccountingPeriods();
-            var currentPeriod = accountingPeriodService.GetCurrentPeriod();
-            var lastPeriod = accountingPeriodService.GetLastPeriod();
             var sportGroups = sportGroupService.GetSportGroups();
             var betTypes = betTypeService.GetBetTypeGroupsBySport();
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            var currentPeriod = accountingPeriodService.GetCurrentPeriod();
 
             return new IndexViewModel(
                 message,
-                settlementSummary,
-                BuildAccountingPeriodGroup(accountingPeriods),
                 currentPeriod,
                 lastPeriod,
                 BuildSportGroupSelectListItems(sportGroups, 0),
@@ -82,6 +81,19 @@
             var betTypes = betTypeService.GetBetTypeGroupsBySport(message.SportType);
 
             return new BettypeViewModel(BuildBetTypeSelectListItems(betTypes, 0));
+        }
+
+        public SettlementSummaryReport Handle(SettlementSummaryQuery message)
+            => settlementSummaryService.GetSettlementSummaryReport();
+
+        public AccountingSheetViewModel Handle(AccountingSheetQuery message)
+        {
+            var currentPeriod = accountingPeriodService.GetCurrentPeriod();
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            var accountingPeriods = accountingPeriodService.GetAccountingPeriods();
+            var accountingPeriodGroups = BuildAccountingPeriodGroup(accountingPeriods);
+
+            return new AccountingSheetViewModel(accountingPeriodGroups, currentPeriod, lastPeriod);
         }
     }
 }
