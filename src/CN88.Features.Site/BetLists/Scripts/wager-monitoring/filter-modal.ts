@@ -147,7 +147,55 @@ class FilterModal {
         });
 
         this.$("#btn-reset").on("click touchend", this.resetFilter);
+
+        var self = this;
+        var mainMarkets = self.$("[data-group-id='chk-main-markets']");
+        var otherMarkets = self.$("[data-group-id='chk-other-markets']");
+        this.$("#chk-main-markets").on("click touchend", function () {
+            self.clickCheckboxAll(mainMarkets, this);
+        });
+
+        this.$("#chk-other-markets").on("click touchend", function () {
+            self.clickCheckboxAll(otherMarkets, this);
+        });
+        mainMarkets.on("click touchend", function () {
+            if (this.checked) {
+                self.isCheckAll(mainMarkets, self.$("#chk-main-markets"));
+            }
+        });
+        otherMarkets.on("click touchend", function () {
+            if (this.checked) {
+                self.isCheckAll(otherMarkets, self.$("#chk-other-markets"));
+            }
+        });
     }
+
+    clickCheckboxAll = (groupItems, allCheckbox) => {
+        if (allCheckbox.checked) {
+            groupItems.attr("disabled", "disabled");
+            groupItems.prop("checked", true);
+
+            this.betTypeMultiSelectionComponent.isCheckAll();
+            return;
+        }
+
+        groupItems.attr("disabled", null);
+        groupItems.prop("checked", false);
+    };
+    isCheckAll = (groupItems, allCheckbox) => {
+        let isAllChecked = true;
+
+        groupItems.each(function () {
+            if (!this.checked) {
+                isAllChecked = false;
+            }
+        })
+
+        if (isAllChecked) {
+            allCheckbox.prop("checked", true);
+            groupItems.attr("disabled", "disabled");
+        }
+    };
 
     getParameters = () => {
         let conditions = [];

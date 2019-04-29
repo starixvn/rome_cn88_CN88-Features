@@ -81,18 +81,18 @@
                             {
                                 <div class="bettype-group item">
                                     <div class="group-name">
-                                        <input type="checkbox" @(Model.IsSelectedAllMainBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.MainMarkets
+                                        <input id="chk-main-markets" type="checkbox" @(Model.IsSelectedAllMainBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.MainMarkets
                                     </div>
                                     <ul class="group-details">
-                                        @RenderSelectListItem(Model.MainBetTypeGroups, Model.SelectedAllBetTypes)
+                                        @RenderSelectListItem(Model.MainBetTypeGroups, Model.SelectedAllBetTypes, "chk-main-markets")
                                     </ul>
                                 </div>
                                 <div class="bettype-group item">
                                     <div class="group-name">
-                                        <input type="checkbox" @(Model.IsSelectedAllOtherBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.OtherMarkets
+                                        <input id="chk-other-markets" type="checkbox" @(Model.IsSelectedAllOtherBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.OtherMarkets
                                     </div>
                                     <ul class="group-details">
-                                        @RenderSelectListItem(Model.OtherBetTypeGroups, Model.SelectedAllBetTypes)
+                                        @RenderSelectListItem(Model.OtherBetTypeGroups, Model.SelectedAllBetTypes, "chk-other-markets")
                                     </ul>
                                 </div>
                             }
@@ -116,12 +116,12 @@
         </div>
     </div>
 </div>
-@helper RenderSelectListItem(IEnumerable<SelectListItem> items, bool selectedAllItems)
+@helper RenderSelectListItem(IEnumerable<SelectListItem> items, bool selectedAllItems, string groupId = "")
 {
 foreach (var item in items)
 {
         <li class="item">
-            <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) @(selectedAllItems ? "disabled=\"disabled\"" : string.Empty) data-text="@item.Text" />@item.Text
+            <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) @(selectedAllItems ? "disabled=\"disabled\"" : string.Empty) data-text="@item.Text" data-group-id="@groupId" />@item.Text
         </li>
 }
 }

@@ -41,22 +41,28 @@ class MultiSelectionCheckboxComponent {
 
         $checkboxes.click(function () {
             if (this.checked) {
-                let isAllChecked = true;
-
-                $checkboxes.each(function () {
-                    if (!this.checked) {
-                        isAllChecked = false;
-                    }
-                })
-
-                if (isAllChecked) {
-                    $checkboxAll.prop("checked", true);
-                    $checkboxes.attr("disabled", "disabled");
-                }
+                self.isCheckAll();
             } else {
                 $checkboxAll.prop("checked", false);
             }
         });
+    };
+
+    isCheckAll = () => {
+        let $checkboxAll = this.$("#" + this.options.checkboxAllId);
+        let $checkboxes = this.$listItem.find("input[type='checkbox']");
+        let isAllChecked = true;
+
+        $checkboxes.each(function () {
+            if (!this.checked) {
+                isAllChecked = false;
+            }
+        })
+
+        if (isAllChecked) {
+            $checkboxAll.prop("checked", true);
+            $checkboxes.attr("disabled", "disabled");
+        }
     };
 
     getSelectedItems = () => {
