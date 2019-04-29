@@ -1031,6 +1031,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\link-builder.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\message.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\multi-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />

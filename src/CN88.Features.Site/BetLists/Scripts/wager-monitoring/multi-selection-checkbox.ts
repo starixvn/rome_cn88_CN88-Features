@@ -93,7 +93,6 @@ class MultiSelectionCheckboxComponent {
         let this$ = this.$;
 
         selectedOptions.each(function () {
-            debugger;
             selected.push([this$(this).attr("data-text")]);
         });
 
