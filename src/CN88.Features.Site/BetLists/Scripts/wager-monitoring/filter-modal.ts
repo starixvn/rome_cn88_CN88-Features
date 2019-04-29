@@ -168,6 +168,25 @@ class FilterModal {
                 self.isCheckAll(otherMarkets, self.$("#chk-other-markets"));
             }
         });
+
+        this.$("#txtSearchLeague").on("change keyup", function () {
+            var text = self.$(this).val();
+            self.leagueMultiSelectionComponent.search(text);
+        });
+        this.$("#txtSearchEvent").on("change keyup", function () {
+            var text = self.$(this).val();
+            self.eventMultiSelectionComponent.search(text);
+        });
+
+        this.$("#btnClearSearchLeague").on("click touchend", () => {
+            this.$("#txtSearchLeague").val("");
+            self.leagueMultiSelectionComponent.showAll();
+        });
+
+        this.$("#clear-search-event").on("click touchend", () => {
+            this.$("#txtSearchEvent").val("");
+            self.eventMultiSelectionComponent.showAll();
+        });
     }
 
     clickCheckboxAll = (groupItems, allCheckbox) => {

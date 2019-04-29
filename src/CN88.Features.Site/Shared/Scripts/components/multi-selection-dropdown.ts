@@ -4,7 +4,8 @@ class MultiSelectionDropdownOption {
         public checkboxAllId: string = "checkbox-all",
         public items: any = [],
         public hiddenInputId: string = "HiddenInputId",
-        public searchTextbox: string = "txt-search") {
+        public searchTextbox: string = "txt-search",
+        public clearSearchId: string = "clear-search") {
     }
 }
 
@@ -33,6 +34,16 @@ class MultiSelectionDropdownComponent {
         if (this.options.items.length) {
             this.bindParentChildEvent(this.options.items[0]);
         }
+
+        $searchTextbox.on("change keyup", function () {
+            var text = self.$(this).val();
+            self.search(text);
+        });
+
+        this.$("#" + this.options.clearSearchId).on("click touchend", () => {
+            $searchTextbox.val("");
+            self.$leaves.removeClass("hide");
+        });
     };
 
     bindParentChildEvent = (parent) => {
@@ -120,5 +131,18 @@ class MultiSelectionDropdownComponent {
 
     updateSelectedValues = () => {
         this.$hiddenInput.val(this.getSelectedItems().join(","));
+    };
+    search = (text) => {
+        var lowerCaseText = text.toLowerCase();
+        var this$ = this.$;
+        this.$leaves.each(function () {
+            var chk = this$(this);
+            var chkValue = chk.attr("data-text").toLowerCase();
+            if (chkValue.indexOf(lowerCaseText) == -1) {
+                chk.parent().addClass("hide");
+            } else {
+                chk.parent().removeClass("hide");
+            }
+        });
     };
 }

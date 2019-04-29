@@ -12,6 +12,7 @@ class MultiSelectionCheckboxComponent {
     $hiddenInput: JQuery;
     $checkboxAll: JQuery;
     $listItem: JQuery;
+    $checkboxes: any;
 
     options = new MultiSelectionCheckboxOption();
 
@@ -29,6 +30,7 @@ class MultiSelectionCheckboxComponent {
 
         let self = this;
         let $checkboxes = this.$listItem.find("input[type='checkbox']");
+        this.$checkboxes = $checkboxes;
         this.$checkboxAll.change(function () {
             $checkboxes.prop("checked", this.checked);
 
@@ -39,7 +41,7 @@ class MultiSelectionCheckboxComponent {
             }
         });
 
-        $checkboxes.click(function () {
+        $checkboxes.on("click touchend", function () {
             if (this.checked) {
                 self.isCheckAll();
             } else {
@@ -49,19 +51,17 @@ class MultiSelectionCheckboxComponent {
     };
 
     isCheckAll = () => {
-        let $checkboxAll = this.$("#" + this.options.checkboxAllId);
-        let $checkboxes = this.$listItem.find("input[type='checkbox']");
         let isAllChecked = true;
 
-        $checkboxes.each(function () {
+        this.$checkboxes.each(function () {
             if (!this.checked) {
                 isAllChecked = false;
             }
         })
 
         if (isAllChecked) {
-            $checkboxAll.prop("checked", true);
-            $checkboxes.attr("disabled", "disabled");
+            this.$checkboxAll.prop("checked", true);
+            this.$checkboxes.attr("disabled", "disabled");
         }
     };
 
@@ -101,5 +101,24 @@ class MultiSelectionCheckboxComponent {
 
     updateSelectedValues = () => {
         this.$hiddenInput.val(this.getSelectedItems().join(","));
+    };
+    showAll = () => {
+        var this$ = this.$;
+        this.$checkboxes.each(function () {
+            this$(this).parent().removeClass("hide");
+        });
+    };
+    search = (text) => {
+        var lowerCaseText = text.toLowerCase();
+        var this$ = this.$;
+        this.$checkboxes.each(function () {
+            var chk = this$(this);
+            var chkValue = chk.attr("data-text").toLowerCase();
+            if (chkValue.indexOf(lowerCaseText) == -1) {
+                chk.parent().addClass("hide");
+            } else {
+                chk.parent().removeClass("hide");
+            }
+        });
     };
 }
