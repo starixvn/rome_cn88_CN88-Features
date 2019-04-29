@@ -15,9 +15,9 @@
     </th>
 }
 
-@helper RenderHeaderNumberCell(int divisor, decimal cellValue, string cellClass = "")
+@helper RenderHeaderNumberCell(int divisor, decimal cellValue, string cellClass = "", bool isHiddenOnMobile = false)
 {
-    <th class="text-right @cellClass">
+    <th class="text-right @cellClass" data-stack-column="@(isHiddenOnMobile.ToString().ToLowerInvariant())")>
         @FormatNumber(cellValue / divisor)
     </th>
 }

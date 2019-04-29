@@ -4,12 +4,12 @@
     int divisor = Model.Divisor;
 }
 <div id="settlement-content" class="tab-content">
-    <table class="tbl-noborder tbl-report settlement-report">
+    <table class="tbl-noborder tbl-report settlement-report"  id="tbl-report">
         <thead>
             <tr>
                 <th class="text-left">@ReportResources.MAUsername</th>
-                <th class="text-left">@ReportResources.Name</th>
-                <th class="text-right valid-stake">@ReportResources.MAIncome</th>
+                <th class="text-left" data-stack-column="true">@ReportResources.Name</th>
+                <th class="text-right" data-stack-column="true" valid-stake">@ReportResources.MAIncome</th>
                 <th class="text-right valid-stake">@ReportResources.MAResult</th>
                 <th class="text-right valid-stake">@ReportResources.MAStock</th>
                 <th class="text-right valid-stake">@ReportResources.MAStockPercent</th>
@@ -27,8 +27,8 @@
             {
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>
-                    <th></th>
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome)
+                    <th data-stack-column="true"></th>
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome, isHiddenOnMobile: true)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterStock)
                     @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent)
@@ -82,7 +82,7 @@
         <thead>
             <tr>
                 <th class="text-left">@ReportResources.MAUsername</th>
-                <th class="text-left">@ReportResources.Name</th>
+                <th class="text-left"  data-stack-column="true">@ReportResources.Name</th>
                 <th class="text-right valid-stake">@ReportResources.Wagers</th>
                 <th class="text-right valid-stake">@ReportResources.Stake</th>
                 <th class="text-right valid-stake">@ReportResources.ValidStake</th>

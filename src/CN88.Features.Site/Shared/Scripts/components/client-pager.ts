@@ -65,7 +65,7 @@ class ClientPagerComponent {
             displayMsg: pager.data("labeldisplayitems")
         });
 
-        this.showBodyRows();
+        //this.showBodyRows();
         pager.removeClass("hide");
 
         return pager;

@@ -4,11 +4,11 @@
     var divisor = Model.Divisor;
 }
 <div id="settlement-content" class="tab-content">
-    <table class="tbl-noborder tbl-report settlement-report">
+    <table class="tbl-noborder tbl-report settlement-report" id="tbl-report">
         <thead>
             <tr>
                 <th class="text-left">@ReportResources.SMAUsername</th>
-                <th class="text-right valid-stake">@ReportResources.SMA</th>
+                <th class="text-right valid-stake" data-stack-column="true">@ReportResources.SMA</th>
                 <th class="text-right valid-stake">@ReportResources.SMAIncome</th>
                 <th class="text-right valid-stake">@ReportResources.SMAResult</th>
                 <th class="text-right valid-stake">@ReportResources.SMAStock</th>

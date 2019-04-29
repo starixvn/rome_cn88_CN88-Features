@@ -9,6 +9,7 @@ class WagerReport extends LegacyReport {
     $tabValidStake: JQuery;
     $tabSettlement: JQuery;
     $custLevelId: JQuery;
+    $tableContent: JQuery;
 
     elements = {
         tabSelectors: null,
@@ -102,10 +103,12 @@ class WagerReport extends LegacyReport {
             $(this).addClass("active");
             var target = $(this).attr("target-id");
             self.elements.tabContent.addClass("display-none");
-            var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > .tbl-report");
+            var pagerOption = new ClientPagerOption(null, "report-pager", "report-form", "PageIndex", "PageSize", target + " > #tbl-report");
             self.pagerComponent.render(pagerOption);
             $("#" + target).removeClass("display-none");
         });
+
+        this.$("#settlement-content,#valid-stake-content").find("table").stacktable();
     }
 }
 

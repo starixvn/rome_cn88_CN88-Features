@@ -89,6 +89,8 @@ class ReportIndexView extends BaseReport {
         this.$dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
         this.$fromDateContainer = this.$("#from-date-container");
         this.$toDateContainer = this.$("#to-date-container");
+
+        
     };
 
     calculatedDate(): void {
