@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+}
+@model IndexViewModel
+
+Mobile Report
+<div class="wager-report">
+    <div class="filter-container">
+        @Html.Partial("~/Reports/Views/Index/CreateReport.cshtml")
+    </div>
+    <div class="result-container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a data-toggle="tab" href="#settlementSumary">@ReportResources.SettlementSummary</a>
+            </li>
+            <li role="presentation">
+                <a data-toggle="tab" href="#accountingSheet">@ReportResources.AccountingSheet</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="settlementSumary">
+                @Html.Action("SettlementSummary")
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
+                @Html.Action("AccountingSheet")
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @StaticResources.RenderScripts("~/Reports/bundles/index")
+    <script>
+        var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BetTypeSelectionViewModel.Items.GroupBy(i => i.SportTypeGroup)));
+    </script>
+}

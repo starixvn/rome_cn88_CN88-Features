@@ -727,6 +727,7 @@
     <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
+    <Compile Include="Shared\Helpers\BrowserHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\StakeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
@@ -911,6 +912,7 @@
     <Content Include="SubAccount\Views\New.cshtml" />
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
     <Content Include="CustomerList\Styles\customizeDCSCN88.scss" />
+    <Content Include="Reports\Views\IndexMobile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

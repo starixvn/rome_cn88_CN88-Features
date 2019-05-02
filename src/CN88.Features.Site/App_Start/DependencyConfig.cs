@@ -105,6 +105,7 @@
             container.RegisterSingleton<CacheRefService, CacheRefServiceImpl>();
             container.RegisterSingleton<Encryptor, EncryptorImpl>();
             container.RegisterSingleton<ReportDateService, ReportDateServiceImpl>();
+            container.RegisterSingleton<BrowserHelper, BrowserHelperImpl>();
 
             container.RegisterPerWebRequest<SessionManager, SessionManagerImpl>();
 
