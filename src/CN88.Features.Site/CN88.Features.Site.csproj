@@ -505,6 +505,10 @@
     <Content Include="BetLists\bundles\betlist-of-statement.min.js">
       <DependentUpon>betlist-of-statement.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\betlist.js" />
+    <Content Include="BetLists\bundles\betlist.min.js">
+      <DependentUpon>betlist.js</DependentUpon>
+    </Content>
     <Content Include="BetLists\bundles\total-bet-parlay.js" />
     <Content Include="BetLists\bundles\total-bet-parlay.min.js">
       <DependentUpon>total-bet-parlay.js</DependentUpon>
@@ -923,6 +927,8 @@
     <Content Include="BetLists\Views\WagerMonitoring\Index.cshtml" />
     <Content Include="BetLists\Styles\wager-monitor-console.scss" />
     <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
+    <Content Include="BetLists\bundles\TPBTLOW.ogg" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -976,7 +982,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Audio\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CN88.Features\CN88.Features.csproj">
       <Project>{db2cd304-10b8-44cd-81ea-f9743e38e71b}</Project>

@@ -11,7 +11,10 @@
     <div class="function-group">
         <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
         <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
-        <div class="btn-function"><span class="icon-audio-speaker icon-audio-speaker-on"></span>@SharedResources.On</div>
+        <div class="btn-function"><span class="icon-audio-speaker icon-audio-speaker-on"></span><span id="icon-audio-text">@SharedResources.On</span></div>
+        <audio controls="controls" class="hide" id="sound">
+            <source src="../BetLists/bundles/TPBTLOW.ogg" type="audio/ogg" />
+        </audio>
     </div>
     <div class="page-title">
         @BetListsResources.WagerMonitoringConsole
@@ -19,9 +22,7 @@
     <div class="dropdown-sportgroup">
         @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
     </div>
-    <form class="form-inline filter report-form" role="form" id="filter-form">
-        @Html.Partial("~/BetLists/Views/WagerMonitoring/FilterForm.cshtml", Model.FilterFormViewModel)
-    </form>
+    @Html.Partial("~/BetLists/Views/WagerMonitoring/FilterForm.cshtml", Model.FilterFormViewModel)
     <table id="tbl-betlist" class="tbl-noborder tbl-betlists">
         <thead>
             <tr>
@@ -87,13 +88,11 @@
 </div>
 <div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
-<audio id="audio" src="../App_Data/Audio/ring.mp3" autoplay="false" class="hide"></audio>
-
 @Html.Hidden(nameof(Model.PageSize), Model.PageSize)
 @Html.Hidden(nameof(Model.IntervalTime), Model.IntervalTime)
-@Html.Hidden(nameof(Model.FilterFormPath), Model.FilterFormPath)
 @Html.Hidden(nameof(Model.FilterModalPath), Model.FilterModalPath)
 @Html.Hidden(nameof(Model.WagerMonitoringPath), Model.WagerMonitoringPath)
+@Html.Hidden("pause-url", Url.Action("Pause", "WagerMonitoring"))
 @Html.Hidden("get-bets-url", Url.Action("LastBets", "WagerMonitoring"))
 
 @Html.Hidden("lbl-StakeMode_0", SharedResources.StakeMode_0)
@@ -109,7 +108,10 @@
 @Html.Hidden("lbl-AllEvents", BetListsResources.AllEvents)
 @Html.Hidden("lbl-BetType", SharedResources.BetType)
 @Html.Hidden("lbl-AllBetTypes", SharedResources.AllBetTypes)
+@Html.Hidden("lbl-On",SharedResources.On)
+@Html.Hidden("lbl-Off", SharedResources.Off)
 
 @section Scripts{
+    @StaticResources.RenderScripts("~/BetLists/bundles/betlist")
     @StaticResources.RenderScripts("~/BetLists/bundles/wager-monitoring")
 }

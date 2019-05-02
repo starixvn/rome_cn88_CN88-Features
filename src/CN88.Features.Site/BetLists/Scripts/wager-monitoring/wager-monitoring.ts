@@ -2,7 +2,6 @@
     $: JQueryStatic;
     $tblBetList: JQuery;
     $filterForm: JQuery;
-    $filterFormPath: JQuery;
     $wagerMonitoringPath: JQuery;
 
     $stakeLnk: JQuery;
@@ -24,21 +23,23 @@
     $iconPause: JQuery;
     $iconDelete: JQuery;
     $iconSpeaker: JQuery;
+    $iconSpeakerText: JQuery;
     $sound: any;
 
-
     ajaxRequest: JQueryXHR;
-
     filterModal: FilterModal;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
 
+    
     pageSize: number;
     sportGroup: number;
+    pauseUrl: string;
     getBetsUrl: string;
     intervalTime: number;
     isCalling: boolean = false;
-    isPausing: boolean = false;
     isSpeakOn: boolean = true;
+    speakerOnText: string;
+    speakerOffText: string;
 
     resources = {
         lblStakeMode_0: '',
@@ -53,7 +54,9 @@
         lblEvent: '',
         lblAllEvents: '',
         lblBetType: '',
-        lblAllBetTypes: ''
+        lblAllBetTypes: '',
+        lblOn: '',
+        lblOff: ''
     };
 
     constructor($: JQueryStatic) {
@@ -70,6 +73,7 @@
         this.registerEvents();
 
         this.pageSize = this.$("#PageSize").val();
+        this.pauseUrl = this.$("#pause-url").val();
         this.getBetsUrl = this.$("#get-bets-url").val();
         this.intervalTime = this.$("#IntervalTime").val();
 
@@ -81,7 +85,6 @@
     cacheElements(): void {
         this.$tblBetList = this.$("#tbl-betlist");
         this.$filterForm = this.$("#filter-form");
-        this.$filterFormPath = this.$("#FilterFormPath");
         this.$wagerMonitoringPath = this.$("#WagerMonitoringPath");
 
         this.$stakeLnk = $(".link[data-target='#stake-tab'");
@@ -103,7 +106,8 @@
         this.$iconPause = this.$(".icon-pause");
         this.$iconDelete = this.$(".icon-delete");
         this.$iconSpeaker = this.$(".icon-audio-speaker");
-        this.$sound = document.getElementById("audio");
+        this.$iconSpeakerText = this.$("#icon-audio-text");
+        this.$sound = document.getElementById("sound");
 
         this.resources = {
             lblStakeMode_0: $("#lbl-StakeMode_0").val(),
@@ -118,7 +122,9 @@
             lblEvent: $("#lbl-Event").val(),
             lblAllEvents: $("#lbl-AllEvents").val(),
             lblBetType: $("#lbl-BetType").val(),
-            lblAllBetTypes: $("#lbl-AllBetTypes").val()
+            lblAllBetTypes: $("#lbl-AllBetTypes").val(),
+            lblOn: $("#lbl-On").val(),
+            lblOff: $("#lbl-Off").val()
         };
     }
 
@@ -141,13 +147,7 @@
         });
 
         this.$iconPause.parent().on("click touchend", () => {
-            this.isPausing = !this.isPausing;
-
-            if (this.isPausing) {
-                this.$iconPause.addClass("active");
-            } else {
-                this.$iconPause.removeClass("active");
-            }
+            this.onPauseClick();
         });
         this.$iconDelete.parent().on("click touchend", () => {
             this.$tblBetList.find("tbody").empty();
@@ -157,10 +157,32 @@
 
             if (this.isSpeakOn) {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-off").addClass("icon-audio-speaker-on");
+                this.$iconSpeakerText.text(this.resources.lblOn);
             } else {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-on").addClass("icon-audio-speaker-off");
+                this.$iconSpeakerText.text(this.resources.lblOff);
             }
+
+            this.$sound.play();
         });
+    }
+
+    onPauseClick(): void {
+        this.$.ajax({
+            url: this.pauseUrl,
+            success: (html) => {
+                this.onPauseClickSuccess(html);
+            },
+            complete: this.$.unblockUI
+        });
+    }
+
+    onPauseClickSuccess(html: string): void {
+        let result = html.replace('<table></table>', this.$tblBetList.prop("outerHTML"));
+        let w = window.open("", "Pause", "height=800,width=1280");
+        w.document.open();
+        w.document.write(result);
+        w.document.close();
     }
 
     getParam = () => {
@@ -202,10 +224,6 @@
     }
 
     getLastBets(): void {
-        if (this.isPausing) {
-            return;
-        }
-
         if (this.filterModal.isOpeningFilter) {
             return;
         }
@@ -257,7 +275,7 @@
             this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
         }
 
-        if (this.isSpeakOn) {
+        if (responseHtml && this.isSpeakOn) {
             this.$sound.play();
         }
 

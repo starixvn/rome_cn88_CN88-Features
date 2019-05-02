@@ -35,7 +35,6 @@
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.SportGroup);
         }
 
-
         public int Divisor { get; }
 
         public int NoOfColumns { get; }
@@ -59,8 +58,6 @@
         public int IntervalTime => AppSettings.TimeToGetLastBetsInSeconds;
 
         public string WagerMonitoringPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring");
-
-        public string FilterFormPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/FilterForm");
 
         public string FilterModalPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/FilterModal");
     }

@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes">
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.Render("/bundles/site-features/default")
+    @StaticResources.RenderStyles("~/BetLists/bundles/wager-monitoring")
+</head>
+<body>
+    <div class="betlist-container wager-monitoring">
+        <table></table>
+    </div>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-features/default")
+    @StaticResources.RenderScripts("~/BetLists/bundles/betlist")
+    @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
+</body>
+
+
+</html>

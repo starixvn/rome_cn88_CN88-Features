@@ -98,12 +98,12 @@
                 param.MatchIds,
                 param.DisplayBetTypeGroupIds,
                 AppSettings.WagerMonitoringPageSize,
-                ConfiguredCacheService.Get<long>(MinTransIdCachesKey));
+                ConfiguredCacheService.Get<long>($"{MinTransIdCachesKey}.{param.CustId}"));
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
             tickets = DataAccesses.BetListsData.GetMonitorBets(param);
 
-            ConfiguredCacheService.Set<long>(MinTransIdCachesKey, criteria.MinTransId);
+            ConfiguredCacheService.Set($"{MinTransIdCachesKey}.{param.CustId}", criteria.MinTransId);
 
             if (tickets.Any())
             {

@@ -12,9 +12,7 @@
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
     using Features.BetLists.Constants;
-    using Features.BetLists.Models.WagerMonitoring;
     using Features.BetLists.Params;
-    using Features.Shared.AppResources;
     using Features.Shared.Constants;
     using Features.Shared.Extensions;
     using Features.Shared.Models;

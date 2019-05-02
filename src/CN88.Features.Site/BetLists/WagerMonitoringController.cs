@@ -26,11 +26,11 @@
             => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/FilterModal.cshtml");
 
         [HttpGet, RestrictHeadlineFilter]
-        public ActionResult FilterForm(WagerMonitoringBaseQuery message)
-            => View("~/BetLists/Views/WagerMonitoring/FilterForm.cshtml", new FilterFormViewModel(message));
-
-        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> LastBets(WagerMonitoringQuery message)
             => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/LastBets.cshtml");
+
+        [HttpGet, RestrictHeadlineFilter]
+        public ActionResult Pause()
+            => View("~/BetLists/Views/WagerMonitoring/Pause.cshtml");
     }
 }
