@@ -6,27 +6,51 @@
 }
 @model IndexViewModel
 
-Mobile Report
+
 <div class="wager-report">
-    <div class="filter-container">
-        @Html.Partial("~/Reports/Views/Index/CreateReport.cshtml")
-    </div>
-    <div class="result-container">
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a data-toggle="tab" href="#settlementSumary">@ReportResources.SettlementSummary</a>
-            </li>
-            <li role="presentation">
-                <a data-toggle="tab" href="#accountingSheet">@ReportResources.AccountingSheet</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="settlementSumary">
-                @Html.Action("SettlementSummary")
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" id="wager-tab" class="active">
+            <a data-toggle="tab" href="#wagerReport" data-defaulttype="@ReportTypeConstants.SettledWager">Wager</a>
+        </li>
+        <li role="presentation" id="cancelled-tab">
+            <a data-toggle="tab" href="#cancelledReport" data-defaulttype="@ReportTypeConstants.CancelledReport">Cancelled</a>
+        </li>
+        <li role="presentation">
+            <a data-toggle="tab" href="#settlementSumary" data-defaulttype="@ReportResources.SettlementSummary">Settlement</a>
+        </li>
+        <li role="presentation">
+            <a data-toggle="tab" href="#accountingSheet" data-defaulttype="@ReportResources.AccountingSheet">Accounting</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
+            <div class="dropdown">
+                <select id="dropdown-wagerRptType">
+                    @foreach (var type in Model.WagerReportTypes)
+                    {
+                        <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+                    }
+                </select>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
-                @Html.Action("AccountingSheet")
+            @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
+            <div class="dropdown">
+                <select id="dropdown-cancelledRptType">
+                    @foreach (var type in Model.CancelledReportTypes)
+                    {
+                        <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+                    }
+                </select>
             </div>
+            @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="settlementSumary">
+            @Html.Action("SettlementSummary")
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
+            @Html.Action("AccountingSheet")
         </div>
     </div>
 </div>

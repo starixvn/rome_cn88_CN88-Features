@@ -41,7 +41,7 @@ body {
 }
 
 .create-form {
-    padding: 0 20px;
+    margin-top: 15px;
 
     .form-group {
         margin: 0 0 15px;
@@ -401,3 +401,85 @@ body {
         
     }
 }*/
+
+@media (max-device-width: 767px) {
+    body {
+        background-color: #fff;
+    }
+
+    .result-tabs {
+        display: none;
+    }
+
+    .wager-report {
+        padding: 10px 0;
+    }
+
+    .nav-tabs {
+        display: table;
+        margin-bottom: 8px;
+
+        > li {
+            display: table-cell;
+            float: none;
+        }
+    }
+
+    .nav.nav-tabs > li > a {
+        padding: 7px 16px 7px;
+    }
+
+    .tab-content > .tab-pane {
+        padding: 12px;
+    }
+
+    .from-date-box,
+    .to-date-box {
+        width: 49% !important;
+        float: left;
+    }
+
+    .from-date-box {
+        padding-right: 20px;
+    }
+
+    .to-date-box {
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .filter {
+        .to-date-box label {
+            position: absolute;
+            left: -5px;
+            top: 8px;
+        }
+
+        .form-group .control.date {
+            width: 100%;
+        }
+         
+        select {
+            width: 100%;
+        }
+    }
+   
+
+    .create-form {
+        margin-top: 0;
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+    }
+
+    .tblSettlementSummary > thead > tr th{
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .tblAccountingSheet > thead > tr th {
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+}

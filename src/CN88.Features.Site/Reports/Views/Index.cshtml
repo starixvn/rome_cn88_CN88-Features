@@ -7,7 +7,41 @@
 @model IndexViewModel
 <div class="wager-report">
     <div class="filter-container">
-        @Html.Partial("~/Reports/Views/Index/CreateReport.cshtml")
+        <div class="page-title">@ReportResources.CreateReport</div>
+        <div class="filter">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" id="wager-tab" class="active">
+                    <a data-toggle="tab" href="#wagerReport" data-defaulttype="@ReportTypeConstants.SettledWager">@ReportResources.WagerReport</a>
+                </li>
+                <li role="presentation" id="cancelled-tab">
+                    <a data-toggle="tab" href="#cancelledReport" data-defaulttype="@ReportTypeConstants.CancelledReport">@ReportResources.CancelledReport</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
+                    <div class="dropdown">
+                        <select id="dropdown-wagerRptType">
+                            @foreach (var type in Model.WagerReportTypes)
+                            {
+                                <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+                            }
+                        </select>
+                    </div>
+                    @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
+                    <div class="dropdown">
+                        <select id="dropdown-cancelledRptType">
+                            @foreach (var type in Model.CancelledReportTypes)
+                            {
+                                <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+                            }
+                        </select>
+                    </div>
+                    @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
+                </div>
+            </div>
+        </div>
     </div>
     <div class="result-container">
         <ul class="nav nav-tabs" role="tablist">

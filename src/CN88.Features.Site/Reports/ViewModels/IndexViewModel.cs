@@ -18,6 +18,7 @@
     {
         public IndexViewModel(
             IndexQuery query,
+            bool isMobile,
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
             IEnumerable<SelectListItemExt> sportGroups,
@@ -32,6 +33,7 @@
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
             CurrentPeriod = currentPeriod;
             LastPeriod = lastPeriod;
+            IsMobile = isMobile;
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
                 .Select(s => new SelectListItemExt
@@ -49,6 +51,8 @@
         public AccountingPeriod CurrentPeriod { get; }
 
         public AccountingPeriod LastPeriod { get; }
+
+        public bool IsMobile { get; }
 
         public IEnumerable<SelectListItem> WagerReportTypes => ReportTypeConstants.WagerReportTypes
             .Select(t => new SelectListItem

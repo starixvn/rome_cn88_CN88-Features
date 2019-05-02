@@ -913,6 +913,7 @@
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
     <Content Include="CustomerList\Styles\customizeDCSCN88.scss" />
     <Content Include="Reports\Views\IndexMobile.cshtml" />
+    <Content Include="Reports\Views\Index\CreateReportTabs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

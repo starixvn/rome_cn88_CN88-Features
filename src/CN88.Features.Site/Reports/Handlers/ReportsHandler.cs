@@ -7,6 +7,7 @@
     using MediatR;
     using Requests;
     using ViewModels;
+    using Shared.Helpers;
 
     public class ReportsHandler : ReportsBaseHandler,
         IRequestHandler<IndexQuery, IndexViewModel>,
@@ -21,19 +22,22 @@
         private readonly AccountingPeriodService accountingPeriodService;
         private readonly SettlementSummaryService settlementSummaryService;
         private readonly ReportService reportService;
+        private readonly BrowserHelper browserHelper;
 
         public ReportsHandler(
             SportGroupService sportGroupService,
             BettypeGroupService betTypeService,
             AccountingPeriodService accountingPeriodService,
             SettlementSummaryService settlementSummaryService,
-            ReportService reportService)
+            ReportService reportService,
+            BrowserHelper browserHelper)
         {
             this.sportGroupService = sportGroupService;
             this.betTypeService = betTypeService;
             this.accountingPeriodService = accountingPeriodService;
             this.settlementSummaryService = settlementSummaryService;
             this.reportService = reportService;
+            this.browserHelper = browserHelper;
         }
 
         public IndexViewModel Handle(IndexQuery message)
@@ -45,6 +49,7 @@
 
             return new IndexViewModel(
                 message,
+                browserHelper.IsMobile(),
                 currentPeriod,
                 lastPeriod,
                 BuildSportGroupSelectListItems(sportGroups, 0),
