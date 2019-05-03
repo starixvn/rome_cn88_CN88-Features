@@ -29,7 +29,7 @@ class MultiSelectionCheckboxComponent {
         this.$hiddenInput = this.$("#" + this.options.hiddenInputId);
 
         let self = this;
-        let $checkboxes = this.$listItem.find("input[type='checkbox']");
+        let $checkboxes = this.$listItem.children().not(".hide").find("input[type='checkbox']");
         this.$checkboxes = $checkboxes;
         this.$checkboxAll.change(function () {
             $checkboxes.prop("checked", this.checked);
@@ -72,10 +72,11 @@ class MultiSelectionCheckboxComponent {
             return selected;
         }
 
-        let selectedOptions = this.$listItem.find("input:checked");
+        let selectedCheckboxs = this.$listItem.find(".item").children("input:checked");
+
         let this$ = this.$;
 
-        selectedOptions.each(function () {
+        selectedCheckboxs.each(function () {
             selected.push([this$(this).val()]);
         });
 
@@ -102,23 +103,34 @@ class MultiSelectionCheckboxComponent {
     updateSelectedValues = () => {
         this.$hiddenInput.val(this.getSelectedItems().join(","));
     };
-    showAll = () => {
-        var this$ = this.$;
-        this.$checkboxes.each(function () {
-            this$(this).parent().removeClass("hide");
-        });
-    };
+    
     search = (text) => {
         var lowerCaseText = text.toLowerCase();
         var this$ = this.$;
+        this.$checkboxAll.prop("checked", false)
+
         this.$checkboxes.each(function () {
             var chk = this$(this);
             var chkValue = chk.attr("data-text").toLowerCase();
             if (chkValue.indexOf(lowerCaseText) == -1) {
+                chk.prop("checked", false);
                 chk.parent().addClass("hide");
             } else {
+                chk.prop("checked", true);
+                chk.removeAttr("disabled");
                 chk.parent().removeClass("hide");
             }
         });
     };
+
+    clearSearch = () => {
+        var this$ = this.$;
+        this.$checkboxAll.prop("checked", true)
+        this.$checkboxes.each(function () {
+            let chk = this$(this);
+            chk.prop("checked", true);
+            chk.attr("disabled", "disabled");
+            chk.parent().removeClass("hide");
+        });
+    }
 }

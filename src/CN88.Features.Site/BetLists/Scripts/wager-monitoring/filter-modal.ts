@@ -87,61 +87,6 @@ class FilterModal {
             this.onStakeFilterOptionChange();
         });
 
-        if (this.sportGroup === 0) {
-            let $betTypeGroupCheckboxes = this.$("#list-bettype .group-name input[type='checkbox']");
-
-            $betTypeGroupCheckboxes.change(function () {
-                let $groupCheckbox = $(this);
-                let $checkboxes = $groupCheckbox.parent().siblings(".group-details").find("input[type='checkbox']");
-                $checkboxes.prop("checked", this.checked);
-
-                if (this.checked) {
-                    $checkboxes.attr("disabled", "disabled");
-                } else {
-                    $checkboxes.removeAttr("disabled");
-                }
-
-                $checkboxes.click(function () {
-                    if (this.checked) {
-                        let isAllChecked = true;
-
-                        $checkboxes.each(function () {
-                            if (!this.checked) {
-                                isAllChecked = false;
-                            }
-                        })
-
-                        if (isAllChecked) {
-                            $groupCheckbox.prop("checked", true);
-                            $checkboxes.attr("disabled", "disabled");
-                        }
-                    } else {
-                        $groupCheckbox.prop("checked", false);
-                    }
-                });
-            });
-
-            $betTypeGroupCheckboxes.click(function () {
-                let $selectAll = $("#checkbox-all-bettypes");
-                if (this.checked) {
-                    let isAllChecked = true;
-
-                    $betTypeGroupCheckboxes.each(function () {
-                        if (!this.checked) {
-                            isAllChecked = false;
-                        }
-                    })
-
-                    if (isAllChecked) {
-                        $selectAll.prop("checked", true);
-                        $betTypeGroupCheckboxes.attr("disabled", "disabled");
-                    }
-                } else {
-                    $selectAll.prop("checked", false);
-                }
-            });
-        }
-
         this.$("#btn-submit").click(() => {
             this.onSubmit();
         });
@@ -169,23 +114,22 @@ class FilterModal {
             }
         });
 
-        this.$("#txtSearchLeague").on("change keyup", function () {
-            var text = self.$(this).val();
-            self.leagueMultiSelectionComponent.search(text);
+        this.$("#btnSearchLeague").on("click touchend", () => {
+            this.leagueMultiSelectionComponent.search(this.$("#txtSearchLeague").val());
         });
-        this.$("#txtSearchEvent").on("change keyup", function () {
-            var text = self.$(this).val();
-            self.eventMultiSelectionComponent.search(text);
+
+        this.$("#btnSearchEvent").on("click touchend", () => {
+            this.eventMultiSelectionComponent.search(this.$("#txtSearchEvent").val());
         });
 
         this.$("#btnClearSearchLeague").on("click touchend", () => {
             this.$("#txtSearchLeague").val("");
-            self.leagueMultiSelectionComponent.showAll();
+            this.leagueMultiSelectionComponent.clearSearch();
         });
 
-        this.$("#clear-search-event").on("click touchend", () => {
+        this.$("#btnClearSearchEvent").on("click touchend", () => {
             this.$("#txtSearchEvent").val("");
-            self.eventMultiSelectionComponent.showAll();
+            this.eventMultiSelectionComponent.clearSearch();
         });
     }
 
