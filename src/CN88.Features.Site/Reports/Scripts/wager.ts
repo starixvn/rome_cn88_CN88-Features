@@ -76,7 +76,7 @@ class WagerReport extends LegacyReport {
 
         super.registerEvents();
 
-        this.$("#settlement-content,#valid-stake-content").find("table").stacktable();
+        this.$("#tbl-report").stacktable();
     }
 }
 

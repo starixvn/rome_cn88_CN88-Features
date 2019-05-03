@@ -15,10 +15,10 @@
         <li role="presentation" id="cancelled-tab">
             <a data-toggle="tab" href="#cancelledReport" data-defaulttype="@ReportTypeConstants.CancelledReport">Cancelled</a>
         </li>
-        <li role="presentation">
+        <li role="presentation" id="settlement-summary-tab">
             <a data-toggle="tab" href="#settlementSumary" data-defaulttype="@ReportResources.SettlementSummary">Settlement</a>
         </li>
-        <li role="presentation">
+        <li role="presentation"  id="accounting-sheet-tab">
             <a data-toggle="tab" href="#accountingSheet" data-defaulttype="@ReportResources.AccountingSheet">Accounting</a>
         </li>
     </ul>
@@ -30,8 +30,6 @@
                     <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
                 }
             </select>
-
-            @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
         </div>
         <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
             <div class="dropdown">
@@ -42,7 +40,6 @@
                     }
                 </select>
             </div>
-            @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
         </div>
 
         <div role="tabpanel" class="tab-pane fade" id="settlementSumary">
@@ -51,6 +48,7 @@
         <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
             @Html.Action("AccountingSheet")
         </div>
+        @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
     </div>
 </div>
 @section Scripts{

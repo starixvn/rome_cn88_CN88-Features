@@ -5,7 +5,7 @@
     var colIndex = 0;
 }
 <div class="tab-content">
-    <table class="tbl-noborder tbl-report settlement-report"  id="tbl-report">
+    <table class="tbl-noborder tbl-report settlement-report"  id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
            data-descendingsort="@Model.IsDescendingSort">
@@ -13,8 +13,8 @@
             <tr>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.MAUsername</th>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Name">@ReportResources.Name</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAIncome">@ReportResources.MAIncome</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAResult">@ReportResources.MAResult</th>
+                <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MAIncome">@ReportResources.MAIncome</th>
+                <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MAResult">@ReportResources.MAResult</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAStock">@ReportResources.MAStock</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAStockPercent">@ReportResources.MAStockPercent</th>
                 @if (Model.IsNotOwner)
@@ -41,8 +41,8 @@
                     <th class="text-left">@ReportResources.Total</th>
                     <th data-stack-column="true"></th>
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome, "settlement")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult, "settlement")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterStock, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult, "settlement", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterStock, "settlement", true)
                     @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement")
                     @if (Model.IsNotOwner)
                     {
