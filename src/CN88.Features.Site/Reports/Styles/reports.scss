@@ -403,6 +403,8 @@ body {
 }*/
 
 @media (max-device-width: 767px) {
+
+    // Create Report
     body {
         background-color: #fff;
     }
@@ -438,6 +440,7 @@ body {
     .dropdown {
         width: 100%;
     }
+
     .btn-group {
         width: 100%;
 
@@ -447,7 +450,8 @@ body {
         }
     }
 
-    .filter {
+    .create-form {
+        margin-top: 0;
         .from-date-box,
         .to-date-box {
             width: 49.9% !important;
@@ -475,12 +479,8 @@ body {
          
         select {
             width: 100%;
+            background: #fff;
         }
-    }
-   
-
-    .create-form {
-        margin-top: 0;
 
         .form-group {
             margin-bottom: 10px;
@@ -509,6 +509,14 @@ body {
                 margin-right: 0;
             }
         }
+
+        .from-date-box .bootstrap-datetimepicker-widget.dropdown-menu {
+            left: 0 !important;
+        }
+
+        .to-date-box .bootstrap-datetimepicker-widget.dropdown-menu {
+            right: 0 !important;
+        }
     }
 
     .tblSettlementSummary {
@@ -534,6 +542,24 @@ body {
 
          > tbody > tr > td {
             padding: 10px 12px;
+        }
+    }
+
+    // Settled Wager
+
+    .hide-mobile {
+        display: none;
+    }
+
+    .report-form {
+        padding: 12px;
+
+        .form-group .control.date {
+            width: 100%;
+        }
+
+        .btn-submit {
+            width: 100%;
         }
     }
 }
