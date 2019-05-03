@@ -1,13 +1,10 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 {
-    using System.Collections.Generic;
     using System.Linq;
     using Features.BetLists.Constants;
     using Features.BetLists.Resources;
     using Features.Shared.AppResources;
     using Features.Shared.Extensions;
-    using Models;
-    using Newtonsoft.Json;
     using Requests.WagerMonitoring;
 
     public class FilterFormViewModel

@@ -92,18 +92,17 @@
             var criteria = new WagerMonitoringCriteria(
                 param.CustId,
                 param.CustLevelId,
+                param.SportGroupId,
                 param.StakeConditons,
                 param.Market,
                 param.LeagueIds,
                 param.MatchIds,
                 param.DisplayBetTypeGroupIds,
                 AppSettings.WagerMonitoringPageSize,
-                ConfiguredCacheService.Get<long>($"{MinTransIdCachesKey}.{param.CustId}"));
+                param.MinTransId);
 
             var tickets = await dynamicRepository.FetchAsync<TicketDto>(criteria);
-            tickets = DataAccesses.BetListsData.GetMonitorBets(param);
-
-            ConfiguredCacheService.Set($"{MinTransIdCachesKey}.{param.CustId}", criteria.MinTransId);
+            param.MinTransId = criteria.MinTransId;
 
             if (tickets.Any())
             {

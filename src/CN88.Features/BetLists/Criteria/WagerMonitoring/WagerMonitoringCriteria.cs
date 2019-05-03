@@ -7,6 +7,7 @@
         public WagerMonitoringCriteria(
             int custId,
             byte roleId,
+            int sportTypeGroup,
             string stakeList,
             string market,
             string leagueList,
@@ -17,6 +18,7 @@
         {
             CustId = custId;
             RoleId = roleId;
+            SportTypeGroup = sportTypeGroup;
             StakeList = stakeList;
             Market = market;
             LeagueList = leagueList;
@@ -29,6 +31,8 @@
         public int CustId { get; }
 
         public byte RoleId { get; }
+
+        public int SportTypeGroup { get; }
 
         public string StakeList { get; }
 

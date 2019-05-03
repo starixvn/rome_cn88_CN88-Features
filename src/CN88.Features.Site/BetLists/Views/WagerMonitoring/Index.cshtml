@@ -88,6 +88,7 @@
 </div>
 <div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
+@Html.Hidden(nameof(Model.MinTransId), Model.MinTransId)
 @Html.Hidden(nameof(Model.PageSize), Model.PageSize)
 @Html.Hidden(nameof(Model.IntervalTime), Model.IntervalTime)
 @Html.Hidden(nameof(Model.FilterModalPath), Model.FilterModalPath)

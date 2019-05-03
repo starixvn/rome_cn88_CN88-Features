@@ -15,6 +15,7 @@
     public class WagerMonitoringViewModel
     {
         public WagerMonitoringViewModel(
+            long minTransId,
             WagerMonitoringQuery query,
             IEnumerable<TicketDto> tickets,
             IEnumerable<SelectListItemExt> sportGroups,
@@ -22,6 +23,7 @@
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder)
         {
+            MinTransId = minTransId;
             CustLevel = query.ActorLevel;
             Divisor = query.ActorLevel.IsHeadline() ? 100 : 1;
             NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 9 : CustLevel.IsMasterLevel() ? 7 : 6;
@@ -34,6 +36,8 @@
             FilterFormViewModel = new FilterFormViewModel(query);
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.SportGroup);
         }
+
+        public long MinTransId { get; }
 
         public int Divisor { get; }
 

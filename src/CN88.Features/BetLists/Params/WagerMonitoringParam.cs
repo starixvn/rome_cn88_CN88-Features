@@ -10,7 +10,8 @@
             string market,
             string leagueIds,
             string matchIds,
-            string displayBetTypeGroupIds)
+            string displayBetTypeGroupIds,
+            long minTransId)
         {
             CustId = custId;
             CustLevelId = custLevelId;
@@ -20,6 +21,7 @@
             LeagueIds = leagueIds;
             MatchIds = matchIds;
             DisplayBetTypeGroupIds = displayBetTypeGroupIds;
+            MinTransId = minTransId;
         }
 
         public int CustId { get; }
@@ -37,5 +39,7 @@
         public string MatchIds { get; }
 
         public string DisplayBetTypeGroupIds { get; }
+
+        public long MinTransId { get; set; }
     }
 }

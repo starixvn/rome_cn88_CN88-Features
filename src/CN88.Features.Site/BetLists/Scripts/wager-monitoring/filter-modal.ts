@@ -76,7 +76,7 @@ class FilterModal {
 
     cachDOMElements(): void {
         this.$clearSearchLeagueButton = $("#btnClearSearchLeague");
-        this.$clearSearchEventButton = $("#btnSearchEvent");
+        this.$clearSearchEventButton = $("#btnClearSearchEvent");
     }
 
     renderComponents(): void {

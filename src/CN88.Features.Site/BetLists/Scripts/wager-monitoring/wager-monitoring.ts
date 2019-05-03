@@ -19,6 +19,7 @@
     $matchIds: JQuery;
     $betTypeGroupIds: JQuery;
     $sportStakeConditions: JQuery;
+    $minTransId: JQuery;
 
     $iconPause: JQuery;
     $iconDelete: JQuery;
@@ -30,9 +31,8 @@
     filterModal: FilterModal;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
 
-    
+
     pageSize: number;
-    sportGroup: number;
     pauseUrl: string;
     getBetsUrl: string;
     intervalTime: number;
@@ -102,6 +102,7 @@
         this.$matchIds = this.$("#MatchIds");
         this.$betTypeGroupIds = this.$("#BetTypeGroupIds");
         this.$sportStakeConditions = this.$("#SportStakeConditions");
+        this.$minTransId = this.$("#MinTransId");
 
         this.$iconPause = this.$(".icon-pause");
         this.$iconDelete = this.$(".icon-delete");
@@ -149,9 +150,11 @@
         this.$iconPause.parent().on("click touchend", () => {
             this.onPauseClick();
         });
+
         this.$iconDelete.parent().on("click touchend", () => {
             this.$tblBetList.find("tbody").empty();
         });
+
         this.$iconSpeaker.parent().on("click touchend", () => {
             this.isSpeakOn = !this.isSpeakOn;
 
@@ -236,7 +239,7 @@
 
         this.isCalling = true;
         let param = {
-            sportGroup: this.sportGroup,
+            sportGroup: this.$sportGroup.val(),
             isSelectAllSports: this.$("#IsSelectAllSports").val(),
             stakeMode: this.$("#StakeMode").val(),
             stakeLimit: this.$("#StakeLimit").val(),
@@ -244,7 +247,8 @@
             market: this.$("#Market").val(),
             leagueIds: this.$("#LeagueIds").val(),
             matchIds: this.$("#MatchIds").val(),
-            betTypeGroupIds: this.$("#BetTypeGroupIds").val()
+            betTypeGroupIds: this.$("#BetTypeGroupIds").val(),
+            minTransId: this.$minTransId.val()
         };
 
         this.ajaxRequest = this.$.ajax({
@@ -267,7 +271,11 @@
             return;
         }
 
-        this.$tblBetList.find("tbody").prepend(responseHtml);
+        let $responseTable = this.$(responseHtml);
+        let minTransId = $responseTable.data("mintransid");
+        this.$minTransId.val(minTransId);
+
+        this.$tblBetList.find("tbody").prepend($responseTable.find("tbody").html());
 
         var numberOfRows = this.$tblBetList.find("tbody tr").length;
 

@@ -982,9 +982,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\Audio\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CN88.Features\CN88.Features.csproj">
       <Project>{db2cd304-10b8-44cd-81ea-f9743e38e71b}</Project>

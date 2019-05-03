@@ -32,5 +32,7 @@
         public string BetTypeGroupIds { get; set; }
 
         public string SportStakeConditions { get; set; }
+
+        public long MinTransId { get; set; }
     }
 }

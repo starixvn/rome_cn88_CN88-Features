@@ -3,30 +3,34 @@
 @model WagerMonitoringViewModel
 @if (Model.Tickets.Any())
 {
-    foreach (var ticket in Model.Tickets)
-    {
-        <tr data-trans-id="@ticket.TransId">
-            @BetLists.TransDate.Render(ticket)
-            @BetLists.Comm.Render(ticket)
-            @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
-            @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, new List<ITicketData>())
-            @BetLists.Stake.Render(ticket, Model.Divisor)
-            @if (Model.CustLevel.IsAgentLevel())
+    <table data-mintransid="@Model.MinTransId">
+        <tbody>
+            @foreach (var ticket in Model.Tickets)
             {
-                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                <tr data-trans-id="@ticket.TransId">
+                    @BetLists.TransDate.Render(ticket)
+                    @BetLists.Comm.Render(ticket)
+                    @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
+                    @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, new List<ITicketData>())
+                    @BetLists.Stake.Render(ticket, Model.Divisor)
+                    @if (Model.CustLevel.IsAgentLevel())
+                    {
+                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                    }
+                    @if (Model.CustLevel.IsMasterLevel())
+                    {
+                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                        @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
+                    }
+                    @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
+                    {
+                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                        @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
+                        @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
+                        @HtmlHelpers.RenderNumberCell((int)(ticket.CompanyPositionTaking() * 100), "text-right")
+                    }
+                </tr>
             }
-            @if (Model.CustLevel.IsMasterLevel())
-            {
-                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-            }
-            @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
-            {
-                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
-                @HtmlHelpers.RenderNumberCell((int)(ticket.CompanyPositionTaking() * 100), "text-right")
-            }
-        </tr>
-    }
+        </tbody>
+    </table>
 }

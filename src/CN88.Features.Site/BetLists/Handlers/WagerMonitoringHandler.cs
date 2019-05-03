@@ -57,11 +57,13 @@
                 message.Market,
                 message.LeagueIds,
                 message.MatchIds,
-                message.BetTypeGroupIds);
+                message.BetTypeGroupIds,
+                message.MinTransId);
 
             var tickets = await wagerMonitoringService.GetMonitorBets(param);
 
             return new WagerMonitoringViewModel(
+                param.MinTransId,
                 message,
                 tickets,
                 BuildSportGroupSelectListItems(sportGroups, message.SportGroup),
