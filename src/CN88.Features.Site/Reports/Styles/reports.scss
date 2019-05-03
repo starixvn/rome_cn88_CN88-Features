@@ -260,7 +260,7 @@ body {
     transform: rotate(180deg);
 }
 
-#tblSettlementSummary {
+.tblSettlementSummary {
     > thead > tr {
         &:first-child th {
             border: none;
@@ -325,7 +325,7 @@ body {
     }
 }
 
-#tblAccountingSheet {
+.tblAccountingSheet {
     > thead > tr > th {
         text-align: center;
         font-weight: normal;
@@ -412,11 +412,13 @@ body {
     }
 
     .wager-report {
+        width: 100%;
         padding: 10px 0;
     }
 
     .nav-tabs {
         display: table;
+        width: 100%;
         margin-bottom: 8px;
 
         > li {
@@ -426,29 +428,41 @@ body {
     }
 
     .nav.nav-tabs > li > a {
-        padding: 7px 16px 7px;
+        padding: 7px 14px 7px;        
     }
 
     .tab-content > .tab-pane {
         padding: 12px;
     }
 
-    .from-date-box,
-    .to-date-box {
-        width: 49% !important;
-        float: left;
+    .dropdown {
+        width: 100%;
     }
+    .btn-group {
+        width: 100%;
 
-    .from-date-box {
-        padding-right: 20px;
-    }
-
-    .to-date-box {
-        padding-left: 20px;
-        position: relative;
+        button.multiselect {
+            width: 100%;
+            text-align: left;
+        }
     }
 
     .filter {
+        .from-date-box,
+        .to-date-box {
+            width: 49.9% !important;
+            float: left;
+        }
+
+        .from-date-box {
+            padding-right: 20px;
+        }
+
+        .to-date-box {
+            padding-left: 20px;
+            position: relative;
+        }
+
         .to-date-box label {
             position: absolute;
             left: -5px;
@@ -471,15 +485,55 @@ body {
         .form-group {
             margin-bottom: 10px;
         }
+
+        .form-group.list-buttons {
+            width: 100%;
+        }
+
+        .form-group.has-two-buttons .btn-quick-choice {
+            float: left;
+            width: 49%;
+            margin-right: 0;            
+
+            &:first-child {
+                margin-right: 2%;
+            }
+        }
+
+        .form-group.has-three-buttons .btn-quick-choice {
+            float: left;
+            width: 32%;
+            margin-right: 2%;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 
-    .tblSettlementSummary > thead > tr th{
-        padding-top: 0;
-        padding-bottom: 0;
+    .tblSettlementSummary {
+        > thead > tr th {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+         > tbody > tr > td {
+            padding: 10px 12px;
+
+            &:first-child {
+                width: 120px;
+            }
+        }
     }
 
-    .tblAccountingSheet > thead > tr th {
-        padding-top: 0;
-        padding-bottom: 10px;
+    .tblAccountingSheet {
+        > thead > tr th {
+            padding-top: 0;
+            padding-bottom: 10px;
+        }
+
+         > tbody > tr > td {
+            padding: 10px 12px;
+        }
     }
 }

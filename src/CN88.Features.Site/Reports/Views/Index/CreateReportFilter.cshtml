@@ -10,16 +10,16 @@
     @Html.Hidden("LastPeriod_FromDate", Model.LastPeriod.FromDate.ToShortDate())
     @Html.Hidden("LastPeriod_ToDate", Model.LastPeriod.ToDate.ToShortDate())
     @DateRangePicker.Render(Model.DateRangePickerViewModel)
-    <div class="form-group">
+    <div class="form-group has-three-buttons">
         <input id="btn-today" type="button" value="@SharedResources.Today" class="btn-quick-choice btn-default" />
         <input id="btn-yesterday" type="button" value="@SharedResources.Yesterday" class="btn-quick-choice btn-secondary" />
         <input id="btn-tomorrow" type="button" value="@SharedResources.Tomorrow" class="btn-quick-choice btn-default" />
     </div>
-    <div class="form-group btn-ex-group">
+    <div class="form-group btn-ex-group has-two-buttons">
         <input id="btn-this-week" type="button" value="@SharedResources.ThisWeek" class="btn-quick-choice btn-default " />
         <input id="btn-last-week" type="button" value="@SharedResources.LastWeek" class="btn-quick-choice btn-default" />
     </div>
-    <div class="form-group btn-ex-group">
+    <div class="form-group btn-ex-group has-two-buttons">
         <input id="btn-this-period" type="button" value="@SharedResources.ThisPeriod" class="btn-quick-choice btn-default" />
         <input id="btn-last-period" type="button" value="@SharedResources.LastPeriod" class="btn-quick-choice btn-default" />
     </div>

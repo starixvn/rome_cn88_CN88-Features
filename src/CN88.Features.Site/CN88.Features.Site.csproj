@@ -890,7 +890,6 @@
     <Content Include="Reports\Views\Wager\AgentTable.cshtml" />
     <Content Include="Reports\Views\Wager\MasterTable.cshtml" />
     <Content Include="Reports\Views\Wager\MemberTable.cshtml" />
-    <Content Include="Reports\Views\Index\CreateReport.cshtml" />
     <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <Content Include="Reports\Views\VerifyPassword.cshtml" />
@@ -913,7 +912,7 @@
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
     <Content Include="CustomerList\Styles\customizeDCSCN88.scss" />
     <Content Include="Reports\Views\IndexMobile.cshtml" />
-    <Content Include="Reports\Views\Index\CreateReportTabs.cshtml" />
+    <Content Include="Reports\Views\Index\CreateReportFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
