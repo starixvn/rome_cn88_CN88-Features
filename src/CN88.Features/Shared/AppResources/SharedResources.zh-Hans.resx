@@ -270,4 +270,7 @@
   <data name="OK" xml:space="preserve">
     <value>確定</value>
   </data>
+  <data name="SystemErrorMessage" xml:space="preserve">
+    <value>不好意思…目前系统出错，请联系管理员！</value>
+  </data>
 </root>

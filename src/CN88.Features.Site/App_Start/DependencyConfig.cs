@@ -109,16 +109,8 @@
 
             container.RegisterPerWebRequest<SessionManager, SessionManagerImpl>();
 
-            container.Register<SportGroupService>(
-                () => new SportGroupServiceImpl(
-                    container.GetInstance<SportGroupDataAccess>(),
-                    container.GetInstance<CacheRefService>().GetSportName),
-                Lifestyle.Singleton);
-            container.Register<BettypeGroupService>(
-                () => new BettypeGroupServiceImpl(
-                    container.GetInstance<IDynamicRepository>(),
-                    container.GetInstance<CacheRefService>().GetBetTypeName),
-                Lifestyle.Singleton);
+            container.RegisterSingleton<SportGroupService, SportGroupServiceImpl>();
+            container.RegisterSingleton<BettypeGroupService, BettypeGroupServiceImpl>();
 
             container.RegisterSingleton<CustomerListService, CustomerListServiceImpl>();
             container.RegisterSingleton<MemberStatementService, MemberStatementServiceImpl>();

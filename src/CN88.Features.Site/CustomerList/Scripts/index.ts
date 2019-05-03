@@ -325,7 +325,6 @@
         this.$(".row-customer[cust-id='" + custId + "']")
             .removeClass()
             .addClass("row-customer " + this.reloadStatusColor(newValue));
-
     };
     reloadStatusColor = (status: any) => {
         if (status == siteInfrastructure.customerStatus.open) {

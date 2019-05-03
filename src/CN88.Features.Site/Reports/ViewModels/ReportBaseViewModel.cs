@@ -14,6 +14,8 @@
 
     public abstract class ReportBaseViewModel
     {
+        private const string DefaultSortPropertyName = nameof(ReportModel.Username);
+
         protected readonly ReportBaseQuery query;
 
         private readonly IDictionary<int, int> BetListTypes = new Dictionary<int, int>
@@ -41,6 +43,15 @@
 
         public UserLevel ReportLevel => query.CustLevel;
 
+        public string SortPropertyName
+            => string.IsNullOrWhiteSpace(query.SortPropertyName)
+                ? DefaultSortPropertyName
+                : query.SortPropertyName;
+
+        public bool IsDescendingSort => query.IsDescendingSort;
+
+        public bool IsSettlement => query.IsSettlement.Value;
+
         public int Divisor { get; }
 
         public int TotalStockPercent { get; }
@@ -62,30 +73,32 @@
 
         public string Title => ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[query.ReportType]);
 
-        public string BuildDrillDownLink(ReportModel model, string currentLink, bool isDrillDownFromSettlement = false)
+        public string BuildDrillDownLink(ReportModel model, string currentLink)
             => ReportLevel.IsMemberLevel()
-            ? BuildBetListLink(model, isDrillDownFromSettlement)
-            : BuildDownlineLink(model, currentLink, isDrillDownFromSettlement);
+            ? BuildBetListLink(model)
+            : BuildDownlineLink(model, currentLink);
 
         protected abstract string GetReportMainActionPath();
 
         protected abstract bool IsOldReport();
 
-        private string BuildBetListLink(ReportModel model, bool isDrillDownFromSettlement = false)
+        private string BuildBetListLink(ReportModel model)
            => UrlHelper.AddQueryStringParamsFunc(
                AppPathHelper.GetAppPath(Features.Shared.Configurations.AppSettings.FeaturesAppPath, "~/BetLists/BetListOfReport"),
-               GetBetListLinkRouteValues(model, isDrillDownFromSettlement));
+               GetBetListLinkRouteValues(model));
 
-        private string BuildDownlineLink(ReportModel model, string currentLink, bool isSettlement = false)
+        private string BuildDownlineLink(ReportModel model, string currentLink)
         {
             var routeValues = GetDownlineLinkRouteValues(model);
             return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                 currentLink,
                 new Dictionary<string, object>(routeValues)
                 {
-                    ["IsSettlement"] = isSettlement,
+                    ["PageSize"] = query.PageSize,
+                    ["IsSettlement"] = query.IsSettlement,
                     ["CustLevelId"] = ReportLevel.GetDirectDownLineLevel().Value,
-                    ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
+                    ["IsDescendingSort"] = IsDescendingSort,
+                    ["SortPropertyName"] = SortPropertyName
                 });
         }
 
@@ -141,7 +154,7 @@
             return breadcrumbLevel;
         }
 
-        private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model, bool isDrillDownFromSettlement = false)
+        private IDictionary<string, object> GetBetListLinkRouteValues(ReportModel model)
         {
             var routeValues = GetDownlineLinkRouteValues(model);
 
@@ -151,7 +164,6 @@
                 ["DisplayMode"] = query.DisplayMode,
                 ["ReportMainActionPath"] = GetReportMainActionPath(),
                 ["IsOldReport"] = IsOldReport(),
-                ["IsSettlement"] = isDrillDownFromSettlement
             };
         }
 

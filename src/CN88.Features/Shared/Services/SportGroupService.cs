@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Criteria;
     using DataAccesses;
     using Fanex.Caching;
@@ -18,25 +17,20 @@
         private const string SportGroupsCacheKey = "CN88.Features.Shared.Services.SportServiceImpl.SportGroups";
 
         private readonly SportGroupDataAccess sportGroupDataAccess;
-        private readonly Func<int, string> getSportDisplayName;
+        private readonly CacheRefService cacheRefService;
 
         public SportGroupServiceImpl(
             SportGroupDataAccess sportGroupDataAccess,
-            Func<int, string> getSportDisplayName)
+            CacheRefService cacheRefService)
         {
             this.sportGroupDataAccess = sportGroupDataAccess;
-            this.getSportDisplayName = getSportDisplayName;
+            this.cacheRefService = cacheRefService;
         }
 
         public IEnumerable<SportGroup> GetSportGroups()
             => ConfiguredCacheService.GetOrSet(
                 SportGroupsCacheKey,
-                () =>
-                {
-                    var sportGroups = sportGroupDataAccess.GetSportGroups(new GetSportGroupsCriteria());
-
-                    return sportGroups.Select(group => new SportGroup(group.Id, group.DisplaySportIds, getSportDisplayName));
-                },
+                () => sportGroupDataAccess.GetSportGroups(new GetSportGroupsCriteria(), cacheRefService.GetSportName),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
     }
 }

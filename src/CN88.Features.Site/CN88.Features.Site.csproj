@@ -67,15 +67,31 @@
       <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn8801\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-beta19\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-ns02\lib\net461\CN88.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.ESports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.ESports.1.0.0-beta05\lib\net461\CN88.BetList.ESports.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.ESports.1.0.0-ns01\lib\net461\CN88.BetList.ESports.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.Keno, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Keno.1.0.0-ns02\lib\net461\CN88.BetList.Keno.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.Lottery, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Lottery.1.0.0-ns01\lib\net461\CN88.BetList.Lottery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.NumberGame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.NumberGame.1.0.0-ns03\lib\net461\CN88.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.Sportsbook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0-beta15\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0-ns02\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0-ns02\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -664,7 +680,9 @@
     <Content Include="Web.AppSettings.uat.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
@@ -745,10 +763,6 @@
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
     <Compile Include="SubAccount\Requests\NewCommand.cs" />
     <Compile Include="SubAccount\Requests\NewQuery.cs" />
-    <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
-    <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
-    <Compile Include="SubAccount\SubAccountController.cs" />
-    <Compile Include="SubAccount\SubAccountHandler.cs" />
     <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -784,8 +798,12 @@
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
-    <Compile Include="SubAccount\ViewModels\NewViewModel.cs" />
+    <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
+    <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
+    <Compile Include="SubAccount\SubAccountController.cs" />
+    <Compile Include="SubAccount\SubAccountHandler.cs" />
     <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
+    <Compile Include="SubAccount\ViewModels\NewViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -826,9 +844,7 @@
     <Content Include="Reports\Views\Wager.cshtml" />
     <Content Include="Reports\Views\Legacy.cshtml" />
     <Content Include="Reports\Views\Filter.cshtml" />
-    <Content Include="SubAccount\Views\Web.config" />
     <Content Include="CustomerList\Styles\downline-list.scss" />
-    <Content Include="SubAccount\Styles\sub-account.scss" />
     <Content Include="App_Code\Components\Breadcrumb.cshtml" />
     <Content Include="App_Code\Components\LiveStatusSelection.cshtml" />
     <Content Include="App_Code\Components\Pager.cshtml" />
@@ -906,13 +922,15 @@
     <Content Include="Reports\Views\OldLegacy.cshtml" />
     <Content Include="Reports\Views\PTHistory.cshtml" />
     <Content Include="CustomerList\Styles\member-statement.scss" />
-    <Content Include="SubAccount\Views\Edit.cshtml" />
     <Content Include="SubAccount\Views\Index.cshtml" />
-    <Content Include="SubAccount\Views\New.cshtml" />
-    <Content Include="SubAccount\Views\_Permissions.cshtml" />
     <Content Include="CustomerList\Styles\customizeDCSCN88.scss" />
     <Content Include="Reports\Views\IndexMobile.cshtml" />
     <Content Include="Reports\Views\Index\CreateReportFilter.cshtml" />
+    <Content Include="SubAccount\Styles\sub-account.scss" />
+    <Content Include="SubAccount\Views\_Permissions.cshtml" />
+    <Content Include="SubAccount\Views\Edit.cshtml" />
+    <Content Include="SubAccount\Views\New.cshtml" />
+    <Content Include="SubAccount\Views\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -986,8 +1004,8 @@
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
-    <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
+    <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\sub-account.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />

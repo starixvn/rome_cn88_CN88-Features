@@ -358,6 +358,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-Sport Product Possess.
+        /// </summary>
+        public static string NonSportsProductPossess {
+            get {
+                return ResourceManager.GetString("NonSportsProductPossess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your password does not meet the minimum security requirement..
         /// </summary>
         public static string PasswordWrongRuleError {
@@ -489,6 +498,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string SMAUsername {
             get {
                 return ResourceManager.GetString("SMAUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sportsbook Possess.
+        /// </summary>
+        public static string SportsbookPossess {
+            get {
+                return ResourceManager.GetString("SportsbookPossess", resourceCulture);
             }
         }
         

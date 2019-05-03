@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using Fanex.RemotingRef;
-
-namespace CN88.Features.Shared.Services
+﻿namespace CN88.Features.Shared.Services
 {
+    using System.Threading;
+    using Fanex.RemotingRef;
+
     public interface CacheRefService
     {
         string GetSportName(int sportTypeId);

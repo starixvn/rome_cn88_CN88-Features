@@ -2,12 +2,15 @@
 {
     using System;
     using Features.Models;
+    using Features.Reports.Constants;
     using Features.Shared.Constants;
     using Features.Shared.Utils;
     using Site.Requests;
 
     public class ReportBaseQuery : BaseQuery
     {
+        private bool? isSettlement;
+
         public ReportBaseQuery(IUser viewer) : base(viewer)
         {
             CustId = viewer.Id;
@@ -19,8 +22,8 @@
 
             UserSelectedLiveStatusId = LiveStatusConstants.AllMarkets;
 
-            PageSize = 10;
-            PageIndex = 1;
+            PageSize = PagerConstant.DefaultPageSize;
+            PageIndex = PagerConstant.DefaultPageIndex;
         }
 
         public int DisplayMode { get; set; }
@@ -42,5 +45,23 @@
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }
+
+        public string SortPropertyName { get; set; }
+
+        public bool IsDescendingSort { get; set; }
+
+        public bool? IsSettlement
+        {
+            get
+            {
+                return isSettlement == null
+                    ? ReportType == ReportTypeConstants.SettledWager
+                    : isSettlement.Value;
+            }
+            set
+            {
+                isSettlement = value;
+            }
+        }
     }
 }

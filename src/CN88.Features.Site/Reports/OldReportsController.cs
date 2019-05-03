@@ -8,6 +8,7 @@
     using Requests;
     using Shared.Controllers;
     using System;
+    using Features.Models;
 
     public class OldReportsController : FeatureBaseController
     {
@@ -27,7 +28,7 @@
         {
             this.sessionManager = sessionManager;
         }
-        
+
         public async Task<ActionResult> VerifyPassword(VerifyPasswordQuery message)
             => await ViewAsync(message, VerifyPasswordViewPath);
 
@@ -44,7 +45,9 @@
                 return RedirectToAction(nameof(Index), new { DisplayMode = 1 });
             }
 
-            return await ViewAsync(new VerifyPasswordQuery(message.GetViewer()) { Result = result }, VerifyPasswordViewPath);
+            return await ViewAsync(
+                new VerifyPasswordQuery(DependencyResolver.Current.GetService<IUser>()) { Result = result },
+                VerifyPasswordViewPath);
         }
 
         [ReCheckPassword]
@@ -58,7 +61,7 @@
         [ReCheckPassword]
         public async Task<ActionResult> Legacy(OldReportQuery message)
             => await ViewAsync(message, LegacyViewPath);
-        
+
         public bool Checkin()
         {
             sessionManager.Add(VerifiedTimeElapsed, DateTime.Now);

@@ -1,20 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using CN88.Features.Shared.Criteria;
-using CN88.Features.Shared.Models;
-using Fanex.Common;
-using Fanex.Data;
-
-namespace CN88.Features.Shared.DataAccesses
+﻿namespace CN88.Features.Shared.DataAccesses
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Fanex.Common;
+    using Fanex.Data;
+    using Fanex.Data.Repository;
+    using Models;
+
     public interface SportGroupDataAccess
     {
-        IEnumerable<SportGroup> GetSportGroups(GetSportGroupsCriteria criteria);
+        IEnumerable<SportGroup> GetSportGroups(ICriteria criteria, Func<int, string> getSportGroupDisplayName);
     }
 
     public class SportGroupDataAccessImpl : SportGroupDataAccess
     {
-        public IEnumerable<SportGroup> GetSportGroups(GetSportGroupsCriteria criteria)
+        public IEnumerable<SportGroup> GetSportGroups(ICriteria criteria, Func<int, string> getSportGroupDisplayName)
         {
             var groups = new List<SportGroup>();
 
@@ -28,7 +29,8 @@ namespace CN88.Features.Shared.DataAccesses
                         {
                             var group = new SportGroup(
                                 id: Converter.ToInt(reader["SportTypeGroup"]),
-                                displaySportIds: Converter.ToString2(reader["DisplaySport"]).Split(',').Select(int.Parse));
+                                displaySportIds: Converter.ToString2(reader["DisplaySport"]).Split(',').Select(int.Parse),
+                                getSportGroupDisplayName: getSportGroupDisplayName);
 
                             groups.Add(group);
                         }

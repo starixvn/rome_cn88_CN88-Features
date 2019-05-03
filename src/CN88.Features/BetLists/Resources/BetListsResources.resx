@@ -270,4 +270,25 @@
   <data name="MemberBetList" xml:space="preserve">
     <value>Member Bet List</value>
   </data>
+  <data name="WagerMonitoringConsole" xml:space="preserve">
+    <value>Wager Monitoring Console</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>League</value>
+  </data>
+  <data name="AllLeagues" xml:space="preserve">
+    <value>All Leagues</value>
+  </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>All Events</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="MainMarkets" xml:space="preserve">
+    <value>Main Markets</value>
+  </data>
+  <data name="OtherMarkets" xml:space="preserve">
+    <value>Other Markets</value>
+  </data>
 </root>

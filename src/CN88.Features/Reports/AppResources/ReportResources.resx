@@ -271,4 +271,10 @@
   <data name="Reports" xml:space="preserve">
     <value>Reports</value>
   </data>
+  <data name="NonSportsProductPossess" xml:space="preserve">
+    <value>Non-Sport Product Possess</value>
+  </data>
+  <data name="SportsbookPossess" xml:space="preserve">
+    <value>Sportsbook Possess</value>
+  </data>
 </root>

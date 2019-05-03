@@ -8,7 +8,10 @@ class OldLegacyReport extends OldBaseReport {
     $reportForm: JQuery;
     $exportExcelForm: JQuery;
     $excelIcon: JQuery;
+    $tableReport: JQuery;
 
+    sortComponent: SortComponent;
+    linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
     //ptHistory: PTHistory;
 
@@ -17,9 +20,13 @@ class OldLegacyReport extends OldBaseReport {
         accountingPeriodSelectionComponent: SingleSelectionDropdownComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
+        sortComponent: SortComponent,
+        linkBuilderComponent: LinkBuilderComponent,
         pagerComponent: ClientPagerComponent) {
         super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent);
 
+        this.sortComponent = sortComponent;
+        this.linkBuilderComponent = linkBuilderComponent;
         this.pagerComponent = pagerComponent;
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
     }
@@ -47,12 +54,24 @@ class OldLegacyReport extends OldBaseReport {
         this.$reportForm = this.$("#report-form");
         this.$exportExcelForm = this.$("#export-excel-form");
         this.$excelIcon = this.$("#icon-excel");
+        this.$tableReport = this.$("#tbl-report");
     }
 
     renderComponents(): void {
         this.initTooltip();
         super.renderComponents();
-        this.pagerComponent.render();
+
+        this.sortComponent.render(
+            new SortOption(
+                this.$tableReport,
+                parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
+                true,
+                this.sortComponent.afterSort,
+                { 0: { sorter: "text" } },
+                this.$reportForm));
+
+        this.linkBuilderComponent.render();
+        this.pagerComponent.render(new ClientPagerOption(() => { this.onSelectPage(); }));
     }
 
     initTooltip(): void {
@@ -73,4 +92,8 @@ class OldLegacyReport extends OldBaseReport {
         this.$exportExcelForm.submit();
         this.$.unblockUI();
     };
+
+    onSelectPage(): void {
+        this.linkBuilderComponent.updateParam("PageSize", this.pagerComponent.pageSize.toString());
+    }
 }
