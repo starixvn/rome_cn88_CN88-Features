@@ -223,7 +223,7 @@
     <value>總代理 (%)</value>
   </data>
   <data name="SMAPercent" xml:space="preserve">
-    <value>超級代理 (%)</value>
+    <value>股东 (%)</value>
   </data>
   <data name="CoPercent" xml:space="preserve">
     <value>公司 (%)</value>

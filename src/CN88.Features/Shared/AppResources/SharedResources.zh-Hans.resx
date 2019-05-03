@@ -169,7 +169,7 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>超级代理 (%)</value>
+    <value>股东 (%)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
     <value>总代理 (%)</value>
@@ -223,7 +223,7 @@
     <value>账号</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>下注金额</value>
+    <value>股东</value>
   </data>
   <data name="Main" xml:space="preserve">
     <value>主页</value>
