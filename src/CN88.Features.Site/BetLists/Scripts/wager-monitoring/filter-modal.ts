@@ -16,6 +16,8 @@ class FilterModal {
     $: JQueryStatic;
     $filterModalContainer: JQuery;
     $filterModalPath: JQuery;
+    $clearSearchLeagueButton: JQuery;
+    $clearSearchEventButton: JQuery;
     onSubmit: Function;
 
     filterParam: FilterParam;
@@ -31,6 +33,8 @@ class FilterModal {
         this.$ = $;
         this.$filterModalContainer = $("#filter-modal");
         this.$filterModalPath = $("#FilterModalPath");
+
+
         this.marketMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.leagueMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.eventMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
@@ -61,14 +65,23 @@ class FilterModal {
 
     showFilterModal(html: string, targetTab: string): void {
         this.$filterModalContainer.html(html);
+
+        this.cachDOMElements();
         this.renderComponents();
         this.registerEvents();
         this.$(targetTab).click();
-        this.$filterModalContainer.modal({ show: true, backdrop: false });
+        this.$filterModalContainer.modal({ show: true, backdrop: true });
         this.isOpeningFilter = false;
     }
 
+    cachDOMElements(): void {
+        this.$clearSearchLeagueButton = $("#btnClearSearchLeague");
+        this.$clearSearchEventButton = $("#btnSearchEvent");
+    }
+
     renderComponents(): void {
+
+
         this.$(".dropdown-stake-condition > select").multiselect({
             multiple: false,
             maxHeight: 300,
@@ -87,11 +100,7 @@ class FilterModal {
             this.onStakeFilterOptionChange();
         });
 
-        this.$("#btn-submit").click(() => {
-            this.onSubmit();
-        });
 
-        this.$("#btn-reset").on("click touchend", this.resetFilter);
 
         var self = this;
         var mainMarkets = self.$("[data-group-id='chk-main-markets']");
@@ -118,19 +127,23 @@ class FilterModal {
             this.leagueMultiSelectionComponent.search(this.$("#txtSearchLeague").val());
         });
 
-        this.$("#btnSearchEvent").on("click touchend", () => {
-            this.eventMultiSelectionComponent.search(this.$("#txtSearchEvent").val());
-        });
-
-        this.$("#btnClearSearchLeague").on("click touchend", () => {
+        this.$clearSearchLeagueButton.on("click touchend", () => {
             this.$("#txtSearchLeague").val("");
             this.leagueMultiSelectionComponent.clearSearch();
         });
 
-        this.$("#btnClearSearchEvent").on("click touchend", () => {
+        this.$("#btnSearchEvent").on("click touchend", () => {
+            this.eventMultiSelectionComponent.search(this.$("#txtSearchEvent").val());
+        });
+
+        this.$clearSearchEventButton.on("click touchend", () => {
             this.$("#txtSearchEvent").val("");
             this.eventMultiSelectionComponent.clearSearch();
         });
+
+        this.$("#btn-submit").on("click touchend", () => { this.onSubmit() });
+
+        this.$("#btn-reset").on("click touchend", this.resetFilter);
     }
 
     clickCheckboxAll = (groupItems, allCheckbox) => {
@@ -227,22 +240,25 @@ class FilterModal {
         });
     }
 
-    resetFilter(): void {
-        $("#rd-all-sports").click();
+    resetFilter = () => {
+        this.$("#rd-all-sports").click();
 
-        $(".dropdown-stake-condition > select").multiselect("select", 1);
+        this.$(".dropdown-stake-condition > select").multiselect("select", 1);
 
-        var $AllSportsStakeLimit = $("#AllSportsStakeLimit");
+        var $AllSportsStakeLimit = this.$("#AllSportsStakeLimit");
         $AllSportsStakeLimit.val(0);
 
-        $(".StakeLimit").val(0);
+        this.$(".StakeLimit").val(0);
 
-        $("#checkbox-all-markets").click();
-        $("#check-all-leagues").click();
-        $("#checkbox-all-events").click();
-        $("#checkbox-all-bettypes").click();
+        let $allMarketsCheckbox = this.$("#checkbox-all-markets");
+        $allMarketsCheckbox.prop("checked", true);
+        $allMarketsCheckbox.change();
 
-        $("#txtSearchLeague").val("");
-        $("#txtSearchEvent").val("");
+        this.$clearSearchLeagueButton.click();
+        this.$clearSearchEventButton.click();
+
+        let $allBetTypesCheckbox = this.$("#checkbox-all-bettypes");
+        $allBetTypesCheckbox.prop("checked", true);
+        $allBetTypesCheckbox.change();
     }
 }
