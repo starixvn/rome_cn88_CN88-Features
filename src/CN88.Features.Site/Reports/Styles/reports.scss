@@ -231,8 +231,7 @@ body {
     }
 }
 .report-form {
-    padding-top: 16px;
-    border-bottom: 1px solid #c8c8c8;
+    padding-top: 16px;    
 
     .form-group {
         vertical-align: bottom;
@@ -302,6 +301,8 @@ body {
 }
 
 .tbl-report {
+    border-top: 1px solid #c8c8c8;
+
     > thead > tr > th {
         border-width: 1px;
         font-weight: normal;
@@ -452,6 +453,12 @@ body {
 
     .create-form {
         margin-top: 0;
+        padding: 0 12px;
+
+        .input-group.date .form-control {
+            font-size: 16px;
+        }
+
         .from-date-box,
         .to-date-box {
             width: 49.9% !important;
@@ -547,8 +554,21 @@ body {
 
     // Settled Wager
 
-    .hide-mobile {
-        display: none;
+    .page-title {
+        position: relative;
+        padding: 2px 12px 0;
+        margin-bottom: 0;
+        font-size: 13px;
+
+        .back-step {
+            font-size: 26px;
+            line-height: 0;
+            position: relative;
+            top: 6px;
+            left: -7px;
+            width: 12px;
+            display: inline-block;
+        }
     }
 
     .report-form {
