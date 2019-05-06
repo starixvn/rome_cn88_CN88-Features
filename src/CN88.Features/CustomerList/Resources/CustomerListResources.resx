@@ -229,7 +229,7 @@
     <value>Username</value>
   </data>
   <data name="UsernameOrNameContains" xml:space="preserve">
-    <value>Username Or Name contains</value>
+    <value>Username, Nickname Or Name contains</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
