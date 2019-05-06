@@ -95,7 +95,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta15\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
+      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta17\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.Web, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
