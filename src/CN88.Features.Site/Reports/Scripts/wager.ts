@@ -10,6 +10,8 @@ class WagerReport extends LegacyReport {
     $custLevelId: JQuery;
     $tableContent: JQuery;
     $isSettlement: JQuery;
+    $filterToggleIcon: JQuery;
+    $backIcon: JQuery;
     isMobile: boolean;
 
     constructor(
@@ -27,9 +29,10 @@ class WagerReport extends LegacyReport {
     init = () => {
         this.$.blockUI();
 
-        this.isMobile = cn88Features.convertAttributeToBool(this.$("#tbl-report").attr("data-isMobile"));
+        let reportTable = this.$("#tbl-report");
+        this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
         if (this.isMobile) {
-            this.$("#tbl-report").stacktable();
+            reportTable.stacktable();
         }
 
         this.cacheDOMElements();
@@ -54,6 +57,8 @@ class WagerReport extends LegacyReport {
         this.$tabValidStake = this.$("#tabValidStake");
         this.$tabSettlement = this.$("#tabSettlement");
         this.$isSettlement = this.$("#IsSettlement");
+        this.$filterToggleIcon = this.$("#filter-toggle-icon");
+        this.$backIcon = this.$("#btn-back");
     }
 
     public registerEvents() {
@@ -86,6 +91,31 @@ class WagerReport extends LegacyReport {
         }
 
         super.registerEvents();
+
+        this.$filterToggleIcon.on("click touchend", (e) => {
+            e.preventDefault();
+            let isCollapsed = this.$filterToggleIcon.hasClass("icon-filter-up");
+
+            if (isCollapsed) {
+                this.$reportForm
+                    .show(200);
+                this.$filterToggleIcon
+                    .removeClass("icon-filter-up")
+                    .addClass("icon-filter-down");
+            }
+            else {
+                this.$reportForm.hide(200);
+                this.$filterToggleIcon
+                    .removeClass("icon-filter-down")
+                    .addClass("icon-filter-up");
+            }
+        });
+
+        this.$backIcon.on("click touchend", (e) => {
+            e.preventDefault();
+
+            window.history.go(-1);
+        });
     }
 }
 

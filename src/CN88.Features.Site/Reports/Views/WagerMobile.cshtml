@@ -8,10 +8,13 @@
 
 <div class="report-detail wager-report">
     <div class="page-title">
-        <span class="icon-chevron-left back-step"></span>
-        @Model.Title
+        <span id="btn-back">
+            <span class="icon-chevron-left back-step"></span>
+            @(Model.IsNotOwner ? Model.ReportFilterViewModel.CustName : Model.Title)
 
-        <span class="icon-filter-down"></span>
+        </span>
+
+        <span class="icon-filter-up" id="filter-toggle-icon"></span>
     </div>
     @Html.Partial("~/Reports/Views/Filter.cshtml", Model.ReportFilterViewModel,
     new ViewDataDictionary

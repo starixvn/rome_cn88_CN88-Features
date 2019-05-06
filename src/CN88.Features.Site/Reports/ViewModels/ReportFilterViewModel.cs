@@ -17,12 +17,14 @@
             DateRangePickerViewModel dateRangePickerViewModel,
             SingleSelectionViewModel betTypeSelectionViewModel,
             SingleSelectionViewModel liveStatusSelectionViewModel,
-            SingleSelectionViewModel allBetTypesSelectionViewModel = null)
+            SingleSelectionViewModel allBetTypesSelectionViewModel = null,
+            bool isMobile = false)
             : base(displayMode, reportType, isOwner, custId, custName, breadcrumbLevelJson, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
         {
             BetTypeSelectionViewModel = betTypeSelectionViewModel;
             LiveStatusSelectionViewModel = liveStatusSelectionViewModel;
             AllBetTypesSelectionViewModel = allBetTypesSelectionViewModel;
+            IsMobile = isMobile;
         }
 
         public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
@@ -30,5 +32,7 @@
         public SingleSelectionViewModel LiveStatusSelectionViewModel { get; }
 
         public SingleSelectionViewModel AllBetTypesSelectionViewModel { get; }
+
+        public bool IsMobile { get; }
     }
 }

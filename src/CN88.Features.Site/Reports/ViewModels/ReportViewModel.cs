@@ -62,7 +62,8 @@
                 dateRangePickerViewModel,
                 betTypeSelectionViewModel,
                 liveStatusSelectionViewModel,
-                allBetTypesSelectionViewModel);
+                allBetTypesSelectionViewModel,
+                isMobile);
         }
 
         public ReportFilterViewModel ReportFilterViewModel { get; }
