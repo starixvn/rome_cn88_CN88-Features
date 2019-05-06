@@ -32,6 +32,7 @@
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
             AccountingPeriod lastPeriod,
+            bool isMobile,
             IEnumerable<SelectListItemExt> allBetTypes = null)
             : base(query, reportData, grandTotal)
         {
@@ -48,7 +49,7 @@
                     Selected = s.Key == query.UserSelectedLiveStatusId
                 });
             var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, query.UserSelectedLiveStatusId);
-
+            IsMobile = isMobile;
             ReportFilterViewModel = new ReportFilterViewModel(
                 query.DisplayMode,
                 query.ReportType,
@@ -69,5 +70,7 @@
         protected override string GetReportMainActionPath() => ReportMainActionPath;
 
         protected override bool IsOldReport() => false;
+
+        public bool IsMobile { get; }
     }
 }

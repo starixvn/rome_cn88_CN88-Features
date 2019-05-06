@@ -1,4 +1,4 @@
-﻿@model ReportBaseViewModel
+﻿@model ReportViewModel
 @{
     var total = Model.GrandTotal;
     var divisor = Model.Divisor;
@@ -8,32 +8,33 @@
     <table class="tbl-noborder tbl-report settlement-report"  id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
-           data-descendingsort="@Model.IsDescendingSort">
+           data-descendingsort="@Model.IsDescendingSort"
+           data-isMobile="@Model.IsMobile.ToString().ToLower()">
         <thead class="tableFloatingHeaderOriginal">
             <tr>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.MAUsername</th>
-                <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Name">@ReportResources.Name</th>
+                <th class="text-left header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Name">@ReportResources.Name</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MAIncome">@ReportResources.MAIncome</th>
-                <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MAResult">@ReportResources.MAResult</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAResult">@ReportResources.MAResult</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAStock">@ReportResources.MAStock</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAStockPercent">@ReportResources.MAStockPercent</th>
+                <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MAStockPercent">@ReportResources.MAStockPercent</th>
                 @if (Model.IsNotOwner)
                 {
-                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="SMA">@ReportResources.SMA</th>
-                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAPoss">
+                    <th class="text-right settlement header sorting" data-stack-column="true"  data-colindex="@(colIndex++)" data-sortedname="SMA">@ReportResources.SMA</th>
+                    <th class="text-right settlement header sorting" data-stack-column="true"  data-colindex="@(colIndex++)" data-sortedname="SMAPoss">
                         @ReportResources.SMAPoss <span class="icon-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess"></span>
                     </th>
-                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAIncome">@ReportResources.SMAIncome</th>
-                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAResult">@ReportResources.SMAResult</th>
-                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAStock">@ReportResources.SMAStock</th>
-                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="SMAStockPercent">@ReportResources.SMAStockPercent</th>
+                    <th class="text-right settlement header sorting" data-stack-column="true"  data-colindex="@(colIndex++)" data-sortedname="SMAIncome">@ReportResources.SMAIncome</th>
+                    <th class="text-right settlement header sorting" data-stack-column="true"  data-colindex="@(colIndex++)" data-sortedname="SMAResult">@ReportResources.SMAResult</th>
+                    <th class="text-right settlement header sorting" data-stack-column="true"  data-colindex="@(colIndex++)" data-sortedname="SMAStock">@ReportResources.SMAStock</th>
+                    <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="SMAStockPercent">@ReportResources.SMAStockPercent</th>
                 }
-                <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="Wagers">@ReportResources.Wagers</th>
-                <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.Stake</th>
-                <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.ValidStake</th>
-                <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
-                <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="Agent">@ReportResources.Agent</th>
-                <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResult">@ReportResources.AgentResult</th>
+                <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Wagers">@ReportResources.Wagers</th>
+                <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.Stake</th>
+                <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.ValidStake</th>
+                <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
+                <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Agent">@ReportResources.Agent</th>
+                <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="AgentResult">@ReportResources.AgentResult</th>
             </tr>
             @if (Model.ReportData.Any())
             {
@@ -41,24 +42,24 @@
                     <th class="text-left">@ReportResources.Total</th>
                     <th data-stack-column="true"></th>
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome, "settlement")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult, "settlement", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult, "settlement")
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterStock, "settlement", true)
-                    @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement")
+                    @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement", true)
                     @if (Model.IsNotOwner)
                     {
-                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Super, "settlement")
-                        <th class="settlement"></th>
-                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperIncome, "settlement")
-                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult, "settlement")
-                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock, "settlement")
-                        @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement")
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Super, "settlement", true)
+                        <th class="settlement" data-stack-column="true"></th>
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperIncome, "settlement", true)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult, "settlement", true)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock, "settlement", true)
+                        @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement", true)
                     }
-                    @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "valid-stake")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "valid-stake")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake, "valid-stake")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MemberIncome, "valid-stake")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Agent, "valid-stake")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult, "valid-stake")
+                    @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "valid-stake", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "valid-stake", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake, "valid-stake", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MemberIncome, "valid-stake", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Agent, "valid-stake", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult, "valid-stake", true)
                 </tr>
             }
         </thead>

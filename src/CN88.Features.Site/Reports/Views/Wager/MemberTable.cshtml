@@ -1,4 +1,4 @@
-﻿@model ReportBaseViewModel
+﻿@model ReportViewModel
 @{
     var total = Model.GrandTotal;
     var divisor = Model.Divisor;
@@ -8,7 +8,8 @@
     <table class="tbl-noborder tbl-report" id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
-           data-descendingsort="@Model.IsDescendingSort">
+           data-descendingsort="@Model.IsDescendingSort"
+           data-isMobile="@Model.IsMobile.ToString().ToLower()">
         <thead class="tableFloatingHeaderOriginal">
             <tr>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.MemberUsername</th>

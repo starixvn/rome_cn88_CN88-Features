@@ -51,14 +51,14 @@ class LegacyReport extends BaseReport {
         this.initTooltip();
         super.renderComponents();
 
-        this.sortComponent.render(
-            new SortOption(
-                this.$tableReport,
-                parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
-                true,
-                this.sortComponent.afterSort,
-                { 0: { sorter: "text" } },
-                this.$reportForm));
+        //this.sortComponent.render(
+        //    new SortOption(
+        //        this.$tableReport,
+        //        parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
+        //        true,
+        //        this.sortComponent.afterSort,
+        //        { 0: { sorter: "text" } },
+        //        this.$reportForm));
 
         this.linkBuilderComponent.render();
         this.pagerComponent.render(new ClientPagerOption(() => { this.onSelectPage(); }));
@@ -73,7 +73,7 @@ class LegacyReport extends BaseReport {
         this.$reportForm = this.$("#report-form");
         this.$exportExcelForm = this.$("#export-excel-form");
         this.$excelIcon = this.$("#icon-excel");
-        this.$tableReport = this.$("#tbl-report");
+        this.$tableReport = this.$("#tbl-report,#tbl-report-stack");
     }
 
     public registerEvents() {

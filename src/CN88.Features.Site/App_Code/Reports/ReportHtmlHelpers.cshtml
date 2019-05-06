@@ -2,9 +2,9 @@
 {
     @percent.ToString("#,##0.0000")
 }
-@helper RenderHeaderPercentCell(decimal percent, string cellClass = "")
+@helper RenderHeaderPercentCell(decimal percent, string cellClass = "", bool isHiddenOnMobile = false)
 {
-    <th class="text-right @cellClass">
+    <th class="text-right @cellClass" data-stack-column="@(isHiddenOnMobile.ToString().ToLowerInvariant())">
         @FormatPercent(percent)
     </th>
 }

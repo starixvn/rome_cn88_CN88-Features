@@ -75,6 +75,7 @@
                 reportData,
                 grandTotal,
                 lastPeriod,
+                browserHelper.IsMobile(),
                 BuildBetTypeSelectListItems(allBetTypes, 0));
         }
 
