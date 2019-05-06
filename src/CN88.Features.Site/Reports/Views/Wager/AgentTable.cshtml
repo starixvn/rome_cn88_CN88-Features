@@ -84,7 +84,7 @@
             else
             {
                 <tr>
-                    <td colspan="@(Model.IsSettlement?(Model.IsNotOwner?"10":"7"):"6")" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@(Model.IsSettlement?(Model.IsNotOwner?"10":"7"):"6")" data-isNoInfo="true" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
         </tbody>

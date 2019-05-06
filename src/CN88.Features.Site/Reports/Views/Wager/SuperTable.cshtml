@@ -103,7 +103,11 @@
         {
             <tbody>
                 <tr>
-                    <td colspan="@(Model.IsSettlement? (Model.IsNotOwner?"11":"5"):"8")" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@(Model.IsSettlement? (Model.IsNotOwner?"11":"5"):"8")" 
+                        data-isNoInfo="true"
+                        align="center">
+                    @SharedResources.NoInformationIsAvailable
+                    </td>
                 </tr>
             </tbody>
         }
