@@ -455,10 +455,6 @@ body {
         margin-top: 0;
         padding: 0 12px;
 
-        .input-group.date .form-control {
-            font-size: 16px;
-        }
-
         .from-date-box,
         .to-date-box {
             width: 49.9% !important;
@@ -557,6 +553,7 @@ body {
     .page-title {
         position: relative;
         padding: 2px 12px 0;
+        line-height: 24px;
         margin-bottom: 0;
         font-size: 13px;
 
@@ -568,6 +565,17 @@ body {
             left: -7px;
             width: 12px;
             display: inline-block;
+        }
+
+        [class^="icon-filter"] {
+            float: right;
+            background-color: #27A67B;
+            padding: 2px;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 20px;
         }
     }
 
