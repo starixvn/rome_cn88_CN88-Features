@@ -566,17 +566,6 @@ body {
             width: 12px;
             display: inline-block;
         }
-
-        [class^="icon-filter"] {
-            float: right;
-            background-color: #27A67B;
-            padding: 2px;
-            color: #fff;
-            width: 24px;
-            height: 24px;
-            text-align: center;
-            line-height: 20px;
-        }
     }
 
     .report-form {
@@ -592,14 +581,6 @@ body {
     }
 
     .stacktable {
-        .btn-collapse-expanse {
-            position: relative;
-            top: 2px;
-            line-height: 0;
-            font-size: 16px;
-            color: #0072BA;
-        }
-
         > thead > tr.total > th {
             padding: 12px 8px;
         }
@@ -613,18 +594,5 @@ body {
         > tbody > tr.stack-row:not(:last-child) > td {
             border-bottom: none;
         }
-
-        .st-cell-label {
-            float: left;
-        }
-
-        .st-cell-value {
-            float: right;
-        }
-    }
-
-    .pagination-info {
-        float: left;
-        margin: 0 6px 0 6px;
-    }    
+    }   
 }
