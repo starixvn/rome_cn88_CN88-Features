@@ -513,13 +513,7 @@ body {
             }
         }
 
-        .from-date-box .bootstrap-datetimepicker-widget.dropdown-menu {
-            left: 0 !important;
-        }
-
-        .to-date-box .bootstrap-datetimepicker-widget.dropdown-menu {
-            right: 0 !important;
-        }
+        
     }
 
     .tblSettlementSummary {
@@ -581,18 +575,27 @@ body {
     }
 
     .stacktable {
-        > thead > tr.total > th {
-            padding: 12px 8px;
-        }
-
         > thead > tr.total > th,
         > tbody > tr > td,
         > tfoot > tr > td {
             padding: 12px 8px;
-        }
+        }        
 
         > tbody > tr.stack-row:not(:last-child) > td {
             border-bottom: none;
         }
     }   
+
+    .tbl-report {
+        border-top: none;
+
+        > thead > tr.total > th {
+            color: #3B3B3B;
+            background-color: #ECF4E2;
+        }
+    }
+
+    .wager-report .tab-content {
+        padding: 12px;
+    }
 }

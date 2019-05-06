@@ -13,6 +13,7 @@ class WagerReport extends LegacyReport {
     $filterToggleIcon: JQuery;
     $backIcon: JQuery;
     isMobile: boolean;
+    $tabMainContent: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -59,6 +60,7 @@ class WagerReport extends LegacyReport {
         this.$isSettlement = this.$("#IsSettlement");
         this.$filterToggleIcon = this.$("#filter-toggle-icon");
         this.$backIcon = this.$("#btn-back");
+        this.$tabMainContent = this.$("#tab-main-content,#report-pager");
     }
 
     public registerEvents() {
@@ -98,13 +100,17 @@ class WagerReport extends LegacyReport {
 
             if (isCollapsed) {
                 this.$reportForm
-                    .show(200);
+                    .slideDown(200);
+                this.$tabMainContent
+                    .slideUp(210);
                 this.$filterToggleIcon
                     .removeClass("icon-filter-up")
                     .addClass("icon-filter-down");
             }
             else {
-                this.$reportForm.hide(200);
+                this.$reportForm.slideUp(200);
+                this.$tabMainContent
+                    .slideDown(210);
                 this.$filterToggleIcon
                     .removeClass("icon-filter-down")
                     .addClass("icon-filter-up");
