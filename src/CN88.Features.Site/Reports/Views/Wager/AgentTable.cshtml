@@ -4,7 +4,7 @@
     int divisor = Model.Divisor;
     var colIndex = 0;
 }
-<div class="tab-content" id="tab-main-content">
+<div class="tab-content main-content" id="tab-main-content">
     <table class="tbl-noborder tbl-report" id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
@@ -12,7 +12,7 @@
            data-isMobile="@Model.IsMobile.ToString().ToLower()">
         <thead class="tableFloatingHeaderOriginal">
             <tr>
-                <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.AgentUsername</th>
+                <th class="text-left header sorting username" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.AgentUsername</th>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="Name">@ReportResources.Name</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="Agent">@ReportResources.Agent</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="AgentPoss">@ReportResources.AgentPoss</th>
@@ -61,7 +61,7 @@
                 foreach (var data in Model.ReportData)
                 {
                     <tr>
-                        <td><a class="downline-link" href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
+                        <td class="username"><a class="downline-link" href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
                         <td class="text-left">@data.Name</td>
                         @HtmlHelpers.RenderNumberCell(divisor, data.Agent, "settlement")
                         <td class="text-right settlement">@data.AgentPoss</td>

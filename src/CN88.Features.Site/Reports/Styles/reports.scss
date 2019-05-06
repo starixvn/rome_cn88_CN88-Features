@@ -511,9 +511,7 @@ body {
             &:last-child {
                 margin-right: 0;
             }
-        }
-
-        
+        }        
     }
 
     .tblSettlementSummary {
@@ -593,9 +591,19 @@ body {
             color: #3B3B3B;
             background-color: #ECF4E2;
         }
+
+        .username {
+            width: 71px;
+        }
+
+        .username .downline-link {
+            display: block;
+            width: 85px;
+            word-break: break-all;            
+        }
     }
 
-    .wager-report .tab-content {
+    .wager-report .tab-content.main-content {
         padding: 12px;
     }
 }
