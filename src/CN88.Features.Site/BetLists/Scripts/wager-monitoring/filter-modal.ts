@@ -29,6 +29,9 @@ class FilterModal {
     sportGroup: number;
     isOpeningFilter: boolean = false;
 
+    cleaveAllSportStake: any;
+    cleavePerSportStake: any = {};
+
     constructor($: JQueryStatic) {
         this.$ = $;
         this.$filterModalContainer = $("#filter-modal");
@@ -80,13 +83,30 @@ class FilterModal {
     }
 
     renderComponents(): void {
-
-
         this.$(".dropdown-stake-condition > select").multiselect({
             multiple: false,
             maxHeight: 300,
             numberDisplayed: 1,
             includeSelectAllOption: false
+        });
+
+        this.cleaveAllSportStake = new Cleave('#AllSportsStakeLimit', {
+            numeral: true,
+            numeralPositiveOnly: true,
+            numeralDecimalMark: '.',
+            delimiter: ','
+        });
+
+        let $perSportsConditions = this.$("#list-persports").children();
+        let self = this;
+        $perSportsConditions.each(function () {
+            let id = self.$(this).data("id");
+            self.cleavePerSportStake[id] = new Cleave('#StakeLimit-' + id, {
+                numeral: true,
+                numeralPositiveOnly: true,
+                numeralDecimalMark: '.',
+                delimiter: ','
+            });
         });
 
         this.marketMultiSelectionComponent.render(new MultiSelectionCheckboxOption("checkbox-all-markets", "list-market", "Market"));
@@ -182,11 +202,12 @@ class FilterModal {
         let isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
         if (!isSelectAllSports) {
             let $perSportsConditions = this.$("#list-persports").children();
-            let $this = this.$;
+            let self = this;
             $perSportsConditions.each(function () {
+                let $this = self.$;
                 let sportGroupId = $this(this).data("id");
                 let stakeMode = $this(this).find("select").children("option:selected").val();
-                let stakeLimit = $this(this).find(".StakeLimit").val();
+                let stakeLimit = self.cleavePerSportStake[sportGroupId].getRawValue();
                 conditions.push({
                     sportGroupId: sportGroupId,
                     stakeMode: stakeMode,
@@ -199,7 +220,7 @@ class FilterModal {
             sportGroup: this.sportGroup,
             isSelectAllSports: isSelectAllSports,
             stakeMode: this.$("#AllSportStakeMode").children("option:selected").val(),
-            stakeLimit: this.$("#AllSportsStakeLimit").val(),
+            stakeLimit: this.cleaveAllSportStake.getRawValue(),
             sportStakeConditions: JSON.stringify(conditions),
             markets: this.marketMultiSelectionComponent.getSelectedItemTexts().join(","),
             marketIds: this.marketMultiSelectionComponent.getSelectedItems().join(","),
