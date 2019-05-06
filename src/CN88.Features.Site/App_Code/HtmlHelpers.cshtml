@@ -10,40 +10,42 @@
 
 @helper RenderHeaderNumberCell(decimal cellValue, string cellClass = "")
 {
-    <th class="text-right @cellClass">
+    <th class="text-right @(cellValue < 0 ? "negative-value" : string.Empty) @cellClass">
         @FormatNumber(cellValue)
     </th>
 }
 
 @helper RenderHeaderNumberCell(int divisor, decimal cellValue, string cellClass = "")
 {
-    <th class="text-right @cellClass">
+    <th class="text-right @(cellValue < 0 ? "negative-value" : string.Empty) @cellClass">
         @FormatNumber(cellValue / divisor)
     </th>
 }
 
 @helper RenderHeaderNumberCell(int cellValue, string cellClass = "")
 {
-    <th class="text-right @cellClass">
+    <th class="text-right @(cellValue < 0 ? "negative-value" : string.Empty) @cellClass">
         @FormatNumber(cellValue)
     </th>
 }
+
 @helper RenderNumberCell(decimal cellValue, string cellClass = "")
 {
-    <td class="text-right @cellClass">
+    <td class="text-right @(cellValue < 0 ? "negative-value" : string.Empty) @cellClass">
         @FormatNumber(cellValue)
     </td>
 }
+
 @helper RenderNumberCell(int cellValue, string cellClass = "")
 {
-    <td class="text-right @cellClass">
+    <td class="text-right @(cellValue < 0 ? "negative-value" : string.Empty) @cellClass">
         @FormatNumber(cellValue)
     </td>
 }
 
 @helper RenderNumberCell(int divisor, decimal cellValue, string cellClass = "")
 {
-    <td class="text-right @cellClass">
+    <td class="text-right @(cellValue < 0 ? "negative-value" : string.Empty) @cellClass">
         @FormatNumber(cellValue / divisor)
     </td>
 }
