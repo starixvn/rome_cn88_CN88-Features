@@ -31,7 +31,6 @@
     filterModal: FilterModal;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
 
-
     pageSize: number;
     pauseUrl: string;
     getBetsUrl: string;
@@ -222,7 +221,6 @@
         this.$betTypeGroupIds.val(param.betTypeGroupIds);
         this.$sportStakeConditions.val(param.sportStakeConditions);
 
-        this.filterModal.hide();
         this.$.unblockUI();
     }
 

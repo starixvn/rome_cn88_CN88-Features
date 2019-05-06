@@ -141,7 +141,10 @@ class FilterModal {
             this.eventMultiSelectionComponent.clearSearch();
         });
 
-        this.$("#btn-submit").on("click touchend", () => { this.onSubmit() });
+        this.$("#btn-submit").on("click touchend", () => {
+            this.onSubmit();
+            this.hide();
+        });
 
         this.$("#btn-reset").on("click touchend", this.resetFilter);
     }
@@ -158,6 +161,7 @@ class FilterModal {
         groupItems.attr("disabled", null);
         groupItems.prop("checked", false);
     };
+
     isCheckAll = (groupItems, allCheckbox) => {
         let isAllChecked = true;
 
@@ -260,5 +264,6 @@ class FilterModal {
         let $allBetTypesCheckbox = this.$("#checkbox-all-bettypes");
         $allBetTypesCheckbox.prop("checked", true);
         $allBetTypesCheckbox.change();
+        this.onSubmit();
     }
 }
