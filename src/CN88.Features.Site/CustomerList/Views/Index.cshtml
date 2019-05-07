@@ -8,7 +8,29 @@
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/downline-list")
 }
 
-<ul id="nav-tabs" class="nav nav-tabs-style2" role="tablist">
+<!----------------- Desktop Tab view ---------------->
+<!--<ul id="nav-tabs" class="nav nav-tabs-style2" role="tablist">
+    @if (Model.ActorLevel.IsSuperLevel())
+    {
+        <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
+            <a>@CustomerListResources.Master</a>
+        </li>
+    }
+
+    @if (Model.ActorLevel.IsMasterOrSuperLevel())
+    {
+        <li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
+            <a>@CustomerListResources.Agent</a>
+        </li>
+    }
+
+    <li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
+        <a>@CustomerListResources.Member</a>
+    </li>
+</ul>-->
+
+<!----------------- Mobile Tab view ---------------->
+<ul id="nav-tabs" class="nav nav-tabs" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
         <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">

@@ -102,3 +102,17 @@ body {
 .row-suspended {
     background-color: $status-suspended;
 }
+
+/* ----------- Mobile ----------- */
+@media only screen and (max-device-width : 767px) {
+    body {
+        background-color: #fff;
+        font-size: 10.5px;
+        padding: 10px 0;
+    }
+
+    .nav, .tab-content {
+        width: auto;
+        padding: 0 10px;
+    }
+}
