@@ -67,7 +67,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0-ns02\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0-ns03\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
