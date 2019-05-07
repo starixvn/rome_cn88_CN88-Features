@@ -41,6 +41,7 @@
     speakerOffText: string;
 
     resources = {
+        lblPerSports: '',
         lblStakeMode_0: '',
         lblStakeMode_1: '',
         lblStakeMode_2: '',
@@ -110,6 +111,7 @@
         this.$sound = document.getElementById("sound");
 
         this.resources = {
+            lblPerSports: $("#lbl-PerSports").val(),
             lblStakeMode_0: $("#lbl-StakeMode_0").val(),
             lblStakeMode_1: $("#lbl-StakeMode_1").val(),
             lblStakeMode_2: $("#lbl-StakeMode_2").val(),
@@ -206,7 +208,7 @@
 
         var param = this.filterModal.getParameters();
 
-        this.$stakeLnk.html(param.isSelectAllSports ? `${this.resources["lblStakeMode_" + param.stakeMode]} ${param.stakeLimit}` : "");
+        this.$stakeLnk.html(param.isSelectAllSports ? `${this.resources["lblStakeMode_" + param.stakeMode]} ${param.stakeLimit}` : this.resources.lblPerSports);
         this.$maketLnk.html(param.markets.length ? param.markets : this.resources.lblAllMarkets);
         this.$leagueLnk.html(param.leagueIds.length ? `${this.resources.lblLeague} (${param.leagueIds.length})` : this.resources.lblAllLeagues);
         this.$eventLnk.html(param.matchIds.length ? `${this.resources.lblEvent} (${param.matchIds.length})` : this.resources.lblAllEvents);

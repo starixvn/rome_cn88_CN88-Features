@@ -39,7 +39,6 @@
         private const string MatchesCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.Matches";
         private const string OtherMatchesCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.OtherMatches";
         private const string OutrightMatchesCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.OutrightMatches";
-        private const string MinTransIdCachesKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.MinTransId";
 
         private readonly IDynamicRepository dynamicRepository;
         private readonly CacheRefService cacheRefService;
@@ -88,9 +87,6 @@
 
         public async Task<IEnumerable<TicketDto>> GetMonitorBets(WagerMonitoringParam param)
         {
-            var betTypeGroupIds = param.DisplayBetTypeGroupIds.ToListInt();
-            var betTypeGroups = await GetBetTypeGroupsBySport(param.SportGroupId);
-
             var criteria = new WagerMonitoringCriteria(
                 param.CustId,
                 param.CustLevelId,
@@ -99,7 +95,7 @@
                 param.Market,
                 param.LeagueIds,
                 param.MatchIds,
-                param.DisplayBetTypeGroupIds,
+                await GetSelectedBetTypeGroups(param),
                 AppSettings.WagerMonitoringPageSize,
                 param.MinTransId);
 
@@ -123,12 +119,23 @@
             return tickets;
         }
 
+        private async Task<string> GetSelectedBetTypeGroups(WagerMonitoringParam param)
+        {
+            var displayBetTypeGroupIds = param.DisplayBetTypeGroupIds.ToListInt();
+            var betTypeGroups = await GetBetTypeGroupsBySport(param.SportGroupId);
+
+            return betTypeGroups
+                .Where(x => displayBetTypeGroupIds.Contains(x.DisplayBetTypeGroup))
+                .Select(x => x.BetTypeGroup)
+                .JoinWithComma();
+        }
+
         private async Task<IEnumerable<MatchInfo>> GetOtherMatches()
             => await ConfiguredCacheService.GetOrSetAsync(
                 OtherMatchesCacheKey,
                 () =>
                 {
-                    var matches = dynamicRepository.Fetch<MatchInfo>(new GetOtherMatchCriteria());
+                    var matches = dynamicRepository.Fetch<MatchInfo>(new GetOtherMatchCriteria(AppSettings.IsTest));
                     foreach (var match in matches)
                     {
                         match.MatchName = $"{cacheRefService.GetTeamName(match.HomeId)} v {cacheRefService.GetTeamName(match.AwayId)}";
@@ -144,7 +151,7 @@
                 OutrightMatchesCacheKey,
                 () =>
                 {
-                    var matches = dynamicRepository.Fetch<MatchInfo>(new GetOutrightMatchCriteria());
+                    var matches = dynamicRepository.Fetch<MatchInfo>(new GetOutrightMatchCriteria(AppSettings.IsTest));
                     foreach (var match in matches)
                     {
                         match.MatchName = $"{cacheRefService.GetTeamName(match.HomeId)}";
