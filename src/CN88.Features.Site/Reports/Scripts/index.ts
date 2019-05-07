@@ -307,7 +307,9 @@ class ReportIndexView extends BaseReport {
     };
 
     setPageTitle = (text) => {
-        window.parent.document.getElementById("page-title").innerText = text;
+        if (window.parent.document.getElementById("page-title")) {
+            window.parent.document.getElementById("page-title").innerText = text;
+        }
     }
 }
 $(function () {
