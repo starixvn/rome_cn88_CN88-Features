@@ -272,18 +272,19 @@
         }
 
         let $responseTable = this.$(responseHtml);
+        let totalRecords = $responseTable.data("totalrecords");
         let minTransId = $responseTable.data("mintransid");
         this.$minTransId.val(minTransId);
 
-        this.$tblBetList.find("tbody").prepend($responseTable.find("tbody").html());
+        if (totalRecords > 0) {
+            this.$tblBetList.find("tbody").prepend($responseTable.find("tbody").html());
 
-        var numberOfRows = this.$tblBetList.find("tbody tr").length;
+            var numberOfRows = this.$tblBetList.find("tbody tr").length;
 
-        if (numberOfRows > this.pageSize) {
-            this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
-        }
+            if (numberOfRows > this.pageSize) {
+                this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
+            }
 
-        if (responseHtml && this.isSpeakOn) {
             this.$sound.play();
         }
 

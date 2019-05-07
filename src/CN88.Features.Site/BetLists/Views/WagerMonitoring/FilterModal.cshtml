@@ -118,10 +118,10 @@
 </div>
 @helper RenderSelectListItem(IEnumerable<SelectListItem> items, bool selectedAllItems, string groupId = "")
 {
-foreach (var item in items)
-{
+    foreach (var item in items)
+    {
         <li class="item">
             <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) @(selectedAllItems ? "disabled=\"disabled\"" : string.Empty) data-text="@item.Text" data-group-id="@groupId" />@item.Text
         </li>
-}
+    }
 }
