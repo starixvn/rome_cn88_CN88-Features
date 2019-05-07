@@ -136,12 +136,17 @@
                 () =>
                 {
                     var matches = dynamicRepository.Fetch<MatchInfo>(new GetOtherMatchCriteria(AppSettings.IsTest));
-                    //var matchIds = matches.Select(m => m.HomeId).Union(matches.Select(m => m.AwayId)).Distinct();
-                    //var matchNames = new Dictionary<int, string>(matchIds.Select(id => new KeyValuePair<int, string>(id, cacheRefService.GetTeamName(id))));
+                    var matchIds = matches.Select(m => m.HomeId).Union(matches.Select(m => m.AwayId)).Distinct();
+                    var matchNames = new Dictionary<int, string>();
+
+                    foreach (var id in matchIds)
+                    {
+                        matchNames.Add(id, cacheRefService.GetTeamName(id));
+                    }
 
                     foreach (var match in matches)
                     {
-                        match.MatchName = $"{cacheRefService.GetTeamName(match.HomeId)} v {cacheRefService.GetTeamName(match.AwayId)}";
+                        match.MatchName = $"{matchNames[match.HomeId]} v {matchNames[match.AwayId]}";
                     }
 
                     return matches;
