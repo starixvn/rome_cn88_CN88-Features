@@ -13,6 +13,7 @@ class WagerReport extends LegacyReport {
     $filterToggleIcon: JQuery;
     $backIcon: JQuery;
     isMobile: boolean;
+    isOwner: boolean;
     $tabMainContent: JQuery;
 
     constructor(
@@ -32,6 +33,7 @@ class WagerReport extends LegacyReport {
 
         let reportTable = this.$("#tbl-report");
         this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
+        this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
         if (this.isMobile) {
             reportTable.stacktable();
         }
@@ -65,7 +67,10 @@ class WagerReport extends LegacyReport {
 
     public registerEvents() {
 
-        if (!this.isMobile) {
+        if (this.isMobile) {
+            this.$tableReport.find("th").removeClass("sorting");
+        }
+        else {
             this.$tabSettlement.on("click touchend", () => {
                 if (this.$custLevelId.val() !== "1") {
                     this.$isSettlement.val("True");
@@ -122,6 +127,10 @@ class WagerReport extends LegacyReport {
 
             window.history.go(-1);
         });
+
+        if (this.isOwner) {
+            this.$(".btn-collapse-expanse").trigger("click");
+        }
     }
 }
 

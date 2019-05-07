@@ -24,7 +24,7 @@
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="AgentIncome">@ReportResources.AgentIncome</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResultA">@ReportResources.AgentResultA</th>
             </tr>
-            @if (Model.ReportData.Any())
+            @if (Model.IsShowTotalRow())
             {
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>

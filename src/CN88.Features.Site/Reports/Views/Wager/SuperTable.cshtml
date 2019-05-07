@@ -36,7 +36,7 @@
                 <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="AgentResult">@ReportResources.AgentResult</th>
                 <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MasterAgent">@ReportResources.MasterAgent</th>
             </tr>
-            @if (Model.ReportData.Any())
+            @if (Model.IsShowTotalRow())
             {
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>

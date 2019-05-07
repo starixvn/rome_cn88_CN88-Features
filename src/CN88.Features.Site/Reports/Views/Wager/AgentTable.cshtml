@@ -32,7 +32,7 @@
                 <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-stack-column="true" data-sortedname="ValidStake">@ReportResources.ValidStake</th>
                 <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-stack-column="true" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
             </tr>
-            @if (Model.ReportData.Any())
+            @if (Model.IsShowTotalRow())
             {
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>

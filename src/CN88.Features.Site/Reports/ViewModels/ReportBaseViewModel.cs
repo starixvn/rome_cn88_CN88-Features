@@ -33,13 +33,15 @@
         {
             this.query = query;
 
-            ReportData = reportData;
+            ReportData = reportData.ToList();
             GrandTotal = grandTotal;
             Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
             TotalStockPercent = query.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
         }
 
         public bool IsNotOwner => !query.IsOwner;
+
+        public bool IsOwner => query.IsOwner;
 
         public UserLevel ReportLevel => query.CustLevel;
 

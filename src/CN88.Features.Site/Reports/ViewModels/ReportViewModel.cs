@@ -73,5 +73,9 @@
         protected override bool IsOldReport() => false;
 
         public bool IsMobile { get; }
+
+        public bool IsShowTotalRow()
+            => ReportData.Any() 
+                && (!IsMobile || (IsMobile && IsNotOwner));
     }
 }
