@@ -66,6 +66,7 @@ class ReportIndexView extends BaseReport {
     renderComponents(): void {
         this.renderRptTypeDropdown();
         super.renderComponents();
+        this.setPageTitle(this.$("title").text());
     }
 
     cachedDOMElements(): void {
@@ -302,7 +303,12 @@ class ReportIndexView extends BaseReport {
         }
 
         this.$reportType.val(selected[0]);
+        this.setPageTitle(selectedOptions.text());
     };
+
+    setPageTitle = (text) => {
+        window.parent.document.getElementById("page-title").innerText = text;
+    }
 }
 $(function () {
     const reportIndexView = new ReportIndexView(
