@@ -291,4 +291,7 @@
   <data name="WagerMonitoringConsole" xml:space="preserve">
     <value>Wager Monitoring Console</value>
   </data>
+  <data name="OneXTwoMoneyline" xml:space="preserve">
+    <value>1X2 / Moneyline</value>
+  </data>
 </root>

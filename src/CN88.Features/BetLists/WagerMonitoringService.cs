@@ -11,6 +11,7 @@
     using Models;
     using Models.WagerMonitoring;
     using Params;
+    using Resources;
     using Shared.Configurations;
     using Shared.DataAccesses;
     using Shared.Extensions;
@@ -32,6 +33,7 @@
 
     public class WagerMonitoringServiceImpl : WagerMonitoringService
     {
+        private const int OneXTwoMoneylineDisplayBetTypeGroup = 5;
         private const string MonitorSportGroupsCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.MonitorSportGroups";
         private const string MonitorBetTypeGroupsCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.MonitorBetTypeGroups";
         private const string MatchesCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.Matches";
@@ -185,7 +187,9 @@
                     var betTypeGroups = dynamicRepository.Fetch<MonitorBetTypeGroup>(new GetMonitorBetTypeGroupCriteria());
                     foreach (var betTypeGroup in betTypeGroups)
                     {
-                        betTypeGroup.DisplayName = cacheRefService.GetBetTypeName(betTypeGroup.DisplayBetTypeGroup);
+                        betTypeGroup.DisplayName = betTypeGroup.DisplayBetTypeGroup == OneXTwoMoneylineDisplayBetTypeGroup
+                            ? BetListsResources.OneXTwoMoneyline
+                            : cacheRefService.GetBetTypeName(betTypeGroup.DisplayBetTypeGroup);
                     }
 
                     return betTypeGroups;
