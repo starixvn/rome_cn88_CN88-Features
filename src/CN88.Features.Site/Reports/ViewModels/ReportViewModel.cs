@@ -68,8 +68,5 @@
         public bool IsShowTotalRow()
             => ReportData.Any()
                 && (!IsMobile || (IsMobile && IsNotOwner));
-
-        public string BackLinkText
-            => IsNotOwner ? ReportFilterViewModel.CustName : ReportResources.CreateReport;
     }
 }

@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
+    var backLink = Model.BuildBackLink();
 }
 @section Styles {
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
@@ -10,8 +11,8 @@
     <div class="page-title-mobile">
         <span id="btn-back" class="back-area">
             <span class="icon-chevron-left back-step"></span>
-            <a href="@(Model.IsOwner ? Response.ApplyAppPathModifier("~/Reports/Index?DisplayMode=1") : Model.BuildBackLink(Request.Url.Query))">
-                @Model.BackLinkText
+            <a href="@backLink.Link">
+                @backLink.Text
             </a>
         </span>
 

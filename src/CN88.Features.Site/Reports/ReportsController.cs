@@ -42,9 +42,13 @@
             => await ViewAsync(message, AccountingSheetPath);
 
         public async Task<ActionResult> Wager(ReportQuery message)
-            => browserHelper.IsMobile() 
+        {
+            message.CurrentUrl = Request.Url.Query;
+
+            return browserHelper.IsMobile()
                 ? await ViewAsync(message, WagerMobileViewPath)
                 : await ViewAsync(message, WagerViewPath);
+        }
 
         public async Task<ActionResult> Legacy(ReportQuery message)
             => await ViewAsync(message, LegacyViewPath);

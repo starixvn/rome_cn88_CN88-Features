@@ -119,27 +119,19 @@
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
             };
 
-        public string BuildBackLink(string currentLink)
+        public BreadcrumbItem BuildBackLink()
         {
-            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
-                currentLink,
-                new Dictionary<string, object>
-                {
-                    ["CustId"] = query.IsOwner ? 0 : query.CustId,
-                    ["CustName"] = query.CustName,
-                    ["IsOwner"] = query.IsOwner,
-                    ["FromDate"] = query.FromDate,
-                    ["ToDate"] = query.ToDate,
-                    ["ReportType"] = query.ReportType,
-                    ["UserSelectedSportGroupId"] = query.UserSelectedSportGroupId,
-                    ["UserSelectedBetTypeId"] = query.UserSelectedBetTypeId,
-                    ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId,
-                    ["PageSize"] = query.PageSize,
-                    ["IsSettlement"] = query.IsSettlement,
-                    ["CustLevelId"] = query.CustLevelId + (query.IsOwner ? 0 : 1),
-                    ["IsDescendingSort"] = IsDescendingSort,
-                    ["SortPropertyName"] = SortPropertyName
-                });
+            if(query.IsOwner
+                || !BreadcrumbLevelViewModel.BreadcrumbLevel.Any())
+            {
+                return new BreadcrumbItem(ReportResources.CreateReport, BreadcrumbLevelViewModel.MainLink);
+            }
+
+            var breadcrumbLinks = BreadcrumbLevelViewModel.BuildBreadcrumbLinks(query.CurrentUrl, query.IsSettlement ?? false);
+
+            return breadcrumbLinks.Count() > 1
+                    ? breadcrumbLinks.ElementAt(breadcrumbLinks.Count() - 1)
+                    : breadcrumbLinks.ElementAt(0);
         }
 
         private IEnumerable<CustInfo> BuildBreadcrumbLevel(ReportModel model)

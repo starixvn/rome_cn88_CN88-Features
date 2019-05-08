@@ -17,7 +17,7 @@
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Wagers">@ReportResources.Wagers</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.Stake</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="ValidStake">@ReportResources.ValidStake</th>
-                <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="AgentPoss">
                     @ReportResources.AgentPoss <span class="icon-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess"></span>
                 </th>
@@ -32,7 +32,7 @@
                     @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "settlement", true)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "settlement", true)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake, "settlement", true)
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MemberIncome, "settlement", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MemberIncome, "settlement")
                     <th class="settlement" data-stack-column="true"></th>
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentIncome, "settlement", true)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult, "settlement")
