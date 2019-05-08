@@ -39,11 +39,13 @@ class ClientPagerComponent {
         this.options = <ClientPagerOption>this.$.extend({}, this.options, options);
         let pager = this.$("#" + this.options.pagerId);
 
-        let isMobile = this.$("#" + this.options.tableReportId + "-stack").data("ismobile");
+        let tableId = "#" + this.options.tableReportId;
+        let tableStackId = tableId + "-stack";
+        let isMobile = this.$(tableStackId).data("ismobile");
         this.$reportForm = this.$("#" + this.options.formId);
         this.$bodyRows = isMobile
-            ? this.$("#" + this.options.tableReportId + "-stack" + " > tbody > tr")
-            : this.$("#" + this.options.tableReportId + " > tbody > tr");
+            ? this.$(tableStackId + " > tbody > tr")
+            : this.$(tableId + " > tbody > tr");
 
         this.totalRecords = parseInt(pager.data("totalrecords"), 0);
         this.pageSize = parseInt(pager.data("pagesize"), 0);

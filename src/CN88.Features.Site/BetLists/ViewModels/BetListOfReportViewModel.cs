@@ -23,7 +23,7 @@
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class BetListOfReportViewModel
+    public class BetListOfReportViewModel : BetListTableViewModel
     {
         private readonly IDictionary<int, int> ReportTypes = new Dictionary<int, int>
         {
@@ -146,22 +146,6 @@
 
         public bool IsOwner { get; set; }
 
-        public UserLevel CustLevel { get; }
-
-        public int NoOfColumns { get; }
-
-        public BetListData BetListData { get; }
-
-        public BetListTotal BetListTotal { get; }
-
-        public ITicketHelper TicketHelper { get; }
-
-        public IBetListHTMLBuilder Builder { get; }
-
-        public IBetListCN88HtmlBuilder CN88Builder { get; }
-
-        public bool DisplayVNIP { get; }
-
         public string OldMainPath => MicroSites.OldMainUrl("~");
 
         public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
@@ -200,19 +184,12 @@
 
         public int ReportType { get; private set; }
 
-        public int Divisor { get; }
-
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
             => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
 
         public PagerViewModel PagerViewModel { get; private set; }
 
         public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
-
-        public decimal CompanyPositionTaking(TicketDto ticket)
-        {
-            return 1 - ticket.AgentPositionTaking - ticket.MasterPositionTaking - ticket.SuperPositionTaking;
-        }
 
         private string BuildReportMainUrl()
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(

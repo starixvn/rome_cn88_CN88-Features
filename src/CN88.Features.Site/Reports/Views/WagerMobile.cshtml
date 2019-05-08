@@ -10,7 +10,10 @@
     <div class="page-title">
         <span id="btn-back" class="back-area">
             <span class="icon-chevron-left back-step"></span>
-            @(Model.IsNotOwner ? Model.ReportFilterViewModel.CustName : ReportResources.CreateReport)
+            <a href="@(Model.IsOwner ? Response.ApplyAppPathModifier("~/Reports/Index?DisplayMode=1") : Model.BuildBackLink(Request.Url.Query))">
+                @Model.BackLinkText
+            </a>
+            
 
         </span>
 

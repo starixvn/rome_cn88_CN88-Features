@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using CN88.Features.Site.Shared.Helpers;
     using MediatR;
     using Reports.Filters;
     using Requests;
@@ -12,14 +13,25 @@
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
     {
-        public BetListsController(IMediator mediator)
+        private readonly BrowserHelper browserHelper;
+        private const string ReportBetListViewPath = "~/BetLists/Views/BetListOfReport.cshtml";
+        private const string ReportBetListMobileViewPath = "~/BetLists/Views/ReportBetListMobile.cshtml";
+
+        public BetListsController(
+            IMediator mediator,
+            BrowserHelper browserHelper)
             : base(mediator)
         {
+            this.browserHelper = browserHelper;
         }
 
         [HttpGet, ReCheckPassword]
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/BetListOfReport.cshtml");
+            => await ViewAsync(
+                message, 
+                browserHelper.IsMobile() 
+                    ? ReportBetListMobileViewPath
+                    : ReportBetListViewPath);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> BetListOfStatement(BetListOfStatementQuery message)

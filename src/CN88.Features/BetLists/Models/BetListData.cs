@@ -13,6 +13,8 @@
             Tickets = tickets ?? Enumerable.Empty<TicketDto>();
             TicketData = ticketData ?? new List<ITicketData>();
             Total = Tickets.Count();
+
+            Tickets = Tickets.ToList();
         }
 
         public IEnumerable<TicketDto> Tickets { get; }
@@ -20,5 +22,7 @@
         public List<ITicketData> TicketData { get; }
 
         public int Total { get; }
+
+        public bool HasData() => Total > 0;
     }
 }

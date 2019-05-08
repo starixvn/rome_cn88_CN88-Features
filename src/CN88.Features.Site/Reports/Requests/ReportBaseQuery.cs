@@ -50,6 +50,10 @@
 
         public bool IsDescendingSort { get; set; }
 
+        public int UplineId { get; set; }
+
+        public string UplineName { get; set; }
+
         public bool? IsSettlement
         {
             get

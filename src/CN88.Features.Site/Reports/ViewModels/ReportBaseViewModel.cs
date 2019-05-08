@@ -119,6 +119,29 @@
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
             };
 
+        public string BuildBackLink(string currentLink)
+        {
+            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+                currentLink,
+                new Dictionary<string, object>
+                {
+                    ["CustId"] = query.IsOwner ? 0 : query.CustId,
+                    ["CustName"] = query.CustName,
+                    ["IsOwner"] = query.IsOwner,
+                    ["FromDate"] = query.FromDate,
+                    ["ToDate"] = query.ToDate,
+                    ["ReportType"] = query.ReportType,
+                    ["UserSelectedSportGroupId"] = query.UserSelectedSportGroupId,
+                    ["UserSelectedBetTypeId"] = query.UserSelectedBetTypeId,
+                    ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId,
+                    ["PageSize"] = query.PageSize,
+                    ["IsSettlement"] = query.IsSettlement,
+                    ["CustLevelId"] = query.CustLevelId + (query.IsOwner ? 0 : 1),
+                    ["IsDescendingSort"] = IsDescendingSort,
+                    ["SortPropertyName"] = SortPropertyName
+                });
+        }
+
         private IEnumerable<CustInfo> BuildBreadcrumbLevel(ReportModel model)
         {
             var breadcrumbLevel = new List<CustInfo>();
@@ -179,5 +202,7 @@
 
         private int GetBetListType(int reportType)
             => BetListTypes[reportType];
+
+        
     }
 }

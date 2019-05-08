@@ -702,6 +702,7 @@
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
     <Compile Include="BetLists\Requests\OutrightWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\ViewModels\BetListTableViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\EventWagerByAccountViewModel.cs" />
@@ -893,6 +894,8 @@
     <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
     <Content Include="App_Data\securitycode.pro.json" />
     <Content Include="App_Data\securitycode.napinternal.json" />
+    <Content Include="BetLists\Views\ReportBetListMobile.cshtml" />
+    <Content Include="BetLists\Views\BetListTable.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

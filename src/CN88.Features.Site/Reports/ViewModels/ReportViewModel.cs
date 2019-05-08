@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Features.BetLists.Constants;
-    using Features.Reports.Constants;
+    using CN88.Features.Reports.AppResources;
     using Features.Reports.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Constants;
@@ -16,14 +15,6 @@
     public class ReportViewModel : ReportBaseViewModel
     {
         private const string ReportMainActionPath = "~/Reports/Index";
-
-        private readonly IDictionary<int, int> BetListTypes = new Dictionary<int, int>
-        {
-            [ReportTypeConstants.SettledWager] = BetListTypeConstant.Settled,
-            [ReportTypeConstants.UnsettledWager] = BetListTypeConstant.Unsettled,
-            [ReportTypeConstants.CancelledReport] = BetListTypeConstant.Cancelled,
-            [ReportTypeConstants.AbnormalBets] = BetListTypeConstant.Abnormal,
-        };
 
         public ReportViewModel(
             ReportQuery query,
@@ -75,7 +66,10 @@
         public bool IsMobile { get; }
 
         public bool IsShowTotalRow()
-            => ReportData.Any() 
+            => ReportData.Any()
                 && (!IsMobile || (IsMobile && IsNotOwner));
+
+        public string BackLinkText
+            => IsNotOwner ? ReportFilterViewModel.CustName : ReportResources.CreateReport;
     }
 }
