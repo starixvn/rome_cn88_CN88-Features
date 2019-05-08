@@ -142,7 +142,7 @@ class BetListOfReport {
     }
 
     collapseExpandFilter = () => {
-        let isCollapsed = this.elements.filterToggleIcon.hasClass("icon-filter-up");
+        let isCollapsed = this.elements.filterToggleIcon.hasClass("icon-filter-down");
 
         if (isCollapsed) {
             this.elements.reportForm
@@ -152,8 +152,8 @@ class BetListOfReport {
             this.elements.reportPager
                 .slideUp(210);
             this.elements.filterToggleIcon
-                .removeClass("icon-filter-up")
-                .addClass("icon-filter-down");
+                .removeClass("icon-filter-down")
+                .addClass("icon-filter-up");
         }
         else {
             this.elements.reportForm.slideUp(200);
@@ -162,8 +162,8 @@ class BetListOfReport {
             this.elements.reportPager
                 .slideDown(210);
             this.elements.filterToggleIcon
-                .removeClass("icon-filter-down")
-                .addClass("icon-filter-up");
+                .removeClass("icon-filter-up")
+                .addClass("icon-filter-down");
         }
     }
 }

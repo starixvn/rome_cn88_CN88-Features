@@ -99,7 +99,7 @@ class WagerReport extends LegacyReport {
 
         this.$filterToggleIcon.on("click touchend", (e) => {
             e.preventDefault();
-            let isCollapsed = this.$filterToggleIcon.hasClass("icon-filter-up");
+            let isCollapsed = this.$filterToggleIcon.hasClass("icon-filter-down");
 
             if (isCollapsed) {
                 this.$reportForm
@@ -107,16 +107,16 @@ class WagerReport extends LegacyReport {
                 this.$tabMainContent
                     .slideUp(210);
                 this.$filterToggleIcon
-                    .removeClass("icon-filter-up")
-                    .addClass("icon-filter-down");
+                    .removeClass("icon-filter-down")
+                    .addClass("icon-filter-up");
             }
             else {
                 this.$reportForm.slideUp(200);
                 this.$tabMainContent
                     .slideDown(210);
                 this.$filterToggleIcon
-                    .removeClass("icon-filter-down")
-                    .addClass("icon-filter-up");
+                    .removeClass("icon-filter-up")
+                    .addClass("icon-filter-down");
             }
         });
 
