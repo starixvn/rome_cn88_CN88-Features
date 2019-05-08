@@ -29,7 +29,7 @@
 
             return new SettingContext()
             {
-                ActorId = currentUserSession.UserId,
+                ActorId = currentUserSession.CustId,
                 ActorName = currentUserSession.UserName,
                 ActorLevel = currentUserSession.RoleId,
                 SubAccountId = currentUserSession.SubAccId,
