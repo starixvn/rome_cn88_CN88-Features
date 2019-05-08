@@ -172,7 +172,7 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>超級代理 (%)</value>
+    <value>股东 (%)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
     <value>總代理 (%)</value>
@@ -214,7 +214,7 @@
     <value>密碼</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>投注額 </value>
+    <value>股東</value>
   </data>
   <data name="UserCode" xml:space="preserve">
     <value>帳號</value>
