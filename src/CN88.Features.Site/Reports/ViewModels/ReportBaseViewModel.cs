@@ -29,7 +29,8 @@
         protected ReportBaseViewModel(
             ReportBaseQuery query,
             IEnumerable<ReportModel> reportData,
-            ReportModel grandTotal)
+            ReportModel grandTotal,
+            bool isMobile = false)
         {
             this.query = query;
 
@@ -37,6 +38,7 @@
             GrandTotal = grandTotal;
             Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
             TotalStockPercent = query.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
+            IsMobile = isMobile;
         }
 
         public bool IsNotOwner => !query.IsOwner;
@@ -195,6 +197,10 @@
         private int GetBetListType(int reportType)
             => BetListTypes[reportType];
 
-        
+        public bool IsMobile { get; }
+
+        public bool IsShowTotalRow()
+            => ReportData.Any()
+                && (!IsMobile || (IsMobile && IsNotOwner));
     }
 }

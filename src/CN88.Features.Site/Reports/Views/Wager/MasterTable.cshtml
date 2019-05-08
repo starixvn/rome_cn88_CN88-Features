@@ -1,4 +1,4 @@
-﻿@model ReportViewModel
+﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
     var divisor = Model.Divisor;
@@ -14,9 +14,9 @@
             <tr>
                 <th class="text-left header sorting username" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.MAUsername</th>
                 <th class="text-left header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Name">@ReportResources.Name</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAIncome">@ReportResources.MAIncome</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAResult">@ReportResources.MAResult</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MAStock">@ReportResources.MAStock</th>
+                <th class="text-right settlement header sorting" data-mobile-text="@ReportResources.SMAResult" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="MAIncome">@ReportResources.MAIncome</th>
+                <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="MAResult">@ReportResources.MAResult</th>
+                <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="MAStock">@ReportResources.MAStock</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="MAStockPercent">@ReportResources.MAStockPercent</th>
                 @if (Model.IsNotOwner)
                 {

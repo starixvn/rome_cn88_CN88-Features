@@ -25,7 +25,7 @@
             AccountingPeriod lastPeriod,
             bool isMobile,
             IEnumerable<SelectListItemExt> allBetTypes = null)
-            : base(query, reportData, grandTotal)
+            : base(query, reportData, grandTotal, isMobile)
         {
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, query.FromDate, query.ToDate);
@@ -40,7 +40,6 @@
                     Selected = s.Key == query.UserSelectedLiveStatusId
                 });
             var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, query.UserSelectedLiveStatusId);
-            IsMobile = isMobile;
             ReportFilterViewModel = new ReportFilterViewModel(
                 query.DisplayMode,
                 query.ReportType,
@@ -62,11 +61,5 @@
         protected override string GetReportMainActionPath() => ReportMainActionPath;
 
         protected override bool IsOldReport() => false;
-
-        public bool IsMobile { get; }
-
-        public bool IsShowTotalRow()
-            => ReportData.Any()
-                && (!IsMobile || (IsMobile && IsNotOwner));
     }
 }

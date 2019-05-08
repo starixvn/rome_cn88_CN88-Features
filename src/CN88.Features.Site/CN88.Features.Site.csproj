@@ -935,6 +935,8 @@
     <Content Include="SubAccount\Views\New.cshtml" />
     <Content Include="SubAccount\Views\Web.config" />
     <Content Include="Reports\Views\WagerMobile.cshtml" />
+    <Content Include="Reports\Views\OldIndexMobile.cshtml" />
+    <Content Include="Reports\Views\OldWagerMobile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

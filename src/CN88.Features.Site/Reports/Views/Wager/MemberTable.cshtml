@@ -1,4 +1,4 @@
-﻿@model ReportViewModel
+﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
     var divisor = Model.Divisor;
@@ -17,12 +17,12 @@
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Wagers">@ReportResources.Wagers</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.Stake</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="ValidStake">@ReportResources.ValidStake</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
+                <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="AgentPoss">
                     @ReportResources.AgentPoss <span class="icon-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess"></span>
                 </th>
                 <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="AgentIncome">@ReportResources.AgentIncome</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResultA">@ReportResources.AgentResultA</th>
+                <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="AgentResultA">@ReportResources.AgentResultA</th>
             </tr>
             @if (Model.IsShowTotalRow())
             {

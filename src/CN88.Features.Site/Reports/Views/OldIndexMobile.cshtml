@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Reports/Views/_OldLayout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+}
+@model OldIndexViewModel
+<div class="wager-report">
+    <div class="filter-container">
+        @Html.Partial("~/Reports/Views/Index/OldCreateReport.cshtml")
+    </div>
+    df sfsdfsdfsdf sdfsd
+    <div class="result-container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a data-toggle="tab" href="#accountingSheet">@ReportResources.AccountingSheet</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="accountingSheet">
+                mobile
+                @Html.Action("AccountingSheet", "Reports")
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @StaticResources.RenderScripts("~/Reports/bundles/old-index")
+}

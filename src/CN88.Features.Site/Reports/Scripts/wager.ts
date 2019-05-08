@@ -67,6 +67,7 @@ class WagerReport extends LegacyReport {
 
         if (this.isMobile) {
             this.$tableReport.find("th").removeClass("sorting");
+
         }
         else {
             this.$tabSettlement.on("click touchend", () => {
