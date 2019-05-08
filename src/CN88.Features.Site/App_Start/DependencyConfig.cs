@@ -107,7 +107,6 @@
             container.RegisterSingleton<ReportDateService, ReportDateServiceImpl>();
 
             container.RegisterPerWebRequest<SessionManager, SessionManagerImpl>();
-            container.RegisterSingleton<SportGroupService, SportGroupServiceImpl>();
 
             container.RegisterSingleton<SportGroupService, SportGroupServiceImpl>();
             container.RegisterSingleton<BettypeGroupService, BettypeGroupServiceImpl>();
