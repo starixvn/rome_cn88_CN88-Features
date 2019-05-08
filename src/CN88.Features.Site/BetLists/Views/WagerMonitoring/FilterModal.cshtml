@@ -1,81 +1,83 @@
 ﻿@using CN88.Features.Shared.Constants
 @using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 @model WagerMonitoringFilterViewModel
-<div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><span class="icon-filter"></span>@BetListsResources.Filter</h5>
-                <ul class="nav nav-tabs filter-tabs" role="tablist">
-                    <li class="active" role="presentation">
-                        <a href="#stake" id="stake-tab" data-toggle="tab" aria-controls="tab" aria-selected="true">
-                            @BetListsResources.Stake
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#market" id="market-tab" data-toggle="tab" aria-controls="market" aria-selected="false">
-                            @SharedResources.Market
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#league" id="league-tab" data-toggle="tab" aria-controls="league" aria-selected="false">
-                            @BetListsResources.League
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#event" id="event-tab" data-toggle="tab" aria-controls="event" aria-selected="false">
-                            @BetListsResources.Event
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#bettype" id="bettype-tab" data-toggle="tab" aria-controls="bettype" aria-selected="false">
-                            @BetListsResources.BetType
-                        </a>
-                    </li>
-                </ul>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="tab-content">
-                    <div class="tab-pane fade active in" id="stake" role="tabpanel" aria-labelledby="stake-tab">
-                        @Html.Partial("~/BetLists/Views/WagerMonitoring/SportStakeConditionFilter.cshtml", Model.SportStakeConditionViewModel)
-                    </div>
-                    <div class="tab-pane fade" id="market" role="tabpanel" aria-labelledby="market-tab">
-                        <input type="checkbox" id="checkbox-all-markets" @(Model.SelectedAllMarkets ? "checked=\"checked\"" : string.Empty) value="" />@SharedResources.AllMarkets
-                        <ul class="lists list-block" id="list-market">
-                            @RenderSelectListItem(Model.Markets, Model.SelectedAllMarkets)
-                        </ul>
-                    </div>
-                    <div class="tab-pane fade" id="league" role="tabpanel" aria-labelledby="league-tab">
-                        <div>
-                            <div class="input-group search-group">
-                                <input type="text" id="txtSearchLeague" class="form-control" aria-describedby="basic-addon2">
-                                <span class="input-group-addon" id="btnSearchLeague"><i class="icon-search"></i></span>
-                                <span class="icon-close" id="btnClearSearchLeague"></span>
-                            </div>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><span class="icon-filter"></span>@BetListsResources.Filter</h5>
+            <ul class="nav nav-tabs filter-tabs" role="tablist">
+                <li class="active" role="presentation">
+                    <a href="#stake" id="stake-tab" data-toggle="tab" aria-controls="tab" aria-selected="true">
+                        @BetListsResources.Stake
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#market" id="market-tab" data-toggle="tab" aria-controls="market" aria-selected="false">
+                        @SharedResources.Market
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#league" id="league-tab" data-toggle="tab" aria-controls="league" aria-selected="false">
+                        @BetListsResources.League
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#event" id="event-tab" data-toggle="tab" aria-controls="event" aria-selected="false">
+                        @BetListsResources.Event
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#bettype" id="bettype-tab" data-toggle="tab" aria-controls="bettype" aria-selected="false">
+                        @BetListsResources.BetType
+                    </a>
+                </li>
+            </ul>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="stake" role="tabpanel" aria-labelledby="stake-tab">
+                    @Html.Partial("~/BetLists/Views/WagerMonitoring/SportStakeConditionFilter.cshtml", Model.SportStakeConditionViewModel)
+                </div>
+                <div class="tab-pane fade" id="market" role="tabpanel" aria-labelledby="market-tab">
+                    <input type="checkbox" id="checkbox-all-markets" @(Model.SelectedAllMarkets ? "checked=\"checked\"" : string.Empty) value="" />@SharedResources.AllMarkets
+                    <ul class="lists list-block" id="list-market">
+                        @RenderSelectListItem(Model.Markets, Model.SelectedAllMarkets)
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="league" role="tabpanel" aria-labelledby="league-tab">
+                    <div>
+                        <div class="input-group search-group">
+                            <input type="text" id="txtSearchLeague" class="form-control" aria-describedby="basic-addon2">
+                            <span class="input-group-addon" id="btnSearchLeague"><i class="icon-search"></i></span>
+                            <span class="icon-close" id="btnClearSearchLeague"></span>
                         </div>
-                        <input type="checkbox" id="check-all-leagues" @(Model.SelectedAllLeagues ? "checked=\"checked\"" : string.Empty) value="" />@BetListsResources.AllLeagues
-                        <ul class="lists list-league" id="list-league">
-                        </ul>
                     </div>
-                    <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
-                        <div>
-                            <div class="input-group search-group">
-                                <input id="txtSearchEvent" type="text" class="form-control" aria-describedby="basic-addon2">
-                                <span class="input-group-addon" id="btnSearchEvent"><i class="icon-search"></i></span>
-                                <span class="icon-close" id="btnClearSearchEvent"></span>
-                            </div>
+                    <input type="checkbox" id="check-all-leagues" @(Model.SelectedAllLeagues ? "checked=\"checked\"" : string.Empty) value="" />@BetListsResources.AllLeagues
+                    <ul class="lists list-league" id="list-league">
+                        @RenderSelectListItem(Model.Leagues, Model.SelectedAllLeagues)
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
+                    <div>
+                        <div class="input-group search-group">
+                            <input id="txtSearchEvent" type="text" class="form-control" aria-describedby="basic-addon2">
+                            <span class="input-group-addon" id="btnSearchEvent"><i class="icon-search"></i></span>
+                            <span class="icon-close" id="btnClearSearchEvent"></span>
                         </div>
-                        <input type="checkbox" id="checkbox-all-events" @(Model.SelectedAllMatches ? "checked=\"checked\"" : string.Empty) value="" />@BetListsResources.AllEvents
-                        <ul class="lists list-event" id="list-event">
-                        </ul>
                     </div>
-                    <div class="tab-pane fade" id="bettype" role="tabpanel" aria-labelledby="bettype-tab">
-                        <input type="checkbox" id="checkbox-all-bettypes" @(Model.SelectedAllBetTypes ? "checked=\"checked\"" : string.Empty) value="" />@SharedResources.AllBetTypes
-                        <div class="lists list-block" id="list-bettype">
-                            @if (Model.SportGroup == SportGroupConstants.AllSports)
+                    <input type="checkbox" id="checkbox-all-events" @(Model.SelectedAllMatches ? "checked=\"checked\"" : string.Empty) value="" />@BetListsResources.AllEvents
+                    <ul class="lists list-event" id="list-event">
+                        @RenderSelectListItem(Model.Matches, Model.SelectedAllMatches)
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="bettype" role="tabpanel" aria-labelledby="bettype-tab">
+                    <input type="checkbox" id="checkbox-all-bettypes" @(Model.SelectedAllBetTypes ? "checked=\"checked\"" : string.Empty) value="" />@SharedResources.AllBetTypes
+                    <div class="lists list-block" id="list-bettype">
+                        @{
+                            if (Model.SportGroup == SportGroupConstants.AllSports)
                             {
                                 <div class="bettype-group item">
                                     <div class="group-name">
@@ -85,14 +87,14 @@
                                         @RenderSelectListItem(Model.MainBetTypeGroups, Model.SelectedAllBetTypes, "chk-main-markets")
                                     </ul>
                                 </div>
-                                    <div class="bettype-group item">
-                                        <div class="group-name">
-                                            <input id="chk-other-markets" type="checkbox" @(Model.IsSelectedAllOtherBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.OtherMarkets
-                                        </div>
-                                        <ul class="group-details">
-                                            @RenderSelectListItem(Model.OtherBetTypeGroups, Model.SelectedAllBetTypes, "chk-other-markets")
-                                        </ul>
+                                <div class="bettype-group item">
+                                    <div class="group-name">
+                                        <input id="chk-other-markets" type="checkbox" @(Model.IsSelectedAllOtherBetTypeGroups ? "checked=\"checked\"" : string.Empty) @(Model.SelectedAllBetTypes ? "disabled=\"disabled\"" : string.Empty) />@BetListsResources.OtherMarkets
                                     </div>
+                                    <ul class="group-details">
+                                        @RenderSelectListItem(Model.OtherBetTypeGroups, Model.SelectedAllBetTypes, "chk-other-markets")
+                                    </ul>
+                                </div>
                             }
                             else
                             {
@@ -102,15 +104,15 @@
                                     </ul>
                                 </div>
                             }
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">@SharedResources.Cancel</button>
-                <button type="button" id="btn-reset" class="btn btn-secondary">@SharedResources.ResetToDefault</button>
-                <button type="button" id="btn-submit" class="btn btn-submit">@SharedResources.Submit</button>
-            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">@SharedResources.Cancel</button>
+            <button type="button" id="btn-reset" class="btn btn-secondary">@SharedResources.ResetToDefault</button>
+            <button type="button" id="btn-submit" class="btn btn-submit">@SharedResources.Submit</button>
         </div>
     </div>
 </div>

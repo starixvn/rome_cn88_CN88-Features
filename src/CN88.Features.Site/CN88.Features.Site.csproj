@@ -723,10 +723,10 @@
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
     <Compile Include="BetLists\Requests\OutrightWagerDetailsQuery.cs" />
-    <Compile Include="BetLists\Requests\WagerMonitoring\EventQuery.cs" />
-    <Compile Include="BetLists\Requests\WagerMonitoring\LeagueQuery.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerByAccountViewModel.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringBaseQuery.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringFilterQuery.cs" />
     <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringQuery.cs" />
     <Compile Include="BetLists\ViewModels\EventWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\OutrightWagerByAccountViewModel.cs" />
@@ -736,8 +736,7 @@
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
-    <Compile Include="BetLists\ViewModels\WagerMonitoring\MultipleSelectViewModel.cs" />
-    <Compile Include="BetLists\ViewModels\WagerMonitoring\SportStakeConditionViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\SportStakeConditionViewModel.cs" />
     <Compile Include="BetLists\ViewModels\TotalBetParlayViewModel.cs" />
     <Compile Include="BetLists\ViewModels\OutrightWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WagerMonitoring\BetTypeSelectListItem.cs" />
@@ -930,7 +929,6 @@
     <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
     <Content Include="BetLists\bundles\TPBTLOW.ogg" />
-    <Content Include="BetLists\Views\WagerMonitoring\MultipleSelect.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

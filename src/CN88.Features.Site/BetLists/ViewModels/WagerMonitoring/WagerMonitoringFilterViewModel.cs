@@ -9,10 +9,12 @@
     public class WagerMonitoringFilterViewModel
     {
         public WagerMonitoringFilterViewModel(
-            WagerMonitoringQuery query,
-            IEnumerable<SportStakeCondition> sportStakeConditions,
+            WagerMonitoringFilterQuery query,
             IEnumerable<SelectListItem> markets,
-            IEnumerable<SelectListItem> betTypeGroups)
+            IEnumerable<SelectListItem> leagues,
+            IEnumerable<SelectListItem> matches,
+            IEnumerable<SelectListItem> betTypeGroups,
+            IEnumerable<SportStakeCondition> sportStakeConditions)
         {
             SportGroup = query.SportGroup;
 
@@ -22,11 +24,14 @@
             SelectedAllBetTypes = string.IsNullOrWhiteSpace(query.BetTypeGroupIds);
 
             Markets = markets;
-            BetTypeGroups = betTypeGroups.Select(x => (BetTypeSelectListItem)x);
+            Leagues = leagues;
+            Matches = matches;
+            BetTypeGroups = betTypeGroups.Select(x=> (BetTypeSelectListItem)x);
+
             SportStakeConditionViewModel = new SportStakeConditionViewModel(
-                query.IsSelectAllSports,
-                query.StakeMode,
-                query.StakeLimit,
+                query.IsSelectAllSports, 
+                query.StakeMode, 
+                query.StakeLimit, 
                 sportStakeConditions);
         }
 
@@ -41,6 +46,10 @@
         public bool SelectedAllBetTypes { get; }
 
         public IEnumerable<SelectListItem> Markets { get; }
+
+        public IEnumerable<SelectListItem> Leagues { get; }
+
+        public IEnumerable<SelectListItem> Matches { get; }
 
         public IEnumerable<BetTypeSelectListItem> BetTypeGroups { get; }
 

@@ -26,8 +26,7 @@
     public class WagerMonitoringHandler :
         BaseHandler,
         IAsyncRequestHandler<WagerMonitoringQuery, WagerMonitoringViewModel>,
-        IAsyncRequestHandler<LeagueQuery, MultipleSelectViewModel>,
-        IAsyncRequestHandler<EventQuery, MultipleSelectViewModel>
+        IAsyncRequestHandler<WagerMonitoringFilterQuery, WagerMonitoringFilterViewModel>
     {
         private readonly ITicketHelper ticketHelper;
         private readonly IBetListCN88HtmlBuilder cn88Builder;
@@ -63,39 +62,14 @@
 
             var tickets = await wagerMonitoringService.GetMonitorBets(param);
 
-            var betTypeGroups = await wagerMonitoringService.GetBetTypeGroupsBySport(message.SportGroup);
-
             return new WagerMonitoringViewModel(
                 param.MinTransId,
                 message,
                 tickets,
+                BuildSportGroupSelectListItems(sportGroups, message.SportGroup),
                 ticketHelper,
                 cn88Builder,
-                builder,
-                BuildSportGroupSelectListItems(sportGroups, message.SportGroup),
-                BuildSportStakeConditions(
-                    sportGroups,
-                    JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions ?? string.Empty)),
-                BuildSelectListItems(WagerMonitoringMarket.Markets, message.Market, SelectListItemExtensions.Create),
-                BuildSelectListItems(betTypeGroups, message.BetTypeGroupIds, SelectListItemExtensions.Create));
-        }
-
-        public async Task<MultipleSelectViewModel> Handle(LeagueQuery message)
-        {
-            var leagues = await wagerMonitoringService.GetLeagues(message.SportGroup);
-
-            return new MultipleSelectViewModel(
-                BuildSelectListItems(leagues, message.LeagueIds, SelectListItemExtensions.Create),
-                string.IsNullOrWhiteSpace(message.LeagueIds));
-        }
-
-        public async Task<MultipleSelectViewModel> Handle(EventQuery message)
-        {
-            var matches = await wagerMonitoringService.GetMatches(message.SportGroup);
-
-            return new MultipleSelectViewModel(
-                BuildSelectListItems(matches, message.MatchIds, SelectListItemExtensions.Create),
-                string.IsNullOrWhiteSpace(message.MatchIds));
+                builder);
         }
 
         private IEnumerable<SportStakeCondition> BuildSportStakeConditions(IEnumerable<SportGroup> sportGroups, IEnumerable<SportStakeCondition> sportStakeConditions)
@@ -151,23 +125,23 @@
             return builder.ToString();
         }
 
-        //public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
-        //{
-        //    var sportGroups = await wagerMonitoringService.GetSportGroups();
-        //    var leagues = await wagerMonitoringService.GetLeagues(message.SportGroup);
-        //    var matches = await wagerMonitoringService.GetMatches(message.SportGroup);
-        //    var betTypeGroups = await wagerMonitoringService.GetBetTypeGroupsBySport(message.SportGroup);
+        public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
+        {
+            var sportGroups = await wagerMonitoringService.GetSportGroups();
+            var leagues = await wagerMonitoringService.GetLeagues(message.SportGroup);
+            var matches = await wagerMonitoringService.GetMatches(message.SportGroup);
+            var betTypeGroups = await wagerMonitoringService.GetBetTypeGroupsBySport(message.SportGroup);
 
-        //    return new WagerMonitoringFilterViewModel(
-        //        message,
-        //        BuildSelectListItems(WagerMonitoringMarket.Markets, message.Market, SelectListItemExtensions.Create),
-        //        BuildSelectListItems(leagues, message.LeagueIds, SelectListItemExtensions.Create),
-        //        BuildSelectListItems(matches, message.MatchIds, SelectListItemExtensions.Create),
-        //        BuildSelectListItems(betTypeGroups, message.BetTypeGroupIds, SelectListItemExtensions.Create),
-        //        BuildSportStakeConditions(
-        //            sportGroups,
-        //            JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions ?? string.Empty)));
-        //}
+            return new WagerMonitoringFilterViewModel(
+                message,
+                BuildSelectListItems(WagerMonitoringMarket.Markets, message.Market, SelectListItemExtensions.Create),
+                BuildSelectListItems(leagues, message.LeagueIds, SelectListItemExtensions.Create),
+                BuildSelectListItems(matches, message.MatchIds, SelectListItemExtensions.Create),
+                BuildSelectListItems(betTypeGroups, message.BetTypeGroupIds, SelectListItemExtensions.Create),
+                BuildSportStakeConditions(
+                    sportGroups,
+                    JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions ?? string.Empty)));
+        }
 
         private IEnumerable<SelectListItem> BuildSelectListItems<T>(
             IEnumerable<T> sources,
@@ -181,7 +155,5 @@
 
             return sources.Select(item => createItemFunc(item, selectedIds.ToListInt()));
         }
-
-        
     }
 }

@@ -1,7 +1,0 @@
-﻿@model CN88.Features.Site.BetLists.ViewModels.WagerMonitoring.MultipleSelectViewModel
-@foreach (var item in Model.Items)
-{
-    <li class="item">
-        <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) @(Model.IsSelectAll ? "disabled=\"disabled\"" : string.Empty) data-text="@item.Text" />@item.Text
-    </li>
-}

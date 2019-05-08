@@ -22,19 +22,15 @@
             => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/Index.cshtml");
 
         [HttpGet, RestrictHeadlineFilter]
+        public async Task<ActionResult> FilterModal(WagerMonitoringFilterQuery message)
+            => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/FilterModal.cshtml");
+
+        [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> LastBets(WagerMonitoringQuery message)
             => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/LastBets.cshtml");
 
         [HttpGet, RestrictHeadlineFilter]
         public ActionResult Pause()
             => View("~/BetLists/Views/WagerMonitoring/Pause.cshtml");
-
-        [HttpGet, RestrictHeadlineFilter]
-        public async Task<ActionResult> LeagueFilter(LeagueQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/MultipleSelect.cshtml");
-
-        [HttpGet, RestrictHeadlineFilter]
-        public async Task<ActionResult> EventFilter(EventQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/MultipleSelect.cshtml");
     }
 }

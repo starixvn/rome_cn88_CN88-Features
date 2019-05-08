@@ -9,7 +9,7 @@
 
     public class FilterFormViewModel
     {
-        public FilterFormViewModel(WagerMonitoringQuery query)
+        public FilterFormViewModel(WagerMonitoringBaseQuery query)
         {
             SportGroup = query.SportGroup;
             Market = query.Market;
