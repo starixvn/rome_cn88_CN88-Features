@@ -18,7 +18,10 @@ class BetListOfReport {
         excelIcon: null,
         exportExcelForm: null,
         reportForm: null,
-        pageIndex: null
+        pageIndex: null,
+        filterToggleIcon: null,
+        reportTable: null,
+        reportPager: null
     };
 
     constructor(
@@ -64,6 +67,9 @@ class BetListOfReport {
         this.elements.excelIcon = this.$("#icon-excel");
         this.elements.exportExcelForm = this.$("#export-excel-form");
         this.elements.reportForm = this.$("#report-form");
+        this.elements.filterToggleIcon = this.$("#filter-toggle-icon");
+        this.elements.reportTable = this.$("#tbl-report");
+        this.elements.reportPager = this.$("#report-pager");
     };
 
     registerEvents = () => {
@@ -83,6 +89,9 @@ class BetListOfReport {
                 $this.checkIn();
             }, expiredSessionSeconds * 1000);
         }
+
+        this.elements.filterToggleIcon.click(this.collapseExpandFilter);
+
     };
 
     onReportSubmit = () => {
@@ -130,6 +139,32 @@ class BetListOfReport {
 
     checkIn = () => {
         this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
+    }
+
+    collapseExpandFilter = () => {
+        let isCollapsed = this.elements.filterToggleIcon.hasClass("icon-filter-up");
+
+        if (isCollapsed) {
+            this.elements.reportForm
+                .slideDown(200);
+            this.elements.reportTable
+                .slideUp(210);
+            this.elements.reportPager
+                .slideUp(210);
+            this.elements.filterToggleIcon
+                .removeClass("icon-filter-up")
+                .addClass("icon-filter-down");
+        }
+        else {
+            this.elements.reportForm.slideUp(200);
+            this.elements.reportTable
+                .slideDown(210);
+            this.elements.reportPager
+                .slideDown(210);
+            this.elements.filterToggleIcon
+                .removeClass("icon-filter-down")
+                .addClass("icon-filter-up");
+        }
     }
 }
 

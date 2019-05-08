@@ -333,3 +333,23 @@
         min-width: unset;
     }
 }
+
+@media (max-device-width: 767px) {
+    .filter {
+        display: none;
+
+        .form-group .control.date {
+            width: 100%;
+        }
+
+        .btn-submit {
+            width: 100%;
+        }
+    }
+
+    .breadcrumb-container { display: none; }
+
+    .tbl-betlists {
+        margin-top: 12px;
+    }
+}

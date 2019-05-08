@@ -402,7 +402,11 @@ body {
 
     .wager-report {
         width: 100%;
-        padding: 10px 0;
+        padding: 0;
+
+        .nav-tabs {
+            margin-top: 10px;
+        }
     }
 
     .nav-tabs {
@@ -542,28 +546,11 @@ body {
         }
     }
 
-    // Settled Wager
+    // Settled Wager    
 
-    .page-title {
-        position: relative;
-        padding: 2px 12px 0;
-        line-height: 24px;
-        margin-bottom: 0;
-        font-size: 13px;
-
-        .back-step {
-            display: inline-block;
-            position: relative;
-            top: 10px;
-            left: -9px;
-            width: 16px;
-            line-height: 0; 
-            font-size: 34px;                       
-        }
-
-        .back-area {
-            color: #337ab7;
-        }
+    .page-title-mobile {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
     .report-form {
@@ -611,5 +598,10 @@ body {
 
     .wager-report .tab-content.main-content {
         padding: 12px;
+    }
+
+    .pagination {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 }

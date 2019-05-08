@@ -7,14 +7,12 @@
 @model ReportViewModel
 
 <div class="report-detail wager-report">
-    <div class="page-title">
+    <div class="page-title-mobile">
         <span id="btn-back" class="back-area">
             <span class="icon-chevron-left back-step"></span>
             <a href="@(Model.IsOwner ? Response.ApplyAppPathModifier("~/Reports/Index?DisplayMode=1") : Model.BuildBackLink(Request.Url.Query))">
                 @Model.BackLinkText
             </a>
-            
-
         </span>
 
         <span class="icon-filter-up" id="filter-toggle-icon"></span>

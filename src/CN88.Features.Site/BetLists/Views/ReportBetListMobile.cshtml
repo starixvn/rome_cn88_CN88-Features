@@ -11,10 +11,13 @@
     @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
 }
 <div class="betlist-container">
-    Mobile
-    <div class="page-title title-report-detail">
-        <span class="report-name">@Model.ReportTitle</span>
-        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel, isSettlement)
+    <div class="page-title-mobile">
+        <span id="btn-back" class="back-area">
+            <span class="icon-chevron-left back-step"></span>
+            <span class="report-name">@Model.ReportTitle</span>
+        </span>
+
+        <span class="icon-filter-up" id="filter-toggle-icon"></span>
     </div>
     @Html.Partial("~/BetLists/Views/Filter.cshtml", Model)
     @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
