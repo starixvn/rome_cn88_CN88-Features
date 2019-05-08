@@ -71,6 +71,7 @@
         this.cacheElements();
         this.renderComponents();
         this.registerEvents();
+        this.filterModal.render(() => { this.updateFilterForm(); })
 
         this.pageSize = this.$("#PageSize").val();
         this.pauseUrl = this.$("#pause-url").val();
@@ -145,7 +146,7 @@
 
         this.$filterForm.find(".link").on("click touchend", function () {
             let link = $(this);
-            self.filterModal.show(link.data("target"), self.getParam(), () => { self.updateFilterForm(); });
+            self.filterModal.show(link.data("target"));
         });
 
         this.$iconPause.parent().on("click touchend", () => {

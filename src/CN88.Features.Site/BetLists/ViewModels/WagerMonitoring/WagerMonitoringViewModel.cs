@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 {
     using System.Collections.Generic;
+    using System.Web.Mvc;
     using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
@@ -8,6 +9,7 @@
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
     using Features.Shared.Models;
+    using Models;
     using Requests.WagerMonitoring;
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
@@ -18,10 +20,13 @@
             long minTransId,
             WagerMonitoringQuery query,
             IEnumerable<TicketDto> tickets,
-            IEnumerable<SelectListItemExt> sportGroups,
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
-            IBetListHTMLBuilder builder)
+            IBetListHTMLBuilder builder,
+            IEnumerable<SelectListItemExt> sportGroups,
+            IEnumerable<SportStakeCondition> sportStakeConditions,
+            IEnumerable<SelectListItem> markets,
+            IEnumerable<SelectListItem> betTypeGroups)
         {
             MinTransId = minTransId;
             CustLevel = query.ActorLevel;
@@ -35,6 +40,7 @@
 
             FilterFormViewModel = new FilterFormViewModel(query);
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.SportGroup);
+            FilterViewModel = new WagerMonitoringFilterViewModel(query, sportStakeConditions, markets, betTypeGroups);
         }
 
         public long MinTransId { get; }
@@ -56,6 +62,8 @@
         public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
 
         public FilterFormViewModel FilterFormViewModel { get; }
+
+        public WagerMonitoringFilterViewModel FilterViewModel { get; }
 
         public int PageSize => AppSettings.WagerMonitoringPageSize;
 

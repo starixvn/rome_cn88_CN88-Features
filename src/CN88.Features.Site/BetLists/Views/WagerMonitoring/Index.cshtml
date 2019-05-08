@@ -82,8 +82,7 @@
         </tbody>
     </table>
 </div>
-<div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-</div>
+@Html.Partial("~/BetLists/Views/WagerMonitoring/FilterModal.cshtml", Model.FilterViewModel)
 @Html.Hidden(nameof(Model.MinTransId), Model.MinTransId)
 @Html.Hidden(nameof(Model.PageSize), Model.PageSize)
 @Html.Hidden(nameof(Model.IntervalTime), Model.IntervalTime)
@@ -91,6 +90,8 @@
 @Html.Hidden(nameof(Model.WagerMonitoringPath), Model.WagerMonitoringPath)
 @Html.Hidden("pause-url", Url.Action("Pause", "WagerMonitoring"))
 @Html.Hidden("get-bets-url", Url.Action("LastBets", "WagerMonitoring"))
+@Html.Hidden("get-leagues-url", Url.Action("LeagueFilter", "WagerMonitoring"))
+@Html.Hidden("get-matches-url", Url.Action("EventFilter", "WagerMonitoring"))
 
 @Html.Hidden("lbl-PerSports", SharedResources.PerSports)
 @Html.Hidden("lbl-StakeMode_0", SharedResources.StakeMode_0)

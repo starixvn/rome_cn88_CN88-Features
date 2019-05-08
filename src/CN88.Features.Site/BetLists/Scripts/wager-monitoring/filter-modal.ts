@@ -15,8 +15,14 @@
 class FilterModal {
     $: JQueryStatic;
     $filterModalContainer: JQuery;
-    $filterModalPath: JQuery;
+    getLeaguesUrl: string;
+    getMatchsUrl: string;
+
+    $searchLeagueTextbox: JQuery;
+    $searchLeagueButton: JQuery;
     $clearSearchLeagueButton: JQuery;
+    $searchEventTextbox: JQuery;
+    $searchEventButton: JQuery;
     $clearSearchEventButton: JQuery;
     onSubmit: Function;
 
@@ -35,8 +41,10 @@ class FilterModal {
     constructor($: JQueryStatic) {
         this.$ = $;
         this.$filterModalContainer = $("#filter-modal");
-        this.$filterModalPath = $("#FilterModalPath");
 
+        this.getLeaguesUrl = $("#get-leagues-url").val();
+        this.getMatchsUrl = $("#get-matches-url").val();
+        this.sportGroup = $("#SportGroup").val();
 
         this.marketMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.leagueMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
@@ -44,22 +52,18 @@ class FilterModal {
         this.betTypeMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
     }
 
-    show = (targetTabId: string, filterParam: FilterParam = new FilterParam(), onSubmit: Function = null) => {
-        this.filterParam = <FilterParam>this.$.extend({}, this.filterParam, filterParam);
+    render = (onSubmit: Function = null) => {
+        this.cachDOMElements();
+        this.renderComponents();
+        this.registerEvents();
         this.onSubmit = onSubmit;
+    };
 
+    show = (targetTabId: string) => {
         this.$.blockUI();
-        this.isOpeningFilter = true;
-        this.$.ajax({
-            method: "GET",
-            url: this.$filterModalPath.val(),
-            cache: false,
-            data: this.filterParam,
-            success: (result) => {
-                this.showFilterModal(result, targetTabId);
-            },
-            complete: this.$.unblockUI
-        });
+        this.$(targetTabId).click();
+        this.$filterModalContainer.modal({ show: true, backdrop: true });
+        this.$.unblockUI();
     }
 
     hide(): void {
@@ -78,7 +82,11 @@ class FilterModal {
     }
 
     cachDOMElements(): void {
+        this.$searchLeagueTextbox = $("#txtSearchLeague")
+        this.$searchLeagueButton = $("#btnSearchLeague")
         this.$clearSearchLeagueButton = $("#btnClearSearchLeague");
+        this.$searchEventTextbox = $("#txtSearchEvent")
+        this.$searchEventButton = $("#btnSearchEvent")
         this.$clearSearchEventButton = $("#btnClearSearchEvent");
     }
 
@@ -110,8 +118,6 @@ class FilterModal {
         });
 
         this.marketMultiSelectionComponent.render(new MultiSelectionCheckboxOption("checkbox-all-markets", "list-market", "Market"));
-        this.leagueMultiSelectionComponent.render(new MultiSelectionCheckboxOption("check-all-leagues", "list-league", "LeagueIds"));
-        this.eventMultiSelectionComponent.render(new MultiSelectionCheckboxOption("checkbox-all-events", "list-event", "MatchIds"));
         this.betTypeMultiSelectionComponent.render(new MultiSelectionCheckboxOption("checkbox-all-bettypes", "list-bettype", "BetTypeGroupIds"));
     }
 
@@ -141,22 +147,12 @@ class FilterModal {
             }
         });
 
-        this.$("#btnSearchLeague").on("click touchend", () => {
-            this.leagueMultiSelectionComponent.search(this.$("#txtSearchLeague").val());
+        this.$("#league-tab").on("click touchend", () => {
+            this.loadLeagueFilter();
         });
 
-        this.$clearSearchLeagueButton.on("click touchend", () => {
-            this.$("#txtSearchLeague").val("");
-            this.leagueMultiSelectionComponent.clearSearch();
-        });
-
-        this.$("#btnSearchEvent").on("click touchend", () => {
-            this.eventMultiSelectionComponent.search(this.$("#txtSearchEvent").val());
-        });
-
-        this.$clearSearchEventButton.on("click touchend", () => {
-            this.$("#txtSearchEvent").val("");
-            this.eventMultiSelectionComponent.clearSearch();
+        this.$("#event-tab").on("click touchend", () => {
+            this.loadEventFilter();
         });
 
         this.$("#btn-submit").on("click touchend", () => {
@@ -165,6 +161,69 @@ class FilterModal {
         });
 
         this.$("#btn-reset").on("click touchend", this.resetFilter);
+    }
+
+    loadLeagueFilter(): void {
+        this.$.blockUI();
+
+        let leagueIds = this.$("#LeagueIds").val();
+        this.$.ajax({
+            method: "GET",
+            url: this.getLeaguesUrl,
+            cache: false,
+            data: { sportGroup: this.sportGroup, leagueIds: leagueIds },
+            success: (result) => {
+                this.loadLeagueFilterSuccess(result);
+                this.$.unblockUI();
+            },
+        });
+    }
+
+    loadLeagueFilterSuccess(html: string): void {
+        this.$("#list-league").html(html);
+
+        this.leagueMultiSelectionComponent.render(new MultiSelectionCheckboxOption("check-all-leagues", "list-league", "LeagueIds"));
+
+        this.$searchLeagueButton.on("click touchend", () => {
+            this.leagueMultiSelectionComponent.search(this.$searchLeagueTextbox.val());
+        });
+
+        this.$clearSearchLeagueButton.on("click touchend", () => {
+            this.$searchLeagueTextbox.val("");
+            this.leagueMultiSelectionComponent.clearSearch();
+        });
+    }
+
+    loadEventFilter(): void {
+        this.$.blockUI();
+
+        let matchIds = this.$("#MatchIds").val();
+
+        this.$.ajax({
+            method: "GET",
+            url: this.getMatchsUrl,
+            cache: false,
+            data: { sportGroup: this.sportGroup, matchIds: matchIds },
+            success: (result) => {
+                this.loadEventFilterSuccess(result);
+                this.$.unblockUI();
+            },
+        });
+    }
+
+    loadEventFilterSuccess(html: string): void {
+        this.$("#list-event").html(html);
+
+        this.eventMultiSelectionComponent.render(new MultiSelectionCheckboxOption("checkbox-all-events", "list-event", "MatchIds"));
+
+        this.$searchEventButton.on("click touchend", () => {
+            this.eventMultiSelectionComponent.search(this.$searchLeagueTextbox.val());
+        });
+
+        this.$clearSearchEventButton.on("click touchend", () => {
+            this.$searchEventTextbox.val("");
+            this.eventMultiSelectionComponent.clearSearch();
+        });
     }
 
     clickCheckboxAll = (groupItems, allCheckbox) => {
