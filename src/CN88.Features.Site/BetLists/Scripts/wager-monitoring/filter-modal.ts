@@ -120,8 +120,6 @@ class FilterModal {
             this.onStakeFilterOptionChange();
         });
 
-
-
         var self = this;
         var mainMarkets = self.$("[data-group-id='chk-main-markets']");
         var otherMarkets = self.$("[data-group-id='chk-other-markets']");

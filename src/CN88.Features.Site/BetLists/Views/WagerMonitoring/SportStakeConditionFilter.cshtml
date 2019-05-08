@@ -10,7 +10,7 @@
                     <option value="@mode.Value" @(mode.Value.Equals(Model.AllSportsStakeMode.ToString()) ? " selected=\"selected\"" : string.Empty)>@mode.Text</option>
                 }
             </select>
-            <input type="text" id="AllSportsStakeLimit" name="AllSportsStakeLimit" min="0" value="@Model.AllSportsStakeLimit" @(!Model.IsSelectAllSports ? " disabled=\"disabeld\"" : string.Empty) />
+            <input type="text" id="AllSportsStakeLimit" name="AllSportsStakeLimit" min="0" maxlength="20" value="@Model.AllSportsStakeLimit" @(!Model.IsSelectAllSports ? " disabled=\"disabeld\"" : string.Empty) />
         </div>
     </li>
 </ul>
@@ -28,7 +28,7 @@
                         <option value="@mode.Value" @(mode.Value.Equals(condition.StakeMode.ToString()) ? " selected=\"selected\"" : string.Empty)>@mode.Text</option>
                     }
                 </select>
-                <input type="text" class="StakeLimit" id="StakeLimit-@condition.SportGroupId" min="0" value="@condition.StakeLimit" @(Model.IsSelectAllSports ? "disabled=\"disabled\"" : string.Empty) />
+                <input type="text" class="StakeLimit" id="StakeLimit-@condition.SportGroupId" min="0" maxlength="20" value="@condition.StakeLimit" @(Model.IsSelectAllSports ? "disabled=\"disabled\"" : string.Empty) />
             </div>
         </li>
     }

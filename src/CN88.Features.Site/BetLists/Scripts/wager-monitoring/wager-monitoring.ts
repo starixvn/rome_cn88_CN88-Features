@@ -285,7 +285,9 @@
                 this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
             }
 
-            this.$sound.play();
+            if (this.isSpeakOn) {
+                this.$sound.play();
+            }
         }
 
         this.isCalling = false;
