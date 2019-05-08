@@ -8,6 +8,10 @@
         string GetSportName(int sportTypeId);
 
         string GetBetTypeName(int betTypeId);
+
+        string GetLeagueName(int leagueId);
+
+        string GetTeamName(int teamId);
     }
 
     public class CacheRefServiceImpl : CacheRefService
@@ -24,6 +28,12 @@
 
         public string GetSportName(int sportTypeId)
             => remotingRefService.GetSportName(sportTypeId.ToString(), LanguageCode);
+
+        public string GetLeagueName(int leagueId)
+            => remotingRefService.GetLeagueName(leagueId.ToString(), LanguageCode);
+
+        public string GetTeamName(int teamId)
+            => remotingRefService.GetTeamName(teamId.ToString(), LanguageCode);
 
         private static string LanguageCode
             => Thread.CurrentThread.CurrentCulture.Name;

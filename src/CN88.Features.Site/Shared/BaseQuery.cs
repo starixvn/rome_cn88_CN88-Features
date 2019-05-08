@@ -18,6 +18,7 @@
             NickName = viewer.NickName;
             ViewerLevelId = viewer.LevelId;
             SubAccountId = viewer.SubAccountId;
+            IsInternal = viewer.IsInternal;
             IP = viewer.IP;
             Language = viewer.Language;
         }
@@ -46,10 +47,11 @@
 
         public int SubAccountId { get; }
 
+        public bool IsInternal { get; }
+
         public string IP { get; }
 
         public string Language { get; }
-
         public virtual bool IsValid()
             => ViewerId > 0
             && !string.IsNullOrWhiteSpace(ViewerName)

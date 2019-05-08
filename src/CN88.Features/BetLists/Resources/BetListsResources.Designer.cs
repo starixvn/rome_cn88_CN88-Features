@@ -340,6 +340,15 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1X2 / Moneyline.
+        /// </summary>
+        public static string OneXTwoMoneyline {
+            get {
+                return ResourceManager.GetString("OneXTwoMoneyline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other Markets.
         /// </summary>
         public static string OtherMarkets {

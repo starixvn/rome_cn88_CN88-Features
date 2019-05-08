@@ -30,5 +30,9 @@
   {
     "outputFile": "CustomerList/Styles/customizeDCSCN88.css",
     "inputFile": "CustomerList/Styles/customizeDCSCN88.scss"
+  },
+  {
+    "outputFile": "BetLists/Styles/wager-monitor-console.css",
+    "inputFile": "BetLists/Styles/wager-monitor-console.scss"
   }
 ]
