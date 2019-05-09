@@ -131,7 +131,7 @@
             }
 
             var breadcrumbLinks = BreadcrumbLevelViewModel.BuildBreadcrumbLinks(
-                query.CurrentUrl ?? throw new InvalidOperationException(nameof(query.CurrentUrl)), 
+                query.CurrentUrl, 
                 query.IsSettlement ?? false);
 
             return breadcrumbLinks.Count() > 1
