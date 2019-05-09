@@ -35,6 +35,10 @@
 
             FilterFormViewModel = new FilterFormViewModel(query);
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.SportGroup);
+
+            CustId = query.CustId;
+            ViewerIdOrViewerAdminId = query.ViewerIdOrViewerAdminId;
+            ViewerLevelId = query.ViewerLevelId;
         }
 
         public long MinTransId { get; }
@@ -61,8 +65,20 @@
 
         public int IntervalTime => AppSettings.TimeToGetLastBetsInSeconds;
 
+        public string OldMainPath => MicroSites.OldMainUrl("~");
+
+        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
+
+        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
+
         public string WagerMonitoringPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring");
 
         public string FilterModalPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/FilterModal");
+
+        public int CustId { get; }
+
+        public int ViewerIdOrViewerAdminId { get; }
+
+        public byte ViewerLevelId { get; }
     }
 }
