@@ -7,7 +7,8 @@ class ToggleHandlerOption {
     constructor(
         public toggleIconId: string = "toggleIconId",
         public sourceId: string = "sourceId",
-        public targetId: string = "targetId") {
+        public targetId: string = "targetId",
+        public hideSourceElement: boolean = true) {
     }
 }
 
@@ -28,6 +29,10 @@ class ToggleHandler {
         this.$filterToggleIcon = this.$("#" + this.options.toggleIconId);
         this.$sourceElement = this.$("#" + this.options.sourceId);
         this.$targetElement = this.$("#" + this.options.targetId);
+
+        if (this.options.hideSourceElement) {
+            this.$sourceElement.hide();
+        }
 
         this.$filterToggleIcon.on("click touchend", (e) => {
             e.preventDefault();
@@ -51,5 +56,5 @@ class ToggleHandler {
                     .addClass("icon-filter-down");
             }
         });
-    };
+    }
 }

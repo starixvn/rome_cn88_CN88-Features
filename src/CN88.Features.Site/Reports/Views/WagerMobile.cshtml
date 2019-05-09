@@ -46,6 +46,7 @@
         }
     }
     @Pager.Render(Model.PagerViewModel)
+    @Html.Hidden(nameof(Model.IsOwner), Model.IsOwner)
 </div>
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/wager")

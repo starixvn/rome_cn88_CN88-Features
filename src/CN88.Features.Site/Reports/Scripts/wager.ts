@@ -10,7 +10,6 @@ class WagerReport extends LegacyReport {
     $custLevelId: JQuery;
     $tableContent: JQuery;
     $isSettlement: JQuery;
-    $filterToggleIcon: JQuery;
     isMobile: boolean;
     isOwner: boolean;
     $tabMainContent: JQuery;
@@ -62,7 +61,6 @@ class WagerReport extends LegacyReport {
         this.$tabValidStake = this.$("#tabValidStake");
         this.$tabSettlement = this.$("#tabSettlement");
         this.$isSettlement = this.$("#IsSettlement");
-        this.$filterToggleIcon = this.$("#filter-toggle-icon");
         this.$tabMainContent = this.$("#tab-main-content,#report-pager");
     }
 
@@ -101,7 +99,7 @@ class WagerReport extends LegacyReport {
 
         super.registerEvents();
 
-        if (this.isOwner) {
+        if (this.isMobile && this.isOwner) {
             this.$(".btn-collapse-expanse").trigger("click");
         }
     }

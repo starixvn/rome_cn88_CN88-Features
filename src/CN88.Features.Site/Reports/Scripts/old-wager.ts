@@ -7,6 +7,9 @@ class OldWagerReport extends OldLegacyReport {
     $tabValidStake: JQuery;
     $custLevelId: JQuery;
     $isSettlement: JQuery;
+    isMobile: boolean;
+    isOwner: boolean;
+    toggleHandler: ToggleHandler;
 
     constructor(
         $: JQueryStatic,
@@ -15,8 +18,10 @@ class OldWagerReport extends OldLegacyReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         sortComponent: SortComponent,
         linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent) {
+        pagerComponent: ClientPagerComponent,
+        toggleHandler: ToggleHandler) {
         super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent, sortComponent, linkBuilderComponent, pagerComponent);
+        this.toggleHandler = toggleHandler;
     }
 
     init(): void {
@@ -24,6 +29,14 @@ class OldWagerReport extends OldLegacyReport {
 
         this.reCheckIn();
         this.cacheDOMElements();
+
+        let reportTable = this.$("#tbl-report");
+        this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
+        this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
+        if (this.isMobile) {
+            reportTable.stacktable();
+        }
+
         this.renderComponents();
         this.registerEvents();
 
@@ -70,6 +83,11 @@ class OldWagerReport extends OldLegacyReport {
     }
 
     registerEvents(): void {
+        if (this.isMobile) {
+            this.$tableReport.find("th").removeClass("sorting");
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
+        }
+
         this.$tabSettlement.on("click touchend", () => {
             if (this.$custLevelId.val() !== "1") {
                 this.$isSettlement.val("True");
@@ -96,6 +114,10 @@ class OldWagerReport extends OldLegacyReport {
         });
 
         super.registerEvents();
+
+        if (this.isMobile && this.isOwner) {
+            this.$(".btn-collapse-expanse").trigger("click");
+        }
     }
 }
 
@@ -108,7 +130,8 @@ $(function () {
         new SingleSelectionDropdownComponent($),
         new SortComponent($, linkBuilderComponent),
         linkBuilderComponent,
-        new ClientPagerComponent($));
+        new ClientPagerComponent($),
+        new ToggleHandler($));
 
     oldWagerReport.init();
 })

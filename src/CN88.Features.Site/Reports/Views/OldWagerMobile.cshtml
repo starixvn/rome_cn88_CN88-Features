@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Reports/Views/_OldLayout.cshtml";
+    var backLink = Model.BuildBackLink();
 }
 @section Styles {
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
@@ -9,8 +10,8 @@
     <div class="page-title-mobile">
         <span id="btn-back" class="back-area">
             <span class="icon-chevron-left back-step"></span>
-            <a href="#">
-                @Model.Title
+            <a href="@backLink.Link">
+                @backLink.Text
             </a>
         </span>
 
@@ -45,6 +46,7 @@
         }
     }
     @Pager.Render(Model.PagerViewModel)
+    @Html.Hidden(nameof(Model.IsOwner), Model.IsOwner)
 </div>
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/old-wager")

@@ -66,11 +66,15 @@
 
         [ReCheckPassword]
         public async Task<ActionResult> Wager(OldReportQuery message)
-            => await ViewAsync(
+        {
+            message.CurrentUrl = Request.Url.Query;
+
+            return await ViewAsync(
                 message,
                 browserHelper.IsMobile()
                 ? WagerMobileViewPath
                 : WagerViewPath);
+        }
 
         [ReCheckPassword]
         public async Task<ActionResult> Legacy(OldReportQuery message)
