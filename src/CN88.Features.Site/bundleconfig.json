@@ -47,6 +47,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/sort.js",
+      "Shared/Scripts/components/filter-toggle.js",
       "Reports/Scripts/base-report.js",
       "Reports/Scripts/legacy.js",
       "Reports/Scripts/wager.js"
@@ -61,6 +62,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/sort.js",
+      "Shared/Scripts/components/filter-toggle.js",
       "Reports/Scripts/old-base-report.js",
       "Reports/Scripts/old-legacy.js",
       "Reports/Scripts/old-wager.js"
