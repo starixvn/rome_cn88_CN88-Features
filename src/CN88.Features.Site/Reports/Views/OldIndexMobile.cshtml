@@ -15,12 +15,6 @@
 </ul>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane fade in active old-report-filter" id="wagerReport">
-        <select id="dropdown-wagerRptType">
-            @foreach (var type in Model.WagerReportTypes)
-            {
-                <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
-            }
-        </select>
         @Html.Partial("~/Reports/Views/Index/OldCreateReport.cshtml")
     </div>
 
