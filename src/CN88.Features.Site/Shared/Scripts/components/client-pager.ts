@@ -51,7 +51,7 @@ class ClientPagerComponent {
         this.pageSize = parseInt(pager.data("pagesize"), 0);
         
 
-        if (!isMobile || (isMobile && this.totalRecords > this.pageSize)) {
+        if (!isMobile || (isMobile && this.totalRecords > this.pageList[0])) {
             this.pageIndex = parseInt(pager.data("pageindex"), 0);
             this.$pageIndex =
                 this.$(`<input type="hidden" id="${this.options.pageIndexId}" name="${this.options.pageIndexId}" value="${this.pageIndex}" />`);

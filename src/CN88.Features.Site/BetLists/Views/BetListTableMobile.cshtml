@@ -55,6 +55,7 @@
                     <td>
                         @ticket.TransDate.ToShortDateFormat()
                         @ticket.TransDate.ToLongTime24h()
+                        <br />
                         @ticket.UserName
                         @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
                         @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))

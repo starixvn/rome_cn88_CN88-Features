@@ -53,16 +53,16 @@ class BetListOfReport {
         if (this.isMobile) {
             this.elements.reportTable.stacktable();
         }
+        else {
+            this.pagerComponent.render();
+            this.elements.pageIndex = this.$("#PageIndex");
+        }
 
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onchangeSportType));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.linkBuilderComponent.render();
-
-        this.pagerComponent.render();
-        this.elements.pageIndex = this.$("#PageIndex");
-        
 
         this.registerEvents();
 
@@ -76,6 +76,7 @@ class BetListOfReport {
         this.elements.filterToggleIcon = this.$("#filter-toggle-icon");
         this.elements.reportTable = this.$("#tbl-report");
         this.elements.reportPager = this.$("#report-pager");
+        
     };
 
     registerEvents = () => {
@@ -97,6 +98,8 @@ class BetListOfReport {
         }
 
         this.elements.filterToggleIcon.click(this.collapseExpandFilter);
+
+        this.$('body').backtop();
     };
 
     onReportSubmit = () => {
