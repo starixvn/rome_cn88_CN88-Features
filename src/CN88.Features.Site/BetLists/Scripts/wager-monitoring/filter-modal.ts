@@ -142,16 +142,25 @@ class FilterModal {
         });
 
         this.$("#btnSearchLeague").on("click touchend", () => {
-            this.leagueMultiSelectionComponent.search(this.$("#txtSearchLeague").val());
+            let searchText = this.$("#txtSearchLeague").val();
+            if (searchText) {
+                this.leagueMultiSelectionComponent.search(this.$("#txtSearchLeague").val());
+            } else {
+                this.leagueMultiSelectionComponent.clearSearch();
+            }
         });
 
         this.$clearSearchLeagueButton.on("click touchend", () => {
-            this.$("#txtSearchLeague").val("");
             this.leagueMultiSelectionComponent.clearSearch();
         });
 
         this.$("#btnSearchEvent").on("click touchend", () => {
-            this.eventMultiSelectionComponent.search(this.$("#txtSearchEvent").val());
+            let searchText = this.$("#txtSearchEvent").val();
+            if (searchText) {
+                this.eventMultiSelectionComponent.search(this.$("#txtSearchEvent").val());
+            } else {
+                this.eventMultiSelectionComponent.clearSearch();
+            }
         });
 
         this.$clearSearchEventButton.on("click touchend", () => {

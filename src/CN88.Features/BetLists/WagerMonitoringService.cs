@@ -200,11 +200,24 @@
                 () =>
                 {
                     var betTypeGroups = dynamicRepository.Fetch<MonitorBetTypeGroup>(new GetMonitorBetTypeGroupCriteria());
+                    var displayBetTypeGroups = betTypeGroups.Select(g => g.DisplayBetTypeGroup).Distinct();
+                    var displayBetTypeNames = new Dictionary<int, string>();
+
+                    foreach (var id in displayBetTypeGroups)
+                    {
+                        if (id == OneXTwoMoneylineDisplayBetTypeGroup)
+                        {
+                            displayBetTypeNames.Add(id, BetListsResources.OneXTwoMoneyline);
+                        }
+                        else
+                        {
+                            displayBetTypeNames.Add(id, cacheRefService.GetBetTypeName(id));
+                        }
+                    }
+
                     foreach (var betTypeGroup in betTypeGroups)
                     {
-                        betTypeGroup.DisplayName = betTypeGroup.DisplayBetTypeGroup == OneXTwoMoneylineDisplayBetTypeGroup
-                            ? BetListsResources.OneXTwoMoneyline
-                            : cacheRefService.GetBetTypeName(betTypeGroup.DisplayBetTypeGroup);
+                        betTypeGroup.DisplayName = displayBetTypeNames[betTypeGroup.DisplayBetTypeGroup];
                     }
 
                     return betTypeGroups;
