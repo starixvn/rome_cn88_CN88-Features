@@ -4,6 +4,7 @@
     using System.Linq;
     using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
+    using CN88.Features.Site.Shared.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
@@ -44,6 +45,8 @@
         private readonly BettypeGroupService betTypeService;
         private readonly AccountingPeriodService accountingPeriodService;
 
+        private readonly BrowserHelper browserHelper;
+
         public BetListsHandler(
             BetListsService service,
             ISmartPunterBetListMonitor monitorService,
@@ -52,7 +55,8 @@
             IBetListHTMLBuilder builder,
             SportGroupService sportGroupService,
             BettypeGroupService betTypeService,
-            AccountingPeriodService accountingPeriodService)
+            AccountingPeriodService accountingPeriodService,
+            BrowserHelper browserHelper)
         {
             this.service = service;
             this.monitorService = monitorService;
@@ -63,6 +67,8 @@
             this.sportGroupService = sportGroupService;
             this.betTypeService = betTypeService;
             this.accountingPeriodService = accountingPeriodService;
+
+            this.browserHelper = browserHelper;
         }
 
         public BetListOfReportViewModel Handle(BetListOfReportQuery message)
@@ -99,7 +105,8 @@
                 currentPeriod,
                 lastPeriod,
                 BuildBetTypeSelectListItems(allBetTypes, 0),
-                oldAccountingPeriods);
+                oldAccountingPeriods,
+                browserHelper.IsMobile());
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)

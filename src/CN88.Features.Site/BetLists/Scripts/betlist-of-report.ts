@@ -13,6 +13,7 @@ class BetListOfReport {
     liveStatusSelectionComponent: SingleSelectionDropdownComponent;
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
+    isMobile: boolean;
 
     elements = {
         excelIcon: null,
@@ -48,6 +49,10 @@ class BetListOfReport {
         this.$.blockUI();
 
         this.cacheDOMElements();
+        this.isMobile = this.elements.reportTable.data("ismobile");
+        if (this.isMobile) {
+            this.elements.reportTable.stacktable();
+        }
 
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onchangeSportType));
@@ -57,6 +62,7 @@ class BetListOfReport {
 
         this.pagerComponent.render();
         this.elements.pageIndex = this.$("#PageIndex");
+        
 
         this.registerEvents();
 
@@ -91,7 +97,6 @@ class BetListOfReport {
         }
 
         this.elements.filterToggleIcon.click(this.collapseExpandFilter);
-
     };
 
     onReportSubmit = () => {

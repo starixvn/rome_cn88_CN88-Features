@@ -13,21 +13,21 @@
         <thead class="tableFloatingHeaderOriginal">
             <tr>
                 <th class="text-left header sorting username" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.AgentUsername</th>
-                <th class="text-left header sorting" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="Name">@ReportResources.Name</th>
+                <th class="text-left header sorting" data-colindex="@(colIndex++)" data-stack-column="true" data-sortedname="Name">@ReportResources.Name</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-show-in-body="true" data-sortedname="Agent">
                     @ReportResources.Agent
                 </th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="AgentPoss">@ReportResources.AgentPoss</th>
-                <th class="text-right settlement header sorting" data-mobile-text="@ReportResources.MAResult" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="AgentIncome">@ReportResources.AgentIncome</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="AgentIncome">@ReportResources.AgentIncome</th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-show-in-body="true" data-sortedname="AgentResult">@ReportResources.AgentResult</th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-show-in-body="true" data-sortedname="AgentStock">@ReportResources.AgentStock</th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-column="true" data-sortedname="AgentStock">@ReportResources.AgentStock</th>
                 @if (Model.IsNotOwner)
                 {
                     <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="MAPoss">
                         @ReportResources.MAPoss <span class="icon-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess"></span>
                     </th>
                     <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-column="true"  data-sortedname="MAIncome">@ReportResources.MAIncome</th>
-                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)"data-stack-column="true"  data-sortedname="MAResult">@ReportResources.MAResult</th>
+                    <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-stack-show-in-body="true" data-sortedname="MAResult">@ReportResources.MAResult</th>
                 }
                 <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-stack-column="true" data-sortedname="Wagers">@ReportResources.Wagers</th>
                 <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-stack-column="true" data-sortedname="Stake">@ReportResources.Stake</th>

@@ -44,6 +44,7 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
+            bool isMobile = false,
             string[] excludingTicketStatus = null)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
@@ -68,6 +69,8 @@
             Type = message.Type;
             IsOwner = message.IsOwner;
 
+            IsMobile = isMobile;
+
             ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
             ViewerLevelId = message.ViewerLevelId;
 
@@ -87,7 +90,8 @@
             AccountingPeriod lastPeriod,
             IEnumerable<SelectListItemExt> allBetTypes,
             IEnumerable<AccountingPeriod> oldAccountingPeriods,
-            string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, excludingTicketStatus)
+            bool isMobile = false,
+            string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
             DisplayMode = message.DisplayMode;
             ReportMainActionPath = message.ReportMainActionPath;

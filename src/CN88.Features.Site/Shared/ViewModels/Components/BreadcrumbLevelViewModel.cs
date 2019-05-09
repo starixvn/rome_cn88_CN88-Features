@@ -42,13 +42,13 @@
                 });
         }
 
-        public IEnumerable<BreadcrumbItem> BuildBreadcrumbLinks(string currentLink, bool isSettlement)
+        public IEnumerable<BreadcrumbItem> BuildBreadcrumbLinks(string currentLink, bool isSettlement, IEnumerable<string> breadcrumbParamByLevel = null)
         {
             if(BreadcrumbLevel.Any())
             {
                 var linkIndex = 0;
                 return BreadcrumbLevel.Select(custInfo => 
-                    new BreadcrumbItem(custInfo.CustName, BuildBreadcrumbLink(custInfo, currentLink, null, linkIndex++, isSettlement)));
+                    new BreadcrumbItem(custInfo.CustName, BuildBreadcrumbLink(custInfo, currentLink, breadcrumbParamByLevel, linkIndex++, isSettlement)));
             }
 
             return Enumerable.Empty<BreadcrumbItem>();

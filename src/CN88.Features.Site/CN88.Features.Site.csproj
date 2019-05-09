@@ -896,6 +896,7 @@
     <Content Include="App_Data\securitycode.napinternal.json" />
     <Content Include="BetLists\Views\ReportBetListMobile.cshtml" />
     <Content Include="BetLists\Views\BetListTable.cshtml" />
+    <Content Include="BetLists\Views\BetListTableMobile.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

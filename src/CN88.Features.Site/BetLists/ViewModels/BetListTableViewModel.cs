@@ -28,6 +28,8 @@
 
         public int Divisor { get; protected set; }
 
+        public bool IsMobile { get; protected set; }
+
         public decimal CompanyPositionTaking(TicketDto ticket)
             => 1 - ticket.AgentPositionTaking - ticket.MasterPositionTaking - ticket.SuperPositionTaking;
     }
