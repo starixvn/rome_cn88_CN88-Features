@@ -392,4 +392,15 @@
         padding-top: 13px;
         padding-bottom: 13px;
     }
+
+    .old-report {
+        .menubar {
+            display: none;
+        }
+
+        .new-page-content {
+            top: 15px;
+            min-width: 100%;
+        }
+    }
 }

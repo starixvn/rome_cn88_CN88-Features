@@ -611,6 +611,10 @@ body {
         .new-page-content {
             top: 15px;
             min-width: 100%;
+
+            .create-filter {
+                padding-top: 0;
+            }
         }
 
         .old-report-filter {
