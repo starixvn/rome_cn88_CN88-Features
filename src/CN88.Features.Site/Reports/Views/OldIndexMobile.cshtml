@@ -5,25 +5,30 @@
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
 @model OldIndexViewModel
-<div class="wager-report">
-    <div class="filter-container">
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" id="wager-tab" class="active">
+        <a data-toggle="tab" href="#wagerReport" data-defaulttype="@ReportTypeConstants.SettledWager">Wager</a>
+    </li>
+    <li role="presentation" id="accounting-sheet-tab">
+        <a data-toggle="tab" href="#accountingSheet" data-defaulttype="@ReportResources.AccountingSheet">Accounting</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active old-report-filter" id="wagerReport">
+        <select id="dropdown-wagerRptType">
+            @foreach (var type in Model.WagerReportTypes)
+            {
+                <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+            }
+        </select>
         @Html.Partial("~/Reports/Views/Index/OldCreateReport.cshtml")
     </div>
-    df sfsdfsdfsdf sdfsd
-    <div class="result-container">
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a data-toggle="tab" href="#accountingSheet">@ReportResources.AccountingSheet</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="accountingSheet">
-                mobile
-                @Html.Action("AccountingSheet", "Reports")
-            </div>
-        </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
+        @Html.Action("AccountingSheet", "Reports")
     </div>
 </div>
+
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/old-index")
 }

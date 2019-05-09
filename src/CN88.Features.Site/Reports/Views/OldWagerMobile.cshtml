@@ -6,20 +6,15 @@
 }
 @model OldReportViewModel
 <div class="report-detail wager-report">
-    <div class="page-title title-report-detail">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="report-name">@Model.Title</li>
-            <li role="presentation" id="tabSettlement" class="tab-selector">
-                <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
-            </li>
-            @if (Model.ReportLevel.IsNotMemberLevel())
-            {
-                <li role="presentation" id="tabValidStake" class="tab-selector">
-                    <a data-toggle="tab" href="#">@ReportResources.ValidStake</a>
-                </li>
-            }
-        </ul>
-        @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, null, Model.IsSettlement)
+    <div class="page-title-mobile">
+        <span id="btn-back" class="back-area">
+            <span class="icon-chevron-left back-step"></span>
+            <a href="#">
+                @Model.Title
+            </a>
+        </span>
+
+        <span class="icon-filter-down" id="filter-toggle-icon"></span>
     </div>
     @Html.Partial("~/Reports/Views/OldFilter.cshtml", Model.OldReportFilterViewModel,
     new ViewDataDictionary

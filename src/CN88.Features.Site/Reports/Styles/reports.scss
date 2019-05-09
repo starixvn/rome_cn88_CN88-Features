@@ -339,6 +339,11 @@ body {
 }
 
 .old-report {
+
+    .menubar {
+        height: 39px;
+    }
+
     .list-menu {
         overflow: hidden;
         width: 100%;
@@ -363,6 +368,10 @@ body {
         width: 100%;
         white-space: nowrap;
     }
+
+     .create-form {
+         padding: 0 20px;
+     }
 }
 .report-detail .accountingsheet-control {
     .multiselect .multiselect-selected-text {
@@ -603,5 +612,37 @@ body {
     .pagination {
         padding-left: 12px;
         padding-right: 12px;
+    }
+
+    .old-report {
+        .menubar {
+            display: none;
+        }
+
+        .new-page-content {
+            top: 0;
+        }
+
+        .old-report-filter {
+            .page-title {
+                display: none;
+            }
+
+            .nav-tabs {
+                display: none;
+            }
+
+            #dropdown-wagerRptType {
+                width: 100%;
+            }
+
+            .create-form {
+                padding: 0;
+            }
+
+            #wagerReport {
+                padding: 0 0 15px;
+            }
+        }
     }
 }
