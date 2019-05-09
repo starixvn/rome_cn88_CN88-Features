@@ -2,6 +2,7 @@
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="../../shared/scripts/components/link-builder.ts" />
+/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
 /// <reference path="../../shared/scripts/components/client-pager.ts" />
 
 class BetListOfReport {
@@ -13,6 +14,7 @@ class BetListOfReport {
     liveStatusSelectionComponent: SingleSelectionDropdownComponent;
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
+    toggleHandler: ToggleHandler;
     isMobile: boolean;
 
     elements = {
@@ -32,13 +34,15 @@ class BetListOfReport {
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
         linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent) {
+        pagerComponent: ClientPagerComponent,
+        toggleHandler: ToggleHandler) {
         this.$ = $;
 
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
         this.betTypeSelectionComponent = betTypeSelectionComponent;
         this.liveStatusSelectionComponent = liveStatusSelectionComponent;
+        this.toggleHandler = toggleHandler;
 
         this.linkBuilderComponent = linkBuilderComponent;
         this.pagerComponent = pagerComponent;
@@ -52,6 +56,7 @@ class BetListOfReport {
         this.isMobile = this.elements.reportTable.data("ismobile");
         if (this.isMobile) {
             this.elements.reportTable.stacktable();
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
         }
         else {
             this.pagerComponent.render();
@@ -97,8 +102,6 @@ class BetListOfReport {
             }, expiredSessionSeconds * 1000);
         }
 
-        this.elements.filterToggleIcon.click(this.collapseExpandFilter);
-
         this.$('body').backtop();
     };
 
@@ -106,7 +109,9 @@ class BetListOfReport {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.betTypeSelectionComponent.updateSelectedValue();
         this.liveStatusSelectionComponent.updateSelectedValue();
-        this.elements.pageIndex.val(1);
+        if (!this.isMobile) {
+            this.elements.pageIndex.val(1);
+        }
     };
 
     onExportExcelEvent = () => {
@@ -148,32 +153,6 @@ class BetListOfReport {
     checkIn = () => {
         this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });
     }
-
-    collapseExpandFilter = () => {
-        let isCollapsed = this.elements.filterToggleIcon.hasClass("icon-filter-down");
-
-        if (isCollapsed) {
-            this.elements.reportForm
-                .slideDown(200);
-            this.elements.reportTable
-                .slideUp(210);
-            this.elements.reportPager
-                .slideUp(210);
-            this.elements.filterToggleIcon
-                .removeClass("icon-filter-down")
-                .addClass("icon-filter-up");
-        }
-        else {
-            this.elements.reportForm.slideUp(200);
-            this.elements.reportTable
-                .slideDown(210);
-            this.elements.reportPager
-                .slideDown(210);
-            this.elements.filterToggleIcon
-                .removeClass("icon-filter-up")
-                .addClass("icon-filter-down");
-        }
-    }
 }
 
 $(document).ready(() => {
@@ -184,6 +163,7 @@ $(document).ready(() => {
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
         new LinkBuilderComponent($),
-        new ClientPagerComponent($));
+        new ClientPagerComponent($),
+        new ToggleHandler($));
     betListOfReport.init();
 })

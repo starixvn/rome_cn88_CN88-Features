@@ -14,6 +14,7 @@ class WagerReport extends LegacyReport {
     isMobile: boolean;
     isOwner: boolean;
     $tabMainContent: JQuery;
+    toggleHandler: ToggleHandler;
 
     constructor(
         $: JQueryStatic,
@@ -23,8 +24,10 @@ class WagerReport extends LegacyReport {
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
         sortComponent: SortComponent,
         linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent) {
+        pagerComponent: ClientPagerComponent,
+        toggleHandler: ToggleHandler) {
         super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, sortComponent, linkBuilderComponent, pagerComponent);
+        this.toggleHandler = toggleHandler;
     }
 
     init = () => {
@@ -67,6 +70,7 @@ class WagerReport extends LegacyReport {
 
         if (this.isMobile) {
             this.$tableReport.find("th").removeClass("sorting");
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
         }
         else {
             this.$tabSettlement.on("click touchend", () => {
@@ -97,29 +101,6 @@ class WagerReport extends LegacyReport {
 
         super.registerEvents();
 
-        this.$filterToggleIcon.on("click touchend", (e) => {
-            e.preventDefault();
-            let isCollapsed = this.$filterToggleIcon.hasClass("icon-filter-down");
-
-            if (isCollapsed) {
-                this.$reportForm
-                    .slideDown(200);
-                this.$tabMainContent
-                    .slideUp(210);
-                this.$filterToggleIcon
-                    .removeClass("icon-filter-down")
-                    .addClass("icon-filter-up");
-            }
-            else {
-                this.$reportForm.slideUp(200);
-                this.$tabMainContent
-                    .slideDown(210);
-                this.$filterToggleIcon
-                    .removeClass("icon-filter-up")
-                    .addClass("icon-filter-down");
-            }
-        });
-
         if (this.isOwner) {
             this.$(".btn-collapse-expanse").trigger("click");
         }
@@ -136,7 +117,8 @@ $(function () {
         new SingleSelectionDropdownComponent($),
         new SortComponent($, linkBuilderComponent),
         linkBuilderComponent,
-        new ClientPagerComponent($));
+        new ClientPagerComponent($),
+        new ToggleHandler($));
 
     wagerReport.init();
 })
