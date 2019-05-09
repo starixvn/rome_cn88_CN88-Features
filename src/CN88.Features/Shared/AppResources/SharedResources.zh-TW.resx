@@ -273,4 +273,13 @@
   <data name="SystemErrorMessage" xml:space="preserve">
     <value>不好意思…目前系統故障，請聯絡系統管理員。</value>
   </data>
+  <data name="On" xml:space="preserve">
+    <value>開</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>關</value>
+  </data>
+  <data name="Early" xml:space="preserve">
+    <value>早盤</value>
+  </data>
 </root>

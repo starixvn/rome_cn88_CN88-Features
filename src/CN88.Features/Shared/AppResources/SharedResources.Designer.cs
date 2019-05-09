@@ -322,7 +322,7 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sportbook Parlay.
+        ///   Looks up a localized string similar to Sportsbook Parlay.
         /// </summary>
         public static string Parlay {
             get {
