@@ -351,5 +351,45 @@
 
     .tbl-betlists {
         margin-top: 12px;
+
+        .status {
+            font-weight: bold;
+        }
+    }
+
+    .popup-modal {
+        padding: 16px 12px;
+
+        .col-event {
+            line-height: 18px;
+        }
+
+        .comm_note {
+            padding-top: 8px;
+        }
+    }
+
+    .tbl-betlists > thead {
+        tr > th {
+            padding-top: 13px;
+            padding-bottom: 13px;
+        }
+
+        tr.total > th {       
+            padding-top: 13px;
+            padding-bottom: 13px;
+            color: #3B3B3B;
+            background-color: #ECF4E2;
+
+            &.winloss font {
+                color: #B50000 !important;
+            }
+        }
+    }
+
+    .tbl-betlists > tbody > tr > td,
+    .tbl-betlists > tfoot > tr > td {
+        padding-top: 13px;
+        padding-bottom: 13px;
     }
 }

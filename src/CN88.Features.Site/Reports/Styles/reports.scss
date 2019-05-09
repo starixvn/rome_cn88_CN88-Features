@@ -574,22 +574,11 @@ body {
         }
     }
 
-    .stacktable {
-        > thead > tr.total > th,
-        > tbody > tr > td,
-        > tfoot > tr > td {
-            padding: 12px 8px;
-        }        
-
-        > tbody > tr.stack-row:not(:last-child) > td {
-            border-bottom: none;
-        }
-    }   
-
     .tbl-report {
         border-top: none;
 
         > thead > tr.total > th {
+            padding: 13px 8px;
             color: #3B3B3B;
             background-color: #ECF4E2;
         }
