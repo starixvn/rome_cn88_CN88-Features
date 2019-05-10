@@ -39,6 +39,10 @@ class ClientPagerComponent {
         this.options = <ClientPagerOption>this.$.extend({}, this.options, options);
         let pager = this.$("#" + this.options.pagerId);
 
+        if (pager.length === 0) {
+            return;
+        }
+
         let tableId = "#" + this.options.tableReportId;
         let tableStackId = tableId + "-stack";
         let isMobile = this.$(tableStackId).data("ismobile");

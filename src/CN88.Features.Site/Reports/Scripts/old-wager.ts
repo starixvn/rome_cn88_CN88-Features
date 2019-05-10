@@ -30,12 +30,7 @@ class OldWagerReport extends OldLegacyReport {
         this.reCheckIn();
         this.cacheDOMElements();
 
-        let reportTable = this.$("#tbl-report");
-        this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
-        this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
-        if (this.isMobile) {
-            reportTable.stacktable();
-        }
+        this.initMobile();
 
         this.renderComponents();
         this.registerEvents();
@@ -73,6 +68,16 @@ class OldWagerReport extends OldLegacyReport {
 
         this.$tabValidStake.click();
     };
+
+    private initMobile() {
+        let reportTable = this.$("#tbl-report");
+        this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
+        this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
+        if (this.isMobile) {
+            reportTable.stacktable();
+            this.$('body').backtop();
+        }
+    }
 
     cacheDOMElements(): void {
         super.cacheDOMElements();

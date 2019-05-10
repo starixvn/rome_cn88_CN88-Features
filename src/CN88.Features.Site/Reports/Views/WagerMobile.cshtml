@@ -45,7 +45,6 @@
             @Html.Partial("~/Reports/Views/Wager/MemberTable.cshtml", Model)
         }
     }
-    @Pager.Render(Model.PagerViewModel)
     @Html.Hidden(nameof(Model.IsOwner), Model.IsOwner)
 </div>
 @section Scripts{

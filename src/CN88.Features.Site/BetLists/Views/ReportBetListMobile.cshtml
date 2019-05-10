@@ -1,7 +1,7 @@
 ﻿@using Fanex.BetList.Core.Utils
 @model BetListOfReportViewModel
 @{
-    ViewBag.Title = "Bet List";
+    ViewBag.Title = BetListsResources.BetList;
     Layout = Model.IsOldReport ? "~/Reports/Views/_OldLayout.cshtml" : "~/Shared/Views/_Layout.cshtml";
 
     var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
@@ -24,7 +24,6 @@
     </div>
     @Html.Partial("~/BetLists/Views/Filter.cshtml", Model)
     @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
-    @Pager.Render(Model.PagerViewModel)
 </div>
 @if (Model.IsOldReport)
 {

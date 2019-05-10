@@ -55,8 +55,10 @@ class BetListOfReport {
         this.cacheDOMElements();
         this.isMobile = this.elements.reportTable.data("ismobile");
         if (this.isMobile) {
+            this.setPageTitle(this.$("title").text());
             this.elements.reportTable.stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
+            this.$('body').backtop();
         }
         else {
             this.pagerComponent.render();
@@ -81,7 +83,6 @@ class BetListOfReport {
         this.elements.filterToggleIcon = this.$("#filter-toggle-icon");
         this.elements.reportTable = this.$("#tbl-report");
         this.elements.reportPager = this.$("#report-pager");
-        
     };
 
     registerEvents = () => {
@@ -101,8 +102,6 @@ class BetListOfReport {
                 $this.checkIn();
             }, expiredSessionSeconds * 1000);
         }
-
-        this.$('body').backtop();
     };
 
     onReportSubmit = () => {
@@ -149,6 +148,12 @@ class BetListOfReport {
             includeSelectAllOption: false
         });
     };
+
+    setPageTitle = (text) => {
+        if (window.top["indexManager"]) {
+            window.top["indexManager"].setMobileHeaderName(text);
+        }
+    }
 
     checkIn = () => {
         this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });

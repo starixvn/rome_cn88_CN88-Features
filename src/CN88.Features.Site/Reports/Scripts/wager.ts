@@ -32,13 +32,7 @@ class WagerReport extends LegacyReport {
     init = () => {
         this.$.blockUI();
 
-        let reportTable = this.$("#tbl-report");
-        this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
-        this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
-        if (this.isMobile) {
-            reportTable.stacktable();
-        }
-
+        this.initForMobile();
         this.cacheDOMElements();
         this.renderComponents();
         this.registerEvents();
@@ -53,6 +47,16 @@ class WagerReport extends LegacyReport {
         }
 
         this.$.unblockUI();
+    };
+
+    initForMobile = () => {
+        let reportTable = this.$("#tbl-report");
+        this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
+        this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
+        if (this.isMobile) {
+            reportTable.stacktable();
+            this.$('body').backtop();
+        }
     };
 
     public cacheDOMElements() {
