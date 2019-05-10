@@ -348,6 +348,19 @@
     }
 
     .breadcrumb-container { display: none; }
+    
+
+    .popup-modal {
+        padding: 16px 12px;
+
+        .col-event {
+            line-height: 18px;
+        }
+
+        .comm_note {
+            padding-top: 8px;
+        }
+    }
 
     .tbl-betlists {
         margin-top: 12px;
@@ -361,19 +374,26 @@
         }
 
         .cn88-mix-parlay {
-            margin-bottom: 6px;
+            margin-bottom: 15px;
+
+            a {
+                display: block;
+                height: 14px; 
+                margin-top: 8px;
+                background-image: url(images/plus_details.svg);
+            }
+
+            &.cn88-mix-parlay-collapse a {
+                background-image: url(images/minus_details.svg);
+            }
         }
-    }
 
-    .popup-modal {
-        padding: 16px 12px;
-
-        .col-event {
-            line-height: 18px;
+        .fix-column {
+            line-height: 16px;
         }
 
-        .comm_note {
-            padding-top: 8px;
+        .cn88-more-info {
+            background-image: url("images/details.svg");
         }
     }
 
@@ -388,6 +408,7 @@
             padding-bottom: 13px;
             color: #3B3B3B;
             background-color: #ECF4E2;
+            font-weight: bold;
 
             &.winloss font {
                 color: #B50000 !important;
@@ -400,6 +421,9 @@
         padding-top: 13px;
         padding-bottom: 13px;
     }
+
+
+    
 
     .old-report {
         .menubar {

@@ -102,7 +102,7 @@
 @helper RenderBetListTotal(string winLoss, string stake, string total, int noOfDetails, int numberOfColumns)
 {
     <tr class="total">
-        <th>@BetListsResources.Total:@noOfDetails.ToString("#,##0")</th>
+        <th>@BetListsResources.Total: @noOfDetails.ToString("#,##0")</th>
         <th class="text-right">@Html.Raw(stake)</th>
         <th class="text-right winloss">@Html.Raw(winLoss)</th>
     </tr>
