@@ -31,14 +31,15 @@
 
     renderMasterList = (rs: any) => {
         if (rs.SearchAccountId > 0) {
-            this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
-            this.$formReport.find("#add-directdownline").attr("username", rs.Username);
-            this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
+            var buttonAddNew = this.$(".add-directdownline-master");
+            buttonAddNew.attr("cust-id", rs.SearchAccountId);
+            buttonAddNew.attr("username", rs.Username);
+            buttonAddNew.attr("downline-username", rs.DownlineUsername);
         }
 
-		if (!rs.Customers) {
-			return;
-		}
+        if (!rs.Customers) {
+            return;
+        }
 
         this.$tblReport.removeClass("display-none");
 
@@ -51,7 +52,7 @@
             for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 let customer = rs.Customers[i],
                     custId = customer.CustId,
-                    username = customer.Username;               
+                    username = customer.Username;
 
                 html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                     "<td class='col-no'>" + customerIndex + "</td>" +

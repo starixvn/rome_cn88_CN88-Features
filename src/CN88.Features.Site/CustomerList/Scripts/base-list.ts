@@ -167,16 +167,17 @@
             self.addDownlineFunction($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
         });
 
+        var buttonAddNew = this.$(".add-directdownline-" + this.levelNameLowerCase);
         if (rs.SearchAccountId > 0) {
-            this.$formReport.find("#add-directdownline").removeAttr("disabled");
-            this.$formReport.find("#add-directdownline").click(function () {
+            buttonAddNew.removeAttr("disabled");
+            buttonAddNew.click(function () {
                 var $this = self.$(this);
 
                 self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam, $this.attr("downline-username"));
             });
         }
         else {
-            this.$formReport.find("#add-directdownline").attr("disabled", "disabled");
+            buttonAddNew.attr("disabled", "disabled");
         }
 
         this.$tblReport.find("> tfoot").empty();
