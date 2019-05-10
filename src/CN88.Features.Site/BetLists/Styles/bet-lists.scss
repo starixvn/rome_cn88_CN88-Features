@@ -393,6 +393,8 @@
         }
 
         .cn88-more-info {
+            display: inline-block;
+            height: 19px;
             background-image: url("images/details.svg");
         }
     }
@@ -421,9 +423,6 @@
         padding-top: 13px;
         padding-bottom: 13px;
     }
-
-
-    
 
     .old-report {
         .menubar {
