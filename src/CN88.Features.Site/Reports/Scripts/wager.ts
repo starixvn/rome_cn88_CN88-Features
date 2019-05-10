@@ -56,6 +56,7 @@ class WagerReport extends LegacyReport {
         if (this.isMobile) {
             reportTable.stacktable();
             this.$('body').backtop();
+            this.setPageTitle();
         }
     };
 
@@ -106,6 +107,10 @@ class WagerReport extends LegacyReport {
         if (this.isMobile && this.isOwner) {
             this.$(".btn-collapse-expanse").trigger("click");
         }
+    }
+
+    setPageTitle = () => {
+        window.top["indexManager"].setMobileHeaderName(this.$("title").text());
     }
 }
 
