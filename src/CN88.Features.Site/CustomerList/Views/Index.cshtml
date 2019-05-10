@@ -29,7 +29,7 @@
     </li>
 </ul>-->
 <!----------------- Mobile Tab view ---------------->
-<ul id="nav-tabs" class="nav @(Model.IsMobile ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
+<ul id="nav-tabs" class="nav @(Model.IsDevice ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
         <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
@@ -53,7 +53,7 @@
 {
     <div class="tab-content display-none" level="@UserLevel.Master.Value">
         <div class="tab-panel active" role="tabpanel">
-            @if (Model.IsMobile)
+            @if (Model.IsDevice)
             {
                 <div class="filter-mobile">
                     <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
-                    @if (!Model.IsMobile)
+                    @if (!Model.IsDevice)
                     {
                         <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
                     }
@@ -112,7 +112,7 @@
 {
     <div class="tab-content display-none" level="@UserLevel.Agent.Value">
         <div class="tab-panel active" role="tabpanel">
-            @if (Model.IsMobile)
+            @if (Model.IsDevice)
             {
                 <div class="filter-mobile">
                     <span class="icon-filter-down" id="agent-filter-toggle-icon"></span>
@@ -147,7 +147,7 @@
                         <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
                     <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-                    @if (!Model.IsMobile)
+                    @if (!Model.IsDevice)
                     {
                         <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
                     }
@@ -179,7 +179,7 @@
 
 <div class="tab-content display-none" level="@UserLevel.Member.Value">
     <div class="tab-panel active" role="tabpanel">
-        @if (Model.IsMobile)
+        @if (Model.IsDevice)
         {
             <div class="filter-mobile">
                 <span class="icon-filter-down" id="member-filter-toggle-icon"></span>
@@ -213,7 +213,7 @@
                     <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                 </div>
                 <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-                @if (!Model.IsMobile)
+                @if (!Model.IsDevice)
                 {
                     <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
                 }
