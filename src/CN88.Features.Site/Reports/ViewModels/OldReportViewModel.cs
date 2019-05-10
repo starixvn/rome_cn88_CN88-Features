@@ -37,7 +37,8 @@
                 query.CustLevel,
                 sportGroupSelectionViewModel,
                 accountingPeriodSelectionViewModel,
-                dateRangePickerViewModel);
+                dateRangePickerViewModel,
+                isMobile);
         }
 
         public OldReportFilterViewModel OldReportFilterViewModel { get; }
