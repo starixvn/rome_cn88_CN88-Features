@@ -102,6 +102,7 @@
     "outputFileName": "CustomerList/bundles/scripts/index.js",
     "inputFiles": [
       "Shared/scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/filter-toggle.js",
       "Shared/scripts/components/pager.js",
       "CustomerList/scripts/site-infrastructure.js",
       "CustomerList/scripts/base-list.js",

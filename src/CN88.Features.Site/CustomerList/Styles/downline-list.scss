@@ -115,4 +115,41 @@ body {
         width: auto;
         padding: 0 10px;
     }
+
+    .filter-mobile {
+        position: relative;
+        height: 24px;
+        margin-top: 18px;
+
+        [class^="icon-filter"] {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .add-new {
+            position: static;
+            float: left;
+            height: 24px;
+            line-height: 24px;
+        }
+
+        .icon-add {
+            font-size: 13px;
+        }
+    }
+
+    .filter {
+        .form-group .control {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .add-new {
+            display: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+        }
+    }
 }

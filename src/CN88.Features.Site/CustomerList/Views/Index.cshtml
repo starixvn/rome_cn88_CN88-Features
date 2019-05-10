@@ -30,7 +30,7 @@
 </ul>-->
 
 <!----------------- Mobile Tab view ---------------->
-<ul id="nav-tabs" class="nav nav-tabs" role="tablist">
+<ul id="nav-tabs" class="nav @(true ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
         <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
@@ -54,6 +54,10 @@
 {
     <div class="tab-content display-none" level="@UserLevel.Master.Value">
         <div class="tab-panel active" role="tabpanel">
+            <div class="filter-mobile">
+                <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
+                <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
+            </div>
             <div class="filter">
                 <div id="form-master" class="form-inline" role="form">
                     <div class="form-group">
@@ -76,23 +80,25 @@
                 </div>
             </div>
 
-            <table id="tbl-master" class="tbl-style2">
-                <thead>
-                    <tr>
-                        <th class="col-no">@CustomerListResources.No</th>
-                        <th class="col-username">@CustomerListResources.Username</th>
-                        <th class="col-name">@CustomerListResources.Name</th>
-                        <th class="col-nickname">@CustomerListResources.Nickname</th>
-                        <th class="text-right">@CustomerListResources.Credit</th>
-                        <th class="col-creation-date">@CustomerListResources.CreationDate</th>
-                        <th class="text-center">@CustomerListResources.Status</th>
-                        <th class="col-action text-center">@CustomerListResources.Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-                <tfoot></tfoot>
-            </table>
-            <div id="pager-master"></div>
+            <div id="master-container">
+                <table id="tbl-master" class="tbl-style2">
+                    <thead>
+                        <tr>
+                            <th class="col-no">@CustomerListResources.No</th>
+                            <th class="col-username">@CustomerListResources.Username</th>
+                            <th class="col-name">@CustomerListResources.Name</th>
+                            <th class="col-nickname">@CustomerListResources.Nickname</th>
+                            <th class="text-right">@CustomerListResources.Credit</th>
+                            <th class="col-creation-date">@CustomerListResources.CreationDate</th>
+                            <th class="text-center">@CustomerListResources.Status</th>
+                            <th class="col-action text-center">@CustomerListResources.Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+                <div id="pager-master"></div>
+            </div>
         </div>
     </div>
 }
@@ -101,6 +107,11 @@
 {
     <div class="tab-content display-none" level="@UserLevel.Agent.Value">
         <div class="tab-panel active" role="tabpanel">
+            <div class="filter-mobile">
+                <span class="icon-filter-down" id="agent-filter-toggle-icon"></span>
+                <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
+            </div>
+
             <div class="filter">
                 <div id="form-agent" class="form-inline" role="form">
                     @if (Model.ActorLevel.IsSuperLevel() || Model.IsInternal)
@@ -131,29 +142,36 @@
                     <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
                 </div>
             </div>
-            <table id="tbl-agent" class="tbl-style2">
-                <thead>
-                    <tr>
-                        <th class="col-no">@CustomerListResources.No</th>
-                        <th class="col-username">@CustomerListResources.Username</th>
-                        <th class="col-name">@CustomerListResources.Name</th>
-                        <th class="col-nickname">@CustomerListResources.Nickname</th>
-                        <th class="text-right">@CustomerListResources.Credit</th>
-                        <th class="col-creation-date">@CustomerListResources.CreationDate</th>
-                        <th class="text-center">@CustomerListResources.Status</th>
-                        <th class="col-action text-center">@CustomerListResources.Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-                <tfoot></tfoot>
-            </table>
-            <div id="pager-agent"></div>
+
+            <div id="agent-container">
+                <table id="tbl-agent" class="tbl-style2">
+                    <thead>
+                        <tr>
+                            <th class="col-no">@CustomerListResources.No</th>
+                            <th class="col-username">@CustomerListResources.Username</th>
+                            <th class="col-name">@CustomerListResources.Name</th>
+                            <th class="col-nickname">@CustomerListResources.Nickname</th>
+                            <th class="text-right">@CustomerListResources.Credit</th>
+                            <th class="col-creation-date">@CustomerListResources.CreationDate</th>
+                            <th class="text-center">@CustomerListResources.Status</th>
+                            <th class="col-action text-center">@CustomerListResources.Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+                <div id="pager-agent"></div>
+            </div>
         </div>
     </div>
 }
 
 <div class="tab-content display-none" level="@UserLevel.Member.Value">
     <div class="tab-panel active" role="tabpanel">
+        <div class="filter-mobile">
+            <span class="icon-filter-down" id="member-filter-toggle-icon"></span>
+            <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
+        </div>
         <div class="filter">
             <div id="form-member" class="form-inline" role="form">
                 @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
@@ -184,24 +202,27 @@
                 <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
             </div>
         </div>
-        <table id="tbl-member" class="tbl-style2">
-            <thead>
-                <tr>
-                    <th class="col-no">@CustomerListResources.No</th>
-                    <th class="col-username">@CustomerListResources.Username</th>
-                    <th class="col-name">@CustomerListResources.Name</th>
-                    <th class="col-nickname">@CustomerListResources.Nickname</th>
-                    <th>@CustomerListResources.Group</th>
-                    <th class="text-right">@CustomerListResources.Credit</th>
-                    <th class="col-creation-date">@CustomerListResources.CreationDate</th>
-                    <th class="text-center">@CustomerListResources.Status</th>
-                    <th class="col-action text-center">@CustomerListResources.Action</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot></tfoot>
-        </table>
-        <div id="pager-member"></div>
+        <div id="member-container">
+            <table id="tbl-member" class="tbl-style2">
+                <thead>
+                    <tr>
+                        <th class="col-no">@CustomerListResources.No</th>
+                        <th class="col-username">@CustomerListResources.Username</th>
+                        <th class="col-name">@CustomerListResources.Name</th>
+                        <th class="col-nickname">@CustomerListResources.Nickname</th>
+                        <th>@CustomerListResources.Group</th>
+                        <th class="text-right">@CustomerListResources.Credit</th>
+                        <th class="col-creation-date">@CustomerListResources.CreationDate</th>
+                        <th class="text-center">@CustomerListResources.Status</th>
+                        <th class="col-action text-center">@CustomerListResources.Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+            <div id="pager-member"></div>
+        </div>
+        
     </div>
 </div>
 
