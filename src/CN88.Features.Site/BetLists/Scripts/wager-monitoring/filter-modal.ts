@@ -151,6 +151,7 @@ class FilterModal {
         });
 
         this.$clearSearchLeagueButton.on("click touchend", () => {
+            this.$("#txtSearchLeague").val("");
             this.leagueMultiSelectionComponent.clearSearch();
         });
 

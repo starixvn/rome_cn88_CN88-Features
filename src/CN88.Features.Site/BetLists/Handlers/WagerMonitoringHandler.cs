@@ -72,6 +72,24 @@
                 builder);
         }
 
+        public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
+        {
+            var sportGroups = await wagerMonitoringService.GetSportGroups();
+            var leagues = await wagerMonitoringService.GetLeagues(message.SportGroup);
+            var matches = await wagerMonitoringService.GetMatches(message.SportGroup);
+            var betTypeGroups = await wagerMonitoringService.GetBetTypeGroupsBySport(message.SportGroup);
+
+            return new WagerMonitoringFilterViewModel(
+                message,
+                BuildSelectListItems(WagerMonitoringMarket.Markets, message.Market, SelectListItemExtensions.Create),
+                BuildSelectListItems(leagues, message.LeagueIds, SelectListItemExtensions.Create),
+                BuildSelectListItems(matches, message.MatchIds, SelectListItemExtensions.Create),
+                BuildSelectListItems(betTypeGroups, message.BetTypeGroupIds, SelectListItemExtensions.Create),
+                BuildSportStakeConditions(
+                    sportGroups,
+                    JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions ?? string.Empty)));
+        }
+
         private IEnumerable<SportStakeCondition> BuildSportStakeConditions(IEnumerable<SportGroup> sportGroups, IEnumerable<SportStakeCondition> sportStakeConditions)
         {
             var conditions = new List<SportStakeCondition>();
@@ -123,24 +141,6 @@
             builder.Append("</ROOT>");
 
             return builder.ToString();
-        }
-
-        public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
-        {
-            var sportGroups = await wagerMonitoringService.GetSportGroups();
-            var leagues = await wagerMonitoringService.GetLeagues(message.SportGroup);
-            var matches = await wagerMonitoringService.GetMatches(message.SportGroup);
-            var betTypeGroups = await wagerMonitoringService.GetBetTypeGroupsBySport(message.SportGroup);
-
-            return new WagerMonitoringFilterViewModel(
-                message,
-                BuildSelectListItems(WagerMonitoringMarket.Markets, message.Market, SelectListItemExtensions.Create),
-                BuildSelectListItems(leagues, message.LeagueIds, SelectListItemExtensions.Create),
-                BuildSelectListItems(matches, message.MatchIds, SelectListItemExtensions.Create),
-                BuildSelectListItems(betTypeGroups, message.BetTypeGroupIds, SelectListItemExtensions.Create),
-                BuildSportStakeConditions(
-                    sportGroups,
-                    JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions ?? string.Empty)));
         }
 
         private IEnumerable<SelectListItem> BuildSelectListItems<T>(

@@ -13,6 +13,7 @@
     using Params;
     using Resources;
     using Shared.Configurations;
+    using Shared.Constants;
     using Shared.DataAccesses;
     using Shared.Extensions;
     using Shared.Models;
@@ -61,7 +62,7 @@
 
         public async Task<IEnumerable<League>> GetLeagues(int sportGroup)
         {
-            var matches = await GetMatches(sportGroup);
+            var matches = await GetAllMatches(sportGroup);
 
             return matches.GroupBy(e => e.LeagueId)
                 .Select(g => new League(g.Key, cacheRefService.GetLeagueName(g.Key)))
@@ -70,15 +71,25 @@
 
         public async Task<IEnumerable<MatchInfo>> GetMatches(int sportGroup)
         {
-            var otherEvents = await GetOtherMatches();
-            var outrightEvents = await GetOutrightMatches();
+            var matches = await GetOtherMatches();
 
-            var events = new List<MatchInfo>(otherEvents);
-            events.AddRange(outrightEvents);
+            return sportGroup == SportGroupConstants.AllSports 
+                ? matches 
+                : matches.Where(m => m.SportTypeGroup == sportGroup);
+        }
+
+        private async Task<IEnumerable<MatchInfo>> GetAllMatches(int sportGroup)
+        {
+            var matches = (await GetOtherMatches()).ToList();
+
+            if (sportGroup != SportGroupConstants.ParlaySportGroupId)
+            {
+                matches.AddRange(await GetOutrightMatches());
+            }
 
             return sportGroup == 0
-                ? events
-                : events.Where(e => e.SportTypeGroup == sportGroup);
+                ? matches
+                : matches.Where(e => e.SportTypeGroup == sportGroup);
         }
 
         public async Task<IEnumerable<MonitorBetTypeGroup>> GetBetTypeGroupsBySport(int sportGroup)
@@ -118,18 +129,7 @@
             return tickets;
         }
 
-        private async Task<string> GetSelectedBetTypeGroups(WagerMonitoringParam param)
-        {
-            var displayBetTypeGroupIds = param.DisplayBetTypeGroupIds.ToListInt();
-            var betTypeGroups = await GetBetTypeGroupsBySport(param.SportGroupId);
-
-            return betTypeGroups
-                .Where(x => displayBetTypeGroupIds.Contains(x.DisplayBetTypeGroup))
-                .Select(x => x.BetTypeGroup)
-                .JoinWithComma();
-        }
-
-        private async Task<IEnumerable<MatchInfo>> GetOtherMatches()
+        public async Task<IEnumerable<MatchInfo>> GetOtherMatches()
             => await ConfiguredCacheService.GetOrSetAsync(
                 OtherMatchesCacheKey,
                 () =>
@@ -156,18 +156,20 @@
         private async Task<IEnumerable<MatchInfo>> GetOutrightMatches()
             => await ConfiguredCacheService.GetOrSetAsync(
                 OutrightMatchesCacheKey,
-                () =>
-                {
-                    var matches = dynamicRepository.Fetch<MatchInfo>(new GetOutrightMatchCriteria(AppSettings.IsTest));
-                    foreach (var match in matches)
-                    {
-                        match.MatchName = $"{cacheRefService.GetTeamName(match.HomeId)}";
-                    }
-
-                    return matches;
-                },
+                () => dynamicRepository.Fetch<MatchInfo>(new GetOutrightMatchCriteria(AppSettings.IsTest)),
                 new CacheItemOptions().SetAbsoluteExpiration(
                     TimeSpan.FromMinutes(AppSettings.WagerMonitoringExpirationCacheInMinutes)));
+
+        private async Task<string> GetSelectedBetTypeGroups(WagerMonitoringParam param)
+        {
+            var displayBetTypeGroupIds = param.DisplayBetTypeGroupIds.ToListInt();
+            var betTypeGroups = await GetBetTypeGroupsBySport(param.SportGroupId);
+
+            return betTypeGroups
+                .Where(x => displayBetTypeGroupIds.Contains(x.DisplayBetTypeGroup))
+                .Select(x => x.BetTypeGroup)
+                .JoinWithComma();
+        }
 
         private async Task<MatchInfo> GetMatchInfo(int matchId, IEnumerable<MatchInfo> matches)
         {
