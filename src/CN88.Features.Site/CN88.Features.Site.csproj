@@ -523,6 +523,7 @@
     <Content Include="BetLists\Styles\bet-lists.min.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
+    <Content Include="BetLists\Styles\images\details.svg" />
     <Content Include="BetLists\Styles\images\icon-collapse.png" />
     <Content Include="BetLists\Styles\images\icon-expand.png" />
     <Content Include="BetLists\Content\CoreBetListCN88.css" />
@@ -530,6 +531,8 @@
     <Content Include="BetLists\Content\images\minus.png" />
     <Content Include="BetLists\Content\images\q_Icon2_1.png" />
     <Content Include="BetLists\Content\images\q_Icon_2.png" />
+    <Content Include="BetLists\Styles\images\minus_details.svg" />
+    <Content Include="BetLists\Styles\images\plus_details.svg" />
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
