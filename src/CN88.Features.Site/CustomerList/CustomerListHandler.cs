@@ -15,6 +15,7 @@
     using Features.Shared.Models;
     using Features.Shared.Services;
     using MediatR;
+    using Shared.Helpers;
     using Shared.ViewModels;
 
     public class CustomerListHandler :
@@ -30,19 +31,22 @@
         private readonly CustomerListService service;
         private readonly MemberStatementService statementService;
         private readonly SportGroupService sportService;
+        private readonly BrowserHelper browserHelper;
 
         public CustomerListHandler(
             CustomerListService service,
             MemberStatementService statementService,
-            SportGroupService sportService)
+            SportGroupService sportService,
+            BrowserHelper browserHelper)
         {
             this.sportService = sportService;
             this.service = service;
             this.statementService = statementService;
+            this.browserHelper = browserHelper;
         }
 
         public IndexViewModel Handle(IndexQuery message)
-            => new IndexViewModel(message);
+            => new IndexViewModel(message, browserHelper);
 
         public CustomerListViewModel Handle(CustomerListQuery message)
         {

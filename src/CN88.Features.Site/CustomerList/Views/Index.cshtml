@@ -28,9 +28,8 @@
         <a>@CustomerListResources.Member</a>
     </li>
 </ul>-->
-
 <!----------------- Mobile Tab view ---------------->
-<ul id="nav-tabs" class="nav @(true ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
+<ul id="nav-tabs" class="nav @(Model.IsMobile ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
         <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
@@ -54,10 +53,13 @@
 {
     <div class="tab-content display-none" level="@UserLevel.Master.Value">
         <div class="tab-panel active" role="tabpanel">
-            <div class="filter-mobile">
-                <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
-                <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
-            </div>
+            @if (Model.IsMobile)
+            {
+                <div class="filter-mobile">
+                    <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
+                    <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
+                </div>
+            }
             <div class="filter">
                 <div id="form-master" class="form-inline" role="form">
                     <div class="form-group">
@@ -76,7 +78,10 @@
                     <div class="form-group">
                         <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
-                    <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
+                    @if (!Model.IsMobile)
+                    {
+                        <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
+                    }
                 </div>
             </div>
 
@@ -107,10 +112,13 @@
 {
     <div class="tab-content display-none" level="@UserLevel.Agent.Value">
         <div class="tab-panel active" role="tabpanel">
-            <div class="filter-mobile">
-                <span class="icon-filter-down" id="agent-filter-toggle-icon"></span>
-                <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
-            </div>
+            @if (Model.IsMobile)
+            {
+                <div class="filter-mobile">
+                    <span class="icon-filter-down" id="agent-filter-toggle-icon"></span>
+                    <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
+                </div>
+            }
 
             <div class="filter">
                 <div id="form-agent" class="form-inline" role="form">
@@ -139,7 +147,10 @@
                         <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
                     <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-                    <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
+                    @if (!Model.IsMobile)
+                    {
+                        <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
+                    }
                 </div>
             </div>
 
@@ -168,10 +179,13 @@
 
 <div class="tab-content display-none" level="@UserLevel.Member.Value">
     <div class="tab-panel active" role="tabpanel">
-        <div class="filter-mobile">
-            <span class="icon-filter-down" id="member-filter-toggle-icon"></span>
-            <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
-        </div>
+        @if (Model.IsMobile)
+        {
+            <div class="filter-mobile">
+                <span class="icon-filter-down" id="member-filter-toggle-icon"></span>
+                <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
+            </div>
+        }
         <div class="filter">
             <div id="form-member" class="form-inline" role="form">
                 @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
@@ -199,7 +213,10 @@
                     <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                 </div>
                 <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-                <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
+                @if (!Model.IsMobile)
+                {
+                    <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
+                }
             </div>
         </div>
         <div id="member-container">
@@ -222,7 +239,7 @@
             </table>
             <div id="pager-member"></div>
         </div>
-        
+
     </div>
 </div>
 

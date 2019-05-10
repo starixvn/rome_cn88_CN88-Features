@@ -64,7 +64,7 @@
         pager: PagerComponent,
         topWindow: any,
         masterToggleHandler: ToggleHandler,
-        agentToggleHandler: ToggleHandler
+        agentToggleHandler: ToggleHandler,
         memberToggleHandler: ToggleHandler) {
         this.$ = $;
         this.topWindow = topWindow;
@@ -360,7 +360,7 @@ const customerList = new CustomerList(
     $,
     new SingleSelectionDropdownComponent($),
     numeral,
-    new PagerComponent($),    
+    new PagerComponent($),
     window.top,
     new ToggleHandler($),
     new ToggleHandler($),

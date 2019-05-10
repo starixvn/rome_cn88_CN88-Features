@@ -3,14 +3,18 @@
     using Alpha.Auth.Configurations;
     using Alpha.Web.Helpers;
     using Features.Shared.Models;
+    using Shared.Helpers;
 
     public class IndexViewModel
     {
         private IndexQuery query;
 
-        public IndexViewModel(IndexQuery query)
+        private readonly BrowserHelper browserHelper;
+
+        public IndexViewModel(IndexQuery query, BrowserHelper browserHelper)
         {
             this.query = query;
+            this.browserHelper = browserHelper;
         }
 
         public UserLevel ActorLevel => query.ActorLevel;
@@ -60,5 +64,7 @@
         private string SiteFeaturePath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("FeaturesAppPath"), "~");
 
         private string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~");
+
+        public bool IsMobile => browserHelper.IsMobile();
     }
 }
