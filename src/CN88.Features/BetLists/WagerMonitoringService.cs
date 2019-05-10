@@ -33,7 +33,6 @@
 
     public class WagerMonitoringServiceImpl : WagerMonitoringService
     {
-        private const int OneXTwoMoneylineDisplayBetTypeGroup = 5;
         private const string MonitorSportGroupsCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.MonitorSportGroups";
         private const string MonitorBetTypeGroupsCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.MonitorBetTypeGroups";
         private const string MatchesCacheKey = "CN88.Features.BetLists.WagerMonitoringServiceImpl.Matches";
@@ -205,24 +204,22 @@
 
                     foreach (var id in displayBetTypeGroups)
                     {
-                        if (id == OneXTwoMoneylineDisplayBetTypeGroup)
-                        {
-                            displayBetTypeNames.Add(id, BetListsResources.OneXTwoMoneyline);
-                        }
-                        else
-                        {
-                            displayBetTypeNames.Add(id, cacheRefService.GetBetTypeName(id));
-                        }
+                        displayBetTypeNames.Add(id, cacheRefService.GetBetTypeName(id));
                     }
 
                     foreach (var betTypeGroup in betTypeGroups)
                     {
-                        betTypeGroup.DisplayName = displayBetTypeNames[betTypeGroup.DisplayBetTypeGroup];
+                        betTypeGroup.DisplayName = IsOneXTwoMoneyline(betTypeGroup)
+                            ? BetListsResources.OneXTwoMoneyline
+                            : displayBetTypeNames[betTypeGroup.DisplayBetTypeGroup];
                     }
 
                     return betTypeGroups;
                 },
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
+
+        private bool IsOneXTwoMoneyline(MonitorBetTypeGroup betTypeGroup)
+            => betTypeGroup.SportTypeGroup == 0 && betTypeGroup.DisplayBetTypeGroup == 5;
 
         private static bool IsDummyMatch(int matchId) => matchId <= 999;
 
