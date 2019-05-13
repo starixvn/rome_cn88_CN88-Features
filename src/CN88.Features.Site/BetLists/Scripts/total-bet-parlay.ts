@@ -7,13 +7,15 @@
     viewModeSelectionComponent: SingleSelectionDropdownComponent;
     cleaveStakeLimit: any;
     $stakeLimit: JQuery;
+    toggleHandler: ToggleHandler;
 
     constructor(
         $: JQueryStatic,
         pagerComponent: ClientPagerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         stakeModeSelectionComponent: SingleSelectionDropdownComponent,
-        viewModeSelectionComponent: SingleSelectionDropdownComponent) {
+        viewModeSelectionComponent: SingleSelectionDropdownComponent,
+        toggleHandler: ToggleHandler) {
         this.$ = $;
         this.pagerComponent = pagerComponent;
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
@@ -21,6 +23,7 @@
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
         this.stakeModeSelectionComponent = stakeModeSelectionComponent;
         this.viewModeSelectionComponent = viewModeSelectionComponent;
+        this.toggleHandler = toggleHandler;
     }
 
     init = () => {
@@ -41,6 +44,8 @@
         this.$stakeLimit = this.$("#StakeLimit");
         this.$("#report-form").submit(this.onReportSubmit);
         this.$.unblockUI();
+
+        this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "totalbet-parlay-report"));
     };
 
     onReportSubmit = () => {
@@ -59,6 +64,7 @@ $(document).ready(() => {
         new ClientPagerComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new SingleSelectionDropdownComponent($));
+        new SingleSelectionDropdownComponent($),
+        new ToggleHandler($));
     totalBetParlay.init();
 })

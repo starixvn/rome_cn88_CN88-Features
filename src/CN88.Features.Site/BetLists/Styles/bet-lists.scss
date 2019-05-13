@@ -334,12 +334,31 @@
     }
 }
 
+.totalbet-parlay-title {
+    display: none;
+}
+
 @media (max-device-width: 767px) {
     .filter {
         display: none;
 
         .form-group .control.date {
             width: 100%;
+        }
+
+        .dropdown-stake-condition {
+            display: table;
+
+            .btn-group {
+                float: left;
+                width: 30%;
+            }
+
+            input[type='text'] {
+                float: left;
+                width: 66%;            
+                margin-left: 4%;
+            }
         }
 
         .btn-submit {
@@ -434,4 +453,18 @@
             min-width: 100%;
         }
     }
+
+    // Total-parlay
+
+    .totalbet-parlay-title {
+        display: table;
+        width: 100%;
+        padding-left: 12px;
+        margin-top: 10px;
+
+        [class^="icon-filter"] {
+            float: left;
+        }
+    }
+    
 }
