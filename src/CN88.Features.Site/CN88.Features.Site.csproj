@@ -928,7 +928,7 @@
     <Content Include="BetLists\Styles\wager-monitor-console.scss" />
     <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
-    <Content Include="BetLists\bundles\TPBTLOW.ogg" />
+    <Content Include="BetLists\Content\audio\TPBTLOW.ogg" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
