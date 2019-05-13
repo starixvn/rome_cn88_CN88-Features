@@ -8,7 +8,9 @@
     <table class="tbl-noborder tbl-report" id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
-           data-descendingsort="@Model.IsDescendingSort">
+           data-descendingsort="@Model.IsDescendingSort"
+           data-numberofsettlementcolumns="@(Model.IsNotOwner ? "11" : "5")"
+           data-numberofvalidstakecolumns="8">
         <thead class="tableFloatingHeaderOriginal">
             <tr>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username"><span class="sorting-item">@ReportResources.SMAUsername</span></th>
@@ -102,7 +104,7 @@
         {
             <tbody>
                 <tr>
-                    <td colspan="@(Model.IsSettlement? (Model.IsNotOwner?"11":"5"):"8")" align="center">@SharedResources.NoInformationIsAvailable</td>
+                    <td id="no-data-row" colspan="@(Model.IsSettlement? (Model.IsNotOwner?"11":"5"):"8")" align="center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             </tbody>
         }
