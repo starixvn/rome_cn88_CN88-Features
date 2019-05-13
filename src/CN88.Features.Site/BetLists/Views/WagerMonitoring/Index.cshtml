@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
+@using CN88.Features.Shared.Configurations
 @using Fanex.BetList.Core.Entities
 @using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 @model WagerMonitoringViewModel
@@ -13,7 +14,7 @@
         <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
         <div class="btn-function"><span class="icon-audio-speaker icon-audio-speaker-on"></span><span id="icon-audio-text">@SharedResources.On</span></div>
         <audio controls="controls" class="hide" id="sound">
-            <source src="../BetLists/Content/audio/TPBTLOW.ogg" type="audio/ogg" />
+            <source src="@AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/Content/audio/TPBTLOW.ogg")" type="audio/ogg" />
         </audio>
     </div>
     <div class="page-title">
