@@ -33,12 +33,6 @@ class MultiSelectionCheckboxComponent {
         this.$checkboxes = $checkboxes;
         this.$checkboxAll.change(function () {
             $checkboxes.prop("checked", this.checked);
-
-            if (this.checked) {
-                $checkboxes.attr("disabled", "disabled");
-            } else {
-                $checkboxes.removeAttr("disabled");
-            }
         });
 
         $checkboxes.on("click touchend", function () {
@@ -61,7 +55,6 @@ class MultiSelectionCheckboxComponent {
 
         if (isAllChecked) {
             this.$checkboxAll.prop("checked", true);
-            this.$checkboxes.attr("disabled", "disabled");
         }
     };
 
@@ -117,7 +110,6 @@ class MultiSelectionCheckboxComponent {
                 chk.parent().addClass("hide");
             } else {
                 chk.prop("checked", true);
-                chk.removeAttr("disabled");
                 chk.parent().removeClass("hide");
             }
         });
@@ -129,7 +121,6 @@ class MultiSelectionCheckboxComponent {
         this.$checkboxes.each(function () {
             let chk = this$(this);
             chk.prop("checked", true);
-            chk.attr("disabled", "disabled");
             chk.parent().removeClass("hide");
         });
     }

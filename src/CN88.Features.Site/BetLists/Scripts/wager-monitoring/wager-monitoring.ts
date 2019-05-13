@@ -252,7 +252,7 @@
         };
 
         this.ajaxRequest = this.$.ajax({
-            method: "GET",
+            method: "POST",
             data: param,
             url: this.getBetsUrl,
             success: (result) => { this.successGetLastBets(result) },

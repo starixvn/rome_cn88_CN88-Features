@@ -51,7 +51,7 @@ class FilterModal {
         this.$.blockUI();
         this.isOpeningFilter = true;
         this.$.ajax({
-            method: "GET",
+            method: "POST",
             url: this.$filterModalPath.val(),
             cache: false,
             data: this.filterParam,
@@ -179,14 +179,12 @@ class FilterModal {
 
     clickCheckboxAll = (groupItems, allCheckbox) => {
         if (allCheckbox.checked) {
-            groupItems.attr("disabled", "disabled");
             groupItems.prop("checked", true);
 
             this.betTypeMultiSelectionComponent.isCheckAll();
             return;
         }
 
-        groupItems.attr("disabled", null);
         groupItems.prop("checked", false);
     };
 
@@ -201,7 +199,6 @@ class FilterModal {
 
         if (isAllChecked) {
             allCheckbox.prop("checked", true);
-            groupItems.attr("disabled", "disabled");
         }
     };
 

@@ -21,11 +21,11 @@
         public async Task<ActionResult> Index(WagerMonitoringQuery message)
             => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/Index.cshtml");
 
-        [HttpGet, RestrictHeadlineFilter]
+        [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> FilterModal(WagerMonitoringFilterQuery message)
             => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/FilterModal.cshtml");
 
-        [HttpGet, RestrictHeadlineFilter]
+        [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> LastBets(WagerMonitoringQuery message)
             => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/LastBets.cshtml");
 
