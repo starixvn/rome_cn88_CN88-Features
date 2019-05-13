@@ -25,6 +25,7 @@
             IEnumerable<SelectListItemExt> sportGroups,
             IEnumerable<SelectListItemExt> stakeModes,
             IEnumerable<SelectListItemExt> viewModes,
+            bool isMobile,
             string[] excludingTicketStatus = null)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
@@ -59,6 +60,8 @@
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             TotalPayout = BetListData.Tickets.Sum(ticket => ticket.Payout) / Divisor;
+
+            IsMobile = isMobile;
         }
 
         public UserLevel CustLevel { get; }
@@ -76,6 +79,8 @@
         public IBetListHTMLBuilder Builder { get; }
 
         public IBetListCN88HtmlBuilder CN88Builder { get; }
+
+        public bool IsMobile { get; }
 
         public bool DisplayVNIP { get; }
 

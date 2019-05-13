@@ -8,6 +8,7 @@
     cleaveStakeLimit: any;
     $stakeLimit: JQuery;
     toggleHandler: ToggleHandler;
+    isMobile: boolean;
 
     constructor(
         $: JQueryStatic,
@@ -46,6 +47,7 @@
         this.$.unblockUI();
 
         this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "totalbet-parlay-report"));
+        this.isMobile = this.$("#isMobile").val() == "True";
     };
 
     onReportSubmit = () => {
