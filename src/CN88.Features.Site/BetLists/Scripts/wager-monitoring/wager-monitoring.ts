@@ -162,9 +162,11 @@
             if (this.isSpeakOn) {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-off").addClass("icon-audio-speaker-on");
                 this.$iconSpeakerText.text(this.resources.lblOn);
+                this.$iconSpeaker.parent().removeClass("off").addClass("on");
             } else {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-on").addClass("icon-audio-speaker-off");
                 this.$iconSpeakerText.text(this.resources.lblOff);
+                this.$iconSpeaker.parent().removeClass("on").addClass("off");
             }
 
             this.$sound.play();

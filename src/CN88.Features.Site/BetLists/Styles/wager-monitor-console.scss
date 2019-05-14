@@ -1,29 +1,36 @@
 ﻿.wager-monitoring {
     position: relative;
+
     .page-title {
         margin-top: 20px;
     }
+
     .form-group {
         margin-right: 32px;
     }
+
     .filter {
         padding-top: 0;
     }
 }
+
 .function-group {
     position: absolute;
     right: 16px;
     z-index: 1049;
     display: flex;
     align-items: center;
+
     .icon-delete {
         &:after {
             content: none;
         }
     }
+
     .icon-pause {
         font-size: 10px !important;
     }
+
     .btn-function {
         border-radius: 50%;
         text-align: center;
@@ -34,15 +41,28 @@
         border: 1px solid #c8c8c8;
         font-size: 10px;
         padding: 6px;
+
         &:last-child {
             margin-right: 0;
         }
+
         &:hover {
             background-color: #27a67b;
             color: #fff;
             border: none;
         }
     }
+
+    .btn-function.on {
+        background-color: #27a67b;
+        color: #fff;
+    }
+
+    .btn-function.off {
+        background-color: #a5a5a5;
+        color: #fff;
+    }
+
     [class*="icon-"] {
         display: block;
         margin-bottom: 4px;
@@ -55,14 +75,17 @@
     height: 730px;
     position: relative;
     padding-bottom: 62px;
+
     .modal-title, .filter-tabs {
         display: inline-block;
         vertical-align: middle;
     }
+
     .modal-title {
         position: relative;
+
         &:after {
-            content:'';
+            content: '';
             width: 1px;
             height: 20px;
             background-color: #fff;
@@ -70,17 +93,19 @@
             right: 0;
             top: 10px;
         }
+
         .icon-filter {
             margin-right: 12px;
             font-size: 12px;
         }
     }
-        
+
     .modal-footer {
         position: absolute;
         bottom: 0;
         width: 100%;
     }
+
     .modal-body {
         height: calc(100% - 40px - 62px);
         overflow: auto;
@@ -91,33 +116,38 @@
 .nav-tabs.filter-tabs {
     border-bottom: none;
     margin-left: 20px;
+
     li {
         position: relative;
+
         a {
             padding: 13px 12px 9px;
             color: #fff;
         }
-         &:hover, &.active  {
-                &:after {
-                    background-color: #7e1414;
-                    width: 0;
-                    height: 0;
-                    border-left: 8px solid transparent;
-                    border-right: 8px solid transparent;
-                    border-bottom: 8px solid #fff;
-                    content: " ";
-                    position: absolute;
-                    bottom: -1px;
-                    left: 50%;
-                    margin-left: -8px;
-                }
-                a {
-                    color: #FF9999;
-                    text-decoration: none;
-                }
+
+        &:hover, &.active {
+            &:after {
+                background-color: #7e1414;
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid #fff;
+                content: " ";
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                margin-left: -8px;
             }
-    } 
+
+            a {
+                color: #FF9999;
+                text-decoration: none;
+            }
+        }
+    }
 }
+
 .tab-content {
     input[type="checkbox"], input[type="radio"] {
         position: relative;
@@ -132,21 +162,27 @@
     flex-wrap: wrap;
     padding-left: 12px;
     margin-top: 8px;
+
     &.list-event .item {
         flex: 0 0 50%;
     }
+
     &.list-stake {
         padding-left: 20px;
+
         .item {
             padding: 0;
         }
     }
+
     &.list-market {
         display: block;
     }
+
     &.list-bettype {
         padding-left: 0;
     }
+
     .item {
         flex: 0 0 33.33%;
         padding: 6px 20px 6px 0;
@@ -154,20 +190,25 @@
         align-items: flex-start;
         line-height: 18px;
     }
+
     &.list-block > .item {
         flex-basis: 100%;
+
         &.sport-item {
             padding: 4px 0;
             align-items: center;
         }
+
         &.bettype-group {
             display: block;
             padding: 0;
+
             .group-name {
                 padding: 5px 12px;
                 background-color: #eeeeee;
                 text-transform: uppercase;
             }
+
             .group-details {
                 padding: 2px 24px;
                 list-style: none;
@@ -177,15 +218,19 @@
             }
         }
     }
+
     .dropdown-stake-condition {
         display: inline-block;
+
         input[type="text"] {
             margin-left: 6px;
         }
-        label {            
+
+        label {
             font-weight: normal;
         }
     }
+
     .sport-name {
         width: 200px;
         font-weight: normal;
@@ -194,7 +239,7 @@
 
 .btn-secondary {
     background-color: #e56f35;
-} 
+}
 
 .search-group {
     width: 250px;
