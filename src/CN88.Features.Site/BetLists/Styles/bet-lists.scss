@@ -338,6 +338,10 @@
     display: none;
 }
 
+.new-page-header {
+    display: none;
+}
+
 @media (max-device-width: 767px) {
     .filter {
         display: none;
@@ -476,4 +480,24 @@
         }
     }
     
+    .new-page-header {
+        display: block;
+    }
+
+    .betlist-wager-details {
+        .page-title {
+            display: none;
+        }
+
+        .nav-tabs {
+            display: table;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .nav-tabs > li {
+            float: none;
+            display: table-cell;
+        } 
+    }
 }
