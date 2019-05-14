@@ -221,7 +221,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerByAccountViewModel Handle(StartedWagerByAccountQuery message)

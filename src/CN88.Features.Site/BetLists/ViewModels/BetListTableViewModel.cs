@@ -33,6 +33,8 @@
 
         public bool IsShowPayout { get; protected set; }
 
+        public bool IsShowWinLoss { get; protected set; } = true;
+
         public decimal CompanyPositionTaking(TicketDto ticket)
             => 1 - ticket.AgentPositionTaking - ticket.MasterPositionTaking - ticket.SuperPositionTaking;
 

@@ -40,7 +40,7 @@
 
                 if (_mobileCheck.IsMatch(u) || _mobileVersionCheck.IsMatch(u.Substring(0, 4)))
                 {
-                    return true;
+                    return !IsTablet();
                 }
             }
 

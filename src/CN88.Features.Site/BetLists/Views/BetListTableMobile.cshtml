@@ -15,7 +15,11 @@
         <tr>
             <th class="text-left col-details">@BetListsResources.Details</th>
             <th class="text-right">@BetListsResources.Stake</th>
-            <th class="text-right">@BetListsResources.WinLoss</th>
+            
+            @if (Model.IsShowWinLoss)
+            {
+                <th class="text-right">@BetListsResources.WinLoss</th>
+            }
 
             @if (Model.IsShowPayout)
             {
@@ -70,11 +74,14 @@
                         <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
                     }
 
-                    <td class="text-right">
-                        @(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))
-                        <br />
-                        @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
-                    </td>
+                    @if (Model.IsShowWinLoss)
+                    {
+                        <td class="text-right">
+                            @(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))
+                            <br />
+                            @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
+                        </td>
+                    }
 
                     <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
 
@@ -112,7 +119,12 @@
     <tr class="total">
         <th>@BetListsResources.Total: @Model.BetListData.Total.ToString("#,##0")</th>
         <th class="text-right">@Html.Raw(stake)</th>
-        <th class="text-right winloss">@Html.Raw(winLoss)</th>
+
+        @if (Model.IsShowWinLoss)
+        { 
+            <th class="text-right winloss">@Html.Raw(winLoss)</th>
+        }
+
         @if (Model.IsShowPayout)
         {
             <th class="text-right">@Model.TotalPayoutText</th>
@@ -120,7 +132,7 @@
 
     </tr>
 
-    if (!Model.IsShowPayout)
+    if (!Model.IsShowPayout && Model.IsShowWinLoss)
     {
         <tr class="winloss-comm">
             <th colspan="@Model.TotalColColspan">@BetListsResources.WinLossWithCommission</th>
