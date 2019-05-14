@@ -5,6 +5,7 @@
     using CN88.Features.Shared.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
+    using Fanex.BetList.Core.Utils;
 
     public class BetListTableViewModel
     {
@@ -30,7 +31,15 @@
 
         public bool IsMobile { get; protected set; }
 
+        public bool IsShowPayout { get; protected set; }
+
         public decimal CompanyPositionTaking(TicketDto ticket)
             => 1 - ticket.AgentPositionTaking - ticket.MasterPositionTaking - ticket.SuperPositionTaking;
+
+        public int TotalColColspan { get; protected set; } = 2;
+
+        public decimal TotalPayout { get; protected set; }
+
+        public string TotalPayoutText => ConvertByBetType.Winloss(TotalPayout);
     }
 }

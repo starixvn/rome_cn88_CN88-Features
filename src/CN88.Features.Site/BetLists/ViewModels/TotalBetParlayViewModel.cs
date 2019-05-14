@@ -9,12 +9,11 @@
     using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
-    using Features.Shared.Models;
     using Requests;
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class TotalBetParlayViewModel
+    public class TotalBetParlayViewModel : BetListTableViewModel
     {
         public TotalBetParlayViewModel(
             TotalBetParlayQuery message,
@@ -62,27 +61,9 @@
             TotalPayout = BetListData.Tickets.Sum(ticket => ticket.Payout) / Divisor;
 
             IsMobile = isMobile;
+
+            IsShowPayout = true;
         }
-
-        public UserLevel CustLevel { get; }
-
-        public string CustName { get; }
-
-        public int NoOfColumns { get; }
-
-        public BetListData BetListData { get; }
-
-        public BetListTotal BetListTotal { get; }
-
-        public ITicketHelper TicketHelper { get; }
-
-        public IBetListHTMLBuilder Builder { get; }
-
-        public IBetListCN88HtmlBuilder CN88Builder { get; }
-
-        public bool IsMobile { get; }
-
-        public bool DisplayVNIP { get; }
 
         public int PageIndex { get; }
 
@@ -100,8 +81,6 @@
 
         public byte ViewerLevelId { get; }
 
-        public int Divisor { get; }
-
         public int SportGroupId { get; }
 
         public int ViewMode { get; }
@@ -117,9 +96,5 @@
         public StakeSelectionViewModel StakeSelectionViewModel { get; }
 
         public SingleSelectionViewModel ViewModeSelectionViewModel { get; }
-
-        public decimal TotalPayout { get; }
-
-        public string TotalPayoutStr => ConvertByBetType.Winloss(TotalPayout);
     }
 }

@@ -29,8 +29,17 @@
 
     init = () => {
         this.$.blockUI();
+        this.isMobile = this.$("#isMobile").val() == "True";
 
-        this.pagerComponent.render();
+        if (this.isMobile) {
+            this.$("#tbl-report").stacktable();
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
+            this.$('body').backtop();
+        }
+        else {
+            this.pagerComponent.render();
+        }
+
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "SportGroupId"));
         this.stakeModeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-stake-mode", "StakeMode"));
         this.viewModeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-view-mode", "ViewMode"));
@@ -47,7 +56,6 @@
         this.$.unblockUI();
 
         this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "totalbet-parlay-report"));
-        this.isMobile = this.$("#isMobile").val() == "True";
     };
 
     onReportSubmit = () => {

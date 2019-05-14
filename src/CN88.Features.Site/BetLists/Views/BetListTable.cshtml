@@ -1,4 +1,6 @@
-﻿@model BetListTableViewModel
+﻿@using CN88.Features.Site.BetLists.Helpers
+@using Fanex.BetList.Core.Utils
+@model BetListTableViewModel
 
 <table id="tbl-report" class="tbl-noborder tbl-betlists">
     <thead>
@@ -9,6 +11,10 @@
             <th class="text-left">@BetListsResources.Details</th>
             <th class="text-right">@BetListsResources.Stake</th>
             <th class="text-right">@BetListsResources.WinLoss</th>
+            @if (Model.IsShowPayout)
+            {
+                <th class="text-right">@BetListsResources.EstPayout</th>
+            }
             <th class="text-center">@BetListsResources.Status</th>
 
             @if (Model.CustLevel.IsAgentLevel())
@@ -34,7 +40,20 @@
         {
             var total = Model.BetListTotal;
 
-            @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
+            if (Model.IsShowPayout)
+            {
+                <tr class="total">
+                    <th colspan="3">@BetListsResources.Total</th>
+                    <th>@Model.BetListData.Total.ToString("#,##0")</th>
+                    <th class="text-right">@(new HtmlString(Model.BetListTotal.TotalStakeStr))</th>
+                    <th class="text-right">@(new HtmlString(Model.TotalPayoutText))</th>
+                    <th colspan="@(Model.NoOfColumns - 4)"></th>
+                </tr>
+            }
+            else
+            {
+                @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
+            }
         }
     </thead>
     <tbody>
@@ -52,6 +71,10 @@
                     @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
                     @BetLists.Stake.Render(ticket, Model.Divisor)
                     @BetLists.WinLoss.Render(ticket, Model.Divisor)
+                    @if (Model.IsShowPayout)
+                    {
+                        <td class="stake-block bl_underdog text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / Model.Divisor)))</td>
+                    }
                     @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
 
                     @if (Model.CustLevel.IsAgentLevel())

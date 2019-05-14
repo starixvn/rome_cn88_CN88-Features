@@ -17,6 +17,11 @@
             <th class="text-right">@BetListsResources.Stake</th>
             <th class="text-right">@BetListsResources.WinLoss</th>
 
+            @if (Model.IsShowPayout)
+            {
+                <th class="text-right">@BetListsResources.EstPayout</th>
+            }
+
             @if (Model.CustLevel.IsAgentLevel())
             {
                 <th class="text-right" data-stack-column="true">@BetListsResources.AgentPercent</th>
@@ -40,7 +45,7 @@
         {
             var total = Model.BetListTotal;
 
-            @RenderBetListTotal(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
+            @RenderBetListTotal(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr)
         }
     </thead>
     <tbody>
@@ -60,15 +65,18 @@
                         @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
                         @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
                     </td>
-
-                    <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
-
+                    @if (Model.IsShowPayout)
+                    {
+                        <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
+                    }
 
                     <td class="text-right">
                         @(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))
                         <br />
                         @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
                     </td>
+
+                    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
 
                     @if (Model.CustLevel.IsAgentLevel())
                     {
@@ -99,15 +107,24 @@
 </table>
 
 
-@helper RenderBetListTotal(string winLoss, string stake, string total, int noOfDetails, int numberOfColumns)
+@helper RenderBetListTotal(string winLoss, string stake, string total)
 {
     <tr class="total">
-        <th>@BetListsResources.Total: @noOfDetails.ToString("#,##0")</th>
+        <th>@BetListsResources.Total: @Model.BetListData.Total.ToString("#,##0")</th>
         <th class="text-right">@Html.Raw(stake)</th>
         <th class="text-right winloss">@Html.Raw(winLoss)</th>
+        @if (Model.IsShowPayout)
+        {
+            <th class="text-right">@Model.TotalPayoutText</th>
+        }
+
     </tr>
-    <tr class="winloss-comm">
-        <th colspan="2">@BetListsResources.WinLossWithCommission</th>
-        <th class="text-right">@Html.Raw(total)</th>
-    </tr>
+
+    if (!Model.IsShowPayout)
+    {
+        <tr class="winloss-comm">
+            <th colspan="@Model.TotalColColspan">@BetListsResources.WinLossWithCommission</th>
+            <th class="text-right">@Html.Raw(total)</th>
+        </tr>
+    }
 }
