@@ -5,6 +5,9 @@
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
 @model OldIndexViewModel
+<div class="new-page-header">
+    @ReportResources.OldReport
+</div>
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" id="wager-tab" class="active">
         <a data-toggle="tab" href="#wagerReport" data-defaulttype="@ReportTypeConstants.SettledWager">Wager</a>
