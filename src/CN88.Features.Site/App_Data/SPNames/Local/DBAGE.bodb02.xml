@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Shared">
-    <Setting Key="CS_SportType_Sel" SpName="CS_SportType_Sel_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_BetType_Sel" SpName="CS_BetType_Sel_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_SportType_Sel" SpName="CS_SportType_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_BetType_Sel" SpName="CS_BetType_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="BetTypeGroup" ObjectProperty="Id" />
     </Setting>
     <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_SelArchiveDate" SpName="CS_SelArchiveDate_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_SelArchiveDate" SpName="CS_SelArchiveDate" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Reports">
-    <Setting Key="CS_Rpt_Winloss_Member" SpName="CS_Rpt_Winloss_Member_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_Rpt_Winloss_Member" SpName="CS_Rpt_Winloss_Member" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="AgentResultA" ObjectProperty="AgentResult"></Mapping>
     </Setting>
-    <Setting Key="CS_Rpt_Winloss_Agent" SpName="CS_Rpt_Winloss_Agent_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_Winloss_Master" SpName="CS_Rpt_Winloss_Master_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_Winloss_Super" SpName="CS_Rpt_Winloss_Super_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_Cancelled_Member" SpName="CS_Rpt_Cancelled_Member_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_Rpt_Winloss_Agent" SpName="CS_Rpt_Winloss_Agent" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Winloss_Master" SpName="CS_Rpt_Winloss_Master" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Winloss_Super" SpName="CS_Rpt_Winloss_Super" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Cancelled_Member" SpName="CS_Rpt_Cancelled_Member" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="AgentResultA" ObjectProperty="AgentResult"></Mapping>
     </Setting>
-    <Setting Key="CS_Rpt_Cancelled_Agent" SpName="CS_Rpt_Cancelled_Agent_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_Cancelled_Master" SpName="CS_Rpt_Cancelled_Master_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_Cancelled_Super" SpName="CS_Rpt_Cancelled_Super_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_SettlementSummary" SpName="CS_Rpt_SettlementSummary_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_MemberStatement_Sel" SpName="CS_Rpt_MemberStatement_Sel_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Cancelled_Agent" SpName="CS_Rpt_Cancelled_Agent" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Cancelled_Master" SpName="CS_Rpt_Cancelled_Master" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Cancelled_Super" SpName="CS_Rpt_Cancelled_Super" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_SettlementSummary" SpName="CS_Rpt_SettlementSummary" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_MemberStatement_Sel" SpName="CS_Rpt_MemberStatement_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Alpha.Auth">
     <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Bet Lists">
-    <Setting Key="CS_BetList_WinLoss_Mem" SpName="CS_BetList_WinLoss_Mem_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_WinLoss_Mem" SpName="CS_BetList_WinLoss_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -55,7 +55,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="CS_BetList_CancelledBet_Mem" SpName="CS_BetList_CancelledBet_Mem_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_CancelledBet_Mem" SpName="CS_BetList_CancelledBet_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -81,7 +81,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="CS_BetList_AbnormalBet_Mem" SpName="CS_BetList_AbnormalBet_Mem_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_AbnormalBet_Mem" SpName="CS_BetList_AbnormalBet_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -107,7 +107,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="CS_BetList_Statement_Mem" SpName="CS_BetList_Statement_Mem_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_Statement_Mem" SpName="CS_BetList_Statement_Mem" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
