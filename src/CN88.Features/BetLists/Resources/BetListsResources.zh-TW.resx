@@ -276,4 +276,22 @@
   <data name="AllLeagues" xml:space="preserve">
     <value>所有聯盟</value>
   </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>所有賽事</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>篩選</value>
+  </data>
+  <data name="MainMarkets" xml:space="preserve">
+    <value>主要盤口</value>
+  </data>
+  <data name="OtherMarkets" xml:space="preserve">
+    <value>其他盤口</value>
+  </data>
+  <data name="WagerMonitoringConsole" xml:space="preserve">
+    <value>監視注單控制台</value>
+  </data>
+  <data name="OneXTwoMoneyline" xml:space="preserve">
+    <value>獨贏盤 / 勝負盤</value>
+  </data>
 </root>

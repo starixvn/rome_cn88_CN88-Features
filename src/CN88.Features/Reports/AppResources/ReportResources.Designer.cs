@@ -349,20 +349,20 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Old Report.
-        /// </summary>
-        public static string OldReport {
-            get {
-                return ResourceManager.GetString("OldReport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Non-Sport Product Possess.
         /// </summary>
         public static string NonSportsProductPossess {
             get {
                 return ResourceManager.GetString("NonSportsProductPossess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Report.
+        /// </summary>
+        public static string OldReport {
+            get {
+                return ResourceManager.GetString("OldReport", resourceCulture);
             }
         }
         

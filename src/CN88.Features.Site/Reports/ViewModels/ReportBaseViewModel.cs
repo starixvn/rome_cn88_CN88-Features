@@ -1,8 +1,10 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
+    using Constants;
     using Features.BetLists.Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -43,10 +45,7 @@
 
         public UserLevel ReportLevel => query.CustLevel;
 
-        public string SortPropertyName
-            => string.IsNullOrWhiteSpace(query.SortPropertyName)
-                ? DefaultSortPropertyName
-                : query.SortPropertyName;
+        public string SortPropertyName => GetSortedProperty(ReportLevel, query.SortPropertyName);
 
         public bool IsDescendingSort => query.IsDescendingSort;
 
@@ -177,5 +176,17 @@
 
         private int GetBetListType(int reportType)
             => BetListTypes[reportType];
+
+        private string GetSortedProperty(UserLevel reportLevel, string sortedProperty)
+        {
+            if (string.IsNullOrWhiteSpace(sortedProperty))
+            {
+                return DefaultSortPropertyName;
+            }
+
+            var sortProperties = ReportSortPropertyConstants.SortPropertiesByLevel[reportLevel];
+
+            return sortProperties.Contains(sortedProperty, StringComparer.OrdinalIgnoreCase) ? sortedProperty : DefaultSortPropertyName;
+        }
     }
 }

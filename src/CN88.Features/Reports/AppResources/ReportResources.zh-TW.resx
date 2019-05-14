@@ -271,4 +271,10 @@
   <data name="Reports" xml:space="preserve">
     <value>報表</value>
   </data>
+  <data name="SportsbookPossess" xml:space="preserve">
+    <value>體育博彩佔成數</value>
+  </data>
+  <data name="NonSportsProductPossess" xml:space="preserve">
+    <value>非體育產品佔成數</value>
+  </data>
 </root>
