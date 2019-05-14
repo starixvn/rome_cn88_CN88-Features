@@ -71,11 +71,24 @@
 
         public async Task<IEnumerable<MatchInfo>> GetMatches(int sportGroup)
         {
-            var matches = await GetOtherMatches();
+            var matches = sportGroup == SportGroupConstants.AllSports
+                ? await GetOtherMatches()
+                : (await GetOtherMatches()).Where(m => m.SportTypeGroup == sportGroup);
 
-            return sportGroup == SportGroupConstants.AllSports 
-                ? matches 
-                : matches.Where(m => m.SportTypeGroup == sportGroup);
+            var matchIds = matches.Select(m => m.HomeId).Union(matches.Select(m => m.AwayId)).Distinct();
+            var matchNames = new Dictionary<int, string>();
+
+            foreach (var id in matchIds)
+            {
+                matchNames.Add(id, cacheRefService.GetTeamName(id));
+            }
+
+            foreach (var match in matches)
+            {
+                match.MatchName = $"{matchNames[match.HomeId]} v {matchNames[match.AwayId]}";
+            }
+
+            return matches;
         }
 
         private async Task<IEnumerable<MatchInfo>> GetAllMatches(int sportGroup)
@@ -93,7 +106,26 @@
         }
 
         public async Task<IEnumerable<MonitorBetTypeGroup>> GetBetTypeGroupsBySport(int sportGroup)
-            => (await GetBetTypeGroups()).Where(group => group.SportTypeGroup == sportGroup);
+        {
+            var betTypeGroups = (await GetBetTypeGroups()).Where(group => group.SportTypeGroup == sportGroup);
+
+            var displayBetTypeGroups = betTypeGroups.Select(g => g.DisplayBetTypeGroup).Distinct();
+            var displayBetTypeNames = new Dictionary<int, string>();
+
+            foreach (var id in displayBetTypeGroups)
+            {
+                displayBetTypeNames.Add(id, cacheRefService.GetBetTypeName(id));
+            }
+
+            foreach (var betTypeGroup in betTypeGroups)
+            {
+                betTypeGroup.DisplayName = IsOneXTwoMoneyline(betTypeGroup)
+                    ? BetListsResources.OneXTwoMoneyline
+                    : displayBetTypeNames[betTypeGroup.DisplayBetTypeGroup];
+            }
+
+            return betTypeGroups;
+        }
 
         public async Task<IEnumerable<TicketDto>> GetMonitorBets(WagerMonitoringParam param)
         {
@@ -132,24 +164,7 @@
         public async Task<IEnumerable<MatchInfo>> GetOtherMatches()
             => await ConfiguredCacheService.GetOrSetAsync(
                 OtherMatchesCacheKey,
-                () =>
-                {
-                    var matches = dynamicRepository.Fetch<MatchInfo>(new GetOtherMatchCriteria(AppSettings.IsTest));
-                    var matchIds = matches.Select(m => m.HomeId).Union(matches.Select(m => m.AwayId)).Distinct();
-                    var matchNames = new Dictionary<int, string>();
-
-                    foreach (var id in matchIds)
-                    {
-                        matchNames.Add(id, cacheRefService.GetTeamName(id));
-                    }
-
-                    foreach (var match in matches)
-                    {
-                        match.MatchName = $"{matchNames[match.HomeId]} v {matchNames[match.AwayId]}";
-                    }
-
-                    return matches;
-                },
+                () => dynamicRepository.Fetch<MatchInfo>(new GetOtherMatchCriteria(AppSettings.IsTest)),
                 new CacheItemOptions().SetAbsoluteExpiration(
                     TimeSpan.FromMinutes(AppSettings.WagerMonitoringExpirationCacheInMinutes)));
 
@@ -198,26 +213,7 @@
         private async Task<IEnumerable<MonitorBetTypeGroup>> GetBetTypeGroups()
             => await ConfiguredCacheService.GetOrSetAsync(
                 MonitorBetTypeGroupsCacheKey,
-                () =>
-                {
-                    var betTypeGroups = dynamicRepository.Fetch<MonitorBetTypeGroup>(new GetMonitorBetTypeGroupCriteria());
-                    var displayBetTypeGroups = betTypeGroups.Select(g => g.DisplayBetTypeGroup).Distinct();
-                    var displayBetTypeNames = new Dictionary<int, string>();
-
-                    foreach (var id in displayBetTypeGroups)
-                    {
-                        displayBetTypeNames.Add(id, cacheRefService.GetBetTypeName(id));
-                    }
-
-                    foreach (var betTypeGroup in betTypeGroups)
-                    {
-                        betTypeGroup.DisplayName = IsOneXTwoMoneyline(betTypeGroup)
-                            ? BetListsResources.OneXTwoMoneyline
-                            : displayBetTypeNames[betTypeGroup.DisplayBetTypeGroup];
-                    }
-
-                    return betTypeGroups;
-                },
+                () => dynamicRepository.Fetch<MonitorBetTypeGroup>(new GetMonitorBetTypeGroupCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
 
         private bool IsOneXTwoMoneyline(MonitorBetTypeGroup betTypeGroup)

@@ -17,7 +17,9 @@ class FilterModal {
     $filterModalContainer: JQuery;
     $filterModalPath: JQuery;
     $clearSearchLeagueButton: JQuery;
+    $searchLeagueTextbox: JQuery;
     $clearSearchEventButton: JQuery;
+    $searchEventTextbox: JQuery;
     onSubmit: Function;
 
     filterParam: FilterParam;
@@ -36,7 +38,6 @@ class FilterModal {
         this.$ = $;
         this.$filterModalContainer = $("#filter-modal");
         this.$filterModalPath = $("#FilterModalPath");
-
 
         this.marketMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
         this.leagueMultiSelectionComponent = new MultiSelectionCheckboxComponent($);
@@ -79,7 +80,9 @@ class FilterModal {
 
     cachDOMElements(): void {
         this.$clearSearchLeagueButton = $("#btnClearSearchLeague");
+        this.$searchLeagueTextbox = $("#txtSearchLeague");
         this.$clearSearchEventButton = $("#btnClearSearchEvent");
+        this.$searchEventTextbox = $("#txtSearchEvent");
     }
 
     renderComponents(): void {
@@ -142,30 +145,32 @@ class FilterModal {
         });
 
         this.$("#btnSearchLeague").on("click touchend", () => {
-            let searchText = this.$("#txtSearchLeague").val();
-            if (searchText) {
-                this.leagueMultiSelectionComponent.search(this.$("#txtSearchLeague").val());
-            } else {
-                this.leagueMultiSelectionComponent.clearSearch();
+            self.searchLeague();
+        });
+
+        this.$searchLeagueTextbox.keyup(function (e) {
+            if (e.keyCode == 13) {
+                self.searchLeague();
             }
         });
 
         this.$clearSearchLeagueButton.on("click touchend", () => {
-            this.$("#txtSearchLeague").val("");
+            this.$searchLeagueTextbox.val("");
             this.leagueMultiSelectionComponent.clearSearch();
         });
 
         this.$("#btnSearchEvent").on("click touchend", () => {
-            let searchText = this.$("#txtSearchEvent").val();
-            if (searchText) {
-                this.eventMultiSelectionComponent.search(this.$("#txtSearchEvent").val());
-            } else {
-                this.eventMultiSelectionComponent.clearSearch();
+            self.searchEvent();
+        });
+
+        this.$searchEventTextbox.keyup(function (e) {
+            if (e.keyCode == 13) {
+                self.searchEvent();
             }
         });
 
         this.$clearSearchEventButton.on("click touchend", () => {
-            this.$("#txtSearchEvent").val("");
+            this.$searchEventTextbox.val("");
             this.eventMultiSelectionComponent.clearSearch();
         });
 
@@ -175,6 +180,24 @@ class FilterModal {
         });
 
         this.$("#btn-reset").on("click touchend", this.resetFilter);
+    }
+
+    searchLeague(): void {
+        let searchText = this.$searchLeagueTextbox.val();
+        if (searchText) {
+            this.leagueMultiSelectionComponent.search(searchText);
+        } else {
+            this.leagueMultiSelectionComponent.clearSearch();
+        }
+    }
+
+    searchEvent(): void {
+        let searchText = this.$searchEventTextbox.val();
+        if (searchText) {
+            this.eventMultiSelectionComponent.search(searchText);
+        } else {
+            this.eventMultiSelectionComponent.clearSearch();
+        }
     }
 
     clickCheckboxAll = (groupItems, allCheckbox) => {
