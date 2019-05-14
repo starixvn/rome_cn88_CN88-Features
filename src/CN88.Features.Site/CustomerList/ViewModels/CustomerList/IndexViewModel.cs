@@ -65,6 +65,6 @@
 
         private string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~");
 
-        public bool IsDevice => browserHelper.IsMobile();
+        public bool IsDevice => browserHelper.IsMobile() && !browserHelper.IsTablet();
     }
 }
