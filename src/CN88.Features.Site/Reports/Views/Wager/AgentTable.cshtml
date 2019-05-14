@@ -16,7 +16,9 @@
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username"><span class="sorting-item">@ReportResources.AgentUsername</span></th>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Name"><span class="sorting-item">@ReportResources.Name</span></th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="Agent"><span class="sorting-item">@ReportResources.Agent</span></th>
-                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentPoss"><span class="sorting-item">@ReportResources.AgentPoss</span></th>
+                <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentPoss">
+                    <span class="sorting-item more-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess">@ReportResources.AgentPoss</span>
+                </th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentIncome"><span class="sorting-item">@ReportResources.AgentIncome</span></th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResult"><span class="sorting-item">@ReportResources.AgentResult</span></th>
                 <th class="text-right settlement header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentStock"><span class="sorting-item">@ReportResources.AgentStock</span></th>

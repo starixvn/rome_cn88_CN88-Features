@@ -24,7 +24,9 @@
             <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResult"><span class="sorting-item">@ReportResources.AgentResult</span></th>
             @if (Model.IsNotOwner)
             {
-                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAPoss"><span class="sorting-item">@ReportResources.MAPoss</span></th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAPoss">
+                    <span class="sorting-item more-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess">@ReportResources.MAPoss</span>
+                </th>
                 <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAIncome"><span class="sorting-item">@ReportResources.MAIncome</span></th>
                 <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAResult"><span class="sorting-item">@ReportResources.MAResult</span></th>
             }
