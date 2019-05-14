@@ -54,8 +54,6 @@
         this.$stakeLimit = this.$("#StakeLimit");
         this.$("#report-form").submit(this.onReportSubmit);
         this.$.unblockUI();
-
-        this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "totalbet-parlay-report"));
     };
 
     onReportSubmit = () => {
