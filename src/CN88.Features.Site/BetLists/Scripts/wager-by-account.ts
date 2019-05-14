@@ -1,6 +1,7 @@
 ﻿class WagerByAccount {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
+    isMobile: boolean;
 
     constructor(
         $: JQueryStatic,
@@ -11,7 +12,16 @@
     }
 
     init = () => {
-        this.pagerComponent.render();
+        this.isMobile = this.$("#isMobile").val() == "True";
+
+        if (this.isMobile) {
+            this.$("#tbl-report").stacktable();
+            this.$('body').backtop();
+        }
+        else {
+            this.pagerComponent.render();
+        }
+
 
         var self = this;
         this.$("#lnk-wager-details").click(function () {
