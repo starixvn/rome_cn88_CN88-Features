@@ -18,15 +18,18 @@
     public class ReportsExcelHandler : ReportsBaseHandler, IRequestHandler<ReportExcelQuery, ExcelFileViewModel>
     {
         private readonly ReportService reportService;
+        private readonly AccountingPeriodService accountingPeriodService;
         private readonly ReportsWorkbook workbook;
         private int divisor = 1;
         private int totalStockPercent;
 
         public ReportsExcelHandler(
             ReportService reportService,
+            AccountingPeriodService accountingPeriodService,
             ReportsWorkbook workbook)
         {
             this.reportService = reportService;
+            this.accountingPeriodService = accountingPeriodService;
             this.workbook = workbook;
         }
 
@@ -36,10 +39,11 @@
             {
                 throw new ArgumentNullException(nameof(message));
             }
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            message.FromDate = message.FromDate < lastPeriod.FromDate ? lastPeriod.FromDate : message.FromDate;
 
             divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
             totalStockPercent = message.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
-
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
             var grandTotal = AccumulateGrandTotal(reportData);
