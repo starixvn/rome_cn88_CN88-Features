@@ -301,7 +301,7 @@
                 Text = BetListsResources.ResourceManager.GetString($"TotalBetParlaySport_{sport}"),
                 Value = sport.ToString(),
                 Selected = sport == userSelectedSport
-            }).ToList();
+            });
 
             return items;
         }

@@ -1,36 +1,56 @@
 ﻿namespace CN88.Features.BetLists.Helpers
 {
     using System.Linq;
-    using Constants;
+    using CN88.Features.Extensions;
+    using static CN88.Features.BetLists.Constants.BetType;
 
     public static class BetTypeHelper
     {
+
         private static readonly int[] JackpotContributionBetType =
         {
-            BetTypeIdConstants.JackpotContribution,
-            BetTypeIdConstants.JackpotContribution_Mobile,
-            BetTypeIdConstants.JackpotContribution_Tablet
+            JackpotContribution,
+            JackpotContribution_Mobile,
+            JackpotContribution_Tablet
         };
 
         private static readonly int[] HorseRacingBetType =
         {
-            BetTypeIdConstants.VirtualHorseRacing_Win,
-            BetTypeIdConstants.VirtualHorseRacing_Place,
-            BetTypeIdConstants.VirtualHorseRacing_WinPlace
+            VirtualHorseRacing_Win,
+            VirtualHorseRacing_Place,
+            VirtualHorseRacing_WinPlace
         };
 
-        public static bool IsOutRight(int betType) => betType == BetTypeIdConstants.Outright;
+        public static bool IsOutRight(int betType) => betType == Outright;
 
         public static bool IsHorseRacing(int betType) => HorseRacingBetType.Contains(betType);
 
         public static bool IsJackpotContribution(int betType) => JackpotContributionBetType.Contains(betType);
 
+        public static bool IsLottery(int betType)
+           => betType.InRange(Lottery_Max5D_60, Lottery_End);
+
+        public static bool IsKeno(int betType)
+            => betType.InRange(Keno_Start, Keno_End);
+
+        public static bool IsHappy5(int betType)
+           => betType.InRange(Happy5_Start, Happy5_End);
+
+        public static bool IsNumberGame(int betType)
+           => betType.InRange(NumberGame_Start, NumberGame_End);
+
+        public static bool IsVirtualSport(int betType)
+          => betType.InRange(VirtualSports_Start, VirtualSports_End);
+
+        public static bool IsVirtualSport2(int betType)
+          => betType.InRange(VirtualSports2_Start, VirtualSports2_End);
+
         public static bool NotShowComm(int betType)
-            => (BetTypeIdConstants.Keno_Start <= betType && betType <= BetTypeIdConstants.Keno_End) ||
-            (BetTypeIdConstants.Lottery_Max5D_60 <= betType && betType <= BetTypeIdConstants.Lottery_End) ||
-            (BetTypeIdConstants.NumberGame_Start <= betType && betType <= BetTypeIdConstants.NumberGame_End) ||
-            (BetTypeIdConstants.Happy5_Start <= betType && betType <= BetTypeIdConstants.Happy5_End) ||
-            (BetTypeIdConstants.VirtualSports_Start <= betType && betType <= BetTypeIdConstants.VirtualSports_End) ||
-            (BetTypeIdConstants.VirtualSports2_Start <= betType && betType <= BetTypeIdConstants.VirtualSports2_End);
+            => IsKeno(betType)
+            || IsNumberGame(betType)
+            || IsHappy5(betType)
+            || IsVirtualSport(betType)
+            || IsVirtualSport2(betType)
+            || IsLottery(betType);
     }
 }
