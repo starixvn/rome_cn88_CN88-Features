@@ -1,11 +1,13 @@
-﻿.online-members {
+﻿@import "../../Shared/Styles/variables";
+
+.online-members {
     .new-page-header {
         display: none;
     }
 }
 
-@media (max-device-width: 767px),
-    (device-width: 812px) and (orientation: landscape) {
+@media (max-device-width: $screen-device-lower768),
+    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     .online-members {
         .new-page-header {
             display: block;

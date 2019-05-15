@@ -1,4 +1,5 @@
-﻿@import "variables";
+﻿@import "../../Shared/Styles/variables";
+@import "variables";
 
 body {
     padding: 14px;
@@ -104,8 +105,8 @@ body {
 }
 
 /* ----------- Mobile ----------- */
-@media only screen and (max-device-width : 767px),
-    (device-width: 812px) and (orientation: landscape) {
+@media (max-device-width: $screen-device-lower768),
+    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     body {
         background-color: #fff;
         font-size: 10.5px;
