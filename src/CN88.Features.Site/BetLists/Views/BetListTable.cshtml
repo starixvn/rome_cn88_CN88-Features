@@ -63,7 +63,7 @@
                     {
                         <th class="text-right winloss">@Html.Raw(total.TotalWinLossStr)</th>
                     }
-                    <th colspan="@(Model.NoOfColumns - 6)"></th>
+                    <th colspan="@(Model.NoOfColumns - 6 + (Model.IsShowWinLoss ? 0 : 1))"></th>
                 </tr>
                  if (Model.IsShowWinLoss)
                  {

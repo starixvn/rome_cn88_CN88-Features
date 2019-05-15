@@ -39,7 +39,7 @@
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>
                     <th data-stack-column="true"></th>
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Agent, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Agent, "settlement", true)
                     <th class="settlement" data-stack-column="true"></th>
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentIncome, "settlement", true)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.AgentResult, "settlement")
@@ -48,7 +48,7 @@
                     {
                         <th class="settlement" data-stack-column="true"></th>
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome, "settlement", true)
-                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult, "settlement", true)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult, "settlement")
                     }
                     @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "valid-stake", true)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "valid-stake", true)

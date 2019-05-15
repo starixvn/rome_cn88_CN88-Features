@@ -63,6 +63,8 @@
             IsMobile = isMobile;
 
             IsShowPayout = true;
+
+            IsShowWinLoss = false;
         }
 
         public int PageIndex { get; }

@@ -41,7 +41,7 @@
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>
                     <th data-stack-column="true"></th>
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterIncome, "settlement", true)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterResult, "settlement")
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.MasterStock, "settlement")
                     @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement", true)
@@ -50,7 +50,7 @@
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Super, "settlement", true)
                         <th class="settlement" data-stack-column="true"></th>
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperIncome, "settlement", true)
-                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult, "settlement", true)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult, "settlement")
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock, "settlement", true)
                         @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement", true)
                     }
