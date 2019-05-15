@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = BetListsResources.WagerDetails;
     Layout = "~/Shared/Views/_Layout.cshtml";
+    var backLink = Model.BuildBackLink(Request.Url.Query);
 }
 
 @section Styles {
@@ -17,88 +18,17 @@
             <a>@BetListsResources.ViewWagerDetails</a>
         </li>
     </ul>
-    @BetLists.TotalBetBreadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel)
-    <table id="tbl-report" class="tbl-noborder tbl-betlists">
-        <thead>
-            <tr>
-                <th class="text-left">@BetListsResources.DateTime</th>
-                <th class="text-left">@BetListsResources.Member/<br />@BetListsResources.Commission</th>
-                <th class="text-left">@BetListsResources.BetID/<br />@BetListsResources.BetType</th>
-                <th class="text-left">@BetListsResources.Details</th>
-                <th class="text-right">@BetListsResources.Stake</th>
-
-                @if (Model.CustLevel.IsAgentLevel())
-                {
-                    <th class="text-right">@BetListsResources.AgentPercent</th>
-                }
-
-                @if (Model.CustLevel.IsMasterLevel())
-                {
-                    <th class="text-right">@BetListsResources.AgentPercent</th>
-                    <th class="text-right">@BetListsResources.MAPercent</th>
-                }
-
-                @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
-                {
-                    <th class="text-right">@BetListsResources.AgentPercent</th>
-                    <th class="text-right">@BetListsResources.MAPercent</th>
-                    <th class="text-right">@BetListsResources.SMAPercent</th>
-                    <th class="text-right">@BetListsResources.CoPercent</th>
-                }
-            </tr>
-            @if (Model.BetListData.Tickets.Any())
-            {
-                var total = Model.BetListTotal;
-                <tr class="total">
-                    <th colspan="3">@BetListsResources.Total</th>
-                    <th>@Model.BetListData.Total.ToString("#,##0")</th>
-                    <th class="text-right">@(new HtmlString(Model.BetListTotal.TotalStakeStr))</th>
-                    <th colspan="@(Model.NoOfColumns - 5)"></th>
-                </tr>
-            }
-        </thead>
-        <tbody>
-            @if (Model.BetListData.Tickets.Any())
-            {
-                var tickets = Model.BetListData.Tickets.ToList();
-
-                for (int i = 0; i < tickets.Count; i++)
-                {
-                    var ticket = tickets[i];
-                    <tr data-trans-id="@ticket.TransId">
-                        @BetLists.TransDate.Render(ticket)
-                        @BetLists.Comm.Render(ticket)
-                        @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
-                        @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
-                        @BetLists.Stake.Render(ticket, Model.Divisor)
-                        @if (Model.CustLevel.IsAgentLevel())
-                        {
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                        }
-
-                        @if (Model.CustLevel.IsMasterLevel())
-                        {
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                        }
-
-                        @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
-                        {
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.CompanyPositionTaking() * 100), "text-right")
-                        }
-                    </tr>
-                }
-            }
-            else
-            {
-                @BetLists.NoInfomation.Render(Model.NoOfColumns)
-            }
-        </tbody>
-    </table>
-    @Pager.Render(Model.PagerViewModel)
+    @if (Model.IsMobile)
+    {
+        @Html.Partial("~/BetLists/Views/BackLinkMobile.cshtml", backLink)
+        @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
+    }
+    else
+    {
+        @BetLists.TotalBetBreadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel)
+        @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
+        @Pager.Render(Model.PagerViewModel)
+    }
 </div>
 
 @Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
@@ -110,6 +40,7 @@
 @Html.Hidden("viewer-level-id", Model.ViewerLevelId)
 @Html.Hidden("cust-id", Model.CustId)
 @Html.Hidden("colossusBets-PopUpDetail-Title", BetListsResources.ColossusBetsPopUpDetailTitle)
+@Html.Hidden("isMobile", Model.IsMobile)
 
 @section Scripts{
     @StaticResources.RenderScripts("~/BetLists/bundles/wager-by-account")

@@ -241,7 +241,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerDetailsViewModel Handle(StartedWagerDetailsQuery message)
@@ -261,7 +261,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public TotalBetParlayViewModel Handle(TotalBetParlayQuery message)
