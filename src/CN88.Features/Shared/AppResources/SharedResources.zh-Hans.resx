@@ -294,4 +294,7 @@
   <data name="ResetToDefault" xml:space="preserve">
     <value>恢复默认</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
 </root>

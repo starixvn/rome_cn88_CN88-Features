@@ -283,7 +283,7 @@
     <value>早盤</value>
   </data>
   <data name="PerSports" xml:space="preserve">
-    <value>各球类</value>
+    <value>各球類</value>
   </data>
   <data name="Pause" xml:space="preserve">
     <value>暫停</value>
@@ -293,5 +293,8 @@
   </data>
   <data name="ResetToDefault" xml:space="preserve">
     <value>恢復預設</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜尋</value>
   </data>
 </root>
