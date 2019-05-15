@@ -589,6 +589,9 @@
     <Content Include="CustomerList\Styles\member-statement.min.css">
       <DependentUpon>member-statement.css</DependentUpon>
     </Content>
+    <Content Include="CustomerList\Styles\online-members.css">
+      <DependentUpon>online-members.scss</DependentUpon>
+    </Content>
     <Content Include="CustomerList\Styles\popup.css">
       <DependentUpon>popup.scss</DependentUpon>
     </Content>
