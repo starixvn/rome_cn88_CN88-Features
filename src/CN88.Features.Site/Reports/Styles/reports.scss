@@ -399,7 +399,8 @@ body {
     }
 }
 
-@media (max-device-width: 767px) {
+@media (max-device-width: 767px),
+    (device-width: 812px) and (orientation: landscape) {
     // Create Report
     body {
         background-color: #fff;
@@ -430,7 +431,7 @@ body {
     }
 
     .nav.nav-tabs > li > a {
-        padding: 7px 14px 7px;        
+        padding: 7px 14px 7px;
     }
 
     .tab-content > .tab-pane {
@@ -478,7 +479,7 @@ body {
         .form-group .control.date {
             width: 100%;
         }
-         
+
         select {
             width: 100%;
             background: #fff;
@@ -495,7 +496,7 @@ body {
         .form-group.has-two-buttons .btn-quick-choice {
             float: left;
             width: 48%;
-            margin-right: 0;            
+            margin-right: 0;
 
             &:first-child {
                 margin-right: 4%;
@@ -510,20 +511,20 @@ body {
             &:last-child {
                 margin-right: 0;
             }
-        }   
-        
+        }
+
         .form-group.list-buttons {
             margin-top: 20px;
-        }  
-        
-        .form-group.list-buttons [class^="btn"] {            
+        }
+
+        .form-group.list-buttons [class^="btn"] {
             float: left;
             width: 48%;
-        }   
+        }
 
         .form-group.list-buttons .btn-default {
             margin-right: 4%;
-        }  
+        }
     }
 
     .tblSettlementSummary {
@@ -533,7 +534,7 @@ body {
             background-color: transparent;
         }
 
-         > tbody > tr > td {
+        > tbody > tr > td {
             padding: 8px 12px;
 
             &:first-child {
@@ -550,12 +551,12 @@ body {
             background-color: transparent;
         }
 
-         > tbody > tr > td {
+        > tbody > tr > td {
             padding: 8px 12px;
         }
     }
 
-    // Settled Wager    
+    // Settled Wager
 
     .page-title-mobile {
         padding-left: 12px;
@@ -591,7 +592,7 @@ body {
         .username .downline-link {
             display: block;
             width: 85px;
-            word-break: break-all;            
+            word-break: break-all;
         }
     }
 

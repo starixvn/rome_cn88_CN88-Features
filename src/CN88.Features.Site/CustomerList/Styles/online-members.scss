@@ -1,0 +1,22 @@
+﻿.online-members {
+    .new-page-header {
+        display: none;
+    }
+}
+
+@media (max-device-width: 767px),
+    (device-width: 812px) and (orientation: landscape) {
+    .online-members {
+        .new-page-header {
+            display: block;
+        }
+
+        .page-title {
+            display: none;
+        }
+
+        .page-container {
+            padding: 12px;
+        }
+    }
+}

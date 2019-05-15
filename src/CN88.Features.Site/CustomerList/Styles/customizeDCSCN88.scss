@@ -2,7 +2,8 @@
     min-width: 760px;
 }
 
-@media (max-device-width: 767px) {
+@media (max-device-width: 767px),
+    (device-width: 812px) and (orientation: landscape) {
     body {
         font-size: 10.5px;
     }
@@ -70,7 +71,7 @@
     }
 
     .system-2 {
-         padding-bottom: 50px;
+        padding-bottom: 50px;
     }
 
     .btn-container {

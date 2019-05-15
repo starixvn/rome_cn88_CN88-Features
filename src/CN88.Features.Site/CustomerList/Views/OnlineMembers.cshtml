@@ -3,32 +3,39 @@
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
 
-<div class="page-container">
-    <form class="hide" id="report-form">
+@section Styles {
+    @StaticResources.RenderStyles("~/CustomerList/bundles/styles/onlinemember")
+}
 
-    </form>
-    <div class="page-title">@CustomerListResources.OnlineMembers</div>
-    <table class="tbl-style2 width-100per">
-        <thead>
-            <tr>
-                <th>@CustomerListResources.Username</th>
-                <th>@CustomerListResources.Name</th>
-                <th>@CustomerListResources.LoginDateTime</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var m in Model.Members)
-            {
+<div class="online-members">
+    <div class="new-page-header">@CustomerListResources.OnlineMembers</div>
+
+    <div class="page-container">
+        <form class="hide" id="report-form"></form>
+        <div class="page-title">@CustomerListResources.OnlineMembers</div>
+        <table class="tbl-style2 width-100per">
+            <thead>
                 <tr>
-                    <td>@m.UserName</td>
-                    <td>@m.Name</td>
-                    <td>@m.LastLoginStr</td>
+                    <th>@CustomerListResources.Username</th>
+                    <th>@CustomerListResources.Name</th>
+                    <th>@CustomerListResources.LoginDateTime</th>
                 </tr>
-            }
-        </tbody> 
-    </table>
-    @Pager.Render(Model.PagerViewModel)
+            </thead>
+            <tbody>
+                @foreach (var m in Model.Members)
+                {
+                    <tr>
+                        <td>@m.UserName</td>
+                        <td>@m.Name</td>
+                        <td>@m.LastLoginStr</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Pager.Render(Model.PagerViewModel)
+    </div>
 </div>
+
 
 
 @section Scripts{

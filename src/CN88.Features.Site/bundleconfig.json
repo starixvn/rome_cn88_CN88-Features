@@ -161,6 +161,12 @@
     ]
   },
   {
+    "outputFileName": "CustomerList/bundles/styles/onlinemember.css",
+    "inputFiles": [
+      "CustomerList/Styles/online-members.css"
+    ]
+  },
+  {
     "outputFileName": "CustomerList/bundles/styles/member-statement.css",
     "inputFiles": [
       "CustomerList/Styles/member-statement.css"
