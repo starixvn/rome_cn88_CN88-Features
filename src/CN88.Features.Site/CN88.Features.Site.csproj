@@ -834,7 +834,6 @@
     <Content Include="compilerconfig.json" />
     <Content Include="Reports\Views\Index.cshtml" />
     <Content Include="Reports\Views\Web.config" />
-    <Content Include="Reports\Views\Index\AccountingSheet.cshtml" />
     <Content Include="CustomerList\Styles\popup.scss" />
     <Content Include="Shared\Styles\_mixins.scss" />
     <Content Include="Shared\Styles\_variables.scss" />
@@ -915,7 +914,6 @@
     <Content Include="Reports\Views\Legacy\MasterTable.cshtml" />
     <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
     <Content Include="Reports\Views\Legacy\SuperTable.cshtml" />
-    <Content Include="Reports\Views\Index\SettlementSummary.cshtml" />
     <Content Include="Reports\Views\Wager\SuperTable.cshtml" />
     <Content Include="Reports\Views\Wager\AgentTable.cshtml" />
     <Content Include="Reports\Views\Wager\MasterTable.cshtml" />
@@ -949,6 +947,8 @@
     <Content Include="Reports\Views\OldIndexMobile.cshtml" />
     <Content Include="Reports\Views\OldWagerMobile.cshtml" />
     <Content Include="CustomerList\Styles\online-members.scss" />
+    <Content Include="Reports\Views\SettlementSummary.cshtml" />
+    <Content Include="Reports\Views\AccountingSheet.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -965,7 +965,10 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\assets\bundles\" />
+    <Folder Include="Reports\assets\scripts\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CN88.Features\CN88.Features.csproj">
       <Project>{db2cd304-10b8-44cd-81ea-f9743e38e71b}</Project>
@@ -1039,6 +1042,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

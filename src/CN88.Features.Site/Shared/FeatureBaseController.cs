@@ -20,9 +20,27 @@
             this.mediator = mediator;
         }
 
-        protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message, string viewPath)
-             => (message as BaseQuery).IsValid() ?
-                View(viewPath, await mediator.Send(message).ConfigureAwait(false)) : View(NoInformationPageViewPath);
+        protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message, string viewName = "")
+        {
+            viewName = string.IsNullOrWhiteSpace(viewName)
+                ? ControllerContext.RouteData.Values["Action"].ToString()
+                : viewName;
+
+            var query = message as BaseQuery;
+
+            if (query?.IsValid() == true)
+            {
+                return View($"{FeatureFolder}/{viewName}.cshtml", await mediator.Send(message).ConfigureAwait(false));
+            }
+
+            return View(NoInformationPageViewPath);
+        }
+
+        protected virtual string FeatureFolder
+        {
+            get => $"~/{ControllerContext.RouteData.Values["Controller"]}/Views";
+        }
+
 
         protected ActionResult JsonData<TResponse>(
            IRequest<TResponse> message,

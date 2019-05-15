@@ -4,12 +4,12 @@
 
     public static class TotalBetParlaySport
     {
-        public static int All = 0;
-        public static int Soccer = 1;
-        public static int NonSoccer = 2;
-        public static int MixSports = 3;
+        public static readonly int All;
+        public static readonly int Soccer = 1;
+        public static readonly int NonSoccer = 2;
+        public static readonly int MixSports = 3;
 
-        public static IEnumerable<int> Sports =
+        public static readonly IEnumerable<int> Sports =
             new List<int> { All, Soccer, NonSoccer, MixSports };
     }
 }

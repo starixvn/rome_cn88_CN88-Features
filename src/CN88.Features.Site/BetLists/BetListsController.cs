@@ -13,9 +13,7 @@
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
     {
-        private readonly BrowserHelper browserHelper;
-        private const string ReportBetListViewPath = "~/BetLists/Views/BetListOfReport.cshtml";
-        private const string ReportBetListMobileViewPath = "~/BetLists/Views/ReportBetListMobile.cshtml";
+        private readonly BrowserHelper browserHelper;      
 
         public BetListsController(
             IMediator mediator,
@@ -27,23 +25,24 @@
 
         [HttpGet, ReCheckPassword]
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
-            => await ViewAsync(
-                message, 
-                browserHelper.IsMobile() 
-                    ? ReportBetListMobileViewPath
-                    : ReportBetListViewPath);
+            =>  browserHelper.IsMobile()
+                    ? await BetListOfReportMobile(message)
+                    : await ViewAsync(message);
+
+        public async Task<ActionResult> BetListOfReportMobile(BetListOfReportQuery message)
+            => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> BetListOfStatement(BetListOfStatementQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/BetListOfStatement.cshtml");
+            => await ViewAsync(message);
 
         [HttpGet]
         public async Task<ActionResult> ParlaySubTickets(GetParlaySubTicketsQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/ParlaySubTickets.cshtml");
+            => await ViewAsync(message);
 
         [HttpGet]
         public async Task<ActionResult> ParlayDetail(GetParlayDetailQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/ParlayDetail.cshtml");
+            => await ViewAsync(message);
 
         public async Task<ActionResult> ParlayDetailExcel(GetParlayDetailExcelQuery message)
             => await ExcelView(message);
@@ -54,30 +53,30 @@
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> OutrightWagerByAccount(OutrightWagerByAccountQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/OutrightWagerByAccount.cshtml");
+             => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> OutrightWagerDetails(OutrightWagerDetailsQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/OutrightWagerDetails.cshtml");
+             => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> EventWagerByAccount(EventWagerByAccountQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/EventWagerByAccount.cshtml");
+            => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> EventWagerDetails(EventWagerDetailsQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/EventWagerDetails.cshtml");
+             => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> StartedWagerByAccount(StartedWagerByAccountQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/StartedWagerByAccount.cshtml");
+             => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> StartedWagerDetails(StartedWagerDetailsQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/StartedWagerDetails.cshtml");
+             => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> TotalBetParlay(TotalBetParlayQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/TotalBetParlay.cshtml");
+             => await ViewAsync(message);
     }
 }

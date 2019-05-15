@@ -36,9 +36,7 @@
             => ReportLevel.IsMemberLevel()
                 ? "CS_Rpt_Cancelled_Member"
                 : ReportLevel.IsAgentLevel()
-                ? "CS_Rpt_Cancelled_Agent"
-                : ReportLevel.IsMasterLevel()
-                ? "CS_Rpt_Cancelled_Master"
-                : "CS_Rpt_Cancelled_Super";
+                    ? "CS_Rpt_Cancelled_Agent"
+                    : ReportLevel.IsMasterLevel() ? "CS_Rpt_Cancelled_Master" : "CS_Rpt_Cancelled_Super";
     }
 }

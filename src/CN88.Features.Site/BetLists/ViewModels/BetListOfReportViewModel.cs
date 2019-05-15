@@ -196,8 +196,8 @@
         public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
 
         private string BuildReportMainUrl()
-            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
-                Shared.Helpers.UrlHelper.GetFeaturesAppPath(ReportMainActionPath),
+            => UrlHelper.AddQueryStringParamsFunc(
+                UrlHelper.GetFeaturesAppPath(ReportMainActionPath),
                 new Dictionary<string, object>
                 {
                     ["DisplayMode"] = DisplayMode
@@ -207,8 +207,7 @@
         {
             var breadcrumbLevel = new List<CustInfo>();
 
-            if (message.BreadcrumbLevel != null
-                && message.BreadcrumbLevel.Any())
+            if (message.BreadcrumbLevel?.Any() == true)
             {
                 foreach (var custInfo in message.BreadcrumbLevel)
                 {

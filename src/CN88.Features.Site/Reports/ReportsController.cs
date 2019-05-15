@@ -11,15 +11,6 @@
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class ReportsController : FeatureBaseController
     {
-        private const string MainViewPath = "~/Reports/Views/Index.cshtml";
-        private const string MainMobileViewPath = "~/Reports/Views/IndexMobile.cshtml";
-        private const string WagerViewPath = "~/Reports/Views/Wager.cshtml";
-        private const string WagerMobileViewPath = "~/Reports/Views/WagerMobile.cshtml";
-        private const string LegacyViewPath = "~/Reports/Views/Legacy.cshtml";
-        private const string PTHistoryViewPath = "~/Reports/Views/PTHistory.cshtml";
-        private const string SettlementSummaryPath = "~/Reports/Views/Index/SettlementSummary.cshtml";
-        private const string AccountingSheetPath = "~/Reports/Views/Index/AccountingSheet.cshtml";
-        private const string ViewBetTypePath = "~/Reports/Views/Bettype.cshtml";
         private readonly BrowserHelper browserHelper;
 
         public ReportsController(
@@ -31,35 +22,41 @@
         }
 
         public async Task<ActionResult> Index(IndexQuery message)
-            => browserHelper.IsMobile() 
-                ? await ViewAsync(message, MainMobileViewPath)
-                : await ViewAsync(message, MainViewPath);
+            => browserHelper.IsMobile()
+                ? await IndexMobile(message)
+                : await ViewAsync(message);
+
+        public async Task<ActionResult> IndexMobile(IndexQuery message)
+           => await ViewAsync(message);
 
         public async Task<ActionResult> SettlementSummary(SettlementSummaryQuery message)
-            => await ViewAsync(message, SettlementSummaryPath);
+            => await ViewAsync(message);
 
         public async Task<ActionResult> AccountingSheet(AccountingSheetQuery message)
-            => await ViewAsync(message, AccountingSheetPath);
+            => await ViewAsync(message);
 
         public async Task<ActionResult> Wager(ReportQuery message)
         {
             message.CurrentUrl = Request.Url.Query;
 
             return browserHelper.IsMobile()
-                ? await ViewAsync(message, WagerMobileViewPath)
-                : await ViewAsync(message, WagerViewPath);
+                ? await WagerMobile(message)
+                : await ViewAsync(message);
         }
 
+        public async Task<ActionResult> WagerMobile(ReportQuery message)
+            => await ViewAsync(message);
+
         public async Task<ActionResult> Legacy(ReportQuery message)
-            => await ViewAsync(message, LegacyViewPath);
+            => await ViewAsync(message);
 
         public async Task<ActionResult> Excel(ReportExcelQuery message)
             => await ExcelView(message);
 
         public async Task<ActionResult> PTHistory(PTHistoryQuery message)
-            => await ViewAsync(message, PTHistoryViewPath);
+            => await ViewAsync(message);
 
         public async Task<ActionResult> BetType(BettypeQuery message)
-            => await ViewAsync(message, ViewBetTypePath);
+            => await ViewAsync(message);
     }
 }

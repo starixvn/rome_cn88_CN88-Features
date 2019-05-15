@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.Site.Controllers
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
@@ -14,18 +13,14 @@
     [SessionState(SessionStateBehavior.ReadOnly), RestrictHeadlineFilter]
     public class CustomerListController : FeatureBaseController
     {
-        private const string CustomerListPath = "~/CustomerList/Views/Index.cshtml";
-        private const string StatusPopupPath = "~/CustomerList/Views/StatusPopup.cshtml";
-        private const string CreditPopupPath = "~/CustomerList/Views/CreditPopup.cshtml";
-
         public CustomerListController(IMediator mediator)
-            : base(mediator)
+     : base(mediator)
         {
         }
 
         [HttpGet]
         public async Task<ActionResult> Index(IndexQuery message)
-            => await ViewAsync(message, CustomerListPath);
+            => await ViewAsync(message);
 
         //[HttpGet]
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
@@ -33,11 +28,11 @@
 
         [HttpGet]
         public async Task<ActionResult> CreditPopup(CreditPopupQuery message)
-           => await ViewAsync(message, CreditPopupPath);
+           => await ViewAsync(message);
 
         [HttpGet]
         public async Task<ActionResult> StatusPopup(CustomerStatusPopupQuery message)
-             => await ViewAsync(message, StatusPopupPath);
+             => await ViewAsync(message);
 
         [HttpPost, AntiXsrfFilter]
         public ActionResult UpdateCredit(CreditCommand command)
@@ -50,26 +45,25 @@
         [HttpGet]
         public ActionResult Create(CreateCustomerQuery message)
         {
-            var urlString = new List<string>
-            {
+            var urlString = string.Concat(
                 "~/CN88CustomerSetting/ViewCN88CustomerSetting/Create?",
                 $"Language={message.Language}",
-                $"&ProductId=1",
                 $"&CustomerLevel={message.CustLevelId}",
                 $"&CustomerId={message.ViewerId}",
                 $"&IsReadOnly={!message.AccountManagementEditView}",
                 $"&UplineId={message.ViewerId}",
-                $"&ActorLevel={message.ViewerLevelId}"
-            };
+                $"&ActorLevel={message.ViewerLevelId}",
+                "&ProductId=1");
 
-            return Redirect(string.Join(string.Empty, urlString));
+
+            return Redirect(urlString);
         }
 
         [HttpGet]
         public async Task<ActionResult> OnlineMembers(OnlineMembersQuery message)
-            => await ViewAsync(message, "~/CustomerList/Views/OnlineMembers.cshtml");
+            => await ViewAsync(message);
 
         public async Task<ActionResult> MemberStatement(MemberStatementQuery message)
-            => await ViewAsync(message, "~/CustomerList/Views/MemberStatement.cshtml");
+            => await ViewAsync(message);
     }
 }

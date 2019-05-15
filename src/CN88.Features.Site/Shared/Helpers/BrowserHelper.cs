@@ -51,9 +51,9 @@
 
         public bool IsTablet()
         {
-            if (HttpContext.Current.Request != null && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+            if (HttpContext.Current.Request?.ServerVariables["HTTP_USER_AGENT"] != null)
             {
-                var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"].ToString();
+                var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
 
                 if (u.Length < 4)
                 {

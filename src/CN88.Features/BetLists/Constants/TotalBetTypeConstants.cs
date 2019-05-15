@@ -2,6 +2,6 @@
 {
     public static class TotalBetTypeConstants
     {
-        public static byte Started = 5;
+        public static readonly byte Started = 5;
     }
 }
