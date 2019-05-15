@@ -10,7 +10,6 @@ class WagerReport extends LegacyReport {
     $custLevelId: JQuery;
     $tableContent: JQuery;
     $isSettlement: JQuery;
-    isMobile: boolean;
     isOwner: boolean;
     $tabMainContent: JQuery;
     toggleHandler: ToggleHandler;
