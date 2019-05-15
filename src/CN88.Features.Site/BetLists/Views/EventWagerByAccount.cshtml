@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = BetListsResources.WagerDetails;
     Layout = "~/Shared/Views/_Layout.cshtml";
+    var backLink = Model.BuildBackLink(Request.Url.Query);
 }
 
 @section Styles {
@@ -17,13 +18,14 @@
             <a>@BetListsResources.ViewWagerDetails</a>
         </li>
     </ul>
-    @BetLists.TotalBetBreadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel)
     @if (Model.IsMobile)
     {
+        @Html.Partial("~/BetLists/Views/BackLinkMobile.cshtml", backLink)
         @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
     }
     else
     {
+        @BetLists.TotalBetBreadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel)
         @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
         @Pager.Render(Model.PagerViewModel)
     }

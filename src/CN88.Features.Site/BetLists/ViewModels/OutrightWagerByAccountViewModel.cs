@@ -137,5 +137,19 @@
 
             return breadcrumbLevel;
         }
+
+        public BreadcrumbItem BuildBackLink(string requestUrl)
+        {
+            var links = BreadcrumbLevelViewModel
+                .BuildBreadcrumbLinks(requestUrl, false, BreadcrumbParamByLevel)
+                .ToList();
+
+            if (links.Count < 2)
+            {
+                return new BreadcrumbItem("Not Found", "#");
+            }
+
+            return new BreadcrumbItem(message.CustName, links.ElementAt(links.Count - 2).Link);
+        }
     }
 }

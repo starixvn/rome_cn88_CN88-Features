@@ -218,5 +218,9 @@
 
             return breadcrumbLevel;
         }
+
+        public BreadcrumbItem BuildBackLink(string requestUrl)
+            => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(requestUrl, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
+                ?? new BreadcrumbItem("Not Found", "#");
     }
 }

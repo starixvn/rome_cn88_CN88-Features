@@ -901,6 +901,7 @@
     <Content Include="BetLists\Views\ReportBetListMobile.cshtml" />
     <Content Include="BetLists\Views\BetListTable.cshtml" />
     <Content Include="BetLists\Views\BetListTableMobile.cshtml" />
+    <Content Include="BetLists\Views\BackLinkMobile.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

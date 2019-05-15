@@ -5,7 +5,7 @@
     Layout = Model.IsOldReport ? "~/Reports/Views/_OldLayout.cshtml" : "~/Shared/Views/_Layout.cshtml";
 
     var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
-    var backLink = Model.BreadcrumbLevelViewModel.BuildBreadcrumbLinks(Request.Url.Query, isSettlement, Model.BreadcrumbParamByLevel).LastOrDefault() ?? new BreadcrumbItem("Not Found", "#");
+    var backLink = Model.BuildBackLink(Request.Url.Query);
 }
 
 @section Styles {
@@ -13,12 +13,7 @@
 }
 <div class="betlist-container">
     <div class="page-title-mobile">
-        <span id="btn-back" class="back-area">
-            <span class="icon-chevron-left back-step"></span>
-            <a href="@backLink.Link">
-                @backLink.Text
-            </a>
-        </span>
+        @Html.Partial("~/BetLists/Views/BackLinkMobile.cshtml", backLink)
 
         <span class="icon-filter-down" id="filter-toggle-icon"></span>
     </div>
