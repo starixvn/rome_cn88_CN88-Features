@@ -8,9 +8,11 @@
 @section Styles {
     @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
 }
+<div class="new-page-header">@BetListsResources.WagerDetails</div>
+
 <div class="betlist-container betlist-wager-details">
     <div class="page-title">@BetListsResources.WagerDetails</div>
-    <ul id="nav-tabs" class="nav nav-tabs-style2" role="tablist">
+    <ul id="nav-tabs" class="nav @(Model.IsMobile ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
         <li id="lnk-bet-list-by-account" class="lnk-changetab " role="presentation" data-url="@Model.WagerByAccountLink()">
             <a>@BetListsResources.ViewByAccount</a>
         </li>
