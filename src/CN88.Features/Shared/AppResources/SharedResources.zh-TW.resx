@@ -172,7 +172,7 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>股东 (%)</value>
+    <value>股東 (%)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
     <value>總代理 (%)</value>
@@ -181,10 +181,10 @@
     <value>代理商 (佔成)</value>
   </data>
   <data name="PercentageViewMode_5" xml:space="preserve">
-    <value>股東 + 總代理 + 代理商占成</value>
+    <value>股東+總代理+代理商(%)</value>
   </data>
   <data name="PercentageViewMode_6" xml:space="preserve">
-    <value>股東 + 總代理占成</value>
+    <value>股東+總代理(%)</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>瀏覽</value>
