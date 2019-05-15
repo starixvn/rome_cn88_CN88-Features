@@ -164,7 +164,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public OutrightWagerDetailsViewModel Handle(OutrightWagerDetailsQuery message)
@@ -181,7 +181,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public EventWagerByAccountViewModel Handle(EventWagerByAccountQuery message)

@@ -13,7 +13,7 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class OutrightWagerByAccountViewModel
+    public class OutrightWagerByAccountViewModel : BetListTableViewModel
     {
         protected readonly OutrightWagerByAccountQuery message;
 
@@ -23,6 +23,7 @@
               ITicketHelper ticketHelper,
               IBetListCN88HtmlBuilder cn88Builder,
               IBetListHTMLBuilder builder,
+              bool isMobile,
               string[] excludingTicketStatus = null)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
@@ -58,25 +59,11 @@
                 CustLevel.IsMasterLevel() ? Enumerable.Repeat(reportPath, 3) :
                 CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 2) :
                 Enumerable.Empty<string>();
+
+            IsMobile = isMobile;
+
+            IsShowWinLoss = false;
         }
-
-        public UserLevel CustLevel { get; }
-
-        public string CustName { get; }
-
-        public int NoOfColumns { get; }
-
-        public BetListData BetListData { get; }
-
-        public BetListTotal BetListTotal { get; }
-
-        public ITicketHelper TicketHelper { get; }
-
-        public IBetListHTMLBuilder Builder { get; }
-
-        public IBetListCN88HtmlBuilder CN88Builder { get; }
-
-        public bool DisplayVNIP { get; }
 
         public int PageIndex { get; }
 
@@ -93,8 +80,6 @@
         public int ViewerIdOrViewerAdminId { get; }
 
         public byte ViewerLevelId { get; }
-
-        public int Divisor { get; }
 
         public decimal Stake { get; }
 
