@@ -19,18 +19,20 @@
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> Index(WagerMonitoringQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/Index.cshtml");
+            => await ViewAsync(message);
 
         [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> FilterModal(WagerMonitoringFilterQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/FilterModal.cshtml");
+            => await ViewAsync(message);
 
         [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> LastBets(WagerMonitoringQuery message)
-            => await ViewAsync(message, "~/BetLists/Views/WagerMonitoring/LastBets.cshtml");
+            => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
         public ActionResult Pause()
             => View("~/BetLists/Views/WagerMonitoring/Pause.cshtml");
+
+        protected override string FeatureFolder => "~/BetLists/Views/WagerMonitoring/";
     }
 }
