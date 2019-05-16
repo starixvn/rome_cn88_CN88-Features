@@ -419,17 +419,6 @@ body {
         }
     }
 
-    .nav-tabs {
-        display: table;
-        width: 100%;
-        margin-bottom: 8px;
-
-        > li {
-            display: table-cell;
-            float: none;
-        }
-    }
-
     .nav.nav-tabs > li > a {
         padding: 7px 14px 7px;
     }
@@ -619,16 +608,8 @@ body {
                 padding-top: 0;
             }
 
-            .nav-tabs {
-                display: table;
-                width: 100%;
-                margin-top: 10px;
-            }
-
             .nav-tabs > li {
-                display: table-cell;
                 width: 50%;
-                float: none;
             }
         }
 
