@@ -5,11 +5,13 @@
 class OldWagerReport extends OldLegacyReport {
     $tabSettlement: JQuery;
     $tabValidStake: JQuery;
-    $custLevelId: JQuery;
     $isSettlement: JQuery;
     isMobile: boolean;
     isOwner: boolean;
     toggleHandler: ToggleHandler;
+    $nowDataRow: JQuery;
+
+    totalRecords: number;
 
     constructor(
         $: JQueryStatic,
@@ -81,10 +83,12 @@ class OldWagerReport extends OldLegacyReport {
 
     cacheDOMElements(): void {
         super.cacheDOMElements();
-        this.$custLevelId = this.$("#CustLevelId");
+
         this.$tabValidStake = this.$("#tabValidStake");
         this.$tabSettlement = this.$("#tabSettlement");
         this.$isSettlement = this.$("#IsSettlement");
+        this.$nowDataRow = this.$("#no-data-row");
+        this.totalRecords = this.$tableReport.data("totalrecords");
     }
 
     registerEvents(): void {
@@ -103,6 +107,14 @@ class OldWagerReport extends OldLegacyReport {
             this.$tableReport.find(".valid-stake").hide();
             this.$tableReport.find(".settlement").show();
             this.linkBuilderComponent.updateParam("IsSettlement", "True");
+
+            if (this.totalRecords > 0 && this.$custLevelId.val() == "4") {
+                this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
+            }
+
+            if (this.totalRecords < 1) {
+                this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofsettlementcolumns"))
+            }
         });
 
         this.$tabValidStake.on("click touchend", () => {
@@ -113,8 +125,12 @@ class OldWagerReport extends OldLegacyReport {
             this.$tableReport.find(".valid-stake").show();
             this.linkBuilderComponent.updateParam("IsSettlement", "False");
 
-            if (this.$custLevelId.val() == "4") {
-                this.$("#profit-margin").attr("colspan", 8);
+            if (this.totalRecords > 0 && this.$custLevelId.val() == "4") {
+                this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
+            }
+
+            if (this.totalRecords < 1) {
+                this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"))
             }
         });
 

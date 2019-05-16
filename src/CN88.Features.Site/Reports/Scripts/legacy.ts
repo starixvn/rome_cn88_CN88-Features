@@ -13,6 +13,7 @@ class LegacyReport extends BaseReport {
     $excelIcon: JQuery;
     $tableReport: JQuery;
     isMobile: boolean;
+    $custLevelId: JQuery;
 
     sortComponent: SortComponent;
     linkBuilderComponent: LinkBuilderComponent;
@@ -50,6 +51,10 @@ class LegacyReport extends BaseReport {
         this.initTooltip();
         super.renderComponents();
 
+        
+        let headers = this.$custLevelId.val() == "4"
+            ? { 0: { sorter: "text" } }
+            : { 0: { sorter: "text" }, 1: { sorter: "text" } };
         if (!this.isMobile) {
             this.sortComponent.render(
                 new SortOption(
@@ -57,7 +62,7 @@ class LegacyReport extends BaseReport {
                     parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
                     true,
                     this.sortComponent.afterSort,
-                    { 0: { sorter: "text" } },
+                headers,
                     this.$reportForm));
         }
 
@@ -75,6 +80,7 @@ class LegacyReport extends BaseReport {
         this.$exportExcelForm = this.$("#export-excel-form");
         this.$excelIcon = this.$("#icon-excel");
         this.$tableReport = this.$("#tbl-report,#tbl-report-stack");
+        this.$custLevelId = this.$("#CustLevelId");
     }
 
     public registerEvents() {

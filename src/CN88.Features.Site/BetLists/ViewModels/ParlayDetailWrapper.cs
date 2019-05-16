@@ -2,11 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Extensions;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
     using Features.BetLists.Resources;
+    using Features.Extensions;
     using Helpers;
 
     public class ParlayDetailWrapper

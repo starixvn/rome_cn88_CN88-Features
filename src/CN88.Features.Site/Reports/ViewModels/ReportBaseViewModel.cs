@@ -1,8 +1,10 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
+    using Constants;
     using Features.BetLists.Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -39,6 +41,7 @@
             Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
             TotalStockPercent = query.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
             IsMobile = isMobile;
+            GetSortedProperty(query);
         }
 
         public bool IsNotOwner => !query.IsOwner;
@@ -47,12 +50,9 @@
 
         public UserLevel ReportLevel => query.CustLevel;
 
-        public string SortPropertyName
-            => string.IsNullOrWhiteSpace(query.SortPropertyName)
-                ? DefaultSortPropertyName
-                : query.SortPropertyName;
+        public string SortPropertyName { get; set; }
 
-        public bool IsDescendingSort => query.IsDescendingSort;
+        public bool IsDescendingSort { get; set; }
 
         public bool IsSettlement => query.IsSettlement.Value;
 
@@ -204,5 +204,29 @@
         public bool IsShowTotalRow()
             => ReportData.Any()
                 && (!IsMobile || (IsMobile && IsNotOwner));
+                
+        private void GetSortedProperty(ReportBaseQuery query)
+        {
+            if (string.IsNullOrWhiteSpace(query.SortPropertyName))
+            {
+                SortPropertyName = DefaultSortPropertyName;
+                IsDescendingSort = false;
+            }
+            else
+            {
+                var sortProperties = ReportSortPropertyConstants.SortPropertiesByLevel[query.CustLevel];
+                if (sortProperties.Contains(query.SortPropertyName, StringComparer.OrdinalIgnoreCase))
+                {
+                    SortPropertyName = query.SortPropertyName;
+                    IsDescendingSort = query.IsDescendingSort;
+                }
+                else
+                {
+                    SortPropertyName = DefaultSortPropertyName;
+                    IsDescendingSort = false;
+                }
+            }
+
+        }
     }
 }

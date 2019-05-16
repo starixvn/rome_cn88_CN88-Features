@@ -139,6 +139,8 @@
             container.RegisterSingleton<ICacheRef, CacheRef>();
 
             RegisterBetListCore(container);
+
+            container.Register<WagerMonitoringService, WagerMonitoringServiceImpl>();
         }
 
         private static void RegisterBetListCore(Container container)

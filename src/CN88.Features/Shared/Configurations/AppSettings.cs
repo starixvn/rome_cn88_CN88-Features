@@ -45,6 +45,8 @@
 
         public static int WagerMonitoringPageSize => Converter.ToInt(GetConfigValue("WagerMonitoringPageSize"));
 
+        public static int TimeToGetLastBetsInSeconds => Converter.ToInt(GetConfigValue("TimeToGetLastBetsInSeconds"));
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify() => Require(StoredProcedurePath, nameof(StoredProcedurePath));

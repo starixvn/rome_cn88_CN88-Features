@@ -68,7 +68,7 @@
       <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn8801\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-ns02\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-ns04\lib\net461\CN88.BetList.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.ESports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -80,7 +80,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.Lottery, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Lottery.1.0.0-ns01\lib\net461\CN88.BetList.Lottery.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Lottery.1.0.0-ns02\lib\net461\CN88.BetList.Lottery.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.NumberGame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -92,11 +92,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0-ns02\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0-ns09\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta14\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
+      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.Web, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -506,6 +506,10 @@
     <Content Include="BetLists\bundles\betlist-of-statement.min.js">
       <DependentUpon>betlist-of-statement.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\betlist.js" />
+    <Content Include="BetLists\bundles\betlist.min.js">
+      <DependentUpon>betlist.js</DependentUpon>
+    </Content>
     <Content Include="BetLists\bundles\total-bet-parlay.js" />
     <Content Include="BetLists\bundles\total-bet-parlay.min.js">
       <DependentUpon>total-bet-parlay.js</DependentUpon>
@@ -517,6 +521,14 @@
     <Content Include="BetLists\bundles\wager-details.js" />
     <Content Include="BetLists\bundles\wager-details.min.js">
       <DependentUpon>wager-details.js</DependentUpon>
+    </Content>
+    <Content Include="BetLists\bundles\wager-monitoring.css" />
+    <Content Include="BetLists\bundles\wager-monitoring.js" />
+    <Content Include="BetLists\bundles\wager-monitoring.min.css">
+      <DependentUpon>wager-monitoring.css</DependentUpon>
+    </Content>
+    <Content Include="BetLists\bundles\wager-monitoring.min.js">
+      <DependentUpon>wager-monitoring.js</DependentUpon>
     </Content>
     <Content Include="BetLists\Styles\bet-lists.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
@@ -534,6 +546,12 @@
     <Content Include="BetLists\Content\images\q_Icon_2.png" />
     <Content Include="BetLists\Styles\images\minus_details.svg" />
     <Content Include="BetLists\Styles\images\plus_details.svg" />
+    <Content Include="BetLists\Styles\wager-monitor-console.css">
+      <DependentUpon>wager-monitor-console.scss</DependentUpon>
+    </Content>
+    <Content Include="BetLists\Styles\wager-monitor-console.min.css">
+      <DependentUpon>wager-monitor-console.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
@@ -699,10 +717,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
+    <Compile Include="BetLists\Extensions\SelectListItemExtensions.cs" />
     <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="BetLists\Handlers\BetListOfReportExcelHandler.cs" />
     <Compile Include="BetLists\Handlers\ParlayExcelHandler.cs" />
+    <Compile Include="BetLists\Handlers\WagerMonitoringHandler.cs" />
     <Compile Include="BetLists\Helpers\BetListHelpers.cs" />
+    <Compile Include="BetLists\Models\SportStakeCondition.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
     <Compile Include="BetLists\Requests\StartedWagerDetailsQuery.cs" />
     <Compile Include="BetLists\Requests\StartedWagerByAccountQuery.cs" />
@@ -718,6 +739,9 @@
     <Compile Include="BetLists\ViewModels\BetListTableViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerByAccountViewModel.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringBaseQuery.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringFilterQuery.cs" />
+    <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringQuery.cs" />
     <Compile Include="BetLists\ViewModels\EventWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\OutrightWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
@@ -726,13 +750,20 @@
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\SportStakeConditionViewModel.cs" />
     <Compile Include="BetLists\ViewModels\TotalBetParlayViewModel.cs" />
     <Compile Include="BetLists\ViewModels\OutrightWagerDetailsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\BetTypeSelectListItem.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\FilterFormViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\WagerMonitoringFilterViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\WagerMonitoring\WagerMonitoringViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
+    <Compile Include="BetLists\WagerMonitoringController.cs" />
     <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
+    <Compile Include="Reports\Constants\ReportSortPropertyConstants.cs" />
     <Compile Include="Reports\Filters\ReCheckPasswordAttribute.cs" />
     <Compile Include="Reports\Handlers\OldReportsHandler.cs" />
     <Compile Include="Reports\Handlers\ReportsBaseHandler.cs" />
@@ -910,6 +941,14 @@
     <Content Include="BetLists\Views\BetListTable.cshtml" />
     <Content Include="BetLists\Views\BetListTableMobile.cshtml" />
     <Content Include="BetLists\Views\BackLinkMobile.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\FilterForm.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\FilterModal.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\SportStakeConditionFilter.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\Index.cshtml" />
+    <Content Include="BetLists\Styles\wager-monitor-console.scss" />
+    <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
+    <Content Include="BetLists\Content\audio\TPBTLOW.ogg" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -997,6 +1036,9 @@
     <TypeScriptCompile Include="BetLists\Scripts\utils.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\filter-modal.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />

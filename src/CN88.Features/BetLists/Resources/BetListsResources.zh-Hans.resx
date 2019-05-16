@@ -226,7 +226,7 @@
     <value>总代理 (%)</value>
   </data>
   <data name="SMAPercent" xml:space="preserve">
-    <value>超级代理 (%)</value>
+    <value>股东 (%)</value>
   </data>
   <data name="CoPercent" xml:space="preserve">
     <value>公司 (%)</value>
@@ -275,5 +275,23 @@
   </data>
   <data name="AllLeagues" xml:space="preserve">
     <value>所有联盟</value>
+  </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>所有赛事</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="MainMarkets" xml:space="preserve">
+    <value>主要盘口</value>
+  </data>
+  <data name="OtherMarkets" xml:space="preserve">
+    <value>其他盘口</value>
+  </data>
+  <data name="WagerMonitoringConsole" xml:space="preserve">
+    <value>监视注单控制台</value>
+  </data>
+  <data name="OneXTwoMoneyline" xml:space="preserve">
+    <value>独赢盘 / 胜负盘</value>
   </data>
 </root>

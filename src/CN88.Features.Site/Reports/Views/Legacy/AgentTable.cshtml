@@ -10,25 +10,27 @@
        data-descendingsort="@Model.IsDescendingSort">
     <thead class="tableFloatingHeaderOriginal">
         <tr>
-            <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username">@ReportResources.AgentUsername</th>
-            <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Name">@ReportResources.Name</th>
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Wagers">@ReportResources.Wagers</th>
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake">@ReportResources.Stake</th>
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="ValidStake">@ReportResources.ValidStake</th>
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome">@ReportResources.MemberIncome</th>
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Agent">@ReportResources.Agent</th>
+            <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username"><span class="sorting-item">@ReportResources.AgentUsername</span></th>
+            <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Name"><span class="sorting-item">@ReportResources.Name</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Wagers"><span class="sorting-item">@ReportResources.Wagers</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake"><span class="sorting-item">@ReportResources.Stake</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="ValidStake"><span class="sorting-item">@ReportResources.ValidStake</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome"><span class="sorting-item">@ReportResources.MemberIncome</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Agent"><span class="sorting-item">@ReportResources.Agent</span></th>
             <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentPoss">
-                @ReportResources.AgentPoss <span class="icon-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess"></span>
+                <span class="sorting-item more-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess">@ReportResources.AgentPoss</span>
             </th>
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentIncome">@ReportResources.AgentIncome</th>
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResult">@ReportResources.AgentResult</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentIncome"><span class="sorting-item">@ReportResources.AgentIncome</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResult"><span class="sorting-item">@ReportResources.AgentResult</span></th>
             @if (Model.IsNotOwner)
             {
-                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAPoss">@ReportResources.MAPoss</th>
-                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAIncome">@ReportResources.MAIncome</th>
-                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAResult">@ReportResources.MAResult</th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAPoss">
+                    <span class="sorting-item more-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess">@ReportResources.MAPoss</span>
+                </th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAIncome"><span class="sorting-item">@ReportResources.MAIncome</span></th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MAResult"><span class="sorting-item">@ReportResources.MAResult</span></th>
             }
-            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentStock">@ReportResources.AgentStock</th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentStock"><span class="sorting-item">@ReportResources.AgentStock</span></th>
             @*<th></th>*@
         </tr>
         @if (Model.ReportData.Any())
