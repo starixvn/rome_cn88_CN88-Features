@@ -42,11 +42,19 @@
             TotalStockPercent = query.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
             IsMobile = isMobile;
             GetSortedProperty(query);
+            IsOwner = query.IsOwner;
+            IsOwnerText = IsOwner.ToString().ToLowerInvariant();
+            IsNotOwnerText = IsNotOwner.ToString().ToLowerInvariant();
         }
 
         public bool IsNotOwner => !query.IsOwner;
 
-        public bool IsOwner => query.IsOwner;
+        public string IsOwnerText { get; }
+
+        public string IsNotOwnerText { get; }
+
+
+        public bool IsOwner { get; }
 
         public UserLevel ReportLevel => query.CustLevel;
 

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CN88.Features.Shared.Extensions;
-
-namespace CN88.Features.Reports.Models
+﻿namespace CN88.Features.Reports.Models
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using CN88.Features.Shared.Extensions;
+
     public class ReportModel
     {
         public ReportModel()

@@ -16,9 +16,9 @@
             <tr>
                 <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username"><span class="sorting-item">@ReportResources.SMAUsername</span></th>
                 <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="SMA"><span class="sorting-item">@ReportResources.SMA</span></th>
-                <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="SMAIncome"><span class="sorting-item">@ReportResources.SMAIncome</span></th>
+                <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="SMAIncome"><span class="sorting-item">@ReportResources.SMAIncome</span></th>
                 <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="SMAResult"><span class="sorting-item">@ReportResources.SMAResult</span></th>
-                <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="SMAStock"><span class="sorting-item">@ReportResources.SMAStock</span></th>
+                <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="SMAStock"><span class="sorting-item">@ReportResources.SMAStock</span></th>
                 @if (Model.IsNotOwner)
                 {
                     <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="SMAStockPercent"><span class="sorting-item">@ReportResources.SMAStockPercent</span></th>
@@ -43,9 +43,9 @@
                 <tr class="total">
                     <th class="text-left">@ReportResources.Total</th>
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Super, "settlement")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperIncome, "settlement", true)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperIncome, "settlement")
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult, "settlement")
-                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock, "settlement")
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock, "settlement", true)
                     @if (Model.IsNotOwner)
                     {
                         @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement", true)
