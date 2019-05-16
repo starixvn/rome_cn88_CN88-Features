@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using CN88.Features.Reports.AppResources;
     using Features.Reports.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Constants;

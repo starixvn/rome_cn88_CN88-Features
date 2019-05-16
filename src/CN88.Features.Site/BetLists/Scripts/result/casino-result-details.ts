@@ -15,7 +15,6 @@
             betCheck?: string,
             custId?: number,
             transDesc?: string) => {
-
             const params = "?" + $.param({
                 transDesc: transDesc,
                 betCheck: betCheck,
@@ -48,7 +47,6 @@
             isOutright?: boolean,
             betId?: number,
             betCheck?: string) => {
-
             const params = "?" + $.param({
                 gameId: refNo,
                 roleId: this.ViewerLevelId,

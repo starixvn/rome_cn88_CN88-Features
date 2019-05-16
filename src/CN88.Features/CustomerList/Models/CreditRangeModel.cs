@@ -8,12 +8,12 @@
 
         public CreditRangeModel(
             decimal givenCredit,
-            decimal usedCredit,         
+            decimal usedCredit,
             decimal minCredit,
             decimal maxCredit)
         {
             GivenCredit = givenCredit;
-            UsedCredit = usedCredit;           
+            UsedCredit = usedCredit;
             MinCredit = minCredit;
             MaxCredit = maxCredit;
         }

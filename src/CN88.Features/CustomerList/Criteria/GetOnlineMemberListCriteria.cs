@@ -1,8 +1,8 @@
 ﻿namespace CN88.Features.CustomerList.Criteria
 {
+    using CustomerList.Params;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using CustomerList.Params;
 
     public class GetOnlineMemberListCriteria : CriteriaBase
     {

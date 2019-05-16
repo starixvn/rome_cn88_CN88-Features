@@ -6,7 +6,6 @@
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
     using Requests;

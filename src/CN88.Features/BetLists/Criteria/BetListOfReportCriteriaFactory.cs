@@ -30,12 +30,16 @@
                 {
                     case BetListTypeConstant.Settled:
                         return new OldSettledBetListCriteria(newParam);
+
                     case BetListTypeConstant.Unsettled:
                         return new UnsettledBetListCriteria(newParam);
+
                     case BetListTypeConstant.Cancelled:
                         return new OldCancelledBetListCriteria(newParam);
+
                     case BetListTypeConstant.Abnormal:
                         return new OldAbnormalBetListCriteria(newParam);
+
                     default:
                         return new SettledBetListCriteria(newParam, moveBetsDate);
                 }
@@ -45,12 +49,16 @@
             {
                 case BetListTypeConstant.Settled:
                     return new SettledBetListCriteria(newParam, moveBetsDate);
+
                 case BetListTypeConstant.Unsettled:
                     return new UnsettledBetListCriteria(newParam);
+
                 case BetListTypeConstant.Cancelled:
                     return new CancelledBetListCriteria(newParam, moveBetsDate);
+
                 case BetListTypeConstant.Abnormal:
                     return new AbnormalBetListCriteria(newParam, moveBetsDate);
+
                 default:
                     return new SettledBetListCriteria(newParam, moveBetsDate);
             }

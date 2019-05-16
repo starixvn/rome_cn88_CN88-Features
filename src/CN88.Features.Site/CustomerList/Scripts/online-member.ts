@@ -11,7 +11,7 @@
 
     public init() {
         this.pagerComponent.render();
-    }    
+    }
 }
 
 $(function () {
@@ -21,4 +21,3 @@ $(function () {
 
     onlineMembers.init();
 })
-

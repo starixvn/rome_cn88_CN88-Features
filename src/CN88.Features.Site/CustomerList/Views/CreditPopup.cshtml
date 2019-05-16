@@ -11,7 +11,7 @@
 <div class="popup-modal form">
     <div class="col-xs-12 hidden msg" id="error-message"></div>
     <div class="used-credit">
-        <span class="bold">@(Model.CustLevel.IsMemberLevel() ? CustomerListResources.BetCredit : CustomerListResources.UsedCredit)</span>      
+        <span class="bold">@(Model.CustLevel.IsMemberLevel() ? CustomerListResources.BetCredit : CustomerListResources.UsedCredit)</span>
         <span class="bold">@(Model.CustLevel.IsMemberLevel() ? Model.CreditModel.GivenCredit.ToString("N2") : Model.CreditModel.UsedCredit.ToString("N2"))</span>
     </div>
     <div class="form-group">
@@ -22,7 +22,7 @@
     <div class="list-button">
         <button type="button" class="btn-submit">@CustomerListResources.Save</button>
         <button type="button" class="btn-cancel">@CustomerListResources.Cancel</button>
-    </div>  
+    </div>
 </div>
 
 @Html.Hidden("MinCredit", Model.CreditModel.MinCredit)

@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
-    using System.Net;
     using System.Threading.Tasks;
     using Alpha.Web.Helpers;
     using Features.Models;

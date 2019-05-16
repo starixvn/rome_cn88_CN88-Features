@@ -7,7 +7,7 @@
     {
         public OnlineMemberModel()
         {
-        }        
+        }
 
         public string UserName { get; }
 

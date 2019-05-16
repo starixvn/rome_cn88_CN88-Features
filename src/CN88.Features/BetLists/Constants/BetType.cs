@@ -23,25 +23,20 @@
 
         public static readonly int Lottery_Max5D_60 = 1031;
         public static readonly int Lottery_End = 1049;
-       
 
         public static readonly int Keno_Start = 1501;
         public static readonly int Keno_End = 1599;
-        
 
         public static readonly int Happy5_Start = 8101;
         public static readonly int Happy5_End = 8120;
-       
 
         public static readonly int NumberGame_Start = 81;
         public static readonly int NumberGame_End = 90;
-       
+
         public static readonly int VirtualSports_Start = 1201;
         public static readonly int VirtualSports_End = 1238;
-      
 
         public static readonly int VirtualSports2_Start = 2701;
         public static readonly int VirtualSports2_End = 2812;
-      
     }
 }

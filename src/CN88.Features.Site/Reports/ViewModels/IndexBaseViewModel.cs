@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Constants;
-    using Features.Reports.Models;
     using Features.Shared.Models;
     using Requests;
     using Shared.ViewModels;

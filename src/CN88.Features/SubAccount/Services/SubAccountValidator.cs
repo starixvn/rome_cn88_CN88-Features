@@ -39,6 +39,7 @@
          * [E]: Reports
          * [H]: Account Management View Only
          */
+
         private static readonly string[] ValidPermissions = new[]
         {
             PageAccessType.UpdateAccount,

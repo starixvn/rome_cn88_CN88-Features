@@ -1,7 +1,5 @@
 ﻿namespace CN88.Features.CustomerList.Params
 {
-    using System;
-
     public class MemberStatementParam
     {
         public int CustId { get; set; }

@@ -4,8 +4,7 @@
     var reportFilter = Model.ReportFilterViewModel;
 }
 <form class="form-inline filter report-form" role="form" id="report-form"
-      @Html.Raw(Model.IsMobile ? " style=\"display:none;\"" : string.Empty)
-      >
+      @Html.Raw(Model.IsMobile ? " style=\"display:none;\"" : string.Empty)>
     @RenderHiddenFields()
     @Html.Hidden("BreadcrumbLevelJson", Model.BreadcrumbLevelViewModel.BreadcrumbLevelJson)
     @SportGroupSelection.Render(reportFilter.SportGroupSelectionViewModel, true)

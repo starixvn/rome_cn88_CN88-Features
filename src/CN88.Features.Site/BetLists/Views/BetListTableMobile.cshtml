@@ -15,7 +15,7 @@
         <tr>
             <th class="text-left col-details">@BetListsResources.Details</th>
             <th class="text-right">@BetListsResources.Stake</th>
-            
+
             @if (Model.IsShowWinLoss)
             {
                 <th class="text-right">@BetListsResources.WinLoss</th>
@@ -113,7 +113,6 @@
     </tbody>
 </table>
 
-
 @helper RenderBetListTotal(string winLoss, string stake, string total)
 {
     <tr class="total">
@@ -121,7 +120,7 @@
         <th class="text-right">@Html.Raw(stake)</th>
 
         @if (Model.IsShowWinLoss)
-        { 
+        {
             <th class="text-right winloss">@Html.Raw(winLoss)</th>
         }
 
@@ -129,7 +128,6 @@
         {
             <th class="text-right">@Model.TotalPayoutText</th>
         }
-
     </tr>
 
     if (!Model.IsShowPayout && Model.IsShowWinLoss)

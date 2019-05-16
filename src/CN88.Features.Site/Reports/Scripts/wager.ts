@@ -69,7 +69,6 @@ class WagerReport extends LegacyReport {
     }
 
     public registerEvents() {
-
         if (this.isMobile) {
             this.$tableReport.find("th").removeClass("sorting");
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));

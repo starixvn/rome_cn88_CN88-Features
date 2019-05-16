@@ -45,7 +45,7 @@ class VerifyPassword {
             this.$.unblockUI();
             return false;
         }
-        
+
         let encryptedPwd = this.encrypt(this.$txtPassword.val(), this.hashKey);
         this.$txtPassword.val(encryptedPwd);
 

@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
@@ -124,14 +123,14 @@
 
         public BreadcrumbItem BuildBackLink()
         {
-            if(query.IsOwner
+            if (query.IsOwner
                 || !BreadcrumbLevelViewModel.BreadcrumbLevel.Any())
             {
                 return new BreadcrumbItem(ReportResources.CreateReport, BreadcrumbLevelViewModel.MainLink);
             }
 
             var breadcrumbLinks = BreadcrumbLevelViewModel.BuildBreadcrumbLinks(
-                query.CurrentUrl, 
+                query.CurrentUrl,
                 query.IsSettlement ?? false);
 
             return breadcrumbLinks.Count() > 1

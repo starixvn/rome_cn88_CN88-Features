@@ -9,7 +9,6 @@
 
         public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string,
             betId: string, custId: string, betTeam: string, sourceElement: any) => {
-
             var params = $.param({
                 refNo: refNo,
                 transId: transId,

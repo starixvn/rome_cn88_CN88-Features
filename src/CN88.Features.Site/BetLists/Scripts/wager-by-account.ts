@@ -22,7 +22,6 @@
             this.pagerComponent.render();
         }
 
-
         var self = this;
         this.$("#lnk-wager-details").click(function () {
             var url = self.$(this).attr("data-url");

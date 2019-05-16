@@ -284,7 +284,6 @@
     width: 350px;
 }
 
-
 .betlist-by-account, .betlist-wager-details {
     #nav-tabs {
         padding-top: 0;
@@ -344,7 +343,7 @@
     display: none;
 }
 
-@media (max-device-width: $screen-device-lower768), 
+@media (max-device-width: $screen-device-lower768),
     (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     .filter {
         display: none;
@@ -376,7 +375,6 @@
     .breadcrumb-container {
         display: none;
     }
-
 
     .popup-modal {
         padding: 16px 12px;

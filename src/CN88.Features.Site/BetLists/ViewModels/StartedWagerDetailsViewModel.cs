@@ -9,7 +9,6 @@
     using Features.BetLists.Constants;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
-    using Features.Shared.Models;
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;

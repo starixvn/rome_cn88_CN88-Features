@@ -6,7 +6,6 @@
 
     public static class BetTypeHelper
     {
-
         private static readonly int[] JackpotContributionBetType =
         {
             JackpotContribution,

@@ -159,7 +159,7 @@
                 .BuildBreadcrumbLinks(requestUrl, false, BreadcrumbParamByLevel)
                 .ToList();
 
-            if(links.Count < 2)
+            if (links.Count < 2)
             {
                 return new BreadcrumbItem("Not Found", "#");
             }

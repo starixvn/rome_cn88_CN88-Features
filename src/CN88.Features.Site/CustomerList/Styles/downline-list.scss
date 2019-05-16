@@ -85,12 +85,12 @@ body {
     background-color: $status-closed;
 }
 
-// Closed by Admin 
+// Closed by Admin
 .row-closed.reason-1 {
     background-color: $status-closedby-admin;
 }
 
-// Closed by upline 
+// Closed by upline
 .row-closed.reason-2 {
     background-color: $status-closedby-upline;
 }

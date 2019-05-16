@@ -94,7 +94,6 @@ class ReportIndexView extends BaseReport {
         this.$toDateContainer = this.$("#to-date-container");
         this.$settlementAndAccountingSheetTabs = this.$("#settlement-summary-tab,#accounting-sheet-tab");
         this.$wagerAndCancelledTabs = this.$("#wager-tab,#cancelled-tab");
-        
     };
 
     calculatedDate(): void {
