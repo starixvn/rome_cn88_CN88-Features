@@ -138,12 +138,7 @@
 
             var reportPath = $"~/{reportActionController}/{reportActionName}";
 
-            BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
-                Enumerable.Repeat(reportPath, 4) :
-                CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 4) :
-                CustLevel.IsMasterLevel() ? Enumerable.Repeat(reportPath, 3) :
-                CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 2) :
-                Enumerable.Empty<string>();
+            BreadcrumbParamByLevel = BuildBreadcrumbParamByLevel(reportPath, CustLevel);
         }
 
         public bool IsOldReport { get; set; }
@@ -221,5 +216,16 @@
         public BreadcrumbItem BuildBackLink(string requestUrl)
             => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(requestUrl, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
                 ?? new BreadcrumbItem("Not Found", "#");
+
+        public static IEnumerable<string> BuildBreadcrumbParamByLevel(string reportPath, UserLevel custLevel)
+        {
+            var breadcrumbCount = custLevel.IsHeadline()
+                ? 4
+                : custLevel.IsMemberLevel()
+                ? 0
+                : custLevel.Value;
+
+            return Enumerable.Repeat(reportPath, breadcrumbCount);
+        }
     }
 }

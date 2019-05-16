@@ -468,16 +468,16 @@
 
     // Total-parlay
 
-    .totalbet-parlay-title {
-        display: table;
-        width: 100%;
-        padding-left: 12px;
-        margin-top: 10px;
+        .totalbet-parlay-title {
+            display: table;
+            width: 100%;
+            padding-left: 12px;
+            margin-top: 10px;
 
-        [class^="icon-filter"] {
-            float: left;
+            [class^="icon-filter"] {
+                margin-right: 12px;
+            }
         }
-    }
 
     .total-bet-parlay {
         padding-left: 12px;
