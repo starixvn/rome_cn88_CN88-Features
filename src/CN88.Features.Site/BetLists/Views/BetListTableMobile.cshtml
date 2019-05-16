@@ -67,10 +67,7 @@
                         @ticket.TransDate.ToShortDateFormat()
                         @ticket.TransDate.ToLongTime24h()
                         <br />
-                        @if (Model.IsShowUsername)
-                        {
-                            @ticket.UserName
-                        }
+                        @ticket.UserName
                         @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
                         {
                             <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>

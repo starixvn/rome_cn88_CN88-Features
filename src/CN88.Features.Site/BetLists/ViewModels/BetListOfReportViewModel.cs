@@ -76,7 +76,6 @@
 
             ReportType = ReportTypes[message.Type];
             ReportTitle = ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[ReportType]);
-            IsShowUsername = false;
         }
 
         public BetListOfReportViewModel(
