@@ -567,6 +567,7 @@
       <DependentUpon>member-statement.css</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\styles\onlinemember.css" />
+    <Content Include="CustomerList\bundles\styles\onlinemember.min.css" />
     <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
