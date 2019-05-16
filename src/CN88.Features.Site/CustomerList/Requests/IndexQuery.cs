@@ -20,8 +20,6 @@
             this.viewer = viewer;
         }
 
-        public bool IsInternal => viewer.IsInternal;
-
         public bool AccountManagementEditView => viewer.AccountManagementEditView;
 
         public int ActorId => viewer.Id;

@@ -11,7 +11,6 @@
             : base(viewer)
         {
             LanguageKey = viewer.LanguageKey;
-            IsInternal = viewer.IsInternal;
         }
 
         [AllowHtml]
@@ -20,8 +19,6 @@
         public string PageAccess { get; set; }
 
         public string LanguageKey { get; }
-
-        public bool IsInternal { get; }
 
         public override bool IsValid()
             => base.IsValid() && !IsInternal;

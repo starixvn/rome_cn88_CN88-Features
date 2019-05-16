@@ -257,6 +257,7 @@
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
+        this.topWindow.showCN88SaveAndNewButton = false;
 
         window.location.href = this.EditCustomerLink + "?" + this.$.param({
             Language: this.Language,
@@ -277,6 +278,7 @@
 
             this.storeCurrentPage(reportParam);
             this.topWindow.showCN88CancelButton = true;
+            this.topWindow.showCN88SaveAndNewButton = true;
 
             window.location.href = this.CreateCustomerLink + "?" + this.$.param({
                 Language: this.Language,
@@ -325,7 +327,6 @@
         this.$(".row-customer[cust-id='" + custId + "']")
             .removeClass()
             .addClass("row-customer " + this.reloadStatusColor(newValue));
-
     };
     reloadStatusColor = (status: any) => {
         if (status == siteInfrastructure.customerStatus.open) {

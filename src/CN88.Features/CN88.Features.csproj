@@ -43,11 +43,31 @@
       <HintPath>..\..\packages\Alpha.Utilities.3.0.0.1\lib\net40\Alpha.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-beta19\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0-ns04\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.ESports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.ESports.1.0.0-ns01\lib\net461\CN88.BetList.ESports.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.Keno, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Keno.1.0.0-ns02\lib\net461\CN88.BetList.Keno.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.Lottery, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Lottery.1.0.0-ns02\lib\net461\CN88.BetList.Lottery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.NumberGame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.NumberGame.1.0.0-ns03\lib\net461\CN88.BetList.NumberGame.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.Sportsbook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0-beta15\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0-ns02\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0-ns09\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -91,6 +111,14 @@
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.6\lib\net461\Fanex.Logging.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.7\lib\net461\Fanex.Logging.Extensions.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
@@ -211,16 +239,29 @@
     <Compile Include="BetLists\Constants\BetTypeIdConstants.cs" />
     <Compile Include="BetLists\Constants\TotalBetParlaySport.cs" />
     <Compile Include="BetLists\Constants\TotalBetTypeConstants.cs" />
+    <Compile Include="BetLists\Constants\WagerMonitoringMarket.cs" />
     <Compile Include="BetLists\Criteria\StartedWagerByAccountCriteria.cs" />
     <Compile Include="BetLists\Criteria\EventWagerByAccountCriteria.cs" />
     <Compile Include="BetLists\Criteria\StartedWagerDetailsCriteria.cs" />
     <Compile Include="BetLists\Criteria\EventWagerDetailsCriteria.cs" />
     <Compile Include="BetLists\Params\StartedWagerDetailsParam.cs" />
     <Compile Include="BetLists\Params\StartedWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Criteria\WagerMonitoring\GetMatchByIdCriteria.cs" />
+    <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorBetTypeGroupCriteria.cs" />
+    <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorSportGroupCriteria.cs" />
+    <Compile Include="BetLists\Criteria\WagerMonitoring\GetOtherMatchCriteria.cs" />
+    <Compile Include="BetLists\Criteria\WagerMonitoring\GetOutrightMatchCriteria.cs" />
+    <Compile Include="BetLists\Criteria\WagerMonitoring\WagerMonitoringCriteria.cs" />
+    <Compile Include="BetLists\Models\WagerMonitoring\League.cs" />
+    <Compile Include="BetLists\Models\WagerMonitoring\MatchInfo.cs" />
+    <Compile Include="BetLists\Models\WagerMonitoring\MonitorBetTypeGroup.cs" />
     <Compile Include="BetLists\Params\EventWagerDetailsParam.cs" />
     <Compile Include="BetLists\Params\EventWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Params\WagerMonitoringParam.cs" />
+    <Compile Include="BetLists\WagerMonitoringService.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />
+    <Compile Include="Shared\Constants\SportGroupConstants.cs" />
     <Compile Include="Shared\Constants\StakeModeConstant.cs" />
     <Compile Include="BetLists\Criteria\OldAbnormalBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReportCriteriaFactory.cs" />
@@ -366,8 +407,8 @@
     <Compile Include="SubAccount\Params\BaseSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\CreateSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\UpdateSubAccountParam.cs" />
-    <Compile Include="SubAccount\Services\SubAccountValidator.cs" />
     <Compile Include="SubAccount\Services\SubAccountService.cs" />
+    <Compile Include="SubAccount\Services\SubAccountValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

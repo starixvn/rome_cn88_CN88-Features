@@ -161,25 +161,25 @@
     <value>完成</value>
   </data>
   <data name="SMAPoss" xml:space="preserve">
-    <value>超級代理佔成數</value>
+    <value>股東佔成數</value>
   </data>
   <data name="SMAUsername" xml:space="preserve">
-    <value>超級代理用戶名</value>
+    <value>股東用戶名</value>
   </data>
   <data name="HeadlinePoss" xml:space="preserve">
-    <value>股東成數</value>
+    <value>大股東成數</value>
   </data>
   <data name="HeadlineIncome" xml:space="preserve">
-    <value>股東收入</value>
+    <value>大股東收入</value>
   </data>
   <data name="HeadlineResult" xml:space="preserve">
-    <value>股東結果</value>
+    <value>大股東結果</value>
   </data>
   <data name="HeadlineStock" xml:space="preserve">
-    <value>股東實貨量</value>
+    <value>大股東實貨量</value>
   </data>
   <data name="HeadlineStockPercent" xml:space="preserve">
-    <value>股東實貨量(%)</value>
+    <value>大股東實貨量(%)</value>
   </data>
   <data name="ProfitMagin" xml:space="preserve">
     <value>毛利</value>
@@ -188,10 +188,10 @@
     <value>注單</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>超級代理</value>
+    <value>股東</value>
   </data>
   <data name="SMAStockPercent" xml:space="preserve">
-    <value>超級代理實貨量(%)</value>
+    <value>股東實貨量(%)</value>
   </data>
   <data name="Incomplete" xml:space="preserve">
     <value>未完成</value>
@@ -218,10 +218,10 @@
     <value>總代理</value>
   </data>
   <data name="SMAResult" xml:space="preserve">
-    <value>超級代理結果</value>
+    <value>股東結果</value>
   </data>
   <data name="SMAStock" xml:space="preserve">
-    <value>超級代理實貨量</value>
+    <value>股東實貨量</value>
   </data>
   <data name="Settlement" xml:space="preserve">
     <value>交收</value>
@@ -233,7 +233,7 @@
     <value>取消單分析</value>
   </data>
   <data name="SMAIncome" xml:space="preserve">
-    <value>超級代理收入</value>
+    <value>股東收入</value>
   </data>
   <data name="AgentPoss" xml:space="preserve">
     <value>代理商成數</value>
@@ -270,5 +270,11 @@
   </data>
   <data name="Reports" xml:space="preserve">
     <value>報表</value>
+  </data>
+  <data name="SportsbookPossess" xml:space="preserve">
+    <value>體育博彩佔成數</value>
+  </data>
+  <data name="NonSportsProductPossess" xml:space="preserve">
+    <value>非體育產品佔成數</value>
   </data>
 </root>

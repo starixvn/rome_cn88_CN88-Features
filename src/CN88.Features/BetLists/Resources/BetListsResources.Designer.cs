@@ -70,6 +70,24 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Events.
+        /// </summary>
+        public static string AllEvents {
+            get {
+                return ResourceManager.GetString("AllEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Leagues.
+        /// </summary>
+        public static string AllLeagues {
+            get {
+                return ResourceManager.GetString("AllLeagues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string Back {
@@ -205,11 +223,29 @@ namespace CN88.Features.BetLists.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Percentage.
         /// </summary>
         public static string FullPercentage {
             get {
                 return ResourceManager.GetString("FullPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to League.
+        /// </summary>
+        public static string League {
+            get {
+                return ResourceManager.GetString("League", resourceCulture);
             }
         }
         
@@ -228,6 +264,15 @@ namespace CN88.Features.BetLists.Resources {
         public static string LosingTickets {
             get {
                 return ResourceManager.GetString("LosingTickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Markets.
+        /// </summary>
+        public static string MainMarkets {
+            get {
+                return ResourceManager.GetString("MainMarkets", resourceCulture);
             }
         }
         
@@ -291,6 +336,24 @@ namespace CN88.Features.BetLists.Resources {
         public static string Odds {
             get {
                 return ResourceManager.GetString("Odds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1X2 / Moneyline.
+        /// </summary>
+        public static string OneXTwoMoneyline {
+            get {
+                return ResourceManager.GetString("OneXTwoMoneyline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Markets.
+        /// </summary>
+        public static string OtherMarkets {
+            get {
+                return ResourceManager.GetString("OtherMarkets", resourceCulture);
             }
         }
         
@@ -471,6 +534,15 @@ namespace CN88.Features.BetLists.Resources {
         public static string WagerDetails {
             get {
                 return ResourceManager.GetString("WagerDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager Monitoring Console.
+        /// </summary>
+        public static string WagerMonitoringConsole {
+            get {
+                return ResourceManager.GetString("WagerMonitoringConsole", resourceCulture);
             }
         }
         

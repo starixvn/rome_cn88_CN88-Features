@@ -10,10 +10,7 @@
             : base(viewer)
         {
             LanguageKey = viewer.LanguageKey;
-            IsInternal = viewer.IsInternal;
         }
-
-        public bool IsInternal { get; }
 
         public string LanguageKey { get; }
 

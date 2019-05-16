@@ -169,7 +169,7 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>超级代理 (%)</value>
+    <value>股东 (%)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
     <value>总代理 (%)</value>
@@ -178,16 +178,16 @@
     <value>代理商 (占成)</value>
   </data>
   <data name="PercentageViewMode_5" xml:space="preserve">
-    <value>股东 + 总代理 + 代理商占成</value>
+    <value>股东+总代理+代理商(%)</value>
   </data>
   <data name="PercentageViewMode_6" xml:space="preserve">
-    <value>股东 + 总代理占成</value>
+    <value>股东+总代理(%)</value>
   </data>
   <data name="PercentageViewMode_7" xml:space="preserve">
     <value>总代理 + 代理商占成</value>
   </data>
   <data name="Parlay" xml:space="preserve">
-    <value>综合过关</value>
+    <value>体育博彩混合过关</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>游览</value>
@@ -223,7 +223,7 @@
     <value>账号</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>下注金额</value>
+    <value>股东</value>
   </data>
   <data name="Main" xml:space="preserve">
     <value>主页</value>
@@ -269,5 +269,32 @@
   </data>
   <data name="OK" xml:space="preserve">
     <value>確定</value>
+  </data>
+  <data name="SystemErrorMessage" xml:space="preserve">
+    <value>不好意思…目前系统出错，请联系管理员！</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>开</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>关</value>
+  </data>
+  <data name="Early" xml:space="preserve">
+    <value>早盘</value>
+  </data>
+  <data name="PerSports" xml:space="preserve">
+    <value>各球类</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>虚拟运动</value>
+  </data>
+  <data name="ResetToDefault" xml:space="preserve">
+    <value>恢复默认</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
   </data>
 </root>

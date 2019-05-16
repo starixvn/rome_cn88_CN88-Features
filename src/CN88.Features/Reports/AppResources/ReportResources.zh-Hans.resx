@@ -158,10 +158,10 @@
     <value>总代理</value>
   </data>
   <data name="SMAResult" xml:space="preserve">
-    <value>超级代理结果</value>
+    <value>股东结果</value>
   </data>
   <data name="SMAStock" xml:space="preserve">
-    <value>超级代理实货量</value>
+    <value>股东实货量</value>
   </data>
   <data name="Settlement" xml:space="preserve">
     <value>交收</value>
@@ -200,16 +200,16 @@
     <value>总代理实货量(%)</value>
   </data>
   <data name="SMAPoss" xml:space="preserve">
-    <value>超级代理占成数</value>
+    <value>股东占成数</value>
   </data>
   <data name="SMAStockPercent" xml:space="preserve">
-    <value>超级代理实货量(%)</value>
+    <value>股东实货量(%)</value>
   </data>
   <data name="ProfitMagin" xml:space="preserve">
     <value>毛利</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>超级代理</value>
+    <value>股东</value>
   </data>
   <data name="Wagers" xml:space="preserve">
     <value>注单</value>
@@ -227,22 +227,22 @@
     <value>总代理用户名</value>
   </data>
   <data name="SMAUsername" xml:space="preserve">
-    <value>超级代理用户名</value>
+    <value>股东用户名</value>
   </data>
   <data name="HeadlinePoss" xml:space="preserve">
-    <value>股东成数</value>
+    <value>大股东成数</value>
   </data>
   <data name="HeadlineIncome" xml:space="preserve">
-    <value>股东收入</value>
+    <value>大股东收入</value>
   </data>
   <data name="HeadlineResult" xml:space="preserve">
-    <value>股东结果</value>
+    <value>大股东结果</value>
   </data>
   <data name="HeadlineStock" xml:space="preserve">
-    <value>股东实货量</value>
+    <value>大股东实货量</value>
   </data>
   <data name="HeadlineStockPercent" xml:space="preserve">
-    <value>股东实货量(%)</value>
+    <value>大股东实货量(%)</value>
   </data>
   <data name="DateChanged" xml:space="preserve">
     <value>日期已变更</value>
@@ -251,7 +251,7 @@
     <value>会员收入</value>
   </data>
   <data name="SMAIncome" xml:space="preserve">
-    <value>超级代理收入</value>
+    <value>股东收入</value>
   </data>
   <data name="AgentIncome" xml:space="preserve">
     <value>代理商收入</value>
@@ -270,5 +270,11 @@
   </data>
   <data name="Reports" xml:space="preserve">
     <value>报表</value>
+  </data>
+  <data name="SportsbookPossess" xml:space="preserve">
+    <value>体育博彩占成数</value>
+  </data>
+  <data name="NonSportsProductPossess" xml:space="preserve">
+    <value>非体育产品占成数</value>
   </data>
 </root>

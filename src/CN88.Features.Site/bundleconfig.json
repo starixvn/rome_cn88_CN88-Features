@@ -46,19 +46,21 @@
       "Shared/Scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/sort.js",
       "Reports/Scripts/base-report.js",
       "Reports/Scripts/legacy.js",
       "Reports/Scripts/wager.js"
     ]
   },
-
   {
     "outputFileName": "Reports/bundles/old-wager.js",
     "inputFiles": [
       "Shared/Scripts/core.js",
+      "Shared/Scripts/components/link-builder.js",
       "Shared/Scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/sort.js",
       "Reports/Scripts/old-base-report.js",
       "Reports/Scripts/old-legacy.js",
       "Reports/Scripts/old-wager.js"
@@ -72,6 +74,7 @@
       "Shared/Scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/sort.js",
       "Reports/Scripts/base-report.js",
       //"Reports/Scripts/pt-history.js",
       "Reports/Scripts/legacy.js",
@@ -82,9 +85,11 @@
     "outputFileName": "Reports/bundles/old-legacy.js",
     "inputFiles": [
       "Shared/Scripts/core.js",
+      "Shared/Scripts/components/link-builder.js",
       "Shared/Scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/sort.js",
       "Reports/Scripts/old-base-report.js",
       //"Reports/Scripts/pt-history.js",
       "Reports/Scripts/old-legacy.js",
@@ -296,6 +301,40 @@
       "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js",
       "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/single-selection-dropdown.js"
+    ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/wager-monitoring.css",
+    "inputFiles": [
+      "BetLists/Content/CoreBetListCN88.css",
+      "BetLists/Styles/bet-lists.css",
+      "BetLists/Styles/wager-monitor-console.css"
+    ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/betlist.js",
+    "inputFiles": [
+      "BetLists/Scripts/app-path.js",
+      "BetLists/Scripts/utils.js",
+      "BetLists/Scripts/popup-details.js",
+      "BetLists/Scripts/base-betlist.js",
+      "BetLists/Scripts/result/base-result.js",
+      "BetLists/Scripts/result/sportsbook-result-details.js",
+      "BetLists/Scripts/result/casino-result-details.js",
+      "BetLists/Scripts/result/other-result-details.js",
+      "BetLists/Scripts/details/base-details.js",
+      "BetLists/Scripts/details/sportsbook-details.js",
+      "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js"
+    ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/wager-monitoring.js",
+    "inputFiles": [
+      "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/single-selection-dropdown.js",
+      "BetLists/Scripts/wager-monitoring/multi-selection-checkbox.js",
+      "BetLists/Scripts/wager-monitoring/filter-modal.js",
+      "BetLists/Scripts/wager-monitoring/wager-monitoring.js"
     ]
   }
 ]

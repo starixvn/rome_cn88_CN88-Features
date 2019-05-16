@@ -38,8 +38,8 @@
 
             var sportGroups = rawData
                 .Select(d => d.SportTypeGroup)
-                .Distinct()
-                .OrderBy(s => Converter.ToInt(s));
+                .Distinct();
+
             var name = DateTime.Now.AddDays(-1).ToShortDate();
             var yesterday = new SettlementByGroup(
                 0,

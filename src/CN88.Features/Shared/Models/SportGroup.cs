@@ -5,30 +5,19 @@
     using System.Linq;
     using System.Text;
     using AppResources;
+    using Constants;
 
     public class SportGroup
     {
-        private const int ParlaySportGroupId = 9;
         private readonly Func<int, string> getSportGroupDisplayName;
-
-        public SportGroup()
-        {
-        }
-
-        public SportGroup(
-            int id,
-            IEnumerable<int> displaySportIds)
-        {
-            Id = id;
-            DisplaySportIds = displaySportIds;
-        }
 
         internal SportGroup(
             int id,
             IEnumerable<int> displaySportIds,
             Func<int, string> getSportGroupDisplayName)
-            : this(id, displaySportIds)
         {
+            Id = id;
+            DisplaySportIds = displaySportIds;
             this.getSportGroupDisplayName = getSportGroupDisplayName;
         }
 
@@ -40,9 +29,14 @@
 
         private string GetDisplayName()
         {
-            if (Id == ParlaySportGroupId)
+            if (Id == SportGroupConstants.ParlaySportGroupId)
             {
                 return SharedResources.Parlay;
+            }
+
+            if (Id == SportGroupConstants.VirtualSportsGroupId)
+            {
+                return SharedResources.VirtualSports;
             }
 
             var stringBuilder = new StringBuilder();

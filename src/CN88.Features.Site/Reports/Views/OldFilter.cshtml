@@ -2,6 +2,9 @@
 <form class="form-inline filter report-form" role="form" id="report-form">
     @RenderHiddenFields()
     @Html.Hidden("BreadcrumbLevelJson", Model.BreadcrumbLevelJson)
+    @Html.Hidden("IsDescendingSort", ViewData["IsDescendingSort"] as bool?)
+    @Html.Hidden("SortPropertyName", ViewData["SortPropertyName"] as string)
+    @Html.Hidden("IsSettlement", ViewData["IsSettlement"] as bool?)
     @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, true)
     @Html.Partial("~/Reports/Views/AccountingPeriodSelection.cshtml", Model.AccountingPeriodSelectionViewModel)
     @DateRangePicker.Render(Model.DateRangePickerViewModel)
@@ -23,8 +26,4 @@
     @Html.Hidden("IsOwner", Model.IsOwner)
     @Html.Hidden("ReportType", Model.ReportType)
     @Html.Hidden("DisplayMode", Model.DisplayMode)
-
-    var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
-
-    @Html.Hidden("IsSettlement", isSettlement)
 }

@@ -17,5 +17,5 @@
 @helper RenderStockPercentCell(decimal stock, decimal totalStock, string cellClass = "")
 {
 var stockPercent = totalStock == 0 ? 0 : stock / totalStock * 100;
-    @RenderPercentCell(stockPercent)
+    @RenderPercentCell(stockPercent, cellClass)
 }

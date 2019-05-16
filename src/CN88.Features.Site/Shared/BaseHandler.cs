@@ -39,7 +39,7 @@
         }
 
         protected internal IEnumerable<SelectListItemExt> BuildBetTypeSelectListItems(
-            IEnumerable<BetType> betTypes,
+            IEnumerable<BetTypeGroup> betTypes,
             int userSelectedBetTypeId)
         {
             var items = betTypes.Select(betType => new SelectListItemExt

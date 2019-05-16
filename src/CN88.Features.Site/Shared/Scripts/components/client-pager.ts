@@ -36,19 +36,19 @@ class ClientPagerComponent {
     }
 
     render = (options: ClientPagerOption = new ClientPagerOption()) => {
-        let pagerOption = <ClientPagerOption>this.$.extend({}, this.options, options);
-        let pager = this.$("#" + pagerOption.pagerId);
+        this.options = <ClientPagerOption>this.$.extend({}, this.options, options);
+        let pager = this.$("#" + this.options.pagerId);
 
-        this.$reportForm = this.$("#" + pagerOption.formId);
-        this.$bodyRows = this.$("#" + pagerOption.tableReportId + " > tbody > tr");
+        this.$reportForm = this.$("#" + this.options.formId);
+        this.$bodyRows = this.$("#" + this.options.tableReportId + " > tbody > tr");
 
         this.totalRecords = parseInt(pager.data("totalrecords"), 0);
         this.pageSize = parseInt(pager.data("pagesize"), 0);
         this.pageIndex = parseInt(pager.data("pageindex"), 0);
         this.$pageIndex =
-            this.$(`<input type="hidden" id="${pagerOption.pageIndexId}" name="${pagerOption.pageIndexId}" value="${this.pageIndex}" />`);
+            this.$(`<input type="hidden" id="${this.options.pageIndexId}" name="${this.options.pageIndexId}" value="${this.pageIndex}" />`);
         this.$pageSize =
-            this.$(`<input type="hidden" id="${pagerOption.pageSizeId}" name="${pagerOption.pageSizeId}" value="${this.pageSize}" />`);
+            this.$(`<input type="hidden" id="${this.options.pageSizeId}" name="${this.options.pageSizeId}" value="${this.pageSize}" />`);
 
         this.$reportForm.append(this.$pageIndex).append(this.$pageSize);
 
@@ -74,7 +74,12 @@ class ClientPagerComponent {
     onSelectPage = (pageNumber: number, pageSize: number) => {
         this.updateHiddenFields(pageNumber, pageSize);
         this.showBodyRows();
+
+        if (this.options.onSelectPage) {
+            this.options.onSelectPage();
+        }
     };
+
     updateHiddenFields = (pageNumber: number, pageSize: number) => {
         this.$pageIndex.val(pageNumber);
         this.$pageSize.val(pageSize);
@@ -82,6 +87,7 @@ class ClientPagerComponent {
         this.pageSize = pageSize;
         this.pageIndex = pageNumber;
     };
+
     showBodyRows = () => {
         if (!this.totalRecords) {
             return;

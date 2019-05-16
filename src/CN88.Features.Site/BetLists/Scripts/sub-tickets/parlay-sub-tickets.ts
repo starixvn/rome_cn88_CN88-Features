@@ -14,9 +14,11 @@
 
             if ($parent.hasClass("cn88-mix-parlay-collapse")) {
                 $parent.removeClass("cn88-mix-parlay-collapse");
+                $parent.find(".cn88-offername").removeClass("hide");
             }
             else {
                 $parent.addClass("cn88-mix-parlay-collapse");
+                $parent.find(".cn88-offername").addClass("hide");
             }
 
             var row = $(".tbl-bet-list tr[data-trans-id='" + transId + "']");

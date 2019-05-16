@@ -1,20 +1,26 @@
 ﻿@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
-    int divisor = Model.Divisor;
+    var divisor = Model.Divisor;
+    var colIndex = 0;
 }
-<table class="tbl-noborder tbl-report" id="tbl-report">
-    <thead>
+<table class="tbl-noborder tbl-report" id="tbl-report"
+       data-totalrecords="@Model.ReportData.Count()"
+       data-sortedcolumn="@Model.SortPropertyName"
+       data-descendingsort="@Model.IsDescendingSort">
+    <thead class="tableFloatingHeaderOriginal">
         <tr>
-            <th class="text-left">@ReportResources.MemberUsername</th>
-            <th class="text-left">@ReportResources.Name</th>
-            <th class="text-right">@ReportResources.Wagers</th>
-            <th class="text-right">@ReportResources.Stake</th>
-            <th class="text-right">@ReportResources.ValidStake</th>
-            <th class="text-right">@ReportResources.MemberIncome</th>
-            <th class="text-right">@ReportResources.AgentPoss</th>
-            <th class="text-right">@ReportResources.AgentIncome</th>
-            <th class="text-right">@ReportResources.AgentResultA</th>
+            <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username"><span class="sorting-item">@ReportResources.MemberUsername</span></th>
+            <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Name"><span class="sorting-item">@ReportResources.Name</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Wagers"><span class="sorting-item">@ReportResources.Wagers</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake"><span class="sorting-item">@ReportResources.Stake</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="ValidStake"><span class="sorting-item">@ReportResources.ValidStake</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="MemberIncome"><span class="sorting-item">@ReportResources.MemberIncome</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentPoss">
+                <span class="sorting-item more-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess">@ReportResources.AgentPoss</span>
+            </th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentIncome"><span class="sorting-item">@ReportResources.AgentIncome</span></th>
+            <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="AgentResultA"><span class="sorting-item">@ReportResources.AgentResultA</span></th>
         </tr>
         @if (Model.ReportData.Any())
         {
@@ -38,7 +44,7 @@
             foreach (var row in Model.ReportData)
             {
                 <tr>
-                    <td><a href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
+                    <td><a class="downline-link" href="@Model.BuildDrillDownLink(row, Request.Url.Query)">@row.Username</a></td>
                     <td class="text-left">@row.Name</td>
                     @HtmlHelpers.RenderNumberCell(row.Wagers)
                     @HtmlHelpers.RenderNumberCell(divisor, row.Stake)

@@ -163,7 +163,7 @@
     <value>下注金額</value>
   </data>
   <data name="Parlay" xml:space="preserve">
-    <value>綜合過關</value>
+    <value>體育博彩混合過關</value>
   </data>
   <data name="PercentageViewMode_0" xml:space="preserve">
     <value>顯示所有</value>
@@ -172,7 +172,7 @@
     <value>公司占成</value>
   </data>
   <data name="PercentageViewMode_2" xml:space="preserve">
-    <value>超級代理 (%)</value>
+    <value>股東 (%)</value>
   </data>
   <data name="PercentageViewMode_3" xml:space="preserve">
     <value>總代理 (%)</value>
@@ -181,10 +181,10 @@
     <value>代理商 (佔成)</value>
   </data>
   <data name="PercentageViewMode_5" xml:space="preserve">
-    <value>股東 + 總代理 + 代理商占成</value>
+    <value>股東+總代理+代理商(%)</value>
   </data>
   <data name="PercentageViewMode_6" xml:space="preserve">
-    <value>股東 + 總代理占成</value>
+    <value>股東+總代理(%)</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>瀏覽</value>
@@ -214,7 +214,7 @@
     <value>密碼</value>
   </data>
   <data name="SMA" xml:space="preserve">
-    <value>投注額 </value>
+    <value>股東</value>
   </data>
   <data name="UserCode" xml:space="preserve">
     <value>帳號</value>
@@ -269,5 +269,32 @@
   </data>
   <data name="OK" xml:space="preserve">
     <value>確定</value>
+  </data>
+  <data name="SystemErrorMessage" xml:space="preserve">
+    <value>不好意思…目前系統故障，請聯絡系統管理員。</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>開</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>關</value>
+  </data>
+  <data name="Early" xml:space="preserve">
+    <value>早盤</value>
+  </data>
+  <data name="PerSports" xml:space="preserve">
+    <value>各球類</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>虛擬運動</value>
+  </data>
+  <data name="ResetToDefault" xml:space="preserve">
+    <value>恢復預設</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜尋</value>
   </data>
 </root>

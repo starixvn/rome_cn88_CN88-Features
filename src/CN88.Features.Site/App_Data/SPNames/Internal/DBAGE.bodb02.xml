@@ -4,7 +4,6 @@
     <Setting Key="CS_SportType_Sel" SpName="CS_SportType_Sel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_BetType_Sel" SpName="CS_BetType_Sel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="BetTypeGroup" ObjectProperty="Id" />
-      <Mapping DataField="TypeName" ObjectProperty="Name" />
     </Setting>
     <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_SelArchiveDate" SpName="CS_SelArchiveDate" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />

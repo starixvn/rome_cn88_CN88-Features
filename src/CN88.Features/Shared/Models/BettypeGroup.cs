@@ -2,30 +2,22 @@
 {
     using System;
 
-    public class BetType
+    public class BetTypeGroup
     {
-        public BetType()
+        public BetTypeGroup()
         {
         }
 
-        public BetType(int sportTypeGroup, int id, string name)
+        internal BetTypeGroup(int sportTypeGroup, int id, Func<int, string> getBetTypeDisplayName)
         {
             SportTypeGroup = sportTypeGroup;
             Id = id;
-            Name = name;
-        }
-
-        internal BetType(int sportTypeGroup, int id, string name, Func<int, string> getBetTypeDisplayName)
-            : this(sportTypeGroup, id, name)
-        {
-            DisplayName = getBetTypeDisplayName == null ? name : getBetTypeDisplayName(id);
+            DisplayName = getBetTypeDisplayName(id);
         }
 
         public int SportTypeGroup { get; }
 
         public int Id { get; }
-
-        public string Name { get; }
 
         public string DisplayName { get; }
     }
