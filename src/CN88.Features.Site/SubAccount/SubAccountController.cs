@@ -20,7 +20,7 @@
 
         public async Task<ActionResult> Index(IndexQuery message)
             => message.IsValid()
-                ? View(await mediator.Send(message))
+                ? await ViewAsync(message)
                 : View(NoInformationPageViewPath);
 
         public async Task<ActionResult> New(NewQuery message)
