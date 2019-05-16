@@ -43,5 +43,7 @@
         public decimal TotalPayout { get; protected set; }
 
         public string TotalPayoutText => ConvertByBetType.Winloss(TotalPayout);
+
+        public bool IsShowUsername { get; protected set; } = true;
     }
 }

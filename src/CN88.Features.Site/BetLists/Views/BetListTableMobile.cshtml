@@ -1,4 +1,6 @@
 ﻿@using CN88.Features.Site.BetLists.Helpers
+@using CN88.Features.BetLists.Models
+@using CN88.Features.BetLists.Helpers
 @using Fanex.BetList.Core.Utils
 @using CN88.Features.Extensions
 @model BetListTableViewModel
@@ -65,7 +67,14 @@
                         @ticket.TransDate.ToShortDateFormat()
                         @ticket.TransDate.ToLongTime24h()
                         <br />
-                        @ticket.UserName
+                        @if (Model.IsShowUsername)
+                        {
+                            @ticket.UserName
+                        }
+                        @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
+                        {
+                            <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
+                        }
                         @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
                         @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
                     </td>
