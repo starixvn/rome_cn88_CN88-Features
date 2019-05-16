@@ -567,7 +567,9 @@
       <DependentUpon>member-statement.css</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\styles\onlinemember.css" />
-    <Content Include="CustomerList\bundles\styles\onlinemember.min.css" />
+    <Content Include="CustomerList\bundles\styles\onlinemember.min.css">
+      <DependentUpon>onlinemember.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
@@ -672,7 +674,9 @@
     <Content Include="SubAccount\Styles\sub-account.min.css">
       <DependentUpon>sub-account.css</DependentUpon>
     </Content>
-    <Content Include="Web.local.config" />
+    <Content Include="Web.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Code\BetLists\Stake.cshtml" />
     <Content Include="Web.uat.config">
       <DependentUpon>Web.local.config</DependentUpon>

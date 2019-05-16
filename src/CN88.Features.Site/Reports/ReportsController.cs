@@ -23,11 +23,8 @@
 
         public async Task<ActionResult> Index(IndexQuery message)
             => browserHelper.IsMobile()
-                ? await IndexMobile(message)
+                ? await ViewAsync(message, "IndexMobile")
                 : await ViewAsync(message);
-
-        public async Task<ActionResult> IndexMobile(IndexQuery message)
-           => await ViewAsync(message);
 
         public async Task<ActionResult> SettlementSummary(SettlementSummaryQuery message)
             => await ViewAsync(message);
@@ -40,12 +37,9 @@
             message.CurrentUrl = Request.Url.Query;
 
             return browserHelper.IsMobile()
-                ? await WagerMobile(message)
+                ? await ViewAsync(message, "WagerMobile")
                 : await ViewAsync(message);
         }
-
-        public async Task<ActionResult> WagerMobile(ReportQuery message)
-            => await ViewAsync(message);
 
         public async Task<ActionResult> Legacy(ReportQuery message)
             => await ViewAsync(message);
