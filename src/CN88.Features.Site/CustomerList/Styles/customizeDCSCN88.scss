@@ -7,6 +7,7 @@
 @media (max-device-width: $screen-device-lower768),
     (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     body {
+        padding-top: 0;
         font-size: 10.5px;
     }
 
@@ -24,17 +25,42 @@
         font-weight: bold;
     }
 
+    .block__header {
+        padding-left: 12px;
+        color: #852423;
+        border-bottom-color: #BDBDBD;
+    }
+
+    .setting-type-1 .sub-header {
+        border-bottom-width: 1px;
+    }
+
     .setting-type-1 .row {
         margin-left: 12px;
     }
 
-    .customer-level-3,
+    /*.customer-level-3,
     .customer-level-2 {
         .last-setting-type {
             min-width: 600px;
         }
-    }
+    }*/
 
+        .customer-level-3,
+        .customer-level-2 {
+            .setting-type-2 {
+                width: 100%;
+                overflow-x: auto;
+
+                //min-width: 600px;
+                > .block__header,
+                > .block__lbl-group,
+                > .block__item-group {
+                    width: 600px;
+                }
+            }
+        }
+    
     .customer-level-1 {
         .full-width .block__lbl {
             width: 29%;
@@ -85,10 +111,6 @@
         margin: 0;
         padding: 12px;
         z-index: 90;
-
-        .btn {
-            min-width: 48%;
-        }
     }
 
     .setting-field--constraint {
