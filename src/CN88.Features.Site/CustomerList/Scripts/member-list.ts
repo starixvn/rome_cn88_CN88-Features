@@ -28,6 +28,7 @@
         let self = this;
         this.$("#btn-submit-member").off("click").on("click", function () {
             self.reportParam.PageIndex = 1;
+            self.indexManager.memberToggleHandler.hideFilter();
             self.viewMembers(self.reportParam.CustId);
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
@@ -145,4 +146,3 @@
         this.viewMembers(reportParam.CustId);
     };
 }
-

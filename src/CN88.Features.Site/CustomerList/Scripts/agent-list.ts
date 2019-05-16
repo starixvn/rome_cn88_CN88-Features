@@ -30,6 +30,7 @@ class AgentList extends BaseList {
         var self = this;
         this.$("#btn-submit-agent").off("click").on("click", function () {
             self.reportParam.PageIndex = 1;
+            self.indexManager.agentToggleHandler.hideFilter();
             self.viewAgents(self.reportParam.CustId);
         });
 
@@ -148,4 +149,3 @@ class AgentList extends BaseList {
         this.viewAgents(reportParam.CustId);
     };
 }
-

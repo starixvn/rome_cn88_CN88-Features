@@ -12,7 +12,7 @@ class ToggleHandlerOption {
     }
 }
 
-class ToggleHandler { 
+class ToggleHandler {
     $: JQueryStatic;
     $filterToggleIcon: JQuery;
     $sourceElement: JQuery;
@@ -56,5 +56,19 @@ class ToggleHandler {
                     .addClass("icon-filter-down");
             }
         });
-    }
+    };
+
+    hideFilter = () => {
+        let isCollapsed = this.$filterToggleIcon.hasClass("icon-filter-down");
+        if (isCollapsed) {
+            return;
+        }
+
+        this.$sourceElement.slideUp(200);
+        this.$targetElement
+            .slideDown(210);
+        this.$filterToggleIcon
+            .removeClass("icon-filter-up")
+            .addClass("icon-filter-down");
+    };
 }

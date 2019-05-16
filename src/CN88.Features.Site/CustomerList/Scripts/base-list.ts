@@ -72,6 +72,7 @@
         var self = this;
         this.$("#btn-submit-" + this.levelName.toLowerCase()).click(function () {
             self.reportParam.PageIndex = 1;
+            self.indexManager.masterToggleHandler.hideFilter();
             self.viewList();
         });
     }
@@ -203,4 +204,3 @@
         this.$.unblockUI();
     }
 }
-
