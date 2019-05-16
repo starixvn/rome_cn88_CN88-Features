@@ -22,7 +22,9 @@
     </ul>
     @if (Model.IsMobile)
     {
-        @Html.Partial("~/BetLists/Views/BackLinkMobile.cshtml", backLink)
+        <div class="page-title-mobile">
+            @Html.Partial("~/BetLists/Views/BackLinkMobile.cshtml", backLink)
+        </div>        
         @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
     }
     else
