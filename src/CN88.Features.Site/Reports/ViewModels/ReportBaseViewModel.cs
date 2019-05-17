@@ -5,6 +5,7 @@
     using System.Linq;
     using Alpha.Web.Helpers;
     using Constants;
+    using Extensions;
     using Features.BetLists.Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -62,7 +63,7 @@
 
         public decimal ProfitMargin
             => query.CustLevel.IsSuperLevel() && GrandTotal.SuperStock != 0
-                ? GrandTotal.SuperResult / GrandTotal.SuperStock * 100
+                ? (GrandTotal.SuperResult / GrandTotal.SuperStock * 100).Round()
                 : 0;
 
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel

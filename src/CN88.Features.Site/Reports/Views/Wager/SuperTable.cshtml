@@ -96,7 +96,9 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td id="profit-margin" class="profit-margin" colspan="@(Model.IsSettlement? (Model.IsNotOwner?"11":"5"):"8")" align="right"><strong>@ReportResources.ProfitMagin</strong> <strong>@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</strong></td>
+                    <td id="profit-margin" class="profit-margin" colspan="@(Model.IsSettlement? (Model.IsNotOwner?"11":"5"):"8")" align="right">
+                        <strong>@ReportResources.ProfitMagin <span class="@(Model.ProfitMargin < 0 ? "negative-value" : string.Empty)">@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</span></strong>
+                    </td>
                 </tr>
             </tfoot>
         }

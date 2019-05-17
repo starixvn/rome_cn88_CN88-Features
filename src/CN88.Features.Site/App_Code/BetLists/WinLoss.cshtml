@@ -1,7 +1,9 @@
 ﻿@using Fanex.BetList.Core.Entities
 @using Fanex.BetList.Core.Utils
+@using CN88.Features.Extensions
 
 @helper Render(ITicket ticket, int divisor)
 {
-    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))</td>
+    var winloss = (ticket.Winlost + ticket.PlayerComm) / divisor;
+    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(winloss.Round())))</td>
 }

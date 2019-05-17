@@ -340,6 +340,9 @@ body {
         &.profit-margin span {
             color: #000;
             padding-left: 10px;
+            &.negative-value{
+                color: #B50000;
+            }
         }
     }
 
