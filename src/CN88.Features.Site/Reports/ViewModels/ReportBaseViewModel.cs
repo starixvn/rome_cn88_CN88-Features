@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
+    using CN88.Features.Shared.AppResources;
     using Constants;
     using Features.BetLists.Constants;
     using Features.Reports.AppResources;
@@ -134,7 +135,7 @@
             if (query.IsOwner
                 || !BreadcrumbLevelViewModel.BreadcrumbLevel.Any())
             {
-                return new BreadcrumbItem(ReportResources.CreateReport, BreadcrumbLevelViewModel.MainLink);
+                return new BreadcrumbItem(SharedResources.Main, BreadcrumbLevelViewModel.MainLink);
             }
 
             var breadcrumbLinks = BreadcrumbLevelViewModel.BuildBreadcrumbLinks(
