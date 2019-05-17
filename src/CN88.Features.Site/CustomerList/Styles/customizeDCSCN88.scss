@@ -8,6 +8,7 @@
     (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     body {
         padding-top: 0;
+        padding-bottom: 37px;
         font-size: 10.5px;
     }
 
