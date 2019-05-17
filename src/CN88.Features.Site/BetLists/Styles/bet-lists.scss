@@ -339,6 +339,7 @@
 .totalbet-parlay-title {
     display: none;
 }
+
 .offer-name-list {
     font-weight: bold;
 }
@@ -347,8 +348,7 @@
     display: none;
 }
 
-@media (max-device-width: $screen-device-lower768), 
-    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
+@media (max-device-width: $screen-device-lower768), (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     body {
         padding-bottom: 37px;
     }
@@ -472,16 +472,16 @@
 
     // Total-parlay
 
-        .totalbet-parlay-title {
-            display: table;
-            width: 100%;
-            padding-left: 12px;
-            margin-top: 10px;
+    .totalbet-parlay-title {
+        display: table;
+        width: 100%;
+        padding-left: 12px;
+        margin-top: 10px;
 
-            [class^="icon-filter"] {
-                margin-right: 12px;
-            }
+        [class^="icon-filter"] {
+            margin-right: 12px;
         }
+    }
 
     .total-bet-parlay {
         padding-left: 12px;
@@ -497,9 +497,24 @@
     }
 
     .betlist-wager-details,
-    .betlist-by-account  {
+    .betlist-by-account {
         .page-title {
             display: none;
+        }
+    }
+
+    .from-date-box .bootstrap-datetimepicker-widget.dropdown-menu {
+        right: 0 !important;
+        left: auto !important;
+
+        &:before {
+            left: auto;
+            right: 6px;
+        }
+
+        &:after {
+            left: auto;
+            right: 7px;
         }
     }
 }
