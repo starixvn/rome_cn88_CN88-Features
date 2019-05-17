@@ -1,10 +1,10 @@
-﻿using CN88.Features.Shared.Extensions;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CN88.Features.Reports.Models
+﻿namespace CN88.Features.Reports.Models
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Shared.Extensions;
+
     public class ReportModel
     {
         public ReportModel()
@@ -157,7 +157,7 @@ namespace CN88.Features.Reports.Models
             return this;
         }
 
-        private string GetDisplayPoss(IEnumerable<decimal> pts)
+        private static string GetDisplayPoss(IEnumerable<decimal> pts)
         {
             var builder = new StringBuilder();
             var length = pts.Count();
@@ -173,6 +173,6 @@ namespace CN88.Features.Reports.Models
             }
 
             return builder.ToString();
-        }       
+        }
     }
 }

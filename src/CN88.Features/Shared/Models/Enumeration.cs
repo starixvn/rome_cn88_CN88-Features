@@ -7,7 +7,7 @@
     using System.Reflection;
 
     [Serializable]
-    public abstract class Enumeration : IComparable
+    public class Enumeration : IComparable
     {
         private readonly string _displayName;
         private readonly byte _value;

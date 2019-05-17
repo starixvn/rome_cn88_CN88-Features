@@ -10,7 +10,6 @@
         public const int LessThanOrEqual = 3;
         public const int GreaterThanOrEqual = 4;
 
-        public static IEnumerable<int> Modes =
-            new List<int> { GreaterThan, LessThan, Equal };
+        public static IEnumerable<int> Modes { get; } = new List<int> { GreaterThan, LessThan, Equal };
     }
 }

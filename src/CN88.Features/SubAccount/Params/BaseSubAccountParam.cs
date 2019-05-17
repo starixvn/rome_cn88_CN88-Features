@@ -1,6 +1,6 @@
 ﻿namespace CN88.Features.SubAccount.Params
 {
-    public abstract class BaseSubAccountParam
+    public class BaseSubAccountParam
     {
         protected BaseSubAccountParam(
             string name,
