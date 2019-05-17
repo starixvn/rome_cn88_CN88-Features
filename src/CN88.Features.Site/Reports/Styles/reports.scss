@@ -626,12 +626,11 @@ body {
         }
 
         .username {
-            width: 71px;
+            min-width: 71px;
         }
 
         .username .downline-link {
             display: block;
-            width: 85px;
             word-break: break-all;
         }
     }
