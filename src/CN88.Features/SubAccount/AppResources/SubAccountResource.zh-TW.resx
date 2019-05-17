@@ -198,4 +198,7 @@
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>成功更新</value>
   </data>
+  <data name="SubAccount" xml:space="preserve">
+    <value>子帳號</value>
+  </data>
 </root>

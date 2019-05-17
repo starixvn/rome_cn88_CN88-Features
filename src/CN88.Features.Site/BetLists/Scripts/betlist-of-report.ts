@@ -55,7 +55,6 @@ class BetListOfReport {
         this.cacheDOMElements();
         this.isMobile = this.elements.reportTable.data("ismobile");
         if (this.isMobile) {
-            this.setPageTitle(this.$("title").text());
             this.elements.reportTable.stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
             this.$('body').backtop();
@@ -148,12 +147,6 @@ class BetListOfReport {
             includeSelectAllOption: false
         });
     };
-
-    setPageTitle = (text) => {
-        if (window.top["indexManager"]) {
-            window.top["indexManager"].setMobileHeaderName(text);
-        }
-    }
 
     checkIn = () => {
         this.$.ajax({ url: '../OldReports/Checkin', type: 'POST' });

@@ -198,4 +198,7 @@
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Update Successfully!</value>
   </data>
+  <data name="SubAccount" xml:space="preserve">
+    <value>Sub Account</value>
+  </data>
 </root>
