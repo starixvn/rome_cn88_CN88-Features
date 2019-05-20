@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Text;
     using CN88.Features.Shared.Extensions;
+    using Shared.Extensions;
 
     public class ReportModel
     {
@@ -157,7 +158,7 @@
             return this;
         }
 
-        private string GetDisplayPoss(IEnumerable<decimal> pts)
+        private static string GetDisplayPoss(IEnumerable<decimal> pts)
         {
             var builder = new StringBuilder();
             var length = pts.Count();

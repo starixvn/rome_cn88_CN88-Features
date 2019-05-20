@@ -10,5 +10,8 @@
 
         public static bool InRange(this int number, int start, int end)
             => start <= number && number <= end;
+            
+        public static decimal Round(this decimal value)
+            => decimal.Round(value, 2);
     }
 }

@@ -343,6 +343,9 @@ body {
         &.profit-margin span {
             color: #000;
             padding-left: 10px;
+            &.negative-value{
+                color: #B50000;
+            }
         }
     }
 
@@ -351,6 +354,14 @@ body {
         background-color: #2C3E50;
         padding: 7px 8px;
         text-transform: uppercase;
+    }
+
+    .negative-value {
+        color: #B50000;
+    }
+
+    > thead > tr.total > th.negative-value {
+        color: #ffbeb4;
     }
 }
 
@@ -685,3 +696,4 @@ body {
         }
     }
 }
+

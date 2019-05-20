@@ -81,7 +81,7 @@
             @if (Model.IsShowWinLoss)
             {
                 <td class="text-right">
-                    @(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))
+                    @(new HtmlString(ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round())))
                     <br />
                     @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
                 </td>

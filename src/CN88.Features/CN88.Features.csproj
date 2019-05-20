@@ -25,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>618</NoWarn>
     <LangVersion>7.3</LangVersion>
+    <CodeAnalysisRuleSet>CN88.Features.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>CN88.Features.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -268,6 +270,7 @@
     <Compile Include="BetLists\Params\EventWagerByAccountParam.cs" />
     <Compile Include="BetLists\Params\WagerMonitoringParam.cs" />
     <Compile Include="BetLists\WagerMonitoringService.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />
     <Compile Include="Shared\Constants\SportGroupConstants.cs" />
@@ -421,9 +424,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
+    <None Include="CN88.Features.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BetLists\Resources\BetListsResources.resx">
@@ -456,6 +458,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-Hans.resx" />
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-TW.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />

@@ -5,14 +5,14 @@
 
     public static class PercentageViewModeConstant
     {
-        public static readonly int FullPercentage;
-        public static readonly int CompanyPercentage = 1;
-        public static readonly int SuperPercentage = 2;
-        public static readonly int MasterPercentage = 3;
-        public static readonly int AgentPercentage = 4;
-        public static readonly int SuperMasterAgentPercentage = 5;
-        public static readonly int SuperMasterPercentage = 6;
-        public static readonly int MasterAgentPercentage = 7;
+        public const int FullPercentage = 0;
+        public const int CompanyPercentage = 1;
+        public const int SuperPercentage = 2;
+        public const int MasterPercentage = 3;
+        public const int AgentPercentage = 4;
+        public const int SuperMasterAgentPercentage = 5;
+        public const int SuperMasterPercentage = 6;
+        public const int MasterAgentPercentage = 7;
 
         private static readonly IEnumerable<int> superModes = new List<int>
         {

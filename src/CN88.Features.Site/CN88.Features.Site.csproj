@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>618</NoWarn>
     <LangVersion>7.3</LangVersion>
+    <CodeAnalysisRuleSet>CN88.Features.Site.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>CN88.Features.Site.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alpha.Auth, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
@@ -949,6 +951,7 @@
     <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
     <Content Include="BetLists\Content\audio\TPBTLOW.ogg" />
+    <Content Include="CN88.Features.Site.ruleset" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -1011,6 +1014,12 @@
   <ItemGroup>
     <Folder Include="Reports\assets\bundles\" />
     <Folder Include="Reports\assets\scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CN88.Features\CN88.Features.csproj">

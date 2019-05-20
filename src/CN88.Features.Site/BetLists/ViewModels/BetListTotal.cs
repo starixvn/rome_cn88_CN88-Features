@@ -4,6 +4,7 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Features.BetLists.Models;
+    using Features.Extensions;
     using Helpers;
 
     public class BetListTotal
@@ -29,11 +30,11 @@
 
         public decimal WinLossWithCommission { get; }
 
-        public string TotalWinLossStr => ConvertByBetType.Winloss(TotalWinLoss);
+        public string TotalWinLossStr => ConvertByBetType.Winloss(TotalWinLoss.Round());
 
         public string TotalStakeStr => BetListHelpers.Stake(TotalStake);
 
-        public string TotalStr => ConvertByBetType.Winloss(WinLossWithCommission);
+        public string TotalStr => ConvertByBetType.Winloss(WinLossWithCommission.Round());
 
         private static bool NotInExcludedStatus(ITicket ticket, string[] excludedStatus)
             => !excludedStatus.Contains(ticket.Status.ToLowerInvariant());

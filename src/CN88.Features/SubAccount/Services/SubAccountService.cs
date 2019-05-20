@@ -91,7 +91,7 @@
                 return result;
             }
 
-            result = subAccountValidator.ValidateSuffix(param.Suffix1, param.Suffix1);
+            result = subAccountValidator.ValidateSuffix(param.Suffix1, param.Suffix2);
 
             if (!result.IsSuccess)
             {

@@ -9,7 +9,6 @@
         public static readonly int NonSoccer = 2;
         public static readonly int MixSports = 3;
 
-        public static readonly IEnumerable<int> Sports =
-            new List<int> { All, Soccer, NonSoccer, MixSports };
+        public static IEnumerable<int> Sports { get; } = new List<int> { All, Soccer, NonSoccer, MixSports };
     }
 }
