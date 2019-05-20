@@ -6,14 +6,13 @@
     using Features.Shared.Services;
     using MediatR;
     using Requests;
-    using ViewModels;
     using Shared.Helpers;
+    using ViewModels;
 
     public class ReportsHandler : ReportsBaseHandler,
         IRequestHandler<IndexQuery, IndexViewModel>,
         IRequestHandler<ReportQuery, ReportViewModel>,
         IRequestHandler<PTHistoryQuery, PTHistoryViewModel>,
-        IRequestHandler<BettypeQuery, BettypeViewModel>,
         IRequestHandler<SettlementSummaryQuery, SettlementSummaryReport>,
         IRequestHandler<AccountingSheetQuery, AccountingSheetViewModel>
     {
@@ -43,7 +42,7 @@
         public IndexViewModel Handle(IndexQuery message)
         {
             var sportGroups = sportGroupService.GetSportGroups();
-            var betTypes = betTypeService.GetBetTypeGroupsBySport();
+            var allBetTypeGroups = betTypeService.GetBetTypeGroups();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
 
@@ -53,13 +52,16 @@
                 currentPeriod,
                 lastPeriod,
                 BuildSportGroupSelectListItems(sportGroups, 0),
-                BuildBetTypeSelectListItems(betTypes, 0));
+                BuildBetTypeSelectListItems(allBetTypeGroups, 0),
+                BuildBetTypeSelectListItems(
+                    allBetTypeGroups.Where(t => t.SportTypeGroup == message.UserSelectedSportGroupId),
+                    message.UserSelectedBetTypeId));
         }
 
         public ReportViewModel Handle(ReportQuery message)
         {
             var sportGroups = sportGroupService.GetSportGroups();
-            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
+            var allBetTypes = betTypeService.GetBetTypeGroups();
             var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
             var lastPeriod = accountingPeriodService.GetLastPeriod();
 
@@ -81,13 +83,6 @@
 
         public PTHistoryViewModel Handle(PTHistoryQuery message)
             => new PTHistoryViewModel(reportService.GetPTHistories(message.CustId, message.FromDate, message.ToDate));
-
-        public BettypeViewModel Handle(BettypeQuery message)
-        {
-            var betTypes = betTypeService.GetBetTypeGroupsBySport(message.SportType);
-
-            return new BettypeViewModel(BuildBetTypeSelectListItems(betTypes, 0));
-        }
 
         public SettlementSummaryReport Handle(SettlementSummaryQuery message)
             => settlementSummaryService.GetSettlementSummaryReport();

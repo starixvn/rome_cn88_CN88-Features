@@ -49,8 +49,5 @@
 
         public async Task<ActionResult> PTHistory(PTHistoryQuery message)
             => await ViewAsync(message);
-
-        public async Task<ActionResult> BetType(BettypeQuery message)
-            => await ViewAsync(message);
     }
 }

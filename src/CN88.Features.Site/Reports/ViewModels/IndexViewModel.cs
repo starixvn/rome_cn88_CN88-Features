@@ -22,7 +22,8 @@
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
             IEnumerable<SelectListItemExt> sportGroups,
-            IEnumerable<SelectListItemExt> betTypes)
+            IEnumerable<SelectListItemExt> allBetTypeGroups,
+            IEnumerable<SelectListItemExt> betTypeGroups)
             : base(query, sportGroups)
         {
             DateRangePickerViewModel = new DateRangePickerViewModel(
@@ -30,7 +31,10 @@
                 DateTime.MaxValue,
                 SystemTime.Today.AddDays(-1),
                 SystemTime.Today.AddDays(-1));
-            BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
+
+            AllBetTypeGroups = allBetTypeGroups;
+            BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypeGroups, query.UserSelectedBetTypeId);
+
             CurrentPeriod = currentPeriod;
             LastPeriod = lastPeriod;
             IsMobile = isMobile;
@@ -43,6 +47,8 @@
                 });
             LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, LiveStatusConstants.AllMarkets);
         }
+
+        public IEnumerable<SelectListItemExt> AllBetTypeGroups { get; }
 
         public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
 

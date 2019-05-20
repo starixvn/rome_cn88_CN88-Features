@@ -50,7 +50,15 @@
                 Selected = betType.Id == userSelectedBetTypeId
             }).ToList();
 
-            items.Insert(0, new SelectListItemExt { Text = SharedResources.AllBetTypes, Value = "0", Selected = userSelectedBetTypeId == 0 });
+            items.Insert(
+                0,
+                new SelectListItemExt
+                {
+                    Text = SharedResources.AllBetTypes,
+                    Value = "0",
+                    Selected = userSelectedBetTypeId == 0,
+                    SportTypeGroup = -1
+                });
 
             return items;
         }

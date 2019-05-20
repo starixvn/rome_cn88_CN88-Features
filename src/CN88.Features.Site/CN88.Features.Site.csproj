@@ -778,7 +778,6 @@
     <Compile Include="Reports\Handlers\VerifyPasswordHandler.cs" />
     <Compile Include="Reports\OldReportsController.cs" />
     <Compile Include="Reports\Requests\OldReportQuery.cs" />
-    <Compile Include="Reports\Requests\BettypeQuery.cs" />
     <Compile Include="Reports\Requests\ReportBaseQuery.cs" />
     <Compile Include="Reports\Requests\OldIndexQuery.cs" />
     <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
@@ -787,7 +786,6 @@
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
     <Compile Include="Reports\ViewModels\AccountingPeriodSelectionViewModel.cs" />
     <Compile Include="Reports\ViewModels\AccountingSheetViewModel.cs" />
-    <Compile Include="Reports\ViewModels\BettypeViewModel.cs" />
     <Compile Include="Reports\ViewModels\IndexBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\OldIndexViewModel.cs" />
     <Compile Include="Reports\ViewModels\OldReportFilterViewModel.cs" />
@@ -972,7 +970,6 @@
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <Content Include="Reports\Views\VerifyPassword.cshtml" />
     <Content Include="Reports\Styles\_variables.scss" />
-    <Content Include="Reports\Views\Bettype.cshtml" />
     <Content Include="Reports\Styles\_mixins.scss" />
     <Content Include="Reports\Styles\security.scss" />
     <Content Include="Reports\Views\OldIndex.cshtml" />
@@ -1019,10 +1016,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\assets\bundles\" />
-    <Folder Include="Reports\assets\scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
