@@ -95,10 +95,7 @@ class LegacyReport extends BaseReport {
                 this.$tooltip.tooltip("hide");
                 this.$tooltip.removeClass("tooltip-show");
 
-                if (isShowing) {
-                    tooltip.tooltip("hide");
-                    tooltip.removeClass("tooltip-show");
-                } else {
+                if (!isShowing) {
                     tooltip.tooltip("show");
                     tooltip.addClass("tooltip-show");
                 }
