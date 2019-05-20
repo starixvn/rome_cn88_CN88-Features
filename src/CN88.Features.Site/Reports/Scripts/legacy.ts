@@ -51,7 +51,7 @@ class LegacyReport extends BaseReport {
         this.initTooltip();
         super.renderComponents();
 
-        
+
         let headers = this.$custLevelId.val() == "4"
             ? { 0: { sorter: "text" } }
             : { 0: { sorter: "text" }, 1: { sorter: "text" } };
@@ -62,7 +62,7 @@ class LegacyReport extends BaseReport {
                     parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
                     true,
                     this.sortComponent.afterSort,
-                headers,
+                    headers,
                     this.$reportForm));
         }
 
@@ -85,7 +85,17 @@ class LegacyReport extends BaseReport {
 
     public registerEvents() {
         this.$reportForm.submit(this.onReportSubmit);
-        this.$excelIcon.click(this.onExportExcelEvent)
+        this.$excelIcon.click(this.onExportExcelEvent);
+
+        this.$("body").on("click touchend", (event) => {
+            if (event.target.hasAttribute("data-toggle")) {
+                this.$tooltip.tooltip("show");
+                event.stopPropagation();
+                return false;
+            }
+
+            this.$tooltip.tooltip("hide");
+        });
     }
 
     onSelectPage(): void {
