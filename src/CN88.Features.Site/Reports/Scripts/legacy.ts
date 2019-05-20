@@ -93,10 +93,7 @@ class LegacyReport extends BaseReport {
 
             if (event.target.hasAttribute("data-toggle")) {
                 var tooltip = this.$(event.target);
-                if (tooltip.hasClass("tooltip-show")) {
-                    tooltip.tooltip("hide");
-                    tooltip.removeClass("tooltip-show");
-                } else {
+                if (!tooltip.hasClass("tooltip-show")) {
                     tooltip.tooltip("show");
                     tooltip.addClass("tooltip-show");
                 }
