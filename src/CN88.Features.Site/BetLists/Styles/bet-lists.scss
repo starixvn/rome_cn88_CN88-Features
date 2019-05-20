@@ -432,6 +432,10 @@
             height: 19px;
             background-image: url("images/details.svg");
         }
+
+        .detail-link {
+            white-space: nowrap;
+        }
     }
 
     .tbl-betlists > thead {
