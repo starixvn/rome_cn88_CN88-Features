@@ -636,6 +636,10 @@ body {
             background-color: #ECF4E2;
         }
 
+        > thead > tr.total > th.negative-value {
+            color: #B50000;
+        }
+
         .username {
             min-width: 71px;
         }
@@ -643,6 +647,14 @@ body {
         .username .downline-link {
             display: block;
             word-break: break-all;
+        }
+
+        .stack-row .negative-value {
+            color: #3B3B3B;
+
+            .st-cell-value {
+                color: #B50000;
+            }
         }
     }
 
