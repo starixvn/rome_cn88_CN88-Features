@@ -5,10 +5,6 @@
 
     public class OnlineMemberModel
     {
-        public OnlineMemberModel()
-        {
-        }        
-
         public string UserName { get; }
 
         public string Name { get; }

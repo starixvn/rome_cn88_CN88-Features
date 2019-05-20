@@ -2,10 +2,6 @@
 {
     public class MatchInfo
     {
-        public MatchInfo()
-        {
-        }
-
         public int MatchId { get; }
 
         public string MatchCode { get; }

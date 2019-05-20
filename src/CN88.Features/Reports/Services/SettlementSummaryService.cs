@@ -19,16 +19,13 @@
     public class SettlementSummaryServiceImpl : SettlementSummaryService
     {
         private readonly IDynamicRepository dynamicRepository;
-        private readonly CacheRefService cacheRefService;
         private readonly SportGroupService sportGroupSerivce;
 
         public SettlementSummaryServiceImpl(
             IDynamicRepository dynamicRepository,
-            CacheRefService cacheRefService,
             SportGroupService sportGroupSerivce)
         {
             this.dynamicRepository = dynamicRepository;
-            this.cacheRefService = cacheRefService;
             this.sportGroupSerivce = sportGroupSerivce;
         }
 
@@ -64,7 +61,7 @@
             return sportGroups.FirstOrDefault(g => g.Id == sportGroupId).DisplayName;
         }
 
-        private IList<SettlementModel> GetSettlementByDate(
+        private static IList<SettlementModel> GetSettlementByDate(
             string name,
             IEnumerable<SportSettlementByDateModel> rawData,
             IEnumerable<int> sportGroups)

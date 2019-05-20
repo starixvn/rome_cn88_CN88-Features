@@ -216,7 +216,7 @@
                 () => dynamicRepository.Fetch<MonitorBetTypeGroup>(new GetMonitorBetTypeGroupCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
 
-        private bool IsOneXTwoMoneyline(MonitorBetTypeGroup betTypeGroup)
+        private static bool IsOneXTwoMoneyline(MonitorBetTypeGroup betTypeGroup)
             => betTypeGroup.SportTypeGroup == 0 && betTypeGroup.DisplayBetTypeGroup == 5;
 
         private static bool IsDummyMatch(int matchId) => matchId <= 999;

@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
     using System;
+    using Extensions;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
     using Features.Reports.Models;
@@ -79,24 +80,24 @@
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => data.Wagers)
-                .Map(C, data => data.Stake / divisor)
-                .Map(D, data => data.ValidStake / divisor)
-                .Map(E, data => data.MemberIncome / divisor)
-                .Map(F, data => data.Agent / divisor)
-                .Map(G, data => data.AgentResult / divisor)
-                .Map(H, data => data.Master / divisor)
-                .Map(I, data => data.Super / divisor)
-                .Map(J, data => data.SuperIncome / divisor)
-                .Map(K, data => data.SuperResult / divisor)
-                .Map(L, data => data.SuperStock / divisor);
+                .Map(C, data => CalculateNumber(data.Stake))
+                .Map(D, data => CalculateNumber(data.ValidStake))
+                .Map(E, data => RoundNumber(data.MemberIncome))
+                .Map(F, data => RoundNumber(data.Agent))
+                .Map(G, data => RoundNumber(data.AgentResult))
+                .Map(H, data => RoundNumber(data.Master))
+                .Map(I, data => RoundNumber(data.Super))
+                .Map(J, data => RoundNumber(data.SuperIncome))
+                .Map(K, data => RoundNumber(data.SuperResult))
+                .Map(L, data => CalculateNumber(data.SuperStock));
 
             if (!message.IsOwner)
             {
                 mapper.Map(M, data => isTotal ? totalStockPercent : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(N, data => isTotal ? string.Empty : data.HeadlinePoss)
-                    .Map(O, data => data.HeadlineIncome / divisor)
-                    .Map(P, data => data.HeadlineResult / divisor)
-                    .Map(Q, data => data.HeadlineStock / divisor)
+                    .Map(O, data => RoundNumber(data.HeadlineIncome))
+                    .Map(P, data => RoundNumber(data.HeadlineResult))
+                    .Map(Q, data => CalculateNumber(data.HeadlineStock))
                     .Map(R, data => isTotal ? totalStockPercent : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock));
             }
 
@@ -109,28 +110,28 @@
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
                 .Map(C, data => data.Wagers)
-                .Map(D, data => data.Stake / divisor)
-                .Map(E, data => data.ValidStake / divisor)
-                .Map(F, data => data.MemberIncome / divisor)
-                .Map(G, data => data.Agent / divisor)
-                .Map(H, data => data.AgentResult / divisor)
-                .Map(I, data => data.MasterIncome / divisor)
-                .Map(J, data => data.MasterResult / divisor);
+                .Map(D, data => CalculateNumber(data.Stake))
+                .Map(E, data => CalculateNumber(data.ValidStake))
+                .Map(F, data => RoundNumber(data.MemberIncome))
+                .Map(G, data => RoundNumber(data.Agent))
+                .Map(H, data => RoundNumber(data.AgentResult))
+                .Map(I, data => RoundNumber(data.MasterIncome))
+                .Map(J, data => RoundNumber(data.MasterResult));
 
             if (message.IsOwner)
             {
-                mapper.Map(K, data => data.MasterStock / divisor)
+                mapper.Map(K, data => CalculateNumber(data.MasterStock))
                     .Map(L, data => isTotal ? totalStockPercent : CalculatePercentage(data.MasterStock, grandTotal.MasterStock));
             }
             else
             {
-                mapper.Map(K, data => data.Super / divisor)
-                    .Map(L, data => data.MasterStock / divisor)
+                mapper.Map(K, data => RoundNumber(data.Super))
+                    .Map(L, data => CalculateNumber(data.MasterStock))
                     .Map(M, data => isTotal ? totalStockPercent : CalculatePercentage(data.MasterStock, grandTotal.MasterStock))
                     .Map(N, data => isTotal ? string.Empty : data.SuperPoss)
-                    .Map(O, data => data.SuperIncome / divisor)
-                    .Map(P, data => data.SuperResult / divisor)
-                    .Map(Q, data => data.SuperStock / divisor)
+                    .Map(O, data => RoundNumber(data.SuperIncome))
+                    .Map(P, data => RoundNumber(data.SuperResult))
+                    .Map(Q, data => CalculateNumber(data.SuperStock))
                     .Map(R, data => isTotal ? totalStockPercent : CalculatePercentage(data.SuperStock, grandTotal.SuperStock));
             }
 
@@ -143,24 +144,24 @@
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
                 .Map(C, data => data.Wagers)
-                .Map(D, data => data.Stake / divisor)
-                .Map(E, data => data.ValidStake / divisor)
-                .Map(F, data => data.MemberIncome / divisor)
-                .Map(G, data => data.Agent / divisor)
-                .Map(H, data => data.AgentPoss)
-                .Map(I, data => data.AgentIncome / divisor)
-                .Map(J, data => data.AgentResult / divisor);
+                .Map(D, data => CalculateNumber(data.Stake))
+                .Map(E, data => CalculateNumber(data.ValidStake))
+                .Map(F, data => RoundNumber(data.MemberIncome))
+                .Map(G, data => RoundNumber(data.Agent))
+                .Map(H, data => isTotal ? string.Empty : data.AgentPoss)
+                .Map(I, data => RoundNumber(data.AgentIncome))
+                .Map(J, data => RoundNumber(data.AgentResult));
 
             if (message.IsOwner)
             {
-                mapper.Map(K, data => data.AgentStock / divisor);
+                mapper.Map(K, data => CalculateNumber(data.AgentStock));
             }
             else
             {
                 mapper.Map(K, data => isTotal ? string.Empty : data.MasterPoss)
-                    .Map(L, data => data.MasterIncome / divisor)
-                    .Map(M, data => data.MasterResult / divisor)
-                    .Map(N, data => data.AgentStock / divisor);
+                    .Map(L, data => RoundNumber(data.MasterIncome))
+                    .Map(M, data => RoundNumber(data.MasterResult))
+                    .Map(N, data => CalculateNumber(data.AgentStock));
             }
 
             return mapper;
@@ -172,20 +173,20 @@
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
                 .Map(B, data => isTotal ? string.Empty : data.Name)
                 .Map(C, data => data.Wagers)
-                .Map(D, data => data.Stake / divisor)
-                .Map(E, data => data.ValidStake / divisor)
-                .Map(F, data => data.MemberIncome / divisor)
+                .Map(D, data => CalculateNumber(data.Stake))
+                .Map(E, data => CalculateNumber(data.ValidStake))
+                .Map(F, data => RoundNumber(data.MemberIncome))
                 .Map(G, data => isTotal ? string.Empty : data.AgentPoss)
-                .Map(H, data => data.AgentIncome / divisor)
-                .Map(I, data => data.AgentResult / divisor);
+                .Map(H, data => RoundNumber(data.AgentIncome))
+                .Map(I, data => RoundNumber(data.AgentResult));
 
             return mapper;
         }
 
-        internal Mapper<ReportModel> GetFooterRowMapper()
+        internal static Mapper<ReportModel> GetFooterRowMapper()
             => new Mapper<ReportModel>()
                 .Map(A, data => ReportResources.ProfitMagin)
-                .Map(B, data => CalculatePercentage(data.SuperResult, data.SuperStock).FormatNumber() + " %");
+                .Map(B, data => decimal.Round(data.SuperResult / data.SuperStock, 4));
 
         private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
             => new TemplateInfo(
@@ -195,7 +196,7 @@
                 headerStartIndex: 1,
                 bodyStartIndex: 2);
 
-        private string GetExcelFileName(ReportParam param)
+        private static string GetExcelFileName(ReportParam param)
            => string.Join(
                "_",
                param.FromDate.ToShortDate(),
@@ -203,7 +204,13 @@
 
         protected internal override string GetExcelTemplateFolder() => "Reports";
 
-        private decimal CalculatePercentage(decimal devidend, decimal devisor)
+        private static decimal CalculatePercentage(decimal devidend, decimal devisor)
             => devisor == 0 ? 0 : devidend / devisor * 100;
+
+        private decimal RoundNumber(decimal number)
+            => CalculateNumber(number).Round();
+
+        private decimal CalculateNumber(decimal number)
+            => number / divisor;
     }
 }

@@ -5,7 +5,7 @@
 
     public abstract class BaseSubAccountCommand : NonQueryCommand
     {
-        public BaseSubAccountCommand(
+        protected BaseSubAccountCommand(
             int custId,
             string name,
             string pageAccess,

@@ -1,6 +1,7 @@
-﻿html{
+﻿html {
     height: 100%;
 }
+
 body {
     background-color: #ecf0f1;
     min-height: 100%;
@@ -19,9 +20,11 @@ body {
     .tab-content {
         padding: 20px;
     }
+
     .filter {
         padding-top: 0;
     }
+
     .page-title {
         padding: 19px 20px;
         font-size: 18px;
@@ -45,9 +48,11 @@ body {
 
     .form-group {
         margin: 0 0 15px;
+
         &.list-buttons {
             width: 350px;
             text-align: right;
+
             .btn-submit {
                 margin-right: 0;
             }
@@ -92,6 +97,7 @@ body {
 .dropdown-menu {
     min-width: 170px;
 }
+
 .filter-container .multiselect-container.dropdown-menu {
     width: 350px;
 }
@@ -113,10 +119,12 @@ body {
     border-bottom: 1px solid #ddd;
     line-height: 56px;
     margin-bottom: 0;
+
     .nav-tabs {
         float: left;
         border-bottom: none;
     }
+
     .nav-tabs > li > a {
         line-height: inherit;
         padding: 0 16px;
@@ -128,14 +136,17 @@ body {
 
     .breadcrumb-container {
         float: right;
+
         .tooltip.bottom {
             margin-top: -4px;
             right: 18px;
             left: unset !important;
         }
+
         .tooltip-arrow {
             margin-left: 8px;
         }
+
         .tooltip-arrow:after {
             position: absolute;
             width: 0;
@@ -145,7 +156,7 @@ body {
         }
 
         .tooltip-arrow:after {
-            content:'';
+            content: '';
             border-width: 4px;
             border-bottom-color: #ececec !important;
             bottom: -6px;
@@ -166,20 +177,23 @@ body {
     }
 }
 
-.icon-history{
+.icon-history {
     font-size: 16px;
+
     &:hover {
         cursor: pointer;
     }
 }
+
 .message-modal {
-    
     box-shadow: none;
     position: relative;
+
     .modal-dialog {
         background-color: #ececec;
         margin-top: 7px !important;
     }
+
     .modal-dialog:before {
         content: '';
         display: inline-block;
@@ -191,7 +205,8 @@ body {
         position: absolute;
         z-index: 99999;
     }
-     .modal-dialog:after {
+
+    .modal-dialog:after {
         content: '';
         display: inline-block;
         border-left: 5px solid transparent;
@@ -202,11 +217,13 @@ body {
         position: absolute;
         z-index: 99999;
     }
+
     .modal-content {
         box-shadow: none;
         background-color: inherit;
         padding: 0 8px;
         border: 1px solid #ccc;
+
         .modal-header .icon-close {
             background: transparent;
             color: #3b3b3b;
@@ -214,15 +231,19 @@ body {
             height: unset;
             right: 8px;
             top: 12px;
+
             &:before {
                 font-size: 10px;
                 font-weight: bold;
             }
         }
+
         .modal-body {
             padding: 0 20px 0 0;
+
             .item-history {
                 padding: 6px 0;
+
                 &:not(:first-child) {
                     border-top: 1px solid #ccc;
                 }
@@ -230,6 +251,7 @@ body {
         }
     }
 }
+
 .report-form {
     padding-top: 16px;
     border-bottom: 1px solid #c8c8c8;
@@ -241,6 +263,7 @@ body {
             text-transform: uppercase;
             display: block;
         }
+
         .control.date {
             margin: 0;
         }
@@ -276,18 +299,21 @@ body {
         > th {
             font-weight: normal;
             text-align: center;
+
             [class*="-settlement"] {
                 padding-bottom: 8px;
             }
         }
     }
+
     > tbody > tr > td {
         text-align: center;
+
         &:first-child {
-            text-align:  left;
+            text-align: left;
             padding: 12px;
             width: 150px;
-        }        
+        }
     }
 }
 
@@ -314,6 +340,9 @@ body {
         &.profit-margin span {
             color: #000;
             padding-left: 10px;
+            &.negative-value{
+                color: #B50000;
+            }
         }
     }
 
@@ -323,6 +352,14 @@ body {
         padding: 7px 8px;
         text-transform: uppercase;
     }
+
+    .negative-value {
+        color: #B50000;
+    }
+
+    > thead > tr.total > th.negative-value {
+        color: #ffbeb4;
+    }
 }
 
 #tblAccountingSheet {
@@ -331,6 +368,7 @@ body {
         font-weight: normal;
         color: #3b3b3b;
     }
+
     > tbody > tr > td {
         text-align: left;
         padding: 12px;
@@ -341,21 +379,24 @@ body {
     .list-menu {
         overflow: hidden;
         width: 100%;
+
         .menu-item {
             float: left;
             border: none;
+
             &:first-child {
                 background: inherit;
             }
         }
     }
+
     .sub-menu {
         padding: 0;
         background-color: #fff;
     }
 
     .new-page-content {
-         min-width: 424px;
+        min-width: 424px;
     }
 
     #tblAccountingSheet {
@@ -363,10 +404,12 @@ body {
         white-space: nowrap;
     }
 }
+
 .report-detail .accountingsheet-control {
     .multiselect .multiselect-selected-text {
         width: 180px;
     }
+
     .dropdown-menu {
         width: 212px;
     }
@@ -378,6 +421,7 @@ body {
             width: 400px;
             margin-right: 20px;
         }
+
         .result-container {
             width: 480px;
         }

@@ -24,7 +24,6 @@
         IRequestHandler<BetListOfReportExcelQuery, ExcelFileViewModel>
     {
         private readonly BetListsService service;
-        private readonly ISmartPunterBetListMonitor monitorService;
         private readonly ITicketHelper ticketHelper;
         private readonly IBetListCN88HtmlBuilder cn88Builder;
         private readonly IBetListHTMLBuilder builder;
@@ -36,14 +35,12 @@
             IBetListExcelBuilder excelBuilder,
             IBetListCN88ExcelBuilder cn88ExcelBuilder,
             BetListsService service,
-            ISmartPunterBetListMonitor monitorService,
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
             BetListOfReportWorkbook workbook) : base(excelBuilder)
         {
             this.service = service;
-            this.monitorService = monitorService;
             this.ticketHelper = ticketHelper;
             this.cn88Builder = cn88Builder;
             this.builder = builder;

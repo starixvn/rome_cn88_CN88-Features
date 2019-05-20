@@ -3,6 +3,7 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
     using Features.BetLists.Helpers;
+    using Features.Extensions;
 
     public class WinLostBlockViewModel
     {
@@ -51,7 +52,9 @@
                     break;
 
                 default:
-                    WinLost = ticket.BetTypeId == 500 ? "(NW) " + ConvertByBetType.Winloss(ticket.ActualStake / divisor) : ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor);
+                    WinLost = ticket.BetTypeId == 500 
+                        ? "(NW) " + ConvertByBetType.Winloss((ticket.ActualStake / divisor).Round()) 
+                        : ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round());
                     Comm = ticket.BetTypeId == 500 ? ConvertByBetType.Winloss(ticket.PlayerComm) : ConvertByBetType.Comm(ticket.PlayerComm);
                     break;
             }
