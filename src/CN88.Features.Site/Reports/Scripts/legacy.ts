@@ -88,12 +88,17 @@ class LegacyReport extends BaseReport {
         this.$excelIcon.click(this.onExportExcelEvent);
 
         this.$("body").on("click touchend", (event) => {
-            this.$tooltip.tooltip("hide");
-            this.$tooltip.removeClass("tooltip-show");
-
             if (event.target.hasAttribute("data-toggle")) {
                 var tooltip = this.$(event.target);
-                if (!tooltip.hasClass("tooltip-show")) {
+                var isShowing = tooltip.hasClass("tooltip-show");
+
+                this.$tooltip.tooltip("hide");
+                this.$tooltip.removeClass("tooltip-show");
+
+                if (isShowing) {
+                    tooltip.tooltip("hide");
+                    tooltip.removeClass("tooltip-show");
+                } else {
                     tooltip.tooltip("show");
                     tooltip.addClass("tooltip-show");
                 }
@@ -101,6 +106,9 @@ class LegacyReport extends BaseReport {
                 event.stopPropagation();
                 return false;
             }
+
+            this.$tooltip.tooltip("hide");
+            this.$tooltip.removeClass("tooltip-show");
         });
     }
 
