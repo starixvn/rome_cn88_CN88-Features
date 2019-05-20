@@ -89,12 +89,21 @@ class LegacyReport extends BaseReport {
 
         this.$("body").on("click touchend", (event) => {
             if (event.target.hasAttribute("data-toggle")) {
-                this.$tooltip.tooltip("show");
+                var tooltip = this.$(event.target);
+                if (tooltip.hasClass("tooltip-show")) {
+                    tooltip.tooltip("hide");
+                    tooltip.removeClass("tooltip-show");
+                } else {
+                    tooltip.tooltip("show");
+                    tooltip.addClass("tooltip-show");
+                }
+
                 event.stopPropagation();
                 return false;
             }
 
             this.$tooltip.tooltip("hide");
+            this.$tooltip.removeClass("tooltip-show");
         });
     }
 
