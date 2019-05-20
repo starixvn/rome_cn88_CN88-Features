@@ -62,54 +62,56 @@
             for (int i = 0; i < tickets.Count; i++)
             {
                 var ticket = tickets[i];
-                <tr data-trans-id="@ticket.TransId">
-                    <td>
-                        @ticket.TransDate.ToShortDateFormat()
-                        @ticket.TransDate.ToLongTime24h()
-                        <br />
-                        @ticket.UserName
-                        @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
-                        {
-                            <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
-                        }
-                        @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
-                        @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
-                    </td>
-                    @if (Model.IsShowPayout)
-                    {
-                        <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
-                    }
+        <tr data-trans-id="@ticket.TransId">
+            <td>
+                @ticket.TransDate.ToShortDateFormat()
+                @ticket.TransDate.ToLongTime24h()
+                <br />
+                @ticket.UserName
+                @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
+                {
+                    <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
+                }
+                @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
+                @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
+            </td>
 
-                    @if (Model.IsShowWinLoss)
-                    {
-                        <td class="text-right">
-                            @(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))
-                            <br />
-                            @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
-                        </td>
-                    }
+            <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
 
-                    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
+            @if (Model.IsShowPayout)
+            {
+                <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
+            }
 
-                    @if (Model.CustLevel.IsAgentLevel())
-                    {
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                    }
 
-                    @if (Model.CustLevel.IsMasterLevel())
-                    {
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                    }
+            @if (Model.IsShowWinLoss)
+            {
+                <td class="text-right">
+                    @(new HtmlString(ConvertByBetType.Winloss((ticket.Winlost + ticket.PlayerComm) / divisor)))
+                    <br />
+                    @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
+                </td>
+            }
 
-                    @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
-                    {
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(Model.CompanyPositionTaking(ticket) * 100), "text-right")
-                    }
-                </tr>
+            @if (Model.CustLevel.IsAgentLevel())
+            {
+                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+            }
+
+            @if (Model.CustLevel.IsMasterLevel())
+            {
+                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
+            }
+
+            @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
+            {
+                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(Model.CompanyPositionTaking(ticket) * 100), "text-right")
+            }
+        </tr>
             }
         }
         else
