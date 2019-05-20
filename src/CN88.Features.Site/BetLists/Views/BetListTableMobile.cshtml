@@ -78,12 +78,6 @@
 
             <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
 
-            @if (Model.IsShowPayout)
-            {
-                <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
-            }
-
-
             @if (Model.IsShowWinLoss)
             {
                 <td class="text-right">
@@ -91,6 +85,11 @@
                     <br />
                     @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
                 </td>
+            }
+
+            @if (Model.IsShowPayout)
+            {
+                <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
             }
 
             @if (Model.CustLevel.IsAgentLevel())

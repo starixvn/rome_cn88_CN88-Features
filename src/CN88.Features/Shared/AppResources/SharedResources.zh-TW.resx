@@ -297,4 +297,7 @@
   <data name="Search" xml:space="preserve">
     <value>搜尋</value>
   </data>
+  <data name="ParlayText" xml:space="preserve">
+    <value>綜合過關</value>
+  </data>
 </root>
