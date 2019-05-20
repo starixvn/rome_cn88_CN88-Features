@@ -24,13 +24,13 @@
         <thead class="tableFloatingHeaderOriginal">
             <tr>
                 <th class="header sorting" data-colindex="0" data-sortedname="UserName">@SubAccountResource.UserName</th>
-                <th class="header sorting" data-colindex="1" data-sortedname="FirstName">@SubAccountResource.Name</th>
+                <th class="header sorting hide-mobile" data-colindex="1" data-sortedname="FirstName">@SubAccountResource.Name</th>
                 <th class="header sorting" data-colindex="2" data-sortedname="NickName">@SubAccountResource.NickName</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
                 <th class="text-center">@SubAccountResource.ACManagement<br />@SubAccountResource.ViewOnly</th>
                 <th class="text-center">@SubAccountResource.ACManagement<br />@SubAccountResource.EditView</th>
                 <th class="text-center">@SubAccountResource.Reports</th>
-                <th class="header sorting" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
+                <th class="header sorting hide-mobile" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
                 <th>@SubAccountResource.Action</th>
             </tr>
         </thead>
@@ -41,8 +41,8 @@
                 {
                     var permission = item.Permissions;
                     <tr>
-                        <td>@item.UserName</td>
-                        <td>@WebUtility.HtmlDecode(item.FirstName)</td>
+                        <td><div class="username">@item.UserName</div></td>
+                        <td class="hide-mobile">@WebUtility.HtmlDecode(item.FirstName)</td>
                         <td>@item.NickName</td>
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewTotalBets)
@@ -56,8 +56,9 @@
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewReports)
                         </td>
-                        <td>@item.CreateDateString</td>
+                        <td class="hide-mobile">@item.CreateDateString</td>
                         <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
+                            <span class="icon-more-action"></span>
                             @RenderActionCell(item.Closed)
                         </td>
                     </tr>
