@@ -588,7 +588,11 @@ body {
         }
 
         > tbody > tr > td {
-            padding: 8px 12px;
+            padding: 8px 0;
+        }
+
+        .reportNo {
+            padding-right: 4px;
         }
     }
 
