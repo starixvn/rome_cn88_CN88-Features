@@ -46,7 +46,6 @@
             IsOwner = query.IsOwner;
             IsOwnerText = IsOwner.ToString().ToLowerInvariant();
             IsNotOwnerText = IsNotOwner.ToString().ToLowerInvariant();
-            IsShowSMAResultInStackColumnText = query.CustLevel.IsHeadline().ToString().ToLowerInvariant();
         }
 
         public bool IsNotOwner => !query.IsOwner;
@@ -54,8 +53,6 @@
         public string IsOwnerText { get; }
 
         public string IsNotOwnerText { get; }
-
-        public string IsShowSMAResultInStackColumnText { get; }
 
         public bool IsOwner { get; }
 
