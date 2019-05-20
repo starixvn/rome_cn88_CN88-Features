@@ -19,7 +19,7 @@ namespace CN88.Features.Reports.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ReportResources {
@@ -66,6 +66,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string AbnormalBets {
             get {
                 return ResourceManager.GetString("AbnormalBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounting.
+        /// </summary>
+        public static string AccountingMobile {
+            get {
+                return ResourceManager.GetString("AccountingMobile", resourceCulture);
             }
         }
         
@@ -147,6 +156,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string CancelledReport {
             get {
                 return ResourceManager.GetString("CancelledReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        public static string CancelledReportMobile {
+            get {
+                return ResourceManager.GetString("CancelledReportMobile", resourceCulture);
             }
         }
         
@@ -439,6 +457,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settlement.
+        /// </summary>
+        public static string SettlementSummaryMobile {
+            get {
+                return ResourceManager.GetString("SettlementSummaryMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SMA.
         /// </summary>
         public static string SMA {
@@ -579,6 +606,15 @@ namespace CN88.Features.Reports.AppResources {
         public static string WagerReport {
             get {
                 return ResourceManager.GetString("WagerReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager.
+        /// </summary>
+        public static string WagerReportMobile {
+            get {
+                return ResourceManager.GetString("WagerReportMobile", resourceCulture);
             }
         }
         

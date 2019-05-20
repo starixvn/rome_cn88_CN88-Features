@@ -277,4 +277,16 @@
   <data name="NonSportsProductPossess" xml:space="preserve">
     <value>非體育產品佔成數</value>
   </data>
+  <data name="WagerReportMobile" xml:space="preserve">
+    <value>注單報表</value>
+  </data>
+  <data name="CancelledReportMobile" xml:space="preserve">
+    <value>取消單分析</value>
+  </data>
+  <data name="SettlementSummaryMobile" xml:space="preserve">
+    <value>賽事結果概要</value>
+  </data>
+  <data name="AccountingMobile" xml:space="preserve">
+    <value>月帳期數表</value>
+  </data>
 </root>

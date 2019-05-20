@@ -277,4 +277,16 @@
   <data name="SportsbookPossess" xml:space="preserve">
     <value>Sportsbook Possess</value>
   </data>
+  <data name="WagerReportMobile" xml:space="preserve">
+    <value>Wager</value>
+  </data>
+  <data name="CancelledReportMobile" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="SettlementSummaryMobile" xml:space="preserve">
+    <value>Settlement</value>
+  </data>
+  <data name="AccountingMobile" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
 </root>
