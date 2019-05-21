@@ -107,7 +107,8 @@
             }
 
             return string.Concat(
-                isNoNeedClassAttr ? string.Empty : "class=\"mobile",
+                isNoNeedClassAttr ? string.Empty : "class=\"",
+                "mobile",
                 browserInfo.IsPhone ? " phone" : string.Empty,
                 browserInfo.IsTablet ? " tablet" : string.Empty,
                 isNoNeedClassAttr ? string.Empty : "\"");
