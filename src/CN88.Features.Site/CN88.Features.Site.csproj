@@ -615,6 +615,9 @@
     <Content Include="CustomerList\Styles\online-members.css">
       <DependentUpon>online-members.scss</DependentUpon>
     </Content>
+    <Content Include="CustomerList\Styles\online-members.min.css">
+      <DependentUpon>online-members.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\Styles\popup.css">
       <DependentUpon>popup.scss</DependentUpon>
     </Content>
@@ -1016,7 +1019,6 @@
     <Folder Include="Reports\assets\scripts\" />
   </ItemGroup>
   <ItemGroup>
-
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
