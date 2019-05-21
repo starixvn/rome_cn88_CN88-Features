@@ -10,6 +10,7 @@ class OldLegacyReport extends OldBaseReport {
     $excelIcon: JQuery;
     $tableReport: JQuery;
     $custLevelId: JQuery;
+    $moreInfoIcon: JQuery;
 
     sortComponent: SortComponent;
     linkBuilderComponent: LinkBuilderComponent;
@@ -57,6 +58,7 @@ class OldLegacyReport extends OldBaseReport {
         this.$excelIcon = this.$("#icon-excel");
         this.$tableReport = this.$("#tbl-report");
         this.$custLevelId = this.$("#CustLevelId");
+        this.$moreInfoIcon = this.$(".more-info");
     }
 
     renderComponents(): void {
@@ -86,6 +88,31 @@ class OldLegacyReport extends OldBaseReport {
     registerEvents(): void {
         this.$reportForm.submit(() => { this.onReportSubmit(); });
         this.$excelIcon.click(() => { this.onExportExcelEvent(); })
+
+        this.$("body").on("click touchend", (event) => {
+            let tooltip = this.$(event.target);
+            if (tooltip.hasClass("more-info")) {
+                var isShowing = tooltip.hasClass("tooltip-show");
+
+                var showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                showingToolTips.tooltip("hide");
+                showingToolTips.removeClass("tooltip-show");
+
+                if (isShowing) {
+                    tooltip.tooltip("hide");
+                    tooltip.removeClass("tooltip-show");
+                } else {
+                    tooltip.tooltip("show");
+                    tooltip.addClass("tooltip-show");
+                }
+
+                event.stopPropagation();
+                return false;
+            }
+
+            this.$moreInfoIcon.tooltip("hide");
+            this.$moreInfoIcon.removeClass("tooltip-show");
+        });
     }
 
     onReportSubmit(): void {
