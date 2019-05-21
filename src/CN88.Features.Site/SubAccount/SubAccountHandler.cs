@@ -79,6 +79,6 @@
             => sessionManager.Get<string>(HashKeySessionKey);
 
         private static string HtmlEncodeText(string text)
-            => string.IsNullOrWhiteSpace(text) ? text : text;
+            => string.IsNullOrWhiteSpace(text) ? text : WebUtility.HtmlEncode(text);
     }
 }
