@@ -58,7 +58,12 @@
                         </td>
                         <td class="hide-mobile">@item.CreateDateString</td>
                         <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
-                            <span class="icon-more-action"></span>
+                            <span class="dropdown">
+                                <span class="icon-more-action" data-toggle="dropdown">ABC</span>
+                                <ul id="dropdown-@item.SubAccId" class="visible-mobile dropdown-menu">
+                                    @RenderActionCell_Mobile()
+                                </ul>
+                            </span>
                             @RenderActionCell(item.Closed)
                         </td>
                     </tr>
@@ -94,11 +99,23 @@
 }
 @helper RenderActionCell(bool isClosed)
 {
-    <span class="icon-pass" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetPassword"></span>
-    <span class="icon-security" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetSecurityCode"></span>
-    <span class="icon-edit" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.EditSubAccount"></span>
+    <span class="icon-pass hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetPassword"></span>
+    <span class="icon-security hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetSecurityCode"></span>
+    <span class="icon-edit hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.EditSubAccount"></span>
     if (isClosed)
     {
         <span class="icon-unlock" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ClickToUnlock"></span>
     }
+}
+@helper RenderActionCell_Mobile()
+{
+    <li>
+        <span class="opt-pass">@SubAccountResource.ResetPassword</span>
+    </li>
+    <li>
+        <span class="opt-security">@SubAccountResource.ResetSecurityCode</span>
+    </li>
+    <li>
+        <span class="opt-edit">@SubAccountResource.EditSubAccount</span>
+    </li>
 }

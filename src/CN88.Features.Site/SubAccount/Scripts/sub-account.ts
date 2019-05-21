@@ -70,7 +70,7 @@ class SubAccount {
 
         this.tableSubAccount.find("[data-toggle='tooltip']").tooltip();
 
-        this.tableSubAccount.find(".icon-pass").click(function (): void {
+        this.tableSubAccount.find(".icon-pass, .opt-pass").click(function (): void {
             let param: ISubAccountParam = self.getSubAccountParam(this);
             self.openPopup(
                 `${self.resources.resetPassword} - ${param.subAccountName}`,
@@ -79,7 +79,7 @@ class SubAccount {
                 430);
         });
 
-        this.tableSubAccount.find(".icon-security").click(function (): void {
+        this.tableSubAccount.find(".icon-security, .opt-security").click(function (): void {
             let param: ISubAccountParam = self.getSubAccountParam(this);
             self.openPopup(
                 `${self.resources.resetSecurityCode} - ${param.subAccountName}`,
@@ -88,13 +88,16 @@ class SubAccount {
                 344);
         });
 
-        this.tableSubAccount.find(".icon-edit").click(function (): void {
+        this.tableSubAccount.find(".icon-edit, .opt-edit").click(function (): void {
             let param: ISubAccountParam = self.getSubAccountParam(this);
             self.openPopup(
                 `${self.resources.editSubAccount} - ${param.subAccountName}`,
                 `${self.urls.editSubAccount}?custId=${param.subAccountId}`,
                 948,
                 470);
+        });
+        this.tableSubAccount.find(".icon-more-action").on("click touchend", () => {
+            // Hide other dropdowns
         });
 
         this.$("#btnNewSubAccount").click(function (): void {

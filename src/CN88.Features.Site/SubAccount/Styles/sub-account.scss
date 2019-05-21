@@ -162,7 +162,7 @@ $screen-device-lower1024: 1023px;
     }
 }
 
-.icon-more-action {
+.icon-more-action, .visible-mobile {
     display: none;
 }
 
@@ -180,7 +180,7 @@ $screen-device-lower1024: 1023px;
             word-break: break-all;
         }
 
-        .icon-more-action {
+        .icon-more-action, .visible-mobile {
             display: block;
         }
     }
