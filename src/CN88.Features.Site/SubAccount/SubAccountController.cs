@@ -25,7 +25,7 @@
 
         public async Task<ActionResult> New(NewQuery message)
             => message.IsValid()
-                ? View(await mediator.Send(message))
+                ? await ViewAsync(message)
                 : View(NoInformationPageViewPath);
 
         [HttpPost, AntiXsrfFilter]
@@ -38,7 +38,7 @@
 
         public async Task<ActionResult> Edit(UpdateQuery message)
             => message.IsValid()
-                ? View(await mediator.Send(message))
+                ? await ViewAsync(message)
                 : View(NoInformationPageViewPath);
 
         [HttpPost, AntiXsrfFilter]
