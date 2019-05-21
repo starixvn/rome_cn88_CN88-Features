@@ -81,11 +81,9 @@ input, button {
     }
 }
 
-@media (max-device-width: $screen-device-lower768),
-    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
-    body {
-        padding-top: 0;
-    }
+// For Phone
+body.phone {
+    padding-top: 0;
 
     .block {
         width: 100%;
