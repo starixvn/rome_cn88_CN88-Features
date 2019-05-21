@@ -998,6 +998,10 @@
     <Content Include="CustomerList\Styles\online-members.scss" />
     <Content Include="Reports\Views\SettlementSummary.cshtml" />
     <Content Include="Reports\Views\AccountingSheet.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\AgentTable.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MasterTable.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MemberTable.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\SuperTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

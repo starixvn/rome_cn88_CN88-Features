@@ -13,6 +13,7 @@ class WagerReport extends LegacyReport {
     $tabMainContent: JQuery;
     toggleHandler: ToggleHandler;
     $nowDataRow: JQuery;
+    isCancelledReport: boolean;
 
     totalRecords: number;
 
@@ -53,9 +54,12 @@ class WagerReport extends LegacyReport {
     initForMobile = () => {
         let reportTable = this.$("#tbl-report");
         this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
+        this.isCancelledReport = cn88Features.convertAttributeToBool(reportTable.attr("data-cancelledreport"));
         this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
         if (this.isMobile) {
-            reportTable.stacktable();
+            if (!this.isCancelledReport) {
+                reportTable.stacktable();
+            }
             this.$('body').backtop();
         }
     };

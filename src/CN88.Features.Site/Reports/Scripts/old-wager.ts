@@ -76,8 +76,10 @@ class OldWagerReport extends OldLegacyReport {
         this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
         this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
         if (this.isMobile) {
+            reportTable.find("th").removeClass("sorting");
             reportTable.stacktable();
             this.$('body').backtop();
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
         }
     }
 
@@ -92,11 +94,6 @@ class OldWagerReport extends OldLegacyReport {
     }
 
     registerEvents(): void {
-        if (this.isMobile) {
-            this.$tableReport.find("th").removeClass("sorting");
-            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
-        }
-
         this.$tabSettlement.on("click touchend", () => {
             if (this.$custLevelId.val() !== "1") {
                 this.$isSettlement.val("True");

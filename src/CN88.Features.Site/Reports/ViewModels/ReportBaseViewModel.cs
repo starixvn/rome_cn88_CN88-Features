@@ -64,6 +64,10 @@
 
         public bool IsSettlement => query.IsSettlement.Value;
 
+        public bool IsUnsettledOrCancelledReport =>
+            query.ReportType == ReportTypeConstants.UnsettledWager
+            || query.ReportType == ReportTypeConstants.CancelledReport;
+
         public int Divisor { get; }
 
         public int TotalStockPercent { get; }
