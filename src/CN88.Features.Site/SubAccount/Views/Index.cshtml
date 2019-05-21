@@ -33,7 +33,7 @@
                 <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.EditView</th>
                 <th class="text-center">@SubAccountResource.Reports</th>
                 <th class="header sorting hide-mobile" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
-                <th>@SubAccountResource.Action</th>
+                <th class="col-action">@SubAccountResource.Action</th>
             </tr>
         </thead>
         <tbody>
@@ -60,12 +60,15 @@
                         </td>
                         <td class="hide-mobile">@item.CreateDateString</td>
                         <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
-                            <span class="dropdown">
-                                <span class="icon-more-action" data-toggle="dropdown">ABC</span>
-                                <ul id="dropdown-@item.SubAccId" class="visible-mobile dropdown-menu">
+                            <div class="dropdown visible-mobile">
+                                <a class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="icon-more-action"></span>
+                                </a>
+
+                                <ul id="dropdown-@item.SubAccId" class="dropdown-menu">
                                     @RenderActionCell_Mobile()
                                 </ul>
-                            </span>
+                            </div>
                             @RenderActionCell(item.Closed)
                         </td>
                     </tr>

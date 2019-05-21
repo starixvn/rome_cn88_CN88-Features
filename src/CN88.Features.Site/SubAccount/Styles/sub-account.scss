@@ -166,7 +166,7 @@ $screen-device-lower1024: 1023px;
     display: none;
 }
 
-@media (max-device-width: $screen-device-lower768), (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
+body.mobile {
     .hide-mobile {
         display: none;
     }
@@ -176,12 +176,51 @@ $screen-device-lower1024: 1023px;
         width: auto;
 
         .username {
-            min-width: 80px;
+            min-width: 75px;
             word-break: break-all;
         }
 
-        .icon-more-action, .visible-mobile {
+        .icon-more-action {
             display: block;
+        }
+
+        .visible-mobile {
+            display: table-cell;
+            min-width: 62px;
+        }
+
+        .col-action {
+            width: 50px;
+
+            .dropdown {
+                min-width: 35px;
+            }
+        }
+    }
+
+    #tbl-subaccount {
+        .col-action {
+            width: auto;
+        }
+
+        th {
+            padding: 4px;
+        }
+    }
+
+    .dropdown .dropdown-menu {
+        right: 0;
+        left: auto;
+        width: 132px;
+
+        .opt-pass, .opt-security, .opt-edit {
+            display: block;
+            font-size: 10.5px;
+            padding: 10px;
+
+            &:focus {
+                background: #DBDBDB;
+            }
         }
     }
 }
