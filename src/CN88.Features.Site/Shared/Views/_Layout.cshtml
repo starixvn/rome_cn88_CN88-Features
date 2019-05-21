@@ -1,4 +1,7 @@
 ﻿@using System.Configuration
+@{ 
+    
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +12,7 @@
     @StaticResources.AssetStyles.Render("/bundles/site-features/default")
     @RenderSection("Styles", required: false)
 </head>
-<body>
+<body @Html.Raw(CN88.Features.Site.Shared.Helpers.BrowserManager.BuildMobileHtmlClass())>
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-features/default")

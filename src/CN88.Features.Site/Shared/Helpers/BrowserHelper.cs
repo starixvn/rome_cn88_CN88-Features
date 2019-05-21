@@ -11,6 +11,23 @@
         bool IsTablet();
 
         bool IsAndroidNativeBrowser(string userAgent);
+
+        BrowserInfo GetBrowserInfo();
+    }
+
+    public class BrowserInfo
+    {
+        public BrowserInfo(bool isPhone, bool isTablet)
+        {
+            IsPhone = isPhone;
+            IsTablet = isTablet;
+        }
+
+        public bool IsMobile => IsPhone || IsTablet;
+
+        public bool IsPhone { get; }
+
+        public bool IsTablet { get; }
     }
 
     /// <summary>
@@ -67,6 +84,33 @@
             }
 
             return false;
+        }
+
+        public BrowserInfo GetBrowserInfo()
+            => new BrowserInfo(IsMobile(), IsTablet());
+    }
+
+    public static class BrowserManager
+    {
+        private static readonly BrowserHelper browserHelper = new BrowserHelperImpl();
+
+        public static BrowserInfo GetBrowserInfo()
+            => browserHelper.GetBrowserInfo();
+
+        public static string BuildMobileHtmlClass(bool isNoNeedClassAttr = false)
+        {
+            var browserInfo = GetBrowserInfo();
+
+            if(!browserInfo.IsMobile)
+            {
+                return string.Empty;
+            }
+
+            return string.Concat(
+                isNoNeedClassAttr ? string.Empty : "class=\"mobile",
+                browserInfo.IsPhone ? " phone" : string.Empty,
+                browserInfo.IsTablet ? " tablet" : string.Empty,
+                isNoNeedClassAttr ? string.Empty : "\"");
         }
     }
 }
