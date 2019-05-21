@@ -414,10 +414,12 @@
     <Compile Include="SubAccount\Criteria\GetSubAccountCriteria.cs" />
     <Compile Include="SubAccount\Criteria\GetSubAccountListCriteria.cs" />
     <Compile Include="SubAccount\Criteria\KickoutSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\UnlockSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\UpdateSubAccountCommand.cs" />
     <Compile Include="SubAccount\Models\SubAccountItem.cs" />
     <Compile Include="SubAccount\Params\BaseSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\CreateSubAccountParam.cs" />
+    <Compile Include="SubAccount\Params\UnlockSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\UpdateSubAccountParam.cs" />
     <Compile Include="SubAccount\Services\SubAccountService.cs" />
     <Compile Include="SubAccount\Services\SubAccountValidator.cs" />

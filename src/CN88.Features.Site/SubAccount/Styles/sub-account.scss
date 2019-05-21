@@ -1,52 +1,66 @@
-﻿.subacc-page{
+﻿.subacc-page {
     padding: 20px;
     width: 1240px;
 }
+
 #message-container {
     padding: 0 20px;
 }
+
 .modal-sub-account {
     .head-title {
         padding: 12px 20px;
         border-bottom: 1px solid #737373;
     }
+
     .account-data {
         width: 50%;
         display: inline-block;
         padding: 20px 40px;
         vertical-align: top;
+
         &.general-info {
             width: calc(50% - 4px);
         }
+
         .title {
             border-bottom: 2px solid #831e1e;
             padding: 0 16px 12px;
         }
+
         .account-data-content {
-            padding: 12px 0px 12px 30px ;
+            padding: 12px 0px 12px 30px;
+
             .form-group {
                 margin: 0 0 15px;
             }
+
             .radio label, .checkbox label {
                 padding-left: 0;
             }
+
             .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
                 right: 0;
             }
+
             .content-control {
                 display: inline-block;
                 width: calc(100% - 140px);
+
                 &.username-box {
                     width: unset;
                 }
+
                 .control {
                     width: 100%;
                     margin: 0;
                 }
+
                 .name {
                     font-weight: normal;
                 }
             }
+
             .control-label {
                 font-weight: normal;
                 width: 140px;
@@ -55,21 +69,25 @@
             }
         }
     }
+
     .list-button {
         padding: 0 20px 20px;
     }
+
     .tooltip {
-        white-space:unset;
+        white-space: unset;
+
         .tooltip-arrow:after {
-           border-right-color: #ececec !important;
-           border-top-color: transparent !important;
-           border-bottom-width: 4px;
+            border-right-color: #ececec !important;
+            border-top-color: transparent !important;
+            border-bottom-width: 4px;
             bottom: -4px;
             border-left-width: 0;
             margin-left: 2px;
         }
     }
 }
+
 .icon-info {
     font-size: 16px;
     color: #b1b1b1;
@@ -78,6 +96,7 @@
     left: 4px;
     cursor: pointer;
 }
+
 .add-new {
     float: right;
     margin-right: 0;
@@ -98,9 +117,11 @@
 
 #tbl-subaccount {
     width: 100%;
+
     .icon-minus {
         color: #ff0e24;
         font-size: 13px;
+
         &:after {
             content: none;
         }
@@ -109,15 +130,27 @@
     .icon-success {
         color: #2da57f;
     }
+
     .col-action {
-        width: 140px;
+        width: 178px;
+
         [class*="icon"] {
             margin: 0 9px;
+
             &:hover:not(:disabled) {
                 cursor: pointer;
             }
         }
+
+        [class*="icon"]:first-child {
+            margin-left: 0;
+        }
+
+        .icon-unlock  {
+            margin-left: 6px;
+        }
     }
+
     th {
         padding: 4px 8px;
     }

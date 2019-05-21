@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
-    using System.Threading.Tasks;
     using Alpha.Web.Helpers;
     using Features.Models;
     using Features.SubAccount.Constants;
@@ -10,6 +9,8 @@
     using MediatR;
     using Requests;
     using Sunplus.Agent.Utilities;
+    using System.Net;
+    using System.Threading.Tasks;
     using ViewModels;
 
     public class SubAccountHandler :
@@ -17,7 +18,8 @@
         IRequestHandler<NewQuery, NewViewModel>,
         IAsyncRequestHandler<UpdateQuery, SubAccountItem>,
         IAsyncRequestHandler<NewCommand, Result>,
-        IAsyncRequestHandler<UpdateCommand, Result>
+        IAsyncRequestHandler<UpdateCommand, Result>,
+        IAsyncRequestHandler<UnlockCommand, Result>
     {
         private const string HashKeySessionKey = "Alpha.CN88.Site.Handlers.PasswordHandler.PasswordHash";
 
@@ -66,6 +68,13 @@
                 message.LanguageKey,
                 message.IP,
                 message.ViewerId));
+
+        public async Task<Result> Handle(UnlockCommand message)
+            => await subAccountService.UnlockSubAccountAsync(new UnlockSubAccountParam(
+                message.ViewerId,
+                message.CustId,
+                message.IP,
+                message.LanguageKey));
 
         private string GenerateHashKey()
         {

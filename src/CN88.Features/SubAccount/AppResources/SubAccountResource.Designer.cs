@@ -115,6 +115,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to unlock.
+        /// </summary>
+        public static string ClickToUnlock {
+            get {
+                return ResourceManager.GetString("ClickToUnlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPassword {
@@ -300,6 +309,24 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string TotalBets {
             get {
                 return ResourceManager.GetString("TotalBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to unlock this account?.
+        /// </summary>
+        public static string UnlockAccountConfirmMessage {
+            get {
+                return ResourceManager.GetString("UnlockAccountConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock Sub Account.
+        /// </summary>
+        public static string UnlockSubAccount {
+            get {
+                return ResourceManager.GetString("UnlockSubAccount", resourceCulture);
             }
         }
         

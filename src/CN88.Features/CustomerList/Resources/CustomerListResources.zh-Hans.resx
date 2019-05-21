@@ -235,7 +235,7 @@
     <value>更新状态</value>
   </data>
   <data name="UsernameOrNameContains" xml:space="preserve">
-    <value>账户或名称含有</value>
+    <value>昵称或名字中含</value>
   </data>
   <data name="NewAgent" xml:space="preserve">
     <value>新增代理</value>

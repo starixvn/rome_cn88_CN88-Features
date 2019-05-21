@@ -201,6 +201,15 @@
   <data name="NickName" xml:space="preserve">
     <value>Nickname</value>
   </data>
+  <data name="ClickToUnlock" xml:space="preserve">
+    <value>Click to unlock</value>
+  </data>
+  <data name="UnlockAccountConfirmMessage" xml:space="preserve">
+    <value>Do you want to unlock this account?</value>
+  </data>
+  <data name="UnlockSubAccount" xml:space="preserve">
+    <value>Unlock Sub Account</value>
+  </data>
   <data name="SubAccount" xml:space="preserve">
     <value>Sub Account</value>
   </data>

@@ -201,6 +201,15 @@
   <data name="NickName" xml:space="preserve">
     <value>暱稱</value>
   </data>
+  <data name="UnlockSubAccount" xml:space="preserve">
+    <value>解鎖子帳戶</value>
+  </data>
+  <data name="ClickToUnlock" xml:space="preserve">
+    <value>解鎖</value>
+  </data>
+  <data name="UnlockAccountConfirmMessage" xml:space="preserve">
+    <value>確認解除鎖定此子帳戶？</value>
+  </data>
   <data name="SubAccount" xml:space="preserve">
     <value>子帳號</value>
   </data>

@@ -16,7 +16,8 @@
             string nickName,
             string firstName,
             DateTime createDate,
-            string pageAccess)
+            string pageAccess,
+            bool closed)
         {
             SubAccId = subAccId;
             UserName = userName;
@@ -24,6 +25,7 @@
             FirstName = firstName;
             CreateDate = createDate;
             PageAccess = pageAccess;
+            Closed = closed;
         }
 
         public int SubAccId { get; set; }
@@ -41,5 +43,7 @@
         public string PageAccess { get; }
 
         public PageAccess Permissions => PageAccess;
+
+        public bool Closed { get; }
     }
 }

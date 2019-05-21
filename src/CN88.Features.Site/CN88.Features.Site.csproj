@@ -26,7 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.2</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -491,7 +491,9 @@
     <Content Include="App_Data\SPNames\Local\DBPOL.NAP_UserControl.xml" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.xml" />
     <Content Include="App_Data\SPNames\Local\DBTXN.BODB02.xml" />
-    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="BetLists\bundles\betlist-of-report-old.js" />
     <Content Include="BetLists\bundles\betlist-of-report-old.min.js">
       <DependentUpon>betlist-of-report-old.js</DependentUpon>
@@ -849,6 +851,7 @@
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="SubAccount\Requests\UnlockCommand.cs" />
     <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
     <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />

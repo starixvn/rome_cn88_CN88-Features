@@ -46,5 +46,11 @@
             => Json(
                 message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
                 JsonRequestBehavior.DenyGet);
+
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> Unlock(UnlockCommand message)
+            => Json(
+                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
+                JsonRequestBehavior.DenyGet);
     }
 }
