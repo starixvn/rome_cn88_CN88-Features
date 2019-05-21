@@ -92,10 +92,14 @@ class LegacyReport extends BaseReport {
                 var tooltip = this.$(event.target);
                 var isShowing = tooltip.hasClass("tooltip-show");
 
-                this.$tooltip.tooltip("hide");
-                this.$tooltip.removeClass("tooltip-show");
+                var showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                showingToolTips.tooltip("hide");
+                showingToolTips.removeClass("tooltip-show");
 
-                if (!isShowing) {
+                if (isShowing) {
+                    tooltip.tooltip("hide");
+                    tooltip.removeClass("tooltip-show");
+                } else {
                     tooltip.tooltip("show");
                     tooltip.addClass("tooltip-show");
                 }
