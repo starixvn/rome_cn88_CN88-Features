@@ -262,12 +262,11 @@
         .menu-item {
             float: left;
             border: none;
-
-            &:first-child {
-                background: inherit;
-                padding: 12px 20px 11px;
-            }
         }
+    }
+
+    .menubar .list-menu .menu-item:first-child {
+        background-color: transparent;
     }
 
     .sub-menu {
@@ -283,7 +282,6 @@
 .filter-container .multiselect-container.dropdown-menu {
     width: 350px;
 }
-
 
 .betlist-by-account, .betlist-wager-details {
     #nav-tabs {
@@ -462,7 +460,7 @@ body.phone {
         padding-bottom: 13px;
     }
 
-    .old-report {
+    &.old-report {
         .menubar {
             display: none;
         }
@@ -472,6 +470,7 @@ body.phone {
             min-width: 100%;
         }
     }
+
     // Total-parlay
     .totalbet-parlay-title {
         display: table;
