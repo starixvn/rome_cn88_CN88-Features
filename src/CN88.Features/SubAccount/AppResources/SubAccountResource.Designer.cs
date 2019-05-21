@@ -88,6 +88,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ACM.
+        /// </summary>
+        public static string ACM {
+            get {
+                return ResourceManager.GetString("ACM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A/C Management.
         /// </summary>
         public static string ACManagement {

@@ -201,4 +201,7 @@
   <data name="SubAccount" xml:space="preserve">
     <value>子帳號</value>
   </data>
+  <data name="ACM" xml:space="preserve">
+    <value>帳戶管理</value>
+  </data>
 </root>
