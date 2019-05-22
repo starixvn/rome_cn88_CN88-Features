@@ -182,6 +182,7 @@ body.mobile {
 
         .icon-more-action {
             display: block;
+            font-size: 12px;
         }
 
         .visible-mobile {
@@ -194,6 +195,14 @@ body.mobile {
 
             .dropdown {
                 min-width: 35px;
+            }
+        }
+
+        .add-new {
+            line-height: 30px;
+
+            .icon-add {
+                top: 3px;
             }
         }
     }
@@ -220,6 +229,95 @@ body.mobile {
 
             &:focus {
                 background: #DBDBDB;
+            }
+        }
+    }
+
+    .modal-sub-account {
+        .head-title {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 12px;
+            text-transform: uppercase;
+            color: #852423;
+            font-weight: bold;
+            border-color: #BDBDBD;
+        }
+
+        .account-data {
+            width: 100%;
+            padding: 12px;
+
+            &.permission {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            &.general-info {
+                padding-bottom: 0;
+            }
+
+            .title {
+                padding: 0;
+                padding-bottom: 5px;
+                border-width: 1px;
+                font-weight: bold;
+            }
+
+            .account-data-content {
+                padding: 12px 0;
+
+                .username-box {
+                    display: block;
+                    width: 100%;
+
+                    .name {
+                        text-transform: uppercase;
+                        width: calc(100% - 112px);
+                    }
+
+                    select {
+                        font-size: 16px;
+                        width: 50px;
+                    }
+
+                    #suffix1 {
+                        margin-right: 4px;
+                    }
+                }
+
+                .content-control {
+                    width: 100%;
+
+                    .control {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .control-label {
+                text-transform: uppercase;
+                display: block;
+            }
+        }
+
+        .list-button {
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-bottom: 0;
+            overflow: hidden;
+
+            .btn-cancel, .btn-submit {
+                float: left;
+                width: 48%;
+            }
+
+            .btn-cancel {
+                margin-right: 4%;
+            }
+
+            .btn-submit {
+                margin-right: 0;
             }
         }
     }
