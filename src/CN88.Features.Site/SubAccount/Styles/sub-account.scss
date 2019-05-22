@@ -182,7 +182,11 @@ body.mobile {
 
         .icon-more-action {
             display: block;
-            font-size: 12px;
+            font-size: 16px;
+        }
+
+        .icon-success {
+            font-size: 16px;
         }
 
         .visible-mobile {
@@ -194,7 +198,10 @@ body.mobile {
             width: 50px;
 
             .dropdown {
+                display: block;
                 min-width: 35px;
+                width: 100%;
+                text-align: center;
             }
         }
 
@@ -214,6 +221,10 @@ body.mobile {
 
         th {
             padding: 4px;
+        }
+
+        .icon-minus {
+            font-size: 16px;
         }
     }
 
