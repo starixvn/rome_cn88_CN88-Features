@@ -11,6 +11,7 @@ class OldLegacyReport extends OldBaseReport {
     $tableReport: JQuery;
     $custLevelId: JQuery;
     $moreInfoIcon: JQuery;
+    isMobile: boolean;
 
     sortComponent: SortComponent;
     linkBuilderComponent: LinkBuilderComponent;
@@ -31,6 +32,7 @@ class OldLegacyReport extends OldBaseReport {
         this.linkBuilderComponent = linkBuilderComponent;
         this.pagerComponent = pagerComponent;
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
+        this.isMobile = cn88Features.convertAttributeToBool(this.$("#tbl-report").attr("data-isMobile"));
     }
 
     init(): void {
@@ -65,20 +67,22 @@ class OldLegacyReport extends OldBaseReport {
         this.initTooltip();
         super.renderComponents();
 
-        let headers = this.$custLevelId.val() == "4"
-            ? { 0: { sorter: "text" } }
-            : { 0: { sorter: "text" }, 1: { sorter: "text" } };
-        this.sortComponent.render(
-            new SortOption(
-                this.$tableReport,
-                parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
-                true,
-                this.sortComponent.afterSort,
-                headers,
-                this.$reportForm));
+        if (!this.isMobile) {
+            let headers = this.$custLevelId.val() == "4"
+                ? { 0: { sorter: "text" } }
+                : { 0: { sorter: "text" }, 1: { sorter: "text" } };
+            this.sortComponent.render(
+                new SortOption(
+                    this.$tableReport,
+                    parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
+                    true,
+                    this.sortComponent.afterSort,
+                    headers,
+                    this.$reportForm));
 
-        this.linkBuilderComponent.render();
-        this.pagerComponent.render(new ClientPagerOption(() => { this.onSelectPage(); }));
+            this.linkBuilderComponent.render();
+            this.pagerComponent.render(new ClientPagerOption(() => { this.onSelectPage(); }));
+        }
     }
 
     initTooltip(): void {

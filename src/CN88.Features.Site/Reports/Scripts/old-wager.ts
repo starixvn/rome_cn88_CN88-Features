@@ -6,7 +6,6 @@ class OldWagerReport extends OldLegacyReport {
     $tabSettlement: JQuery;
     $tabValidStake: JQuery;
     $isSettlement: JQuery;
-    isMobile: boolean;
     isOwner: boolean;
     toggleHandler: ToggleHandler;
     $nowDataRow: JQuery;
@@ -73,7 +72,6 @@ class OldWagerReport extends OldLegacyReport {
 
     private initMobile() {
         let reportTable = this.$("#tbl-report");
-        this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
         this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
         if (this.isMobile) {
             reportTable.find("th").removeClass("sorting");
