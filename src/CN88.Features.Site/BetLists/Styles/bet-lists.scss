@@ -124,9 +124,9 @@
         }
     }
 
-    > tbody > tr.winloss-comm > td {
+    > thead > tr.winloss-comm > th {
         color: #3b3b3b;
-        background-color: #c0cfdd;
+        background-color: #D4E1ED;
         padding: 7px 8px;
         font-weight: bold;
     }
@@ -452,6 +452,10 @@ body.phone {
                 color: #B50000 !important;
             }
         }
+
+        > tr.winloss-comm > th {
+            background-color: #D4E1ED;
+        }
     }
 
     .tbl-betlists > tbody > tr > td,
@@ -470,7 +474,6 @@ body.phone {
             min-width: 100%;
         }
     }
-
     // Total-parlay
     .totalbet-parlay-title {
         display: table;
