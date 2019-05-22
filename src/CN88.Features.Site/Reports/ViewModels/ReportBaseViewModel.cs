@@ -66,7 +66,8 @@
 
         public bool IsUnsettledOrCancelledReport =>
             query.ReportType == ReportTypeConstants.UnsettledWager
-            || query.ReportType == ReportTypeConstants.CancelledReport;
+            || query.ReportType == ReportTypeConstants.CancelledReport
+            || query.ReportType == ReportTypeConstants.AbnormalBets;
 
         public int Divisor { get; }
 
