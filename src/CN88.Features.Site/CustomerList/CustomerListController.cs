@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Alpha.Web.Filters;
+    using CN88.Features.Site.Shared.Helpers;
     using CustomerList;
     using CustomerList.Requests;
     using MediatR;
@@ -13,14 +14,18 @@
     [SessionState(SessionStateBehavior.ReadOnly), RestrictHeadlineFilter]
     public class CustomerListController : FeatureBaseController
     {
-        public CustomerListController(IMediator mediator)
-     : base(mediator)
+        private readonly BrowserHelper browserHelper;
+
+        public CustomerListController(IMediator mediator, BrowserHelper browserHelper) : base(mediator)
         {
+            this.browserHelper = browserHelper;
         }
 
         [HttpGet]
         public async Task<ActionResult> Index(IndexQuery message)
-            => await ViewAsync(message);
+            =>browserHelper.IsMobile()
+                ? await ViewAsync(message, "IndexMobile")
+                : await ViewAsync(message);
 
         //[HttpGet]
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
