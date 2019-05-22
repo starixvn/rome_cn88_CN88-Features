@@ -29,10 +29,9 @@ class OldWagerReport extends OldLegacyReport {
         this.$.blockUI();
 
         this.reCheckIn();
-        this.cacheDOMElements();
-
         this.initMobile();
 
+        this.cacheDOMElements();
         this.renderComponents();
         this.registerEvents();
 
