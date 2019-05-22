@@ -18,21 +18,21 @@
         }
 
         [SpParam(SqlParamName = "CustId")]
-        public int ViewerId { get; set; }
+        public int ViewerId { get; }
 
-        public string DownlineUsername { get; set; }
+        public string DownlineUsername { get; }
 
-        public int SearchRoleId { get; set; }
+        public int SearchRoleId { get; }
 
         [SpParam(SqlParamName = "SearchUsername")]
-        public string Username { get; set; }
+        public string Username { get; }
 
         [SpParam(SqlParamName = "SearchStatusId")]
-        public int Status { get; set; }
+        public int Status { get; }
 
-        public int PageSize { get; set; }
+        public int PageSize { get; }
 
-        public int PageIndex { get; set; }
+        public int PageIndex { get; }
 
         [SpParam(SqlParamName = "TotalRows")]
         public int TotalCustomers { get; set; }
@@ -43,6 +43,7 @@
             => "CS_Customer_DownlineList_Sel";
 
         public override bool IsValid()
-            => ViewerId > 0;
+            => ViewerId > 0
+                && SearchRoleId > 0;
     }
 }

@@ -47,6 +47,9 @@
         public override string GetSettingKey()
             => "CS_Customer_Credit_Upd";
 
-        public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
+        public override bool IsValid() => 
+            SearchAccountId > 0 
+            && ActorId > 0
+            && CreditAmount >= 0;
     }
 }

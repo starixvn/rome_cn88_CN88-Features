@@ -55,7 +55,9 @@
             RegisterServices(container);
 
             // This is an extension method from the integration package.
+#pragma warning disable S3902 // "Assembly.GetExecutingAssembly" should not be called
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+#pragma warning restore S3902 // "Assembly.GetExecutingAssembly" should not be called
 
             // This is an extension method from the integration package as well.
             container.RegisterMvcIntegratedFilterProvider();

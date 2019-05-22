@@ -23,11 +23,10 @@
 
         [HttpGet]
         public async Task<ActionResult> Index(IndexQuery message)
-            =>browserHelper.IsMobile()
+            => browserHelper.IsMobile()
                 ? await ViewAsync(message, "IndexMobile")
                 : await ViewAsync(message);
 
-        //[HttpGet]
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
             => Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
 
@@ -59,7 +58,6 @@
                 $"&UplineId={message.ViewerId}",
                 $"&ActorLevel={message.ViewerLevelId}",
                 "&ProductId=1");
-
 
             return Redirect(urlString);
         }

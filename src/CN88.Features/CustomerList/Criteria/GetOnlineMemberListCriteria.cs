@@ -14,11 +14,11 @@
         }
 
         [SpParam(SqlParamName = "CustId")]
-        public int ViewerId { get; set; }
+        public int ViewerId { get; }
 
-        public int PageSize { get; set; }
+        public int PageSize { get; }
 
-        public int PageIndex { get; set; }
+        public int PageIndex { get; }
 
         public int TotalRows { get; set; }
 
@@ -26,6 +26,8 @@
             => "CS_Customer_OnlineUserList_Sel";
 
         public override bool IsValid()
-            => ViewerId > 0 && PageIndex > 0;
+            => ViewerId > 0 
+            && PageIndex > 0
+            && PageSize > 0;
     }
 }

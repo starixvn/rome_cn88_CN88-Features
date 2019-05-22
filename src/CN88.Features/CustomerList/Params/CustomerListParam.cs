@@ -22,9 +22,9 @@
 
         public int ViewerId { get; }
 
-        public string DownlineUsername { get; set; }
+        public string DownlineUsername { get; }
 
-        public int SearchRoleId { get; set; }
+        public int SearchRoleId { get; }
 
         public string Username { get; }
 
