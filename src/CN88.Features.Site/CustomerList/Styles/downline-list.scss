@@ -125,8 +125,7 @@ body.phone {
         margin-top: 18px;
 
         [class^="icon-filter"] {
-            float: left;
-            margin-right: 10px;
+            float: right;
         }
 
         .add-new {
@@ -147,12 +146,69 @@ body.phone {
             margin-left: 0;
         }
 
-        .add-new {
+        .btn-submit {
+            width: 100%;
+        }
+    }
+
+    .tbl-downlinelist {
+        width: 100%;
+
+        .col-action {
+            width: 34px;
+            min-width: 54px;
+        }
+
+        .col-credit {
+            min-width: 90px;
+        }
+
+        .col-status {
+            min-width: 54px;
+        }
+
+        .dropdown .dropdown-menu {
+            border-color: #DBDBDB;
+            min-width: 132px;
+            left: auto;
+            right: -20px;
+        }
+
+        .dropdown .dropdown-menu li {
+            line-height: 28px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: $font-family !important;
+            font-size: $font-size-mobile;
+            color: $text-color;
+        }
+
+        .icon-more-action {
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dropdown .dropdown-menu [class^="icon"] {
+            margin: 0;
+        }
+
+        .dropdown .dropdown-menu [class^="icon"]:before {
             display: none;
         }
 
-        .btn-submit {
-            width: 100%;
+        &.level-member {
+            .col-username {
+                min-width: 58px;
+            }
+
+            .username-wrapper {
+                width: 78px;
+            }
+        }
+
+        .username-wrapper {
+            width: 130px;
+            word-break: break-word;
         }
     }
 }

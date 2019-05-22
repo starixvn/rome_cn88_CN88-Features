@@ -8,29 +8,8 @@
 @section Styles {
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/downline-list")
 }
-fsadfsdfsdf
-<!----------------- Desktop Tab view ---------------->
-<!--<ul id="nav-tabs" class="nav nav-tabs-style2" role="tablist">
-    @if (Model.ActorLevel.IsSuperLevel())
-    {
-        <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
-            <a>@CustomerListResources.Master</a>
-        </li>
-    }
-
-    @if (Model.ActorLevel.IsMasterOrSuperLevel())
-    {
-        <li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
-            <a>@CustomerListResources.Agent</a>
-        </li>
-    }
-
-    <li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
-        <a>@CustomerListResources.Member</a>
-    </li>
-</ul>-->
 <!----------------- Mobile Tab view ---------------->
-<ul id="nav-tabs" class="nav @(Model.IsDevice ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
+<ul id="nav-tabs" class="nav nav-tabs" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
         <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
@@ -54,13 +33,12 @@ fsadfsdfsdf
 {
     <div class="tab-content display-none" level="@UserLevel.Master.Value">
         <div class="tab-panel active" role="tabpanel">
-            @if (Model.IsDevice)
-            {
-                <div class="filter-mobile">
-                    <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
-                    <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
-                </div>
-            }
+            <div class="filter-mobile">
+                <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master">
+                    <span class="icon-add"></span>@CustomerListResources.NewMasterAgent
+                </button>
+                <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
+            </div>
             <div class="filter">
                 <div id="form-master" class="form-inline" role="form">
                     <div class="form-group">
@@ -79,24 +57,19 @@ fsadfsdfsdf
                     <div class="form-group">
                         <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
-                    @if (!Model.IsDevice)
-                    {
-                        <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
-                    }
                 </div>
             </div>
 
             <div id="master-container">
-                <table id="tbl-master" class="tbl-style2">
+                <table id="tbl-master" class="tbl-style2 tbl-downlinelist">
                     <thead>
                         <tr>
-                            <th class="col-no">@CustomerListResources.No</th>
-                            <th class="col-username">@CustomerListResources.Username</th>
-                            <th class="col-name">@CustomerListResources.Name</th>
-                            <th class="col-nickname">@CustomerListResources.Nickname</th>
-                            <th class="text-right">@CustomerListResources.Credit</th>
-                            <th class="col-creation-date">@CustomerListResources.CreationDate</th>
+                            <th class="col-username">
+                                @CustomerListResources.Username /
+                                <br /> @CustomerListResources.Nickname
+                            </th>
                             <th class="text-center">@CustomerListResources.Status</th>
+                            <th class="text-right">@CustomerListResources.Credit</th>
                             <th class="col-action text-center">@CustomerListResources.Action</th>
                         </tr>
                     </thead>
@@ -113,13 +86,12 @@ fsadfsdfsdf
 {
     <div class="tab-content display-none" level="@UserLevel.Agent.Value">
         <div class="tab-panel active" role="tabpanel">
-            @if (Model.IsDevice)
-            {
-                <div class="filter-mobile">
-                    <span class="icon-filter-down" id="agent-filter-toggle-icon"></span>
-                    <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-agent"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
-                </div>
-            }
+            <div class="filter-mobile">
+                <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-agent">
+                    <span class="icon-add"></span>@CustomerListResources.NewAgent
+                </button>
+                <span class="icon-filter-down" id="agent-filter-toggle-icon"></span>
+            </div>
 
             <div class="filter">
                 <div id="form-agent" class="form-inline" role="form">
@@ -148,24 +120,19 @@ fsadfsdfsdf
                         <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
                     <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-                    @if (!Model.IsDevice)
-                    {
-                        <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-agent"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
-                    }
                 </div>
             </div>
 
             <div id="agent-container">
-                <table id="tbl-agent" class="tbl-style2">
+                <table id="tbl-agent" class="tbl-style2 tbl-downlinelist">
                     <thead>
                         <tr>
-                            <th class="col-no">@CustomerListResources.No</th>
-                            <th class="col-username">@CustomerListResources.Username</th>
-                            <th class="col-name">@CustomerListResources.Name</th>
-                            <th class="col-nickname">@CustomerListResources.Nickname</th>
-                            <th class="text-right">@CustomerListResources.Credit</th>
-                            <th class="col-creation-date">@CustomerListResources.CreationDate</th>
+                            <th class="col-username">
+                                @CustomerListResources.Username /
+                                <br /> @CustomerListResources.Nickname
+                            </th>
                             <th class="text-center">@CustomerListResources.Status</th>
+                            <th class="text-right">@CustomerListResources.Credit</th>
                             <th class="col-action text-center">@CustomerListResources.Action</th>
                         </tr>
                     </thead>
@@ -180,13 +147,12 @@ fsadfsdfsdf
 
 <div class="tab-content display-none" level="@UserLevel.Member.Value">
     <div class="tab-panel active" role="tabpanel">
-        @if (Model.IsDevice)
-        {
-            <div class="filter-mobile">
-                <span class="icon-filter-down" id="member-filter-toggle-icon"></span>
-                <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-member"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
-            </div>
-        }
+        <div class="filter-mobile">
+            <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-member">
+                <span class="icon-add"></span>@CustomerListResources.NewMember
+            </button>
+            <span class="icon-filter-down" id="member-filter-toggle-icon"></span>
+        </div>
         <div class="filter">
             <div id="form-member" class="form-inline" role="form">
                 @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
@@ -214,24 +180,19 @@ fsadfsdfsdf
                     <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                 </div>
                 <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-                @if (!Model.IsDevice)
-                {
-                    <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-member"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
-                }
             </div>
         </div>
         <div id="member-container">
-            <table id="tbl-member" class="tbl-style2">
+            <table id="tbl-member" class="tbl-style2 tbl-downlinelist level-member">
                 <thead>
                     <tr>
-                        <th class="col-no">@CustomerListResources.No</th>
-                        <th class="col-username">@CustomerListResources.Username</th>
-                        <th class="col-name">@CustomerListResources.Name</th>
-                        <th class="col-nickname">@CustomerListResources.Nickname</th>
+                        <th class="col-username">
+                            @CustomerListResources.Username /
+                            <br /> @CustomerListResources.Nickname
+                        </th>
                         <th>@CustomerListResources.Group</th>
-                        <th class="text-right">@CustomerListResources.Credit</th>
-                        <th class="col-creation-date">@CustomerListResources.CreationDate</th>
                         <th class="text-center">@CustomerListResources.Status</th>
+                        <th class="text-right">@CustomerListResources.Credit</th>
                         <th class="col-action text-center">@CustomerListResources.Action</th>
                     </tr>
                 </thead>

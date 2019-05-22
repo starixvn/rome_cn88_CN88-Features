@@ -132,8 +132,11 @@
 
         this.$tblReport.find(".view-downline").click(function () {
             var $this = self.$(this);
-
-            self.viewDownlineFunction($this.attr("cust-id"), $this.html());
+            if (self.indexManager.isDevice) {
+                self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"));
+            } else {
+                self.viewDownlineFunction($this.attr("cust-id"), $this.html());
+            }
         });
 
         this.$tblReport.find(".col-credit").click(function () {
