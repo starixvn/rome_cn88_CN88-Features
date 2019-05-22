@@ -348,8 +348,6 @@
 
 // For Phone
 body.phone {
-    padding-bottom: 37px;
-
     .filter {
         display: none;
 
@@ -396,6 +394,12 @@ body.phone {
 
     .tbl-betlists {
         margin-top: 12px;
+        border-top: none;
+
+        .detail-container {
+            min-width: 140px;
+            word-break: break-all;
+        }
 
         .status {
             font-weight: bold;

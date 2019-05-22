@@ -447,7 +447,6 @@ body {
 
 // For Phone
 body.phone {
-    padding-bottom: 37px;
     background-color: #fff;
 
     .result-tabs {
@@ -488,7 +487,7 @@ body.phone {
             text-align: left;
         }
     }
-    
+
     .create-form {
         margin-top: 0;
         padding: 0 12px;
@@ -577,11 +576,11 @@ body.phone {
         }
 
         > tbody > tr > td {
-            padding: 8px 12px;
+            padding: 8px 0;
 
             &:first-child {
                 width: 120px;
-                padding: 8px 12px;
+                padding: 8px 0;
             }
         }
     }

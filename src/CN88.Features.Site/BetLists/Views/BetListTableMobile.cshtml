@@ -64,16 +64,19 @@
                 var ticket = tickets[i];
         <tr data-trans-id="@ticket.TransId">
             <td>
-                @ticket.TransDate.ToShortDateFormat()
-                @ticket.TransDate.ToLongTime24h()
-                <br />
-                @ticket.UserName
-                @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
-                {
-                    <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
-                }
-                @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
-                @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
+                <div class="detail-container">
+                    @ticket.TransDate.ToShortDateFormat()
+                    @ticket.TransDate.ToLongTime24h()
+                    <br />
+                    @ticket.UserName
+                    @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
+                    {
+                        <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
+                    }
+                    @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
+                    @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
+                </div>
+                
             </td>
 
             <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
