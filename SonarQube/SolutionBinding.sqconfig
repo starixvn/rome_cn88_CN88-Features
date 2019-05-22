@@ -2,6 +2,7 @@
   "ServerUri": "http://sonarqube.nexdev.net",
   "Organization": null,
   "ProjectKey": "CN88-Features",
+  "ProjectName": "CN88 / Features",
   "Profiles": {
     "CSharp": {
       "ProfileKey": "cs-sonar-way-80515",

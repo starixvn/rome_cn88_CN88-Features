@@ -10,7 +10,6 @@
             bool isOwner,
             DateTime fromDate,
             DateTime toDate,
-            DateTime moveBetsDay,
             int sportGroupId,
             int betTypeId,
             int isLive,
@@ -19,13 +18,6 @@
         {
         }
 
-        public override string GetSettingKey()
-            => ReportLevel.IsMemberLevel()
-                ? "CS_Rpt_Outstanding_Member"
-                : ReportLevel.IsAgentLevel()
-                ? "CS_Rpt_Outstanding_Agent"
-                : ReportLevel.IsMasterLevel()
-                ? "CS_Rpt_Outstanding_Master"
-                : "CS_Rpt_Outstanding_Super";
+        public override string GetSettingKey() => $"CS_Rpt_Outstanding_{ReportLevel.DisplayName}";
     }
 }

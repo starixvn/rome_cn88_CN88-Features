@@ -32,11 +32,6 @@
 
         public int ReportType { get; }
 
-        public override string GetSettingKey()
-            => ReportLevel.IsMemberLevel()
-                ? "CS_Rpt_Cancelled_Member"
-                : ReportLevel.IsAgentLevel()
-                    ? "CS_Rpt_Cancelled_Agent"
-                    : ReportLevel.IsMasterLevel() ? "CS_Rpt_Cancelled_Master" : "CS_Rpt_Cancelled_Super";
+        public override string GetSettingKey() => $"CS_Rpt_Cancelled_{ReportLevel.DisplayName}";
     }
 }

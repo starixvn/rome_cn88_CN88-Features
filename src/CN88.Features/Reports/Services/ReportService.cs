@@ -96,7 +96,6 @@
                     param.IsOwner,
                     param.FromDate,
                     param.ToDate,
-                    moveBetsDay,
                     param.SportGroupId,
                     param.BetTypeId,
                     param.IsLive,
