@@ -1,14 +1,14 @@
 ﻿class FilterParam {
     constructor(
-        public sportGroup: number = 0,
-        public isSelectAllSports: boolean = true,
-        public stakeMode: number = 1,
-        public stakeLimit: number = 0,
-        public sportStakeConditions: string = "",
-        public market: string = "",
-        public leagueIds: string = "",
-        public matchIds: string = "",
-        public betTypeGroupIds: string = "") {
+        public sportGroup = 0,
+        public isSelectAllSports = true,
+        public stakeMode = 1,
+        public stakeLimit = 0,
+        public sportStakeConditions = "",
+        public market = "",
+        public leagueIds = "",
+        public matchIds = "",
+        public betTypeGroupIds = "") {
     }
 }
 
@@ -29,10 +29,11 @@ class FilterModal {
     betTypeMultiSelectionComponent: MultiSelectionCheckboxComponent;
 
     sportGroup: number;
-    isOpeningFilter: boolean = false;
+    isOpeningFilter = false;
+    enterKeyCode = 13;
 
     cleaveAllSportStake: any;
-    cleavePerSportStake: any = {};
+    cleavePerSportStake = {};
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -46,7 +47,7 @@ class FilterModal {
     }
 
     show = (targetTabId: string, filterParam: FilterParam = new FilterParam(), onSubmit: Function = null) => {
-        this.filterParam = <FilterParam>this.$.extend({}, this.filterParam, filterParam);
+        this.filterParam = this.$.extend({}, this.filterParam, filterParam) as FilterParam;
         this.onSubmit = onSubmit;
 
         this.$.blockUI();
@@ -100,10 +101,10 @@ class FilterModal {
             delimiter: ','
         });
 
-        let $perSportsConditions = this.$("#list-persports").children();
-        let self = this;
+        const $perSportsConditions = this.$("#list-persports").children();
+        const self = this;
         $perSportsConditions.each(function () {
-            let id = self.$(this).data("id");
+            const id = self.$(this).data("id");
             self.cleavePerSportStake[id] = new Cleave('#StakeLimit-' + id, {
                 numeral: true,
                 numeralPositiveOnly: true,
@@ -123,9 +124,10 @@ class FilterModal {
             this.onStakeFilterOptionChange();
         });
 
-        var self = this;
-        var mainMarkets = self.$("[data-group-id='chk-main-markets']");
-        var otherMarkets = self.$("[data-group-id='chk-other-markets']");
+        const self = this;
+        const mainMarkets = self.$("[data-group-id='chk-main-markets']");
+        const otherMarkets = self.$("[data-group-id='chk-other-markets']");
+
         this.$("#chk-main-markets").on("click touchend", function () {
             self.clickCheckboxAll(mainMarkets, this);
         });
@@ -133,11 +135,13 @@ class FilterModal {
         this.$("#chk-other-markets").on("click touchend", function () {
             self.clickCheckboxAll(otherMarkets, this);
         });
+
         mainMarkets.on("click touchend", function () {
             if (this.checked) {
                 self.isCheckAll(mainMarkets, self.$("#chk-main-markets"));
             }
         });
+
         otherMarkets.on("click touchend", function () {
             if (this.checked) {
                 self.isCheckAll(otherMarkets, self.$("#chk-other-markets"));
@@ -149,7 +153,7 @@ class FilterModal {
         });
 
         this.$searchLeagueTextbox.keyup(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === self.enterKeyCode) {
                 self.searchLeague();
             }
         });
@@ -164,7 +168,7 @@ class FilterModal {
         });
 
         this.$searchEventTextbox.keyup(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === self.enterKeyCode) {
                 self.searchEvent();
             }
         });
@@ -183,7 +187,7 @@ class FilterModal {
     }
 
     searchLeague(): void {
-        let searchText = this.$searchLeagueTextbox.val();
+        const searchText = this.$searchLeagueTextbox.val();
         if (searchText) {
             this.leagueMultiSelectionComponent.search(searchText);
         } else {
@@ -192,7 +196,7 @@ class FilterModal {
     }
 
     searchEvent(): void {
-        let searchText = this.$searchEventTextbox.val();
+        const searchText = this.$searchEventTextbox.val();
         if (searchText) {
             this.eventMultiSelectionComponent.search(searchText);
         } else {
@@ -218,7 +222,7 @@ class FilterModal {
             if (!this.checked) {
                 isAllChecked = false;
             }
-        })
+        });
 
         if (isAllChecked) {
             allCheckbox.prop("checked", true);
@@ -227,15 +231,15 @@ class FilterModal {
 
     getParameters = () => {
         let conditions = [];
-        let isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
+        const isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
         if (!isSelectAllSports) {
-            let $perSportsConditions = this.$("#list-persports").children();
-            let self = this;
+            const $perSportsConditions = this.$("#list-persports").children();
+            const self = this;
             $perSportsConditions.each(function () {
-                let $this = self.$;
-                let sportGroupId = $this(this).data("id");
-                let stakeMode = $this(this).find("select").children("option:selected").val();
-                let stakeLimit = self.cleavePerSportStake[sportGroupId].getRawValue();
+                const $this = self.$;
+                const sportGroupId = $this(this).data("id");
+                const stakeMode = $this(this).find("select").children("option:selected").val();
+                const stakeLimit = self.cleavePerSportStake[sportGroupId].getRawValue();
                 conditions.push({
                     sportGroupId: sportGroupId,
                     stakeMode: stakeMode,
@@ -259,8 +263,8 @@ class FilterModal {
     };
 
     onStakeFilterOptionChange(): void {
-        let listAllSportsId = "#list-allsports";
-        let listPerSportsId = "#list-persports";
+        const listAllSportsId = "#list-allsports";
+        const listPerSportsId = "#list-persports";
         let enabledElement: string;
         let disabledElement: string;
 
@@ -298,19 +302,19 @@ class FilterModal {
 
         this.$(".dropdown-stake-condition > select").multiselect("select", 1);
 
-        var $AllSportsStakeLimit = this.$("#AllSportsStakeLimit");
-        $AllSportsStakeLimit.val(0);
+        const $allSportsStakeLimit = this.$("#AllSportsStakeLimit");
+        $allSportsStakeLimit.val(0);
 
         this.$(".StakeLimit").val(0);
 
-        let $allMarketsCheckbox = this.$("#checkbox-all-markets");
+        const $allMarketsCheckbox = this.$("#checkbox-all-markets");
         $allMarketsCheckbox.prop("checked", true);
         $allMarketsCheckbox.change();
 
         this.$clearSearchLeagueButton.click();
         this.$clearSearchEventButton.click();
 
-        let $allBetTypesCheckbox = this.$("#checkbox-all-bettypes");
+        const $allBetTypesCheckbox = this.$("#checkbox-all-bettypes");
         $allBetTypesCheckbox.prop("checked", true);
         $allBetTypesCheckbox.change();
     }

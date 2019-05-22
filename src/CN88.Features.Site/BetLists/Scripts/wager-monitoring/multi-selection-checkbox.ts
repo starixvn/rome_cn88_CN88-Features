@@ -1,9 +1,9 @@
 ﻿"use strict";
 class MultiSelectionCheckboxOption {
     constructor(
-        public checkboxAllId: string = "checkbox-all",
-        public listItemId: string = "ListId",
-        public hiddenInputId: string = "HiddenInputId") {
+        public checkboxAllId = "checkbox-all",
+        public listItemId = "ListId",
+        public hiddenInputId = "HiddenInputId") {
     }
 }
 
@@ -12,7 +12,7 @@ class MultiSelectionCheckboxComponent {
     $hiddenInput: JQuery;
     $checkboxAll: JQuery;
     $listItem: JQuery;
-    $checkboxes: any;
+    $checkboxes: JQuery;
 
     options = new MultiSelectionCheckboxOption();
 
@@ -21,10 +21,9 @@ class MultiSelectionCheckboxComponent {
     }
 
     render = (options: MultiSelectionCheckboxOption = new MultiSelectionCheckboxOption()) => {
-        this.options = <MultiSelectionCheckboxOption>this.$.extend({}, this.options, options);
+        this.options = this.$.extend({}, this.options, options) as MultiSelectionCheckboxOption;
 
-        let $checkboxAll = this.$("#" + this.options.checkboxAllId);
-        this.$checkboxAll = $checkboxAll;
+        this.$checkboxAll = this.$("#" + this.options.checkboxAllId);
         this.$listItem = this.$("#" + this.options.listItemId);
         this.$hiddenInput = this.$("#" + this.options.hiddenInputId);
 
@@ -39,7 +38,7 @@ class MultiSelectionCheckboxComponent {
             if (this.checked) {
                 self.isCheckAll();
             } else {
-                $checkboxAll.prop("checked", false);
+                self.$checkboxAll.prop("checked", false);
             }
         });
     };
@@ -51,7 +50,7 @@ class MultiSelectionCheckboxComponent {
             if (!this.checked) {
                 isAllChecked = false;
             }
-        })
+        });
 
         if (isAllChecked) {
             this.$checkboxAll.prop("checked", true);
@@ -65,9 +64,9 @@ class MultiSelectionCheckboxComponent {
             return selected;
         }
 
-        let selectedCheckboxs = this.$listItem.find(".item").children("input:checked");
+        const selectedCheckboxs = this.$listItem.find(".item").children("input:checked");
 
-        let this$ = this.$;
+        const this$ = this.$;
 
         selectedCheckboxs.each(function () {
             selected.push([this$(this).val()]);
@@ -83,8 +82,8 @@ class MultiSelectionCheckboxComponent {
             return selected;
         }
 
-        let selectedOptions = this.$listItem.find("input:checked");
-        let this$ = this.$;
+        const selectedOptions = this.$listItem.find("input:checked");
+        const this$ = this.$;
 
         selectedOptions.each(function () {
             selected.push([this$(this).attr("data-text")]);
@@ -96,16 +95,16 @@ class MultiSelectionCheckboxComponent {
     updateSelectedValues = () => {
         this.$hiddenInput.val(this.getSelectedItems().join(","));
     };
-    
+
     search = (text) => {
-        var lowerCaseText = text.toLowerCase();
-        var this$ = this.$;
+        const lowerCaseText = text.toLowerCase();
+        const this$ = this.$;
         this.$checkboxAll.prop("checked", false)
 
         this.$checkboxes.each(function () {
-            var chk = this$(this);
-            var chkValue = chk.attr("data-text").toLowerCase();
-            if (chkValue.indexOf(lowerCaseText) == -1) {
+            const chk = this$(this);
+            const chkValue = chk.attr("data-text").toLowerCase();
+            if (chkValue.indexOf(lowerCaseText) === -1) {
                 chk.prop("checked", false);
                 chk.parent().addClass("hide");
             } else {
@@ -116,10 +115,10 @@ class MultiSelectionCheckboxComponent {
     };
 
     clearSearch = () => {
-        var this$ = this.$;
-        this.$checkboxAll.prop("checked", true)
+        const this$ = this.$;
+        this.$checkboxAll.prop("checked", true);
         this.$checkboxes.each(function () {
-            let chk = this$(this);
+            const chk = this$(this);
             chk.prop("checked", true);
             chk.parent().removeClass("hide");
         });

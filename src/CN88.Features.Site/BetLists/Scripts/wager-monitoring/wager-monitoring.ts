@@ -25,7 +25,7 @@
     $iconDelete: JQuery;
     $iconSpeaker: JQuery;
     $iconSpeakerText: JQuery;
-    $sound: any;
+    $sound: JQuery;
 
     ajaxRequest: JQueryXHR;
     filterModal: FilterModal;
@@ -35,8 +35,8 @@
     pauseUrl: string;
     getBetsUrl: string;
     intervalTime: number;
-    isCalling: boolean = false;
-    isSpeakOn: boolean = true;
+    isCalling = false;
+    isSpeakOn = true;
     speakerOnText: string;
     speakerOffText: string;
 
@@ -77,7 +77,7 @@
         this.getBetsUrl = this.$("#get-bets-url").val();
         this.intervalTime = this.$("#IntervalTime").val();
 
-        setInterval(() => { this.getLastBets() }, this.intervalTime * 1000);
+        setInterval(() => { this.getLastBets(); }, this.intervalTime * 1000);
 
         this.$.unblockUI();
     }
@@ -108,7 +108,7 @@
         this.$iconDelete = this.$(".icon-delete");
         this.$iconSpeaker = this.$(".icon-audio-speaker");
         this.$iconSpeakerText = this.$("#icon-audio-text");
-        this.$sound = document.getElementById("sound");
+        this.$sound = this.$("#sound");
 
         this.resources = {
             lblPerSports: $("#lbl-PerSports").val(),
@@ -136,15 +136,15 @@
     }
 
     onSportGroupChange(): void {
-        var sportGroup = this.sportGroupSelectionComponent.$dropdown.val();
+        const sportGroup = this.sportGroupSelectionComponent.$dropdown.val();
         window.location.href = this.$wagerMonitoringPath.val() + "?SportGroup=" + sportGroup;
     }
 
     registerEvents(): void {
-        let self = this;
+        const self = this;
 
         this.$filterForm.find(".link").on("click touchend", function () {
-            let link = $(this);
+            const link = $(this);
             self.filterModal.show(link.data("target"), self.getParam(), () => { self.updateFilterForm(); });
         });
 
@@ -184,11 +184,11 @@
     }
 
     onPauseClickSuccess(html: string): void {
-        let result = html.replace('<table></table>', this.$tblBetList.prop("outerHTML"));
-        let w = window.open("", "Pause", "height=800,width=1280");
-        w.document.open();
-        w.document.write(result);
-        w.document.close();
+        const result = html.replace('<table></table>', this.$tblBetList.prop("outerHTML"));
+        const pauseWindow = window.open("", "Pause", "height=800,width=1280");
+        pauseWindow.document.open();
+        pauseWindow.document.write(result);
+        pauseWindow.document.close();
     }
 
     getParam = () => {
@@ -208,7 +208,7 @@
     updateFilterForm(): void {
         this.$.blockUI();
 
-        var param = this.filterModal.getParameters();
+        const param = this.filterModal.getParameters();
 
         this.$stakeLnk.html(param.isSelectAllSports ? `${this.resources["lblStakeMode_" + param.stakeMode]} ${param.stakeLimit}` : this.resources.lblPerSports);
         this.$maketLnk.html(param.markets.length ? param.markets : this.resources.lblAllMarkets);
@@ -240,7 +240,7 @@
         this.$.blockUI();
 
         this.isCalling = true;
-        let param = {
+        const param = {
             sportGroup: this.$sportGroup.val(),
             isSelectAllSports: this.$("#IsSelectAllSports").val(),
             stakeMode: this.$("#StakeMode").val(),
@@ -257,7 +257,7 @@
             method: "POST",
             data: param,
             url: this.getBetsUrl,
-            success: (result) => { this.successGetLastBets(result) },
+            success: (result) => { this.successGetLastBets(result); },
             complete: this.$.unblockUI
         });
     }
@@ -273,15 +273,15 @@
             return;
         }
 
-        let $responseTable = this.$(responseHtml);
-        let totalRecords = $responseTable.data("totalrecords");
-        let minTransId = $responseTable.data("mintransid");
+        const $responseTable = this.$(responseHtml);
+        const totalRecords = $responseTable.data("totalrecords");
+        const minTransId = $responseTable.data("mintransid");
         this.$minTransId.val(minTransId);
 
         if (totalRecords > 0) {
             this.$tblBetList.find("tbody").prepend($responseTable.find("tbody").html());
 
-            var numberOfRows = this.$tblBetList.find("tbody tr").length;
+            const numberOfRows = this.$tblBetList.find("tbody tr").length;
 
             if (numberOfRows > this.pageSize) {
                 this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
@@ -299,4 +299,4 @@
 $(document).ready(() => {
     const wagerMonitoring = new WagerMonitoring($);
     wagerMonitoring.init();
-})
+});
