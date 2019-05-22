@@ -99,7 +99,7 @@ class MultiSelectionCheckboxComponent {
     search = (text) => {
         const lowerCaseText = text.toLowerCase();
         const this$ = this.$;
-        this.$checkboxAll.prop("checked", false)
+        this.$checkboxAll.prop("checked", false);
 
         this.$checkboxes.each(function () {
             const chk = this$(this);

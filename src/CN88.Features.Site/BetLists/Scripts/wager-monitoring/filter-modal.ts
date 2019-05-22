@@ -20,6 +20,7 @@ class FilterModal {
     $searchLeagueTextbox: JQuery;
     $clearSearchEventButton: JQuery;
     $searchEventTextbox: JQuery;
+    $perSportList: JQuery;
     onSubmit: Function;
 
     filterParam: FilterParam;
@@ -84,6 +85,7 @@ class FilterModal {
         this.$searchLeagueTextbox = $("#txtSearchLeague");
         this.$clearSearchEventButton = $("#btnClearSearchEvent");
         this.$searchEventTextbox = $("#txtSearchEvent");
+        this.$perSportList = $("#list-persports");
     }
 
     renderComponents(): void {
@@ -101,7 +103,7 @@ class FilterModal {
             delimiter: ','
         });
 
-        const $perSportsConditions = this.$("#list-persports").children();
+        const $perSportsConditions = this.$perSportList.children();
         const self = this;
         $perSportsConditions.each(function () {
             const id = self.$(this).data("id");
@@ -233,7 +235,7 @@ class FilterModal {
         let conditions = [];
         const isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
         if (!isSelectAllSports) {
-            const $perSportsConditions = this.$("#list-persports").children();
+            const $perSportsConditions = this.$perSportList.children();
             const self = this;
             $perSportsConditions.each(function () {
                 const $this = self.$;
@@ -268,7 +270,7 @@ class FilterModal {
         let enabledElement: string;
         let disabledElement: string;
 
-        let isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
+        const isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
 
         if (isSelectAllSports) {
             enabledElement = listAllSportsId;

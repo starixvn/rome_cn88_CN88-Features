@@ -106,7 +106,7 @@
         {
             var browserInfo = GetBrowserInfo();
 
-            if(!browserInfo.IsMobile)
+            if (!browserInfo.IsMobile)
             {
                 return string.Empty;
             }

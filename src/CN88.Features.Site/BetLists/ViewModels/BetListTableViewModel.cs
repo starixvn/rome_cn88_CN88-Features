@@ -1,7 +1,9 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
+    using Alpha.Web.Helpers;
     using CN88.BetList.Core.Builders;
     using CN88.Features.BetLists.Models;
+    using CN88.Features.Shared.Configurations;
     using CN88.Features.Shared.Models;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -44,5 +46,10 @@
 
         public string TotalPayoutText => ConvertByBetType.Winloss(TotalPayout);
 
+        public string OldMainPath => MicroSites.OldMainUrl("~");
+
+        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
+
+        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
     }
 }

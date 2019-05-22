@@ -30,7 +30,7 @@
     {
         private readonly ITicketHelper ticketHelper;
         private readonly IBetListCN88HtmlBuilder cn88Builder;
-        private readonly IBetListHTMLBuilder builder;
+        private readonly IBetListHTMLBuilder htmlBuilder;
         private readonly WagerMonitoringService wagerMonitoringService;
 
         public WagerMonitoringHandler(
@@ -39,7 +39,7 @@
             IBetListHTMLBuilder builder,
             WagerMonitoringService wagerMonitoringService)
         {
-            this.builder = builder;
+            htmlBuilder = builder;
             this.cn88Builder = cn88Builder;
             this.ticketHelper = ticketHelper;
             this.wagerMonitoringService = wagerMonitoringService;
@@ -69,7 +69,7 @@
                 BuildSportGroupSelectListItems(sportGroups, message.SportGroup),
                 ticketHelper,
                 cn88Builder,
-                builder);
+                htmlBuilder);
         }
 
         public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
@@ -131,7 +131,7 @@
                 JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions));
         }
 
-        private string FormatStakeConditions(IEnumerable<SportStakeCondition> conditions)
+        private static string FormatStakeConditions(IEnumerable<SportStakeCondition> conditions)
         {
             var builder = new StringBuilder("<ROOT>");
             foreach (var condition in conditions)
@@ -143,7 +143,7 @@
             return builder.ToString();
         }
 
-        private IEnumerable<SelectListItem> BuildSelectListItems<T>(
+        private static IEnumerable<SelectListItem> BuildSelectListItems<T>(
             IEnumerable<T> sources,
             string selectedIds,
             Func<T, IEnumerable<int>, SelectListItem> createItemFunc)

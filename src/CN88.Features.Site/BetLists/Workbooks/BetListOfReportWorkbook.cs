@@ -184,7 +184,7 @@
                 }
                 else
                 {
-                    var richString = new HSSFRichTextString($"{username}\n{ ticket.UGroup.ToUpper() } { comm }");
+                    var richString = new HSSFRichTextString($"{username}\n{ ticket.UGroup.ToUpperInvariant() } { comm }");
                     richString.ApplyFont(username.Length, username.Length + ticket.UGroup.Length + comm.Length + 2, comFont);
                     row.SetCellValue(colIndex++, richString);
                 }

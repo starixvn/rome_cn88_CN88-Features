@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -13,7 +12,6 @@
     using Features.Reports.Constants;
     using Features.Reports.Models;
     using Features.Shared.AppResources;
-    using Features.Shared.Configurations;
     using Features.Shared.Constants;
     using Features.Shared.Models;
     using Reports.Constants;
@@ -142,12 +140,6 @@
         public bool IsOldReport { get; set; }
 
         public bool IsOwner { get; set; }
-
-        public string OldMainPath => MicroSites.OldMainUrl("~");
-
-        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
-
-        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
 
         public DateTime FromDate { get; }
 

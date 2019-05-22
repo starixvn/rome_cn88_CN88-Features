@@ -7,6 +7,8 @@
 
     public class IndexQuery : BaseQuery, IRequest<IndexViewModel>
     {
+        private const int DefaultPageSize = 100;
+
         private readonly IUser viewer;
 
         public IndexQuery()
@@ -32,7 +34,7 @@
 
         public byte Status { get; set; }
 
-        public int PageSize { get; set; } = 100;
+        public int PageSize { get; set; } = DefaultPageSize;
 
         public int PageIndex { get; set; } = 1;
     }

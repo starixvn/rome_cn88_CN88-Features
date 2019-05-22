@@ -6,9 +6,9 @@
     using global::CN88.CustomerSetting.Client;
     using global::CN88.CustomerSetting.Client.Models;
     using global::CN88.Features.Site.Shared.Helpers;
+    using global::CN88.Web.Filters;
     using Sunplus.Agent.Model.BL;
     using Sunplus.Agent.Model.Entities.Permission;
-    using global::CN88.Web.Filters;
     using Web.Filters;
 
     [NoCacheFilter, AfterLoginFlowFilter]
@@ -50,7 +50,7 @@
             return !currentUserSession.IsInternal && subAccountPermission;
         }
 
-        private bool HasPermissionOnProductId(PermissionContext permissionContext)
+        private static bool HasPermissionOnProductId(PermissionContext permissionContext)
         {
             var productId = GetProductId(permissionContext);
 

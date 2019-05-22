@@ -13,6 +13,8 @@
 
     public class MemberStatementViewModel
     {
+        private readonly MemberStatementQuery message;
+
         public MemberStatementViewModel(
             IEnumerable<MemberStatementModel> statements,
             MemberStatementQuery message,
@@ -29,8 +31,6 @@
             ToDateSelectionViewModel = new SingleSelectionViewModel(toDates, message.UserSelectedToDate);
             this.message = message;
         }
-
-        private MemberStatementQuery message;
 
         public IEnumerable<MemberStatementModel> Statements { get; }
 

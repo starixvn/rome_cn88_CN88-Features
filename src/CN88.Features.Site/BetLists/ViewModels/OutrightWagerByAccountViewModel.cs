@@ -69,12 +69,6 @@
 
         public int PageSize { get; }
 
-        public string OldMainPath => MicroSites.OldMainUrl("~");
-
-        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
-
-        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
-
         public int CustId { get; }
 
         public int ViewerIdOrViewerAdminId { get; }
@@ -98,7 +92,7 @@
         {
             return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                   AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/OutrightWagerDetails"),
-                  new Dictionary<string, object>()
+                  new Dictionary<string, object>
                   {
                       ["CustId"] = message.ViewerId,
                       ["CustName"] = message.ViewerName,

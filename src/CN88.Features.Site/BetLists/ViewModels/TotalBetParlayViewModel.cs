@@ -2,12 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;
-    using Features.Shared.Configurations;
     using Requests;
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
@@ -69,12 +67,6 @@
         public int PageIndex { get; }
 
         public int PageSize { get; }
-
-        public string OldMainPath => MicroSites.OldMainUrl("~");
-
-        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
-
-        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
 
         public int CustId { get; }
 

@@ -1,10 +1,10 @@
 ﻿namespace CN88.Features.Site.Reports.Filters
 {
-    using System.Web.Mvc;
-    using Alpha.Web.Helpers;
     using System;
     using System.Configuration;
     using System.Linq;
+    using System.Web.Mvc;
+    using Alpha.Web.Helpers;
     using Sunplus.Agent.Model.Entities;
 
     public class ReCheckPasswordAttribute : AuthorizeAttribute
@@ -22,7 +22,7 @@
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-            
+
             if (UserSession.Current?.IsInternal == true)
             {
                 return;
@@ -57,7 +57,8 @@
                         filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
                     }
                 }
-                else if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
+
+                if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
                 {
                     filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
                 }

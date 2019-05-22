@@ -85,17 +85,15 @@ class BetListOfReport {
     };
 
     registerEvents = () => {
-        let self = this;
-
         this.elements.reportForm.submit(this.onReportSubmit);
 
         this.elements.excelIcon.click(this.onExportExcelEvent);
 
-        let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
+        const expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
         if (!isNaN(expiredSessionSeconds)) {
             this.checkIn();
 
-            let $this = this;
+            const $this = this;
 
             setInterval(function () {
                 $this.checkIn();
@@ -119,7 +117,7 @@ class BetListOfReport {
     };
 
     onchangeSportType = () => {
-        let sportType = this.sportGroupSelectionComponent.$dropdown.val();
+        const sportType = this.sportGroupSelectionComponent.$dropdown.val();
         this.betTypeSelectionComponent.$dropdown.empty();
         let first = betTypes[0];
         this.betTypeSelectionComponent.$dropdown.append('<option value=' + first[0].Value + '>' + first[0].Text + '</option>');
@@ -127,7 +125,7 @@ class BetListOfReport {
             var betTypeGroup = betTypes[i];
 
             if (betTypeGroup[0].SportTypeGroup == sportType) {
-                for (var j = 0; j < betTypeGroup.length; j++) {
+                for (let j = 0; j < betTypeGroup.length; j++) {
                     this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[j].Value + '>' + betTypeGroup[j].Text + '</option>');
                 }
 
@@ -135,7 +133,7 @@ class BetListOfReport {
             }
         }
 
-        this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
+        this.betTypeSelectionComponent.$dropdown.multiselect('destroy');
         this.betTypeSelectionComponent.$dropdown.multiselect({
             multiple: false,
             maxHeight: 300,
@@ -160,4 +158,4 @@ $(document).ready(() => {
         new ClientPagerComponent($),
         new ToggleHandler($));
     betListOfReport.init();
-})
+});

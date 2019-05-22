@@ -12,7 +12,7 @@
     }
 
     init = () => {
-        this.isMobile = this.$("#isMobile").val() == "True";
+        this.isMobile = this.$("#isMobile").val() === "True";
 
         if (this.isMobile) {
             this.$("#tbl-report").stacktable();
@@ -22,9 +22,9 @@
             this.pagerComponent.render();
         }
 
-        var self = this;
+        const self = this;
         this.$("#lnk-wager-details").click(function () {
-            var url = self.$(this).attr("data-url");
+            const url = self.$(this).attr("data-url");
             if (!url) {
                 return;
             }
@@ -37,4 +37,4 @@
 $(document).ready(() => {
     const betListByAccount = new WagerByAccount($, new ClientPagerComponent($));
     betListByAccount.init();
-})
+});

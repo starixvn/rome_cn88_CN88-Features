@@ -1,7 +1,6 @@
 ﻿namespace CN88.Features.Site.BetLists.Handlers
 {
     using System.Collections.Generic;
-    using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;

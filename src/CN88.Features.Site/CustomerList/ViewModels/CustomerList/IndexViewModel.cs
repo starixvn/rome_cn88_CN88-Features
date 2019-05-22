@@ -7,7 +7,7 @@
 
     public class IndexViewModel
     {
-        private IndexQuery query;
+        private readonly IndexQuery query;
 
         private readonly BrowserHelper browserHelper;
 

@@ -29,7 +29,7 @@
 
     init = () => {
         this.$.blockUI();
-        this.isMobile = this.$("#isMobile").val() == "True";
+        this.isMobile = this.$("#isMobile").val() === "True";
 
         if (this.isMobile) {
             this.$("#tbl-report").stacktable();
@@ -61,7 +61,7 @@
         this.stakeModeSelectionComponent.updateSelectedValue();
         this.viewModeSelectionComponent.updateSelectedValue();
 
-        let stake = parseFloat(this.cleaveStakeLimit.getRawValue()) || 0;
+        const stake = parseFloat(this.cleaveStakeLimit.getRawValue()) || 0;
         this.$stakeLimit.val(stake);
     };
 }
@@ -75,4 +75,4 @@ $(document).ready(() => {
         new SingleSelectionDropdownComponent($),
         new ToggleHandler($));
     totalBetParlay.init();
-})
+});

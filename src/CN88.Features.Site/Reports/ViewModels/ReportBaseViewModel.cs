@@ -217,7 +217,7 @@
         public bool IsShowTotalRow()
             => ReportData.Any()
                 && (!IsMobile || (IsMobile && IsNotOwner));
-                
+
         private void GetSortedProperty(ReportBaseQuery query)
         {
             if (string.IsNullOrWhiteSpace(query.SortPropertyName))
@@ -239,7 +239,6 @@
                     IsDescendingSort = false;
                 }
             }
-
         }
     }
 }

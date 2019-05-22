@@ -7,10 +7,12 @@
 
     public class OnlineMembersQuery : BaseQuery, IRequest<OnlineMemberViewModel>
     {
+        private const int DefaultPageSize = 10;
+
         public OnlineMembersQuery(IUser viewer) : base(viewer)
         {
             PageIndex = 1;
-            PageSize = 10;
+            PageSize = DefaultPageSize;
         }
 
         public int PageSize { get; set; }
