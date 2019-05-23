@@ -121,7 +121,8 @@
                 message,
                 BuildSportTypeSelectListItems(sportGroups, message.UserSelectedSportGroupId),
                 BuildDateTimeSelectListItems(fromDates, message.UserSelectedFromDate),
-                BuildDateTimeSelectListItems(fromDates, message.UserSelectedToDate));
+                BuildDateTimeSelectListItems(fromDates, message.UserSelectedToDate),
+                browserHelper.IsMobile());
         }
 
         private IEnumerable<SelectListItemExt> BuildSportTypeSelectListItems(

@@ -19,6 +19,10 @@
             <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
         </div>
     </form>
+    @if (Model.IsMobile)
+    {
+        @:asdasdasdas
+    }
     <table class="tbl-style2">
         <thead>
             <tr>
@@ -70,6 +74,7 @@
 @Html.Hidden("Warning", SharedResources.Warning)
 @Html.Hidden("OK", SharedResources.OK)
 @Html.Hidden("InvalidDateRange", CustomerListResources.InvalidDateRange)
+@Html.Hidden(nameof(Model.IsMobile), Model.IsMobile)
 @section Scripts {
     @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/memberstatement")
 }
