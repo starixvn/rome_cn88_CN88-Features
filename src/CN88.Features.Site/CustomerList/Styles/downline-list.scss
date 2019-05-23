@@ -155,7 +155,7 @@ body.phone {
         width: 100%;
 
         .col-action {
-            width: 34px;
+            width: 54px;
             min-width: 54px;
             padding: 0;
         }
@@ -168,41 +168,12 @@ body.phone {
             min-width: 54px;
         }
 
-        .dropdown a {
-            height: 30px;
-            display: inline-block;
-            width: 26px;
-        }
-
-        .dropdown .dropdown-menu {
-            border-color: #DBDBDB;
-            min-width: 132px;
-            left: auto;
-            right: -14px;
-        }
-
-        .dropdown .dropdown-menu li {
-            line-height: 34px;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-family: $font-family !important;
-            font-size: $font-size-mobile;
-            color: $text-color;
-        }
-
-        .icon-more-action {
-            position: relative;
-            top: 7px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .dropdown .dropdown-menu [class^="icon"] {
+        .col-action .dropdown .dropdown-menu [class^="icon"] {
             margin: 0;
         }
 
-        .dropdown .dropdown-menu [class^="icon"]:before,
-        .dropdown .dropdown-menu [class^="icon"]:after {
+        .col-action .dropdown .dropdown-menu [class^="icon"]:before,
+        .col-action .dropdown .dropdown-menu [class^="icon"]:after {
             display: none;
         }
 
@@ -217,8 +188,8 @@ body.phone {
         }
 
         .username-wrapper {
-            width: 130px;
-            word-break: break-word;
+            width: 124px;
+            word-break: break-all;
         }
     }
 }

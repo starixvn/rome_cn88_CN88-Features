@@ -121,7 +121,7 @@ $screen-device-lower1024: 1023px;
     }
 }
 
-#tbl-subaccount {
+.tbl-subaccount {
     width: 100%;
 
     .icon-minus {
@@ -182,7 +182,7 @@ body.mobile {
 
         .icon-more-action {
             display: block;
-            font-size: 16px;
+            margin: 0;
         }
 
         .icon-success {
@@ -191,18 +191,15 @@ body.mobile {
 
         .visible-mobile {
             display: table-cell;
-            min-width: 62px;
+        }
+
+        .col-action .dropdown.visible-mobile {
+            display: inline-block;
         }
 
         .col-action {
-            width: 50px;
-
-            .dropdown {
-                display: block;
-                min-width: 35px;
-                width: 100%;
-                text-align: center;
-            }
+            width: 54px;
+            min-width: 54px;
         }
 
         .add-new {
@@ -215,33 +212,13 @@ body.mobile {
         }
     }
 
-    #tbl-subaccount {
-        .col-action {
-            width: auto;
-        }
-
+    .tbl-subaccount {
         th {
             padding: 4px;
         }
 
         .icon-minus {
             font-size: 16px;
-        }
-    }
-
-    .dropdown .dropdown-menu {
-        right: 0;
-        left: auto;
-        width: 132px;
-
-        .opt-pass, .opt-security, .opt-edit {
-            display: block;
-            font-size: 10.5px;
-            padding: 10px;
-
-            &:focus {
-                background: #DBDBDB;
-            }
         }
     }
 
