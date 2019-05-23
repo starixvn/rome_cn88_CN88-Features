@@ -19,7 +19,7 @@
     {
         private const string DefaultSortPropertyName = nameof(ReportModel.Username);
 
-        protected readonly ReportBaseQuery query;
+        protected readonly ReportBaseQuery reportQuery;
 
         private readonly IDictionary<int, int> BetListTypes = new Dictionary<int, int>
         {
@@ -30,25 +30,25 @@
         };
 
         protected ReportBaseViewModel(
-            ReportBaseQuery query,
+            ReportBaseQuery reportQuery,
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
             bool isMobile = false)
         {
-            this.query = query;
+            this.reportQuery = reportQuery;
 
             ReportData = reportData.ToList();
             GrandTotal = grandTotal;
-            Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
-            TotalStockPercent = query.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
+            Divisor = (reportQuery.ActorLevel.IsHeadline()) ? 100 : 1;
+            TotalStockPercent = reportQuery.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
             IsMobile = isMobile;
-            GetSortedProperty(query);
-            IsOwner = query.IsOwner;
+            GetSortedProperty(reportQuery);
+            IsOwner = reportQuery.IsOwner;
             IsOwnerText = IsOwner.ToString().ToLowerInvariant();
             IsNotOwnerText = IsNotOwner.ToString().ToLowerInvariant();
         }
 
-        public bool IsNotOwner => !query.IsOwner;
+        public bool IsNotOwner => !reportQuery.IsOwner;
 
         public string IsOwnerText { get; }
 
@@ -56,18 +56,18 @@
 
         public bool IsOwner { get; }
 
-        public UserLevel ReportLevel => query.CustLevel;
+        public UserLevel ReportLevel => reportQuery.CustLevel;
 
         public string SortPropertyName { get; set; }
 
         public bool IsDescendingSort { get; set; }
 
-        public bool IsSettlement => query.IsSettlement.Value;
+        public bool IsSettlement => reportQuery.IsSettlement.Value;
 
         public bool IsUnsettledOrCancelledReport =>
-            query.ReportType == ReportTypeConstants.UnsettledWager
-            || query.ReportType == ReportTypeConstants.CancelledReport
-            || query.ReportType == ReportTypeConstants.AbnormalBets;
+            reportQuery.ReportType == ReportTypeConstants.UnsettledWager
+            || reportQuery.ReportType == ReportTypeConstants.CancelledReport
+            || reportQuery.ReportType == ReportTypeConstants.AbnormalBets;
 
         public int Divisor { get; }
 
@@ -78,7 +78,7 @@
         public ReportModel GrandTotal { get; }
 
         public decimal ProfitMargin
-            => query.CustLevel.IsSuperLevel() && GrandTotal.SuperStock != 0
+            => reportQuery.CustLevel.IsSuperLevel() && GrandTotal.SuperStock != 0
                 ? GrandTotal.SuperResult / GrandTotal.SuperStock * 100
                 : 0;
 
@@ -86,9 +86,9 @@
             => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
 
         public PagerViewModel PagerViewModel =>
-            new PagerViewModel(query.PageIndex, query.PageSize, ReportData.Count());
+            new PagerViewModel(reportQuery.PageIndex, reportQuery.PageSize, ReportData.Count());
 
-        public string Title => ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[query.ReportType]);
+        public string Title => ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[reportQuery.ReportType]);
 
         public string BuildDrillDownLink(ReportModel model, string currentLink)
             => ReportLevel.IsMemberLevel()
@@ -111,8 +111,8 @@
                 currentLink,
                 new Dictionary<string, object>(routeValues)
                 {
-                    ["PageSize"] = query.PageSize,
-                    ["IsSettlement"] = query.IsSettlement,
+                    ["PageSize"] = reportQuery.PageSize,
+                    ["IsSettlement"] = reportQuery.IsSettlement,
                     ["CustLevelId"] = ReportLevel.GetDirectDownLineLevel().Value,
                     ["IsDescendingSort"] = IsDescendingSort,
                     ["SortPropertyName"] = SortPropertyName
@@ -124,27 +124,27 @@
             {
                 ["CustId"] = model.CustId,
                 ["CustName"] = model.Username,
-                ["FromDate"] = query.FromDate,
-                ["ToDate"] = query.ToDate,
+                ["FromDate"] = reportQuery.FromDate,
+                ["ToDate"] = reportQuery.ToDate,
                 ["IsOwner"] = false,
-                ["ReportType"] = query.ReportType,
-                ["UserSelectedSportGroupId"] = query.UserSelectedSportGroupId,
-                ["UserSelectedBetTypeId"] = query.UserSelectedBetTypeId,
-                ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId,
+                ["ReportType"] = reportQuery.ReportType,
+                ["UserSelectedSportGroupId"] = reportQuery.UserSelectedSportGroupId,
+                ["UserSelectedBetTypeId"] = reportQuery.UserSelectedBetTypeId,
+                ["UserSelectedLiveStatusId"] = reportQuery.UserSelectedLiveStatusId,
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
             };
 
         public BreadcrumbItem BuildBackLink()
         {
-            if (query.IsOwner
+            if (reportQuery.IsOwner
                 || !BreadcrumbLevelViewModel.BreadcrumbLevel.Any())
             {
                 return new BreadcrumbItem(SharedResources.Main, BreadcrumbLevelViewModel.MainLink);
             }
 
             var breadcrumbLinks = BreadcrumbLevelViewModel.BuildBreadcrumbLinks(
-                query.CurrentUrl,
-                query.IsSettlement ?? false);
+                reportQuery.CurrentUrl,
+                reportQuery.IsSettlement ?? false);
 
             return breadcrumbLinks.Count() > 1
                     ? breadcrumbLinks.ElementAt(breadcrumbLinks.Count() - 1)
@@ -159,10 +159,10 @@
 
             breadcrumbLevel.Add(
                 new CustInfo(
-                    query.CustId,
+                    reportQuery.CustId,
                     model.Username,
-                    query.CustLevelId,
-                    query.IsOwner));
+                    reportQuery.CustLevelId,
+                    reportQuery.IsOwner));
 
             return breadcrumbLevel;
         }
@@ -171,12 +171,11 @@
         {
             var breadcrumbLevel = new List<CustInfo>();
 
-            if (query.BreadcrumbLevel != null
-                && query.BreadcrumbLevel.Any())
+            if (reportQuery.BreadcrumbLevel?.Any() == true)
             {
-                foreach (var custInfo in query.BreadcrumbLevel)
+                foreach (var custInfo in reportQuery.BreadcrumbLevel)
                 {
-                    if (custInfo.CustLevelId == query.CustLevelId)
+                    if (custInfo.CustLevelId == reportQuery.CustLevelId)
                     {
                         break;
                     }
@@ -194,8 +193,8 @@
 
             return new Dictionary<string, object>(routeValues)
             {
-                ["Type"] = GetBetListType(query.ReportType),
-                ["DisplayMode"] = query.DisplayMode,
+                ["Type"] = GetBetListType(reportQuery.ReportType),
+                ["DisplayMode"] = reportQuery.DisplayMode,
                 ["ReportMainActionPath"] = GetReportMainActionPath(),
                 ["IsOldReport"] = IsOldReport(),
             };
@@ -206,7 +205,7 @@
                 UrlHelper.GetFeaturesAppPath(GetReportMainActionPath()),
                 new Dictionary<string, object>
                 {
-                    ["DisplayMode"] = query.DisplayMode
+                    ["DisplayMode"] = reportQuery.DisplayMode
                 });
 
         private int GetBetListType(int reportType)

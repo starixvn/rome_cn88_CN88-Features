@@ -55,9 +55,9 @@
 
         public Mapper<IEnumerable<ParlayDetailWrapper>> FooterTotalWinLostMapper { get; private set; }
 
-        public ParlayDetailWorkbook SetData(ParlayDetailViewModel parlayDetails)
+        public ParlayDetailWorkbook SetData(ParlayDetailViewModel comboParlayDetails)
         {
-            ParlayDetails = parlayDetails;
+            ParlayDetails = comboParlayDetails;
 
             return this;
         }

@@ -18,10 +18,10 @@
             TotalCustomers = model.TotalCustomers;
             Customers = model.Customers;
 
-            foreach (var c in Customers)
+            foreach (var customer in Customers)
             {
-                c.Name = HttpUtility.HtmlEncode(c.Name);
-                c.Group = HttpUtility.HtmlEncode(c.Group);
+                customer.Name = HttpUtility.HtmlEncode(customer.Name);
+                customer.Group = HttpUtility.HtmlEncode(customer.Group);
             }
         }
 

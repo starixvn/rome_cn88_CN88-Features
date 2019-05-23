@@ -35,7 +35,7 @@
         IRequestHandler<StartedWagerByAccountQuery, StartedWagerByAccountViewModel>,
         IRequestHandler<StartedWagerDetailsQuery, StartedWagerDetailsViewModel>
     {
-        private readonly BetListsService service;
+        private readonly BetListsService betListService;
         private readonly ISmartPunterBetListMonitor monitorService;
         private readonly ITicketHelper ticketHelper;
         private readonly IBetListCN88HtmlBuilder cn88Builder;
@@ -58,7 +58,7 @@
             AccountingPeriodService accountingPeriodService,
             BrowserHelper browserHelper)
         {
-            this.service = service;
+            this.betListService = service;
             this.monitorService = monitorService;
             this.ticketHelper = ticketHelper;
             this.cn88Builder = cn88Builder;
@@ -83,7 +83,7 @@
                 message.Type,
                 message.LimitedDateToShowInfo);
 
-            var betlistData = service.GetBetListOfReport(param);
+            var betlistData = betListService.GetBetListOfReport(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -116,7 +116,7 @@
                 message.Date,
                 message.SportTypeGroup);
 
-            var betlistData = service.GetBetListOfStatement(param);
+            var betlistData = betListService.GetBetListOfStatement(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -136,7 +136,7 @@
                 message.BetId,
                 message.CustId);
 
-            var parlayDetailData = service.GetParlayDetails(param);
+            var parlayDetailData = betListService.GetParlayDetails(param);
 
             return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, isExportingExcel: false);
         }
@@ -145,7 +145,7 @@
         {
             var param = new GetParlaySubTicketsParam(message.TransId, message.CustId);
 
-            var tickets = service.GetParlaySubTickets(param);
+            var tickets = betListService.GetParlaySubTickets(param);
 
             return new ParlaySubTicketsViewModel(message, new BetListData(tickets, null), cn88Builder, builder, ticketHelper);
         }
@@ -160,7 +160,7 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetOutrightWagerByAccount(param);
+            var betlistData = betListService.GetOutrightWagerByAccount(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -177,7 +177,7 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetOutrightWagerDetails(param);
+            var betlistData = betListService.GetOutrightWagerDetails(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -197,7 +197,7 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetEventWagerByAccount(param);
+            var betlistData = betListService.GetEventWagerByAccount(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -217,7 +217,7 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetEventWagerDetails(param);
+            var betlistData = betListService.GetEventWagerDetails(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -237,7 +237,7 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetStartedWagerByAccount(param);
+            var betlistData = betListService.GetStartedWagerByAccount(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -257,7 +257,7 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = service.GetStartedWagerDetails(param);
+            var betlistData = betListService.GetStartedWagerDetails(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -275,7 +275,7 @@
                 message.StakeMode,
                 message.StakeLimit);
 
-            var betlistData = service.GetTotalBetParlay(param);
+            var betlistData = betListService.GetTotalBetParlay(param);
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -295,15 +295,11 @@
              => monitorService.WriteLog(custId, tickets.ToList<ITicket>());
 
         protected internal IEnumerable<SelectListItemExt> BuildSportsSelectListItems(IEnumerable<int> sports, int userSelectedSport)
-        {
-            var items = sports.Select(sport => new SelectListItemExt
+            => sports.Select(sport => new SelectListItemExt
             {
                 Text = BetListsResources.ResourceManager.GetString($"TotalBetParlaySport_{sport}"),
                 Value = sport.ToString(),
                 Selected = sport == userSelectedSport
             });
-
-            return items;
-        }
     }
 }

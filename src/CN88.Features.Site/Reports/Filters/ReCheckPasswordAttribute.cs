@@ -7,6 +7,7 @@
     using Alpha.Web.Helpers;
     using Sunplus.Agent.Model.Entities;
 
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class ReCheckPasswordAttribute : AuthorizeAttribute
     {
         private const string VerifyPasswordSessionKey = "OldReports.VerifiedPassword";

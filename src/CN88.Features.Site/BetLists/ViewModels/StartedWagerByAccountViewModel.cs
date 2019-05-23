@@ -117,7 +117,7 @@
         }
 
         private string BuildBreadcrumbUrl()
-            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
+            => UrlHelper.AddQueryStringParamsFunc(
                 AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                 new Dictionary<string, object>
                 {
@@ -137,8 +137,7 @@
         {
             var breadcrumbLevel = new List<CustInfo>();
 
-            if (message.BreadcrumbLevel != null
-                && message.BreadcrumbLevel.Any())
+            if (message.BreadcrumbLevel?.Any() == true)
             {
                 foreach (var custInfo in message.BreadcrumbLevel)
                 {
@@ -160,7 +159,7 @@
                 return new BreadcrumbItem("Not Found", "#");
             }
 
-            return new BreadcrumbItem(message.CustName, links.ElementAt(links.Count - 2).Link);
+            return new BreadcrumbItem(message.CustName, links[links.Count - 2].Link);
         }
     }
 }

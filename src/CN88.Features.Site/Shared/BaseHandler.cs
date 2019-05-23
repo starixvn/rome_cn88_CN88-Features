@@ -31,7 +31,8 @@
                 Text = sportGroup.DisplayName,
                 Value = sportGroup.Id.ToString(),
                 Selected = sportGroup.Id == userSelectedSportGroupId
-            }).ToList();
+            })
+            .ToList();
 
             items.Insert(0, new SelectListItemExt { Text = SharedResources.AllSports, Value = "0", Selected = userSelectedSportGroupId == 0 });
 
@@ -64,28 +65,20 @@
         }
 
         protected internal IEnumerable<SelectListItemExt> BuildStakeModeSelectListItems(IEnumerable<int> modes, int userSelectedStakeMode)
-        {
-            var items = modes.Select(mode => new SelectListItemExt
+            => modes.Select(mode => new SelectListItemExt
             {
                 Text = SharedResources.ResourceManager.GetString($"StakeMode_{mode}"),
                 Value = mode.ToString(),
                 Selected = mode == userSelectedStakeMode
-            }).ToList();
-
-            return items;
-        }
+            });
 
         protected internal IEnumerable<SelectListItemExt> BuildPercentageViewModeSelectListItems(IEnumerable<int> modes, int userSelectedViewMode)
-        {
-            var items = modes.Select(mode => new SelectListItemExt
+            => modes.Select(mode => new SelectListItemExt
             {
                 Text = SharedResources.ResourceManager.GetString($"PercentageViewMode_{mode}"),
                 Value = mode.ToString(),
                 Selected = mode == userSelectedViewMode
-            }).ToList();
-
-            return items;
-        }
+            });
 
         protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")
         {
@@ -117,9 +110,7 @@
                 throw new ArgumentException("Namespace does not contain any dot character, wrong report convention.");
             }
 
-            var templateFolderName = reportNamespace.Substring(lastIndexOfDot);
-
-            return templateFolderName;
+            return reportNamespace.Substring(lastIndexOfDot);
         }
     }
 }

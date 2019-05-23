@@ -6,7 +6,6 @@
     using MediatR;
     using Requests.WagerMonitoring;
     using Shared.Controllers;
-    using ViewModels.WagerMonitoring;
     using Web.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]

@@ -143,7 +143,7 @@
                 return new BreadcrumbItem("Not Found", "#");
             }
 
-            return new BreadcrumbItem(message.CustName, links.ElementAt(links.Count - 2).Link);
+            return new BreadcrumbItem(message.CustName, links[links.Count - 2].Link);
         }
     }
 }

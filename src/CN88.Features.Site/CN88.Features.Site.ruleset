@@ -1,4 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="SonarQube - CN88 / Features Nexcel CSharp" ToolsVersion="14.0">
+<RuleSet Name="SonarQube - CN88 / Features Nexcel CSharp" ToolsVersion="15.0">
   <Include Path="..\..\sonarqube\cn88-featurescsharp.ruleset" Action="Default" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1000" Action="Warning" />
+  </Rules>
 </RuleSet>

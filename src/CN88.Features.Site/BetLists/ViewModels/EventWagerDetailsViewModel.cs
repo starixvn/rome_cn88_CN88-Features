@@ -70,7 +70,7 @@
 
         public byte ViewerLevelId { get; }
 
-        public PagerViewModel PagerViewModel { get; private set; }
+        public PagerViewModel PagerViewModel { get; }
 
         public int MatchId { get; }
 

@@ -129,7 +129,7 @@
 
             var tickets = BetDataViewModel.BetListData.Tickets.ToList();
 
-            if (!tickets.Any())
+            if (tickets.Count == 0)
             {
                 FillNoInfoRow(sheet);
                 return;
