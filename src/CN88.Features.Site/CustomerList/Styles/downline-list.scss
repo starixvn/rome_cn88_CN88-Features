@@ -157,6 +157,7 @@ body.phone {
         .col-action {
             width: 34px;
             min-width: 54px;
+            padding: 0;
         }
 
         .col-credit {
@@ -165,6 +166,12 @@ body.phone {
 
         .col-status {
             min-width: 54px;
+        }
+
+        .dropdown a {
+            height: 30px;
+            display: inline-block;
+            width: 26px;
         }
 
         .dropdown .dropdown-menu {
@@ -184,6 +191,8 @@ body.phone {
         }
 
         .icon-more-action {
+            position: relative;
+            top: 7px;
             font-size: 16px;
             cursor: pointer;
         }
