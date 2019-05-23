@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using CN88.Features.Site.Shared.Helpers;
+    using CN88.Web.Helpers;
     using MediatR;
     using Requests;
     using Shared.Controllers;

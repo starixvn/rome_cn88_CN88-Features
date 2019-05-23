@@ -4,7 +4,7 @@
     using System.Linq;
     using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
-    using CN88.Features.Site.Shared.Helpers;
+    using CN88.Web.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;

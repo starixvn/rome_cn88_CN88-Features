@@ -4,7 +4,7 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Alpha.Web.Filters;
-    using CN88.Features.Site.Shared.Helpers;
+    using CN88.Web.Helpers;
     using CustomerList;
     using CustomerList.Requests;
     using MediatR;

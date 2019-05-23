@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
-    using CN88.Features.Site.Shared.Helpers;
+    using CN88.Web.Helpers;
     using MediatR;
     using Reports.Filters;
     using Requests;
@@ -13,7 +13,7 @@
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class BetListsController : FeatureBaseController
     {
-        private readonly BrowserHelper browserHelper;      
+        private readonly BrowserHelper browserHelper;
 
         public BetListsController(
             IMediator mediator,
@@ -25,7 +25,7 @@
 
         [HttpGet, ReCheckPassword]
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
-            =>  browserHelper.IsMobile()
+            => browserHelper.IsMobile()
                     ? await ViewAsync(message, "ReportBetListMobile")
                     : await ViewAsync(message);
 

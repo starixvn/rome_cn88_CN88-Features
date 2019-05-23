@@ -2,8 +2,8 @@
 {
     using Alpha.Auth.Configurations;
     using Alpha.Web.Helpers;
+    using CN88.Web.Helpers;
     using Features.Shared.Models;
-    using Shared.Helpers;
 
     public class IndexViewModel
     {

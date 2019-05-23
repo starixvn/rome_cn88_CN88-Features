@@ -94,8 +94,8 @@
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.8\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.0.4-MobileFriendly-02\lib\net461\CN88.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -802,7 +802,6 @@
     <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
-    <Compile Include="Shared\Helpers\BrowserHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\StakeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />

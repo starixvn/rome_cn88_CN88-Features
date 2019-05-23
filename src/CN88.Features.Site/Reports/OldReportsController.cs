@@ -1,15 +1,15 @@
 ﻿namespace CN88.Features.Site.Reports
 {
+    using System;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.Web.Helpers;
+    using CN88.Web.Helpers;
+    using Features.Models;
     using Filters;
     using MediatR;
     using Requests;
     using Shared.Controllers;
-    using System;
-    using Features.Models;
-    using CN88.Features.Site.Shared.Helpers;
 
     public class OldReportsController : FeatureBaseController
     {
@@ -61,7 +61,7 @@
         [ReCheckPassword]
         public async Task<ActionResult> Index(OldIndexQuery message)
             => await ViewAsync(
-                message, 
+                message,
                 browserHelper.IsMobile()
                 ? OldIndexMobileViewPath
                 : OldIndexViewPath);

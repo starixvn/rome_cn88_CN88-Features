@@ -1,6 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
-    using CN88.Features.Site.Shared.Helpers;
+    using CN88.Web.Helpers;
     using Features.Reports.Services;
     using Features.Shared.Services;
     using MediatR;

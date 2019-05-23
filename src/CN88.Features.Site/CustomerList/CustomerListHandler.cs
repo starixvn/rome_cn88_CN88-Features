@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using CN88.Web.Helpers;
     using CustomerList;
     using CustomerList.Requests;
     using CustomerList.ViewModels;
@@ -15,7 +16,6 @@
     using Features.Shared.Models;
     using Features.Shared.Services;
     using MediatR;
-    using Shared.Helpers;
     using Shared.ViewModels;
 
     public class CustomerListHandler :
