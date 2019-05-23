@@ -12,7 +12,6 @@
     using Fanex.RemotingRef;
     using global::CN88.BetList.Core.Builders;
     using global::CN88.Features.BetLists;
-    using global::CN88.Features.BetLists.DataAccesses;
     using global::CN88.Features.CustomerList;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
@@ -33,7 +32,6 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using SmartPunter.DataAccesses;
     using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
@@ -96,7 +94,6 @@
 
             container.RegisterSingleton<CustomerListDataAccess, CustomerListDataAccessImpl>();
             container.RegisterSingleton<SportGroupDataAccess, SportGroupDataAccessImpl>();
-            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)

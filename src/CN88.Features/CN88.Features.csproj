@@ -281,14 +281,7 @@
     <Compile Include="BetLists\Criteria\TotalBetParlayCriteria.cs" />
     <Compile Include="BetLists\Criteria\UnsettledBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\SettledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\InternalAdminCheckerCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\NAPUserPermissionCriteria.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterSMACheckerCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterWriteLogCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterWriteLogNoDataCommand.cs" />
     <Compile Include="BetLists\Criteria\OutrightWagerDetailsCriteria.cs" />
-    <Compile Include="BetLists\DataAccesses\SmartPunterDataAccess.cs" />
     <Compile Include="BetLists\Helpers\BetTypeHelper.cs" />
     <Compile Include="BetLists\Models\BetListData.cs" />
     <Compile Include="BetLists\Models\MatchDetailModel.cs" />
