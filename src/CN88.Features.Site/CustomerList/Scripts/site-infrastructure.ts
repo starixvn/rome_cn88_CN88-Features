@@ -7,16 +7,10 @@ class SiteInfrastructure {
 
     customerStatus = {
         all: 0,
-        open: 1,
-        closed: 3,
-        suspended: 2
-    };
-
-    closeReasonConstant = {
-        LogInFailedOrExpired: 0,
-        SecurityCode: 3,
-        Upline: 2,
-        Admin: 1
+        active: 4,
+        viewOnly: 3,
+        suspended: 2,
+        inactive: 1
     };
 
     roleId = {

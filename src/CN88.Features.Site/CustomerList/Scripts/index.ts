@@ -54,7 +54,10 @@ class CustomerList {
         EditAgent: '',
         EditMasterAgent: '',
         ResetPassword: '',
-        ResetSecurityCode: ''
+        ResetSecurityCode: '',
+        Active: '',
+        ViewOnly: '',
+        Inactive: ''
     };
 
     masterList: MasterList;
@@ -165,6 +168,10 @@ class CustomerList {
         this.viewResources.Closed = this.$("#Closed").val();
         this.viewResources.Suspended = this.$("#Suspended").val();
 
+        this.viewResources.Active = this.$("#Active").val();
+        this.viewResources.ViewOnly = this.$("#ViewOnly").val();
+        this.viewResources.Inactive = this.$("#Inactive").val();
+
         this.viewResources.Page = this.$("#Page").val();
         this.viewResources.Of = this.$("#of").val();
         this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
@@ -221,22 +228,6 @@ class CustomerList {
         }
     };
 
-    getCustomerColor = (customer: any) => {
-        if (customer.Status == siteInfrastructure.customerStatus.open) {
-            return "row-open";
-        }
-
-        if (customer.Status == siteInfrastructure.customerStatus.suspended) {
-            return "row-suspended";
-        }
-
-        if (customer.Status == siteInfrastructure.customerStatus.closed) {
-            return "row-closed reason-" + customer.CloseReason;
-        }
-
-        return "";
-    };
-
     updateCredit = (custId: any, username: any, custLevelId: any) => {
         let url = this.UpdateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
             popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
@@ -266,8 +257,6 @@ class CustomerList {
     };
 
     openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {
-        let self = this;
-
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.open({
             title: popupTitle,
@@ -318,16 +307,20 @@ class CustomerList {
         }
     };
     getStatusName = (status: number) => {
-        if (status == siteInfrastructure.customerStatus.open) {
-            return this.viewResources.Open;
+        if (status == siteInfrastructure.customerStatus.active) {
+            return this.viewResources.Active;
         }
 
-        if (status == siteInfrastructure.customerStatus.closed) {
-            return this.viewResources.Closed;
+        if (status == siteInfrastructure.customerStatus.viewOnly) {
+            return this.viewResources.ViewOnly;
         }
 
         if (status == siteInfrastructure.customerStatus.suspended) {
             return this.viewResources.Suspended;
+        }
+
+        if (status == siteInfrastructure.customerStatus.inactive) {
+            return this.viewResources.Inactive;
         }
 
         return "";
@@ -347,21 +340,6 @@ class CustomerList {
         let column = this.$(".col-status[cust-id='" + custId + "']");
         column.html(this.getStatusName(newValue));
         column.attr("current-status", newValue);
-
-        this.$(".row-customer[cust-id='" + custId + "']")
-            .removeClass()
-            .addClass("row-customer " + this.reloadStatusColor(newValue));
-    };
-    reloadStatusColor = (status: any) => {
-        if (status == siteInfrastructure.customerStatus.open) {
-            return "row-open";
-        }
-
-        if (status == siteInfrastructure.customerStatus.suspended) {
-            return "row-suspended";
-        }
-
-        return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Upline;
     };
     storeCurrentPage = (reportParam: any) => {
         let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);

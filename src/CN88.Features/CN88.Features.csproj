@@ -292,7 +292,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BetListsResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="CustomerList\Constants\CloseReasonConstant.cs" />
     <Compile Include="CustomerList\Constants\CustomerStatus.cs" />
     <Compile Include="CustomerList\Criteria\GetOnlineMemberListCriteria.cs" />
     <Compile Include="CustomerList\Criteria\CustomerListCriteria.cs" />

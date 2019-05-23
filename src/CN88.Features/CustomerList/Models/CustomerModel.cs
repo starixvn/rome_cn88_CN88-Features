@@ -17,8 +17,7 @@
             string group,
             decimal credit,
             DateTime creationDate,
-            int status,
-            int closeReason)
+            int status)
         {
             CustId = custId;
             Username = username;
@@ -28,7 +27,6 @@
             Credit = credit;
             CreationDate = creationDate;
             Status = status;
-            CloseReason = closeReason;
         }
 
         public int CustId { get; }
@@ -48,7 +46,5 @@
         public string CreationDateStr => CreationDate.ToLongDateTime24h();
 
         public int Status { get; }
-
-        public int CloseReason { get; }
     }
 }

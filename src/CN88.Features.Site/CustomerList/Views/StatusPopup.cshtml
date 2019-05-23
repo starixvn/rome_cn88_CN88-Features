@@ -13,14 +13,17 @@
     <div class="form-group">
         <label>@CustomerListResources.Status</label>
         <select id="dropdown-status" class="control">
-            <option value="@CustomerStatus.Open" @(Model.UpdateStatusId.Equals(CustomerStatus.Open) ? "selected" : string.Empty)>
-                @CustomerListResources.Open
+            <option value="@CustomerStatus.Active" @(Model.UpdateStatusId.Equals(CustomerStatus.Active) ? "selected" : string.Empty)>
+                @CustomerListResources.Active
+            </option>
+            <option value="@CustomerStatus.ViewOnly" @(Model.UpdateStatusId.Equals(CustomerStatus.ViewOnly) ? "selected" : string.Empty)>
+                @CustomerListResources.ViewOnly
             </option>
             <option value="@CustomerStatus.Suspended" @(Model.UpdateStatusId.Equals(CustomerStatus.Suspended) ? "selected" : string.Empty)>
                 @CustomerListResources.Suspended
             </option>
-            <option value="@CustomerStatus.Closed" @(Model.UpdateStatusId.Equals(CustomerStatus.Closed) ? "selected" : string.Empty)>
-                @CustomerListResources.Closed
+            <option value="@CustomerStatus.Inactive" @(Model.UpdateStatusId.Equals(CustomerStatus.Inactive) ? "selected" : string.Empty)>
+                @CustomerListResources.Inactive
             </option>
         </select>
     </div>

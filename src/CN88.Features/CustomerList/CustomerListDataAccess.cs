@@ -44,8 +44,7 @@
                                 group: Converter.ToString2(reader["Group"]),
                                 credit: Converter.ToDecimal(reader["Credit"]),
                                 creationDate: Converter.ToDateTime(reader["CreatedDate"]),
-                                status: Converter.ToInt(reader["Status"]),
-                                closeReason: Converter.ToInt(reader["ClosedReason"])));
+                                status: Converter.ToInt(reader["Status"])));
                         }
 
                         reader.Close();
