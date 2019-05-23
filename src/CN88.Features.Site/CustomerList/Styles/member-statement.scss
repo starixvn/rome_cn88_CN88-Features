@@ -17,3 +17,23 @@
         width: 170px;
     }
 }
+
+body.phone {
+    .member-statement {
+        padding-left: 12px;
+        padding-right: 12px;
+
+        .filter-mobile {
+            display: table;
+            width: 100%;
+        }
+
+        .filter {
+            display: none;
+        }
+
+        .tbl-member-statement {
+            margin-top: 12px;
+        }
+    }
+}

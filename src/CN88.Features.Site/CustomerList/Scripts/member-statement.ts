@@ -9,18 +9,21 @@
     ok: string;
     invalidDateRange: string;
     isMobile: boolean;
+    toggleHandler: ToggleHandler;
 
     constructor(
         $: JQueryStatic,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         fromDateSelectionComponent: SingleSelectionDropdownComponent,
         toDateSelectionComponent: SingleSelectionDropdownComponent,
-        topWindow: any) {
+        topWindow: any,
+        toggleHandler: ToggleHandler) {
         this.$ = $;
         this.topWindow = topWindow;
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
         this.fromDateSelectionComponent = fromDateSelectionComponent;
         this.toDateSelectionComponent = toDateSelectionComponent;
+        this.toggleHandler = toggleHandler;
     }
 
     public init() {
@@ -32,7 +35,11 @@
         this.warning = this.$("#Warning").val();
         this.ok = this.$("#OK").val();
         this.invalidDateRange = this.$("#InvalidDateRange").val();
-        this.isMobile = this.$("#IsMobile").val() === "true";
+        this.isMobile = this.$("#IsMobile").val() === "True";
+
+        if (this.isMobile) {
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-member-statement"));
+        }        
     }
 
     public onReportSubmit = () => {
@@ -54,6 +61,7 @@ $(function () {
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        window.top);
+        window.top,
+        new ToggleHandler($));
     memberStatement.init();
 })

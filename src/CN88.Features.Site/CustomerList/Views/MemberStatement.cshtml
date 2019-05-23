@@ -9,6 +9,13 @@
 }
 <div class="member-statement">
     <div class="page-title">@Model.CustName</div>
+    @if (Model.IsMobile)
+    {
+        <div class="filter-mobile">
+            <span class="icon-filter-down" id="filter-toggle-icon"></span>
+        </div>
+    }
+
     <form class="form-inline filter" role="form" id="report-form">
         @Html.Hidden("CustName", Model.CustName)
         @Html.Hidden("CustId", Model.CustId)
@@ -19,11 +26,8 @@
             <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
         </div>
     </form>
-    @if (Model.IsMobile)
-    {
-        @:asdasdasdas
-    }
-    <table class="tbl-style2">
+
+    <table class="tbl-style2 tbl-member-statement" id="tbl-member-statement">
         <thead>
             <tr>
                 <th>@BetListsResources.Date</th>
