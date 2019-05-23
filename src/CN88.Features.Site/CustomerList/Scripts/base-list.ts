@@ -127,7 +127,11 @@
             var $this = self.$(this);
             var viewStatementUrl = $("#viewStatementtUrl").val() + "?CustName=" + $this.attr("username") + "&CustId=" + $this.attr("cust-id");
 
-            window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
+            if (self.indexManager.isDevice) {
+                window.open(viewStatementUrl, "_blank");
+            } else {
+                window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
+            }
         });
 
         this.$tblReport.find(".view-downline").click(function () {

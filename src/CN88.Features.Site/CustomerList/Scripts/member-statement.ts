@@ -8,6 +8,7 @@
     warning: string;
     ok: string;
     invalidDateRange: string;
+    isMobile: boolean;
 
     constructor(
         $: JQueryStatic,
@@ -31,6 +32,7 @@
         this.warning = this.$("#Warning").val();
         this.ok = this.$("#OK").val();
         this.invalidDateRange = this.$("#InvalidDateRange").val();
+        this.isMobile = this.$("#IsMobile").val() === "true";
     }
 
     public onReportSubmit = () => {
