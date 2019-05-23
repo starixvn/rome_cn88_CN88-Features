@@ -29,7 +29,7 @@
 
         Task<IEnumerable<MonitorBetTypeGroup>> GetBetTypeGroupsBySport(int sportGroup);
 
-        Task<IEnumerable<TicketDto>> GetMonitorBets(WagerMonitoringParam param);
+        Task<BetListData> GetMonitorBets(WagerMonitoringParam param);
     }
 
     public class WagerMonitoringServiceImpl : WagerMonitoringService
@@ -127,7 +127,7 @@
             return betTypeGroups;
         }
 
-        public async Task<IEnumerable<TicketDto>> GetMonitorBets(WagerMonitoringParam param)
+        public async Task<BetListData> GetMonitorBets(WagerMonitoringParam param)
         {
             var criteria = new WagerMonitoringCriteria(
                 param.CustId,
@@ -158,7 +158,7 @@
                 }
             }
 
-            return tickets;
+            return new BetListData(tickets, null);
         }
 
         public async Task<IEnumerable<MatchInfo>> GetOtherMatches()

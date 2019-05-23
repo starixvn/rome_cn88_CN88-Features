@@ -346,7 +346,8 @@
       "Shared/Scripts/components/single-selection-dropdown.js",
       "BetLists/Scripts/wager-monitoring/multi-selection-checkbox.js",
       "BetLists/Scripts/wager-monitoring/filter-modal.js",
-      "BetLists/Scripts/wager-monitoring/wager-monitoring.js"
+      "BetLists/Scripts/wager-monitoring/wager-monitoring.js",
+      "Shared/Scripts/components/filter-toggle.js"
     ]
   }
 ]

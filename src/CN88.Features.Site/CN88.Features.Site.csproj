@@ -947,6 +947,7 @@
     <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
     <Content Include="BetLists\Content\audio\TPBTLOW.ogg" />
     <Content Include="CN88.Features.Site.ruleset" />
+    <Content Include="BetLists\Views\WagerMonitoring\IndexMobile.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

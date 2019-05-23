@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using BetList.Core.Builders;
+    using CN88.Web.Helpers;
     using Extensions;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -30,23 +31,27 @@
     {
         private readonly ITicketHelper ticketHelper;
         private readonly IBetListCN88HtmlBuilder cn88Builder;
-        private readonly IBetListHTMLBuilder htmlBuilder;
+        private readonly IBetListHTMLBuilder builder;
         private readonly WagerMonitoringService wagerMonitoringService;
+        private readonly BrowserHelper browserHelper;
 
         public WagerMonitoringHandler(
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
-            WagerMonitoringService wagerMonitoringService)
+            WagerMonitoringService wagerMonitoringService,
+            BrowserHelper browserHelper)
         {
-            htmlBuilder = builder;
+            this.builder = builder;
             this.cn88Builder = cn88Builder;
             this.ticketHelper = ticketHelper;
             this.wagerMonitoringService = wagerMonitoringService;
+            this.browserHelper = browserHelper;
         }
 
         public async Task<WagerMonitoringViewModel> Handle(WagerMonitoringQuery message)
         {
+            var isMobile = browserHelper.IsMobile();
             var sportGroups = await wagerMonitoringService.GetSportGroups();
 
             var param = new WagerMonitoringParam(
@@ -60,16 +65,17 @@
                 message.BetTypeGroupIds,
                 message.MinTransId);
 
-            var tickets = await wagerMonitoringService.GetMonitorBets(param);
+            var betData = await wagerMonitoringService.GetMonitorBets(param);
 
             return new WagerMonitoringViewModel(
                 param.MinTransId,
                 message,
-                tickets,
+                betData,
                 BuildSportGroupSelectListItems(sportGroups, message.SportGroup),
                 ticketHelper,
                 cn88Builder,
-                htmlBuilder);
+                builder,
+                isMobile);
         }
 
         public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
@@ -133,14 +139,14 @@
 
         private static string FormatStakeConditions(IEnumerable<SportStakeCondition> conditions)
         {
-            var builder = new StringBuilder("<ROOT>");
+            var stringBuilder = new StringBuilder("<ROOT>");
             foreach (var condition in conditions)
             {
-                builder.Append($"<SportTypeGroup Id=\"{condition.SportGroupId}\" Condition=\"{condition.StakeMode}\" Stake=\"{condition.StakeLimit}\" />");
+                stringBuilder.Append($"<SportTypeGroup Id=\"{condition.SportGroupId}\" Condition=\"{condition.StakeMode}\" Stake=\"{condition.StakeLimit}\" />");
             }
-            builder.Append("</ROOT>");
+            stringBuilder.Append("</ROOT>");
 
-            return builder.ToString();
+            return stringBuilder.ToString();
         }
 
         private static IEnumerable<SelectListItem> BuildSelectListItems<T>(

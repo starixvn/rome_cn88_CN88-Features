@@ -7,28 +7,31 @@
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
-    using Features.Shared.Models;
     using Requests.WagerMonitoring;
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class WagerMonitoringViewModel
+    public class WagerMonitoringViewModel : BetListTableViewModel
     {
         public WagerMonitoringViewModel(
             long minTransId,
             WagerMonitoringQuery query,
-            IEnumerable<TicketDto> tickets,
+            BetListData betListData,
             IEnumerable<SelectListItemExt> sportGroups,
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
-            IBetListHTMLBuilder builder)
+            IBetListHTMLBuilder builder,
+            bool isMobile = false)
         {
-            MinTransId = minTransId;
+            CustId = query.CustId;
             CustLevel = query.ActorLevel;
+            ViewerIdOrViewerAdminId = query.ViewerIdOrViewerAdminId;
+            ViewerLevelId = query.ViewerLevelId;
             Divisor = query.ActorLevel.IsHeadline() ? 100 : 1;
             NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 9 : CustLevel.IsMasterLevel() ? 7 : 6;
 
-            Tickets = tickets;
+            MinTransId = minTransId;
+            BetListData = betListData;
             Builder = builder;
             CN88Builder = cn88Builder;
             TicketHelper = ticketHelper;
@@ -36,26 +39,12 @@
             FilterFormViewModel = new FilterFormViewModel(query);
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.SportGroup);
 
-            CustId = query.CustId;
-            ViewerIdOrViewerAdminId = query.ViewerIdOrViewerAdminId;
-            ViewerLevelId = query.ViewerLevelId;
+            IsMobile = isMobile;
+            IsShowWinLoss = false;
+            IsShowPayout = false;
         }
 
         public long MinTransId { get; }
-
-        public int Divisor { get; }
-
-        public int NoOfColumns { get; }
-
-        public UserLevel CustLevel { get; }
-
-        public IEnumerable<TicketDto> Tickets { get; }
-
-        public ITicketHelper TicketHelper { get; }
-
-        public IBetListHTMLBuilder Builder { get; }
-
-        public IBetListCN88HtmlBuilder CN88Builder { get; }
 
         public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
 
@@ -64,12 +53,6 @@
         public int PageSize => AppSettings.WagerMonitoringPageSize;
 
         public int IntervalTime => AppSettings.TimeToGetLastBetsInSeconds;
-
-        public string OldMainPath => MicroSites.OldMainUrl("~");
-
-        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
-
-        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
 
         public string WagerMonitoringPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring");
 

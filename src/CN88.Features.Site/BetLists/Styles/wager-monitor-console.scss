@@ -279,3 +279,19 @@
     display: block;
     height: 15px;
 }
+
+.menubar-mobile {
+    position: relative;
+    height: 36px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #7E1414;
+    color: #fff;
+
+    .page-title {
+        line-height: 36px;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+    }
+}

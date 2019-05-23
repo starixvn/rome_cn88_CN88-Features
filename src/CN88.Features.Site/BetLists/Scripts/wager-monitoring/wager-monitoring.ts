@@ -1,6 +1,6 @@
 ﻿class WagerMonitoring {
     $: JQueryStatic;
-    $tblBetList: JQuery;
+    $tblReport: JQuery;
     $filterForm: JQuery;
     $wagerMonitoringPath: JQuery;
 
@@ -25,11 +25,12 @@
     $iconDelete: JQuery;
     $iconSpeaker: JQuery;
     $iconSpeakerText: JQuery;
-    $sound: any;
+    $sound: JQuery;
 
     ajaxRequest: JQueryXHR;
     filterModal: FilterModal;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
+    toggleHandler: ToggleHandler;
 
     pageSize: number;
     pauseUrl: string;
@@ -39,6 +40,7 @@
     isSpeakOn = true;
     speakerOnText: string;
     speakerOffText: string;
+    isMobile: boolean;
 
     resources = {
         lblPerSports: '',
@@ -63,6 +65,7 @@
         this.$ = $;
         this.filterModal = new FilterModal($);
         this.sportGroupSelectionComponent = new SingleSelectionDropdownComponent($);
+        this.toggleHandler = new ToggleHandler($);
     }
 
     init(): void {
@@ -83,7 +86,9 @@
     }
 
     cacheElements(): void {
-        this.$tblBetList = this.$("#tbl-betlist");
+        this.$tblReport = this.$("#tbl-report");
+        this.isMobile = this.$tblReport.data("ismobile");
+
         this.$filterForm = this.$("#filter-form");
         this.$wagerMonitoringPath = this.$("#WagerMonitoringPath");
 
@@ -108,7 +113,7 @@
         this.$iconDelete = this.$(".icon-delete");
         this.$iconSpeaker = this.$(".icon-audio-speaker");
         this.$iconSpeakerText = this.$("#icon-audio-text");
-        this.$sound = document.getElementById("sound");
+        this.$sound = this.$("#sound");
 
         this.resources = {
             lblPerSports: $("#lbl-PerSports").val(),
@@ -131,6 +136,11 @@
     }
 
     renderComponents(): void {
+        if (this.isMobile) {
+            this.$tblReport.stacktable();
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "filter-form", "tbl-report-stack"));
+            this.$('body').backtop();
+        }
         this.sportGroupSelectionComponent.render(
             new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", () => { this.onSportGroupChange(); }));
     }
@@ -148,13 +158,13 @@
             self.filterModal.show(link.data("target"), self.getParam(), () => { self.updateFilterForm(); });
         });
 
-        this.$iconPause.parent().on("click touchend", () => {
-            this.onPauseClick();
-        });
+        //this.$iconPause.parent().on("click touchend", () => {
+        //    this.onPauseClick();
+        //});
 
-        this.$iconDelete.parent().on("click touchend", () => {
-            this.$tblBetList.find("tbody").empty();
-        });
+        //this.$iconDelete.parent().on("click touchend", () => {
+        //    this.$tblBetList.find("tbody").empty();
+        //});
 
         this.$iconSpeaker.parent().on("click touchend", () => {
             this.isSpeakOn = !this.isSpeakOn;
@@ -169,7 +179,7 @@
                 this.$iconSpeaker.parent().removeClass("on").addClass("off");
             }
 
-            this.$sound.play();
+            this.$sound.trigger("play");
         });
     }
 
@@ -184,7 +194,7 @@
     }
 
     onPauseClickSuccess(html: string): void {
-        const result = html.replace('<table></table>', this.$tblBetList.prop("outerHTML"));
+        const result = html.replace('<table></table>', this.$tblReport.prop("outerHTML"));
         const pauseWindow = window.open("", "Pause", "height=800,width=1280");
         pauseWindow.document.open();
         pauseWindow.document.write(result);
@@ -279,12 +289,12 @@
         this.$minTransId.val(minTransId);
 
         if (totalRecords > 0) {
-            this.$tblBetList.find("tbody").prepend($responseTable.find("tbody").html());
+            this.$tblReport.find("tbody").prepend($responseTable.find("tbody").html());
 
-            const numberOfRows = this.$tblBetList.find("tbody tr").length;
+            const numberOfRows = this.$tblReport.find("tbody tr").length;
 
             if (numberOfRows > this.pageSize) {
-                this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
+                this.$tblReport.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
             }
 
             if (this.isSpeakOn) {

@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using System.Web.SessionState;
+    using CN88.Web.Helpers;
     using MediatR;
     using Requests.WagerMonitoring;
     using Shared.Controllers;
@@ -11,14 +12,19 @@
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class WagerMonitoringController : FeatureBaseController
     {
-        public WagerMonitoringController(IMediator mediator)
+        private readonly BrowserHelper browserHelper;
+
+        public WagerMonitoringController(IMediator mediator, BrowserHelper browserHelper)
             : base(mediator)
         {
+            this.browserHelper = browserHelper;
         }
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> Index(WagerMonitoringQuery message)
-            => await ViewAsync(message);
+            => browserHelper.IsMobile()
+                ? await ViewAsync(message, "IndexMobile")
+                : await ViewAsync(message);
 
         [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> FilterModal(WagerMonitoringFilterQuery message)

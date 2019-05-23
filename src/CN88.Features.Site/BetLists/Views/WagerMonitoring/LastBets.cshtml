@@ -1,38 +1,13 @@
-﻿@using Fanex.BetList.Core.Entities
-@using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
+﻿@using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 @model WagerMonitoringViewModel
-
-<table data-totalrecords="@Model.Tickets.Count()" data-mintransid="@Model.MinTransId">
+@{
+    var betData = Model.BetListData;
+}
+<table data-totalrecords="@betData.Tickets.Count()" data-mintransid="@Model.MinTransId">
     <tbody>
-        @if (Model.Tickets.Any())
+        @if (betData.Tickets.Any())
         {
-            foreach (var ticket in Model.Tickets)
-            {
-                <tr data-trans-id="@ticket.TransId">
-                    @BetLists.TransDate.Render(ticket)
-                    @BetLists.Comm.Render(ticket)
-                    @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
-                    @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, new List<ITicketData>())
-                    @BetLists.Stake.Render(ticket, Model.Divisor)
-                    @if (Model.CustLevel.IsAgentLevel())
-                    {
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                    }
-                    @if (Model.CustLevel.IsMasterLevel())
-                    {
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                    }
-                    @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
-                    {
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
-                        @HtmlHelpers.RenderNumberCell((int)(ticket.CompanyPositionTaking() * 100), "text-right")
-                    }
-
-                </tr>
-            }
+            @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
         }
     </tbody>
 </table>
