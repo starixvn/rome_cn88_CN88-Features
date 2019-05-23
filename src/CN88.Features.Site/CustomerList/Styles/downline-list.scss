@@ -175,7 +175,7 @@ body.phone {
         }
 
         .dropdown .dropdown-menu li {
-            line-height: 28px;
+            line-height: 34px;
             padding-left: 10px;
             padding-right: 10px;
             font-family: $font-family !important;
@@ -192,7 +192,8 @@ body.phone {
             margin: 0;
         }
 
-        .dropdown .dropdown-menu [class^="icon"]:before {
+        .dropdown .dropdown-menu [class^="icon"]:before,
+        .dropdown .dropdown-menu [class^="icon"]:after {
             display: none;
         }
 
