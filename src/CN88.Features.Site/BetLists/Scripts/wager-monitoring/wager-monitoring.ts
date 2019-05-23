@@ -25,7 +25,7 @@
     $iconDelete: JQuery;
     $iconSpeaker: JQuery;
     $iconSpeakerText: JQuery;
-    $sound: JQuery;
+    $sound: HTMLElement;
 
     ajaxRequest: JQueryXHR;
     filterModal: FilterModal;
@@ -108,7 +108,7 @@
         this.$iconDelete = this.$(".icon-delete");
         this.$iconSpeaker = this.$(".icon-audio-speaker");
         this.$iconSpeakerText = this.$("#icon-audio-text");
-        this.$sound = this.$("#sound");
+        this.$sound = document.getElementById("sound");
 
         this.resources = {
             lblPerSports: $("#lbl-PerSports").val(),

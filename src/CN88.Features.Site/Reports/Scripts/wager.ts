@@ -1,9 +1,4 @@
-﻿/// <reference path="../../shared/scripts/core.ts" />
-/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="../../shared/scripts/components/client-pager.ts" />
-/// <reference path="../../shared/scripts/components/link-builder.ts" />
-/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
-"use strict";
+﻿"use strict";
 class WagerReport extends LegacyReport {
     $tabValidStake: JQuery;
     $tabSettlement: JQuery;
@@ -27,7 +22,16 @@ class WagerReport extends LegacyReport {
         linkBuilderComponent: LinkBuilderComponent,
         pagerComponent: ClientPagerComponent,
         toggleHandler: ToggleHandler) {
-        super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent, sortComponent, linkBuilderComponent, pagerComponent);
+        super(
+            $,
+            dateRangePickerComponent,
+            sportGroupSelectionComponent,
+            betTypeSelectionComponent,
+            liveStatusSelectionComponent,
+            sortComponent,
+            linkBuilderComponent,
+            pagerComponent);
+
         this.toggleHandler = toggleHandler;
     }
 
@@ -41,7 +45,7 @@ class WagerReport extends LegacyReport {
 
         if (!this.isMobile) {
             if (cn88Features.convertAttributeToBool(this.$isSettlement.val())
-                || this.$custLevelId.val() == "1") {
+                || this.$custLevelId.val() === "1") {
                 this.$tabSettlement.click();
             } else {
                 this.$tabValidStake.click();
@@ -52,7 +56,7 @@ class WagerReport extends LegacyReport {
     };
 
     initForMobile = () => {
-        let reportTable = this.$("#tbl-report");
+        const reportTable = this.$("#tbl-report");
         this.isMobile = cn88Features.convertAttributeToBool(reportTable.attr("data-isMobile"));
         this.isCancelledReport = cn88Features.convertAttributeToBool(reportTable.attr("data-cancelledreport"));
         this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
@@ -64,7 +68,7 @@ class WagerReport extends LegacyReport {
         }
     };
 
-    public cacheDOMElements() {
+    cacheDOMElements(): void {
         super.cacheDOMElements();
 
         this.$tabValidStake = this.$("#tabValidStake");
@@ -75,7 +79,7 @@ class WagerReport extends LegacyReport {
         this.totalRecords = this.$tableReport.data("totalrecords");
     }
 
-    public registerEvents() {
+    registerEvents(): void {
         if (this.isMobile) {
             this.$tableReport.find("th").removeClass("sorting");
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack,#tbl-report"));
@@ -86,35 +90,35 @@ class WagerReport extends LegacyReport {
                     this.$isSettlement.val("True");
                 }
 
-                this.$(".tab-selector").removeClass("active")
+                this.$(".tab-selector").removeClass("active");
                 this.$tabSettlement.addClass("active");
                 this.$tableReport.find(".valid-stake").hide();
                 this.$tableReport.find(".settlement").show();
                 this.linkBuilderComponent.updateParam("IsSettlement", "True");
 
-            if (this.totalRecords > 0 && this.$custLevelId.val() == "4") {
-                this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
-            }
+                if (this.totalRecords > 0 && this.$custLevelId.val() === "4") {
+                    this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
+                }
 
-            if (this.totalRecords < 1) {
-                this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofsettlementcolumns"))
-            }
+                if (this.totalRecords < 1) {
+                    this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
+                }
             });
 
             this.$tabValidStake.on("click touchend", () => {
                 this.$isSettlement.val("False");
-                this.$(".tab-selector").removeClass("active")
+                this.$(".tab-selector").removeClass("active");
                 this.$tabValidStake.addClass("active");
                 this.$tableReport.find(".settlement").hide();
                 this.$tableReport.find(".valid-stake").show();
                 this.linkBuilderComponent.updateParam("IsSettlement", "False");
 
-            if (this.totalRecords > 0 && this.$custLevelId.val() == "4") {
-                this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
-            }
+                if (this.totalRecords > 0 && this.$custLevelId.val() === "4") {
+                    this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
+                }
 
-            if (this.totalRecords < 1) {
-                this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"))
+                if (this.totalRecords < 1) {
+                    this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
                 }
             });
         }
@@ -141,4 +145,4 @@ $(function () {
         new ToggleHandler($));
 
     wagerReport.init();
-})
+});

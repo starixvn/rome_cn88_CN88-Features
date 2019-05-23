@@ -2,7 +2,7 @@
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 "use strict";
-var betTypes: any = betTypes;
+var betTypes = betTypes;
 let NexDatePickerHelper: any;
 class ReportIndexView extends BaseReport {
     $wagerTab: JQuery;
@@ -93,7 +93,7 @@ class ReportIndexView extends BaseReport {
         this.$toDateContainer = this.$("#to-date-container");
         this.$settlementAndAccountingSheetTabs = this.$("#settlement-summary-tab,#accounting-sheet-tab");
         this.$wagerAndCancelledTabs = this.$("#wager-tab,#cancelled-tab");
-    };
+    }
 
     calculatedDate(): void {
         this.minDate = new Date(this.$dateRangePicker.data("mindate"));
@@ -119,7 +119,7 @@ class ReportIndexView extends BaseReport {
             numberDisplayed: 1,
             includeSelectAllOption: false,
         });
-    };
+    }
 
     registerEvents(): void {
         this.$createRptForm.submit(() => this.onSubmit());
@@ -156,7 +156,7 @@ class ReportIndexView extends BaseReport {
         });
 
         this.$thisWeekBtn.click((e) => {
-            let dateRange = this.getDateRangeOfCurrentWeek(this.getToday());
+            const dateRange = this.getDateRangeOfCurrentWeek(this.getToday());
             this.onQuickChoiceClick(e, dateRange[0], dateRange[1]);
         });
 
@@ -183,8 +183,8 @@ class ReportIndexView extends BaseReport {
 
         this.$wagerAndCancelledTabs.click(() => {
             this.$createRptForm.show();
-        })
-    };
+        });
+    }
 
     getToday(): Date {
         return new Date(this.$dateRangePicker.data("currentdate"));
@@ -244,12 +244,12 @@ class ReportIndexView extends BaseReport {
     }
 
     resetWagerReportType(): void {
-        (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
+        (this.$wagerRptTypeDropdown[0] as HTMLSelectElement).selectedIndex = 0;
         this.$wagerRptTypeDropdown.multiselect('refresh');
     }
 
     resetCancelledReportType(): void {
-        (<HTMLSelectElement>this.$cancelledRptTypeDropdown[0]).selectedIndex = 0;
+        (this.$cancelledRptTypeDropdown[0] as HTMLSelectElement).selectedIndex = 0;
         this.$cancelledRptTypeDropdown.multiselect('refresh');
     }
 
@@ -293,4 +293,4 @@ $(function () {
         new SingleSelectionDropdownComponent($));
 
     reportIndexView.init();
-})
+});

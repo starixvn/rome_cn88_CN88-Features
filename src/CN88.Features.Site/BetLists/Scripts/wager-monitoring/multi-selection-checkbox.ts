@@ -26,15 +26,15 @@ class MultiSelectionCheckboxComponent {
         this.$checkboxAll = this.$("#" + this.options.checkboxAllId);
         this.$listItem = this.$("#" + this.options.listItemId);
         this.$hiddenInput = this.$("#" + this.options.hiddenInputId);
+        this.$checkboxes = this.$listItem.children().not(".hide").find("input[type='checkbox']");
 
         let self = this;
-        let $checkboxes = this.$listItem.children().not(".hide").find("input[type='checkbox']");
-        this.$checkboxes = $checkboxes;
+
         this.$checkboxAll.change(function () {
-            $checkboxes.prop("checked", this.checked);
+            self.$checkboxes.prop("checked", this.checked);
         });
 
-        $checkboxes.on("click touchend", function () {
+        this.$checkboxes.on("click touchend", function () {
             if (this.checked) {
                 self.isCheckAll();
             } else {

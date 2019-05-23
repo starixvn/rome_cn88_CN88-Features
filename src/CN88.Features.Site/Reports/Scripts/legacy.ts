@@ -1,11 +1,4 @@
-﻿/// <reference path="../../shared/scripts/core.ts" />
-/// <reference path="pt-history.ts" />
-/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
-/// <reference path="../../shared/scripts/components/sort.ts" />
-/// <reference path="../../shared/scripts/components/link-builder.ts" />
-/// <reference path="../../shared/scripts/components/client-pager.ts" />
-"use strict";
+﻿"use strict";
 class LegacyReport extends BaseReport {
     $tooltip: JQuery;
     $reportForm: JQuery;
@@ -52,7 +45,7 @@ class LegacyReport extends BaseReport {
         this.initTooltip();
         super.renderComponents();
 
-        let headers = this.$custLevelId.val() == "4"
+        const headers = this.$custLevelId.val() === "4"
             ? { 0: { sorter: "text" } }
             : { 0: { sorter: "text" }, 1: { sorter: "text" } };
         if (!this.isMobile) {
@@ -89,20 +82,21 @@ class LegacyReport extends BaseReport {
         this.$excelIcon.click(this.onExportExcelEvent);
 
         this.$("body").on("click touchend", (event) => {
-            let tooltip = this.$(event.target);
+            const tooltip = this.$(event.target);
+            const showTooltipClass = "tooltip-show";
             if (tooltip.hasClass("more-info")) {
-                var isShowing = tooltip.hasClass("tooltip-show");
+                const isShowing = tooltip.hasClass(showTooltipClass);
 
-                var showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
                 showingToolTips.tooltip("hide");
-                showingToolTips.removeClass("tooltip-show");
+                showingToolTips.removeClass(showTooltipClass);
 
                 if (isShowing) {
                     tooltip.tooltip("hide");
-                    tooltip.removeClass("tooltip-show");
+                    tooltip.removeClass(showTooltipClass);
                 } else {
                     tooltip.tooltip("show");
-                    tooltip.addClass("tooltip-show");
+                    tooltip.addClass(showTooltipClass);
                 }
 
                 event.stopPropagation();
@@ -110,7 +104,7 @@ class LegacyReport extends BaseReport {
             }
 
             this.$moreInfoIcon.tooltip("hide");
-            this.$moreInfoIcon.removeClass("tooltip-show");
+            this.$moreInfoIcon.removeClass(showTooltipClass);
         });
     }
 

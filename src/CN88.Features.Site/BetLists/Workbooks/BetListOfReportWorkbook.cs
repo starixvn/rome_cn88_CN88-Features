@@ -33,7 +33,7 @@
         byte[] ExportToBytes();
 
         BetListOfReportWorkbook SetData(
-            BetListOfReportViewModel comboParlayDetails,
+            BetListOfReportViewModel betDataViewModel,
             IBetListExcelBuilder excelBuilder,
             IBetListCN88ExcelBuilder cn88ExcelBuilder);
 
