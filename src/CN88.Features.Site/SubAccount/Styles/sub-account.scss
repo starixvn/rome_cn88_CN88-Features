@@ -207,6 +207,7 @@ body.mobile {
 
         .add-new {
             line-height: 30px;
+            float: none;
 
             .icon-add {
                 top: 3px;
@@ -261,7 +262,14 @@ body.mobile {
 
             &.permission {
                 padding-top: 0;
-                padding-bottom: 0;
+
+                .account-data-content {
+                    padding-bottom: 0;
+                }
+
+                .form-group {
+                    margin-bottom: 10px;
+                }
             }
 
             &.general-info {
@@ -302,6 +310,18 @@ body.mobile {
 
                     .control {
                         font-size: 16px;
+                    }
+                }
+
+                .checkbox {
+                    padding-top: 0;
+
+                    label {
+                        line-height: 27px;
+
+                        input[type="checkbox"] {
+                            margin-top: 5px;
+                        }
                     }
                 }
             }
