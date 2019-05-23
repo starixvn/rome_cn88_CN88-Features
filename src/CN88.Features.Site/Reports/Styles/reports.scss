@@ -663,6 +663,11 @@ body.phone {
                 color: #B50000;
             }
         }
+
+        .st-cell-label .more-info:before {
+            margin-top: -8px;
+            font-size: 16px;
+        }
     }
 
     .wager-report .tab-content.main-content {
