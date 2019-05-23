@@ -768,6 +768,7 @@
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Reports\Constants\ReportSortPropertyConstants.cs" />
     <Compile Include="Reports\Filters\ReCheckPasswordAttribute.cs" />
     <Compile Include="Reports\Handlers\OldReportsHandler.cs" />

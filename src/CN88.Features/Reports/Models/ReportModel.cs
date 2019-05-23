@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Text;
     using CN88.Features.Shared.Extensions;
-    using Shared.Extensions;
 
     public class ReportModel
     {
