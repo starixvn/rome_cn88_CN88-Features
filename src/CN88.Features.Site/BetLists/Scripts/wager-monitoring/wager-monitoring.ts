@@ -87,11 +87,11 @@
         this.$filterForm = this.$("#filter-form");
         this.$wagerMonitoringPath = this.$("#WagerMonitoringPath");
 
-        this.$stakeLnk = $(".link[data-target='#stake-tab'");
-        this.$maketLnk = $(".link[data-target='#market-tab'");
-        this.$leagueLnk = $(".link[data-target='#league-tab'");
-        this.$eventLnk = $(".link[data-target='#event-tab'");
-        this.$betTypeLnk = $(".link[data-target='#bettype-tab'");
+        this.$stakeLnk = $(".link[data-target='#stake-tab']");
+        this.$maketLnk = $(".link[data-target='#market-tab']");
+        this.$leagueLnk = $(".link[data-target='#league-tab']");
+        this.$eventLnk = $(".link[data-target='#event-tab']");
+        this.$betTypeLnk = $(".link[data-target='#bettype-tab']");
 
         this.$sportGroup = this.$("#SportGroup");
         this.$isSelectAllSports = this.$("#IsSelectAllSports");
