@@ -15,8 +15,8 @@
     {
         <tr class="total">
             <th class="text-left">@ReportResources.Total</th>
-            @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "valid-stake")
-            @HtmlHelpers.RenderHeaderNumberCell(divisor, total.ValidStake, "valid-stake")
+            @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "valid-stake", true)
+            @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "valid-stake", true)
         </tr>
     }
 </thead>
