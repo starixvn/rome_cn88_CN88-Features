@@ -25,7 +25,7 @@
     $iconDelete: JQuery;
     $iconSpeaker: JQuery;
     $iconSpeakerText: JQuery;
-    $sound: HTMLElement;
+    $sound: any;
 
     ajaxRequest: JQueryXHR;
     filterModal: FilterModal;
