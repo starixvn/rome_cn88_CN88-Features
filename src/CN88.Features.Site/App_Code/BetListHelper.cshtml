@@ -1,0 +1,139 @@
+﻿@using Fanex.BetList.Core.Entities
+@using CN88.Features.Extensions
+@using CN88.Features.Site.BetLists.Helpers
+@using CN88.Features.BetLists.Models
+@using Fanex.BetList.Core.Utils
+@using CN88.Features.BetLists.Helpers
+@using CN88.Features.BetLists.Resources
+@using CN88.BetList.Core.Builders
+@using Fanex.BetList.Core.Builder
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Site.Shared.ViewModels.Components
+
+@helper RenderTransDate(ITicket ticket, bool isMobile = false)
+{
+    if (isMobile)
+    {
+        @ticket.TransDate.ToShortDateFormat()
+        @ticket.TransDate.ToLongTime24h()
+    }
+    else
+    {
+        <td class="text-left no-wrap">
+            @ticket.TransDate.ToShortDateFormat()
+            <br />
+            @ticket.TransDate.ToLongTime24h()
+        </td>
+    }
+}
+
+
+@helper RenderStake(ITicket ticket, int divisor, bool isMobile = false)
+{
+    <td class="stake-block bl_underdog text-right">
+        @(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))
+    </td>
+}
+
+
+@helper RenderPayout(TicketDto ticket, int divisor)
+{
+    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
+}
+
+@helper RenderStatus(TicketDto ticket, IBetListHTMLBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP)
+{
+    <td class="text-center">
+        @(new HtmlString(builder.BuildStatus(ticket, helper, ticketData, isShowVNIP)))
+    </td>
+}
+
+@helper RenderComm(TicketDto ticket)
+{
+    <td>
+        <div>@ticket.UserName</div>
+        @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
+        {
+            <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
+        }
+    </td>
+}
+
+@helper RenderBetID(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, GetCachePropertyById getOddsTypeNameFunc)
+{
+    <td>
+        @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => getOddsTypeNameFunc(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
+    </td>
+}
+
+@helper RenderWinLoss(ITicket ticket, int divisor)
+{
+    var winloss = (ticket.Winlost + ticket.PlayerComm) / divisor;
+    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(winloss.Round())))</td>
+}
+
+@helper RenderNoInformation(int colspan)
+{
+    <tr>
+        <td colspan="@colspan" class="text-center" data-isNoInfo="true">@BetListsResources.NoInformationIsAvailable</td>
+    </tr>
+}
+
+@helper RenderDetail(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, List<ITicketData> ticketData)
+{
+    <td>
+        @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
+    </td>
+}
+
+
+@helper RenderTotalRows(string winLoss, string stake, string total, int noOfDetails, int numberOfColumns)
+{
+    <tr class="total">
+        <th colspan="3">@BetListsResources.Total</th>
+        <th>@noOfDetails.ToString("#,##0")</th>
+        <th class="text-right">@(new HtmlString(stake))</th>
+        <th class="text-right winloss">@(new HtmlString(winLoss))</th>
+        <th colspan="@(numberOfColumns - 6)"></th>
+    </tr>
+    <tr class="winloss-comm">
+        <th colspan="5" mobile-colspan="2">@BetListsResources.WinLossWithCommission</th>
+        <th class="text-right">@(new HtmlString(total))</th>
+        <th colspan="@(numberOfColumns- 6)"></th>
+    </tr>
+}
+
+
+@helper RenderTotalBetsBreadcrumb(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel)
+{
+    var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
+    var linkIndex = 0;
+    var lastLinkIndex = linkLength - 1;
+
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb">
+            @foreach (var custinfo in viewModel.BreadcrumbLevel)
+            {
+                if (linkIndex == lastLinkIndex)
+                {
+                    <li>
+                        @(custinfo.CustName)
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="breadcrumb-link"
+                           href="@(viewModel.BuildBreadcrumbLink(custinfo, currentRequestUrl, breadcrumbParamByLevel, linkIndex,false))">
+                            @(custinfo.CustName)
+                        </a>
+                    </li>
+
+                }
+
+                linkIndex++;
+            }
+        </ul>
+    </div>
+}
+

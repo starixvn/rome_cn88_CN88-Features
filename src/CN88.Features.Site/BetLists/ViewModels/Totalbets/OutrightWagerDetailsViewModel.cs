@@ -12,7 +12,7 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class OutrightWagerDetailsViewModel : BetListTableViewModel
+    public class OutrightWagerDetailsViewModel : BetListViewModelBase
     {
         public OutrightWagerDetailsViewModel(
               OutrightWagerDetailsQuery message,
@@ -51,6 +51,7 @@
             IsMobile = isMobile;
 
             IsShowWinLoss = false;
+            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public int MatchId { get; }
@@ -60,8 +61,7 @@
         public int StakeCondition { get; }
 
         public string WagerByAccountLink()
-        {
-            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+            => UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                   AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByOutright"),
                   new Dictionary<string, object>
                   {
@@ -72,6 +72,5 @@
                       ["Stake"] = Stake,
                       ["StakeCondition"] = StakeCondition
                   });
-        }
     }
 }

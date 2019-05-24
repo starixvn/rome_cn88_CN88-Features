@@ -208,7 +208,7 @@
   {
     "outputFileName": "BetLists/bundles/betlist-of-report.css",
     "inputFiles": [
-      "BetLists/Content/CoreBetListCN88.css",
+      "BetLists/Styles/CoreBetListCN88.css",
       "BetLists/Styles/bet-lists.css"
     ]
   },

@@ -12,7 +12,7 @@
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
 
-    public class BetListTableViewModel
+    public class BetListViewModelBase
     {
         public UserLevel CustLevel { get; protected set; }
 
@@ -79,6 +79,8 @@
 
         public int SportTypeGroup { get; protected set; }
 
+        public int BetTypeGroup { get; protected set; }
+
         public int CustId { get; protected set; }
 
         public int ViewerIdOrViewerAdminId { get; protected set; }
@@ -90,5 +92,44 @@
         public int PageSize { get; protected set; }
 
         public PagerViewModel PagerViewModel { get; protected set; }
+
+        public IEnumerable<CustInfo> BreadcrumbLevel { get; protected set; } = Enumerable.Empty<CustInfo>();
+
+        public IEnumerable<string> BreadcrumbParamByLevel { get; protected set; }
+
+        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
+            => new BreadcrumbLevelViewModel(BuildBreadcrumbUrl(), GetBreadcrumbLevel());
+
+        public virtual string BuildBreadcrumbUrl() => string.Empty;
+
+        public virtual IEnumerable<CustInfo> GetBreadcrumbLevel()
+        {
+            var breadcrumbLevel = new List<CustInfo>();
+
+            if (BreadcrumbLevel != null
+                && BreadcrumbLevel.Any())
+            {
+                foreach (var custInfo in BreadcrumbLevel)
+                {
+                    breadcrumbLevel.Add(custInfo);
+                }
+            }
+
+            return breadcrumbLevel;
+        }
+
+        public virtual BreadcrumbItem BuildBackLink(string request)
+        {
+            var links = BreadcrumbLevelViewModel
+                .BuildBreadcrumbLinks(request, false, BreadcrumbParamByLevel)
+                .ToList();
+
+            if (links.Count < 2)
+            {
+                return new BreadcrumbItem("Not Found", "#");
+            }
+
+            return new BreadcrumbItem(CustName, links[links.Count - 2].Link);
+        }
     }
 }

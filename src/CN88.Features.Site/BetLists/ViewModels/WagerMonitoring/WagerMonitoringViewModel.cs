@@ -11,7 +11,7 @@
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class WagerMonitoringViewModel : BetListTableViewModel
+    public class WagerMonitoringViewModel : BetListViewModelBase
     {
         public WagerMonitoringViewModel(
             long minTransId,

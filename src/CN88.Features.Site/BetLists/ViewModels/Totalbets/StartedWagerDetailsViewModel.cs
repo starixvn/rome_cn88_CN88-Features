@@ -13,7 +13,7 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class StartedWagerDetailsViewModel : BetListTableViewModel
+    public class StartedWagerDetailsViewModel : BetListViewModelBase
     {
         public StartedWagerDetailsViewModel(
               StartedWagerDetailsQuery message,
@@ -54,6 +54,8 @@
 
             IsShowWinLoss = false;
             IsMobile = isMobile;
+
+            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public int MatchId { get; }
@@ -69,8 +71,7 @@
         public int StakeCondition { get; }
 
         public string WagerByAccountLink()
-        {
-            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+            => UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                   AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                   new Dictionary<string, object>
                   {
@@ -85,6 +86,5 @@
                       ["StakeCondition"] = StakeCondition,
                       ["Type"] = TotalBetTypeConstants.Started
                   });
-        }
     }
 }

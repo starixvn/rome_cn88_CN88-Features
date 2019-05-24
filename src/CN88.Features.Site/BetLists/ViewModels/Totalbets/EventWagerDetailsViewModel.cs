@@ -12,7 +12,7 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class EventWagerDetailsViewModel : BetListTableViewModel
+    public class EventWagerDetailsViewModel : BetListViewModelBase
     {
         public EventWagerDetailsViewModel(
               EventWagerDetailsQuery message,
@@ -54,6 +54,7 @@
             IsShowWinLoss = false;
 
             IsMobile = isMobile;
+            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public int MatchId { get; }

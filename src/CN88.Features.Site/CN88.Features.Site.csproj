@@ -531,16 +531,16 @@
     <Content Include="BetLists\Styles\bet-lists.min.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
+    <Content Include="BetLists\Styles\CoreBetListCN88.css" />
+    <Content Include="BetLists\Styles\images\add.png" />
     <Content Include="BetLists\Styles\images\details.svg" />
     <Content Include="BetLists\Styles\images\icon-collapse.png" />
     <Content Include="BetLists\Styles\images\icon-expand.png" />
-    <Content Include="BetLists\Content\CoreBetListCN88.css" />
-    <Content Include="BetLists\Content\images\add.png" />
-    <Content Include="BetLists\Content\images\minus.png" />
-    <Content Include="BetLists\Content\images\q_Icon2_1.png" />
-    <Content Include="BetLists\Content\images\q_Icon_2.png" />
+    <Content Include="BetLists\Styles\images\minus.png" />
     <Content Include="BetLists\Styles\images\minus_details.svg" />
     <Content Include="BetLists\Styles\images\plus_details.svg" />
+    <Content Include="BetLists\Styles\images\q_Icon2_1.png" />
+    <Content Include="BetLists\Styles\images\q_Icon_2.png" />
     <Content Include="BetLists\Styles\wager-monitor-console.css">
       <DependentUpon>wager-monitor-console.scss</DependentUpon>
     </Content>
@@ -693,7 +693,6 @@
     <Content Include="Web.local.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Code\BetLists\Stake.cshtml" />
     <Content Include="Web.uat.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -715,6 +714,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
+    <Compile Include="BetLists\Excels\BetListOfReportWorkbook.cs" />
+    <Compile Include="BetLists\Excels\ParlayDetailWorkbook.cs" />
     <Compile Include="BetLists\Extensions\SelectListItemExtensions.cs" />
     <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="BetLists\Handlers\BetListOfReportExcelHandler.cs" />
@@ -734,7 +735,7 @@
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
     <Compile Include="BetLists\Requests\Totalbets\OutrightWagerDetailsQuery.cs" />
-    <Compile Include="BetLists\ViewModels\BetListTableViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\BetListViewModelBase.cs" />
     <Compile Include="BetLists\ViewModels\Totalbets\StartedWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\Totalbets\StartedWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringBaseQuery.cs" />
@@ -757,8 +758,6 @@
     <Compile Include="BetLists\ViewModels\WagerMonitoring\WagerMonitoringViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
     <Compile Include="BetLists\WagerMonitoringController.cs" />
-    <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
-    <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -900,23 +899,17 @@
     <Content Include="App_Data\ExcelTemplates\Reports\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\MasterOwner.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\SuperOwner.xls" />
-    <Content Include="App_Code\BetLists\BetListTotal.cshtml" />
-    <Content Include="App_Code\BetLists\NoInfomation.cshtml" />
-    <Content Include="App_Code\BetLists\TransDate.cshtml" />
-    <Content Include="App_Code\BetLists\Comm.cshtml" />
-    <Content Include="App_Code\BetLists\BetID.cshtml" />
-    <Content Include="App_Code\BetLists\Details.cshtml" />
-    <Content Include="App_Code\BetLists\Status.cshtml" />
+    <Content Include="App_Code\BetListHelper.cshtml" />
     <Content Include="BetLists\Styles\bet-lists.scss" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="BetLists\Views\ParlayDetail.cshtml" />
     <Content Include="BetLists\Views\ParlaySubTickets.cshtml" />
     <Content Include="App_Code\Reports\ReportHtmlHelpers.cshtml" />
-    <Content Include="BetLists\ExcelTemplates\ParlayDetail.xls" />
+    <Content Include="BetLists\Excels\Templates\ParlayDetail.xls" />
     <Content Include="BetLists\Views\Filter.cshtml" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Agent.xls" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Master.xls" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Super.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Agent.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Master.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Super.xls" />
     <Content Include="App_Code\Components\DateTimeSelection.cshtml" />
     <Content Include="BetLists\Views\BetListOfStatement.cshtml" />
     <Content Include="BetLists\Views\OutrightWagerByAccount.cshtml" />
@@ -924,12 +917,9 @@
     <Content Include="BetLists\Views\TotalBetParlay.cshtml" />
     <Content Include="App_Code\Components\StakeSelection.cshtml" />
     <Content Include="App_Code\Components\ViewModeSelection.cshtml" />
-    <Content Include="App_Code\BetLists\WinLoss.cshtml" />
-    <Content Include="App_Code\BetLists\TotalBetBreadcrumb.cshtml" />
     <Content Include="BetLists\Views\EventWagerDetails.cshtml" />
     <Content Include="BetLists\Views\EventWagerByAccount.cshtml" />
-    <Content Include="App_Code\BetLists\Payout.cshtml" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Headline.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Headline.xls" />
     <Content Include="BetLists\Views\StartedWagerByAccount.cshtml" />
     <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
     <Content Include="App_Data\securitycode.pro.json" />
@@ -937,7 +927,7 @@
     <Content Include="BetLists\Views\ReportBetListMobile.cshtml" />
     <Content Include="BetLists\Views\BetListTable.cshtml" />
     <Content Include="BetLists\Views\BetListTableMobile.cshtml" />
-    <Content Include="BetLists\Views\BackLinkMobile.cshtml" />
+    <Content Include="BetLists\Views\Components\BackLinkMobile.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\FilterForm.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\FilterModal.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\SportStakeConditionFilter.cshtml" />
@@ -945,9 +935,14 @@
     <Content Include="BetLists\Styles\wager-monitor-console.scss" />
     <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
-    <Content Include="BetLists\Content\audio\TPBTLOW.ogg" />
     <Content Include="CN88.Features.Site.ruleset" />
     <Content Include="BetLists\Views\WagerMonitoring\IndexMobile.cshtml" />
+    <Content Include="BetLists\Views\Components\PossessColumns.cshtml" />
+    <Content Include="BetLists\Views\Components\PayoutColumn.cshtml" />
+    <Content Include="BetLists\Views\Components\Popup.cshtml" />
+    <Content Include="BetLists\Views\Components\HiddenFields.cshtml" />
+    <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
+    <Content Include="BetLists\Views\StatementBetListMobile.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

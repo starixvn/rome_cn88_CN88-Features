@@ -10,7 +10,7 @@
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class TotalBetParlayViewModel : BetListTableViewModel
+    public class TotalBetParlayViewModel : BetListViewModelBase
     {
         public TotalBetParlayViewModel(
             TotalBetParlayQuery message,
@@ -58,10 +58,10 @@
             TotalPayout = BetListData.Tickets.Sum(ticket => ticket.Payout) / Divisor;
 
             IsMobile = isMobile;
-
             IsShowPayout = true;
-
             IsShowWinLoss = false;
+
+            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public int SportGroupId { get; }

@@ -24,9 +24,9 @@
 
             ticketHelper.IsShowOddsWithChoice = true;
             HideOfferNameUnitStakes = string.IsNullOrEmpty(query.BetCheck);
-            ParlayOfferNames = string.IsNullOrEmpty(query.BetCheck) ?
-                new List<string>() :
-                ticketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2);
+            ParlayOfferNames = string.IsNullOrEmpty(query.BetCheck) 
+                ? new List<string>() 
+                : ticketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2);
             ParlaySingleTickets = betListData.Tickets
                 .Where(t => t.Stake > 0)
                 .OrderBy(t => t.MatchId)
@@ -52,8 +52,9 @@
         public ITicketHelper TicketHelper { get; }
 
         public bool HasValidData
-            => ParlaySingleTickets.Any() &&
-            (HideOfferNameUnitStakes || ParlayOfferNames.Count <= ParlaySingleTickets.Count);
+            => ParlaySingleTickets.Any() 
+                && (HideOfferNameUnitStakes 
+                    || ParlayOfferNames.Count <= ParlaySingleTickets.Count);
 
         private IDictionary<string, string> GetUnitStakeByOfferName(GetParlaySubTicketsQuery query)
         {

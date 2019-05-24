@@ -1,127 +1,26 @@
-﻿@using Fanex.BetList.Core.Utils
-@using CN88.Features.Extensions
+﻿@using CN88.Features.Extensions
 @model BetListOfStatementViewModel
 @{
-    ViewBag.Title = "Bet List";
+    ViewBag.Title = BetListsResources.BetList;
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
 
 @section Styles {
     @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
 }
+
 <div class="betlist-container betlist-statement">
     <div class="page-title">
         <button class="btn-back"><span class="icon-chevron-left"></span>@BetListsResources.Back</button>
         @BetListsResources.Statement @Model.CustName | @Model.Date.ToLongDay()
     </div>
-    <table id="tbl-report" class="tbl-noborder tbl-betlists">
-        <thead>
-            <tr>
-                <th class="text-left">@BetListsResources.DateTime</th>
-                <th class="text-left">@BetListsResources.Member/<br />@BetListsResources.Commission</th>
-                <th class="text-left">@BetListsResources.BetID/<br />@BetListsResources.BetType</th>
-                <th class="text-left">@BetListsResources.Details</th>
-                <th class="text-right">@BetListsResources.Stake</th>
-                <th class="text-right">@BetListsResources.WinLoss</th>
-                <th class="text-center">@BetListsResources.Status</th>
-
-                @if (Model.CustLevel.IsAgentLevel())
-                {
-                    <th class="text-right">@BetListsResources.AgentPercent</th>
-                }
-
-                @if (Model.CustLevel.IsMasterLevel())
-                {
-                    <th class="text-right">@BetListsResources.AgentPercent</th>
-                    <th class="text-right">@BetListsResources.MAPercent</th>
-                }
-
-                @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
-                {
-                    <th class="text-right">@BetListsResources.AgentPercent</th>
-                    <th class="text-right">@BetListsResources.MAPercent</th>
-                    <th class="text-right">@BetListsResources.SMAPercent</th>
-                    <th class="text-right">@BetListsResources.CoPercent</th>
-                }
-            </tr>
-            @if (Model.BetListData.Tickets.Any())
-            {
-                var total = Model.BetListTotal;
-
-                @BetLists.BetListTotal.Render(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr, Model.BetListData.Total, Model.NoOfColumns)
-            }
-        </thead>
-        <tbody>
-            @if (Model.BetListData.Tickets.Any())
-            {
-                var tickets = Model.BetListData.Tickets.ToList();
-
-                for (int i = 0; i < tickets.Count; i++)
-                {
-                    var ticket = tickets[i];
-                    <tr data-trans-id="@ticket.TransId">
-                        @BetLists.TransDate.Render(ticket)
-                        @BetLists.Comm.Render(ticket)
-                        @BetLists.BetID.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
-                        @BetLists.Details.Render(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
-                        @BetLists.Stake.Render(ticket, Model.Divisor)
-                        @BetLists.WinLoss.Render(ticket, Model.Divisor)
-                        @BetLists.Status.Render(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
-                        @if (Model.CustLevel.IsAgentLevel())
-                        {
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                        }
-
-                        @if (Model.CustLevel.IsMasterLevel())
-                        {
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                        }
-
-                        @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
-                        {
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
-                            @HtmlHelpers.RenderNumberCell((int)(Model.CompanyPositionTaking(ticket) * 100), "text-right")
-                        }
-                    </tr>
-                }
-            }
-            else
-            {
-                @BetLists.NoInfomation.Render(Model.NoOfColumns)
-            }
-        </tbody>
-    </table>
+    @Html.Partial("~/BetLists/Views/BetListTable.cshtml")
     @Pager.Render(Model.PagerViewModel)
 </div>
 
-<div id="mainPopup" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <iframe width="100%" height="100%" frameborder="0" class="embed-responsive-item" src="" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
-@Html.Hidden("old-main-path", Model.OldMainPath)
-@Html.Hidden("results-path", Model.ResultsPath)
-@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
-@Html.Hidden("sport-type-group", Model.SportTypeGroup)
+@Html.Partial("~/BetLists/Views/Components/Popup.cshtml")
+@Html.Partial("~/BetLists/Views/Components/HiddenFields.cshtml")
 @Html.Hidden("from-date", Model.Date)
-@Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
-@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
-@Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("colossusBets-PopUpDetail-Title", BetListsResources.ColossusBetsPopUpDetailTitle)
 
 @section Scripts{
     @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-statement")

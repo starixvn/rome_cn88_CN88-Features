@@ -8,12 +8,11 @@
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
-    using Features.Shared.Models;
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class OutrightWagerByAccountViewModel : BetListTableViewModel
+    public class OutrightWagerByAccountViewModel : BetListViewModelBase
     {
         protected readonly OutrightWagerByAccountQuery message;
 
@@ -58,6 +57,7 @@
             IsMobile = isMobile;
 
             IsShowWinLoss = false;
+            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public decimal Stake { get; }
@@ -65,11 +65,6 @@
         public int StakeCondition { get; }
 
         public int MatchId { get; }
-
-        public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
-
-        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
-            => new BreadcrumbLevelViewModel(BuildBreadcrumbUrl(), GetBreadcrumbLevel());
 
         public string WagerDetailsLink()
         {
@@ -86,8 +81,8 @@
                   });
         }
 
-        private string BuildBreadcrumbUrl()
-            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
+        public override string BuildBreadcrumbUrl()
+            => UrlHelper.AddQueryStringParamsFunc(
                 AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByOutright"),
                 new Dictionary<string, object>
                 {
@@ -98,35 +93,5 @@
                     ["Stake"] = Stake,
                     ["StakeCondition"] = StakeCondition
                 });
-
-        private IEnumerable<CustInfo> GetBreadcrumbLevel()
-        {
-            var breadcrumbLevel = new List<CustInfo>();
-
-            if (message.BreadcrumbLevel != null
-                && message.BreadcrumbLevel.Any())
-            {
-                foreach (var custInfo in message.BreadcrumbLevel)
-                {
-                    breadcrumbLevel.Add(custInfo);
-                }
-            }
-
-            return breadcrumbLevel;
-        }
-
-        public BreadcrumbItem BuildBackLink(string requestUrl)
-        {
-            var links = BreadcrumbLevelViewModel
-                .BuildBreadcrumbLinks(requestUrl, false, BreadcrumbParamByLevel)
-                .ToList();
-
-            if (links.Count < 2)
-            {
-                return new BreadcrumbItem("Not Found", "#");
-            }
-
-            return new BreadcrumbItem(message.CustName, links[links.Count - 2].Link);
-        }
     }
 }

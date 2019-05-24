@@ -13,7 +13,7 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class EventWagerByAccountViewModel : BetListTableViewModel
+    public class EventWagerByAccountViewModel : BetListViewModelBase
     {
         protected readonly EventWagerByAccountQuery message;
 
@@ -61,6 +61,7 @@
             IsMobile = isMobile;
 
             IsShowWinLoss = false;
+            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public decimal Stake { get; }
@@ -74,11 +75,6 @@
         public int LiveIndicator { get; }
 
         public string BetTeam { get; }
-
-        public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
-
-        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
-            => new BreadcrumbLevelViewModel(BuildBreadcrumbUrl(), GetBreadcrumbLevel());
 
         public string WagerDetailsLink()
             => UrlHelper.ReplaceOrAddQueryStringParamsFunc(
@@ -96,7 +92,7 @@
                       ["StakeCondition"] = StakeCondition
                   });
 
-        private string BuildBreadcrumbUrl()
+        public override string BuildBreadcrumbUrl()
             => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
                 AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                 new Dictionary<string, object>
@@ -111,35 +107,5 @@
                     ["Stake"] = Stake,
                     ["StakeCondition"] = StakeCondition
                 });
-
-        private IEnumerable<CustInfo> GetBreadcrumbLevel()
-        {
-            var breadcrumbLevel = new List<CustInfo>();
-
-            if (message.BreadcrumbLevel != null
-                && message.BreadcrumbLevel.Any())
-            {
-                foreach (var custInfo in message.BreadcrumbLevel)
-                {
-                    breadcrumbLevel.Add(custInfo);
-                }
-            }
-
-            return breadcrumbLevel;
-        }
-
-        public BreadcrumbItem BuildBackLink(string requestUrl)
-        {
-            var links = BreadcrumbLevelViewModel
-                .BuildBreadcrumbLinks(requestUrl, false, BreadcrumbParamByLevel)
-                .ToList();
-
-            if (links.Count < 2)
-            {
-                return new BreadcrumbItem("Not Found", "#");
-            }
-
-            return new BreadcrumbItem(message.CustName, links[links.Count - 2].Link);
-        }
     }
 }

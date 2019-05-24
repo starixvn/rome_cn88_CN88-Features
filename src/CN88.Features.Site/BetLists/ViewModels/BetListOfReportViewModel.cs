@@ -13,7 +13,6 @@
     using Features.Reports.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Constants;
-    using Features.Shared.Models;
     using Reports.Constants;
     using Reports.ViewModels;
     using Requests;
@@ -21,9 +20,9 @@
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class BetListOfReportViewModel : BetListTableViewModel
+    public class BetListOfReportViewModel : BetListViewModelBase
     {
-        private readonly IDictionary<int, int> ReportTypes = new Dictionary<int, int>
+        private static readonly IDictionary<int, int> ReportTypes = new Dictionary<int, int>
         {
             [BetListTypeConstant.Settled] = ReportTypeConstants.SettledWager,
             [BetListTypeConstant.OldSettled] = ReportTypeConstants.SettledWager,
@@ -88,7 +87,7 @@
             IEnumerable<SelectListItemExt> allBetTypes,
             IEnumerable<AccountingPeriod> oldAccountingPeriods,
             bool isMobile = false,
-            string[] excludingTicketStatus = null) 
+            string[] excludingTicketStatus = null)
             : this(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
             DisplayMode = message.DisplayMode;
@@ -96,21 +95,9 @@
             IsOldReport = message.IsOldReport;
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);
-
-            var dateRangePickerViewModel = message.IsOldReport
-                ? new DateRangePickerViewModel(oldAccountingPeriods.Last().FromDate, oldAccountingPeriods.First().ToDate, message.FromDate, message.ToDate)
-                : new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);
+            var dateRangePickerViewModel = CreateDateRangePickerViewModel(message, lastPeriod, oldAccountingPeriods);
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, message.UserSelectedBetTypeId);
-
-            var liveStatuses = LiveStatusConstants.LiveStatuses
-                .Select(s => new SelectListItemExt
-                {
-                    Text = SharedResources.ResourceManager.GetString(s.Value),
-                    Value = s.Key.ToString(),
-                    Selected = s.Key == message.UserSelectedLiveStatusId
-                });
-            var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.UserSelectedLiveStatusId);
-
+            var liveStatusSelectionViewModel = new SingleSelectionViewModel(GetLiveStatusList(message), message.UserSelectedLiveStatusId);
             ReportFilterViewModel = new ReportFilterViewModel(
                 DisplayMode,
                 ReportType,
@@ -129,12 +116,32 @@
             PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
+            BreadcrumbParamByLevel = BuildBreadcrumbParamByLevel();
+            BreadcrumbLevel = message.BreadcrumbLevel;
+        }
+
+        private static IEnumerable<SelectListItemExt> GetLiveStatusList(BetListOfReportQuery message)
+            => LiveStatusConstants.LiveStatuses
+                            .Select(s => new SelectListItemExt
+                            {
+                                Text = SharedResources.ResourceManager.GetString(s.Value),
+                                Value = s.Key.ToString(),
+                                Selected = s.Key == message.UserSelectedLiveStatusId
+                            });
+
+        private static DateRangePickerViewModel CreateDateRangePickerViewModel(BetListOfReportQuery message, AccountingPeriod lastPeriod, IEnumerable<AccountingPeriod> oldAccountingPeriods)
+            => message.IsOldReport
+                ? new DateRangePickerViewModel(oldAccountingPeriods.Last().FromDate, oldAccountingPeriods.First().ToDate, message.FromDate, message.ToDate)
+                : new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, message.FromDate, message.ToDate);
+
+        private IEnumerable<string> BuildBreadcrumbParamByLevel()
+        {
             var reportActionName = DisplayMode == ReportDisplayModeConstants.Wager ? "Wager" : "Legacy";
             var reportActionController = message.IsOldReport ? "OldReports" : "Reports";
 
             var reportPath = $"~/{reportActionController}/{reportActionName}";
 
-            BreadcrumbParamByLevel = CalculateBreadcrumbParamByLevel(reportPath);
+            return CalculateBreadcrumbParamByLevel(reportPath);
         }
 
         public bool IsOldReport { get; set; }
@@ -145,7 +152,7 @@
 
         public DateTime ToDate { get; }
 
-        public int BetTypeGroup { get; }
+        public bool IsSettlement { get; }
 
         public int LiveIndicator { get; }
 
@@ -161,12 +168,7 @@
 
         public int ReportType { get; private set; }
 
-        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
-            => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
-
-        public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
-
-        private string BuildReportMainUrl()
+        public override string BuildBreadcrumbUrl()
             => UrlHelper.AddQueryStringParamsFunc(
                 UrlHelper.GetFeaturesAppPath(ReportMainActionPath),
                 new Dictionary<string, object>
@@ -174,23 +176,8 @@
                     ["DisplayMode"] = DisplayMode
                 });
 
-        private IEnumerable<CustInfo> GetBreadcrumbLevel()
-        {
-            var breadcrumbLevel = new List<CustInfo>();
-
-            if (message.BreadcrumbLevel?.Any() == true)
-            {
-                foreach (var custInfo in message.BreadcrumbLevel)
-                {
-                    breadcrumbLevel.Add(custInfo);
-                }
-            }
-
-            return breadcrumbLevel;
-        }
-
-        public BreadcrumbItem BuildBackLink(string requestUrl)
-            => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(requestUrl, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
+        public override BreadcrumbItem BuildBackLink(string request)
+            => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(request, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
                 ?? new BreadcrumbItem("Not Found", "#");
     }
 }

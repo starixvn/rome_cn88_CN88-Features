@@ -14,7 +14,7 @@
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class StartedWagerByAccountViewModel : BetListTableViewModel
+    public class StartedWagerByAccountViewModel : BetListViewModelBase
     {
         protected readonly StartedWagerByAccountQuery message;
 
@@ -62,6 +62,7 @@
             IsMobile = isMobile;
 
             IsShowWinLoss = false;
+            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public decimal Stake { get; }
@@ -75,11 +76,6 @@
         public int LiveIndicator { get; }
 
         public string BetTeam { get; }
-
-        public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
-
-        public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
-            => new BreadcrumbLevelViewModel(BuildBreadcrumbUrl(), GetBreadcrumbLevel());
 
         public string WagerDetailsLink()
         {
@@ -99,7 +95,7 @@
                   });
         }
 
-        private string BuildBreadcrumbUrl()
+        public override string BuildBreadcrumbUrl()
             => UrlHelper.AddQueryStringParamsFunc(
                 AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                 new Dictionary<string, object>
@@ -115,34 +111,5 @@
                     ["StakeCondition"] = StakeCondition,
                     ["Type"] = TotalBetTypeConstants.Started
                 });
-
-        private IEnumerable<CustInfo> GetBreadcrumbLevel()
-        {
-            var breadcrumbLevel = new List<CustInfo>();
-
-            if (message.BreadcrumbLevel?.Any() == true)
-            {
-                foreach (var custInfo in message.BreadcrumbLevel)
-                {
-                    breadcrumbLevel.Add(custInfo);
-                }
-            }
-
-            return breadcrumbLevel;
-        }
-
-        public BreadcrumbItem BuildBackLink(string requestUrl)
-        {
-            var links = BreadcrumbLevelViewModel
-                .BuildBreadcrumbLinks(requestUrl, false, BreadcrumbParamByLevel)
-                .ToList();
-
-            if (links.Count < 2)
-            {
-                return new BreadcrumbItem("Not Found", "#");
-            }
-
-            return new BreadcrumbItem(message.CustName, links[links.Count - 2].Link);
-        }
     }
 }

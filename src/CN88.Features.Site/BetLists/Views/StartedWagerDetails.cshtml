@@ -31,16 +31,7 @@
     }
 </div>
 
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
-@Html.Hidden("old-main-path", Model.OldMainPath)
-@Html.Hidden("results-path", Model.ResultsPath)
-@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
-@Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
-@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
-@Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("colossusBets-PopUpDetail-Title", BetListsResources.ColossusBetsPopUpDetailTitle)
-@Html.Hidden("isMobile", Model.IsMobile)
+@Html.Partial("~/BetLists/Views/Components/HiddenFields.cshtml")
 
 @section Scripts{
     @StaticResources.RenderScripts("~/BetLists/bundles/wager-details")
