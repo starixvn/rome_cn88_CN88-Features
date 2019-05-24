@@ -1,0 +1,41 @@
+﻿@model SettlementSummaryReport
+
+<table class="tbl-noborder tblSettlementSummary" id="tblSettlementSummary">
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan="2">
+                <div class="@(Model.Yesterday.IsComplete ? "complete-settlement" : "incomplete-settlement")">
+                    @(Model.Yesterday.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
+                </div>
+                <div>@Model.Yesterday.Name</div>
+            </th>
+            <th colspan="2">
+                <div class="@(Model.Today.IsComplete ? "complete-settlement" : "incomplete-settlement")">
+                    @(Model.Today.IsComplete ? ReportResources.Complete : ReportResources.Incomplete)
+                </div>
+                <div>@Model.Today.Name</div>
+            </th>
+        </tr>
+        <tr class="sub-header">
+            <th></th>
+            <th>@ReportResources.Unsettled</th>
+            <th>@ReportResources.Settled</th>
+            <th>@ReportResources.Unsettled</th>
+            <th>@ReportResources.Settled</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.SportGroups.Count(); i++)
+        {
+            var sportGroup = Model.SportGroups[i];
+            <tr>
+                <td class="text-left">@sportGroup</td>
+                <td class="incomplete-settlement">@Model.Yesterday.Settlements[i].Unsettled</td>
+                <td>@Model.Yesterday.Settlements[i].Settled</td>
+                <td class="incomplete-settlement">@Model.Today.Settlements[i].Unsettled</td>
+                <td>@Model.Today.Settlements[i].Settled</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    <meta name="format-detection" content="telephone=no">
     <title>@ReportResources.OldReport</title>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -15,7 +16,7 @@
     @StaticResources.AssetStyles.Render("/bundles/site-features/default")
     @RenderSection("Styles", required: false)
 </head>
-<body class="old-report">
+<body class="old-report @Html.Raw(CN88.Features.Site.Shared.Helpers.BrowserManager.BuildMobileHtmlClass(true))">
     <div class="menubar">
         <section id="main-menu-tab" class="mainmenu-container">
             <ul class="list-menu" id="main-menu-items">

@@ -39,34 +39,47 @@ class ClientPagerComponent {
         this.options = <ClientPagerOption>this.$.extend({}, this.options, options);
         let pager = this.$("#" + this.options.pagerId);
 
+        if (pager.length === 0) {
+            return;
+        }
+
+        let tableId = "#" + this.options.tableReportId;
+        let tableStackId = tableId + "-stack";
+        let isMobile = this.$(tableStackId).data("ismobile");
         this.$reportForm = this.$("#" + this.options.formId);
-        this.$bodyRows = this.$("#" + this.options.tableReportId + " > tbody > tr");
+        this.$bodyRows = isMobile
+            ? this.$(tableStackId + " > tbody > tr")
+            : this.$(tableId + " > tbody > tr");
 
         this.totalRecords = parseInt(pager.data("totalrecords"), 0);
         this.pageSize = parseInt(pager.data("pagesize"), 0);
-        this.pageIndex = parseInt(pager.data("pageindex"), 0);
-        this.$pageIndex =
-            this.$(`<input type="hidden" id="${this.options.pageIndexId}" name="${this.options.pageIndexId}" value="${this.pageIndex}" />`);
-        this.$pageSize =
-            this.$(`<input type="hidden" id="${this.options.pageSizeId}" name="${this.options.pageSizeId}" value="${this.pageSize}" />`);
+        
 
-        this.$reportForm.append(this.$pageIndex).append(this.$pageSize);
+        if (!isMobile || (isMobile && this.totalRecords > this.pageList[0])) {
+            this.pageIndex = parseInt(pager.data("pageindex"), 0);
+            this.$pageIndex =
+                this.$(`<input type="hidden" id="${this.options.pageIndexId}" name="${this.options.pageIndexId}" value="${this.pageIndex}" />`);
+            this.$pageSize =
+                this.$(`<input type="hidden" id="${this.options.pageSizeId}" name="${this.options.pageSizeId}" value="${this.pageSize}" />`);
 
-        pager.pagination({
-            pageList: this.pageList,
-            total: this.totalRecords,
-            pageSize: this.pageSize,
-            pageNumber: this.pageIndex,
+            this.$reportForm.append(this.$pageIndex).append(this.$pageSize);
 
-            showRefresh: false,
-            onSelectPage: this.onSelectPage,
-            beforePageText: pager.data("labelpage"),
-            afterPageText: pager.data("labelof") + " {pages}",
-            displayMsg: pager.data("labeldisplayitems")
-        });
+            pager.pagination({
+                pageList: this.pageList,
+                total: this.totalRecords,
+                pageSize: this.pageSize,
+                pageNumber: this.pageIndex,
 
-        this.showBodyRows();
-        pager.removeClass("hide");
+                showRefresh: false,
+                onSelectPage: this.onSelectPage,
+                beforePageText: pager.data("labelpage"),
+                afterPageText: pager.data("labelof") + " {pages}",
+                displayMsg: pager.data("labeldisplayitems")
+            });
+
+            this.showBodyRows();
+            pager.removeClass("hide");
+        }
 
         return pager;
     };

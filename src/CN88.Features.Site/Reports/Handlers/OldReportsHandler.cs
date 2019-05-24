@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
+    using CN88.Features.Site.Shared.Helpers;
     using Features.Reports.Services;
     using Features.Shared.Services;
     using MediatR;
@@ -14,15 +15,18 @@
         private readonly AccountingPeriodService accountingPeriodService;
         private readonly SportGroupService sportGroupService;
         private readonly ReportService reportService;
+        private readonly BrowserHelper browserHelper;
 
         public OldReportsHandler(
             AccountingPeriodService accountingPeriodService,
             SportGroupService sportGroupService,
-            ReportService reportService)
+            ReportService reportService,
+            BrowserHelper browserHelper)
         {
             this.accountingPeriodService = accountingPeriodService;
             this.sportGroupService = sportGroupService;
             this.reportService = reportService;
+            this.browserHelper = browserHelper;
         }
 
         public OldReportViewModel Handle(OldReportQuery message)
@@ -39,7 +43,8 @@
                 BuildSportGroupSelectListItems(sportGroups, message.UserSelectedSportGroupId),
                 reportData,
                 grandTotal,
-                oldAccountingPeriods);
+                oldAccountingPeriods,
+                browserHelper.IsMobile());
         }
 
         public OldIndexViewModel Handle(OldIndexQuery message)

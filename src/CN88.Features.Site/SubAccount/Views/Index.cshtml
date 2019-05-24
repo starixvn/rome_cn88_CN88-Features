@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
-    ViewBag.Title = "Sub Account";
+    ViewBag.Title = CN88.Features.SubAccount.AppResources.SubAccountResource.SubAccount;
 }
 @section Styles {
     @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
@@ -13,7 +13,8 @@
     <div id="message-container"></div>
     <div>
         <button class="btn-submit add-new" id="btnNewSubAccount">
-            <span class="icon-add"></span>@SubAccountResource.NewSubAccount</button>
+            <span class="icon-add"></span>@SubAccountResource.NewSubAccount
+        </button>
     </div>
     <table class="tbl-style2"
            id="tbl-subaccount"
@@ -25,8 +26,8 @@
                 <th class="header sorting" data-colindex="0" data-sortedname="UserName">@SubAccountResource.UserName</th>
                 <th class="header sorting" data-colindex="1" data-sortedname="FirstName">@SubAccountResource.Name</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
-                <th class="text-center">@SubAccountResource.ACManagement<br/>@SubAccountResource.ViewOnly</th>
-                <th class="text-center">@SubAccountResource.ACManagement<br/>@SubAccountResource.EditView</th>
+                <th class="text-center">@SubAccountResource.ACManagement<br />@SubAccountResource.ViewOnly</th>
+                <th class="text-center">@SubAccountResource.ACManagement<br />@SubAccountResource.EditView</th>
                 <th class="text-center">@SubAccountResource.Reports</th>
                 <th class="header sorting" data-colindex="6" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
                 <th class="text-center">@SubAccountResource.Action</th>
@@ -73,12 +74,10 @@
 @Html.Hidden(nameof(SubAccountResource.EditSubAccount), SubAccountResource.EditSubAccount)
 @Html.Hidden(nameof(SubAccountResource.ResetPassword), SubAccountResource.ResetPassword)
 @Html.Hidden(nameof(SubAccountResource.ResetSecurityCode), SubAccountResource.ResetSecurityCode)
-
 @Html.Hidden(nameof(Model.NewSubAccountLink), Model.NewSubAccountLink)
 @Html.Hidden(nameof(Model.EditSubAccountLink), Model.EditSubAccountLink)
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
-
 @helper RenderPermissionCell(bool hasPermission)
 {
     <span class="@(hasPermission ? "icon-success " : "icon-minus")"></span>

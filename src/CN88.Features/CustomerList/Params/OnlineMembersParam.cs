@@ -3,7 +3,7 @@
     public class OnlineMembersParam
     {
         public OnlineMembersParam(
-            int viewerId, 
+            int viewerId,
             int pageSize,
             int pageIndex)
         {

@@ -13,7 +13,7 @@
             string breadcrumbLevelJson = null)
         {
             MainLink = mainLink;
-            BreadcrumbLevel = breadcrumbLevel;
+            BreadcrumbLevel = breadcrumbLevel.ToList();
             BreadcrumbLevelJson = breadcrumbLevelJson ?? JsonHelper.ToJsonFunc(breadcrumbLevel);
         }
 
@@ -41,5 +41,30 @@
                     ["IsSettlement"] = isSettlement
                 });
         }
+
+        public IEnumerable<BreadcrumbItem> BuildBreadcrumbLinks(string currentLink, bool isSettlement, IEnumerable<string> breadcrumbParamByLevel = null)
+        {
+            if(BreadcrumbLevel.Any())
+            {
+                var linkIndex = 0;
+                return BreadcrumbLevel.Select(custInfo => 
+                    new BreadcrumbItem(custInfo.CustName, BuildBreadcrumbLink(custInfo, currentLink, breadcrumbParamByLevel, linkIndex++, isSettlement)));
+            }
+
+            return Enumerable.Empty<BreadcrumbItem>();
+        }
+    }
+
+    public class BreadcrumbItem
+    {
+        public BreadcrumbItem(string text, string link)
+        {
+            Text = text;
+            Link = link;
+        }
+
+        public string Text { get; }
+
+        public string Link { get; }
     }
 }

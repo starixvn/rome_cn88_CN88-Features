@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Shared.Extensions;
+    using CN88.Features.Shared.Extensions;
 
     public class ReportModel
     {

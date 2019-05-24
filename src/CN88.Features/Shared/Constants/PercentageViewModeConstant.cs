@@ -14,7 +14,7 @@
         public const int SuperMasterPercentage = 6;
         public const int MasterAgentPercentage = 7;
 
-        private static IEnumerable<int> superModes = new List<int>
+        private static readonly IEnumerable<int> superModes = new List<int>
         {
             FullPercentage,
             CompanyPercentage,
@@ -26,7 +26,7 @@
             MasterAgentPercentage
         };
 
-        private static IEnumerable<int> masterModes = new List<int>
+        private static readonly IEnumerable<int> masterModes = new List<int>
         {
             FullPercentage,
             MasterPercentage,
@@ -34,7 +34,7 @@
             MasterAgentPercentage
         };
 
-        private static IEnumerable<int> agentModes = new List<int>
+        private static readonly IEnumerable<int> agentModes = new List<int>
         {
             FullPercentage,
             AgentPercentage

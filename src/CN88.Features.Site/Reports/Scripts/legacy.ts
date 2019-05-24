@@ -12,12 +12,13 @@ class LegacyReport extends BaseReport {
     $exportExcelForm: JQuery;
     $excelIcon: JQuery;
     $tableReport: JQuery;
+    isMobile: boolean;
     $custLevelId: JQuery;
+    $moreInfoIcon: JQuery;
 
     sortComponent: SortComponent;
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
-    //ptHistory: PTHistory;
 
     constructor(
         $: JQueryStatic,
@@ -34,6 +35,7 @@ class LegacyReport extends BaseReport {
         this.linkBuilderComponent = linkBuilderComponent;
         this.pagerComponent = pagerComponent;
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
+        this.isMobile = cn88Features.convertAttributeToBool(this.$("#tbl-report").attr("data-isMobile"));
     }
 
     init = () => {
@@ -41,8 +43,6 @@ class LegacyReport extends BaseReport {
 
         this.cacheDOMElements();
         this.renderComponents();
-        //this.ptHistory = new PTHistory(this.$);
-        //this.ptHistory.init();
         this.registerEvents();
 
         this.$.unblockUI();
@@ -55,14 +55,16 @@ class LegacyReport extends BaseReport {
         let headers = this.$custLevelId.val() == "4"
             ? { 0: { sorter: "text" } }
             : { 0: { sorter: "text" }, 1: { sorter: "text" } };
-        this.sortComponent.render(
-            new SortOption(
-                this.$tableReport,
-                parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
-                true,
-                this.sortComponent.afterSort,
-                headers,
-                this.$reportForm));
+        if (!this.isMobile) {
+            this.sortComponent.render(
+                new SortOption(
+                    this.$tableReport,
+                    parseInt(this.$tableReport.data("totalrecords"), 0) > 1,
+                    true,
+                    this.sortComponent.afterSort,
+                    headers,
+                    this.$reportForm));
+        }
 
         this.linkBuilderComponent.render();
         this.pagerComponent.render(new ClientPagerOption(() => { this.onSelectPage(); }));
@@ -77,13 +79,39 @@ class LegacyReport extends BaseReport {
         this.$reportForm = this.$("#report-form");
         this.$exportExcelForm = this.$("#export-excel-form");
         this.$excelIcon = this.$("#icon-excel");
-        this.$tableReport = this.$("#tbl-report");
+        this.$tableReport = this.$("#tbl-report,#tbl-report-stack");
         this.$custLevelId = this.$("#CustLevelId");
+        this.$moreInfoIcon = this.$(".more-info");
     }
 
     public registerEvents() {
         this.$reportForm.submit(this.onReportSubmit);
-        this.$excelIcon.click(this.onExportExcelEvent)
+        this.$excelIcon.click(this.onExportExcelEvent);
+
+        this.$("body").on("click touchend", (event) => {
+            let tooltip = this.$(event.target);
+            if (tooltip.hasClass("more-info")) {
+                var isShowing = tooltip.hasClass("tooltip-show");
+
+                var showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                showingToolTips.tooltip("hide");
+                showingToolTips.removeClass("tooltip-show");
+
+                if (isShowing) {
+                    tooltip.tooltip("hide");
+                    tooltip.removeClass("tooltip-show");
+                } else {
+                    tooltip.tooltip("show");
+                    tooltip.addClass("tooltip-show");
+                }
+
+                event.stopPropagation();
+                return false;
+            }
+
+            this.$moreInfoIcon.tooltip("hide");
+            this.$moreInfoIcon.removeClass("tooltip-show");
+        });
     }
 
     onSelectPage(): void {

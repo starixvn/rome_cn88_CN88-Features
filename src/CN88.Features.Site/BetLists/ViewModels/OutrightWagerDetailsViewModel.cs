@@ -8,12 +8,11 @@
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;
     using Features.Shared.Configurations;
-    using Features.Shared.Models;
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
 
-    public class OutrightWagerDetailsViewModel
+    public class OutrightWagerDetailsViewModel : BetListTableViewModel
     {
         public OutrightWagerDetailsViewModel(
               OutrightWagerDetailsQuery message,
@@ -21,6 +20,7 @@
               ITicketHelper ticketHelper,
               IBetListCN88HtmlBuilder cn88Builder,
               IBetListHTMLBuilder builder,
+              bool isMobile,
               string[] excludingTicketStatus = null)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
@@ -47,25 +47,11 @@
             PageSize = message.PageSize;
             MatchId = message.MatchId;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
+
+            IsMobile = isMobile;
+
+            IsShowWinLoss = false;
         }
-
-        public UserLevel CustLevel { get; }
-
-        public string CustName { get; }
-
-        public int NoOfColumns { get; }
-
-        public BetListData BetListData { get; }
-
-        public BetListTotal BetListTotal { get; }
-
-        public ITicketHelper TicketHelper { get; }
-
-        public IBetListHTMLBuilder Builder { get; }
-
-        public IBetListCN88HtmlBuilder CN88Builder { get; }
-
-        public bool DisplayVNIP { get; }
 
         public int PageIndex { get; }
 
@@ -82,8 +68,6 @@
         public int ViewerIdOrViewerAdminId { get; }
 
         public byte ViewerLevelId { get; }
-
-        public int Divisor { get; }
 
         public PagerViewModel PagerViewModel { get; private set; }
 

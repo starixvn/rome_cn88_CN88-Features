@@ -1,14 +1,14 @@
 ﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
-    using CN88.Features.CustomerList.Models;
     using System.Collections.Generic;
     using System.Web;
+    using CN88.Features.CustomerList.Models;
 
     public class CustomerListViewModel
     {
         public CustomerListViewModel(
-            CustomerListModel model, 
-            int searchAccountId, 
+            CustomerListModel model,
+            int searchAccountId,
             string searchAccountUsername,
             string downlineUsername)
         {

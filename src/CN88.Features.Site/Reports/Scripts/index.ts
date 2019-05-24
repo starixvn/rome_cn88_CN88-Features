@@ -27,6 +27,8 @@ class ReportIndexView extends BaseReport {
     $thisPeriodBtn: JQuery;
     $lastPeriodBtn: JQuery;
     $clearBtn: JQuery;
+    $settlementAndAccountingSheetTabs: JQuery;
+    $wagerAndCancelledTabs: JQuery;
 
     minDate: Date;
     thisPeriod = {
@@ -89,6 +91,8 @@ class ReportIndexView extends BaseReport {
         this.$dateRangePicker = this.$("#" + this.dateRangePickerComponent.options.selectorId);
         this.$fromDateContainer = this.$("#from-date-container");
         this.$toDateContainer = this.$("#to-date-container");
+        this.$settlementAndAccountingSheetTabs = this.$("#settlement-summary-tab,#accounting-sheet-tab");
+        this.$wagerAndCancelledTabs = this.$("#wager-tab,#cancelled-tab");
     };
 
     calculatedDate(): void {
@@ -172,6 +176,14 @@ class ReportIndexView extends BaseReport {
         this.$clearBtn.click(() => {
             this.reset();
         });
+
+        this.$settlementAndAccountingSheetTabs.click(() => {
+            this.$createRptForm.hide();
+        });
+
+        this.$wagerAndCancelledTabs.click(() => {
+            this.$createRptForm.show();
+        })
     };
 
     getToday(): Date {

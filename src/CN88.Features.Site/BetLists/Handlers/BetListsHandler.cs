@@ -4,6 +4,7 @@
     using System.Linq;
     using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
+    using CN88.Features.Site.Shared.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
@@ -44,6 +45,8 @@
         private readonly BettypeGroupService betTypeService;
         private readonly AccountingPeriodService accountingPeriodService;
 
+        private readonly BrowserHelper browserHelper;
+
         public BetListsHandler(
             BetListsService service,
             ISmartPunterBetListMonitor monitorService,
@@ -52,7 +55,8 @@
             IBetListHTMLBuilder builder,
             SportGroupService sportGroupService,
             BettypeGroupService betTypeService,
-            AccountingPeriodService accountingPeriodService)
+            AccountingPeriodService accountingPeriodService,
+            BrowserHelper browserHelper)
         {
             this.service = service;
             this.monitorService = monitorService;
@@ -63,6 +67,8 @@
             this.sportGroupService = sportGroupService;
             this.betTypeService = betTypeService;
             this.accountingPeriodService = accountingPeriodService;
+
+            this.browserHelper = browserHelper;
         }
 
         public BetListOfReportViewModel Handle(BetListOfReportQuery message)
@@ -99,7 +105,8 @@
                 currentPeriod,
                 lastPeriod,
                 BuildBetTypeSelectListItems(allBetTypes, 0),
-                oldAccountingPeriods);
+                oldAccountingPeriods,
+                browserHelper.IsMobile());
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)
@@ -157,7 +164,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public OutrightWagerDetailsViewModel Handle(OutrightWagerDetailsQuery message)
@@ -174,7 +181,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public EventWagerByAccountViewModel Handle(EventWagerByAccountQuery message)
@@ -194,7 +201,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new EventWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new EventWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public EventWagerDetailsViewModel Handle(EventWagerDetailsQuery message)
@@ -214,7 +221,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerByAccountViewModel Handle(StartedWagerByAccountQuery message)
@@ -234,7 +241,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerDetailsViewModel Handle(StartedWagerDetailsQuery message)
@@ -254,7 +261,7 @@
 
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-            return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+            return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public TotalBetParlayViewModel Handle(TotalBetParlayQuery message)
@@ -280,7 +287,8 @@
                 builder,
                 BuildSportsSelectListItems(TotalBetParlaySport.Sports, message.SportGroupId),
                 BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.StakeMode),
-                BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.ModesByLevel[message.ActorLevel], message.ViewMode));
+                BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.ModesByLevel[message.ActorLevel], message.ViewMode),
+                browserHelper.IsMobile());
         }
 
         protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
@@ -293,7 +301,7 @@
                 Text = BetListsResources.ResourceManager.GetString($"TotalBetParlaySport_{sport}"),
                 Value = sport.ToString(),
                 Selected = sport == userSelectedSport
-            }).ToList();
+            });
 
             return items;
         }

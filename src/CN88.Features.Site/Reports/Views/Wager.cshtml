@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "~/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = Model.Title;
 }
 @section Styles {
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
@@ -28,26 +29,7 @@
         { "SortPropertyName", Model.SortPropertyName },
         { "IsSettlement", Model.IsSettlement }
     })
-    @{
-        if (Model.ReportLevel.IsSuperLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/SuperTable.cshtml", Model)
-        }
-        if (Model.ReportLevel.IsMasterLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/MasterTable.cshtml", Model)
-        }
-
-        if (Model.ReportLevel.IsAgentLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/AgentTable.cshtml", Model)
-        }
-
-        if (Model.ReportLevel.IsMemberLevel())
-        {
-            @Html.Partial("~/Reports/Views/Wager/MemberTable.cshtml", Model)
-        }
-    }
+    @RenderReportTable()
     @Pager.Render(Model.PagerViewModel)
 </div>
 @section Scripts{
@@ -55,4 +37,26 @@
     <script>
         var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.ReportFilterViewModel.AllBetTypesSelectionViewModel.Items.GroupBy(i => i.SportTypeGroup)));
     </script>
+}
+
+@helper RenderReportTable()
+{
+    if (Model.ReportLevel.IsSuperLevel())
+    {
+        @Html.Partial("~/Reports/Views/Wager/SuperTable.cshtml", Model)
+    }
+    if (Model.ReportLevel.IsMasterLevel())
+    {
+        @Html.Partial("~/Reports/Views/Wager/MasterTable.cshtml", Model)
+    }
+
+    if (Model.ReportLevel.IsAgentLevel())
+    {
+        @Html.Partial("~/Reports/Views/Wager/AgentTable.cshtml", Model)
+    }
+
+    if (Model.ReportLevel.IsMemberLevel())
+    {
+        @Html.Partial("~/Reports/Views/Wager/MemberTable.cshtml", Model)
+    }
 }

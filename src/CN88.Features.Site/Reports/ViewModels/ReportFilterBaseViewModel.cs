@@ -14,7 +14,8 @@
             string breadcrumbLevelJson,
             UserLevel custLevel,
             SingleSelectionViewModel sportGroupSelectionViewModel,
-            DateRangePickerViewModel dateRangePickerViewModel)
+            DateRangePickerViewModel dateRangePickerViewModel,
+            bool isMobile)
         {
             DisplayMode = displayMode;
             ReportType = reportType;
@@ -25,6 +26,7 @@
             BreadcrumbLevelJson = breadcrumbLevelJson;
             SportGroupSelectionViewModel = sportGroupSelectionViewModel;
             DateRangePickerViewModel = dateRangePickerViewModel;
+            IsMobile = isMobile;
         }
 
         public int DisplayMode { get; }
@@ -44,5 +46,7 @@
         public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
 
         public DateRangePickerViewModel DateRangePickerViewModel { get; }
+
+        public bool IsMobile { get; }
     }
 }

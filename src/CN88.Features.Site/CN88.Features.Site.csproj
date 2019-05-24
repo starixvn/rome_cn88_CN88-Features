@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
-  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -37,6 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>618</NoWarn>
+    <LangVersion>7.3</LangVersion>
     <CodeAnalysisRuleSet>CN88.Features.Site.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -227,8 +228,8 @@
       <HintPath>..\..\packages\MessagePack.1.7.3.4\lib\net45\MessagePack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -537,6 +538,7 @@
     <Content Include="BetLists\Styles\bet-lists.min.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
+    <Content Include="BetLists\Styles\images\details.svg" />
     <Content Include="BetLists\Styles\images\icon-collapse.png" />
     <Content Include="BetLists\Styles\images\icon-expand.png" />
     <Content Include="BetLists\Content\CoreBetListCN88.css" />
@@ -544,6 +546,8 @@
     <Content Include="BetLists\Content\images\minus.png" />
     <Content Include="BetLists\Content\images\q_Icon2_1.png" />
     <Content Include="BetLists\Content\images\q_Icon_2.png" />
+    <Content Include="BetLists\Styles\images\minus_details.svg" />
+    <Content Include="BetLists\Styles\images\plus_details.svg" />
     <Content Include="BetLists\Styles\wager-monitor-console.css">
       <DependentUpon>wager-monitor-console.scss</DependentUpon>
     </Content>
@@ -582,6 +586,10 @@
     <Content Include="CustomerList\bundles\styles\member-statement.min.css">
       <DependentUpon>member-statement.css</DependentUpon>
     </Content>
+    <Content Include="CustomerList\bundles\styles\onlinemember.css" />
+    <Content Include="CustomerList\bundles\styles\onlinemember.min.css">
+      <DependentUpon>onlinemember.css</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\styles\popup.css" />
     <Content Include="CustomerList\bundles\styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
@@ -603,6 +611,12 @@
     </Content>
     <Content Include="CustomerList\Styles\member-statement.min.css">
       <DependentUpon>member-statement.css</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\online-members.css">
+      <DependentUpon>online-members.scss</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\online-members.min.css">
+      <DependentUpon>online-members.css</DependentUpon>
     </Content>
     <Content Include="CustomerList\Styles\popup.css">
       <DependentUpon>popup.scss</DependentUpon>
@@ -683,7 +697,9 @@
     <Content Include="SubAccount\Styles\sub-account.min.css">
       <DependentUpon>sub-account.css</DependentUpon>
     </Content>
-    <Content Include="Web.local.config" />
+    <Content Include="Web.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Code\BetLists\Stake.cshtml" />
     <Content Include="Web.uat.config">
       <DependentUpon>Web.local.config</DependentUpon>
@@ -725,6 +741,7 @@
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
     <Compile Include="BetLists\Requests\OutrightWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\ViewModels\BetListTableViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\StartedWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringBaseQuery.cs" />
@@ -751,6 +768,7 @@
     <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Reports\Constants\ReportSortPropertyConstants.cs" />
     <Compile Include="Reports\Filters\ReCheckPasswordAttribute.cs" />
     <Compile Include="Reports\Handlers\OldReportsHandler.cs" />
@@ -768,6 +786,7 @@
     <Compile Include="Reports\Requests\VerifyPasswordCommand.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
     <Compile Include="Reports\ViewModels\AccountingPeriodSelectionViewModel.cs" />
+    <Compile Include="Reports\ViewModels\AccountingSheetViewModel.cs" />
     <Compile Include="Reports\ViewModels\BettypeViewModel.cs" />
     <Compile Include="Reports\ViewModels\IndexBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\OldIndexViewModel.cs" />
@@ -777,6 +796,7 @@
     <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
+    <Compile Include="Shared\Helpers\BrowserHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\StakeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
@@ -855,7 +875,6 @@
     <Content Include="compilerconfig.json" />
     <Content Include="Reports\Views\Index.cshtml" />
     <Content Include="Reports\Views\Web.config" />
-    <Content Include="Reports\Views\Index\AccountingSheet.cshtml" />
     <Content Include="CustomerList\Styles\popup.scss" />
     <Content Include="Shared\Styles\_mixins.scss" />
     <Content Include="Shared\Styles\_variables.scss" />
@@ -924,6 +943,10 @@
     <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
     <Content Include="App_Data\securitycode.pro.json" />
     <Content Include="App_Data\securitycode.napinternal.json" />
+    <Content Include="BetLists\Views\ReportBetListMobile.cshtml" />
+    <Content Include="BetLists\Views\BetListTable.cshtml" />
+    <Content Include="BetLists\Views\BetListTableMobile.cshtml" />
+    <Content Include="BetLists\Views\BackLinkMobile.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\FilterForm.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\FilterModal.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\SportStakeConditionFilter.cshtml" />
@@ -941,12 +964,10 @@
     <Content Include="Reports\Views\Legacy\MasterTable.cshtml" />
     <Content Include="Reports\Views\Legacy\MemberTable.cshtml" />
     <Content Include="Reports\Views\Legacy\SuperTable.cshtml" />
-    <Content Include="Reports\Views\Index\SettlementSummary.cshtml" />
     <Content Include="Reports\Views\Wager\SuperTable.cshtml" />
     <Content Include="Reports\Views\Wager\AgentTable.cshtml" />
     <Content Include="Reports\Views\Wager\MasterTable.cshtml" />
     <Content Include="Reports\Views\Wager\MemberTable.cshtml" />
-    <Content Include="Reports\Views\Index\CreateReport.cshtml" />
     <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <Content Include="Reports\Views\VerifyPassword.cshtml" />
@@ -965,11 +986,23 @@
     <Content Include="CustomerList\Styles\member-statement.scss" />
     <Content Include="SubAccount\Views\Index.cshtml" />
     <Content Include="CustomerList\Styles\customizeDCSCN88.scss" />
+    <Content Include="Reports\Views\IndexMobile.cshtml" />
+    <Content Include="Reports\Views\Index\CreateReportFilter.cshtml" />
     <Content Include="SubAccount\Styles\sub-account.scss" />
     <Content Include="SubAccount\Views\_Permissions.cshtml" />
     <Content Include="SubAccount\Views\Edit.cshtml" />
     <Content Include="SubAccount\Views\New.cshtml" />
     <Content Include="SubAccount\Views\Web.config" />
+    <Content Include="Reports\Views\WagerMobile.cshtml" />
+    <Content Include="Reports\Views\OldIndexMobile.cshtml" />
+    <Content Include="Reports\Views\OldWagerMobile.cshtml" />
+    <Content Include="CustomerList\Styles\online-members.scss" />
+    <Content Include="Reports\Views\SettlementSummary.cshtml" />
+    <Content Include="Reports\Views\AccountingSheet.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\AgentTable.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MasterTable.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MemberTable.cshtml" />
+    <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\SuperTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -985,6 +1018,10 @@
     <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\assets\bundles\" />
+    <Folder Include="Reports\assets\scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
@@ -1045,7 +1082,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\daterangepicker.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\link-builder.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\message.ts" />
-    <TypeScriptCompile Include="Shared\Scripts\components\multi-selection-dropdown.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\filter-toggle.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
@@ -1067,6 +1104,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1098,8 +1140,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>

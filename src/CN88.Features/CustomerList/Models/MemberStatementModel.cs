@@ -12,7 +12,7 @@
 
         public MemberStatementModel()
         {
-            resourceManager= new ResourceManager(typeof(CustomerListResources));
+            resourceManager = new ResourceManager(typeof(CustomerListResources));
         }
 
         public DateTime WinLostDate { get; }

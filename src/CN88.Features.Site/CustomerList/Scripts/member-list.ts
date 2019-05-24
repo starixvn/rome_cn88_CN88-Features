@@ -21,18 +21,23 @@
             this.renderMemberList,
             siteInfrastructure.roleId.member,
             null,
-			indexManager.addNewDownline);
+            indexManager.addNewDownline);
 
         this.cacheDOMElements();
 
         let self = this;
         this.$("#btn-submit-member").off("click").on("click", function () {
-			self.reportParam.PageIndex = 1;
-			self.viewMembers(self.reportParam.CustId);
+            self.reportParam.PageIndex = 1;
+
+            if (self.indexManager.isDevice) {
+                self.indexManager.memberToggleHandler.hideFilter();
+            }
+
+            self.viewMembers(self.reportParam.CustId);
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
             //this.initAutoComplete();
-        }        
+        }
     }
 
     public cacheDOMElements() {
@@ -44,13 +49,13 @@
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
     }
-	viewMembers = (custId: number) => {
+    viewMembers = (custId: number) => {
         this.$.blockUI();
         this.reportParam = {
             DownlineUsername: this.$("#txt-viewed-agent").val(),
             Username: this.$username.val(),
-			SearchRoleId: siteInfrastructure.roleId.member,
-			CustId: custId,
+            SearchRoleId: siteInfrastructure.roleId.member,
+            CustId: custId,
             Status: this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
@@ -58,7 +63,7 @@
 
         if (this.directDownline != siteInfrastructure.roleId.member &&
             (this.reportParam.DownlineUsername == "" ||
-            this.reportParam.DownlineUsername == undefined)) {
+                this.reportParam.DownlineUsername == undefined)) {
             this.$errMember.removeClass("display-none");
             this.$.unblockUI();
             return;
@@ -69,14 +74,15 @@
     };
     renderMemberList = (rs: any) => {
         if (rs.SearchAccountId > 0) {
-            this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
-            this.$formReport.find("#add-directdownline").attr("username", rs.Username);
-            this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
+            var buttonAddNew = this.$(".add-directdownline-member");
+            buttonAddNew.attr("cust-id", rs.SearchAccountId);
+            buttonAddNew.attr("username", rs.Username);
+            buttonAddNew.attr("downline-username", rs.DownlineUsername);
         }
 
         if (!rs.Customers) {
-			return;
-		}
+            return;
+        }
 
         this.$tblReport.removeClass("display-none");
 
@@ -121,7 +127,7 @@
 
         this.statusComponent.changeSelection(siteInfrastructure.customerStatus.all);
 
-		this.viewMembers(custId);
+        this.viewMembers(custId);
     };
     initAutoComplete = () => {
         let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
@@ -141,7 +147,6 @@
         this.$("#PageIndexMember").val(reportParam.PageIndex);
         this.$("#PageSizeMember").val(reportParam.PageIndex);
 
-		this.viewMembers(reportParam.CustId);
+        this.viewMembers(reportParam.CustId);
     };
 }
-

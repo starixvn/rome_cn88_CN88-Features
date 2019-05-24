@@ -45,5 +45,7 @@
         public bool IsOldReport { get; set; }
 
         public DateTime LimitedDateToShowInfo { get; }
+
+        public bool IsSettlement { get; set; }
     }
 }

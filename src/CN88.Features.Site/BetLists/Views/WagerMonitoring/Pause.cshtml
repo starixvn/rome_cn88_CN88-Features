@@ -6,7 +6,7 @@
     @StaticResources.AssetStyles.Render("/bundles/site-features/default")
     @StaticResources.RenderStyles("~/BetLists/bundles/wager-monitoring")
 </head>
-<body>
+<body @Html.Raw(CN88.Features.Site.Shared.Helpers.BrowserManager.BuildMobileHtmlClass())>
     <div class="betlist-container wager-monitoring">
         <table></table>
     </div>

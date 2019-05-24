@@ -1,7 +1,7 @@
 ﻿declare var initAutoComplete: any;
 
 class AgentList extends BaseList {
-	$viewedMaster: JQuery;
+    $viewedMaster: JQuery;
     $errAgent: JQuery;
     directDownline: number;
 
@@ -23,15 +23,19 @@ class AgentList extends BaseList {
             this.renderAgentList,
             siteInfrastructure.roleId.agent,
             indexManager.viewAgent,
-			indexManager.addNewDownline);
+            indexManager.addNewDownline);
 
         this.cacheDOMElements();
 
         var self = this;
         this.$("#btn-submit-agent").off("click").on("click", function () {
-			self.reportParam.PageIndex = 1;
-			self.viewAgents(self.reportParam.CustId);
-		});
+            self.reportParam.PageIndex = 1;
+            if (self.indexManager.isDevice) {
+                self.indexManager.agentToggleHandler.hideFilter();
+            }
+
+            self.viewAgents(self.reportParam.CustId);
+        });
 
         if (this.directDownline >= siteInfrastructure.roleId.master) {
             //this.initAutoComplete();
@@ -41,19 +45,19 @@ class AgentList extends BaseList {
     public cacheDOMElements() {
         super.cacheDOMElements();
 
-		this.$viewedMaster = this.$("#txt-viewed-master");
+        this.$viewedMaster = this.$("#txt-viewed-master");
         this.directDownline = parseInt(this.$("#directDownline").val());
         this.$errAgent = this.$("#msg-err-agent");
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
-	}
-	viewAgents = (custId: number) => {
+    }
+    viewAgents = (custId: number) => {
         this.$.blockUI();
         this.reportParam = {
             DownlineUsername: this.$("#txt-viewed-master").val(),
             Username: this.$username.val(),
-			SearchRoleId: siteInfrastructure.roleId.agent,
-			CustId: custId,
+            SearchRoleId: siteInfrastructure.roleId.agent,
+            CustId: custId,
             Status: this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
@@ -61,7 +65,7 @@ class AgentList extends BaseList {
 
         if (this.directDownline != siteInfrastructure.roleId.agent &&
             (this.reportParam.DownlineUsername == "" ||
-            this.reportParam.DownlineUsername == undefined)) {
+                this.reportParam.DownlineUsername == undefined)) {
             this.$errAgent.removeClass("display-none");
             this.$.unblockUI();
             return;
@@ -72,15 +76,16 @@ class AgentList extends BaseList {
     };
     renderAgentList = (rs: any) => {
         if (rs.SearchAccountId > 0) {
-            this.$formReport.find("#add-directdownline").attr("cust-id", rs.SearchAccountId);
-            this.$formReport.find("#add-directdownline").attr("username", rs.Username);
-            this.$formReport.find("#add-directdownline").attr("downline-username", rs.DownlineUsername);
+            var buttonAddNew = this.$(".add-directdownline-agent");
+            buttonAddNew.attr("cust-id", rs.SearchAccountId);
+            buttonAddNew.attr("username", rs.Username);
+            buttonAddNew.attr("downline-username", rs.DownlineUsername);
         }
 
         if (!rs.Customers) {
             return;
         }
-	
+
         this.$tblReport.removeClass("display-none");
 
         let html = "";
@@ -92,7 +97,7 @@ class AgentList extends BaseList {
             for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 let customer = rs.Customers[i],
                     custId = customer.CustId,
-                    username = customer.Username;                  
+                    username = customer.Username;
 
                 html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                     "<td class='col-no'>" + customerIndex + "</td>" +
@@ -125,7 +130,7 @@ class AgentList extends BaseList {
 
         this.statusComponent.changeSelection(siteInfrastructure.customerStatus.all);
 
-		this.viewAgents(custId);
+        this.viewAgents(custId);
     };
     initAutoComplete = () => {
         let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
@@ -144,7 +149,6 @@ class AgentList extends BaseList {
         this.$("#PageIndexAgent").val(reportParam.PageIndex);
         this.$("#PageSizeAgent").val(reportParam.PageIndex);
 
-		this.viewAgents(reportParam.CustId);
+        this.viewAgents(reportParam.CustId);
     };
 }
-

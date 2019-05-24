@@ -1,0 +1,28 @@
+﻿@import "../../Shared/Styles/variables";
+
+.online-members {
+    .new-page-header {
+        display: none;
+    }
+}
+
+// For Phone
+body.phone {
+    .online-members {
+        .new-page-header {
+            display: block;
+        }
+
+        .page-title {
+            display: none;
+        }
+
+        .page-container {
+            padding: 12px;
+        }
+
+        .pagination {
+            margin-top: 12px;
+        }
+    }
+}

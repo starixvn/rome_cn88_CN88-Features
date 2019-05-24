@@ -23,7 +23,7 @@
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class BetListOfReportViewModel
+    public class BetListOfReportViewModel : BetListTableViewModel
     {
         private readonly IDictionary<int, int> ReportTypes = new Dictionary<int, int>
         {
@@ -44,6 +44,7 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
+            bool isMobile = false,
             string[] excludingTicketStatus = null)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
@@ -68,6 +69,8 @@
             Type = message.Type;
             IsOwner = message.IsOwner;
 
+            IsMobile = isMobile;
+
             ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
             ViewerLevelId = message.ViewerLevelId;
 
@@ -87,7 +90,8 @@
             AccountingPeriod lastPeriod,
             IEnumerable<SelectListItemExt> allBetTypes,
             IEnumerable<AccountingPeriod> oldAccountingPeriods,
-            string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, excludingTicketStatus)
+            bool isMobile = false,
+            string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
             DisplayMode = message.DisplayMode;
             ReportMainActionPath = message.ReportMainActionPath;
@@ -134,33 +138,12 @@
 
             var reportPath = $"~/{reportActionController}/{reportActionName}";
 
-            BreadcrumbParamByLevel = CustLevel.IsHeadline() ?
-                Enumerable.Repeat(reportPath, 4) :
-                CustLevel.IsSuperLevel() ? Enumerable.Repeat(reportPath, 4) :
-                CustLevel.IsMasterLevel() ? Enumerable.Repeat(reportPath, 3) :
-                CustLevel.IsAgentLevel() ? Enumerable.Repeat(reportPath, 2) :
-                Enumerable.Empty<string>();
+            BreadcrumbParamByLevel = BuildBreadcrumbParamByLevel(reportPath, CustLevel);
         }
 
         public bool IsOldReport { get; set; }
 
         public bool IsOwner { get; set; }
-
-        public UserLevel CustLevel { get; }
-
-        public int NoOfColumns { get; }
-
-        public BetListData BetListData { get; }
-
-        public BetListTotal BetListTotal { get; }
-
-        public ITicketHelper TicketHelper { get; }
-
-        public IBetListHTMLBuilder Builder { get; }
-
-        public IBetListCN88HtmlBuilder CN88Builder { get; }
-
-        public bool DisplayVNIP { get; }
 
         public string OldMainPath => MicroSites.OldMainUrl("~");
 
@@ -200,8 +183,6 @@
 
         public int ReportType { get; private set; }
 
-        public int Divisor { get; }
-
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
             => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
 
@@ -209,14 +190,9 @@
 
         public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
 
-        public decimal CompanyPositionTaking(TicketDto ticket)
-        {
-            return 1 - ticket.AgentPositionTaking - ticket.MasterPositionTaking - ticket.SuperPositionTaking;
-        }
-
         private string BuildReportMainUrl()
-            => Shared.Helpers.UrlHelper.AddQueryStringParamsFunc(
-                Shared.Helpers.UrlHelper.GetFeaturesAppPath(ReportMainActionPath),
+            => UrlHelper.AddQueryStringParamsFunc(
+                UrlHelper.GetFeaturesAppPath(ReportMainActionPath),
                 new Dictionary<string, object>
                 {
                     ["DisplayMode"] = DisplayMode
@@ -226,8 +202,7 @@
         {
             var breadcrumbLevel = new List<CustInfo>();
 
-            if (message.BreadcrumbLevel != null
-                && message.BreadcrumbLevel.Any())
+            if (message.BreadcrumbLevel?.Any() == true)
             {
                 foreach (var custInfo in message.BreadcrumbLevel)
                 {
@@ -236,6 +211,21 @@
             }
 
             return breadcrumbLevel;
+        }
+
+        public BreadcrumbItem BuildBackLink(string requestUrl)
+            => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(requestUrl, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
+                ?? new BreadcrumbItem("Not Found", "#");
+
+        public static IEnumerable<string> BuildBreadcrumbParamByLevel(string reportPath, UserLevel custLevel)
+        {
+            var breadcrumbCount = custLevel.IsHeadline()
+                ? 4
+                : custLevel.IsMemberLevel()
+                ? 0
+                : custLevel.Value;
+
+            return Enumerable.Repeat(reportPath, breadcrumbCount);
         }
     }
 }

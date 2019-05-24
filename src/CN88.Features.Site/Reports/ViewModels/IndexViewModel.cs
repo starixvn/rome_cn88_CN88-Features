@@ -18,24 +18,22 @@
     {
         public IndexViewModel(
             IndexQuery query,
-            SettlementSummaryReport settlementSummaryReport,
-            IEnumerable<AccountingPeriodGroup> accountingPeriodGroups,
+            bool isMobile,
             AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
             IEnumerable<SelectListItemExt> sportGroups,
             IEnumerable<SelectListItemExt> betTypes)
-            : base(query, accountingPeriodGroups, sportGroups)
+            : base(query, sportGroups)
         {
-            CurrentPeriod = currentPeriod;
-            LastPeriod = lastPeriod;
-            SettlementSummaryReport = settlementSummaryReport;
-
             DateRangePickerViewModel = new DateRangePickerViewModel(
                 lastPeriod.FromDate,
                 DateTime.MaxValue,
                 SystemTime.Today.AddDays(-1),
                 SystemTime.Today.AddDays(-1));
             BetTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, 0);
+            CurrentPeriod = currentPeriod;
+            LastPeriod = lastPeriod;
+            IsMobile = isMobile;
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
                 .Select(s => new SelectListItemExt
@@ -46,13 +44,15 @@
             LiveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, LiveStatusConstants.AllMarkets);
         }
 
+        public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
+
+        public SingleSelectionViewModel LiveStatusSelectionViewModel { get; }
+
         public AccountingPeriod CurrentPeriod { get; }
 
         public AccountingPeriod LastPeriod { get; }
 
-        public SingleSelectionViewModel BetTypeSelectionViewModel { get; }
-
-        public SingleSelectionViewModel LiveStatusSelectionViewModel { get; }
+        public bool IsMobile { get; }
 
         public IEnumerable<SelectListItem> WagerReportTypes => ReportTypeConstants.WagerReportTypes
             .Select(t => new SelectListItem
@@ -69,7 +69,5 @@
                 Value = t.Key.ToString(),
                 Selected = t.Key == ReportTypeConstants.CancelledReport
             });
-
-        public SettlementSummaryReport SettlementSummaryReport { get; }
     }
 }

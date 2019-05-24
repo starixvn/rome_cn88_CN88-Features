@@ -1,17 +1,15 @@
 ﻿namespace CN88.Features.Site.CustomerList
 {
+    using System.Web.Mvc;
     using CN88.Features.Models;
-    using CN88.Features.Shared.Models;
     using CN88.Features.Site.CustomerList.ViewModels;
     using CN88.Features.Site.Requests;
     using MediatR;
-    using System.Web.Mvc;
 
     public class CustomerListQuery : BaseQuery, IRequest<CustomerListViewModel>
     {
         public CustomerListQuery() : this(null)
         {
-
         }
 
         public CustomerListQuery(IUser viewer) : base(viewer)

@@ -1,5 +1,6 @@
 ﻿@model ReportFilterViewModel
-<form class="form-inline filter report-form" role="form" id="report-form">
+<form class="form-inline filter report-form" role="form" id="report-form"
+      @Html.Raw(Model.IsMobile ? " style=\"display:none;\"" : string.Empty)>
     @RenderHiddenFields()
     @Html.Hidden("BreadcrumbLevelJson", Model.BreadcrumbLevelJson)
     @Html.Hidden("IsDescendingSort", ViewData["IsDescendingSort"] as bool?)

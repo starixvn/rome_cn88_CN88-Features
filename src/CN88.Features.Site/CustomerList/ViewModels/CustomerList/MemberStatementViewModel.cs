@@ -41,6 +41,7 @@
         public SingleSelectionViewModel ToDateSelectionViewModel { get; }
 
         private decimal? TotalStake { get; }
+
         public string TotalStakeStr
         {
             get

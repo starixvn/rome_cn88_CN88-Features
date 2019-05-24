@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.CustomerList.Services
 {
+    using System.Collections.Generic;
     using CN88.Features.Models;
     using CustomerList.Criteria;
     using CustomerList.Models;
@@ -8,8 +9,6 @@
     using Fanex.Data.Repository;
     using Resources;
     using Shared.Models;
-    using System;
-    using System.Collections.Generic;
 
     public interface CustomerListService
     {
@@ -25,7 +24,7 @@
     }
 
     public class CustomerListServiceImpl : CustomerListService
-    {      
+    {
         private readonly IDynamicRepository dynamicRepository;
         private readonly CustomerListDataAccess customerListDataAccess;
 
@@ -54,10 +53,8 @@
                 credit.GivenCredit - memberUsedCredit.UsedCredit,
                 credit.UsedCredit,
                 memberUsedCredit.UsedCredit,
-                credit.MaxCredit);         
+                credit.MaxCredit);
         }
-
-       
 
         public Result UpdateCredit(UpdateCreditParam param)
         {
@@ -117,6 +114,5 @@
 
             return onlineMembers;
         }
-            
     }
 }

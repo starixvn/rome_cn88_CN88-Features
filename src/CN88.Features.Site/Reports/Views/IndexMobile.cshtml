@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = ReportResources.WagerReport;
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Reports/bundles/reports")
+}
+@model IndexViewModel
+
+<div class="wager-report">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" id="wager-tab" class="active">
+            <a data-toggle="tab" href="#wagerReport" data-defaulttype="@ReportTypeConstants.SettledWager">@ReportResources.WagerReportMobile</a>
+        </li>
+        <li role="presentation" id="cancelled-tab">
+            <a data-toggle="tab" href="#cancelledReport" data-defaulttype="@ReportTypeConstants.CancelledReport">@ReportResources.CancelledReportMobile</a>
+        </li>
+        <li role="presentation" id="settlement-summary-tab">
+            <a data-toggle="tab" href="#settlementSumary" data-defaulttype="@ReportResources.SettlementSummary">@ReportResources.SettlementSummaryMobile</a>
+        </li>
+        <li role="presentation"  id="accounting-sheet-tab">
+            <a data-toggle="tab" href="#accountingSheet" data-defaulttype="@ReportResources.AccountingSheet">@ReportResources.AccountingMobile</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="wagerReport">
+            <select id="dropdown-wagerRptType">
+                @foreach (var type in Model.WagerReportTypes)
+                {
+                    <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+                }
+            </select>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="cancelledReport">
+            <div class="dropdown">
+                <select id="dropdown-cancelledRptType">
+                    @foreach (var type in Model.CancelledReportTypes)
+                    {
+                        <option value="@type.Value" @(type.Selected ? " selected=\"selected\"" : string.Empty)>@type.Text</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="settlementSumary">
+            @Html.Action("SettlementSummary")
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
+            @Html.Action("AccountingSheet")
+        </div>
+
+        @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
+    </div>
+</div>
+@section Scripts{
+    @StaticResources.RenderScripts("~/Reports/bundles/index")
+    <script>
+        var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BetTypeSelectionViewModel.Items.GroupBy(i => i.SportTypeGroup)));
+    </script>
+}

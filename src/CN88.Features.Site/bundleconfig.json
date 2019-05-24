@@ -47,6 +47,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/sort.js",
+      "Shared/Scripts/components/filter-toggle.js",
       "Reports/Scripts/base-report.js",
       "Reports/Scripts/legacy.js",
       "Reports/Scripts/wager.js"
@@ -61,6 +62,7 @@
       "Shared/Scripts/components/daterangepicker.js",
       "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/sort.js",
+      "Shared/Scripts/components/filter-toggle.js",
       "Reports/Scripts/old-base-report.js",
       "Reports/Scripts/old-legacy.js",
       "Reports/Scripts/old-wager.js"
@@ -100,6 +102,7 @@
     "outputFileName": "CustomerList/bundles/scripts/index.js",
     "inputFiles": [
       "Shared/scripts/components/single-selection-dropdown.js",
+      "Shared/Scripts/components/filter-toggle.js",
       "Shared/scripts/components/pager.js",
       "CustomerList/scripts/site-infrastructure.js",
       "CustomerList/scripts/base-list.js",
@@ -155,6 +158,12 @@
     "outputFileName": "CustomerList/bundles/styles/downline-list.css",
     "inputFiles": [
       "CustomerList/Styles/downline-list.css"
+    ]
+  },
+  {
+    "outputFileName": "CustomerList/bundles/styles/onlinemember.css",
+    "inputFiles": [
+      "CustomerList/Styles/online-members.css"
     ]
   },
   {
@@ -221,7 +230,8 @@
       "Shared/Scripts/components/link-builder.js",
       "Shared/Scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/daterangepicker.js",
-      "Shared/Scripts/components/client-pager.js"
+      "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/filter-toggle.js"
     ]
   },
   {
@@ -300,6 +310,7 @@
       "BetLists/Scripts/details/sportsbook-details.js",
       "BetLists/Scripts/sub-tickets/parlay-sub-tickets.js",
       "Shared/Scripts/components/client-pager.js",
+      "Shared/Scripts/components/filter-toggle.js",
       "Shared/Scripts/components/single-selection-dropdown.js"
     ]
   },

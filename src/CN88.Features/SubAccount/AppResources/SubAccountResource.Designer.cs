@@ -19,7 +19,7 @@ namespace CN88.Features.SubAccount.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class SubAccountResource {
@@ -84,6 +84,15 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string AccountSuccessfullyCreated {
             get {
                 return ResourceManager.GetString("AccountSuccessfullyCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACM.
+        /// </summary>
+        public static string ACM {
+            get {
+                return ResourceManager.GetString("ACM", resourceCulture);
             }
         }
         
@@ -264,6 +273,15 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string ResetSecurityCode {
             get {
                 return ResourceManager.GetString("ResetSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub Account.
+        /// </summary>
+        public static string SubAccount {
+            get {
+                return ResourceManager.GetString("SubAccount", resourceCulture);
             }
         }
         

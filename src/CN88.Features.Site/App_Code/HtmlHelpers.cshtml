@@ -9,18 +9,21 @@
     @value.ToString("#,##0")
 }
 
-@helper RenderHeaderNumberCell(decimal cellValue, string cellClass = "")
+@helper RenderHeaderNumberCell(decimal cellValue, string cellClass = "", bool isHiddenOnMobile = false)
 {
+
     var value = cellValue.Round();
-    <th class="text-right @(value < 0 ? "negative-value" : string.Empty) @cellClass">
+    <th class="text-right @(value < 0 ? "negative-value" : string.Empty) @cellClass" data-stack-column="@(isHiddenOnMobile.ToString().ToLowerInvariant())">
         @FormatNumber(value)
     </th>
 }
 
-@helper RenderHeaderNumberCell(int divisor, decimal cellValue, string cellClass = "")
+@helper RenderHeaderNumberCell(int divisor, decimal cellValue, string cellClass = "", bool isHiddenOnMobile = false)
 {
+
     var value = (cellValue / divisor).Round();
-    <th class="text-right @(value < 0 ? "negative-value" : string.Empty) @cellClass">
+
+    <th class="text-right @(value < 0 ? "negative-value" : string.Empty) @cellClass" data-stack-column="@(isHiddenOnMobile.ToString().ToLowerInvariant())">
         @FormatNumber(value)
     </th>
 }
@@ -53,4 +56,11 @@
     <td class="text-right @(value < 0 ? "negative-value" : string.Empty) @cellClass">
         @FormatNumber(value)
     </td>
+}
+
+@helper RenderHeaderNumberCell(int cellValue, string cellClass = "", bool isHiddenOnMobile = false)
+{
+    <th class="text-right @(cellValue < 0 ? "negative-value" : string.Empty) @cellClass" data-stack-column="@(isHiddenOnMobile.ToString().ToLowerInvariant())">
+        @FormatNumber(cellValue)
+    </th>
 }

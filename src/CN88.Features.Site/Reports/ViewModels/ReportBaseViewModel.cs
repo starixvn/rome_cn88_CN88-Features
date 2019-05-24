@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
+    using CN88.Features.Shared.AppResources;
     using Constants;
-    using Extensions;
     using Features.BetLists.Constants;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -32,18 +32,29 @@
         protected ReportBaseViewModel(
             ReportBaseQuery query,
             IEnumerable<ReportModel> reportData,
-            ReportModel grandTotal)
+            ReportModel grandTotal,
+            bool isMobile = false)
         {
             this.query = query;
 
-            ReportData = reportData;
+            ReportData = reportData.ToList();
             GrandTotal = grandTotal;
             Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
             TotalStockPercent = query.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
+            IsMobile = isMobile;
             GetSortedProperty(query);
+            IsOwner = query.IsOwner;
+            IsOwnerText = IsOwner.ToString().ToLowerInvariant();
+            IsNotOwnerText = IsNotOwner.ToString().ToLowerInvariant();
         }
 
         public bool IsNotOwner => !query.IsOwner;
+
+        public string IsOwnerText { get; }
+
+        public string IsNotOwnerText { get; }
+
+        public bool IsOwner { get; }
 
         public UserLevel ReportLevel => query.CustLevel;
 
@@ -52,6 +63,11 @@
         public bool IsDescendingSort { get; set; }
 
         public bool IsSettlement => query.IsSettlement.Value;
+
+        public bool IsUnsettledOrCancelledReport =>
+            query.ReportType == ReportTypeConstants.UnsettledWager
+            || query.ReportType == ReportTypeConstants.CancelledReport
+            || query.ReportType == ReportTypeConstants.AbnormalBets;
 
         public int Divisor { get; }
 
@@ -63,7 +79,7 @@
 
         public decimal ProfitMargin
             => query.CustLevel.IsSuperLevel() && GrandTotal.SuperStock != 0
-                ? (GrandTotal.SuperResult / GrandTotal.SuperStock * 100).Round()
+                ? GrandTotal.SuperResult / GrandTotal.SuperStock * 100
                 : 0;
 
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
@@ -117,6 +133,23 @@
                 ["UserSelectedLiveStatusId"] = query.UserSelectedLiveStatusId,
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
             };
+
+        public BreadcrumbItem BuildBackLink()
+        {
+            if (query.IsOwner
+                || !BreadcrumbLevelViewModel.BreadcrumbLevel.Any())
+            {
+                return new BreadcrumbItem(SharedResources.Main, BreadcrumbLevelViewModel.MainLink);
+            }
+
+            var breadcrumbLinks = BreadcrumbLevelViewModel.BuildBreadcrumbLinks(
+                query.CurrentUrl,
+                query.IsSettlement ?? false);
+
+            return breadcrumbLinks.Count() > 1
+                    ? breadcrumbLinks.ElementAt(breadcrumbLinks.Count() - 1)
+                    : breadcrumbLinks.ElementAt(0);
+        }
 
         private IEnumerable<CustInfo> BuildBreadcrumbLevel(ReportModel model)
         {
@@ -179,6 +212,12 @@
         private int GetBetListType(int reportType)
             => BetListTypes[reportType];
 
+        public bool IsMobile { get; }
+
+        public bool IsShowTotalRow()
+            => ReportData.Any()
+                && (!IsMobile || (IsMobile && IsNotOwner));
+                
         private void GetSortedProperty(ReportBaseQuery query)
         {
             if (string.IsNullOrWhiteSpace(query.SortPropertyName))

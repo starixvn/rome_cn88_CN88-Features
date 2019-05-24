@@ -14,6 +14,7 @@
     public class BetListExcelBaseHandler
     {
         private const string ExcelTemplateDir = "~/BetLists/ExcelTemplates/{0}.{1}";
+        private const string FontTahoma = "Tahoma";
         private Func<string, string> mapPath;
 
         public BetListExcelBaseHandler(IBetListExcelBuilder excelBuilder)
@@ -109,12 +110,12 @@
             rtfHelper.NormalFont.Boldweight = (short)FontBoldWeight.Normal;
             rtfHelper.NormalFontCrossed.Boldweight = (short)FontBoldWeight.Normal;
 
-            rtfHelper.NegFont.FontName = "Tahoma";
-            rtfHelper.NegFontCrossed.FontName = "Tahoma";
-            rtfHelper.NormalFont.FontName = "Tahoma";
-            rtfHelper.NormalFontCrossed.FontName = "Tahoma";
-            rtfHelper.PosFont.FontName = "Tahoma";
-            rtfHelper.PosFontCrossed.FontName = "Tahoma";
+            rtfHelper.NegFont.FontName = FontTahoma;
+            rtfHelper.NegFontCrossed.FontName = FontTahoma;
+            rtfHelper.NormalFont.FontName = FontTahoma;
+            rtfHelper.NormalFontCrossed.FontName = FontTahoma;
+            rtfHelper.PosFont.FontName = FontTahoma;
+            rtfHelper.PosFontCrossed.FontName = FontTahoma;
 
             rtfHelper.NegFont.FontHeightInPoints = 9;
             rtfHelper.NegFontCrossed.FontHeightInPoints = 9;

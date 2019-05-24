@@ -1,12 +1,12 @@
 ﻿namespace CN88.Features.CustomerList.DataAccesses
 {
+    using System.Collections.Generic;
     using CN88.Features.Models;
     using CustomerList.Criteria;
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using Models;
-    using System.Collections.Generic;
 
     public interface CustomerListDataAccess
     {

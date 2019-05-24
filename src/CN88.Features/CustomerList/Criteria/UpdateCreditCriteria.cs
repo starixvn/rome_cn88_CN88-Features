@@ -1,9 +1,7 @@
 ﻿namespace CN88.Features.CustomerList.Criteria
 {
-    using CN88.Features.Shared.Models;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using System.Collections.Generic;
 
     public class UpdateCreditCriteria : NonQueryCommand
     {
@@ -50,6 +48,5 @@
             => "CS_Customer_Credit_Upd";
 
         public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
-
     }
 }

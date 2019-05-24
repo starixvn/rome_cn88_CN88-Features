@@ -5,7 +5,9 @@
 
     public class AccountingPeriodSelectionViewModel
     {
-        public AccountingPeriodSelectionViewModel(IEnumerable<AccountingPeriod> periods, int userSelectedPeriodId)
+        public AccountingPeriodSelectionViewModel(
+            IEnumerable<AccountingPeriod> periods,
+            int userSelectedPeriodId)
         {
             Periods = periods;
             UserSelectedPeriodId = userSelectedPeriodId;

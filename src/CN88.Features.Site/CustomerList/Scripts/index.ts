@@ -4,6 +4,9 @@
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
+    masterToggleHandler: ToggleHandler;
+    agentToggleHandler: ToggleHandler;
+    memberToggleHandler: ToggleHandler;
 
     directDownline: string;
     $navTabs: JQuery;
@@ -12,6 +15,7 @@
     UpdateCreditLink: string;
     UpdateStatusLink: string;
     AccessDenyPage: string;
+    isDevice: boolean = false;
 
     CurrentLink: string;
     ResetPasswordLink: string;
@@ -59,12 +63,18 @@
         statusComponent: SingleSelectionDropdownComponent,
         numeral: any,
         pager: PagerComponent,
-        topWindow: any) {
+        topWindow: any,
+        masterToggleHandler: ToggleHandler,
+        agentToggleHandler: ToggleHandler,
+        memberToggleHandler: ToggleHandler) {
         this.$ = $;
         this.topWindow = topWindow;
         this.statusComponent = statusComponent;
         this.numeral = numeral;
         this.pager = pager;
+        this.masterToggleHandler = masterToggleHandler;
+        this.agentToggleHandler = agentToggleHandler;
+        this.memberToggleHandler = memberToggleHandler;
 
         this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
         this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
@@ -129,6 +139,13 @@
                     this.memberList.viewMembers(this.reportParam.CustId);
                     break;
             }
+        }
+
+        this.isDevice = this.$("#IsDevice").val() == "1";
+        if (this.isDevice) {
+            this.masterToggleHandler.render(new ToggleHandlerOption("master-filter-toggle-icon", "form-master", "master-container"));
+            this.agentToggleHandler.render(new ToggleHandlerOption("agent-filter-toggle-icon", "form-agent", "agent-container"));
+            this.memberToggleHandler.render(new ToggleHandlerOption("member-filter-toggle-icon", "form-member", "member-container"));
         }
     };
 
@@ -350,7 +367,10 @@ const customerList = new CustomerList(
     new SingleSelectionDropdownComponent($),
     numeral,
     new PagerComponent($),
-    window.top);
+    window.top,
+    new ToggleHandler($),
+    new ToggleHandler($),
+    new ToggleHandler($));
 
 $(() => {
     customerList.init();

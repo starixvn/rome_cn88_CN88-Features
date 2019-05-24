@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Features.BetLists.Constants;
-    using Features.Reports.Constants;
     using Features.Reports.Models;
     using Features.Shared.AppResources;
     using Features.Shared.Constants;
@@ -17,14 +15,6 @@
     {
         private const string ReportMainActionPath = "~/Reports/Index";
 
-        private readonly IDictionary<int, int> BetListTypes = new Dictionary<int, int>
-        {
-            [ReportTypeConstants.SettledWager] = BetListTypeConstant.Settled,
-            [ReportTypeConstants.UnsettledWager] = BetListTypeConstant.Unsettled,
-            [ReportTypeConstants.CancelledReport] = BetListTypeConstant.Cancelled,
-            [ReportTypeConstants.AbnormalBets] = BetListTypeConstant.Abnormal,
-        };
-
         public ReportViewModel(
             ReportQuery query,
             IEnumerable<SelectListItemExt> sportGroups,
@@ -32,8 +22,9 @@
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
             AccountingPeriod lastPeriod,
+            bool isMobile,
             IEnumerable<SelectListItemExt> allBetTypes = null)
-            : base(query, reportData, grandTotal)
+            : base(query, reportData, grandTotal, isMobile)
         {
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, query.FromDate, query.ToDate);
@@ -48,7 +39,6 @@
                     Selected = s.Key == query.UserSelectedLiveStatusId
                 });
             var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, query.UserSelectedLiveStatusId);
-
             ReportFilterViewModel = new ReportFilterViewModel(
                 query.DisplayMode,
                 query.ReportType,
@@ -61,7 +51,8 @@
                 dateRangePickerViewModel,
                 betTypeSelectionViewModel,
                 liveStatusSelectionViewModel,
-                allBetTypesSelectionViewModel);
+                allBetTypesSelectionViewModel,
+                isMobile);
         }
 
         public ReportFilterViewModel ReportFilterViewModel { get; }

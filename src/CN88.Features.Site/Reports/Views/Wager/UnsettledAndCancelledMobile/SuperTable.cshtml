@@ -1,0 +1,48 @@
+﻿@model ReportBaseViewModel
+@{
+    var colIndex = 0;
+    var total = Model.GrandTotal;
+    var divisor = Model.Divisor;
+}
+
+<thead class="tableFloatingHeaderOriginal">
+    <tr>
+        <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username"><span class="sorting-item">@ReportResources.SMAUsername</span></th>
+        <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="Wagers"><span class="sorting-item">@ReportResources.Wagers</span></th>
+        <th class="text-right valid-stake header sorting" data-colindex="@(colIndex++)" data-sortedname="Stake"><span class="sorting-item">@ReportResources.Stake</span></th>
+    </tr>
+    @if (Model.IsShowTotalRow())
+    {
+        <tr class="total">
+            <th class="text-left">@ReportResources.Total</th>
+            @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "valid-stake", true)
+            @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "valid-stake", true)
+        </tr>
+    }
+</thead>
+
+@if (Model.ReportData.Any())
+{
+    <tbody>
+        @foreach (var data in Model.ReportData)
+        {
+            <tr>
+                <td class="username"><a class="downline-link" href="@Model.BuildDrillDownLink(data, Request.Url.Query)">@data.Username</a></td>
+                @HtmlHelpers.RenderNumberCell(data.Wagers, "valid-stake")
+                @HtmlHelpers.RenderNumberCell(divisor, data.Stake, "valid-stake")
+            </tr>
+        }
+    </tbody>
+}
+else
+{
+    <tbody>
+        <tr>
+            <td id="no-data-row" colspan="3"
+                data-isNoInfo="true"
+                align="center">
+                @SharedResources.NoInformationIsAvailable
+            </td>
+        </tr>
+    </tbody>
+}

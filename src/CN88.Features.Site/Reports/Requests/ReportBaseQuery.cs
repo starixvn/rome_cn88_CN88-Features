@@ -50,6 +50,8 @@
 
         public bool IsDescendingSort { get; set; }
 
+        public string CurrentUrl { get; set; }
+
         public bool? IsSettlement
         {
             get

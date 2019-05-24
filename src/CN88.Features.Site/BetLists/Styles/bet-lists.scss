@@ -1,4 +1,6 @@
-﻿.ip {
+﻿@import "../../Shared/Styles/variables";
+
+.ip {
     display: none;
 }
 
@@ -122,9 +124,9 @@
         }
     }
 
-    > tbody > tr.winloss-comm > td {
+    > thead > tr.winloss-comm > th {
         color: #3b3b3b;
-        background-color: #c0cfdd;
+        background-color: #D4E1ED;
         padding: 7px 8px;
         font-weight: bold;
     }
@@ -260,12 +262,11 @@
         .menu-item {
             float: left;
             border: none;
-
-            &:first-child {
-                background: inherit;
-                padding: 12px 20px 11px;
-            }
         }
+    }
+
+    .menubar .list-menu .menu-item:first-child {
+        background-color: transparent;
     }
 
     .sub-menu {
@@ -281,7 +282,6 @@
 .filter-container .multiselect-container.dropdown-menu {
     width: 350px;
 }
-
 
 .betlist-by-account, .betlist-wager-details {
     #nav-tabs {
@@ -334,6 +334,194 @@
     }
 }
 
+.totalbet-parlay-title {
+    display: none;
+}
+
 .offer-name-list {
     font-weight: bold;
+}
+
+.new-page-header {
+    display: none;
+}
+
+// For Phone
+body.phone {
+    .filter {
+        display: none;
+
+        .form-group .control.date {
+            width: 100%;
+        }
+
+        .dropdown-stake-condition {
+            display: table;
+
+            .btn-group {
+                float: left;
+                width: 30%;
+            }
+
+            input[type='text'] {
+                float: left;
+                width: 66%;
+                margin-left: 4%;
+            }
+        }
+
+        .btn-submit {
+            width: 100%;
+        }
+    }
+
+    .breadcrumb-container {
+        display: none;
+    }
+
+
+    .popup-modal {
+        padding: 16px 12px;
+
+        .col-event {
+            line-height: 18px;
+        }
+
+        .comm_note {
+            padding-top: 8px;
+        }
+    }
+
+    .tbl-betlists {
+        margin-top: 12px;
+        border-top: none;
+
+        .detail-container {
+            min-width: 140px;
+            word-break: break-all;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .ticket-list {
+            margin-top: 10px;
+        }
+
+        .cn88-mix-parlay {
+            margin-bottom: 15px;
+
+            a {
+                display: block;
+                height: 14px;
+                margin-top: 8px;
+                background-image: url(images/plus_details.svg);
+            }
+
+            &.cn88-mix-parlay-collapse a {
+                background-image: url(images/minus_details.svg);
+            }
+        }
+
+        .fix-column {
+            line-height: 16px;
+        }
+
+        .cn88-more-info {
+            display: inline-block;
+            height: 19px;
+            background-image: url("images/details.svg");
+        }
+
+        .detail-link {
+            white-space: nowrap;
+        }
+    }
+
+    .tbl-betlists > thead {
+        tr > th {
+            padding-top: 13px;
+            padding-bottom: 13px;
+        }
+
+        tr.total > th {
+            padding-top: 13px;
+            padding-bottom: 13px;
+            color: #3B3B3B;
+            background-color: #ECF4E2;
+            font-weight: bold;
+
+            &.winloss font {
+                color: #B50000 !important;
+            }
+        }
+
+        > tr.winloss-comm > th {
+            background-color: #D4E1ED;
+        }
+    }
+
+    .tbl-betlists > tbody > tr > td,
+    .tbl-betlists > tfoot > tr > td {
+        padding-top: 13px;
+        padding-bottom: 13px;
+    }
+
+    &.old-report {
+        .menubar {
+            display: none;
+        }
+
+        .new-page-content {
+            top: 15px;
+            min-width: 100%;
+        }
+    }
+    // Total-parlay
+    .totalbet-parlay-title {
+        display: table;
+        width: 100%;
+        padding-left: 12px;
+        margin-top: 10px;
+
+        [class^="icon-filter"] {
+            margin-right: 12px;
+        }
+    }
+
+    .total-bet-parlay {
+        padding-left: 12px;
+        padding-right: 12px;
+
+        .col-details {
+            width: 100px;
+        }
+    }
+
+    .new-page-header {
+        display: block;
+    }
+
+    .betlist-wager-details,
+    .betlist-by-account {
+        .page-title {
+            display: none;
+        }
+    }
+
+    .from-date-box .bootstrap-datetimepicker-widget.dropdown-menu {
+        right: 0 !important;
+        left: auto !important;
+
+        &:before {
+            left: auto;
+            right: 6px;
+        }
+
+        &:after {
+            left: auto;
+            right: 7px;
+        }
+    }
 }

@@ -6,6 +6,8 @@ class OldWagerReport extends OldLegacyReport {
     $tabSettlement: JQuery;
     $tabValidStake: JQuery;
     $isSettlement: JQuery;
+    isOwner: boolean;
+    toggleHandler: ToggleHandler;
     $nowDataRow: JQuery;
 
     totalRecords: number;
@@ -17,14 +19,18 @@ class OldWagerReport extends OldLegacyReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         sortComponent: SortComponent,
         linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent) {
+        pagerComponent: ClientPagerComponent,
+        toggleHandler: ToggleHandler) {
         super($, accountingPeriodSelectionComponent, dateRangePickerComponent, sportGroupSelectionComponent, sortComponent, linkBuilderComponent, pagerComponent);
+        this.toggleHandler = toggleHandler;
     }
 
     init(): void {
         this.$.blockUI();
 
         this.reCheckIn();
+        this.initMobile();
+
         this.cacheDOMElements();
         this.renderComponents();
         this.registerEvents();
@@ -62,6 +68,17 @@ class OldWagerReport extends OldLegacyReport {
 
         this.$tabValidStake.click();
     };
+
+    private initMobile() {
+        let reportTable = this.$("#tbl-report");
+        this.isOwner = cn88Features.convertAttributeToBool(this.$("#IsOwner").val());
+        if (this.isMobile) {
+            reportTable.find("th").removeClass("sorting");
+            reportTable.stacktable();
+            this.$('body').backtop();
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
+        }
+    }
 
     cacheDOMElements(): void {
         super.cacheDOMElements();
@@ -112,6 +129,10 @@ class OldWagerReport extends OldLegacyReport {
         });
 
         super.registerEvents();
+
+        if (this.isMobile && this.isOwner) {
+            this.$(".btn-collapse-expanse").trigger("click");
+        }
     }
 }
 
@@ -124,7 +145,8 @@ $(function () {
         new SingleSelectionDropdownComponent($),
         new SortComponent($, linkBuilderComponent),
         linkBuilderComponent,
-        new ClientPagerComponent($));
+        new ClientPagerComponent($),
+        new ToggleHandler($));
 
     oldWagerReport.init();
 })

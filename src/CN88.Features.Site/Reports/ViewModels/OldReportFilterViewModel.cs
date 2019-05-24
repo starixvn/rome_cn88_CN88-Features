@@ -15,8 +15,9 @@
             UserLevel custLevel,
             SingleSelectionViewModel sportGroupSelectionViewModel,
             AccountingPeriodSelectionViewModel accountingPeriodSelectionViewModel,
-            DateRangePickerViewModel dateRangePickerViewModel)
-            : base(displayMode, reportType, isOwner, custId, custName, breadcrumbLevelJson, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel)
+            DateRangePickerViewModel dateRangePickerViewModel,
+            bool isMobile = false)
+            : base(displayMode, reportType, isOwner, custId, custName, breadcrumbLevelJson, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel, isMobile)
         {
             AccountingPeriodSelectionViewModel = accountingPeriodSelectionViewModel;
         }

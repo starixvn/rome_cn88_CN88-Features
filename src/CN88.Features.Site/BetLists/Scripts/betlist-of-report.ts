@@ -2,6 +2,7 @@
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="../../shared/scripts/components/link-builder.ts" />
+/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
 /// <reference path="../../shared/scripts/components/client-pager.ts" />
 
 class BetListOfReport {
@@ -13,12 +14,17 @@ class BetListOfReport {
     liveStatusSelectionComponent: SingleSelectionDropdownComponent;
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
+    toggleHandler: ToggleHandler;
+    isMobile: boolean;
 
     elements = {
         excelIcon: null,
         exportExcelForm: null,
         reportForm: null,
-        pageIndex: null
+        pageIndex: null,
+        filterToggleIcon: null,
+        reportTable: null,
+        reportPager: null
     };
 
     constructor(
@@ -28,13 +34,15 @@ class BetListOfReport {
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
         linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent) {
+        pagerComponent: ClientPagerComponent,
+        toggleHandler: ToggleHandler) {
         this.$ = $;
 
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.sportGroupSelectionComponent = sportGroupSelectionComponent;
         this.betTypeSelectionComponent = betTypeSelectionComponent;
         this.liveStatusSelectionComponent = liveStatusSelectionComponent;
+        this.toggleHandler = toggleHandler;
 
         this.linkBuilderComponent = linkBuilderComponent;
         this.pagerComponent = pagerComponent;
@@ -45,15 +53,22 @@ class BetListOfReport {
         this.$.blockUI();
 
         this.cacheDOMElements();
+        this.isMobile = this.elements.reportTable.data("ismobile");
+        if (this.isMobile) {
+            this.elements.reportTable.stacktable();
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
+            this.$('body').backtop();
+        }
+        else {
+            this.pagerComponent.render();
+            this.elements.pageIndex = this.$("#PageIndex");
+        }
 
         this.dateRangePickerComponent.render();
         this.sportGroupSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onchangeSportType));
         this.betTypeSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-bettype", "UserSelectedBetTypeId"));
         this.liveStatusSelectionComponent.render(new SingleSelectionDropdownOption("dropdown-livestatus", "UserSelectedLiveStatusId"));
         this.linkBuilderComponent.render();
-
-        this.pagerComponent.render();
-        this.elements.pageIndex = this.$("#PageIndex");
 
         this.registerEvents();
 
@@ -64,6 +79,9 @@ class BetListOfReport {
         this.elements.excelIcon = this.$("#icon-excel");
         this.elements.exportExcelForm = this.$("#export-excel-form");
         this.elements.reportForm = this.$("#report-form");
+        this.elements.filterToggleIcon = this.$("#filter-toggle-icon");
+        this.elements.reportTable = this.$("#tbl-report");
+        this.elements.reportPager = this.$("#report-pager");
     };
 
     registerEvents = () => {
@@ -89,7 +107,9 @@ class BetListOfReport {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.betTypeSelectionComponent.updateSelectedValue();
         this.liveStatusSelectionComponent.updateSelectedValue();
-        this.elements.pageIndex.val(1);
+        if (!this.isMobile) {
+            this.elements.pageIndex.val(1);
+        }
     };
 
     onExportExcelEvent = () => {
@@ -141,6 +161,7 @@ $(document).ready(() => {
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
         new LinkBuilderComponent($),
-        new ClientPagerComponent($));
+        new ClientPagerComponent($),
+        new ToggleHandler($));
     betListOfReport.init();
 })

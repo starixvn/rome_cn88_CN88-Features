@@ -17,8 +17,9 @@
             IEnumerable<SelectListItemExt> sportGroups,
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
-            IEnumerable<AccountingPeriod> oldAccountingPeriods)
-            : base(query, reportData, grandTotal)
+            IEnumerable<AccountingPeriod> oldAccountingPeriods,
+            bool isMobile)
+            : base(query, reportData, grandTotal, isMobile)
         {
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
 
@@ -36,7 +37,8 @@
                 query.CustLevel,
                 sportGroupSelectionViewModel,
                 accountingPeriodSelectionViewModel,
-                dateRangePickerViewModel);
+                dateRangePickerViewModel,
+                isMobile);
         }
 
         public OldReportFilterViewModel OldReportFilterViewModel { get; }

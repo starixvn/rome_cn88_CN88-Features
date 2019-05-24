@@ -1,0 +1,150 @@
+﻿@using CN88.Features.Site.BetLists.Helpers
+@using CN88.Features.BetLists.Models
+@using CN88.Features.BetLists.Helpers
+@using Fanex.BetList.Core.Utils
+@using CN88.Features.Extensions
+@model BetListTableViewModel
+@{
+    var builder = Model.CN88Builder;
+    var helper = Model.TicketHelper;
+    var ticketData = Model.BetListData.TicketData;
+    var divisor = Model.Divisor;
+}
+<table id="tbl-report"
+       class="tbl-noborder tbl-betlists"
+       data-ismobile="@Model.IsMobile.ToString().ToLower()">
+    <thead>
+        <tr>
+            <th class="text-left col-details">@BetListsResources.Details</th>
+            <th class="text-right">@BetListsResources.Stake</th>
+
+            @if (Model.IsShowWinLoss)
+            {
+                <th class="text-right">@BetListsResources.WinLoss</th>
+            }
+
+            @if (Model.IsShowPayout)
+            {
+                <th class="text-right">@BetListsResources.EstPayout</th>
+            }
+
+            @if (Model.CustLevel.IsAgentLevel())
+            {
+                <th class="text-right" data-stack-column="true">@BetListsResources.AgentPercent</th>
+            }
+
+            @if (Model.CustLevel.IsMasterLevel())
+            {
+                <th class="text-right" data-stack-column="true">@BetListsResources.AgentPercent</th>
+                <th class="text-right" data-stack-column="true">@BetListsResources.MAPercent</th>
+            }
+
+            @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
+            {
+                <th class="text-right" data-stack-column="true">@BetListsResources.AgentPercent</th>
+                <th class="text-right" data-stack-column="true">@BetListsResources.MAPercent</th>
+                <th class="text-right" data-stack-column="true">@BetListsResources.SMAPercent</th>
+                <th class="text-right" data-stack-column="true">@BetListsResources.CoPercent</th>
+            }
+        </tr>
+        @if (Model.BetListData.HasData())
+        {
+            var total = Model.BetListTotal;
+
+            @RenderBetListTotal(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr)
+        }
+    </thead>
+    <tbody>
+        @if (Model.BetListData.HasData())
+        {
+            var tickets = Model.BetListData.Tickets.ToList();
+
+            for (int i = 0; i < tickets.Count; i++)
+            {
+                var ticket = tickets[i];
+        <tr data-trans-id="@ticket.TransId">
+            <td>
+                <div class="detail-container">
+                    @ticket.TransDate.ToShortDateFormat()
+                    @ticket.TransDate.ToLongTime24h()
+                    <br />
+                    @ticket.UserName
+                    @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
+                    {
+                        <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
+                    }
+                    @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
+                    @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
+                </div>
+                
+            </td>
+
+            <td class="stake-block bl_underdog text-right">@(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))</td>
+
+            @if (Model.IsShowWinLoss)
+            {
+                <td class="text-right">
+                    @(new HtmlString(ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round())))
+                    <br />
+                    @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
+                </td>
+            }
+
+            @if (Model.IsShowPayout)
+            {
+                <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
+            }
+
+            @if (Model.CustLevel.IsAgentLevel())
+            {
+                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+            }
+
+            @if (Model.CustLevel.IsMasterLevel())
+            {
+                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
+            }
+
+            @if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
+            {
+                @HtmlHelpers.RenderNumberCell((int)(ticket.AgentPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(ticket.MasterPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(ticket.SuperPositionTaking * 100), "text-right")
+                @HtmlHelpers.RenderNumberCell((int)(Model.CompanyPositionTaking(ticket) * 100), "text-right")
+            }
+        </tr>
+            }
+        }
+        else
+        {
+            @BetLists.NoInfomation.Render(Model.NoOfColumns)
+        }
+    </tbody>
+</table>
+
+@helper RenderBetListTotal(string winLoss, string stake, string total)
+{
+    <tr class="total">
+        <th>@BetListsResources.Total: @Model.BetListData.Total.ToString("#,##0")</th>
+        <th class="text-right">@Html.Raw(stake)</th>
+
+        @if (Model.IsShowWinLoss)
+        {
+            <th class="text-right winloss">@Html.Raw(winLoss)</th>
+        }
+
+        @if (Model.IsShowPayout)
+        {
+            <th class="text-right">@Model.TotalPayoutText</th>
+        }
+    </tr>
+
+    if (!Model.IsShowPayout && Model.IsShowWinLoss)
+    {
+        <tr class="winloss-comm">
+            <th colspan="@Model.TotalColColspan">@BetListsResources.WinLossWithCommission</th>
+            <th class="text-right">@Html.Raw(total)</th>
+        </tr>
+    }
+}
