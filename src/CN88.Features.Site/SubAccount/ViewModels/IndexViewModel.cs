@@ -1,14 +1,18 @@
 ﻿namespace CN88.Features.Site.SubAccount.ViewModels
 {
     using System.Collections.Generic;
+    using CN88.Web.Helpers;
     using Features.SubAccount.Models;
     using Shared.Helpers;
 
     public class IndexViewModel
     {
-        public IndexViewModel(IEnumerable<SubAccountItem> subAccounts)
+        private readonly BrowserHelper browserHelper;
+
+        public IndexViewModel(IEnumerable<SubAccountItem> subAccounts, BrowserHelper browserHelper)
         {
             SubAccounts = subAccounts;
+            this.browserHelper = browserHelper;
         }
 
         public IEnumerable<SubAccountItem> SubAccounts { get; }
@@ -25,6 +29,8 @@
         public string ResetSecurityCodeLink
             => UrlHelper.GetMainAppPath("~/SecurityCode/ResetSubAccountSecurityCode");
 
+        public bool IsDevice => browserHelper.IsMobile() && !browserHelper.IsTablet();
+        
         public string UnlockSubAccountLink
             => UrlHelper.GetFeaturesAppPath("~/SubAccount/Unlock");
 

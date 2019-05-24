@@ -60,16 +60,21 @@
                         </td>
                         <td class="hide-mobile">@item.CreateDateString</td>
                         <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
-                            <div class="dropdown visible-mobile">
-                                <a class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="icon-more-action"></span>
-                                </a>
-
-                                <ul id="dropdown-@item.SubAccId" class="dropdown-menu">
-                                    @RenderActionCell_Mobile()
-                                </ul>
-                            </div>
-                            @RenderActionCell(item.Closed)
+                            @if (Model.IsDevice)
+                            {
+                                <div class="dropdown visible-mobile">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="icon-more-action"></span>
+                                    </a>
+                                    <ul id="dropdown-@item.SubAccId" class="dropdown-menu">
+                                        @RenderActionCell_Mobile()
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                @RenderActionCell(item.Closed)
+                            }
                         </td>
                     </tr>
                 }
