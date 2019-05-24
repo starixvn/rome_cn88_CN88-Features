@@ -37,7 +37,7 @@
             LiveIndicator = message.LiveIndicator;
             BetTeam = message.BetTeam;
 
-            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 9 : CustLevel.IsMasterLevel() ? 7 : 6;
+            NoOfColumns = CalculateNumberOfColumns();
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
@@ -55,18 +55,6 @@
             IsShowWinLoss = false;
             IsMobile = isMobile;
         }
-
-        public int PageIndex { get; }
-
-        public int PageSize { get; }
-
-        public int CustId { get; }
-
-        public int ViewerIdOrViewerAdminId { get; }
-
-        public byte ViewerLevelId { get; }
-
-        public PagerViewModel PagerViewModel { get; private set; }
 
         public int MatchId { get; }
 

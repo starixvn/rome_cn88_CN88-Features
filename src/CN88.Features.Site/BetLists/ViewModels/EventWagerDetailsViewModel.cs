@@ -36,11 +36,7 @@
             LiveIndicator = message.LiveIndicator;
             BetTeam = message.BetTeam;
 
-            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline()
-                ? 9
-                : CustLevel.IsMasterLevel()
-                    ? 7
-                    : 6;
+            NoOfColumns = CalculateNumberOfColumns();
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
@@ -60,18 +56,6 @@
             IsMobile = isMobile;
         }
 
-        public int PageIndex { get; }
-
-        public int PageSize { get; }
-
-        public int CustId { get; }
-
-        public int ViewerIdOrViewerAdminId { get; }
-
-        public byte ViewerLevelId { get; }
-
-        public PagerViewModel PagerViewModel { get; }
-
         public int MatchId { get; }
 
         public int BetType { get; }
@@ -85,8 +69,7 @@
         public int StakeCondition { get; }
 
         public string WagerByAccountLink()
-        {
-            return UrlHelper.ReplaceOrAddQueryStringParamsFunc(
+            => UrlHelper.ReplaceOrAddQueryStringParamsFunc(
                   AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent"),
                   new Dictionary<string, object>
                   {
@@ -100,6 +83,5 @@
                       ["Stake"] = Stake,
                       ["StakeCondition"] = StakeCondition
                   });
-        }
     }
 }

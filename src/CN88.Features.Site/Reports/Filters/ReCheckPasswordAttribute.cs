@@ -43,26 +43,31 @@
                 if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
                     (DateTime.Now - elapsed).TotalSeconds >= expiredSeconds)
                 {
-                    if (filterContext.HttpContext.Request.IsAjaxRequest())
-                    {
-                        filterContext.HttpContext.Response.StatusCode = 302;
-                        filterContext.HttpContext.Response.End();
-                        filterContext.Result = new JsonResult
-                        {
-                            Data = new { message = "You are not authorized on this function!" },
-                            JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                        };
-                    }
-                    else
-                    {
-                        filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
-                    }
+                    HandleNoAuthorized(filterContext);
                 }
 
                 if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
                 {
                     filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
                 }
+            }
+        }
+
+        private static void HandleNoAuthorized(AuthorizationContext filterContext)
+        {
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                filterContext.HttpContext.Response.StatusCode = 302;
+                filterContext.HttpContext.Response.End();
+                filterContext.Result = new JsonResult
+                {
+                    Data = new { message = "You are not authorized on this function!" },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
             }
         }
     }

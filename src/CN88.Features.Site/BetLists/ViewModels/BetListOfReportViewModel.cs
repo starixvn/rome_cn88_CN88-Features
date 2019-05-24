@@ -51,7 +51,7 @@
             CustLevel = message.ActorLevel;
             DisplayVNIP = message.DisplayVNIP;
 
-            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 11 : CustLevel.IsMasterLevel() ? 9 : 8;
+            NoOfColumns = CalculateNumberOfColumns(11);
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
@@ -145,23 +145,11 @@
 
         public DateTime ToDate { get; }
 
-        public int SportTypeGroup { get; }
-
         public int BetTypeGroup { get; }
 
         public int LiveIndicator { get; }
 
         public int Type { get; }
-
-        public int CustId { get; }
-
-        public int ViewerIdOrViewerAdminId { get; }
-
-        public byte ViewerLevelId { get; }
-
-        public int PageIndex { get; }
-
-        public int PageSize { get; }
 
         public string ReportTitle { get; private set; }
 
@@ -175,8 +163,6 @@
 
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel
             => new BreadcrumbLevelViewModel(BuildReportMainUrl(), GetBreadcrumbLevel());
-
-        public PagerViewModel PagerViewModel { get; private set; }
 
         public IEnumerable<string> BreadcrumbParamByLevel { get; private set; }
 
@@ -207,15 +193,7 @@
             => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(requestUrl, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
                 ?? new BreadcrumbItem("Not Found", "#");
 
-        public static IEnumerable<string> BuildBreadcrumbParamByLevel(string reportPath, UserLevel custLevel)
-        {
-            var breadcrumbCount = custLevel.IsHeadline()
-                ? 4
-                : custLevel.IsMemberLevel()
-                ? 0
-                : custLevel.Value;
-
-            return Enumerable.Repeat(reportPath, breadcrumbCount);
-        }
+        public IEnumerable<string> BuildBreadcrumbParamByLevel(string reportPath, UserLevel custLevel)
+            => CalculateBreadcrumbParamByLevel(reportPath);
     }
 }

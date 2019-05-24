@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.SmartPunter.Services;
     using BetList.Core.Builders;
     using CN88.Web.Helpers;
     using Fanex.BetList.Core.Builder;
@@ -36,7 +35,6 @@
         IRequestHandler<StartedWagerDetailsQuery, StartedWagerDetailsViewModel>
     {
         private readonly BetListsService betListService;
-        private readonly ISmartPunterBetListMonitor monitorService;
         private readonly ITicketHelper ticketHelper;
         private readonly IBetListCN88HtmlBuilder cn88Builder;
         private readonly IBetListHTMLBuilder builder;
@@ -49,7 +47,6 @@
 
         public BetListsHandler(
             BetListsService service,
-            ISmartPunterBetListMonitor monitorService,
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
@@ -59,7 +56,6 @@
             BrowserHelper browserHelper)
         {
             this.betListService = service;
-            this.monitorService = monitorService;
             this.ticketHelper = ticketHelper;
             this.cn88Builder = cn88Builder;
             this.builder = builder;
@@ -84,8 +80,6 @@
                 message.LimitedDateToShowInfo);
 
             var betlistData = betListService.GetBetListOfReport(param);
-
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             var sportGroups = sportGroupService.GetSportGroups();
             var allBetTypes = betTypeService.GetBetTypeGroups();
@@ -117,8 +111,6 @@
                 message.SportTypeGroup);
 
             var betlistData = betListService.GetBetListOfStatement(param);
-
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new BetListOfStatementViewModel(
                 message,
@@ -162,8 +154,6 @@
 
             var betlistData = betListService.GetOutrightWagerByAccount(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
             return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
@@ -178,8 +168,6 @@
                 message.Stake);
 
             var betlistData = betListService.GetOutrightWagerDetails(param);
-
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
@@ -199,8 +187,6 @@
 
             var betlistData = betListService.GetEventWagerByAccount(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
             return new EventWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
@@ -218,8 +204,6 @@
                 message.Stake);
 
             var betlistData = betListService.GetEventWagerDetails(param);
-
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
@@ -239,8 +223,6 @@
 
             var betlistData = betListService.GetStartedWagerByAccount(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
             return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
@@ -259,8 +241,6 @@
 
             var betlistData = betListService.GetStartedWagerDetails(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
             return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
@@ -277,8 +257,6 @@
 
             var betlistData = betListService.GetTotalBetParlay(param);
 
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
             return new TotalBetParlayViewModel(
                 message,
                 betlistData,
@@ -290,9 +268,6 @@
                 BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.ModesByLevel[message.ActorLevel], message.ViewMode),
                 browserHelper.IsMobile());
         }
-
-        protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
-             => monitorService.WriteLog(custId, tickets.ToList<ITicket>());
 
         protected internal IEnumerable<SelectListItemExt> BuildSportsSelectListItems(IEnumerable<int> sports, int userSelectedSport)
             => sports.Select(sport => new SelectListItemExt

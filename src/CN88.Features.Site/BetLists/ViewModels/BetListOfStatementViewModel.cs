@@ -28,7 +28,7 @@
             DisplayVNIP = message.DisplayVNIP;
             CustName = message.CustName;
 
-            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 11 : CustLevel.IsMasterLevel() ? 9 : 8;
+            NoOfColumns = CalculateNumOfColumns();
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
@@ -46,6 +46,16 @@
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
+        }
+
+        private int CalculateNumOfColumns()
+        {
+            if(CustLevel.IsSuperLevel() || CustLevel.IsHeadline())
+            {
+                return 11;
+            }
+
+            return CustLevel.IsMasterLevel() ? 9 : 8;
         }
 
         public UserLevel CustLevel { get; }

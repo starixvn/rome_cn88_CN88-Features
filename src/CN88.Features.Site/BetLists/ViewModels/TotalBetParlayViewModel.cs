@@ -36,7 +36,7 @@
             StakeMode = message.StakeMode;
             StakeLimit = message.StakeLimit;
 
-            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 10 : CustLevel.IsMasterLevel() ? 8 : 7;
+            NoOfColumns = CalculateNumberOfColumns(10);
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
@@ -64,16 +64,6 @@
             IsShowWinLoss = false;
         }
 
-        public int PageIndex { get; }
-
-        public int PageSize { get; }
-
-        public int CustId { get; }
-
-        public int ViewerIdOrViewerAdminId { get; }
-
-        public byte ViewerLevelId { get; }
-
         public int SportGroupId { get; }
 
         public int ViewMode { get; }
@@ -83,8 +73,6 @@
         public decimal StakeLimit { get; }
 
         public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
-
-        public PagerViewModel PagerViewModel { get; private set; }
 
         public StakeSelectionViewModel StakeSelectionViewModel { get; }
 

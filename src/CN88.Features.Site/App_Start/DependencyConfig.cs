@@ -123,13 +123,6 @@
             container.Register<SubAccountService, SubAccountServiceImpl>(Lifestyle.Scoped);
             container.Register<SubAccountValidator, SubAccountValidatorImpl>(Lifestyle.Scoped);
 
-            container.RegisterSingleton<ISmartPunterService, SmartPunterService>();
-            container.Register(
-                () => SmartPunterBetListMonitor.CreateInstance(
-                    container.GetInstance<IUserSession>(),
-                    container.GetInstance<ISmartPunterService>(),
-                    IPHelper.CustomerIP),
-                Lifestyle.Singleton);
             container.RegisterSingleton<BetListsService, BetListsServiceImpl>();
 
             container.Register(typeof(Workbook<>), typeof(NpoiWorkbook<>), Lifestyle.Scoped);

@@ -1,10 +1,13 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Alpha.Web.Helpers;
     using CN88.BetList.Core.Builders;
     using CN88.Features.BetLists.Models;
     using CN88.Features.Shared.Configurations;
     using CN88.Features.Shared.Models;
+    using CN88.Features.Site.Shared.ViewModels.Components;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
@@ -51,5 +54,41 @@
         public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
 
         public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
+
+        protected virtual int CalculateNumberOfColumns(int maxColumn = 9)
+        {
+            if (CustLevel.IsSuperLevel() || CustLevel.IsHeadline())
+            {
+                return maxColumn;
+            }
+
+            return maxColumn - (CustLevel.IsMasterLevel() ? 2 : 3);
+        }
+
+        protected virtual IEnumerable<string> CalculateBreadcrumbParamByLevel(string reportPath)
+        {
+            if (CustLevel.IsHeadline() || CustLevel.IsSuperLevel())
+            {
+                return Enumerable.Repeat(reportPath, UserLevel.Super.Value);
+            }
+
+            return CustLevel.IsMemberLevel()
+                ? Enumerable.Empty<string>()
+                : Enumerable.Repeat(reportPath, CustLevel.Value);
+        }
+
+        public int SportTypeGroup { get; protected set; }
+
+        public int CustId { get; protected set; }
+
+        public int ViewerIdOrViewerAdminId { get; protected set; }
+
+        public byte ViewerLevelId { get; protected set; }
+
+        public int PageIndex { get; protected set; }
+
+        public int PageSize { get; protected set; }
+
+        public PagerViewModel PagerViewModel { get; protected set; }
     }
 }
