@@ -29,7 +29,6 @@
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
             var dateRangePickerViewModel = new DateRangePickerViewModel(lastPeriod.FromDate, DateTime.MaxValue, query.FromDate, query.ToDate);
             var betTypeSelectionViewModel = new SingleSelectionViewModel(betTypes, query.UserSelectedBetTypeId);
-            var allBetTypesSelectionViewModel = new SingleSelectionViewModel(allBetTypes, 0);
 
             var liveStatuses = LiveStatusConstants.LiveStatuses
                 .Select(s => new SelectListItemExt
@@ -51,7 +50,7 @@
                 dateRangePickerViewModel,
                 betTypeSelectionViewModel,
                 liveStatusSelectionViewModel,
-                allBetTypesSelectionViewModel,
+                allBetTypes,
                 isMobile);
         }
 

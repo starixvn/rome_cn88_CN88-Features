@@ -239,7 +239,7 @@ class ReportIndexView extends BaseReport {
         this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
         this.$yesterdayBtn.addClass("btn-secondary");
         this.sportGroupSelectionComponent.changeSelection(0);
-        this.resetBetType();
+        this.sportGroupSelectionComponent.onchange();
         this.liveStatusSelectionComponent.changeSelection(2);
     }
 
@@ -251,25 +251,6 @@ class ReportIndexView extends BaseReport {
     resetCancelledReportType(): void {
         (<HTMLSelectElement>this.$cancelledRptTypeDropdown[0]).selectedIndex = 0;
         this.$cancelledRptTypeDropdown.multiselect('refresh');
-    }
-
-    resetBetType(): void {
-        this.betTypeSelectionComponent.$dropdown.empty();
-        for (var i = 0; i < betTypes.length; i++) {
-            var betTypeGroup = betTypes[i];
-            if (betTypeGroup[0].SportTypeGroup == 0) {
-                this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[0].Value + '>' + betTypeGroup[0].Text + '</option>');
-                this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
-                this.betTypeSelectionComponent.$dropdown.multiselect({
-                    multiple: false,
-                    maxHeight: 300,
-                    numberDisplayed: 1,
-                    includeSelectAllOption: false
-                });
-
-                break;
-            }
-        }
     }
 
     onSubmit = () => {
