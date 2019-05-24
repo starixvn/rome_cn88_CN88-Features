@@ -26,7 +26,7 @@
         [HttpGet, ReCheckPassword]
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
             => browserHelper.IsMobile()
-                ? await ViewAsync(message, "IndexMobile")
+                ? await ViewAsync(message, "ReportBetListMobile")
                 : await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]

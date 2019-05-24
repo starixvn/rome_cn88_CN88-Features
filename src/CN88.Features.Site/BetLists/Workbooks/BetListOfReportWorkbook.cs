@@ -166,12 +166,17 @@
             var palette = ((HSSFWorkbook)Workbook).GetCustomPalette();
             palette.SetColorAtIndex(HSSFColor.Yellow.Index, 243, 156, 18);
 
+            RenderBody(sheet, tickets, comFont);
+        }
+
+        private void RenderBody(Sheet sheet, List<TicketDto> tickets, IFont comFont)
+        {
             for (int i = 0; i < tickets.Count; i++)
             {
                 var colIndex = 0;
                 var ticket = tickets[i];
 
-                row = sheet.GetRow(currentRowIndex);
+                var row = sheet.GetRow(currentRowIndex);
                 row.CopyCellsFrom(BodyRowTemplate);
                 row.SetCellValue(colIndex++, $"{ticket.TransDate.ToShortDateFormat()}\n{ticket.TransDate.ToLongTime24h()}");
 
@@ -224,7 +229,7 @@
                     row.SetCellValue(colIndex++, (int)(ticket.AgentPositionTaking * 100));
                     row.SetCellValue(colIndex++, (int)(ticket.MasterPositionTaking * 100));
                     row.SetCellValue(colIndex++, (int)(ticket.SuperPositionTaking * 100));
-                    row.SetCellValue(colIndex++, (int)(BetDataViewModel.CompanyPositionTaking(ticket) * 100));
+                    row.SetCellValue(colIndex, (int)(BetDataViewModel.CompanyPositionTaking(ticket) * 100));
                 }
 
                 currentRowIndex++;

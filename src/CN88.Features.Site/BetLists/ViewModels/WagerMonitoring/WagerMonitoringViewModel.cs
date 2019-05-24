@@ -28,7 +28,7 @@
             ViewerIdOrViewerAdminId = query.ViewerIdOrViewerAdminId;
             ViewerLevelId = query.ViewerLevelId;
             Divisor = query.ActorLevel.IsHeadline() ? 100 : 1;
-            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 9 : CustLevel.IsMasterLevel() ? 7 : 6;
+            NoOfColumns = CalculateNumberOfColumns();
 
             MinTransId = minTransId;
             BetListData = betListData;
@@ -50,18 +50,10 @@
 
         public FilterFormViewModel FilterFormViewModel { get; }
 
-        public int PageSize => AppSettings.WagerMonitoringPageSize;
-
         public int IntervalTime => AppSettings.TimeToGetLastBetsInSeconds;
 
         public string WagerMonitoringPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring");
 
         public string FilterModalPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/FilterModal");
-
-        public int CustId { get; }
-
-        public int ViewerIdOrViewerAdminId { get; }
-
-        public byte ViewerLevelId { get; }
     }
 }

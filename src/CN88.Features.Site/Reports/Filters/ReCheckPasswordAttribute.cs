@@ -36,20 +36,25 @@
                 request.Url.PathAndQuery.Contains("OldReports");
             if (isOldReport || isViewBetlistOldReport)
             {
-                var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
-                elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
-                var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
+                ReCheckPassword(filterContext);
+            }
+        }
 
-                if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
-                    (DateTime.Now - elapsed).TotalSeconds >= expiredSeconds)
-                {
-                    HandleNoAuthorized(filterContext);
-                }
+        private void ReCheckPassword(AuthorizationContext filterContext)
+        {
+            var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
+            elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
+            var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
 
-                if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
-                {
-                    filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
-                }
+            if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
+                (DateTime.Now - elapsed).TotalSeconds >= expiredSeconds)
+            {
+                HandleNoAuthorized(filterContext);
+            }
+
+            if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
+            {
+                filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
             }
         }
 
@@ -57,7 +62,8 @@
         {
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                filterContext.HttpContext.Response.StatusCode = 302;
+                const int NotAuthorizedCode = 302;
+                filterContext.HttpContext.Response.StatusCode = NotAuthorizedCode;
                 filterContext.HttpContext.Response.End();
                 filterContext.Result = new JsonResult
                 {

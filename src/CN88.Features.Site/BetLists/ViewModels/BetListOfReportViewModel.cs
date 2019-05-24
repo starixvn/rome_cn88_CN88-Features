@@ -84,12 +84,12 @@
             IBetListHTMLBuilder builder,
             IEnumerable<SelectListItemExt> sportGroups,
             IEnumerable<SelectListItemExt> betTypes,
-            AccountingPeriod currentPeriod,
             AccountingPeriod lastPeriod,
             IEnumerable<SelectListItemExt> allBetTypes,
             IEnumerable<AccountingPeriod> oldAccountingPeriods,
             bool isMobile = false,
-            string[] excludingTicketStatus = null) : this(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
+            string[] excludingTicketStatus = null) 
+            : this(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
             DisplayMode = message.DisplayMode;
             ReportMainActionPath = message.ReportMainActionPath;
@@ -134,7 +134,7 @@
 
             var reportPath = $"~/{reportActionController}/{reportActionName}";
 
-            BreadcrumbParamByLevel = BuildBreadcrumbParamByLevel(reportPath, CustLevel);
+            BreadcrumbParamByLevel = CalculateBreadcrumbParamByLevel(reportPath);
         }
 
         public bool IsOldReport { get; set; }
@@ -192,8 +192,5 @@
         public BreadcrumbItem BuildBackLink(string requestUrl)
             => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(requestUrl, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
                 ?? new BreadcrumbItem("Not Found", "#");
-
-        public IEnumerable<string> BuildBreadcrumbParamByLevel(string reportPath, UserLevel custLevel)
-            => CalculateBreadcrumbParamByLevel(reportPath);
     }
 }
