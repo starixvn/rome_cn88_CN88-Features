@@ -548,4 +548,28 @@ body.phone {
             right: 7px;
         }
     }
+
+    .betlist-statement {
+        .btn-back {
+            line-height: 30px;
+            border: none;
+            font-size: 13px;
+            color: #337ab7;
+            background-color: transparent;
+        }
+
+        .icon-chevron-left {
+            margin-right: 0;
+            font-size: 34px;
+            top: 10px;
+        }
+
+        .username {
+            display: table;
+            width: 100%;
+            margin-bottom: 12px;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+    }
 }

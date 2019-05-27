@@ -408,12 +408,31 @@ body.phone {
         padding-bottom: 0;
         margin-top: 0;
 
+        .modal-title:after {
+            display: none;
+        }
+
+        .modal-title .icon-filter {
+            display: none;
+        }
+
         .modal-body {
             padding: 0;
         }
 
+        .modal-footer {
+            width: 100%;
+            margin: 0 0 12px;
+            background-color: #fff;
+
+            .btn {
+                width: 100%;
+                margin: 0 0 12px;
+            }
+        }
+
         .tab-content {
-            padding: 12px;
+            padding: 12px 12px 100px;
             text-transform: uppercase;
         }
 
@@ -425,26 +444,61 @@ body.phone {
             padding-left: 0;
         }
 
-        .lists .sport-name {
-            display: block !important;
-            width: 100%;
+        .lists {
+            .sport-name {
+                display: block !important;
+                width: 100%;
+            }
+
+            .dropdown-stake-condition label {
+                display: none;
+            }
         }
 
         .lists .dropdown-stake-condition {
             display: block;
             width: 100%;
-        }
 
-        .lists .dropdown-stake-condition label {
-            display: none;
-        }
+            .btn-group {
+                float: left;
+                width: 30%;
+                top: 0;
+            }
 
-        .lists .item {
-            flex-direction: column;
+            .StakeLimit,
+            .AllSportsStakeLimit {
+                float: left;
+                width: 66%;
+                margin-left: 4%;
+                font-size: 16px;
+            }
         }
 
         .nav.nav-tabs > li > a {
             padding: 8px 0;
         }
+    }
+
+    .tab-content > .tab-pane.stake {
+        .lists .item {
+            flex-direction: column;
+            margin-bottom: 5px;
+        }
+    }
+
+
+    .tab-content > .tab-pane.league,
+    .tab-content > .tab-pane.event {
+        .lists {
+            flex-direction: column;
+        }
+    }
+
+    .tab-content > .tab-pane.bettype .lists.list-block > .item.bettype-group .group-details {
+        flex-direction: column;
+    }
+
+    .search-group {
+        width: 100%;
     }
 }

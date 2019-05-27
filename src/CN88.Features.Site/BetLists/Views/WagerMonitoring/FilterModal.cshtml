@@ -19,16 +19,16 @@
                 @RenderFilterTabs();
             }
             <div class="tab-content">
-                <div class="tab-pane fade active in" id="stake" role="tabpanel" aria-labelledby="stake-tab">
+                <div class="tab-pane fade active in stake" id="stake" role="tabpanel" aria-labelledby="stake-tab">
                     @Html.Partial("~/BetLists/Views/WagerMonitoring/SportStakeConditionFilter.cshtml", Model.SportStakeConditionViewModel)
                 </div>
-                <div class="tab-pane fade" id="market" role="tabpanel" aria-labelledby="market-tab">
+                <div class="tab-pane fade market" id="market" role="tabpanel" aria-labelledby="market-tab">
                     <input type="checkbox" id="checkbox-all-markets" @(Model.SelectedAllMarkets ? "checked=\"checked\"" : string.Empty) value="" />@SharedResources.AllMarkets
                     <ul class="lists list-block" id="list-market">
                         @RenderSelectListItem(Model.Markets)
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="league" role="tabpanel" aria-labelledby="league-tab">
+                <div class="tab-pane fade league" id="league" role="tabpanel" aria-labelledby="league-tab">
                     <div>
                         <div class="input-group search-group">
                             <input type="text" id="txtSearchLeague" placeholder="@SharedResources.Search" class="form-control" aria-describedby="basic-addon2">
@@ -41,7 +41,7 @@
                         @RenderSelectListItem(Model.Leagues)
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="event" role="tabpanel" aria-labelledby="event-tab">
+                <div class="tab-pane fade event" id="event" role="tabpanel" aria-labelledby="event-tab">
                     <div>
                         <div class="input-group search-group">
                             <input id="txtSearchEvent" type="text" placeholder="@SharedResources.Search" class="form-control" aria-describedby="basic-addon2">
@@ -54,7 +54,7 @@
                         @RenderSelectListItem(Model.Matches)
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="bettype" role="tabpanel" aria-labelledby="bettype-tab">
+                <div class="tab-pane fade bettype" id="bettype" role="tabpanel" aria-labelledby="bettype-tab">
                     <input type="checkbox" id="checkbox-all-bettypes" @(Model.SelectedAllBetTypes ? "checked=\"checked\"" : string.Empty) value="" />@SharedResources.AllBetTypes
                     <div class="lists list-block" id="list-bettype">
                         @{
