@@ -28,7 +28,7 @@
 }
 
 
-@helper RenderStake(ITicket ticket, int divisor, bool isMobile = false)
+@helper RenderStake(ITicket ticket, int divisor)
 {
     <td class="stake-block bl_underdog text-right">
         @(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))
@@ -61,10 +61,16 @@
 {
     var formattedPlayerDiscount = (ticket.PlayerDiscount * 100).ToString("#,##0.00");
     var showComm = !BetTypeHelper.NotShowComm(ticket.BetTypeId);
+    var ugroupName = (ticket.UGroup ?? string.Empty).ToUpper();
 
-    if (isMobile && showComm)
+    if (isMobile)
     {
-        <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @(formattedPlayerDiscount)</div>
+        @ticket.UserName
+
+        if (showComm)
+        {
+            <div class="com-info">@ugroupName @formattedPlayerDiscount</div>
+        }
     }
     else
     {
@@ -72,17 +78,24 @@
             <div>@ticket.UserName</div>
             @if (showComm)
             {
-                <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @(formattedPlayerDiscount)</div>
+                <div class="com-info">@ugroupName @formattedPlayerDiscount</div>
             }
         </td>
     }
 }
 
-@helper RenderBetID(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, GetCachePropertyById getOddsTypeNameFunc)
+@helper RenderBetID(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, GetCachePropertyById getOddsTypeNameFunc, bool isMobile = false)
 {
-    <td>
-        @(new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => getOddsTypeNameFunc(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
-    </td>
+    var betInfo = new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => getOddsTypeNameFunc(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType))));
+
+    if (isMobile)
+    {
+        @betInfo
+    }
+    else
+    {
+        <td>@betInfo</td>
+    }
 }
 
 @helper RenderWinLoss(ITicket ticket, int divisor, bool isMobile = false)
@@ -105,11 +118,20 @@
     </tr>
 }
 
-@helper RenderDetail(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, List<ITicketData> ticketData)
+@helper RenderDetail(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isMobile = false)
 {
-    <td>
-        @(new HtmlString(builder.BuildChoice(ticket, helper, ticketData)))
-    </td>
+    var choice = new HtmlString(builder.BuildChoice(ticket, helper, ticketData));
+
+    if (isMobile)
+    {
+        @choice
+    }
+    else
+    {
+        <td>
+            @choice
+        </td>
+    }
 }
 
 

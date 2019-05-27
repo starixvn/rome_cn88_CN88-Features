@@ -1,8 +1,5 @@
-﻿@using CN88.Features.Site.BetLists.Helpers
-@using CN88.Features.BetLists.Models
-@using CN88.Features.BetLists.Helpers
+﻿@using CN88.Features.BetLists.Models
 @using Fanex.BetList.Core.Utils
-@using CN88.Features.Extensions
 
 @model BetListViewModelBase
 @{
@@ -39,33 +36,31 @@
             for (int i = 0; i < tickets.Count; i++)
             {
                 var ticket = tickets[i];
-        <tr data-trans-id="@ticket.TransId">
-            <td>
-                @RenderDetailColumn(ticket)
-            </td>
+                <tr data-trans-id="@ticket.TransId">
+                    <td>@RenderDetailColumn(ticket)</td>
 
-            @BetListHelper.RenderStake(ticket, Model.Divisor)
+                    @BetListHelper.RenderStake(ticket, Model.Divisor)
 
-            @if (Model.IsShowWinLoss)
-            {
-            <td class="text-right">
-                @BetListHelper.RenderWinLoss(ticket, divisor, true)
-                <br />
-                @BetListHelper.RenderStatus(ticket, mbcBuilder, helper, ticketData, Model.DisplayVNIP, true)
-            </td>
-            }
+                    @if (Model.IsShowWinLoss)
+                    {
+                    <td class="text-right">
+                        @BetListHelper.RenderWinLoss(ticket, divisor, true)
+                        <br />
+                        @BetListHelper.RenderStatus(ticket, mbcBuilder, helper, ticketData, Model.DisplayVNIP, true)
+                    </td>
+                    }
 
-            @Html.Partial("~/BetLists/Views/Components/PayoutColumn.cshtml", Model, new ViewDataDictionary
-            {
-                { "IsBody", true },
-                { "Ticket", ticket }
-            })
+                    @Html.Partial("~/BetLists/Views/Components/PayoutColumn.cshtml", Model, new ViewDataDictionary
+                    {
+                        { "IsBody", true },
+                        { "Ticket", ticket }
+                    })
 
-            @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml", Model, new ViewDataDictionary
-            {
-                { "Ticket", ticket }
-            })
-        </tr>
+                    @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml", Model, new ViewDataDictionary
+                    {
+                        { "Ticket", ticket }
+                    })
+                </tr>
             }
         }
         else
@@ -106,10 +101,9 @@
         <div class="detail-container">
             @BetListHelper.RenderTransDate(ticket, true)
             <br />
-            @ticket.UserName
             @BetListHelper.RenderComm(ticket, true)
-            @(new HtmlString(Model.CN88Builder.BuildBetInfo(ticket, Model.TicketHelper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
-            @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, Model.BetListData.TicketData)))
+            @BetListHelper.RenderBetID(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById, true)
+            @BetListHelper.RenderDetail(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData, true)
         </div>
 }
 
