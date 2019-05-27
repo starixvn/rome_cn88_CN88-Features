@@ -7,7 +7,14 @@
     <tbody>
         @if (betData.Tickets.Any())
         {
-            @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
+            if (Model.IsMobile)
+            {
+                @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
+            }
+            else
+            {
+                @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
+            }
         }
     </tbody>
 </table>

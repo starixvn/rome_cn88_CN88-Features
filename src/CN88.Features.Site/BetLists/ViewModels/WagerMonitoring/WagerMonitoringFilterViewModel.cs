@@ -9,6 +9,7 @@
     public class WagerMonitoringFilterViewModel
     {
         public WagerMonitoringFilterViewModel(
+            bool isMobile,
             WagerMonitoringFilterQuery query,
             IEnumerable<SelectListItem> markets,
             IEnumerable<SelectListItem> leagues,
@@ -16,6 +17,7 @@
             IEnumerable<SelectListItem> betTypeGroups,
             IEnumerable<SportStakeCondition> sportStakeConditions)
         {
+            IsMobile = isMobile;
             SportGroup = query.SportGroup;
 
             SelectedAllMarkets = string.IsNullOrWhiteSpace(query.Market);
@@ -26,14 +28,16 @@
             Markets = markets;
             Leagues = leagues;
             Matches = matches;
-            BetTypeGroups = betTypeGroups.Select(x=> (BetTypeSelectListItem)x);
+            BetTypeGroups = betTypeGroups.Select(x => (BetTypeSelectListItem)x);
 
             SportStakeConditionViewModel = new SportStakeConditionViewModel(
-                query.IsSelectAllSports, 
-                query.StakeMode, 
-                query.StakeLimit, 
+                query.IsSelectAllSports,
+                query.StakeMode,
+                query.StakeLimit,
                 sportStakeConditions);
         }
+
+        public bool IsMobile { get; }
 
         public int SportGroup { get; }
 

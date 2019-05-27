@@ -1,5 +1,4 @@
-﻿"use strict";
-class OldLegacyReport extends OldBaseReport {
+﻿class OldLegacyReport extends OldBaseReport {
     $tooltip: JQuery;
     $reportForm: JQuery;
     $exportExcelForm: JQuery;

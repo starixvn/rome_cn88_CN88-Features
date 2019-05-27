@@ -16,7 +16,6 @@
         {
             <span class="icon-filter-down" id="filter-toggle-icon"></span>
         }
-
         <div class="function-group">
             <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
             <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
@@ -25,11 +24,9 @@
                 <source src="@AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/Styles/audio/TPBTLOW.ogg")" type="audio/ogg" />
             </audio>
         </div>
-    </div>    
-
-    <label class="lbl-sport">Sport</label>
+    </div>
     <div class="dropdown-sportgroup">
-        @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
+        @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, Model.IsMobile)
     </div>
     @Html.Partial("~/BetLists/Views/WagerMonitoring/FilterForm.cshtml", Model.FilterFormViewModel)
     @if (Model.IsMobile)

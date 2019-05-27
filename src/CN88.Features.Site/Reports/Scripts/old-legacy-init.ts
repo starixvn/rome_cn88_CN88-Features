@@ -1,4 +1,6 @@
-﻿$(function () {
+﻿"use strict";
+
+$(function () {
     const linkBuilderComponent = new LinkBuilderComponent($);
     const oldLegacyReport = new OldLegacyReport(
         $,

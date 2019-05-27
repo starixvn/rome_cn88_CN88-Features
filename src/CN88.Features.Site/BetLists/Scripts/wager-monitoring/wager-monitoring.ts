@@ -151,20 +151,13 @@
     }
 
     registerEvents(): void {
-        const self = this;
+        this.$filterForm.find(".link").on("click touchend", this.openFilterModal);
 
-        this.$filterForm.find(".link").on("click touchend", function () {
-            const link = $(this);
-            self.filterModal.show(link.data("target"), self.getParam(), () => { self.updateFilterForm(); });
+        this.$iconPause.parent().on("click touchend", this.onPauseClick);
+
+        this.$iconDelete.parent().on("click touchend", () => {
+            this.$tblReport.find("tbody").empty();
         });
-
-        //this.$iconPause.parent().on("click touchend", () => {
-        //    this.onPauseClick();
-        //});
-
-        //this.$iconDelete.parent().on("click touchend", () => {
-        //    this.$tblBetList.find("tbody").empty();
-        //});
 
         this.$iconSpeaker.parent().on("click touchend", () => {
             this.isSpeakOn = !this.isSpeakOn;
@@ -183,7 +176,12 @@
         });
     }
 
-    onPauseClick(): void {
+    openFilterModal = (e: JQueryEventObject) => {
+        const link = this.$(e.target);
+        this.filterModal.show(link.data("target"), this.getParam(), () => { this.updateFilterForm(); });
+    };
+
+    onPauseClick = () => {
         this.$.ajax({
             url: this.pauseUrl,
             success: (html) => {

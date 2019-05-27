@@ -80,12 +80,14 @@
 
         public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
         {
+            var isMobile = browserHelper.IsMobile();
             var sportGroups = await wagerMonitoringService.GetSportGroups();
             var leagues = await wagerMonitoringService.GetLeagues(message.SportGroup);
             var matches = await wagerMonitoringService.GetMatches(message.SportGroup);
             var betTypeGroups = await wagerMonitoringService.GetBetTypeGroupsBySport(message.SportGroup);
 
             return new WagerMonitoringFilterViewModel(
+                isMobile,
                 message,
                 BuildSelectListItems(WagerMonitoringMarket.Markets, message.Market, SelectListItemExtensions.Create),
                 BuildSelectListItems(leagues, message.LeagueIds, SelectListItemExtensions.Create),

@@ -5,38 +5,19 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title"><span class="icon-filter"></span>@BetListsResources.Filter</h5>
-            <ul class="nav nav-tabs filter-tabs" role="tablist">
-                <li class="active" role="presentation">
-                    <a href="#stake" id="stake-tab" data-toggle="tab" aria-controls="tab" aria-selected="true">
-                        @BetListsResources.Stake
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#market" id="market-tab" data-toggle="tab" aria-controls="market" aria-selected="false">
-                        @SharedResources.Market
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#league" id="league-tab" data-toggle="tab" aria-controls="league" aria-selected="false">
-                        @BetListsResources.League
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#event" id="event-tab" data-toggle="tab" aria-controls="event" aria-selected="false">
-                        @BetListsResources.Event
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#bettype" id="bettype-tab" data-toggle="tab" aria-controls="bettype" aria-selected="false">
-                        @BetListsResources.BetType
-                    </a>
-                </li>
-            </ul>
+            @if (!Model.IsMobile)
+            {
+                @RenderFilterTabs()
+            }
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
+            @if (Model.IsMobile)
+            {
+                @RenderFilterTabs();
+            }
             <div class="tab-content">
                 <div class="tab-pane fade active in" id="stake" role="tabpanel" aria-labelledby="stake-tab">
                     @Html.Partial("~/BetLists/Views/WagerMonitoring/SportStakeConditionFilter.cshtml", Model.SportStakeConditionViewModel)
@@ -84,7 +65,7 @@
                                         <input id="chk-main-markets" type="checkbox" @(Model.IsSelectedAllMainBetTypeGroups ? "checked=\"checked\"" : string.Empty) />@BetListsResources.MainMarkets
                                     </div>
                                     <ul class="group-details">
-                                        @RenderSelectListItem(Model.MainBetTypeGroups,"chk-main-markets")
+                                        @RenderSelectListItem(Model.MainBetTypeGroups, "chk-main-markets")
                                     </ul>
                                 </div>
                                 <div class="bettype-group item">
@@ -124,4 +105,34 @@
             <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) data-text="@item.Text" data-group-id="@groupId" />@item.Text
         </li>
     }
+}
+@helper RenderFilterTabs()
+{
+    <ul class="nav nav-tabs filter-tabs" role="tablist">
+        <li class="active" role="presentation">
+            <a href="#stake" id="stake-tab" data-toggle="tab" aria-controls="tab" aria-selected="true">
+                @BetListsResources.Stake
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#market" id="market-tab" data-toggle="tab" aria-controls="market" aria-selected="false">
+                @SharedResources.Market
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#league" id="league-tab" data-toggle="tab" aria-controls="league" aria-selected="false">
+                @BetListsResources.League
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#event" id="event-tab" data-toggle="tab" aria-controls="event" aria-selected="false">
+                @BetListsResources.Event
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#bettype" id="bettype-tab" data-toggle="tab" aria-controls="bettype" aria-selected="false">
+                @BetListsResources.BetType
+            </a>
+        </li>
+    </ul>
 }
