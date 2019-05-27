@@ -34,7 +34,8 @@ class SubAccount {
                 {
                     0: { sorter: "text" },
                     1: { sorter: "text" },
-                    6: { sorter: "text" }
+                    2: { sorter: "text" },
+                    7: { sorter: "text" }
                 }));
     }
 
