@@ -41,22 +41,41 @@
     <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
 }
 
-@helper RenderStatus(TicketDto ticket, IBetListHTMLBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP)
+@helper RenderStatus(TicketDto ticket, IBetListHTMLBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP, bool isMobile = false)
 {
-    <td class="text-center">
-        @(new HtmlString(builder.BuildStatus(ticket, helper, ticketData, isShowVNIP)))
-    </td>
+    var status = new HtmlString(builder.BuildStatus(ticket, helper, ticketData, isShowVNIP));
+
+    if (isMobile)
+    {
+        @status
+    }
+    else
+    {
+        <td class="text-center">
+            @status
+        </td>
+    }
 }
 
-@helper RenderComm(TicketDto ticket)
+@helper RenderComm(TicketDto ticket, bool isMobile = false)
 {
-    <td>
-        <div>@ticket.UserName</div>
-        @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
-        {
-            <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
-        }
-    </td>
+    var formattedPlayerDiscount = (ticket.PlayerDiscount * 100).ToString("#,##0.00");
+    var showComm = !BetTypeHelper.NotShowComm(ticket.BetTypeId);
+
+    if (isMobile && showComm)
+    {
+        <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @(formattedPlayerDiscount)</div>
+    }
+    else
+    {
+        <td>
+            <div>@ticket.UserName</div>
+            @if (showComm)
+            {
+                <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @(formattedPlayerDiscount)</div>
+            }
+        </td>
+    }
 }
 
 @helper RenderBetID(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, GetCachePropertyById getOddsTypeNameFunc)
@@ -66,10 +85,17 @@
     </td>
 }
 
-@helper RenderWinLoss(ITicket ticket, int divisor)
+@helper RenderWinLoss(ITicket ticket, int divisor, bool isMobile = false)
 {
-    var winloss = (ticket.Winlost + ticket.PlayerComm) / divisor;
-    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(winloss.Round())))</td>
+    var winloss = new HtmlString(ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round()));
+    if (isMobile)
+    {
+        @winloss
+    }
+    else
+    {
+        <td class="text-right">@winloss</td>
+    }
 }
 
 @helper RenderNoInformation(int colspan)
@@ -96,13 +122,13 @@
         <th class="text-right winloss">@(new HtmlString(winLoss))</th>
         <th colspan="@(numberOfColumns - 6)"></th>
     </tr>
+
     <tr class="winloss-comm">
         <th colspan="5" mobile-colspan="2">@BetListsResources.WinLossWithCommission</th>
         <th class="text-right">@(new HtmlString(total))</th>
         <th colspan="@(numberOfColumns- 6)"></th>
     </tr>
 }
-
 
 @helper RenderTotalBetsBreadcrumb(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel)
 {

@@ -27,13 +27,13 @@
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
             => browserHelper.IsMobile()
                 ? await ViewAsync(message, "ReportBetListMobile")
-                : await ViewAsync(message);
+                : await ViewAsync(message, "ReportBetList");
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> BetListOfStatement(BetListOfStatementQuery message)
              => browserHelper.IsMobile()
                 ? await ViewAsync(message, "StatementBetListMobile")
-                : await ViewAsync(message);
+                : await ViewAsync(message, "StatementBetList");
 
         [HttpGet]
         public async Task<ActionResult> ParlaySubTickets(GetParlaySubTicketsQuery message)

@@ -7,6 +7,8 @@
 
     public class WinLostBlockViewModel
     {
+        const string defaultValue = "0.00";
+
         public WinLostBlockViewModel(ITicket ticket, int divisor)
         {
             SetData(ticket, divisor);
@@ -33,13 +35,13 @@
                 case BetStatus.Running:
                 case BetStatus.Waiting:
                 case BetStatus.Reject:
-                    WinLost = "0.00";
+                    WinLost = defaultValue;
                     Comm = string.Empty;
                     break;
 
                 case BetStatus.Void:
-                    WinLost = ticket.BetTypeId == 500 ? "(NW) 0.00" : "0.00";
-                    Comm = "0.00";
+                    WinLost = ticket.BetTypeId == 500 ? "(NW) 0.00" : defaultValue;
+                    Comm = defaultValue;
                     break;
 
                 default:

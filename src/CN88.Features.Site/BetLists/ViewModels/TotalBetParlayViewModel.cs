@@ -24,7 +24,7 @@
             bool isMobile,
             string[] excludingTicketStatus = null)
         {
-            Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
+            Divisor = message.ActorLevel.IsHeadline() ? 100 : 1;
 
             CustLevel = message.ActorLevel;
             DisplayVNIP = message.DisplayVNIP;

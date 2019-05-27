@@ -891,7 +891,7 @@
     <Content Include="BetLists\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="BetLists\Views\BetListOfReport.cshtml" />
+    <Content Include="BetLists\Views\ReportBetList.cshtml" />
     <Content Include="App_Data\ExcelTemplates\Reports\Super.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\Member.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\Agent.xls" />
@@ -911,7 +911,7 @@
     <Content Include="BetLists\Excels\Templates\BetListOfReport_Master.xls" />
     <Content Include="BetLists\Excels\Templates\BetListOfReport_Super.xls" />
     <Content Include="App_Code\Components\DateTimeSelection.cshtml" />
-    <Content Include="BetLists\Views\BetListOfStatement.cshtml" />
+    <Content Include="BetLists\Views\StatementBetList.cshtml" />
     <Content Include="BetLists\Views\OutrightWagerByAccount.cshtml" />
     <Content Include="BetLists\Views\OutrightWagerDetails.cshtml" />
     <Content Include="BetLists\Views\TotalBetParlay.cshtml" />

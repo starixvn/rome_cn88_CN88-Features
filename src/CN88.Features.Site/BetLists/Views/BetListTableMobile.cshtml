@@ -7,6 +7,7 @@
 @model BetListViewModelBase
 @{
     var builder = Model.CN88Builder;
+    var mbcBuilder = Model.Builder;
     var helper = Model.TicketHelper;
     var ticketData = Model.BetListData.TicketData;
     var divisor = Model.Divisor;
@@ -47,11 +48,11 @@
 
             @if (Model.IsShowWinLoss)
             {
-                <td class="text-right">
-                    @(new HtmlString(ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round())))
-                    <br />
-                    @(new HtmlString(Model.Builder.BuildStatus(ticket, helper, ticketData, Model.DisplayVNIP)))
-                </td>
+            <td class="text-right">
+                @BetListHelper.RenderWinLoss(ticket, divisor, true)
+                <br />
+                @BetListHelper.RenderStatus(ticket, mbcBuilder, helper, ticketData, Model.DisplayVNIP, true)
+            </td>
             }
 
             @Html.Partial("~/BetLists/Views/Components/PayoutColumn.cshtml", Model, new ViewDataDictionary
@@ -102,17 +103,14 @@
 
 @helper RenderDetailColumn(TicketDto ticket)
 {
-    <div class="detail-container">
-        @BetListHelper.RenderTransDate(ticket, true)
-        <br />
-        @ticket.UserName
-        @if (!BetTypeHelper.NotShowComm(ticket.BetTypeId))
-        {
-            <div class="com-info">@((ticket.UGroup ?? string.Empty).ToUpper()) @((ticket.PlayerDiscount * 100).ToString("#,##0.00"))</div>
-        }
-        @(new HtmlString(Model.CN88Builder.BuildBetInfo(ticket, Model.TicketHelper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
-        @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, Model.BetListData.TicketData)))
-    </div>
+        <div class="detail-container">
+            @BetListHelper.RenderTransDate(ticket, true)
+            <br />
+            @ticket.UserName
+            @BetListHelper.RenderComm(ticket, true)
+            @(new HtmlString(Model.CN88Builder.BuildBetInfo(ticket, Model.TicketHelper, (obj) => Model.TicketHelper.GetOddsTypeNameById(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType)))))
+            @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, Model.BetListData.TicketData)))
+        </div>
 }
 
 @helper RenderHeaderTotalRow()
