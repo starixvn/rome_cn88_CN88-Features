@@ -28,7 +28,9 @@
 
         [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> FilterModal(WagerMonitoringFilterQuery message)
-            => await ViewAsync(message);
+            => browserHelper.IsMobile()
+                ? await ViewAsync(message, "FilterModalMobile")
+                : await ViewAsync(message);
 
         [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> LastBets(WagerMonitoringQuery message)

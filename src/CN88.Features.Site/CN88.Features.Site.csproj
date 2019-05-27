@@ -937,6 +937,7 @@
     <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
     <Content Include="CN88.Features.Site.ruleset" />
     <Content Include="BetLists\Views\WagerMonitoring\IndexMobile.cshtml" />
+    <Content Include="BetLists\Views\WagerMonitoring\FilterModalMobile.cshtml" />
     <Content Include="BetLists\Views\Components\PossessColumns.cshtml" />
     <Content Include="BetLists\Views\Components\PayoutColumn.cshtml" />
     <Content Include="BetLists\Views\Components\Popup.cshtml" />
