@@ -12,5 +12,7 @@
         }
 
         public decimal CreditAmount { get; set; }
+
+        public override bool IsValid() => base.IsValid() && !IsInternal;
     }
 }

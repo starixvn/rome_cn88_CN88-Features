@@ -57,7 +57,8 @@ class CustomerList {
         ResetSecurityCode: '',
         Active: '',
         ViewOnly: '',
-        Inactive: ''
+        Inactive: '',
+        UnlockTooltip: ''
     };
 
     masterList: MasterList;
@@ -185,6 +186,7 @@ class CustomerList {
 
         this.viewResources.ResetPassword = this.$("#ResetPassword").val();
         this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
+        this.viewResources.UnlockTooltip = this.$("#UnlockTooltip").val();
 
         this.EditCustomerLink = this.$("#EditCustomerLink").val();
         this.CreateCustomerLink = this.$("#CreateCustomerLink").val();

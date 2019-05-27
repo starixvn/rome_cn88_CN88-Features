@@ -256,6 +256,8 @@
     <Compile Include="BetLists\Params\EventWagerParam.cs" />
     <Compile Include="BetLists\Params\WagerMonitoringParam.cs" />
     <Compile Include="BetLists\WagerMonitoringService.cs" />
+    <Compile Include="CustomerList\Criteria\UpdateUnlockCriteria.cs" />
+    <Compile Include="CustomerList\Params\UpdateUnclockParam.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />

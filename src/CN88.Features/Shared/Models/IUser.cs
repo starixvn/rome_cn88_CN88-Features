@@ -31,5 +31,7 @@
         int AdminId { get; }
 
         DateTime LimitedDateToShowInfo { get; }
+
+        byte StatusId { get; }
     }
 }

@@ -47,6 +47,8 @@
 
         public int ViewerId => query.ViewerId;
 
+        public bool IsActiveViewer => query.IsActiveViewer;
+
         public string DownlineUsername => query.DownlineUsername;
 
         public string Username => query.Username;

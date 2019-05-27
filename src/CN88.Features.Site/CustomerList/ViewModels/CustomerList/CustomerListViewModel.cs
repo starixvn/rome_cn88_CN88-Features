@@ -29,6 +29,8 @@
 
         public string SearchAccountUsername { get; }
 
+        public byte SearchAccountStatus => 3;
+
         public string DownlineUsername { get; }
 
         public int TotalCustomers { get; }

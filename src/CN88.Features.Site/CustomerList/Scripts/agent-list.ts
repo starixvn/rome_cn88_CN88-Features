@@ -135,27 +135,32 @@ class AgentList extends BaseList {
             }
         } else {
             if (rs.Customers.length == 0) {
-                html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
+            html = `<tr><td colspan='8' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
             } else {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                     let customer = rs.Customers[i],
                         custId = customer.CustId,
-                        username = customer.Username;
+                    username = customer.Username,
+                    status = customer.Status;            
+
+                const userAttr = `cust-id='${custId}' username='${username}'`;
+                const iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
+
+                const resetPasswordIcon = this.isViewerActive ? `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='2'/>` : '';
+                const securityCodeIcon = this.isViewerActive ? `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>` : '';
+                const editIcon = this.isViewerActive ? `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditAgent}'/>` : '';
+                const addDownlineIcon = status == siteInfrastructure.customerStatus.active && rs.SearchAccountStatus == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewMember}'/>` : '';
+                const unclockIcon = this.isViewerActive && status == siteInfrastructure.customerStatus.inactive ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
-                        "<td class='col-no'>" + customerIndex + "</td>" +
-                        `<td class='link view-downline' cust-id='${custId}'>${username}</td>` +
-                        "<td>" + customer.Name + "</td>" +
-                        "<td>" + customer.Nickname + "</td>" +
-                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
-                        "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
-                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
-                        "<td class='col-action text-center'>" +
-                        `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='2'></span>` +
-                        `<span class='icon-security' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
-                        `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.EditAgent}'></span>` +
-                        `<span class='icon-add' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.NewMember}'></span>` +
-                        "</td>" +
+                    `<td class='col-no'> ${customerIndex} </td>` +
+                    `<td class='link view-downline' cust-id='${custId}'> ${username} </td>` +
+                    `<td>${customer.Name}</td>` +
+                    `<td>${customer.Nickname}</td>` +
+                    `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
+                    `<td class='col-date'> ${customer.CreationDateStr} </td>` +
+                    `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
+                    `<td class='col-action text-center'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon} </td>` +
                         "</tr>";
                 }
             }

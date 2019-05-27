@@ -309,4 +309,7 @@
   <data name="Wednesday" xml:space="preserve">
     <value>星期三</value>
   </data>
+  <data name="UnlockTooltip" xml:space="preserve">
+    <value>Click to unlock</value>
+  </data>
 </root>

@@ -7,6 +7,9 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "type", Target = "~T:CN88.Features.Site.BetLists.ViewModels.EventWagerByAccountViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "type", Target = "~T:CN88.Features.Site.BetLists.ViewModels.TotalBetParlayViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "type", Target = "~T:CN88.Features.Site.BetLists.ViewModels.OutrightWagerByAccountViewModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1450:Private fields only used as local variables in methods should become local variables", Justification = "<Pending>", Scope = "member", Target = "~F:CN88.Features.Site.Requests.BaseQuery.viewer")]
+
+
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "type", Target = "~T:CN88.Features.Site.BetLists.ViewModels.StartedWagerByAccountViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "type", Target = "~T:CN88.Features.Site.BetLists.ViewModels.StartedWagerDetailsViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "type", Target = "~T:CN88.Features.Site.BetLists.ViewModels.EventWagerDetailsViewModel")]

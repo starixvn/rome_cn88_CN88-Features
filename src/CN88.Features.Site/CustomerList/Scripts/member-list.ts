@@ -136,21 +136,25 @@ class MemberList extends BaseList {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                     let customer = rs.Customers[i],
                         custId = customer.CustId,
-                        username = customer.Username;
+                    username = customer.Username,
+                    status = customer.Status;
+
+                const userAttr = `cust-id='${custId}' username='${username}'`;
+                const iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
+
+                const resetPasswordIcon = this.isViewerActive ? `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='1'/>` : '';
+                const editIcon = this.isViewerActive ? `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMember}'/>` : '';
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
-                        "<td class='col-no'>" + customerIndex + "</td>" +
+                    `<td class='col-no'> ${customerIndex} </td>` +
                         `<td class='link view-statement' username='${username}' cust-id='${custId}'>${username}</td>` +
-                        "<td>" + customer.Name + "</td>" +
-                        "<td>" + customer.Nickname + "</td>" +
-                        "<td>" + customer.Group + "</td>" +
-                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
-                        "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
-                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
-                        "<td class='col-action text-center'>" +
-                        `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='1'></span>` +
-                        `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.EditMember}'></span>` +
-                        "</td>" +
+                    `<td>${customer.Name}</td>` +
+                    `<td>${customer.Nickname}</td>` +
+                    `<td>${customer.Group}</td>` +
+                    `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
+                    `<td class='col-date'> ${customer.CreationDateStr} </td>` +
+                    `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
+                    `<td class='col-action text-center'> ${resetPasswordIcon} ${editIcon} </td>` +
                         "</tr>";
                 }
             }

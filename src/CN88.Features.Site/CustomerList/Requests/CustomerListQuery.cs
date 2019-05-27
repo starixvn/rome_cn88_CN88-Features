@@ -29,5 +29,7 @@
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
+
+        public override bool IsValid() => base.IsValid() && IsActiveViewer;
     }
 }

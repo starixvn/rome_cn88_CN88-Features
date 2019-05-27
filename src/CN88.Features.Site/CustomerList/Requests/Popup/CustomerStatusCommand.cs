@@ -12,5 +12,7 @@
         }
 
         public byte UpdateStatusId { get; set; }
+
+        public override bool IsValid() => base.IsValid() && !IsInternal;
     }
 }

@@ -565,6 +565,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to unlock.
+        /// </summary>
+        public static string UnlockTooltip {
+            get {
+                return ResourceManager.GetString("UnlockTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Credit.
         /// </summary>
         public static string UpdateCredit {

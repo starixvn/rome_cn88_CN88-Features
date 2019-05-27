@@ -318,4 +318,7 @@
   <data name="ViewOnly" xml:space="preserve">
     <value>View Only</value>
   </data>
+  <data name="UnlockTooltip" xml:space="preserve">
+    <value>Click to unlock</value>
+  </data>
 </root>

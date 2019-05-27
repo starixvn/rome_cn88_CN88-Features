@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using CN88.Features.CustomerList;
     using Features.Models;
     using Features.Shared.Models;
 
@@ -9,15 +10,7 @@
     {
         protected BaseQuery(IUser viewer)
         {
-            ViewerId = viewer.Id;
-            ViewerName = viewer.Name;
-            NickName = viewer.NickName;
-            ViewerLevelId = viewer.LevelId;
-            SubAccountId = viewer.SubAccountId;
-            IsInternal = viewer.IsInternal;
-            IP = viewer.IP;
             LanguageKey = viewer.LanguageKey;
-            Language = viewer.Language;
         }
 
         public int CustId { get; set; }
@@ -30,27 +23,32 @@
 
         public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 
-        public int ViewerId { get; }
+        public int ViewerId => viewer.Id;
 
-        public string ViewerName { get; }
+        public string ViewerName => viewer.Name;
 
-        public string NickName { get; }
+        public string NickName => viewer.NickName;
 
-        public byte ViewerLevelId { get; }
+        public byte ViewerLevelId => viewer.LevelId;
+
+        public byte ViewerStatusId => viewer.StatusId;
+
+        public bool IsActiveViewer => viewer.StatusId.Equals(CustomerStatus.Active);
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
 
         public IEnumerable<CustInfo> BreadcrumbLevel { get; set; } = Enumerable.Empty<CustInfo>();
 
-        public int SubAccountId { get; }
+        public int SubAccountId => viewer.SubAccountId;
 
-        public bool IsInternal { get; }
+        public bool IsInternal => viewer.IsInternal;
 
-        public string IP { get; }
+        public string IP => viewer.IP;
+
+        public string Language => viewer.Language;
 
         public string LanguageKey { get; }
 
-        public string Language { get; }
 
         public virtual bool IsValid()
             => ViewerId > 0

@@ -37,6 +37,7 @@ class BaseList {
     addDownlineFunction: Function;
     reportColSpan: number;
     minPageSize: number = 10;
+    isViewerActive: boolean;
 
     constructor(
         $: JQueryStatic,
@@ -68,7 +69,7 @@ class BaseList {
         this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 9 : 8;
         this.viewDownlineFunction = viewDownlineFunction;
         this.addDownlineFunction = addDownlineFunction;
-
+        this.isViewerActive = this.$("#IsActiveViewer").val().toLowerCase() == 'true';
         this.cacheDOMElements();
 
         this.statusComponent.render(
