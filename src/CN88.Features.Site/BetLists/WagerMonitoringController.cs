@@ -22,9 +22,7 @@
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> Index(WagerMonitoringQuery message)
-            => browserHelper.IsMobile()
-                ? await ViewAsync(message, "IndexMobile")
-                : await ViewAsync(message);
+            => await ViewAsync(message);
 
         [HttpPost, RestrictHeadlineFilter]
         public async Task<ActionResult> FilterModal(WagerMonitoringFilterQuery message)

@@ -7,23 +7,39 @@
 @section Styles {
     @StaticResources.RenderStyles("~/BetLists/bundles/wager-monitoring")
 }
+<div class="page-title">
+    @BetListsResources.WagerMonitoringConsole
+</div>
 <div class="betlist-container wager-monitoring">
-    <div class="function-group">
-        <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
-        <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
-        <div class="btn-function on"><span class="icon-audio-speaker icon-audio-speaker-on"></span><span id="icon-audio-text">@SharedResources.On</span></div>
-        <audio controls="controls" class="hide" id="sound">
-            <source src="@AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/Styles/audio/TPBTLOW.ogg")" type="audio/ogg" />
-        </audio>
-    </div>
-    <div class="page-title">
-        @BetListsResources.WagerMonitoringConsole
-    </div>
+    <div class="main-function">
+        @if (Model.IsMobile)
+        {
+            <span class="icon-filter-down" id="filter-toggle-icon"></span>
+        }
+
+        <div class="function-group">
+            <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
+            <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
+            <div class="btn-function on"><span class="icon-audio-speaker icon-audio-speaker-on"></span><span id="icon-audio-text">@SharedResources.On</span></div>
+            <audio controls="controls" class="hide" id="sound">
+                <source src="@AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/Styles/audio/TPBTLOW.ogg")" type="audio/ogg" />
+            </audio>
+        </div>
+    </div>    
+
+    <label class="lbl-sport">Sport</label>
     <div class="dropdown-sportgroup">
         @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
     </div>
     @Html.Partial("~/BetLists/Views/WagerMonitoring/FilterForm.cshtml", Model.FilterFormViewModel)
-    @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
+    @if (Model.IsMobile)
+    {
+        @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
+    }
+    else
+    {
+        @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
+    }
 </div>
 <div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>

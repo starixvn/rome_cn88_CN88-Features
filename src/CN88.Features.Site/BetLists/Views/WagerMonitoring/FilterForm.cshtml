@@ -3,23 +3,23 @@
 @model FilterFormViewModel
 <form class="form-inline filter report-form" role="form" id="filter-form">
     <div class="form-group fix-position">
-        <label>@BetListsResources.Stake</label>
+        <label>@BetListsResources.Stake<span class="hide-desktop">:</span></label>
         <a class="link" data-target="#stake-tab">@Model.StakeLinkText</a>
     </div>
     <div class="form-group">
-        <label>@SharedResources.Market</label>
+        <label>@SharedResources.Market<span class="hide-desktop">:</span></label>
         <a class="link" data-target="#market-tab">@Model.MarketLinkText</a>
     </div>
     <div class="form-group">
-        <label>@BetListsResources.League</label>
+        <label>@BetListsResources.League<span class="hide-desktop">:</span></label>
         <a class="link" data-target="#league-tab">@Model.LeagueLinkText</a>
     </div>
     <div class="form-group">
-        <label>@BetListsResources.Event</label>
+        <label>@BetListsResources.Event<span class="hide-desktop">:</span></label>
         <a class="link" data-target="#event-tab">@Model.EventLinkText</a>
     </div>
     <div class="form-group">
-        <label>@SharedResources.BetType</label>
+        <label>@SharedResources.BetType<span class="hide-desktop">:</span></label>
         <a class="link" data-target="#bettype-tab">@Model.BetTypeLinkText</a>
     </div>
     @Html.Hidden(nameof(Model.SportGroup), Model.SportGroup)

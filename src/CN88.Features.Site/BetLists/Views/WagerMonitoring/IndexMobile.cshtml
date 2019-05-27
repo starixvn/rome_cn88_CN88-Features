@@ -8,24 +8,28 @@
 @section Styles {
     @StaticResources.RenderStyles("~/BetLists/bundles/wager-monitoring")
 }
-<div id="header" class="header">
-    <div class="menubar-mobile">
-        <div class="page-title" id="page-title">@BetListsResources.WagerMonitoringConsole</div>
-    </div>
+<div class="menubar-mobile">
+    <div class="page-title" id="page-title">@BetListsResources.WagerMonitoringConsole</div>
 </div>
 <div class="betlist-container">
     <div class="page-title-mobile">
-        <span class="icon-delete"></span>
-        <span class="icon-pause"></span>
-        <span class="icon-audio-speaker icon-audio-speaker-on"></span>
         <span class="icon-filter-down" id="filter-toggle-icon"></span>
-        <audio controls="controls" class="hide" id="sound">
-            <source src="@AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/Styles/audio/TPBTLOW.ogg")" type="audio/ogg" />
-        </audio>
+        <div class="function-group">
+            <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
+            <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
+            <div class="btn-function on"><span class="icon-audio-speaker icon-audio-speaker-on"></span><span id="icon-audio-text">@SharedResources.On</span></div>
+            <audio controls="controls" class="hide" id="sound">
+                <source src="@AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/Styles/audio/TPBTLOW.ogg")" type="audio/ogg" />
+            </audio>
+        </div>
     </div>
-    <div class="dropdown-sportgroup">
-        @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
+    <div>
+        <label></label>
+        <div class="dropdown-sportgroup">
+            @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, false)
+        </div>
     </div>
+    
     @Html.Partial("~/BetLists/Views/WagerMonitoring/FilterForm.cshtml", Model.FilterFormViewModel)
     @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
 </div>
