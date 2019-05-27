@@ -31,7 +31,9 @@
 
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> BetListOfStatement(BetListOfStatementQuery message)
-            => await ViewAsync(message);
+             => browserHelper.IsMobile()
+                ? await ViewAsync(message, "StatementBetListMobile")
+                : await ViewAsync(message);
 
         [HttpGet]
         public async Task<ActionResult> ParlaySubTickets(GetParlaySubTicketsQuery message)

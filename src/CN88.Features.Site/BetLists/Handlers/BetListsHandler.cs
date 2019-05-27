@@ -115,7 +115,8 @@
                 betlistData,
                 ticketHelper,
                 cn88Builder,
-                builder);
+                builder,
+                browserHelper.IsMobile());
         }
 
         public ParlayDetailViewModel Handle(GetParlayDetailQuery message)

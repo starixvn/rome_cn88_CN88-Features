@@ -17,6 +17,7 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
+            bool isMobile,
             string[] excludingTicketStatus = null)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
@@ -43,6 +44,8 @@
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
+
+            IsMobile = isMobile;
         }
 
         public DateTime Date { get; }

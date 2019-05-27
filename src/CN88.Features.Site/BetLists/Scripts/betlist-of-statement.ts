@@ -1,6 +1,8 @@
 ﻿class BetListOfStatement {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
+    isMobile: boolean;
+    reportTable: any;
 
     constructor(
         $: JQueryStatic,
@@ -11,11 +13,20 @@
     }
 
     init = () => {
+        this.reportTable = this.$("#tbl-report");
+        this.isMobile = this.reportTable.data("ismobile");
         this.registerEvents();
-        this.pagerComponent.render();
     };
 
     registerEvents = () => {
+        if (this.isMobile) {
+            this.reportTable.stacktable();
+            this.$('body').backtop();
+        }
+        else {
+            this.pagerComponent.render();
+        }
+
         this.$(".btn-back").off("click").on("click", function () {
             window.location.href = document.referrer;
         });
