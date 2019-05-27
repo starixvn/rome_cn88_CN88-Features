@@ -141,7 +141,8 @@ class AgentList extends BaseList {
                     let customer = rs.Customers[i],
                         custId = customer.CustId,
                     username = customer.Username,
-                    status = customer.Status;            
+                    status = customer.Status,
+                    closed = customer.Closed;
 
                 const userAttr = `cust-id='${custId}' username='${username}'`;
                 const iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
@@ -150,7 +151,7 @@ class AgentList extends BaseList {
                 const securityCodeIcon = this.isViewerActive ? `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>` : '';
                 const editIcon = this.isViewerActive ? `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditAgent}'/>` : '';
                 const addDownlineIcon = status == siteInfrastructure.customerStatus.active && rs.SearchAccountStatus == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewMember}'/>` : '';
-                const unclockIcon = this.isViewerActive && status == siteInfrastructure.customerStatus.inactive ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+                const unclockIcon = this.isViewerActive ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
                     `<td class='col-no'> ${customerIndex} </td>` +

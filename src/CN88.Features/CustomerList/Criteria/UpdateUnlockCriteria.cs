@@ -7,14 +7,12 @@
     {
         public UpdateUnlockCriteria(
             int searchAccountId,
-            bool locked,
             int actorId,
             int subAccountId,
             string language,
             string ip)
         {
             SearchAccountId = searchAccountId;
-            Locked = locked;
             ActorId = actorId;
             SubAccountId = subAccountId;
             Language = language;
@@ -25,7 +23,7 @@
         public int SearchAccountId { get; }
 
         [SpParam(SqlParamName = "Closed")]
-        public bool Locked { get; }
+        public bool Locked  => false;
 
         [SpParam(SqlParamName = "UserId")]
         public int ActorId { get; }

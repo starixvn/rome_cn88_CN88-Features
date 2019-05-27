@@ -29,7 +29,7 @@
                     Converter.ToInt(outputParams["totalrows"]), 
                     downlines, 
                     Converter.ToInt(outputParams["uplineid"]),
-                    (byte)outputParams["uplineStatus"]);
+                    outputParams["uplineStatus"] == null ? (byte)4 : (byte)outputParams["uplineStatus"]);
             }
         }
     }

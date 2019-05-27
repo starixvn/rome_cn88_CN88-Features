@@ -16,6 +16,7 @@
             string nickname,
             string group,
             decimal credit,
+            bool closed,
             DateTime creationDate,
             int status)
         {
@@ -25,6 +26,7 @@
             Nickname = nickname;
             Group = group;
             Credit = credit;
+            Closed = closed;
             CreationDate = creationDate;
             Status = status;
         }
@@ -40,6 +42,8 @@
         public string Group { get; set; }
 
         public decimal Credit { get; }
+
+        public bool Closed { get; }
 
         public DateTime CreationDate { get; }
 

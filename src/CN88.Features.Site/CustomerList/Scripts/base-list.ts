@@ -187,6 +187,12 @@ class BaseList {
         });
 
         var buttonAddNew = this.$(".add-directdownline-" + this.levelNameLowerCase);
+        this.$tblReport.find(".icon-unlock").click(function () {
+            var $this = self.$(this);
+
+            self.indexManager.updateUnlock($this.attr("cust-id"));
+        });
+
         if (rs.SearchAccountId > 0) {
             buttonAddNew.removeAttr("disabled");
             buttonAddNew.click(function () {

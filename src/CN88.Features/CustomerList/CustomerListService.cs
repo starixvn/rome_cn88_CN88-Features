@@ -20,7 +20,7 @@
 
         Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
 
-        Result UpdateUnlock(UpdateUnclockParam param);
+        Result UpdateUnlock(UpdateUnlockParam param);
 
         IEnumerable<OnlineMemberModel> OnlineMembers(OnlineMembersParam param);
     }
@@ -76,9 +76,9 @@
 
             dynamicRepository.Execute(command);
 
-            return command.ErrCode.Equals(0)
-               ? Result.CreateSuccessResult()
-               : Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+            return command.ErrCode.Equals(0) ? 
+                Result.CreateSuccessResult() : 
+                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
         public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
@@ -93,16 +93,15 @@
 
             dynamicRepository.Execute(command);
 
-            return command.ErrCode.Equals(0)
-                ? Result.CreateSuccessResult() :
+            return command.ErrCode.Equals(0) ? 
+                Result.CreateSuccessResult() :
                 Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
-        public Result UpdateUnlock(UpdateUnclockParam param)
+        public Result UpdateUnlock(UpdateUnlockParam param)
         {
             var command = new UpdateUnlockCriteria(
                     param.SearchAccountId,
-                    param.Locked,
                     param.ActorId,
                     param.SubAccountId,
                     param.Language,
@@ -110,8 +109,8 @@
 
             dynamicRepository.Execute(command);
 
-            return command.ErrCode.Equals(0)
-                ? Result.CreateSuccessResult() :
+            return command.ErrCode.Equals(0) ? 
+                Result.CreateSuccessResult() :
                 Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 

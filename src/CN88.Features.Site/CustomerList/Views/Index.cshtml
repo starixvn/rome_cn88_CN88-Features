@@ -299,6 +299,7 @@
 @Html.Hidden("PageIndex", Model.PageIndex)
 @Html.Hidden("IsDevice", Model.IsDevice ? 1 : 0)
 
+@Html.AntiForgeryToken()
 @section Scripts {
     @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
 }

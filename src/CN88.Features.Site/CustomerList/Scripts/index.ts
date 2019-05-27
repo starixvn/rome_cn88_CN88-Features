@@ -284,6 +284,37 @@ class CustomerList {
             ActorLevel: this.ActorLevel
         });
     };
+
+    updateUnlock = (custId: any) => {
+        let self = this;
+        this.$.blockUI();
+        this.topWindow.popupManager.init(this.$, this.topWindow);
+        this.topWindow.popupManager.bootboxConfirm(
+            'unlock user',
+            'do you want to unlock this user?',
+            () => {
+                self.$.ajax({
+                    type: "POST",
+                    url: 'UpdateUnlock',
+                    data: { "CustId": custId},
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("__RequestVerificationToken", self.$("input[name=\"__RequestVerificationToken\"]").val());
+                    }
+                })
+                    .done(function (data) {
+
+                    })
+                    .fail(function (jqXHR: JQueryXHR) {
+                        if (jqXHR.status === 403) {
+                           
+                        }
+                    })
+                    .always(function () { self.$.unblockUI(); });
+            }
+        );
+    };
+
     addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
         if (this.AccountManagementEditView) {
             reportParam.CustId = custId;

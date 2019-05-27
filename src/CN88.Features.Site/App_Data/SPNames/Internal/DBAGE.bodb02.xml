@@ -170,6 +170,7 @@
     <Setting Key="CS_Customer_DownlineList_Sel" SpName="CS_Customer_DownlineList_Sel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
       <Mapping DataField="firstname" ObjectProperty="Name"></Mapping>
       <Mapping DataField="createddate" ObjectProperty="CreationDate"></Mapping>
+      <Mapping DataField="isclosed" ObjectProperty="Closed"></Mapping>
     </Setting>
   </Function>
 </Functions>
