@@ -7,6 +7,7 @@
     using CN88.Features.BetLists.Models;
     using CN88.Features.Shared.Configurations;
     using CN88.Features.Shared.Models;
+    using CN88.Features.Site.BetLists.Requests;
     using CN88.Features.Site.Shared.ViewModels.Components;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -14,9 +15,32 @@
 
     public class BetListViewModelBase
     {
-        public UserLevel CustLevel { get; protected set; }
+        public BetListViewModelBase(
+            BetListBaseQuery message,
+            ITicketHelper ticketHelper,
+            IBetListCN88HtmlBuilder cn88Builder,
+            IBetListHTMLBuilder builder)
+        {
+            Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
 
-        public string CustName { get; protected set; }
+            CustId = message.CustId;
+            CustName = message.CustName;
+            CustLevel = message.ActorLevel;
+            DisplayVNIP = message.DisplayVNIP;
+            ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
+            ViewerLevelId = message.ViewerLevelId;
+
+            PageIndex = message.PageIndex;
+            PageSize = message.PageSize;
+
+            TicketHelper = ticketHelper;
+            CN88Builder = cn88Builder;
+            Builder = builder;
+        }
+
+        public UserLevel CustLevel { get; }
+
+        public string CustName { get; }
 
         public int NoOfColumns { get; protected set; }
 
@@ -24,15 +48,15 @@
 
         public BetListTotal BetListTotal { get; protected set; }
 
-        public ITicketHelper TicketHelper { get; protected set; }
+        public ITicketHelper TicketHelper { get; }
 
-        public IBetListHTMLBuilder Builder { get; protected set; }
+        public IBetListHTMLBuilder Builder { get; }
 
-        public IBetListCN88HtmlBuilder CN88Builder { get; protected set; }
+        public IBetListCN88HtmlBuilder CN88Builder { get; }
 
-        public bool DisplayVNIP { get; protected set; }
+        public bool DisplayVNIP { get; }
 
-        public int Divisor { get; protected set; }
+        public int Divisor { get; }
 
         public bool IsMobile { get; protected set; }
 
@@ -81,15 +105,15 @@
 
         public int BetTypeGroup { get; protected set; }
 
-        public int CustId { get; protected set; }
+        public int CustId { get; }
 
-        public int ViewerIdOrViewerAdminId { get; protected set; }
+        public int ViewerIdOrViewerAdminId { get; }
 
-        public byte ViewerLevelId { get; protected set; }
+        public byte ViewerLevelId { get; }
 
-        public int PageIndex { get; protected set; }
+        public int PageIndex { get; }
 
-        public int PageSize { get; protected set; }
+        public int PageSize { get; }
 
         public PagerViewModel PagerViewModel { get; protected set; }
 

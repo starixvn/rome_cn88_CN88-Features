@@ -1,18 +1,17 @@
 ﻿@model BetListViewModelBase
 @{
-    var isBody = ViewBag.IsBody as bool?;
-    var ticket = ViewBag.Ticket as TicketDto;
+    var isBody = ViewData["IsBody"] as bool?;
+    var ticket = ViewData["Ticket"] as TicketDto;
 }
-
-
 @if (Model.IsShowPayout)
 {
-    if (isBody.HasValue && !isBody.Value)
+    if (isBody.HasValue && isBody.Value)
     {
-        <th class="text-right">@BetListsResources.EstPayout</th>
+        <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / Model.Divisor)))</td>
     }
     else
     {
-        <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / Model.Divisor)))</td>
+        <th class="text-right">@BetListsResources.EstPayout</th>
+
     }
 }

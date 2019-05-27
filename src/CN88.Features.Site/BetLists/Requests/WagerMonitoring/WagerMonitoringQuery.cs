@@ -8,9 +8,6 @@
     {
         public WagerMonitoringQuery(IUser viewer) : base(viewer)
         {
-            ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
         }
-
-        public int ViewerIdOrViewerAdminId { get; }
     }
 }

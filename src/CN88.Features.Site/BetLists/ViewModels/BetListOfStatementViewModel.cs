@@ -19,30 +19,16 @@
             IBetListHTMLBuilder builder,
             bool isMobile,
             string[] excludingTicketStatus = null)
+            : base(message, ticketHelper, cn88Builder, builder)
         {
-            Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
-
-            CustLevel = message.ActorLevel;
-            DisplayVNIP = message.DisplayVNIP;
-            CustName = message.CustName;
-
             NoOfColumns = CalculateNumberOfColumns(11);
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
-            TicketHelper = ticketHelper;
-            CN88Builder = cn88Builder;
-            Builder = builder;
 
             Date = message.Date;
             SportTypeGroup = message.SportTypeGroup;
-            CustId = message.CustId;
 
-            ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
-            ViewerLevelId = message.ViewerLevelId;
-
-            PageIndex = message.PageIndex;
-            PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             IsMobile = isMobile;

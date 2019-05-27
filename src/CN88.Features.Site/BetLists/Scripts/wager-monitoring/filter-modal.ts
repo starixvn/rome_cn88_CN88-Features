@@ -1,4 +1,5 @@
-﻿class FilterParam {
+﻿/// <reference path="../../../shared/scripts/core.ts" />
+class FilterParam {
     constructor(
         public sportGroup = 0,
         public isSelectAllSports = true,
@@ -31,7 +32,6 @@ class FilterModal {
 
     sportGroup: number;
     isOpeningFilter = false;
-    enterKeyCode = 13;
 
     cleaveAllSportStake: any;
     cleavePerSportStake = {};
@@ -155,7 +155,7 @@ class FilterModal {
         });
 
         this.$searchLeagueTextbox.keyup(function (e) {
-            if (e.keyCode === self.enterKeyCode) {
+            if (e.keyCode === cn88Features.keyCode.enter) {
                 self.searchLeague();
             }
         });
@@ -170,7 +170,7 @@ class FilterModal {
         });
 
         this.$searchEventTextbox.keyup(function (e) {
-            if (e.keyCode === self.enterKeyCode) {
+            if (e.keyCode === cn88Features.keyCode.enter) {
                 self.searchEvent();
             }
         });

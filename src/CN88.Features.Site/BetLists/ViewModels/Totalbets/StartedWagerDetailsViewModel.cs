@@ -23,13 +23,8 @@
               IBetListHTMLBuilder builder,
               bool isMobile,
               string[] excludingTicketStatus = null)
+            : base(message, ticketHelper, cn88Builder, builder)
         {
-            Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
-
-            CustLevel = message.ActorLevel;
-            DisplayVNIP = message.DisplayVNIP;
-            CustName = message.CustName;
-            CustId = message.CustId;
             Stake = message.Stake;
             StakeCondition = message.StakeCondition;
             MatchId = message.MatchId;
@@ -41,15 +36,7 @@
 
             BetListData = betListData;
             BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
-            TicketHelper = ticketHelper;
-            CN88Builder = cn88Builder;
-            Builder = builder;
 
-            ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
-            ViewerLevelId = message.ViewerLevelId;
-
-            PageIndex = message.PageIndex;
-            PageSize = message.PageSize;
             PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             IsShowWinLoss = false;

@@ -15,33 +15,25 @@
     {
         public WagerMonitoringViewModel(
             long minTransId,
-            WagerMonitoringQuery query,
+            WagerMonitoringQuery message,
             BetListData betListData,
             IEnumerable<SelectListItemExt> sportGroups,
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
             bool isMobile = false)
+            : base(message, ticketHelper, cn88Builder, builder)
         {
-            CustId = query.CustId;
-            CustLevel = query.ActorLevel;
-            ViewerIdOrViewerAdminId = query.ViewerIdOrViewerAdminId;
-            ViewerLevelId = query.ViewerLevelId;
-            Divisor = query.ActorLevel.IsHeadline() ? 100 : 1;
             NoOfColumns = CalculateNumberOfColumns();
 
             MinTransId = minTransId;
             BetListData = betListData;
-            Builder = builder;
-            CN88Builder = cn88Builder;
-            TicketHelper = ticketHelper;
 
-            FilterFormViewModel = new FilterFormViewModel(query);
-            SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.SportGroup);
+            FilterFormViewModel = new FilterFormViewModel(message);
+            SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportGroup);
 
             IsMobile = isMobile;
             IsShowWinLoss = false;
-            IsShowPayout = false;
         }
 
         public long MinTransId { get; }

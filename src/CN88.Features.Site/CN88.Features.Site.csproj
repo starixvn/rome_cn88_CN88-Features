@@ -723,6 +723,7 @@
     <Compile Include="BetLists\Handlers\WagerMonitoringHandler.cs" />
     <Compile Include="BetLists\Helpers\BetListHelpers.cs" />
     <Compile Include="BetLists\Models\SportStakeCondition.cs" />
+    <Compile Include="BetLists\Requests\BetListBaseQuery.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
     <Compile Include="BetLists\Requests\Totalbets\StartedWagerDetailsQuery.cs" />
     <Compile Include="BetLists\Requests\Totalbets\StartedWagerByAccountQuery.cs" />

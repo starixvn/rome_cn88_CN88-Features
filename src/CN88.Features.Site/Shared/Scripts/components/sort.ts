@@ -111,18 +111,14 @@ class SortComponent {
             sortList = [[this.$(sortedColumnHeader).data("colindex"), isDescendingSort ? 1 : 0]];
         }
 
-        try {
-            this.$sortContainer.tablesorter(
-                {
-                    defaultParser: 1,
-                    headers: this.options.headers,
-                    sortList: sortList,
-                    textExtraction: this.textExtraction,
-                    selectorHeaders: 'thead th.header'
-                });
-        } catch (e) {
-            console.log(e);
-        }
+        this.$sortContainer.tablesorter(
+            {
+                defaultParser: 1,
+                headers: this.options.headers,
+                sortList: sortList,
+                textExtraction: this.textExtraction,
+                selectorHeaders: 'thead th.header'
+            });
 
         this.$sortContainer.off("sortEnd").on("sortEnd", () => {
             var $sortedcolumn = this.$sortContainer
