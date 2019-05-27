@@ -114,40 +114,7 @@
     }
 }
 
-.nav-tabs.filter-tabs {
-    border-bottom: none;
-    margin-left: 20px;
 
-    li {
-        position: relative;
-
-        a {
-            padding: 13px 12px 9px;
-            color: #fff;
-        }
-
-        &:hover, &.active {
-            &:after {
-                background-color: #7e1414;
-                width: 0;
-                height: 0;
-                border-left: 8px solid transparent;
-                border-right: 8px solid transparent;
-                border-bottom: 8px solid #fff;
-                content: " ";
-                position: absolute;
-                bottom: -1px;
-                left: 50%;
-                margin-left: -8px;
-            }
-
-            a {
-                color: #FF9999;
-                text-decoration: none;
-            }
-        }
-    }
-}
 
 .tab-content {
     input[type="checkbox"], input[type="radio"] {
@@ -302,6 +269,44 @@
     display: none;
 }
 
+
+body:not(.phone) {
+    .nav-tabs.filter-tabs {
+        border-bottom: none;
+        margin-left: 20px;
+
+        li {
+            position: relative;
+
+            a {
+                padding: 13px 12px 9px;
+                color: #fff;
+            }
+
+            &:hover, &.active {
+                &:after {
+                    background-color: #7e1414;
+                    width: 0;
+                    height: 0;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                    border-bottom: 8px solid #fff;
+                    content: " ";
+                    position: absolute;
+                    bottom: -1px;
+                    left: 50%;
+                    margin-left: -8px;
+                }
+
+                a {
+                    color: #FF9999;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
 // For phone
 body.phone {
     .page-title {
@@ -395,6 +400,51 @@ body.phone {
 
         .hide-desktop {
             display: inline;
+        }
+    }
+
+    .filter-modal .modal-dialog {
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: 0;
+
+        .modal-body {
+            padding: 0;
+        }
+
+        .tab-content {
+            padding: 12px;
+            text-transform: uppercase;
+        }
+
+        .wager-monitoring .page-title {
+            margin-top: 20px;
+        }
+
+        .lists.list-stake {
+            padding-left: 0;
+        }
+
+        .lists .sport-name {
+            display: block !important;
+            width: 100%;
+        }
+
+        .lists .dropdown-stake-condition {
+            display: block;
+            width: 100%;
+        }
+
+        .lists .dropdown-stake-condition label {
+            display: none;
+        }
+
+        .lists .item {
+            flex-direction: column;
+        }
+
+        .nav.nav-tabs > li > a {
+            padding: 8px 0;
         }
     }
 }
