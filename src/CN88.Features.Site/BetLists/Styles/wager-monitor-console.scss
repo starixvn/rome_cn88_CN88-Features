@@ -135,6 +135,14 @@
     padding-left: 12px;
     margin-top: 8px;
 
+    .item {
+        flex: 0 0 33.33%;
+        padding: 6px 20px 6px 0;
+        display: flex;
+        align-items: flex-start;
+        line-height: 18px;
+    }
+
     &.list-event .item {
         flex: 0 0 50%;
     }
@@ -154,15 +162,6 @@
     &.list-bettype {
         padding-left: 0;
     }
-
-    .item {
-        flex: 0 0 33.33%;
-        padding: 6px 20px 6px 0;
-        display: flex;
-        align-items: flex-start;
-        line-height: 18px;
-    }
-    
 
     .dropdown-stake-condition {
         display: inline-block;
