@@ -25,7 +25,6 @@
             : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, null)
         {
             MinTransId = minTransId;
-            NoOfColumns = CalculateNumberOfColumns();
 
             FilterFormViewModel = new FilterFormViewModel(message);
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportGroup);

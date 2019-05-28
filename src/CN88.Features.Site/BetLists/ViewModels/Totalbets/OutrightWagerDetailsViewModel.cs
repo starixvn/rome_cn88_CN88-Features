@@ -26,7 +26,6 @@
             StakeCondition = message.StakeCondition;
             MatchId = message.MatchId;
 
-            NoOfColumns = CalculateNumberOfColumns();
             IsShowWinLoss = false;
         }
 

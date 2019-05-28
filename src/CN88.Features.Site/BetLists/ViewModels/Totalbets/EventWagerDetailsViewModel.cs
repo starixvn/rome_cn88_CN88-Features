@@ -29,7 +29,6 @@
             LiveIndicator = message.LiveIndicator;
             BetTeam = message.BetTeam;
 
-            NoOfColumns = CalculateNumberOfColumns();
             IsShowWinLoss = false;
         }
 

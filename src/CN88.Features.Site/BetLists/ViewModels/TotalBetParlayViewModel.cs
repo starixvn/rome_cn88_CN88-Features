@@ -30,8 +30,6 @@
             StakeMode = message.StakeMode;
             StakeLimit = message.StakeLimit;
 
-            NoOfColumns = CalculateNumberOfColumns(10);
-
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportGroupId);
             StakeSelectionViewModel = new StakeSelectionViewModel(stakeModes, message.StakeMode, message.StakeLimit);
             ViewModeSelectionViewModel = new SingleSelectionViewModel(viewModes, message.ViewMode);
@@ -55,5 +53,7 @@
         public StakeSelectionViewModel StakeSelectionViewModel { get; }
 
         public SingleSelectionViewModel ViewModeSelectionViewModel { get; }
+
+        protected override int GetMaxColumn() => 10;
     }
 }

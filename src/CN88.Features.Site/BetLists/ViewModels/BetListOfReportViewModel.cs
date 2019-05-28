@@ -54,7 +54,6 @@
             Type = message.Type;
             IsOwner = message.IsOwner;
 
-            NoOfColumns = CalculateNumberOfColumns(11);
             ReportType = ReportTypes[message.Type];
             ReportTitle = ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[ReportType]);
         }
@@ -158,5 +157,7 @@
         public override BreadcrumbItem BuildBackLink(string request)
             => BreadcrumbLevelViewModel.BuildBreadcrumbLinks(request, message.IsSettlement, BreadcrumbParamByLevel).LastOrDefault()
                 ?? new BreadcrumbItem("Not Found", "#");
+
+        protected override int GetMaxColumn() => 11;
     }
 }

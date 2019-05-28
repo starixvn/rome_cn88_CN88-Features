@@ -21,8 +21,9 @@
     $sportStakeConditions: JQuery;
     $minTransId: JQuery;
 
-    $iconPause: JQuery;
-    $iconDelete: JQuery;
+    $btnPause: JQuery;
+    $btnClear: JQuery;
+    $btnSpeaker: JQuery;
     $iconSpeaker: JQuery;
     $iconSpeakerText: JQuery;
     $sound: JQuery;
@@ -61,11 +62,15 @@
         lblOff: ''
     };
 
-    constructor($: JQueryStatic) {
+    constructor(
+        $: JQueryStatic,
+        filterModal: FilterModal,
+        sportGroupSelectionComponent: SingleSelectionDropdownComponent,
+        toggleHandler: ToggleHandler) {
         this.$ = $;
-        this.filterModal = new FilterModal($);
-        this.sportGroupSelectionComponent = new SingleSelectionDropdownComponent($);
-        this.toggleHandler = new ToggleHandler($);
+        this.filterModal = filterModal;
+        this.sportGroupSelectionComponent = sportGroupSelectionComponent;
+        this.toggleHandler = toggleHandler;
     }
 
     init(): void {
@@ -80,7 +85,7 @@
         this.getBetsUrl = this.$("#get-bets-url").val();
         this.intervalTime = this.$("#IntervalTime").val();
 
-        setInterval(() => { this.getLastBets(); }, this.intervalTime * 1000);
+        setInterval(this.getLastBets, this.intervalTime * 1000);
 
         this.$.unblockUI();
     }
@@ -109,8 +114,9 @@
         this.$sportStakeConditions = this.$("#SportStakeConditions");
         this.$minTransId = this.$("#MinTransId");
 
-        this.$iconPause = this.$(".icon-pause");
-        this.$iconDelete = this.$(".icon-delete");
+        this.$btnPause = this.$("#btnPause");
+        this.$btnClear = this.$("#btnClear");
+        this.$btnSpeaker = this.$("#btnSpeaker");
         this.$iconSpeaker = this.$(".icon-audio-speaker");
         this.$iconSpeakerText = this.$("#icon-audio-text");
         this.$sound = this.$("#sound");
@@ -142,37 +148,45 @@
             this.$('body').backtop();
         }
         this.sportGroupSelectionComponent.render(
-            new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", () => { this.onSportGroupChange(); }));
+            new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onSportGroupChange));
     }
 
-    onSportGroupChange(): void {
+    onSportGroupChange = () => {
         const sportGroup = this.sportGroupSelectionComponent.$dropdown.val();
-        window.location.href = this.$wagerMonitoringPath.val() + "?SportGroup=" + sportGroup;
+        window.location.href = `${this.$wagerMonitoringPath.val()}?SportGroup=${sportGroup}`;
     }
 
     registerEvents(): void {
-        this.$filterForm.find(".link").on("click touchend", this.openFilterModal);
+        if (this.isMobile) {
+            this.$filterForm.find(".link").parent().on("click touchend", this.openFilterModal);
+        } else {
+            this.$filterForm.find(".link").on("click touchend", this.openFilterModal);
+        }
 
-        this.$iconPause.parent().on("click touchend", this.onPauseClick);
+        this.$btnPause.on("click touchend", this.onPauseClick);
 
-        this.$iconDelete.parent().on("click touchend", () => {
+        this.$btnClear.on("click touchend", () => {
             this.$tblReport.find("tbody").empty();
         });
 
-        this.$iconSpeaker.parent().on("click touchend", () => {
+        this.$btnSpeaker.on("click touchend", (event: JQueryEventObject) => {
+            if (event.type === "touchend") {
+                this.$btnSpeaker.off("click");
+            }
+
             this.isSpeakOn = !this.isSpeakOn;
 
             if (this.isSpeakOn) {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-off").addClass("icon-audio-speaker-on");
                 this.$iconSpeakerText.text(this.resources.lblOn);
-                this.$iconSpeaker.parent().removeClass("off").addClass("on");
+                this.$btnSpeaker.removeClass("off").addClass("on");
             } else {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-on").addClass("icon-audio-speaker-off");
                 this.$iconSpeakerText.text(this.resources.lblOff);
-                this.$iconSpeaker.parent().removeClass("on").addClass("off");
+                this.$btnSpeaker.removeClass("on").addClass("off");
             }
 
-            this.$sound.trigger("play");
+            this.playSound();
         });
     }
 
@@ -236,7 +250,7 @@
         this.$.unblockUI();
     }
 
-    getLastBets(): void {
+    getLastBets = () => {
         if (this.filterModal.isOpeningFilter) {
             return;
         }
@@ -296,15 +310,25 @@
             }
 
             if (this.isSpeakOn) {
-                this.$sound.play();
+                this.playSound();
             }
         }
 
         this.isCalling = false;
     }
+
+    playSound(): void {
+        this.$sound.load();
+        this.$sound.trigger("play");
+    }
 }
 
 $(document).ready(() => {
-    const wagerMonitoring = new WagerMonitoring($);
+    const wagerMonitoring = new WagerMonitoring(
+        $,
+        new FilterModal($),
+        new SingleSelectionDropdownComponent($),
+        new ToggleHandler($));
+
     wagerMonitoring.init();
 });

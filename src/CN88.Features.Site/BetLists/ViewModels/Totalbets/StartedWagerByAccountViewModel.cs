@@ -33,7 +33,6 @@
             BetType = message.BetType;
             LiveIndicator = message.LiveIndicator;
             BetTeam = message.BetTeam;
-            NoOfColumns = CalculateNumberOfColumns();
 
             var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent");
             BreadcrumbParamByLevel = CalculateBreadcrumbParamByLevel(reportPath);

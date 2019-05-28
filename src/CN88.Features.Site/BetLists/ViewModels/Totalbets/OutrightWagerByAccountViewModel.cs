@@ -29,7 +29,6 @@
             Stake = message.Stake;
             StakeCondition = message.StakeCondition;
             MatchId = message.MatchId;
-            NoOfColumns = CalculateNumberOfColumns();
 
             var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByOutright");
             BreadcrumbParamByLevel = CalculateBreadcrumbParamByLevel(reportPath);

@@ -21,10 +21,10 @@
         {
             Date = message.Date;
             SportTypeGroup = message.SportTypeGroup;
-
-            NoOfColumns = CalculateNumberOfColumns(11);
         }
 
         public DateTime Date { get; }
+
+        protected override int GetMaxColumn() => 11;
     }
 }

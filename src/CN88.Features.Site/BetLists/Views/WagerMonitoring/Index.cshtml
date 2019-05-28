@@ -17,9 +17,9 @@
             <span class="icon-filter-down" id="filter-toggle-icon"></span>
         }
         <div class="function-group">
-            <div class="btn-function"><span class="icon-delete"></span>@SharedResources.Clear</div>
-            <div class="btn-function"><span class="icon-pause"></span>@SharedResources.Pause</div>
-            <div class="btn-function on"><span class="icon-audio-speaker icon-audio-speaker-on"></span><span id="icon-audio-text">@SharedResources.On</span></div>
+            <div class="btn-function" id="btnClear"><span class="icon-delete"></span>@SharedResources.Clear</div>
+            <div class="btn-function" id="btnPause"><span class="icon-pause"></span>@SharedResources.Pause</div>
+            <div class="btn-function on" id="btnSpeaker"><span class="icon-audio-speaker icon-audio-speaker-on"></span><span id="icon-audio-text">@SharedResources.On</span></div>
             <audio controls="controls" class="hide" id="sound">
                 <source src="@AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/BetLists/Styles/audio/TPBTLOW.ogg")" type="audio/ogg" />
             </audio>
@@ -40,28 +40,8 @@
 </div>
 <div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
-<div id="mainPopup" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <iframe width="100%" height="100%" frameborder="0" class="embed-responsive-item" src="" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-</div>
-@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
-@Html.Hidden("old-main-path", Model.OldMainPath)
-@Html.Hidden("results-path", Model.ResultsPath)
-@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
-@Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
-@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
-@Html.Hidden("cust-id", Model.CustId)
-@Html.Hidden("colossusBets-PopUpDetail-Title", BetListsResources.ColossusBetsPopUpDetailTitle)
+@Html.Partial("~/BetLists/Views/Components/Popup.cshtml")
+@Html.Partial("~/BetLists/Views/Components/HiddenFields.cshtml")
 @Html.Hidden(nameof(Model.MinTransId), Model.MinTransId)
 @Html.Hidden(nameof(Model.PageSize), Model.PageSize)
 @Html.Hidden(nameof(Model.IntervalTime), Model.IntervalTime)

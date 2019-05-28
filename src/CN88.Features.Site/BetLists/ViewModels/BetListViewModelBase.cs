@@ -50,7 +50,7 @@
 
         public string CustName { get; }
 
-        public int NoOfColumns { get; protected set; }
+        public int NoOfColumns => CalculateNumberOfColumns();
 
         public BetListData BetListData { get; }
 
@@ -87,8 +87,12 @@
 
         public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
 
-        protected virtual int CalculateNumberOfColumns(int maxColumn = 9)
+        protected virtual int GetMaxColumn() => 9;
+
+        private int CalculateNumberOfColumns()
         {
+            var maxColumn = GetMaxColumn();
+
             if (CustLevel.IsSuperLevel() || CustLevel.IsHeadline())
             {
                 return maxColumn;
