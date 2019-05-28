@@ -97,7 +97,8 @@
                message.CustId,
                message.ViewerId,
                message.SubAccountId,
-               message.UpdateStatusId,
+               message.OldStatusId,
+               message.NewStatusId,
                message.LanguageKey,
                message.IP,
                message.ViewerName));

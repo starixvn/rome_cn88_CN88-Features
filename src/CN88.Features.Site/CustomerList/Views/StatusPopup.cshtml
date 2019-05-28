@@ -16,15 +16,24 @@
             <option value="@CustomerStatus.Active" @(Model.UpdateStatusId.Equals(CustomerStatus.Active) ? "selected" : string.Empty)>
                 @CustomerListResources.Active
             </option>
-            <option value="@CustomerStatus.ViewOnly" @(Model.UpdateStatusId.Equals(CustomerStatus.ViewOnly) ? "selected" : string.Empty)>
-                @CustomerListResources.ViewOnly
-            </option>
-            <option value="@CustomerStatus.Suspended" @(Model.UpdateStatusId.Equals(CustomerStatus.Suspended) ? "selected" : string.Empty)>
-                @CustomerListResources.Suspended
-            </option>
-            <option value="@CustomerStatus.Inactive" @(Model.UpdateStatusId.Equals(CustomerStatus.Inactive) ? "selected" : string.Empty)>
-                @CustomerListResources.Inactive
-            </option>
+            @if (Model.UpdateStatusId.Equals(CustomerStatus.Active) || Model.UpdateStatusId.Equals(CustomerStatus.ViewOnly))
+            {
+                <option value="@CustomerStatus.ViewOnly" @(Model.UpdateStatusId.Equals(CustomerStatus.ViewOnly) ? "selected" : string.Empty)>
+                    @CustomerListResources.ViewOnly
+                </option>
+            }
+            @if (Model.UpdateStatusId.Equals(CustomerStatus.Active) || Model.UpdateStatusId.Equals(CustomerStatus.Suspended))
+            {
+                <option value="@CustomerStatus.Suspended" @(Model.UpdateStatusId.Equals(CustomerStatus.Suspended) ? "selected" : string.Empty)>
+                    @CustomerListResources.Suspended
+                </option>
+            }
+            @if (Model.UpdateStatusId.Equals(CustomerStatus.Active) || Model.UpdateStatusId.Equals(CustomerStatus.Inactive))
+            {
+                <option value="@CustomerStatus.Inactive" @(Model.UpdateStatusId.Equals(CustomerStatus.Inactive) ? "selected" : string.Empty)>
+                    @CustomerListResources.Inactive
+                </option>
+            }
         </select>
     </div>
     <div class="list-button">

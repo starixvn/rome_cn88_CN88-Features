@@ -155,7 +155,7 @@ class AgentList extends BaseList {
                 }
                 
                 const addDownlineIcon = status == siteInfrastructure.customerStatus.active && rs.SearchAccountStatus == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewMember}'/>` : '';
-                const unclockIcon = this.isViewerActive ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+                const unclockIcon = this.isViewerActive && closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
                     `<td class='col-no'> ${customerIndex} </td>` +

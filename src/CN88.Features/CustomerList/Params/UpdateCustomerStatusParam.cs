@@ -6,7 +6,8 @@
             int searchAccountId,
             int actorId,
             int subAccountId,
-            byte updateStatusId,
+            byte oldStatusId,
+            byte newStatusId,
             string language,
             string ip,
             string actorName)
@@ -14,7 +15,8 @@
             SearchAccountId = searchAccountId;
             ActorId = actorId;
             SubAccountId = subAccountId;
-            UpdateStatusId = updateStatusId;
+            OldStatusId = oldStatusId;
+            NewStatusId = newStatusId;
             Language = language;
             IP = ip;
             ActorName = actorName;
@@ -26,7 +28,9 @@
 
         public int SubAccountId { get; }
 
-        public byte UpdateStatusId { get; }
+        public byte OldStatusId { get; }
+
+        public byte NewStatusId { get; }
 
         public string Language { get; }
 

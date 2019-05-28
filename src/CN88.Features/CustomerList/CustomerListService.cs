@@ -87,7 +87,8 @@
                     param.SearchAccountId,
                     param.ActorId,
                     param.SubAccountId,
-                    param.UpdateStatusId,
+                    param.OldStatusId,
+                    param.NewStatusId,
                     param.Language,
                     param.IP);
 

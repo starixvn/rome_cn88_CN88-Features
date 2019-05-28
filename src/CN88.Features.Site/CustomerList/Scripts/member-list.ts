@@ -156,7 +156,7 @@ class MemberList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
-                    `<td class='col-action text-center'> ${resetPasswordIcon} ${editIcon} ${unclockIcon}</td>` +
+                    `<td class='col-action text-left'> ${resetPasswordIcon} ${editIcon} ${unclockIcon}</td>` +
                         "</tr>";
                 }
             }

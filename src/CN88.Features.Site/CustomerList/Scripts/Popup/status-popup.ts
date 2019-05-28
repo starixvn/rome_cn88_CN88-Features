@@ -19,16 +19,17 @@
 	}
 
 	updateStatus = () => {
-		let custId = this.$("#CustId").val(),
-			updateStatusId = this.$("#dropdown-status").val(),
-			data = { "CustId": custId, "UpdateStatusId": updateStatusId };
+        let custId = this.$("#CustId").val(),
+            oldStatusId = this.$("#CurrentStatusId").val(),
+			newStatusId = this.$("#dropdown-status").val(),
+            data = { "CustId": custId, "OldStatusId": oldStatusId, "NewStatusId": newStatusId };
 
-		if (this.$("#CurrentStatusId").val() === updateStatusId) {
+        if (oldStatusId === newStatusId) {
 			this.showFailedMessage(this.resources.ThereIsNoChange);
 			return;
 		}
 
-		this.submit("UpdateCustomerStatus", data, custId, updateStatusId);
+        this.submit("UpdateCustomerStatus", data, custId, newStatusId);
 	}
 
 	reloadCallback(custId: any, newValue: any) {

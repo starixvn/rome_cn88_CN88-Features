@@ -115,7 +115,7 @@ class MasterList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${this.indexManager.getStatusName(customer.Status)}</td>` +
-                    `<td class='col-action text-center'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>` +
+                    `<td class='col-action text-left'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>` +
                         "</tr>";
                 }
             }

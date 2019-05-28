@@ -11,7 +11,9 @@
         {
         }
 
-        public byte UpdateStatusId { get; set; }
+        public byte OldStatusId { get; set; }
+
+        public byte NewStatusId { get; set; }
 
         public override bool IsValid() => base.IsValid() && !IsInternal;
     }
