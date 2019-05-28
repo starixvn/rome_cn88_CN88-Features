@@ -2,6 +2,16 @@
 
 <div class="tab-content display-none" level="@UserLevel.Master.Value">
     <div class="tab-panel active" role="tabpanel">
+        @if (Model.IsDevice)
+        {
+            <div class="filter-mobile">
+                <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master">
+                    <span class="icon-add"></span>@CustomerListResources.NewMasterAgent
+                </button>
+                <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
+            </div>
+        }
+
         <div class="filter">
             <div id="form-master" class="form-inline" role="form">
                 <div class="form-group">
@@ -20,26 +30,57 @@
                 <div class="form-group">
                     <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                 </div>
-                <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
+                @if (Model.IsNotPhone)
+                {
+                    <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master">
+                        <span class="icon-add"></span>
+                        @CustomerListResources.NewMasterAgent
+                    </button>
+                }
             </div>
         </div>
 
-        <table id="tbl-master" class="tbl-style2">
-            <thead>
-                <tr>
-                    <th class="col-no">@CustomerListResources.No</th>
-                    <th class="col-username">@CustomerListResources.Username</th>
-                    <th class="col-name">@CustomerListResources.Name</th>
-                    <th class="col-nickname">@CustomerListResources.Nickname</th>
-                    <th class="text-right">@CustomerListResources.Credit</th>
-                    <th class="col-creation-date">@CustomerListResources.CreationDate</th>
-                    <th class="text-center">@CustomerListResources.Status</th>
-                    <th class="col-action text-center">@CustomerListResources.Action</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot></tfoot>
-        </table>
-        <div id="pager-master"></div>
+        @if (Model.IsDevice)
+        {
+            <div id="master-container">
+                <table id="tbl-master" class="tbl-style2 tbl-downlinelist">
+                    <thead>
+                        <tr>
+                            <th class="col-username">
+                                @CustomerListResources.Username /
+                                <br /> @CustomerListResources.Nickname
+                            </th>
+                            <th class="text-center">@CustomerListResources.Status</th>
+                            <th class="text-right">@CustomerListResources.Credit</th>
+                            <th class="col-action text-center">@CustomerListResources.Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+                <div id="pager-master"></div>
+            </div>
+        }
+        else
+        {
+            <table id="tbl-master" class="tbl-style2">
+                <thead>
+                    <tr>
+                        <th class="col-no">@CustomerListResources.No</th>
+                        <th class="col-username">@CustomerListResources.Username</th>
+                        <th class="col-name">@CustomerListResources.Name</th>
+                        <th class="col-nickname">@CustomerListResources.Nickname</th>
+                        <th class="text-right">@CustomerListResources.Credit</th>
+                        <th class="col-creation-date">@CustomerListResources.CreationDate</th>
+                        <th class="text-center">@CustomerListResources.Status</th>
+                        <th class="col-action text-center">@CustomerListResources.Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+            <div id="pager-master"></div>
+        }
+
     </div>
 </div>

@@ -21,55 +21,7 @@
 
 @if (Model.ActorLevel.IsSuperLevel())
 {
-    <div class="tab-content display-none" level="@UserLevel.Master.Value">
-        <div class="tab-panel active" role="tabpanel">
-            <div class="filter-mobile">
-                <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master">
-                    <span class="icon-add"></span>@CustomerListResources.NewMasterAgent
-                </button>
-                <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
-            </div>
-            <div class="filter">
-                <div id="form-master" class="form-inline" role="form">
-                    <div class="form-group">
-                        <label>@CustomerListResources.UsernameOrNameContains</label>
-                        <input id="txt-username-master" class="control" type="text" value="" />
-                    </div>
-                    <div class="form-group">
-                        <label>@CustomerListResources.Status</label>
-                        <select id="dropdown-status-master" class="control">
-                            <option value="@CustomerStatus.All" @(Model.Status == CustomerStatus.All ? "selected=\"selected\"" : "")>@CustomerListResources.All</option>
-                            <option value="@CustomerStatus.Open" @(Model.Status == CustomerStatus.Open ? "selected=\"selected\"" : "")>@CustomerListResources.Open</option>
-                            <option value="@CustomerStatus.Closed" @(Model.Status == CustomerStatus.Closed ? "selected=\"selected\"" : "")>@CustomerListResources.Closed</option>
-                            <option value="@CustomerStatus.Suspended" @(Model.Status == CustomerStatus.Suspended ? "selected=\"selected\"" : "")>@CustomerListResources.Suspended</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-                    </div>
-                </div>
-            </div>
-
-            <div id="master-container">
-                <table id="tbl-master" class="tbl-style2 tbl-downlinelist">
-                    <thead>
-                        <tr>
-                            <th class="col-username">
-                                @CustomerListResources.Username /
-                                <br /> @CustomerListResources.Nickname
-                            </th>
-                            <th class="text-center">@CustomerListResources.Status</th>
-                            <th class="text-right">@CustomerListResources.Credit</th>
-                            <th class="col-action text-center">@CustomerListResources.Action</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-                <div id="pager-master"></div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("~/CustomerList/Views/Components/MasterList.cshtml")
 }
 
 @if (Model.ActorLevel.IsMasterOrSuperLevel())

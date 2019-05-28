@@ -15,6 +15,7 @@
         {
             this.query = query;
             this.browserHelper = browserHelper;
+            IsDevice = browserHelper.IsMobile() && !browserHelper.IsTablet();
         }
 
         public UserLevel ActorLevel => query.ActorLevel;
@@ -65,6 +66,8 @@
 
         private string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~");
 
-        public bool IsDevice => browserHelper.IsMobile() && !browserHelper.IsTablet();
+        public bool IsDevice { get; }
+
+        public bool IsNotPhone => !IsDevice;
     }
 }
