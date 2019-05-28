@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../shared/scripts/core.ts" />
-class FilterParam {
+﻿class FilterParam {
     constructor(
         public sportGroup = 0,
         public isSelectAllSports = true,

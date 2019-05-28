@@ -207,8 +207,8 @@
 
     onPauseClickSuccess(html: string): void {
         const result = html.replace('<table></table>', this.$tblReport.prop("outerHTML"));
-        let features = this.isMobile ? "" : "height=800,width=1280";
-        let pauseWindow = window.open("", "Pause", features);
+        const features = this.isMobile ? "" : "height=800,width=1280";
+        const pauseWindow = window.open("", "Pause", features);
         pauseWindow.document.open();
         pauseWindow.document.write(result);
         pauseWindow.document.close();
@@ -233,7 +233,8 @@
 
         const param = this.filterModal.getParameters();
 
-        this.$stakeLnk.html(param.isSelectAllSports ? `${this.resources["lblStakeMode_" + param.stakeMode]} ${param.stakeLimit}` : this.resources.lblPerSports);
+        const stakeMode = this.resources[`lblStakeMode_${param.stakeMode}`];
+        this.$stakeLnk.html(param.isSelectAllSports ? `${stakeMode} ${param.stakeLimit}` : this.resources.lblPerSports);
         this.$maketLnk.html(param.markets.length ? param.markets : this.resources.lblAllMarkets);
         this.$leagueLnk.html(param.leagueIds.length ? `${this.resources.lblLeague} (${param.leagueIds.length})` : this.resources.lblAllLeagues);
         this.$eventLnk.html(param.matchIds.length ? `${this.resources.lblEvent} (${param.matchIds.length})` : this.resources.lblAllEvents);

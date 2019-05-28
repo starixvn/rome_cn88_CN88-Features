@@ -529,6 +529,7 @@
     <Content Include="BetLists\bundles\wager-monitoring\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
+    <Content Include="BetLists\Styles\audio\TPBTLOW.mp3" />
     <Content Include="BetLists\Styles\bet-lists.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
@@ -962,8 +963,8 @@
     <Content Include="BetLists\Views\Components\PayoutColumn.cshtml" />
     <Content Include="BetLists\Views\Components\Popup.cshtml" />
     <Content Include="BetLists\Views\Components\HiddenFields.cshtml" />
-    <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
     <Content Include="BetLists\Views\Components\TotalRows.cshtml" />
+    <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
