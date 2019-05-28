@@ -138,18 +138,22 @@ class AgentList extends BaseList {
             html = `<tr><td colspan='8' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
             } else {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                    let customer = rs.Customers[i],
+                const customer = rs.Customers[i],
                         custId = customer.CustId,
                     username = customer.Username,
                     status = customer.Status,
-                    closed = customer.Closed;
+                    closed = customer.Closed,
+                    userAttr = `cust-id='${custId}' username='${username}'`,
+                    iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
 
-                const userAttr = `cust-id='${custId}' username='${username}'`;
-                const iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
+                let resetPasswordIcon = '', securityCodeIcon = '', editIcon = '';
 
-                const resetPasswordIcon = this.isViewerActive ? `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='2'/>` : '';
-                const securityCodeIcon = this.isViewerActive ? `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>` : '';
-                const editIcon = this.isViewerActive ? `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditAgent}'/>` : '';
+                if (this.isViewerActive) {
+                    resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='2'/>`;
+                    securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
+                    editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditAgent}'/>`;
+                }
+                
                 const addDownlineIcon = status == siteInfrastructure.customerStatus.active && rs.SearchAccountStatus == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewMember}'/>` : '';
                 const unclockIcon = this.isViewerActive ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
@@ -161,7 +165,7 @@ class AgentList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
-                    `<td class='col-action text-center'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon} </td>` +
+                    `<td class='col-action text-left'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon} </td>` +
                         "</tr>";
                 }
             }

@@ -22,6 +22,7 @@
         public async Task<ActionResult> Index(IndexQuery message)
             => await ViewAsync(message);
 
+        [HttpGet]
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
             => Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
 

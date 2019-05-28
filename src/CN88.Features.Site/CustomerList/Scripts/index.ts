@@ -58,7 +58,9 @@ class CustomerList {
         Active: '',
         ViewOnly: '',
         Inactive: '',
-        UnlockTooltip: ''
+        UnlockTooltip: '',
+        UnlockConfirmTitle: '',
+        UnlockConfirmMessage: ''
     };
 
     masterList: MasterList;
@@ -187,6 +189,8 @@ class CustomerList {
         this.viewResources.ResetPassword = this.$("#ResetPassword").val();
         this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
         this.viewResources.UnlockTooltip = this.$("#UnlockTooltip").val();
+        this.viewResources.UnlockConfirmTitle = this.$("#UnlockConfirmTitle").val();
+        this.viewResources.UnlockConfirmMessage = this.$("#UnlockConfirmMessage").val();
 
         this.EditCustomerLink = this.$("#EditCustomerLink").val();
         this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
@@ -289,8 +293,8 @@ class CustomerList {
         let self = this;
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.bootboxConfirm(
-            'unlock user',
-            'do you want to unlock this user?',
+            this.viewResources.UnlockConfirmTitle,
+            this.viewResources.UnlockConfirmMessage,
             () => {
                 self.$.ajax({
                     type: "POST",
@@ -301,7 +305,9 @@ class CustomerList {
                         xhr.setRequestHeader("__RequestVerificationToken", self.$("input[name=\"__RequestVerificationToken\"]").val());
                     }})
                     .done(function (data) {
-
+                        if (data.IsSuccess) {
+                            self.$(".icon-unlock[cust-id='" + custId + "']").remove();
+                        }
                     })
                     .fail(function (jqXHR: JQueryXHR) {
                         if (jqXHR.status === 403) {
@@ -371,6 +377,9 @@ class CustomerList {
         let column = this.$(".col-status[cust-id='" + custId + "']");
         column.html(this.getStatusName(newValue));
         column.attr("current-status", newValue);
+    };
+    removeUnlock = (custId: any) => {
+        this.$(".icon-unlock[cust-id='" + custId + "']").remove();
     };
     storeCurrentPage = (reportParam: any) => {
         let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);

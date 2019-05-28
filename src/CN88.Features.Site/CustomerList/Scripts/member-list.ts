@@ -137,13 +137,15 @@ class MemberList extends BaseList {
                     let customer = rs.Customers[i],
                         custId = customer.CustId,
                     username = customer.Username,
-                    status = customer.Status;
+                    status = customer.Status,
+                    closed = customer.Closed;               
 
                 const userAttr = `cust-id='${custId}' username='${username}'`;
                 const iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
 
                 const resetPasswordIcon = this.isViewerActive ? `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='1'/>` : '';
                 const editIcon = this.isViewerActive ? `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMember}'/>` : '';
+                const unclockIcon = this.isViewerActive && closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
                     `<td class='col-no'> ${customerIndex} </td>` +
@@ -154,7 +156,7 @@ class MemberList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
-                    `<td class='col-action text-center'> ${resetPasswordIcon} ${editIcon} </td>` +
+                    `<td class='col-action text-center'> ${resetPasswordIcon} ${editIcon} ${unclockIcon}</td>` +
                         "</tr>";
                 }
             }

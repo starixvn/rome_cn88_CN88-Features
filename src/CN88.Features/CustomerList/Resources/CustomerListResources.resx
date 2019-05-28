@@ -321,4 +321,10 @@
   <data name="UnlockTooltip" xml:space="preserve">
     <value>Click to unlock</value>
   </data>
+  <data name="UnlockConfirmMessage" xml:space="preserve">
+    <value>Do you want to unlock this account?</value>
+  </data>
+  <data name="UnlockConfirmTitle" xml:space="preserve">
+    <value>Unlock Account</value>
+  </data>
 </root>

@@ -565,6 +565,24 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to unlock this account?.
+        /// </summary>
+        public static string UnlockConfirmMessage {
+            get {
+                return ResourceManager.GetString("UnlockConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock Account.
+        /// </summary>
+        public static string UnlockConfirmTitle {
+            get {
+                return ResourceManager.GetString("UnlockConfirmTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to unlock.
         /// </summary>
         public static string UnlockTooltip {

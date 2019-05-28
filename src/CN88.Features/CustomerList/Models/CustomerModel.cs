@@ -1,10 +1,15 @@
 ﻿namespace CN88.Features.CustomerList.Models
 {
     using System;
+    using System.Web;
     using Extensions;
 
     public class CustomerModel
     {
+        private string nickname;
+        private string name;
+        private string group;
+
         public CustomerModel()
         {
         }
@@ -35,11 +40,26 @@
 
         public string Username { get; }
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return HttpUtility.HtmlEncode(name); }
 
-        public string Nickname { get; set; }
+            set { name = value; }
+        }
 
-        public string Group { get; set; }
+        public string Nickname
+        {
+            get { return nickname ?? string.Empty; }
+
+            set { nickname = value; }
+        }
+
+        public string Group
+        {
+            get { return HttpUtility.HtmlEncode(group); }
+
+            set { group = value; }
+        }
 
         public decimal Credit { get; }
 

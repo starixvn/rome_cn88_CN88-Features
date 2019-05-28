@@ -150,7 +150,7 @@
                         <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
                     <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-                   @if (!Model.IsDevice && Model.IsActiveViewer)
+                    @if (!Model.IsDevice && Model.IsActiveViewer)
                     {
                         <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-agent"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
                     }
@@ -217,7 +217,7 @@
                     <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                 </div>
                 <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-               @if (!Model.IsDevice && Model.IsActiveViewer)
+                @if (!Model.IsDevice && Model.IsActiveViewer)
                 {
                     <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-member"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
                 }
@@ -277,6 +277,8 @@
 @Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
 @Html.Hidden("ResetPassword", CustomerListResources.ResetPassword)
 @Html.Hidden("UnlockTooltip", CustomerListResources.UnlockTooltip)
+@Html.Hidden("UnlockConfirmTitle", CustomerListResources.UnlockConfirmTitle)
+@Html.Hidden("UnlockConfirmMessage", CustomerListResources.UnlockConfirmMessage)
 
 @Html.Hidden("NewMember", CustomerListResources.NewMember)
 @Html.Hidden("NewAgent", CustomerListResources.NewAgent)
