@@ -287,7 +287,6 @@ class CustomerList {
 
     updateUnlock = (custId: any) => {
         let self = this;
-        this.$.blockUI();
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.bootboxConfirm(
             'unlock user',
@@ -300,8 +299,7 @@ class CustomerList {
                     dataType: "json",
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("__RequestVerificationToken", self.$("input[name=\"__RequestVerificationToken\"]").val());
-                    }
-                })
+                    }})
                     .done(function (data) {
 
                     })
@@ -310,7 +308,7 @@ class CustomerList {
                            
                         }
                     })
-                    .always(function () { self.$.unblockUI(); });
+                    .always(function () { });
             }
         );
     };
