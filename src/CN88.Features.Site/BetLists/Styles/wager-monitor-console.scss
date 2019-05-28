@@ -1,4 +1,6 @@
-﻿.page-title {
+﻿@import "../../Shared/Styles/_variables.scss";
+
+.page-title {
     margin-top: 20px;
     padding-left: 15px;
 }
@@ -56,11 +58,13 @@
 
     .btn-function.on {
         background-color: #27a67b;
+        border-color: #27a67b;
         color: #fff;
     }
 
     .btn-function.off {
         background-color: #a5a5a5;
+        border-color: #a5a5a5;
         color: #fff;
     }
 
@@ -158,34 +162,7 @@
         align-items: flex-start;
         line-height: 18px;
     }
-
-    &.list-block > .item {
-        flex-basis: 100%;
-
-        &.sport-item {
-            padding: 4px 0;
-            align-items: center;
-        }
-
-        &.bettype-group {
-            display: block;
-            padding: 0;
-
-            .group-name {
-                padding: 5px 12px;
-                background-color: #eeeeee;
-                text-transform: uppercase;
-            }
-
-            .group-details {
-                padding: 2px 24px;
-                list-style: none;
-                display: flex;
-                flex-wrap: wrap;
-                margin-bottom: 0;
-            }
-        }
-    }
+    
 
     .dropdown-stake-condition {
         display: inline-block;
@@ -202,6 +179,34 @@
     .sport-name {
         width: 200px;
         font-weight: normal;
+    }
+}
+
+.lists.list-block > .item {
+    flex-basis: 100%;
+
+    &.sport-item {
+        padding: 4px 0;
+        align-items: center;
+    }
+
+    &.bettype-group {
+        display: block;
+        padding: 0;
+
+        .group-name {
+            padding: 5px 12px;
+            background-color: #eeeeee;
+            text-transform: uppercase;
+        }
+
+        .group-details {
+            padding: 2px 24px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -269,40 +274,38 @@
     display: none;
 }
 
+body:not(.phone) .nav-tabs.filter-tabs {
+    border-bottom: none;
+    margin-left: 20px;
 
-body:not(.phone) {
-    .nav-tabs.filter-tabs {
-        border-bottom: none;
-        margin-left: 20px;
+    li {
+        position: relative;
 
-        li {
-            position: relative;
+        a {
+            padding: 13px 12px 9px;
+            color: #fff;
+        }
+    }
 
-            a {
-                padding: 13px 12px 9px;
-                color: #fff;
-            }
+    li:hover,
+    li.active {
+        &:after {
+            background-color: #7e1414;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #fff;
+            content: " ";
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            margin-left: -8px;
+        }
 
-            &:hover, &.active {
-                &:after {
-                    background-color: #7e1414;
-                    width: 0;
-                    height: 0;
-                    border-left: 8px solid transparent;
-                    border-right: 8px solid transparent;
-                    border-bottom: 8px solid #fff;
-                    content: " ";
-                    position: absolute;
-                    bottom: -1px;
-                    left: 50%;
-                    margin-left: -8px;
-                }
-
-                a {
-                    color: #FF9999;
-                    text-decoration: none;
-                }
-            }
+        a {
+            color: #FF9999;
+            text-decoration: none;
         }
     }
 }
@@ -354,8 +357,10 @@ body.phone {
         margin-right: 10px;
 
         .btn-function {
-            width: 32px;
-            height: 32px;
+            position: relative;
+            top: -1px;
+            width: 33px;
+            height: 33px;
             margin: 0 8px;
             font-size: 7.5px;
             padding: 10px 0 5px;
@@ -417,12 +422,14 @@ body.phone {
         }
 
         .modal-body {
+            height: calc(100% - 41px - 126px);
             padding: 0;
         }
 
         .modal-footer {
             width: 100%;
-            margin: 0 0 12px;
+            margin: 0;
+            padding: 0 12px;
             background-color: #fff;
 
             .btn {
@@ -432,7 +439,7 @@ body.phone {
         }
 
         .tab-content {
-            padding: 12px 12px 100px;
+            padding: 12px 12px 0;
             text-transform: uppercase;
         }
 
@@ -450,8 +457,12 @@ body.phone {
                 width: 100%;
             }
 
-            .dropdown-stake-condition label {
+            .dropdown-stake-condition > label {
                 display: none;
+            }
+
+            .item {
+                padding: 8px 20px 8px 0;
             }
         }
 
@@ -500,5 +511,9 @@ body.phone {
 
     .search-group {
         width: 100%;
+
+        .form-control:first-child {
+            font-size: $font-size-mobile-input;
+        }
     }
 }
