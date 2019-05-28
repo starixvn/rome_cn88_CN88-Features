@@ -990,6 +990,9 @@
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\SuperTable.cshtml" />
     <Content Include="CustomerList\Views\IndexMobile.cshtml" />
     <Content Include="CustomerList\Views\Components\LevelTabs.cshtml" />
+    <Content Include="CustomerList\Views\Components\MasterList.cshtml" />
+    <Content Include="CustomerList\Views\Components\AgentList.cshtml" />
+    <Content Include="CustomerList\Views\Components\MemberList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
