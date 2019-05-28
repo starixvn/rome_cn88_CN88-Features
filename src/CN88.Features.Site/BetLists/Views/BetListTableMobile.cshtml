@@ -1,6 +1,4 @@
 ﻿@using CN88.Features.BetLists.Models
-@using Fanex.BetList.Core.Utils
-
 @model BetListViewModelBase
 @{
     var builder = Model.CN88Builder;
@@ -16,17 +14,13 @@
         <tr>
             <th class="text-left col-details">@BetListsResources.Details</th>
             <th class="text-right">@BetListsResources.Stake</th>
-
             @if (Model.IsShowWinLoss)
             {
                 <th class="text-right">@BetListsResources.WinLoss</th>
             }
-
             @Html.Partial("~/BetLists/Views/Components/PayoutColumn.cshtml")
             @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml")
-
         </tr>
-
         @Html.Partial("~/BetLists/Views/Components/TotalRows.cshtml")
     </thead>
     <tbody>
@@ -39,24 +33,20 @@
                 var ticket = tickets[i];
                 <tr data-trans-id="@ticket.TransId">
                     <td>@RenderDetailColumn(ticket)</td>
-
                     @BetListHelper.RenderStake(ticket, Model.Divisor)
-
                     @if (Model.IsShowWinLoss)
                     {
-                    <td class="text-right">
-                        @BetListHelper.RenderWinLoss(ticket, divisor, true)
-                        <br />
-                        @BetListHelper.RenderStatus(ticket, mbcBuilder, helper, ticketData, Model.DisplayVNIP, true)
-                    </td>
+                        <td class="text-right">
+                            @BetListHelper.RenderWinLoss(ticket, divisor, true)
+                            <br />
+                            @BetListHelper.RenderStatus(ticket, mbcBuilder, helper, ticketData, Model.DisplayVNIP, true)
+                        </td>
                     }
-
                     @Html.Partial("~/BetLists/Views/Components/PayoutColumn.cshtml", Model, new ViewDataDictionary
                     {
                         { "IsBody", true },
                         { "Ticket", ticket }
                     })
-
                     @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml", Model, new ViewDataDictionary
                     {
                         { "Ticket", ticket }
@@ -70,14 +60,13 @@
         }
     </tbody>
 </table>
-
 @helper RenderDetailColumn(TicketDto ticket)
 {
-        <div class="detail-container">
-            @BetListHelper.RenderTransDate(ticket, true)
-            <br />
-            @BetListHelper.RenderComm(ticket, true)
-            @BetListHelper.RenderBetID(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById, true)
-            @BetListHelper.RenderDetail(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData, true)
-        </div>
+    <div class="detail-container">
+        @BetListHelper.RenderTransDate(ticket, true)
+        <br />
+        @BetListHelper.RenderComm(ticket, true)
+        @BetListHelper.RenderBetID(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById, true)
+        @BetListHelper.RenderDetail(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData, true)
+    </div>
 }

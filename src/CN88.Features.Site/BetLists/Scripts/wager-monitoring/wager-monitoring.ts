@@ -192,7 +192,7 @@
 
     openFilterModal = (e: JQueryEventObject) => {
         const link = this.$(e.target);
-        this.filterModal.show(link.data("target"), this.getParam(), () => { this.updateFilterForm(); });
+        this.filterModal.show(link.data("target"), this.getParam(), this.updateFilterForm);
     };
 
     onPauseClick = () => {
@@ -203,11 +203,12 @@
             },
             complete: this.$.unblockUI
         });
-    }
+    };
 
     onPauseClickSuccess(html: string): void {
         const result = html.replace('<table></table>', this.$tblReport.prop("outerHTML"));
-        const pauseWindow = window.open("", "Pause", "height=800,width=1280");
+        let features = this.isMobile ? "" : "height=800,width=1280";
+        let pauseWindow = window.open("", "Pause", features);
         pauseWindow.document.open();
         pauseWindow.document.write(result);
         pauseWindow.document.close();
@@ -225,9 +226,9 @@
             this.$matchIds.val(),
             this.$betTypeGroupIds.val()
         );
-    }
+    };
 
-    updateFilterForm(): void {
+    updateFilterForm = () => {
         this.$.blockUI();
 
         const param = this.filterModal.getParameters();
@@ -248,7 +249,7 @@
         this.$sportStakeConditions.val(param.sportStakeConditions);
 
         this.$.unblockUI();
-    }
+    };
 
     getLastBets = () => {
         if (this.filterModal.isOpeningFilter) {
@@ -282,7 +283,7 @@
             success: (result) => { this.successGetLastBets(result); },
             complete: this.$.unblockUI
         });
-    }
+    };
 
     abortRequest(): void {
         if (this.ajaxRequest) {

@@ -316,9 +316,9 @@
     ]
   },
   {
-    "outputFileName": "BetLists/bundles/wager-monitoring.css",
+    "outputFileName": "BetLists/bundles/wager-monitoring/styles.css",
     "inputFiles": [
-      "BetLists/Content/CoreBetListCN88.css",
+      "BetLists/Styles/CoreBetListCN88.css",
       "BetLists/Styles/bet-lists.css",
       "BetLists/Styles/wager-monitor-console.css"
     ]
@@ -340,14 +340,19 @@
     ]
   },
   {
-    "outputFileName": "BetLists/bundles/wager-monitoring.js",
+    "outputFileName": "BetLists/bundles/wager-monitoring/index.js",
     "inputFiles": [
-      "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/single-selection-dropdown.js",
       "BetLists/Scripts/wager-monitoring/multi-selection-checkbox.js",
       "BetLists/Scripts/wager-monitoring/filter-modal.js",
       "BetLists/Scripts/wager-monitoring/wager-monitoring.js",
       "Shared/Scripts/components/filter-toggle.js"
+    ]
+  },
+  {
+    "outputFileName": "BetLists/bundles/wager-monitoring/pause.js",
+    "inputFiles": [
+      "BetLists/Scripts/wager-monitoring/pause.js"
     ]
   }
 ]

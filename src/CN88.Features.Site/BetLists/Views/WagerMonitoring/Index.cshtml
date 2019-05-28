@@ -5,7 +5,7 @@
 @using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 @model WagerMonitoringViewModel
 @section Styles {
-    @StaticResources.RenderStyles("~/BetLists/bundles/wager-monitoring")
+    @StaticResources.RenderStyles("~/BetLists/bundles/wager-monitoring/styles")
 }
 <div class="page-title">
     @BetListsResources.WagerMonitoringConsole
@@ -67,5 +67,5 @@
 @Html.Hidden("lbl-Off", SharedResources.Off)
 @section Scripts{
     @StaticResources.RenderScripts("~/BetLists/bundles/betlist")
-    @StaticResources.RenderScripts("~/BetLists/bundles/wager-monitoring")
+    @StaticResources.RenderScripts("~/BetLists/bundles/wager-monitoring/index")
 }

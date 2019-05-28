@@ -517,13 +517,17 @@
     <Content Include="BetLists\bundles\wager-details.min.js">
       <DependentUpon>wager-details.js</DependentUpon>
     </Content>
-    <Content Include="BetLists\bundles\wager-monitoring.css" />
-    <Content Include="BetLists\bundles\wager-monitoring.js" />
-    <Content Include="BetLists\bundles\wager-monitoring.min.css">
-      <DependentUpon>wager-monitoring.css</DependentUpon>
+    <Content Include="BetLists\bundles\wager-monitoring\index.js" />
+    <Content Include="BetLists\bundles\wager-monitoring\index.min.js">
+      <DependentUpon>index.js</DependentUpon>
     </Content>
-    <Content Include="BetLists\bundles\wager-monitoring.min.js">
-      <DependentUpon>wager-monitoring.js</DependentUpon>
+    <Content Include="BetLists\bundles\wager-monitoring\pause.js" />
+    <Content Include="BetLists\bundles\wager-monitoring\pause.min.js">
+      <DependentUpon>pause.js</DependentUpon>
+    </Content>
+    <Content Include="BetLists\bundles\wager-monitoring\styles.css" />
+    <Content Include="BetLists\bundles\wager-monitoring\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
     </Content>
     <Content Include="BetLists\Styles\bet-lists.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
@@ -1035,6 +1039,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\filter-modal.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\pause.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
