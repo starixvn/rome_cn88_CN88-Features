@@ -274,21 +274,29 @@
     display: none;
 }
 
-body:not(.phone) .nav-tabs.filter-tabs {
-    border-bottom: none;
-    margin-left: 20px;
 
-    li {
+body:not(.phone) {
+    .main-function {
         position: relative;
+        top: -30px;
+    }
 
-        a {
-            padding: 13px 12px 9px;
-            color: #fff;
+    .nav-tabs.filter-tabs {
+        border-bottom: none;
+        margin-left: 20px;
+
+        li {
+            position: relative;
+
+            a {
+                padding: 13px 12px 9px;
+                color: #fff;
+            }
         }
     }
 
-    li:hover,
-    li.active {
+    .nav-tabs.filter-tabs li:hover,
+    .nav-tabs.filter-tabs li.active {
         &:after {
             background-color: #7e1414;
             width: 0;
@@ -341,6 +349,10 @@ body.phone {
     .dropdown-sportgroup {
         display: table;
         width: 100%;
+
+        .lbl-sport {
+            text-transform: uppercase;
+        }
 
         .btn-group {
             display: block;
