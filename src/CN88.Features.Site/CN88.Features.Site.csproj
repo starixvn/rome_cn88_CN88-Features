@@ -658,6 +658,18 @@
     <Content Include="Reports\bundles\wager.min.js">
       <DependentUpon>wager.js</DependentUpon>
     </Content>
+    <Content Include="Reports\Styles\accounting-sheet.css">
+      <DependentUpon>accounting-sheet.scss</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\accounting-sheet.min.css">
+      <DependentUpon>accounting-sheet.css</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\old-report.css">
+      <DependentUpon>old-report.scss</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\old-report.min.css">
+      <DependentUpon>old-report.css</DependentUpon>
+    </Content>
     <Content Include="Reports\Styles\reports.css">
       <DependentUpon>reports.scss</DependentUpon>
     </Content>
@@ -671,6 +683,12 @@
       <DependentUpon>security.css</DependentUpon>
     </Content>
     <Content Include="Reports\Scripts\aes.js" />
+    <Content Include="Reports\Styles\settlement-summary.css">
+      <DependentUpon>settlement-summary.scss</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\settlement-summary.min.css">
+      <DependentUpon>settlement-summary.css</DependentUpon>
+    </Content>
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
       <DependentUpon>edit-sub-account.js</DependentUpon>
@@ -996,6 +1014,9 @@
     <Content Include="CustomerList\Views\Components\MasterList.cshtml" />
     <Content Include="CustomerList\Views\Components\AgentList.cshtml" />
     <Content Include="CustomerList\Views\Components\MemberList.cshtml" />
+    <Content Include="Reports\Styles\accounting-sheet.scss" />
+    <Content Include="Reports\Styles\settlement-summary.scss" />
+    <Content Include="Reports\Styles\old-report.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

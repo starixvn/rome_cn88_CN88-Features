@@ -2,7 +2,10 @@
   {
     "outputFileName": "Reports/bundles/reports.css",
     "inputFiles": [
-      "Reports/Styles/reports.css"
+      "Reports/Styles/reports.css",
+      "Reports/Styles/old-report.css",
+      "Reports/Styles/settlement-summary.css",
+      "Reports/Styles/accounting-sheet.css"
     ]
   },
   {

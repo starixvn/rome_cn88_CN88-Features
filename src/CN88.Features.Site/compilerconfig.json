@@ -34,9 +34,21 @@
   {
     "outputFile": "CustomerList/Styles/online-members.css",
     "inputFile": "CustomerList/Styles/online-members.scss"
-    },
-    {
+  },
+  {
     "outputFile": "BetLists/Styles/wager-monitor-console.css",
     "inputFile": "BetLists/Styles/wager-monitor-console.scss"
+  },
+  {
+    "outputFile": "Reports/Styles/accounting-sheet.css",
+    "inputFile": "Reports/Styles/accounting-sheet.scss"
+  },
+  {
+    "outputFile": "Reports/Styles/settlement-summary.css",
+    "inputFile": "Reports/Styles/settlement-summary.scss"
+  },
+  {
+    "outputFile": "Reports/Styles/old-report.css",
+    "inputFile": "Reports/Styles/old-report.scss"
   }
 ]
