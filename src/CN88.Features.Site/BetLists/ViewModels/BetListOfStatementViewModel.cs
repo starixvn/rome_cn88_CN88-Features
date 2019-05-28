@@ -1,13 +1,11 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
     using System;
-    using System.Linq;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;
     using Requests;
-    using Shared.ViewModels.Components;
 
     public class BetListOfStatementViewModel : BetListViewModelBase
     {
@@ -19,19 +17,12 @@
             IBetListHTMLBuilder builder,
             bool isMobile,
             string[] excludingTicketStatus = null)
-            : base(message, ticketHelper, cn88Builder, builder)
+            : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
-            NoOfColumns = CalculateNumberOfColumns(11);
-
-            BetListData = betListData;
-            BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
-
             Date = message.Date;
             SportTypeGroup = message.SportTypeGroup;
 
-            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
-
-            IsMobile = isMobile;
+            NoOfColumns = CalculateNumberOfColumns(11);
         }
 
         public DateTime Date { get; }

@@ -1,7 +1,6 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
@@ -11,7 +10,6 @@
     using Features.Shared.Configurations;
     using Requests;
     using Shared.Helpers;
-    using Shared.ViewModels.Components;
 
     public class StartedWagerByAccountViewModel : BetListViewModelBase
     {
@@ -25,30 +23,22 @@
               IBetListHTMLBuilder builder,
               bool isMobile,
               string[] excludingTicketStatus = null)
-            : base(message, ticketHelper, cn88Builder, builder)
+            : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
+            this.message = message;
+
             Stake = message.Stake;
             StakeCondition = message.StakeCondition;
             MatchId = message.MatchId;
             BetType = message.BetType;
             LiveIndicator = message.LiveIndicator;
             BetTeam = message.BetTeam;
-
             NoOfColumns = CalculateNumberOfColumns();
 
-            BetListData = betListData;
-            BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
-
-            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
-
-            this.message = message;
             var reportPath = AppPathHelper.GetAppPath(AppSettings.TotalBetAppPath, "~/WagerAccount/GetByEvent");
             BreadcrumbParamByLevel = CalculateBreadcrumbParamByLevel(reportPath);
 
-            IsMobile = isMobile;
-
             IsShowWinLoss = false;
-            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public decimal Stake { get; }

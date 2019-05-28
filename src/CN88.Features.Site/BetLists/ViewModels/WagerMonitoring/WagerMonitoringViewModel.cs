@@ -22,17 +22,14 @@
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
             bool isMobile = false)
-            : base(message, ticketHelper, cn88Builder, builder)
+            : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, null)
         {
-            NoOfColumns = CalculateNumberOfColumns();
-
             MinTransId = minTransId;
-            BetListData = betListData;
+            NoOfColumns = CalculateNumberOfColumns();
 
             FilterFormViewModel = new FilterFormViewModel(message);
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportGroup);
 
-            IsMobile = isMobile;
             IsShowWinLoss = false;
         }
 

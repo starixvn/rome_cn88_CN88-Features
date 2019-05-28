@@ -17,9 +17,12 @@
     {
         public BetListViewModelBase(
             BetListBaseQuery message,
+            BetListData betListData,
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
-            IBetListHTMLBuilder builder)
+            IBetListHTMLBuilder builder,
+            bool isMobile,
+            string[] excludingTicketStatus)
         {
             Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
 
@@ -29,13 +32,18 @@
             DisplayVNIP = message.DisplayVNIP;
             ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
             ViewerLevelId = message.ViewerLevelId;
-
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;
+            BreadcrumbLevel = message.BreadcrumbLevel;
+
+            BetListData = betListData;
+            BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
+            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             TicketHelper = ticketHelper;
             CN88Builder = cn88Builder;
             Builder = builder;
+            IsMobile = isMobile;
         }
 
         public UserLevel CustLevel { get; }
@@ -44,9 +52,9 @@
 
         public int NoOfColumns { get; protected set; }
 
-        public BetListData BetListData { get; protected set; }
+        public BetListData BetListData { get; }
 
-        public BetListTotal BetListTotal { get; protected set; }
+        public BetListTotal BetListTotal { get; }
 
         public ITicketHelper TicketHelper { get; }
 
@@ -58,7 +66,7 @@
 
         public int Divisor { get; }
 
-        public bool IsMobile { get; protected set; }
+        public bool IsMobile { get; }
 
         public bool IsShowPayout { get; protected set; }
 
@@ -115,9 +123,9 @@
 
         public int PageSize { get; }
 
-        public PagerViewModel PagerViewModel { get; protected set; }
+        public PagerViewModel PagerViewModel { get; }
 
-        public IEnumerable<CustInfo> BreadcrumbLevel { get; protected set; } = Enumerable.Empty<CustInfo>();
+        public IEnumerable<CustInfo> BreadcrumbLevel { get; }
 
         public IEnumerable<string> BreadcrumbParamByLevel { get; protected set; }
 

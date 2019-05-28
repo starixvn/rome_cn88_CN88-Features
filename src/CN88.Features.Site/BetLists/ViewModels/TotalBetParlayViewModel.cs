@@ -23,7 +23,7 @@
             IEnumerable<SelectListItemExt> viewModes,
             bool isMobile,
             string[] excludingTicketStatus = null)
-            : base(message, ticketHelper, cn88Builder, builder)
+            : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
             SportGroupId = message.SportGroupId;
             ViewMode = message.ViewMode;
@@ -32,21 +32,14 @@
 
             NoOfColumns = CalculateNumberOfColumns(10);
 
-            BetListData = betListData;
-            BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
-
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportGroupId);
             StakeSelectionViewModel = new StakeSelectionViewModel(stakeModes, message.StakeMode, message.StakeLimit);
             ViewModeSelectionViewModel = new SingleSelectionViewModel(viewModes, message.ViewMode);
-            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             TotalPayout = BetListData.Tickets.Sum(ticket => ticket.Payout) / Divisor;
 
-            IsMobile = isMobile;
             IsShowPayout = true;
             IsShowWinLoss = false;
-
-            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public int SportGroupId { get; }

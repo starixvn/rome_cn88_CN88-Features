@@ -1,7 +1,6 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
@@ -11,7 +10,6 @@
     using Features.Shared.Configurations;
     using Requests;
     using Shared.Helpers;
-    using Shared.ViewModels.Components;
 
     public class StartedWagerDetailsViewModel : BetListViewModelBase
     {
@@ -23,7 +21,7 @@
               IBetListHTMLBuilder builder,
               bool isMobile,
               string[] excludingTicketStatus = null)
-            : base(message, ticketHelper, cn88Builder, builder)
+            : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
             Stake = message.Stake;
             StakeCondition = message.StakeCondition;
@@ -33,16 +31,7 @@
             BetTeam = message.BetTeam;
 
             NoOfColumns = CalculateNumberOfColumns();
-
-            BetListData = betListData;
-            BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
-
-            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
-
             IsShowWinLoss = false;
-            IsMobile = isMobile;
-
-            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         public int MatchId { get; }

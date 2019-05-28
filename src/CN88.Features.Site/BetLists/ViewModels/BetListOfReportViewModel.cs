@@ -43,14 +43,9 @@
             IBetListHTMLBuilder builder,
             bool isMobile = false,
             string[] excludingTicketStatus = null)
-            : base(message, ticketHelper, cn88Builder, builder)
+            : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
             this.message = message;
-
-            NoOfColumns = CalculateNumberOfColumns(11);
-
-            BetListData = betListData;
-            BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
 
             FromDate = message.FromDate;
             ToDate = message.ToDate;
@@ -59,8 +54,7 @@
             Type = message.Type;
             IsOwner = message.IsOwner;
 
-            IsMobile = isMobile;
-
+            NoOfColumns = CalculateNumberOfColumns(11);
             ReportType = ReportTypes[message.Type];
             ReportTitle = ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[ReportType]);
         }
@@ -102,10 +96,7 @@
                 liveStatusSelectionViewModel,
                 allBetTypes);
 
-            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
-
             BreadcrumbParamByLevel = BuildBreadcrumbParamByLevel();
-            BreadcrumbLevel = message.BreadcrumbLevel;
         }
 
         private static IEnumerable<SelectListItemExt> GetLiveStatusList(BetListOfReportQuery message)
