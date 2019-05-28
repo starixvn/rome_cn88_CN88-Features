@@ -9,11 +9,11 @@
     <Setting Key="CS_Customer_Status_Upd" SpName="CS_Customer_Status_Upd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Sub Account">
-    <Setting Key="CS_CustSubSel" SpName="CS_CustSubSel_xtest" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubSel" SpName="CS_CustSubSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustSubSelInfo" SpName="CS_CustSubSelInfo" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustSubIns" SpName="CS_CustSubIns" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustSubUpd" SpName="CS_CustSubUpd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_CustSubUnlock" SpName="CS_CustSubUnlock_xtest" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubUnlock" SpName="CS_CustSubUnlock" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="PT">
     <Setting Key="CS_CustSetting_LegacyReportSetting_Sel" SpName="CS_CustSetting_LegacyReportSetting_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
@@ -23,6 +23,6 @@
     <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="ReCheck Customer Password">
-    <Setting Key="CS_CustomerReCheckPwd" SpName="CS_CustomerReCheckPwd_UAT3" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustomerReCheckPwd" SpName="CS_CustomerReCheckPwd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

@@ -124,7 +124,7 @@ class SubAccount {
                         complete: self.$.unblockUI
                     });
                 },
-                500,
+                350,
                 self.resources.okLabel,
                 self.resources.cancelLabel);
         });
