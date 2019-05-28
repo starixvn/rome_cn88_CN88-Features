@@ -345,6 +345,10 @@ body.phone {
         margin-bottom: 10px;
     }
 
+    .lbl-sport {
+        text-transform: uppercase;
+    }
+
     .dropdown-sportgroup {
         display: table;
         width: 100%;
@@ -356,10 +360,6 @@ body.phone {
         .btn-group {
             display: block;
         }
-    }
-
-    .lbl-sport {
-        text-transform: uppercase;
     }
 
     .function-group {
