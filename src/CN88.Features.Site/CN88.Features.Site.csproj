@@ -925,7 +925,6 @@
     <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
     <Content Include="App_Data\securitycode.pro.json" />
     <Content Include="App_Data\securitycode.napinternal.json" />
-    <Content Include="BetLists\Views\ReportBetListMobile.cshtml" />
     <Content Include="BetLists\Views\BetListTable.cshtml" />
     <Content Include="BetLists\Views\BetListTableMobile.cshtml" />
     <Content Include="BetLists\Views\Components\BackLinkMobile.cshtml" />
@@ -942,7 +941,7 @@
     <Content Include="BetLists\Views\Components\Popup.cshtml" />
     <Content Include="BetLists\Views\Components\HiddenFields.cshtml" />
     <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
-    <Content Include="BetLists\Views\StatementBetListMobile.cshtml" />
+    <Content Include="BetLists\Views\Components\TotalRows.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

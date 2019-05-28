@@ -10,12 +10,24 @@
 }
 
 <div class="betlist-container betlist-statement">
-    <div class="page-title">
-        <button class="btn-back"><span class="icon-chevron-left"></span>@BetListsResources.Back</button>
-        @BetListsResources.Statement @Model.CustName | @Model.Date.ToLongDay()
-    </div>
-    @Html.Partial("~/BetLists/Views/BetListTable.cshtml")
-    @Pager.Render(Model.PagerViewModel)
+    @if (Model.IsMobile)
+    {
+        <div class="page-title-mobile btn-back back-area">
+            <span class="icon-chevron-left  back-step"></span>
+            @BetListsResources.Statement | @Model.Date.ToLongDay()
+        </div>
+        <div class="username">@Model.CustName</div>
+        @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
+    }
+    else
+    {
+        <div class="page-title">
+            <button class="btn-back"><span class="icon-chevron-left"></span>@BetListsResources.Back</button>
+            @BetListsResources.Statement @Model.CustName | @Model.Date.ToLongDay()
+        </div>
+        @Html.Partial("~/BetLists/Views/BetListTable.cshtml")
+        @Pager.Render(Model.PagerViewModel)
+    }
 </div>
 
 @Html.Partial("~/BetLists/Views/Components/Popup.cshtml")

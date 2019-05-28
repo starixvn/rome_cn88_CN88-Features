@@ -24,5 +24,7 @@
         public int Total { get; }
 
         public bool HasData() => Total > 0;
+
+        public string TotalText => Total.ToString("#,##0");
     }
 }

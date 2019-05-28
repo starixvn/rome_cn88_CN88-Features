@@ -26,7 +26,8 @@
             @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml")
 
         </tr>
-        @RenderHeaderTotalRow()
+
+        @Html.Partial("~/BetLists/Views/Components/TotalRows.cshtml")
     </thead>
     <tbody>
         @if (Model.BetListData.HasData())
@@ -70,32 +71,6 @@
     </tbody>
 </table>
 
-@helper RenderBetListTotal(string winLoss, string stake, string total)
-{
-    <tr class="total">
-        <th>@BetListsResources.Total: @Model.BetListData.Total.ToString("#,##0")</th>
-        <th class="text-right">@Html.Raw(stake)</th>
-
-        @if (Model.IsShowWinLoss)
-        {
-            <th class="text-right winloss">@Html.Raw(winLoss)</th>
-        }
-
-        @if (Model.IsShowPayout)
-        {
-            <th class="text-right">@Model.TotalPayoutText</th>
-        }
-    </tr>
-
-    if (!Model.IsShowPayout && Model.IsShowWinLoss)
-    {
-        <tr class="winloss-comm">
-            <th colspan="@Model.TotalColColspan">@BetListsResources.WinLossWithCommission</th>
-            <th class="text-right">@Html.Raw(total)</th>
-        </tr>
-    }
-}
-
 @helper RenderDetailColumn(TicketDto ticket)
 {
         <div class="detail-container">
@@ -105,14 +80,4 @@
             @BetListHelper.RenderBetID(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById, true)
             @BetListHelper.RenderDetail(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData, true)
         </div>
-}
-
-@helper RenderHeaderTotalRow()
-{
-    if (Model.BetListData.HasData())
-    {
-        var total = Model.BetListTotal;
-
-        @RenderBetListTotal(total.TotalWinLossStr, total.TotalStakeStr, total.TotalStr)
-    }
 }
