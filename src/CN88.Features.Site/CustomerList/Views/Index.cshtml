@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = CN88.Features.CustomerList.Resources.CustomerListResources.DownlineList;
 }
 
 @section Styles {
@@ -13,7 +14,7 @@
     Model.ActorLevel,
     new ViewDataDictionary
     {
-        { "CssClass", "nav-tabs-style2" }
+        { "CssClass", Model.IsDevice ? "nav-tabs-style2" : "nav-tabs" }
     })
 
 
@@ -75,6 +76,7 @@
 @Html.Hidden("Status", Model.Status)
 @Html.Hidden("PageSize", Model.PageSize)
 @Html.Hidden("PageIndex", Model.PageIndex)
+@Html.Hidden("IsDevice", Model.IsDevice ? 1 : 0)
 
 @section Scripts {
     @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")

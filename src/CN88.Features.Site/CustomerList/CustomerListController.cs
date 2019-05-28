@@ -14,18 +14,13 @@
     [SessionState(SessionStateBehavior.ReadOnly), RestrictHeadlineFilter]
     public class CustomerListController : FeatureBaseController
     {
-        private readonly BrowserHelper browserHelper;
-
-        public CustomerListController(IMediator mediator, BrowserHelper browserHelper) : base(mediator)
+        public CustomerListController(IMediator mediator) : base(mediator)
         {
-            this.browserHelper = browserHelper;
         }
 
         [HttpGet]
         public async Task<ActionResult> Index(IndexQuery message)
-            => browserHelper.IsMobile()
-                ? await ViewAsync(message, "IndexMobile")
-                : await ViewAsync(message);
+            => await ViewAsync(message);
 
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
             => Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
