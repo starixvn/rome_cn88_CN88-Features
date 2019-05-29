@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.SubAccount.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using AppResources;
@@ -19,6 +20,8 @@
         Task<Result> CreateSubAccountAsync(CreateSubAccountParam param);
 
         Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param);
+
+        Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param);
     }
 
     public class SubAccountServiceImpl : SubAccountService
@@ -128,6 +131,14 @@
                     ? SubAccountResource.AccountSuccessfullyCreated
                     : SubAccountResource.UpdateSuccessfully)
                 : command.ErrMsg);
+        }
+
+        public async Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param)
+        {
+            var command = new UnlockSubAccountCommand(param.CustId, param.SubAccId, param.IP, param.LanguageKey);
+            await dynamicRepository.ExecuteAsync(command);
+
+            return new Result(command.ErrCode, command.ErrMsg);
         }
     }
 }

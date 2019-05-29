@@ -10,15 +10,12 @@
         public UpdateCommand(IUser viewer)
             : base(viewer)
         {
-            LanguageKey = viewer.LanguageKey;
         }
 
         [AllowHtml]
         public string Name { get; set; }
 
         public string PageAccess { get; set; }
-
-        public string LanguageKey { get; }
 
         public override bool IsValid()
             => base.IsValid() && !IsInternal;

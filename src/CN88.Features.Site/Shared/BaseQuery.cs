@@ -20,6 +20,7 @@
             SubAccountId = viewer.SubAccountId;
             IsInternal = viewer.IsInternal;
             IP = viewer.IP;
+            LanguageKey = viewer.LanguageKey;
             Language = viewer.Language;
         }
 
@@ -51,7 +52,10 @@
 
         public string IP { get; }
 
+        public string LanguageKey { get; }
+
         public string Language { get; }
+
         public virtual bool IsValid()
             => ViewerId > 0
             && !string.IsNullOrWhiteSpace(ViewerName)

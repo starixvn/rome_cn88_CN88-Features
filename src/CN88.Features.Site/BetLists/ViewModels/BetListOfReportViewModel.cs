@@ -113,8 +113,6 @@
                 });
             var liveStatusSelectionViewModel = new SingleSelectionViewModel(liveStatuses, message.UserSelectedLiveStatusId);
 
-            var allBetTypesSelectionViewModel = new SingleSelectionViewModel(allBetTypes, 0);
-
             ReportFilterViewModel = new ReportFilterViewModel(
                 DisplayMode,
                 ReportType,
@@ -127,7 +125,7 @@
                 dateRangePickerViewModel,
                 betTypeSelectionViewModel,
                 liveStatusSelectionViewModel,
-                allBetTypesSelectionViewModel);
+                allBetTypes);
 
             PageIndex = message.PageIndex;
             PageSize = message.PageSize;

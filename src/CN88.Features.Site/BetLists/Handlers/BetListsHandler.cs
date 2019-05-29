@@ -88,7 +88,7 @@
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
             var sportGroups = sportGroupService.GetSportGroups();
-            var allBetTypes = betTypeService.GetBetTypeGroupsBySport(0);
+            var allBetTypes = betTypeService.GetBetTypeGroups();
             var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
             var lastPeriod = accountingPeriodService.GetLastPeriod();

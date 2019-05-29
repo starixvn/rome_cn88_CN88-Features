@@ -346,6 +346,24 @@
     display: none;
 }
 
+.cn88-more-info,
+.cn88-more-info:hover {
+    width: auto;
+    padding: 0;
+    background: none;
+
+    .detail-link:before {
+        position: relative;
+        top: 3px;
+        content: "";
+        background: url(../Content/Images/q_Icon_2.png) no-repeat scroll left center transparent;
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+        margin-right: 4px;
+    }
+}
+
 // For Phone
 body.phone {
     .filter {
@@ -409,35 +427,41 @@ body.phone {
             margin-top: 10px;
         }
 
-        .cn88-mix-parlay {
-            margin-bottom: 15px;
-
-            a {
-                display: block;
-                height: 14px;
-                margin-top: 8px;
-                background-image: url(images/plus_details.svg);
-            }
-
-            &.cn88-mix-parlay-collapse a {
-                background-image: url(images/minus_details.svg);
-            }
-        }
 
         .fix-column {
             line-height: 16px;
         }
+    }
 
-        .cn88-more-info {
-            display: inline-block;
-            height: 19px;
-            background-image: url("images/details.svg");
+    .cn88-mix-parlay {
+        margin-bottom: 15px;
+
+        a {
+            display: block;
+            height: 14px;
+            margin-top: 8px;
+            background-image: url(images/plus_details.svg);
         }
+
+        &.cn88-mix-parlay-collapse a {
+            background-image: url(images/minus_details.svg);
+        }
+    }
+
+
+    .cn88-more-info,
+    .cn88-more-info:hover {
+        display: inline-block;
 
         .detail-link {
             white-space: nowrap;
         }
+
+        .detail-link:before {
+            background-image: url("images/details.svg");
+        }
     }
+
 
     .tbl-betlists > thead {
         tr > th {

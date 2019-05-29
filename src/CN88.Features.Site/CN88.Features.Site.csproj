@@ -26,7 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.2</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,8 +101,8 @@
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.1-subacc04\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.0.2-nickname02\lib\net461\CN88.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -491,7 +491,9 @@
     <Content Include="App_Data\SPNames\Local\DBPOL.NAP_UserControl.xml" />
     <Content Include="App_Data\SPNames\Local\DBARC.bodb_Archive.xml" />
     <Content Include="App_Data\SPNames\Local\DBTXN.BODB02.xml" />
-    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="BetLists\bundles\betlist-of-report-old.js" />
     <Content Include="BetLists\bundles\betlist-of-report-old.min.js">
       <DependentUpon>betlist-of-report-old.js</DependentUpon>
@@ -778,7 +780,6 @@
     <Compile Include="Reports\Handlers\VerifyPasswordHandler.cs" />
     <Compile Include="Reports\OldReportsController.cs" />
     <Compile Include="Reports\Requests\OldReportQuery.cs" />
-    <Compile Include="Reports\Requests\BettypeQuery.cs" />
     <Compile Include="Reports\Requests\ReportBaseQuery.cs" />
     <Compile Include="Reports\Requests\OldIndexQuery.cs" />
     <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
@@ -787,7 +788,6 @@
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
     <Compile Include="Reports\ViewModels\AccountingPeriodSelectionViewModel.cs" />
     <Compile Include="Reports\ViewModels\AccountingSheetViewModel.cs" />
-    <Compile Include="Reports\ViewModels\BettypeViewModel.cs" />
     <Compile Include="Reports\ViewModels\IndexBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\OldIndexViewModel.cs" />
     <Compile Include="Reports\ViewModels\OldReportFilterViewModel.cs" />
@@ -849,6 +849,7 @@
     <Compile Include="Reports\ViewModels\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureBaseController.cs" />
     <Compile Include="Shared\ViewModels\Components\DateRangePickerViewModel.cs" />
+    <Compile Include="SubAccount\Requests\UnlockCommand.cs" />
     <Compile Include="SubAccount\Requests\UpdateCommand.cs" />
     <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
@@ -972,7 +973,6 @@
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <Content Include="Reports\Views\VerifyPassword.cshtml" />
     <Content Include="Reports\Styles\_variables.scss" />
-    <Content Include="Reports\Views\Bettype.cshtml" />
     <Content Include="Reports\Styles\_mixins.scss" />
     <Content Include="Reports\Styles\security.scss" />
     <Content Include="Reports\Views\OldIndex.cshtml" />
@@ -1019,10 +1019,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\assets\bundles\" />
-    <Folder Include="Reports\assets\scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />

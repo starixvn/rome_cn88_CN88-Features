@@ -198,6 +198,18 @@
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>成功更新</value>
   </data>
+  <data name="NickName" xml:space="preserve">
+    <value>昵称</value>
+  </data>
+  <data name="UnlockSubAccount" xml:space="preserve">
+    <value>解锁子账户</value>
+  </data>
+  <data name="ClickToUnlock" xml:space="preserve">
+    <value>解锁</value>
+  </data>
+  <data name="UnlockAccountConfirmMessage" xml:space="preserve">
+    <value>确认解除此账户锁定？</value>
+  </data>
   <data name="SubAccount" xml:space="preserve">
     <value>子帐号</value>
   </data>

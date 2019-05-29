@@ -601,7 +601,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Username Or Name contains.
+        ///   Looks up a localized string similar to Username, Nickname Or Name contains.
         /// </summary>
         public static string UsernameOrNameContains {
             get {

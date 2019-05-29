@@ -29,14 +29,10 @@
     onchangeSportType(): void {
         let sportType = this.sportGroupSelectionComponent.$dropdown.val();
         this.betTypeSelectionComponent.$dropdown.empty();
+        let first = betTypes[0];
+        this.betTypeSelectionComponent.$dropdown.append('<option value=' + first[0].Value + '>' + first[0].Text + '</option>');
         for (var i = 0; i < betTypes.length; i++) {
             var betTypeGroup = betTypes[i];
-            if (betTypeGroup[0].SportTypeGroup == 0) {
-                this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[0].Value + '>' + betTypeGroup[0].Text + '</option>');
-
-                if (sportType == 0)
-                    break;
-            }
 
             if (betTypeGroup[0].SportTypeGroup == sportType) {
                 for (var j = 0; j < betTypeGroup.length; j++) {

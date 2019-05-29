@@ -24,5 +24,11 @@
 
         public string ResetSecurityCodeLink
             => UrlHelper.GetMainAppPath("~/SecurityCode/ResetSubAccountSecurityCode");
+
+        public string UnlockSubAccountLink
+            => UrlHelper.GetFeaturesAppPath("~/SubAccount/Unlock");
+
+        public string VerifySecurityCodeLink
+            => UrlHelper.GetMainAppPath("~/SecurityCode/VerifySecurityCode");
     }
 }

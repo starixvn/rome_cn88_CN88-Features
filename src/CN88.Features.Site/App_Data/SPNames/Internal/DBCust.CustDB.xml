@@ -13,6 +13,7 @@
     <Setting Key="CS_CustSubSelInfo" SpName="CS_CustSubSelInfo" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_CustSubIns" SpName="CS_CustSubIns" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_CustSubUpd" SpName="CS_CustSubUpd" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_CustSubUnlock" SpName="CS_CustSubUnlock" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
   </Function>
   <Function Name="PT">
     <Setting Key="CS_CustSetting_LegacyReportSetting_Sel" SpName="CS_CustSetting_LegacyReportSetting_Sel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />

@@ -10,7 +10,7 @@
 
     public interface BettypeGroupService
     {
-        IEnumerable<BetTypeGroup> GetBetTypeGroupsBySport(int sportGroupId = 0);
+        IEnumerable<BetTypeGroup> GetBetTypeGroups();
     }
 
     public class BettypeGroupServiceImpl : BettypeGroupService
@@ -28,12 +28,7 @@
             this.cacheRefService = cacheRefService;
         }
 
-        public IEnumerable<BetTypeGroup> GetBetTypeGroupsBySport(int sportGroupId = 0)
-            => sportGroupId == 0
-                ? GetBetTypeGroups()
-                : GetBetTypeGroups().Where(bettype => bettype.SportTypeGroup == sportGroupId);
-
-        private IEnumerable<BetTypeGroup> GetBetTypeGroups()
+        public IEnumerable<BetTypeGroup> GetBetTypeGroups()
             => ConfiguredCacheService.GetOrSet(
                 BetTypesCacheKey,
                 () =>

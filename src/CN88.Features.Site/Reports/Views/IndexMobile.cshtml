@@ -6,7 +6,6 @@
     @StaticResources.RenderStyles("~/Reports/bundles/reports")
 }
 @model IndexViewModel
-
 <div class="wager-report">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" id="wager-tab" class="active">
@@ -18,7 +17,7 @@
         <li role="presentation" id="settlement-summary-tab">
             <a data-toggle="tab" href="#settlementSumary" data-defaulttype="@ReportResources.SettlementSummary">@ReportResources.SettlementSummaryMobile</a>
         </li>
-        <li role="presentation"  id="accounting-sheet-tab">
+        <li role="presentation" id="accounting-sheet-tab">
             <a data-toggle="tab" href="#accountingSheet" data-defaulttype="@ReportResources.AccountingSheet">@ReportResources.AccountingMobile</a>
         </li>
     </ul>
@@ -41,20 +40,18 @@
                 </select>
             </div>
         </div>
-
         <div role="tabpanel" class="tab-pane fade" id="settlementSumary">
             @Html.Action("SettlementSummary")
         </div>
         <div role="tabpanel" class="tab-pane fade" id="accountingSheet">
             @Html.Action("AccountingSheet")
         </div>
-
         @Html.Partial("~/Reports/Views/Index/CreateReportFilter.cshtml")
     </div>
 </div>
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/index")
     <script>
-        var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.BetTypeSelectionViewModel.Items.GroupBy(i => i.SportTypeGroup)));
+        var betTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.AllBetTypeGroups.GroupBy(i => i.SportTypeGroup)));
     </script>
 }
