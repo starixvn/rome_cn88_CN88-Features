@@ -28,6 +28,6 @@
 
         public override string GetSettingKey() => "CS_BetList_TotalBets_Outright";
 
-        public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => CustId > 0 && RoleId >= 0 && MatchId >= 0;
     }
 }

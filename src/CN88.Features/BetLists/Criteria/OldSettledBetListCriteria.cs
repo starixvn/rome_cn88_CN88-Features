@@ -30,6 +30,6 @@
 
         public override string GetSettingKey() => "CS_BetList_WinLoss_Mem_Old";
 
-        public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => CustId > 0 && FromDate <= ToDate;
     }
 }

@@ -35,6 +35,6 @@
 
         public override string GetSettingKey() => "CS_BetList_TotalBets_Parlay";
 
-        public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => CustId > 0 && RoleId >= 0;
     }
 }
