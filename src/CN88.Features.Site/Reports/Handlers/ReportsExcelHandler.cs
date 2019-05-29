@@ -186,7 +186,7 @@
         internal static Mapper<ReportModel> GetFooterRowMapper()
             => new Mapper<ReportModel>()
                 .Map(A, data => ReportResources.ProfitMagin)
-                .Map(B, data => decimal.Round(data.SuperResult / data.SuperStock, 4));
+                .Map(B, data => decimal.Round(data.SuperStock != 0 ? data.SuperResult / data.SuperStock : 0, 4));
 
         private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
             => new TemplateInfo(
