@@ -192,4 +192,13 @@ body.phone {
             word-break: break-all;
         }
     }
+
+    // status
+    .row-closed.reason-0,
+    .row-closed.reason-1,
+    .row-closed.reason-2,
+    .row-closed.reason-3,
+    .row-suspended {
+        background-color: transparent;
+    }
 }
