@@ -177,6 +177,12 @@ body.phone {
             display: none;
         }
 
+        .username-wrapper {
+            width: 124px;
+            word-break: break-all;
+        }
+
+
         &.level-member {
             .col-username {
                 min-width: 58px;
@@ -186,13 +192,7 @@ body.phone {
                 width: 78px;
             }
         }
-
-        .username-wrapper {
-            width: 124px;
-            word-break: break-all;
-        }
     }
-
     // status
     .row-closed.reason-0,
     .row-closed.reason-1,

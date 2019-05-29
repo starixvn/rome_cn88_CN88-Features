@@ -361,8 +361,8 @@ body.phone {
         display: none;
     }
 
-    .create-form .btn-group,
-    .btn-group {
+    .btn-group,
+    .create-form .btn-group {
         width: 100%;
 
         button.multiselect {
@@ -395,7 +395,7 @@ body.phone {
     .dropdown {
         width: 100%;
     }
-    
+
     .create-form {
         margin-top: 0;
         padding: 0 12px;
@@ -447,20 +447,20 @@ body.phone {
             float: left;
             width: 30.5%;
             margin-right: 4%;
-
-            &:last-child {
-                margin-right: 0;
-            }
         }
 
         .form-group.has-two-buttons .btn-quick-choice {
             float: left;
             width: 48%;
             margin-right: 0;
+        }
 
-            &:first-child {
-                margin-right: 4%;
-            }
+        .form-group.has-two-buttons .btn-quick-choice:first-child {
+            margin-right: 4%;
+        }
+
+        .form-group.has-three-buttons .btn-quick-choice:last-child {
+            margin-right: 0;
         }
 
         .form-group.list-buttons [class^="btn"] {
@@ -472,7 +472,6 @@ body.phone {
             margin-right: 4%;
         }
     }
-    
     // Settled Wager
     .page-title-mobile {
         padding-left: 12px;
