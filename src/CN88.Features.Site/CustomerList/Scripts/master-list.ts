@@ -96,7 +96,7 @@ class MasterList extends BaseList {
                         custId = customer.CustId,
                     username = customer.Username,
                     status = customer.Status,
-                    closed = customer.Closed;               
+                    closed = customer.Closed;
 
                 const userAttr = `cust-id='${custId}' username='${username}'`;
                 const iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;

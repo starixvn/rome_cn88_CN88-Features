@@ -98,8 +98,11 @@
                             <th class="text-right">@CustomerListResources.Credit</th>
                             <th class="col-creation-date">@CustomerListResources.CreationDate</th>
                             <th class="text-center">@CustomerListResources.Status</th>
-                            <th class="col-action text-center">@CustomerListResources.Action</th>
-                        </tr>
+                            @if (Model.IsActiveViewer)
+                            {
+                                <th class="col-action text-center">@CustomerListResources.Action</th>
+                            }
+                            </tr>
                     </thead>
                     <tbody></tbody>
                     <tfoot></tfoot>
@@ -168,7 +171,10 @@
                             <th class="text-right">@CustomerListResources.Credit</th>
                             <th class="col-creation-date">@CustomerListResources.CreationDate</th>
                             <th class="text-center">@CustomerListResources.Status</th>
-                            <th class="col-action text-center">@CustomerListResources.Action</th>
+                            @if (Model.IsActiveViewer)
+                            {
+                                <th class="col-action text-center">@CustomerListResources.Action</th>
+                            }
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -235,7 +241,10 @@
                         <th class="text-right">@CustomerListResources.Credit</th>
                         <th class="col-creation-date">@CustomerListResources.CreationDate</th>
                         <th class="text-center">@CustomerListResources.Status</th>
-                        <th class="col-action text-center">@CustomerListResources.Action</th>
+                        @if (Model.IsActiveViewer)
+                        {
+                            <th class="col-action text-center">@CustomerListResources.Action</th>
+                        }
                     </tr>
                 </thead>
                 <tbody></tbody>

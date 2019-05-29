@@ -146,16 +146,17 @@ class AgentList extends BaseList {
                     userAttr = `cust-id='${custId}' username='${username}'`,
                     iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
 
-                let resetPasswordIcon = '', securityCodeIcon = '', editIcon = '';
+                let actionColumn = '';
 
                 if (this.isViewerActive) {
-                    resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='2'/>`;
-                    securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
-                    editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditAgent}'/>`;
+                    const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='2'/>`;
+                    const securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
+                    const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditAgent}'/>`;
+                    const addDownlineIcon = status == siteInfrastructure.customerStatus.active && rs.SearchAccountStatus == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewMember}'/>` : '';
+                    const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+
+                    actionColumn = `<td class='col-action text-left'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon} </td>`;
                 }
-                
-                const addDownlineIcon = status == siteInfrastructure.customerStatus.active && rs.SearchAccountStatus == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewMember}'/>` : '';
-                const unclockIcon = this.isViewerActive && closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
                     `<td class='col-no'> ${customerIndex} </td>` +
@@ -165,8 +166,7 @@ class AgentList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
-                    `<td class='col-action text-left'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon} </td>` +
-                        "</tr>";
+                    `${actionColumn}</tr>`;
                 }
             }
         }

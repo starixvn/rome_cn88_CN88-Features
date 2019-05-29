@@ -9,10 +9,12 @@
             CustomerListModel model,
             int searchAccountId,
             string searchAccountUsername,
+            byte searchAccountStatus,
             string downlineUsername)
         {
             SearchAccountId = searchAccountId;
             SearchAccountUsername = searchAccountUsername;
+            SearchAccountStatus = searchAccountStatus;
             DownlineUsername = downlineUsername;
             TotalCustomers = model.TotalCustomers;
             Customers = model.Customers;
@@ -22,7 +24,7 @@
 
         public string SearchAccountUsername { get; }
 
-        public byte SearchAccountStatus => 3;
+        public byte SearchAccountStatus { get; }
 
         public string DownlineUsername { get; }
 

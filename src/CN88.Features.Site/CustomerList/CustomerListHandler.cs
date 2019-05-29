@@ -65,6 +65,7 @@
                 model,
                 model.UplineId,
                 message.Username,
+                model.UplineStatus,
                 message.DownlineUsername);
         }
 
