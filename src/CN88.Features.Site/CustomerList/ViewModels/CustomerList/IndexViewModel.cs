@@ -9,12 +9,9 @@
     {
         private readonly IndexQuery query;
 
-        private readonly BrowserHelper browserHelper;
-
         public IndexViewModel(IndexQuery query, BrowserHelper browserHelper)
         {
             this.query = query;
-            this.browserHelper = browserHelper;
             IsDevice = browserHelper.IsMobile() && !browserHelper.IsTablet();
         }
 
