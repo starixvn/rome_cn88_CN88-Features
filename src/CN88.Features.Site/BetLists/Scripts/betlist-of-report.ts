@@ -27,25 +27,17 @@ class BetListOfReport {
         reportPager: null
     };
 
-    constructor(
-        $: JQueryStatic,
-        dateRangePickerComponent: DateRangePickerComponent,
-        sportGroupSelectionComponent: SingleSelectionDropdownComponent,
-        betTypeSelectionComponent: SingleSelectionDropdownComponent,
-        liveStatusSelectionComponent: SingleSelectionDropdownComponent,
-        linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent,
-        toggleHandler: ToggleHandler) {
-        this.$ = $;
+    constructor(options: any) {
+        this.$ = options.$;
 
-        this.dateRangePickerComponent = dateRangePickerComponent;
-        this.sportGroupSelectionComponent = sportGroupSelectionComponent;
-        this.betTypeSelectionComponent = betTypeSelectionComponent;
-        this.liveStatusSelectionComponent = liveStatusSelectionComponent;
-        this.toggleHandler = toggleHandler;
+        this.dateRangePickerComponent = options.dateRangePickerComponent;
+        this.sportGroupSelectionComponent = options.sportGroupSelectionComponent;
+        this.betTypeSelectionComponent = options.betTypeSelectionComponent;
+        this.liveStatusSelectionComponent = options.liveStatusSelectionComponent;
+        this.toggleHandler = options.toggleHandler;
 
-        this.linkBuilderComponent = linkBuilderComponent;
-        this.pagerComponent = pagerComponent;
+        this.linkBuilderComponent = options.linkBuilderComponent;
+        this.pagerComponent = options.pagerComponent;
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
     }
 
@@ -148,14 +140,16 @@ class BetListOfReport {
 }
 
 $(document).ready(() => {
-    const betListOfReport = new BetListOfReport(
-        $,
-        new DateRangePickerComponent($),
-        new SingleSelectionDropdownComponent($),
-        new SingleSelectionDropdownComponent($),
-        new SingleSelectionDropdownComponent($),
-        new LinkBuilderComponent($),
-        new ClientPagerComponent($),
-        new ToggleHandler($));
+    const betListOfReport = new BetListOfReport({
+        $: $,
+        dateRangePickerComponent: new DateRangePickerComponent($),
+        sportGroupSelectionComponent: new SingleSelectionDropdownComponent($),
+        betTypeSelectionComponent: new SingleSelectionDropdownComponent($),
+        liveStatusSelectionComponent: new SingleSelectionDropdownComponent($),
+        linkBuilderComponent: new LinkBuilderComponent($),
+        pagerComponent: new ClientPagerComponent($),
+        toggleHandler: new ToggleHandler($)
+    });
+
     betListOfReport.init();
 });
