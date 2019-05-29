@@ -4,16 +4,10 @@
     using MediatR;
     using Site.Requests;
 
-    public class UnlockCommand : BaseQuery, IRequest<Result>
+    public class UnlockCommand : BaseCommand, IRequest<Result>
     {
-        public UnlockCommand(IUser viewer)
-            : base(viewer)
+        public UnlockCommand(IUser viewer) : base(viewer)
         {
-            LanguageKey = viewer.LanguageKey;
         }
-
-        public string LanguageKey { get; }
-
-        public override bool IsValid() => base.IsValid() && !IsInternal;
     }
 }

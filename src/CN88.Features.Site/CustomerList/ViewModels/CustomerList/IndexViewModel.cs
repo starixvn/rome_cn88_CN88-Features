@@ -47,7 +47,7 @@
 
         public int ViewerId => query.ViewerId;
 
-        public bool IsActiveViewer => query.IsActiveViewer;
+        public byte ViewerStatusId => query.ViewerStatusId;
 
         public string DownlineUsername => query.DownlineUsername;
 

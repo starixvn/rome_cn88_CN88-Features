@@ -96,16 +96,21 @@ class MasterList extends BaseList {
                         custId = customer.CustId,
                     username = customer.Username,
                     status = customer.Status,
-                    closed = customer.Closed;
+                    closed = customer.Closed,
+                    userAttr = `cust-id='${custId}' username='${username}'`,
+                    iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
 
-                const userAttr = `cust-id='${custId}' username='${username}'`;
-                const iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
+                let actionColumn = '';
 
-                const resetPasswordIcon = this.isViewerActive ? `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='3'/>` : '';
-                const securityCodeIcon = this.isViewerActive ? `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>` : '';
-                const editIcon = this.isViewerActive ? `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMasterAgent}'/>` : '';
-                const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewAgent}'/>` : '';
-                const unclockIcon = this.isViewerActive && closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+                if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
+                    const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='3'/>`;
+                    const securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
+                    const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMasterAgent}'/>`;
+                    const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewAgent}'/>` : '';
+                    const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+
+                    actionColumn = `<td class='col-action text-left'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon} </td>`;
+                }
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
                     `<td class='col-no'> ${customerIndex} </td>` +
@@ -115,8 +120,7 @@ class MasterList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${this.indexManager.getStatusName(customer.Status)}</td>` +
-                    `<td class='col-action text-left'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>` +
-                        "</tr>";
+                    `${actionColumn}</tr>`;
                 }
             }
         }

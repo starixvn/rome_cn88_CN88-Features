@@ -2,17 +2,13 @@
 {
     using Features.Models;
     using MediatR;
-    using Site.Requests;
 
-    public class CreditCommand : BaseQuery, IRequest<Result>
+    public class CreditCommand : BaseCommand, IRequest<Result>
     {
-        public CreditCommand(IUser viewer)
-            : base(viewer)
+        public CreditCommand(IUser viewer) : base(viewer)
         {
         }
 
         public decimal CreditAmount { get; set; }
-
-        public override bool IsValid() => base.IsValid() && !IsInternal;
     }
 }

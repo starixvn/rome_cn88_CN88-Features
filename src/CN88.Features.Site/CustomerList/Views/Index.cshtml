@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
-                    @if (!Model.IsDevice && Model.IsActiveViewer)
+                    @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
                     {
                         <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
                     }
@@ -98,7 +98,7 @@
                             <th class="text-right">@CustomerListResources.Credit</th>
                             <th class="col-creation-date">@CustomerListResources.CreationDate</th>
                             <th class="text-center">@CustomerListResources.Status</th>
-                            @if (Model.IsActiveViewer)
+                            @if (Model.ViewerStatusId == CustomerStatus.Active)
                             {
                                 <th class="col-action text-center">@CustomerListResources.Action</th>
                             }
@@ -153,7 +153,7 @@
                         <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                     </div>
                     <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-                    @if (!Model.IsDevice && Model.IsActiveViewer)
+                    @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
                     {
                         <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-agent"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
                     }
@@ -171,7 +171,7 @@
                             <th class="text-right">@CustomerListResources.Credit</th>
                             <th class="col-creation-date">@CustomerListResources.CreationDate</th>
                             <th class="text-center">@CustomerListResources.Status</th>
-                            @if (Model.IsActiveViewer)
+                            @if (Model.ViewerStatusId == CustomerStatus.Active)
                             {
                                 <th class="col-action text-center">@CustomerListResources.Action</th>
                             }
@@ -223,7 +223,7 @@
                     <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
                 </div>
                 <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-                @if (!Model.IsDevice && Model.IsActiveViewer)
+                @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
                 {
                     <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-member"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
                 }
@@ -241,7 +241,7 @@
                         <th class="text-right">@CustomerListResources.Credit</th>
                         <th class="col-creation-date">@CustomerListResources.CreationDate</th>
                         <th class="text-center">@CustomerListResources.Status</th>
-                        @if (Model.IsActiveViewer)
+                        @if (Model.ViewerStatusId == CustomerStatus.Active)
                         {
                             <th class="col-action text-center">@CustomerListResources.Action</th>
                         }
@@ -280,7 +280,7 @@
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
 @Html.Hidden("AccessDenyPage", Model.AccessDenyPage)
-@Html.Hidden("IsActiveViewer", Model.IsActiveViewer)
+@Html.Hidden("ViewerStatusId", Model.ViewerStatusId)
 
 @Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
 @Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)

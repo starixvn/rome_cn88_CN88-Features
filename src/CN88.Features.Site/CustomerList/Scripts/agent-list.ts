@@ -148,7 +148,7 @@ class AgentList extends BaseList {
 
                 let actionColumn = '';
 
-                if (this.isViewerActive) {
+                if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
                     const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='2'/>`;
                     const securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
                     const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditAgent}'/>`;

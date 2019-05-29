@@ -2,19 +2,15 @@
 {
     using Features.Models;
     using MediatR;
-    using Site.Requests;
 
-    public class CustomerStatusCommand : BaseQuery, IRequest<Result>
+    public class CustomerStatusCommand : BaseCommand, IRequest<Result>
     {
-        public CustomerStatusCommand(IUser viewer)
-            : base(viewer)
+        public CustomerStatusCommand(IUser viewer) : base(viewer)
         {
         }
 
         public byte OldStatusId { get; set; }
 
         public byte NewStatusId { get; set; }
-
-        public override bool IsValid() => base.IsValid() && !IsInternal;
     }
 }

@@ -33,7 +33,7 @@
 
         public byte ViewerStatusId => viewer.StatusId;
 
-        public bool IsActiveViewer => viewer.StatusId.Equals(CustomerStatus.Active);
+        //public bool IsActiveViewer => viewer.StatusId.Equals(CustomerStatus.Active);
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
 

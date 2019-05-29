@@ -42,7 +42,7 @@
             }
         })
             .done(function (data) {
-                data.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Result.Message);
+                data.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Message);
             })
             .fail(function (jqXHR: JQueryXHR) {
                 if (jqXHR.status === 403) {
