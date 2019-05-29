@@ -14,6 +14,6 @@
         public string LanguageKey { get; }
 
         // TO DO
-        //public override bool IsValid() => base.IsValid() && !IsInternal;
+        public override bool IsValid() => base.IsValid() && !IsInternal;
     }
 }

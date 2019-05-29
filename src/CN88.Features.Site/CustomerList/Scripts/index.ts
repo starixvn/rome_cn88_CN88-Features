@@ -241,8 +241,8 @@ class CustomerList {
         this.openPopup(popupTitle, url, 'modal modal-credit', 490, 280);
     };
 
-    updateStatus = (custId: any, username: any, updateStatusId: any) => {
-        let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, UpdateStatusId: updateStatusId }),
+    updateStatus = (custId: any, username: any, statusId: any) => {
+        let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-status', 490, 210);
@@ -308,13 +308,15 @@ class CustomerList {
                         if (data.IsSuccess) {
                             self.$(".icon-unlock[cust-id='" + custId + "']").remove();
                         }
+                        else {
+                            self.topWindow.popupManager.bootboxAlert(self.viewResources.UnlockConfirmTitle, data.Message);
+                        }
                     })
                     .fail(function (jqXHR: JQueryXHR) {
                         if (jqXHR.status === 403) {
-                           
+                            self.topWindow.popupManager.bootboxAlert(jqXHR.responseJSON.message);
                         }
-                    })
-                    .always(function () { });
+                    });
             }
         );
     };

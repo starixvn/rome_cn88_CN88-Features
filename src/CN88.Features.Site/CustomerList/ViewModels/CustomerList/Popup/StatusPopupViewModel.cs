@@ -5,11 +5,11 @@
         public StatusPopupViewModel(CustomerStatusPopupQuery query)
         {
             CustId = query.CustId;
-            UpdateStatusId = query.UpdateStatusId;
+            StatusId = query.StatusId;
         }
 
         public int CustId { get; }
 
-        public int UpdateStatusId { get; }
+        public int StatusId { get; }
     }
 }

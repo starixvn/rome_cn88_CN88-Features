@@ -1,11 +1,34 @@
 ﻿@model StatusPopupViewModel
 
 @{
-	Layout = "~/Shared/Views/_Layout.cshtml";
-}
+    Layout = "~/Shared/Views/_Layout.cshtml";
+    var options = new[]
+    {
+        new {
+            Value = CustomerStatus.Active,
+            Text = CustomerListResources.Active,
+            Show = true
+        },
+        new {
+            Value = CustomerStatus.ViewOnly,
+            Text = CustomerListResources.ViewOnly,
+            Show = new [] {CustomerStatus.Active, CustomerStatus.ViewOnly}.Contains(Model.StatusId)
+        },
+        new {
+            Value = CustomerStatus.Suspended,
+            Text = CustomerListResources.Suspended,
+            Show = new [] {CustomerStatus.Active, CustomerStatus.Suspended}.Contains(Model.StatusId)
+        },
+        new {
+            Value = CustomerStatus.Inactive,
+            Text = CustomerListResources.Inactive,
+            Show = new [] {CustomerStatus.Active, CustomerStatus.Inactive}.Contains(Model.StatusId)
+        },
+    }.ToList();
+    }
 
-@section Styles {
-	@StaticResources.RenderStyles("~/CustomerList/bundles/styles/popup")
+    @section Styles {
+        @StaticResources.RenderStyles("~/CustomerList/bundles/styles/popup")
 }
 
 <div class="popup-modal form">
@@ -13,26 +36,12 @@
     <div class="form-group">
         <label>@CustomerListResources.Status</label>
         <select id="dropdown-status" class="control">
-            <option value="@CustomerStatus.Active" @(Model.UpdateStatusId.Equals(CustomerStatus.Active) ? "selected" : string.Empty)>
-                @CustomerListResources.Active
-            </option>
-            @if (Model.UpdateStatusId.Equals(CustomerStatus.Active) || Model.UpdateStatusId.Equals(CustomerStatus.ViewOnly))
+            @foreach (var option in options)
             {
-                <option value="@CustomerStatus.ViewOnly" @(Model.UpdateStatusId.Equals(CustomerStatus.ViewOnly) ? "selected" : string.Empty)>
-                    @CustomerListResources.ViewOnly
-                </option>
-            }
-            @if (Model.UpdateStatusId.Equals(CustomerStatus.Active) || Model.UpdateStatusId.Equals(CustomerStatus.Suspended))
-            {
-                <option value="@CustomerStatus.Suspended" @(Model.UpdateStatusId.Equals(CustomerStatus.Suspended) ? "selected" : string.Empty)>
-                    @CustomerListResources.Suspended
-                </option>
-            }
-            @if (Model.UpdateStatusId.Equals(CustomerStatus.Active) || Model.UpdateStatusId.Equals(CustomerStatus.Inactive))
-            {
-                <option value="@CustomerStatus.Inactive" @(Model.UpdateStatusId.Equals(CustomerStatus.Inactive) ? "selected" : string.Empty)>
-                    @CustomerListResources.Inactive
-                </option>
+                if (option.Show)
+                {
+                    <option value="@option.Value" @(Model.StatusId == option.Value ? "selected='selected'" : "")>@option.Text</option>
+                }
             }
         </select>
     </div>
@@ -44,7 +53,7 @@
 
 @Html.Hidden("CustId", Model.CustId)
 @Html.Hidden("UpdateSuccessfully", CustomerListResources.UpdateSuccessfully)
-@Html.Hidden("CurrentStatusId", Model.UpdateStatusId)
+@Html.Hidden("CurrentStatusId", Model.StatusId)
 @Html.Hidden("ThereIsNoChange", CustomerListResources.ThereIsNoChange)
 @Html.AntiForgeryToken()
 

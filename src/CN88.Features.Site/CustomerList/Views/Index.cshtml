@@ -33,227 +33,28 @@
 <ul id="nav-tabs" class="nav @(Model.IsDevice ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
-        <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
-            <a>@CustomerListResources.Master</a>
-        </li>
+        @RenderMobileTab(UserLevel.Master, CustomerListResources.Master)
     }
 
     @if (Model.ActorLevel.IsMasterOrSuperLevel())
     {
-        <li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
-            <a>@CustomerListResources.Agent</a>
-        </li>
+        @RenderMobileTab(UserLevel.Agent, CustomerListResources.Agent)
     }
 
-    <li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
-        <a>@CustomerListResources.Member</a>
-    </li>
+    @RenderMobileTab(UserLevel.Member, CustomerListResources.Member)
 </ul>
 
 @if (Model.ActorLevel.IsSuperLevel())
 {
-    <div class="tab-content display-none" level="@UserLevel.Master.Value">
-        <div class="tab-panel active" role="tabpanel">
-            @if (Model.IsDevice)
-            {
-                <div class="filter-mobile">
-                    <span class="icon-filter-down" id="master-filter-toggle-icon"></span>
-                    <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
-                </div>
-            }
-            <div class="filter">
-                <div id="form-master" class="form-inline" role="form">
-                    <div class="form-group">
-                        <label>@CustomerListResources.UsernameOrNameContains</label>
-                        <input id="txt-username-master" class="control" type="text" value="" />
-                    </div>
-                    <div class="form-group">
-                        <label>@CustomerListResources.Status</label>
-                        <select id="dropdown-status-master" class="control">
-                            <option value="@CustomerStatus.All" @(Model.Status == CustomerStatus.All ? "selected=\"selected\"" : "")>@CustomerListResources.All</option>
-                            <option value="@CustomerStatus.Active" @(Model.Status == CustomerStatus.Active ? "selected=\"selected\"" : "")>@CustomerListResources.Active</option>
-                            <option value="@CustomerStatus.ViewOnly" @(Model.Status == CustomerStatus.ViewOnly ? "selected=\"selected\"" : "")>@CustomerListResources.ViewOnly</option>
-                            <option value="@CustomerStatus.Suspended" @(Model.Status == CustomerStatus.Suspended ? "selected=\"selected\"" : "")>@CustomerListResources.Suspended</option>
-                            <option value="@CustomerStatus.Inactive" @(Model.Status == CustomerStatus.Inactive ? "selected=\"selected\"" : "")>@CustomerListResources.Inactive</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input id="btn-submit-master" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-                    </div>
-                    @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
-                    {
-                        <button id="add-directdownline" cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-master"><span class="icon-add"></span>@CustomerListResources.NewMasterAgent</button>
-                    }
-                </div>
-            </div>
-
-            <div id="master-container">
-                <table id="tbl-master" class="tbl-style2">
-                    <thead>
-                        <tr>
-                            <th class="col-no">@CustomerListResources.No</th>
-                            <th class="col-username">@CustomerListResources.Username</th>
-                            <th class="col-name">@CustomerListResources.Name</th>
-                            <th class="col-nickname">@CustomerListResources.Nickname</th>
-                            <th class="text-right">@CustomerListResources.Credit</th>
-                            <th class="col-creation-date">@CustomerListResources.CreationDate</th>
-                            <th class="text-center">@CustomerListResources.Status</th>
-                            @if (Model.ViewerStatusId == CustomerStatus.Active)
-                            {
-                                <th class="col-action text-center">@CustomerListResources.Action</th>
-                            }
-                            </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-                <div id="pager-master"></div>
-            </div>
-        </div>
-    </div>
+    @RenderContent(UserLevel.Master, CustomerListResources.NewMasterAgent)
 }
 
 @if (Model.ActorLevel.IsMasterOrSuperLevel())
 {
-    <div class="tab-content display-none" level="@UserLevel.Agent.Value">
-        <div class="tab-panel active" role="tabpanel">
-            @if (Model.IsDevice)
-            {
-                <div class="filter-mobile">
-                    <span class="icon-filter-down" id="agent-filter-toggle-icon"></span>
-                    <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-agent"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
-                </div>
-            }
-
-            <div class="filter">
-                <div id="form-agent" class="form-inline" role="form">
-                    @if (Model.ActorLevel.IsSuperLevel() || Model.IsInternal)
-                    {
-                        <div class="form-group">
-                            <label>@CustomerListResources.Master</label>
-                            <input id="txt-viewed-master" class="control" type="text" value="" />
-                        </div>
-                    }
-
-                    <div class="form-group">
-                        <label>@CustomerListResources.UsernameOrNameContains</label>
-                        <input id="txt-username-agent" class="control" type="text" value="" />
-                    </div>
-                    <div class="form-group">
-                        <label>@CustomerListResources.Status</label>
-                        <select id="dropdown-status-agent" class="control">
-                            <option value="@CustomerStatus.All" @(Model.Status == CustomerStatus.All ? "selected=\"selected\"" : "")>@CustomerListResources.All</option>
-                            <option value="@CustomerStatus.Active" @(Model.Status == CustomerStatus.Active ? "selected=\"selected\"" : "")>@CustomerListResources.Active</option>
-                            <option value="@CustomerStatus.ViewOnly" @(Model.Status == CustomerStatus.ViewOnly ? "selected=\"selected\"" : "")>@CustomerListResources.ViewOnly</option>
-                            <option value="@CustomerStatus.Suspended" @(Model.Status == CustomerStatus.Suspended ? "selected=\"selected\"" : "")>@CustomerListResources.Suspended</option>
-                            <option value="@CustomerStatus.Inactive" @(Model.Status == CustomerStatus.Inactive ? "selected=\"selected\"" : "")>@CustomerListResources.Inactive</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input id="btn-submit-agent" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-                    </div>
-                    <div id="msg-err-agent" class="msg msg-error display-none">@CustomerListResources.MasterIsRequired</div>
-                    @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
-                    {
-                        <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-agent"><span class="icon-add"></span>@CustomerListResources.NewAgent</button>
-                    }
-                </div>
-            </div>
-
-            <div id="agent-container">
-                <table id="tbl-agent" class="tbl-style2">
-                    <thead>
-                        <tr>
-                            <th class="col-no">@CustomerListResources.No</th>
-                            <th class="col-username">@CustomerListResources.Username</th>
-                            <th class="col-name">@CustomerListResources.Name</th>
-                            <th class="col-nickname">@CustomerListResources.Nickname</th>
-                            <th class="text-right">@CustomerListResources.Credit</th>
-                            <th class="col-creation-date">@CustomerListResources.CreationDate</th>
-                            <th class="text-center">@CustomerListResources.Status</th>
-                            @if (Model.ViewerStatusId == CustomerStatus.Active)
-                            {
-                                <th class="col-action text-center">@CustomerListResources.Action</th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-                <div id="pager-agent"></div>
-            </div>
-        </div>
-    </div>
+    @RenderContent(UserLevel.Agent, CustomerListResources.NewAgent, true, true, CustomerListResources.MasterIsRequired)
 }
 
-<div class="tab-content display-none" level="@UserLevel.Member.Value">
-    <div class="tab-panel active" role="tabpanel">
-        @if (Model.IsDevice)
-        {
-            <div class="filter-mobile">
-                <span class="icon-filter-down" id="member-filter-toggle-icon"></span>
-                <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-member"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
-            </div>
-        }
-        <div class="filter">
-            <div id="form-member" class="form-inline" role="form">
-                @if (Model.ActorLevel.IsMasterOrSuperLevel() || Model.IsInternal)
-                {
-                    <div class="form-group">
-                        <label>@CustomerListResources.Agent</label>
-                        <input id="txt-viewed-agent" class="control" type="text" value="" />
-                    </div>
-                }
-
-                <div class="form-group">
-                    <label>@CustomerListResources.UsernameOrNameContains</label>
-                    <input id="txt-username-member" class="control" type="text" value="" />
-                </div>
-                <div class="form-group">
-                    <label>@CustomerListResources.Status</label>
-                    <select id="dropdown-status-member" class="control">
-                        <option value="@CustomerStatus.All" @(Model.Status == CustomerStatus.All ? "selected=\"selected\"" : "")>@CustomerListResources.All</option>
-                        <option value="@CustomerStatus.Active" @(Model.Status == CustomerStatus.Active ? "selected=\"selected\"" : "")>@CustomerListResources.Active</option>
-                        <option value="@CustomerStatus.ViewOnly" @(Model.Status == CustomerStatus.ViewOnly ? "selected=\"selected\"" : "")>@CustomerListResources.ViewOnly</option>
-                        <option value="@CustomerStatus.Suspended" @(Model.Status == CustomerStatus.Suspended ? "selected=\"selected\"" : "")>@CustomerListResources.Suspended</option>
-                        <option value="@CustomerStatus.Inactive" @(Model.Status == CustomerStatus.Inactive ? "selected=\"selected\"" : "")>@CustomerListResources.Inactive</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input id="btn-submit-member" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
-                </div>
-                <div id="msg-err-member" class="msg msg-error display-none">@CustomerListResources.AgentIsRequired</div>
-                @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
-                {
-                    <button id="add-directdownline" disabled cust-id="" username="" downline-username="" class="btn-submit add-new add-directdownline-member"><span class="icon-add"></span>@CustomerListResources.NewMember</button>
-                }
-            </div>
-        </div>
-        <div id="member-container">
-            <table id="tbl-member" class="tbl-style2">
-                <thead>
-                    <tr>
-                        <th class="col-no">@CustomerListResources.No</th>
-                        <th class="col-username">@CustomerListResources.Username</th>
-                        <th class="col-name">@CustomerListResources.Name</th>
-                        <th class="col-nickname">@CustomerListResources.Nickname</th>
-                        <th>@CustomerListResources.Group</th>
-                        <th class="text-right">@CustomerListResources.Credit</th>
-                        <th class="col-creation-date">@CustomerListResources.CreationDate</th>
-                        <th class="text-center">@CustomerListResources.Status</th>
-                        @if (Model.ViewerStatusId == CustomerStatus.Active)
-                        {
-                            <th class="col-action text-center">@CustomerListResources.Action</th>
-                        }
-                    </tr>
-                </thead>
-                <tbody></tbody>
-                <tfoot></tfoot>
-            </table>
-            <div id="pager-member"></div>
-        </div>
-    </div>
-</div>
+@RenderContent(UserLevel.Member, CustomerListResources.NewMember, true, true, CustomerListResources.AgentIsRequired)
 
 <div class="shadow" id="shadow"></div>
 <div class="output" id="output"></div>
@@ -311,6 +112,143 @@
 @Html.Hidden("IsDevice", Model.IsDevice ? 1 : 0)
 
 @Html.AntiForgeryToken()
+
 @section Scripts {
     @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
+}
+
+@helper RenderContent(
+    UserLevel level,
+    string submitButtonLabel,
+    bool renderUplineSearchingText = false,
+    bool renderRequiredHint = false,
+    string requiredHint = "")
+{
+    <div class="tab-content display-none" level="@level.Value">
+        <div class="tab-panel active" role="tabpanel">
+            @RenderFilter(level, submitButtonLabel, renderUplineSearchingText, renderRequiredHint, requiredHint)
+            @RenderContainer(level)
+        </div>
+    </div>
+}
+
+@helper RenderFilter(
+    UserLevel level,
+    string submitButtonLabel,
+    bool renderUplineSearchingText = false,
+    bool renderRequiredHint = false,
+    string requiredHint = "")
+{
+    var levelName = level.DisplayName.ToLower();
+    var uplineLevelName = level.GetDirectUpLineLevel().DisplayName.ToLower();
+    var options = new[]
+    {
+        new { Value = CustomerStatus.All, Text = CustomerListResources.All },
+        new { Value = CustomerStatus.Active, Text = CustomerListResources.Active },
+        new { Value = CustomerStatus.ViewOnly, Text = CustomerListResources.ViewOnly },
+        new { Value = CustomerStatus.Suspended, Text = CustomerListResources.Suspended },
+        new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
+    }.ToList();
+
+    if (Model.IsDevice)
+    {
+        <div class="filter-mobile">
+            <span class="icon-filter-down" id="@($"{levelName}-filter-toggle-icon")"></span>
+            @RenderAddNewButton(levelName, submitButtonLabel)
+        </div>
+    }
+
+    <div class="filter">
+        <div id="@($"form-{levelName}")" class="form-inline" role="form">
+            @if (renderUplineSearchingText)
+            {
+                <div class="form-group">
+                    <label>@uplineLevelName</label>
+                    <input id="@($"txt-viewed-{uplineLevelName}")" class="control" type="text" value="" />
+                </div>
+            }
+
+            <div class="form-group">
+                <label>@CustomerListResources.UsernameOrNameContains</label>
+                <input id="@($"txt-username-{levelName}")" class="control" type="text" value="" />
+            </div>
+            <div class="form-group">
+                <label>@CustomerListResources.Status</label>
+                <select id="@($"dropdown-status-{levelName}")" class="control">
+                    @foreach (var option in options)
+                    {
+                        <option value="@option.Value" @(Model.Status == option.Value ? "selected='selected'" : "")>@option.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input id="@($"btn-submit-{levelName}")" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
+            </div>
+
+            @if (renderRequiredHint)
+            {
+                <div id="@($"msg-err-{levelName}")" class="msg msg-error display-none">@requiredHint</div>
+            }
+
+            @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
+            {
+                @RenderAddNewButton(levelName, submitButtonLabel)
+            }
+        </div>
+    </div>
+}
+
+@helper RenderContainer(UserLevel level)
+{
+    var levelName = level.DisplayName.ToLower();
+    var columns = new[]
+    {
+        new { Text = CustomerListResources.No, ClassName = "col-no", Show = true},
+        new { Text = CustomerListResources.Username, ClassName = "col-username", Show = true},
+        new { Text = CustomerListResources.Name, ClassName = "col-name", Show = true},
+        new { Text = CustomerListResources.Nickname, ClassName = "col-nickname", Show = true},
+        new { Text = CustomerListResources.Group, ClassName = string.Empty, Show = level.IsMemberLevel()},
+        new { Text = CustomerListResources.Credit, ClassName = "text-right", Show = true},
+        new { Text = CustomerListResources.CreationDate, ClassName = "col-creation-date", Show = true},
+        new { Text = CustomerListResources.Status, ClassName = "text-center", Show = true},
+        new { Text = CustomerListResources.Action, ClassName = "col-action text-center", Show = true}
+    }.ToList();
+
+    <div id="@($"{levelName}-container")">
+        <table id="@($"tbl-{levelName}")" class="tbl-style2">
+            <thead>
+                <tr>
+                    @foreach (var column in columns)
+                    {
+                        if (column.Show)
+                        {
+                            <th class="@column.ClassName">@column.Text</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+        <div id="@($"pager-{levelName}")"></div>
+    </div>
+}
+
+@helper RenderAddNewButton(string levelName, string submitButtonLabel)
+{
+    <button id="add-directdownline"
+            cust-id=""
+            username=""
+            downline-username=""
+            class="btn-submit add-new @($"add-directdownline-{levelName}")">
+        <span class="icon-add">
+        </span>@submitButtonLabel
+    </button>
+}
+
+@helper RenderMobileTab(UserLevel level, string displayName)
+{
+    <li class="lnk-changetab" role="presentation" level="@level.Value">
+        <a>@displayName</a>
+    </li>
 }

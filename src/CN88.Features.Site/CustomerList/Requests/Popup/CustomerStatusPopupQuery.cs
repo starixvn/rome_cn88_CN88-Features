@@ -11,6 +11,6 @@
         {
         }
 
-        public int UpdateStatusId { get; set; }
+        public int StatusId { get; set; }
     }
 }
