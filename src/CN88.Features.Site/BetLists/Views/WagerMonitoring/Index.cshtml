@@ -30,24 +30,33 @@
         @SportGroupSelection.Render(Model.SportGroupSelectionViewModel, Model.IsMobile)
     </div>
     @Html.Partial("~/BetLists/Views/WagerMonitoring/FilterForm.cshtml", Model.FilterFormViewModel)
-    @if (Model.IsMobile)
-    {
-        @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
-    }
-    else
-    {
-        @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
-    }
+    <table id="tbl-report" class="tbl-noborder tbl-betlists" data-ismobile="@Model.IsMobile.ToString().ToLower()">
+        <thead>
+            <tr>
+                @if (!Model.IsMobile)
+                {
+                    <th class="text-left">@BetListsResources.DateTime</th>
+                    <th class="text-left">@BetListsResources.Member/<br />@BetListsResources.Commission</th>
+                    <th class="text-left">@BetListsResources.BetID/<br />@BetListsResources.BetType</th>
+                }
+                <th class="text-left">@BetListsResources.Details</th>
+                <th class="text-right">@BetListsResources.Stake</th>
+                @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml")
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 </div>
 <div class="modal fade filter-modal" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
 @Html.Partial("~/BetLists/Views/Components/Popup.cshtml")
 @Html.Partial("~/BetLists/Views/Components/HiddenFields.cshtml")
 @Html.Hidden(nameof(Model.MinTransId), Model.MinTransId)
-@Html.Hidden(nameof(Model.PageSize), Model.PageSize)
+@Html.Hidden(nameof(Model.PageSize), AppSettings.WagerMonitoringPageSize)
 @Html.Hidden(nameof(Model.IntervalTime), Model.IntervalTime)
 @Html.Hidden(nameof(Model.FilterModalPath), Model.FilterModalPath)
 @Html.Hidden(nameof(Model.WagerMonitoringPath), Model.WagerMonitoringPath)
+@Html.Hidden(nameof(Model.NumberOfMobileRowsPerTicket), Model.NumberOfMobileRowsPerTicket)
 @Html.Hidden("pause-url", Url.Action("Pause", "WagerMonitoring"))
 @Html.Hidden("get-bets-url", Url.Action("LastBets", "WagerMonitoring"))
 @Html.Hidden("lbl-PerSports", SharedResources.PerSports)

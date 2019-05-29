@@ -42,6 +42,7 @@
     speakerOnText: string;
     speakerOffText: string;
     isMobile: boolean;
+    numberOfRowPerTicket: number;
 
     resources = {
         lblPerSports: '',
@@ -84,6 +85,7 @@
         this.pauseUrl = this.$("#pause-url").val();
         this.getBetsUrl = this.$("#get-bets-url").val();
         this.intervalTime = this.$("#IntervalTime").val();
+        this.numberOfRowPerTicket = this.isMobile ? this.$("#NumberOfMobileRowsPerTicket").val() : 1;
 
         setInterval(this.getLastBets, this.intervalTime * 1000);
 
@@ -146,6 +148,7 @@
             this.$tblReport.stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "filter-form", "tbl-report-stack"));
             this.$('body').backtop();
+            this.$tblReport = this.$("#tbl-report-stack");
         }
         this.sportGroupSelectionComponent.render(
             new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onSportGroupChange));
@@ -297,18 +300,17 @@
             return;
         }
 
-        const $responseTable = this.$(responseHtml);
+        let $responseTable = this.$(responseHtml);
         const totalRecords = $responseTable.data("totalrecords");
         const minTransId = $responseTable.data("mintransid");
         this.$minTransId.val(minTransId);
 
         if (totalRecords > 0) {
             this.$tblReport.find("tbody").prepend($responseTable.find("tbody").html());
+            this.slideRows()
 
-            const numberOfRows = this.$tblReport.find("tbody tr").length;
-
-            if (numberOfRows > this.pageSize) {
-                this.$tblReport.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
+            if (this.isMobile) {
+                this.bindShowPossEvent();
             }
 
             if (this.isSpeakOn) {
@@ -317,6 +319,44 @@
         }
 
         this.isCalling = false;
+    }
+
+    slideRows(): void {
+        const selector = this.isMobile ? "tbody tr.fixed-row" : "tbody tr";
+        const numberOfRows = this.$tblReport.find(selector).length;
+
+        if (numberOfRows > this.pageSize) {
+            this.$tblReport.find("tbody tr").slice(-(numberOfRows - this.pageSize) * this.numberOfRowPerTicket).remove();
+        }
+    }
+
+    bindShowPossEvent(): void {
+        var $stackTableElement = this.$("#tbl-report-stack");
+
+        $stackTableElement
+            .find('.btn-collapse-expanse')
+            .parent()
+            .off('click.stack')
+            .on('click.stack', function () {
+                var btnIcon = $(this).find(".btn-collapse-expanse");
+                var rowIndex = btnIcon.parent().attr('data-stack-row');
+                var isCollapsed = btnIcon.hasClass('icon-add');
+                var $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
+                var $tr = btnIcon.parent().parent();
+
+                if (isCollapsed) {
+                    btnIcon.removeClass('icon-add')
+                        .addClass('icon-minus');
+                    $tr.removeClass('stack-collapsed').addClass('stack-expanded');
+                    $nextRows.show(200);
+                }
+                else {
+                    btnIcon.removeClass('icon-minus')
+                        .addClass('icon-add');
+                    $tr.removeClass('stack-expanded').addClass('stack-collapsed');
+                    $nextRows.hide(200);
+                }
+            });
     }
 
     playSound(): void {

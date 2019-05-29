@@ -6,13 +6,31 @@
     }
 
     init(): void {
-        const $tblReport = this.$("#tbl-report");
-        const isMobile = $tblReport.data("ismobile");
+        var $stackTableElement = this.$("#tbl-report-stack");
+        $stackTableElement
+            .find('.btn-collapse-expanse')
+            .parent()
+            .off('click.stack')
+            .on('click.stack', function () {
+                var btnIcon = $(this).find(".btn-collapse-expanse");
+                var rowIndex = btnIcon.parent().attr('data-stack-row');
+                var isCollapsed = btnIcon.hasClass('icon-add');
+                var $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
+                var $tr = btnIcon.parent().parent();
 
-        if (isMobile) {
-            $tblReport.stacktable();
-            this.$('body').backtop();
-        }
+                if (isCollapsed) {
+                    btnIcon.removeClass('icon-add')
+                        .addClass('icon-minus');
+                    $tr.removeClass('stack-collapsed').addClass('stack-expanded');
+                    $nextRows.show(200);
+                }
+                else {
+                    btnIcon.removeClass('icon-minus')
+                        .addClass('icon-add');
+                    $tr.removeClass('stack-expanded').addClass('stack-collapsed');
+                    $nextRows.hide(200);
+                }
+            });
     }
 }
 

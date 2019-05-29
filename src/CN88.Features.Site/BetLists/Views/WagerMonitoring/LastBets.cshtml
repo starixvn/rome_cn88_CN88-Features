@@ -1,4 +1,5 @@
-﻿@using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
+﻿@using CN88.Features.Site.BetLists.Helpers
+@using CN88.Features.Site.BetLists.ViewModels.WagerMonitoring
 @model WagerMonitoringViewModel
 @{
     var betData = Model.BetListData;
@@ -7,14 +8,74 @@
     <tbody>
         @if (betData.Tickets.Any())
         {
+            var tickets = betData.Tickets;
             if (Model.IsMobile)
             {
-                @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
+                foreach (var ticket in tickets)
+                {
+                    <tr class="fixed-row">
+                        <td class="fix-column">
+                            <div class="detail-container">
+                                @BetListHelper.RenderTransDate(ticket, true)
+                                <br />
+                                @BetListHelper.RenderComm(ticket, true)
+                                @BetListHelper.RenderBetID(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById, true)
+                                @BetListHelper.RenderDetail(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData, true)
+                            </div>
+                        </td>
+                        <td class="fix-column stake-block bl_underdog text-right">
+                            @(new HtmlString(BetListHelpers.Stake(ticket.Stake / Model.Divisor)))
+                        </td>
+                        <td data-stack-row="@ticket.TransId">
+                            <span class="btn-collapse-expanse icon-add"></span>
+                        </td>
+                    </tr>
+                    if (Model.CustLevel.IsAgentLevel())
+                    {
+                        @RenderPossRow(@BetListsResources.AgentPercent, ticket.TransId, ticket.AgentPositionTaking, "stack-last-row")
+                    }
+
+                    if (Model.CustLevel.IsMasterLevel())
+                    {
+                        @RenderPossRow(@BetListsResources.AgentPercent, ticket.TransId, ticket.AgentPositionTaking)
+                        @RenderPossRow(@BetListsResources.MAPercent, ticket.TransId, ticket.MasterPositionTaking, "stack-last-row")
+                    }
+
+                    if (Model.CustLevel.IsSuperLevel() || Model.CustLevel.IsHeadline())
+                    {
+                        @RenderPossRow(@BetListsResources.AgentPercent, ticket.TransId, ticket.AgentPositionTaking)
+                        @RenderPossRow(@BetListsResources.MAPercent, ticket.TransId, ticket.MasterPositionTaking)
+                        @RenderPossRow(@BetListsResources.SMAPercent, ticket.TransId, ticket.SuperPositionTaking)
+                        @RenderPossRow(@BetListsResources.CompanyPercent, ticket.TransId, Model.CompanyPositionTaking(ticket), "stack-last-row")
+                    }
+                }
             }
             else
             {
-                @Html.Partial("~/BetLists/Views/BetListTable.cshtml", Model)
+                foreach (var ticket in tickets)
+                {
+                    <tr data-trans-id="@ticket.TransId">
+                        @BetListHelper.RenderTransDate(ticket)
+                        @BetListHelper.RenderComm(ticket)
+                        @BetListHelper.RenderBetID(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
+                        @BetListHelper.RenderDetail(ticket, Model.CN88Builder, Model.TicketHelper, Model.BetListData.TicketData)
+                        @BetListHelper.RenderStake(ticket, Model.Divisor)
+                        @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml", Model, new ViewDataDictionary
+                        {
+                            { "Ticket", ticket }
+                        })
+                    </tr>
+                }
             }
         }
     </tbody>
 </table>
+@helper RenderPossRow(string label, long transId, decimal pt, string cssClass = "")
+{
+    <tr class="stack-row stack-row-@(transId) @cssClass" style="display: none;">
+        <td class="st-val text-right" colspan="3">
+            <span class="st-cell-label">@label</span>
+            <span class="st-cell-value">@HtmlHelpers.FormatNumber((int)(pt * 100))</span>
+        </td>
+    </tr>
+}

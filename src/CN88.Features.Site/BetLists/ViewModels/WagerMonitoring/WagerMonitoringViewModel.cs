@@ -43,5 +43,23 @@
         public string WagerMonitoringPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring");
 
         public string FilterModalPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/FilterModal");
+
+        public int NumberOfMobileRowsPerTicket
+        {
+            get
+            {
+                if (CustLevel.IsAgentLevel())
+                {
+                    return 2;
+                }
+
+                if (CustLevel.IsMasterLevel())
+                {
+                    return 3;
+                }
+
+                return 5;
+            }
+        }
     }
 }
