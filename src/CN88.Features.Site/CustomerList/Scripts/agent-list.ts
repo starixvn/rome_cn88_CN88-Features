@@ -155,7 +155,7 @@ class AgentList extends BaseList {
                     const addDownlineIcon = status == siteInfrastructure.customerStatus.active && rs.SearchAccountStatus == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewMember}'/>` : '';
                     const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
-                    actionColumn = `<td class='col-action text-left'> ${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon} </td>`;
+                    actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
                 }
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
@@ -166,7 +166,7 @@ class AgentList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
-                    `${actionColumn}</tr>`;
+                    `<td class='col-action text-left'> ${actionColumn} </td></tr>`;
                 }
             }
         }

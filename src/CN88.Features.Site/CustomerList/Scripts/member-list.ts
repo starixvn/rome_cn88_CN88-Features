@@ -148,7 +148,7 @@ class MemberList extends BaseList {
                     const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='1'/>`;
                     const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMember}'/>`;
                     const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
-                    actionColumn = `<td class='col-action text-left'> ${resetPasswordIcon} ${editIcon} ${unclockIcon} </td>`;
+                    actionColumn = `${resetPasswordIcon} ${editIcon} ${unclockIcon}`;
                 }
 
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
@@ -160,7 +160,7 @@ class MemberList extends BaseList {
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
                     `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
-                    `${actionColumn}</tr>`;
+                    `<td class='col-action text-left'> ${actionColumn} </td></tr>`;
                 }
             }
         }
