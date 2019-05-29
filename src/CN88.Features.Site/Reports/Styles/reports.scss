@@ -335,7 +335,7 @@ body {
     }
 }
 
-@media all and (min-width: 768px) {
+@media all and (min-width: $screen-device-greater768) {
     .wager-report {
         .filter-container {
             width: 400px;
@@ -485,7 +485,7 @@ body.phone {
             width: 100%;
         }
 
-        .btn-submit {
+        .form-group .btn-submit {
             width: 100%;
         }
 

@@ -1,16 +1,10 @@
-﻿@import "../../Shared/Styles/variables";
-
-.customer-setting {
+﻿.customer-setting {
     min-width: 760px;
 }
 
-@media (max-device-width: $screen-device-lower768),
-    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
-    body {
-        padding-top: 0;
-        padding-bottom: 37px;
-        font-size: 10.5px;
-    }
+body.phone {
+    font-size: 10.5px;
+    padding-top: 0;
 
     .customer-setting {
         min-width: initial;
@@ -73,7 +67,7 @@
             }
         }
     }
-    
+
     .customer-level-1 {
         .full-width .block__lbl {
             width: 29%;
@@ -84,14 +78,14 @@
             width: 80% !important;
         }
     }
-    
+
     select.setting-field {
         min-width: 50px;
     }
 
     .block__lbl--padding-left {
         padding-left: 2px;
-    }    
+    }
 
     .system-2 {
         padding-bottom: 50px;

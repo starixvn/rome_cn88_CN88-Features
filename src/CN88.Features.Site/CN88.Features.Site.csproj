@@ -979,8 +979,6 @@
     <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <Content Include="Reports\Views\VerifyPassword.cshtml" />
-    <Content Include="Reports\Styles\_variables.scss" />
-    <Content Include="Reports\Styles\_mixins.scss" />
     <Content Include="Reports\Styles\security.scss" />
     <Content Include="Reports\Views\OldIndex.cshtml" />
     <Content Include="Reports\Views\Index\OldCreateReport.cshtml" />
@@ -1017,6 +1015,7 @@
     <Content Include="Reports\Styles\accounting-sheet.scss" />
     <Content Include="Reports\Styles\settlement-summary.scss" />
     <Content Include="Reports\Styles\old-report.scss" />
+    <Content Include="CustomerList\Styles\_variables.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

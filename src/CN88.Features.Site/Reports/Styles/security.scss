@@ -1,6 +1,5 @@
 ﻿@import "../../Shared/Styles/variables";
-@import "_variables.scss";
-@import "_mixins.scss";
+@import "../../Shared/Styles/mixins";
 
 body {
     font-family: $font-family;

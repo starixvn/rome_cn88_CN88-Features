@@ -50,5 +50,9 @@
   {
     "outputFile": "Reports/Styles/old-report.css",
     "inputFile": "Reports/Styles/old-report.scss"
+  },
+  {
+    "outputFile": "CustomerList/Styles/_variables.css",
+    "inputFile": "CustomerList/Styles/_variables.scss"
   }
 ]
