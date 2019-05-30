@@ -193,7 +193,7 @@ class BaseList {
             self.indexManager.updateUnlock($this.attr("cust-id"));
         });
 
-        if (rs.SearchAccountId > 0) {
+        if (rs.SearchAccountId > 0 && parseInt(rs.SearchAccountStatus) === siteInfrastructure.customerStatus.active) {
             buttonAddNew.removeAttr("disabled");
             buttonAddNew.click(function () {
                 var $this = self.$(this);
