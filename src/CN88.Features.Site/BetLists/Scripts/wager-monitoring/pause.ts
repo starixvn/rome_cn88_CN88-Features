@@ -6,17 +6,17 @@
     }
 
     init(): void {
-        var $stackTableElement = this.$("#tbl-report-stack");
+        const $stackTableElement = this.$("#tbl-report-stack");
         $stackTableElement
             .find('.btn-collapse-expanse')
             .parent()
             .off('click.stack')
             .on('click.stack', function () {
-                var btnIcon = $(this).find(".btn-collapse-expanse");
-                var rowIndex = btnIcon.parent().attr('data-stack-row');
-                var isCollapsed = btnIcon.hasClass('icon-add');
-                var $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
-                var $tr = btnIcon.parent().parent();
+                const btnIcon = $(this).find(".btn-collapse-expanse");
+                const rowIndex = btnIcon.parent().attr('data-stack-row');
+                const isCollapsed = btnIcon.hasClass('icon-add');
+                const $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
+                const $tr = btnIcon.parent().parent();
 
                 if (isCollapsed) {
                     btnIcon.removeClass('icon-add')

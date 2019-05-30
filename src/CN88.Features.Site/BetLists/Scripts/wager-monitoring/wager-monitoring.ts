@@ -147,7 +147,7 @@
         if (this.isMobile) {
             this.$tblReport.stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "filter-form", "tbl-report-stack"));
-            this.$('body').backtop();
+            this.$("body").backtop();
             this.$tblReport = this.$("#tbl-report-stack");
         }
         this.sportGroupSelectionComponent.render(
@@ -160,19 +160,21 @@
     }
 
     registerEvents(): void {
+        const clickTouchedEvent = "click touchend";
+
         if (this.isMobile) {
-            this.$filterForm.find(".link").parent().on("click touchend", this.openFilterModal);
+            this.$filterForm.find(".link").parent().on(clickTouchedEvent, this.openFilterModal);
         } else {
-            this.$filterForm.find(".link").on("click touchend", this.openFilterModal);
+            this.$filterForm.find(".link").on(clickTouchedEvent, this.openFilterModal);
         }
 
-        this.$btnPause.on("click touchend", this.onPauseClick);
+        this.$btnPause.on(clickTouchedEvent, this.onPauseClick);
 
-        this.$btnClear.on("click touchend", () => {
+        this.$btnClear.on(clickTouchedEvent, () => {
             this.$tblReport.find("tbody").empty();
         });
 
-        this.$btnSpeaker.on("click touchend", (event: JQueryEventObject) => {
+        this.$btnSpeaker.on(clickTouchedEvent, (event: JQueryEventObject) => {
             if (event.type === "touchend") {
                 this.$btnSpeaker.off("click");
             }
@@ -300,14 +302,14 @@
             return;
         }
 
-        let $responseTable = this.$(responseHtml);
+        const $responseTable = this.$(responseHtml);
         const totalRecords = $responseTable.data("totalrecords");
         const minTransId = $responseTable.data("mintransid");
         this.$minTransId.val(minTransId);
 
         if (totalRecords > 0) {
             this.$tblReport.find("tbody").prepend($responseTable.find("tbody").html());
-            this.slideRows()
+            this.removeRows();
 
             if (this.isMobile) {
                 this.bindShowPossEvent();
@@ -321,7 +323,7 @@
         this.isCalling = false;
     }
 
-    slideRows(): void {
+    removeRows(): void {
         const selector = this.isMobile ? "tbody tr.fixed-row" : "tbody tr";
         const numberOfRows = this.$tblReport.find(selector).length;
 
@@ -331,18 +333,18 @@
     }
 
     bindShowPossEvent(): void {
-        var $stackTableElement = this.$("#tbl-report-stack");
+        const $stackTableElement = this.$("#tbl-report-stack");
 
         $stackTableElement
             .find('.btn-collapse-expanse')
             .parent()
             .off('click.stack')
             .on('click.stack', function () {
-                var btnIcon = $(this).find(".btn-collapse-expanse");
-                var rowIndex = btnIcon.parent().attr('data-stack-row');
-                var isCollapsed = btnIcon.hasClass('icon-add');
-                var $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
-                var $tr = btnIcon.parent().parent();
+                const btnIcon = $(this).find(".btn-collapse-expanse");
+                const rowIndex = btnIcon.parent().attr('data-stack-row');
+                const isCollapsed = btnIcon.hasClass('icon-add');
+                const $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
+                const $tr = btnIcon.parent().parent();
 
                 if (isCollapsed) {
                     btnIcon.removeClass('icon-add')
