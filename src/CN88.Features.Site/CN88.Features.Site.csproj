@@ -430,6 +430,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SPNames\Dev\DB042.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\Dev\DBACC.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBAGE.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBARC.bodb_Archive.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBLOG.bodb_CustomerLog.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBONUSER.ON_USER.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBPOL.NAP_UserControl.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBPRO.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBTXN.BODB02.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Internal\DB042.bodb02.xml">
       <SubType>Designer</SubType>
     </Content>
