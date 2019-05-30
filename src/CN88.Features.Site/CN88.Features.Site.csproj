@@ -783,7 +783,7 @@
     <Compile Include="BetLists\WagerMonitoringController.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\Requests\Popup\BaseCommand.cs" />
-    <Compile Include="CustomerList\Requests\Popup\UnlockCommand.cs" />
+    <Compile Include="CustomerList\Requests\Popup\UnlockCustomerCommand.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Reports\Constants\ReportSortPropertyConstants.cs" />

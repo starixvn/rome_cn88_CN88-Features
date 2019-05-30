@@ -3,9 +3,9 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class UpdateUnlockCriteria : NonQueryCommand
+    public class UnlockCustomerCriteria : NonQueryCommand
     {
-        public UpdateUnlockCriteria(
+        public UnlockCustomerCriteria(
             int searchAccountId,
             int actorId,
             int subAccountId,

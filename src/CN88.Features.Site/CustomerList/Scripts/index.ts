@@ -298,7 +298,7 @@ class CustomerList {
             () => {
                 self.$.ajax({
                     type: "POST",
-                    url: 'UpdateUnlock',
+                    url: 'UnlockCustomer',
                     data: { "CustId": custId},
                     dataType: "json",
                     beforeSend: function (xhr) {

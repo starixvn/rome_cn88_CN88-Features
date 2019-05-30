@@ -39,7 +39,7 @@
             => await JsonDataAsync(command);
 
         [HttpPost, AntiXsrfFilter]
-        public async Task<ActionResult> UpdateUnlock(UnlockCommand command)
+        public async Task<ActionResult> UnlockCustomer(UnlockCustomerCommand command)
             => await JsonDataAsync(command);
 
         [HttpPost, AntiXsrfFilter]

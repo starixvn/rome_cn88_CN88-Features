@@ -158,6 +158,10 @@ class AgentList extends BaseList {
                     actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
                 }
 
+                let statusColumn = parseInt(rs.SearchAccountStatus) === siteInfrastructure.customerStatus.active ?
+                    `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` :
+                    `<td class='text-center'> ${this.indexManager.getStatusName(status)}</td>`;
+
                 html += `<tr class='row-customer' cust-id='${custId}'>` +
                     `<td class='col-no'> ${customerIndex} </td>` +
                     `<td class='link view-downline' cust-id='${custId}'> ${username} </td>` +
@@ -165,8 +169,7 @@ class AgentList extends BaseList {
                     `<td>${customer.Nickname}</td>` +
                     `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
                     `<td class='col-date'> ${customer.CreationDateStr} </td>` +
-                    `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` +
-                    `<td class='col-action text-left'> ${actionColumn} </td></tr>`;
+                    `${statusColumn}<td class='col-action text-left'> ${actionColumn} </td></tr>`;
                 }
             }
         }

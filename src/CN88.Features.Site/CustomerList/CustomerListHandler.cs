@@ -24,7 +24,7 @@
         IRequestHandler<CreditPopupQuery, CreditRangeViewModel>,
         IRequestHandler<CustomerStatusPopupQuery, StatusPopupViewModel>,
         IRequestHandler<CreditCommand, Result>,
-         IRequestHandler<UnlockCommand, Result>,
+         IRequestHandler<UnlockCustomerCommand, Result>,
         IRequestHandler<CustomerStatusCommand, Result>,
         IRequestHandler<OnlineMembersQuery, OnlineMemberViewModel>,
          IRequestHandler<MemberStatementQuery, MemberStatementViewModel>
@@ -85,8 +85,8 @@
                 message.LanguageKey,
                 message.IP));
 
-        public Result Handle(UnlockCommand message)
-         => service.UpdateUnlock(new UpdateUnlockParam(
+        public Result Handle(UnlockCustomerCommand message)
+         => service.UnlockCustomer(new UnlockCustomerParam(
                 message.CustId,
                 message.ViewerId,
                 message.SubAccountId,

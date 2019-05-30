@@ -20,7 +20,7 @@
 
         Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
 
-        Result UpdateUnlock(UpdateUnlockParam param);
+        Result UnlockCustomer(UnlockCustomerParam param);
 
         IEnumerable<OnlineMemberModel> OnlineMembers(OnlineMembersParam param);
     }
@@ -99,9 +99,9 @@
                 Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
-        public Result UpdateUnlock(UpdateUnlockParam param)
+        public Result UnlockCustomer(UnlockCustomerParam param)
         {
-            var command = new UpdateUnlockCriteria(
+            var command = new UnlockCustomerCriteria(
                     param.SearchAccountId,
                     param.ActorId,
                     param.SubAccountId,

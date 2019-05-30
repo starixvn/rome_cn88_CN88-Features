@@ -1,8 +1,8 @@
 ﻿namespace CN88.Features.CustomerList.Params
 {
-    public class UpdateUnlockParam
+    public class UnlockCustomerParam
     {
-        public UpdateUnlockParam(
+        public UnlockCustomerParam(
            int searchAccountId,
            int actorId,
            int subAccountId,
