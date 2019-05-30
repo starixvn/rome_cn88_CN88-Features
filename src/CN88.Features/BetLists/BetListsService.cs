@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using CN88.Features.BetLists.Criteria.BetListOfReport;
     using Criteria;
     using Extensions;
     using Fanex.BetList.Core.Entities;

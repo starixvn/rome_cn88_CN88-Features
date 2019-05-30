@@ -1,9 +1,9 @@
-﻿namespace CN88.Features.BetLists.Criteria
+﻿namespace CN88.Features.BetLists.Criteria.BetListOfReport
 {
     using System;
-    using Constants;
+    using CN88.Features.BetLists.Constants;
+    using CN88.Features.BetLists.Params;
     using Fanex.Data.Repository;
-    using Params;
 
     public static class BetListOfReportCriteriaFactory
     {

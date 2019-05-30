@@ -1,12 +1,12 @@
-﻿namespace CN88.Features.BetLists.Criteria
+﻿namespace CN88.Features.BetLists.Criteria.BetListOfReport
 {
     using System;
+    using CN88.Features.BetLists.Params;
     using Fanex.Data.Repository;
-    using Params;
 
-    public class OldAbnormalBetListCriteria : CriteriaBase
+    public abstract class BetListOfReportBaseCriteria : CriteriaBase
     {
-        public OldAbnormalBetListCriteria(BetListOfReportParam param)
+        protected BetListOfReportBaseCriteria(BetListOfReportParam param)
         {
             CustId = param.CustId;
             FromDate = param.FromDate;
@@ -27,8 +27,6 @@
         public int BetTypeGroup { get; }
 
         public int LiveIndicator { get; }
-
-        public override string GetSettingKey() => "CS_BetList_AbnormalBet_Mem_Old";
 
         public override bool IsValid() => CustId > 0 && FromDate <= ToDate;
     }
