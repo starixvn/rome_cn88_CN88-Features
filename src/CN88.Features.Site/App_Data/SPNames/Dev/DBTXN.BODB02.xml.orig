@@ -1,0 +1,11 @@
+﻿<Functions SiteId="115" SiteName="CN88">
+  <Function Name="Customer List">
+<<<<<<< HEAD
+    <Setting Key="CS_Member_TotalBetStake_Sel" SpName="CS_Member_TotalBetStake_Sel " DbName="DBTXN.BODB02.BODBDownlineNet" Plain="0" >
+=======
+    <Setting Key="CS_Member_TotalBetStake_Sel" SpName="CS_Member_TotalBetStake_Sel" DbName="DBTXN.BODB02.BODBDownlineNetView"  Plain="0" >
+>>>>>>> 00000 - Add Dev folder contains SP for dev on PC
+      <Mapping DataField="TotalBetStake" ObjectProperty="UsedCredit" Class="CreditRangeModel"></Mapping>
+    </Setting>
+  </Function> 
+</Functions>
