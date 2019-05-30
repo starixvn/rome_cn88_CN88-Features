@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
     using System.Net;
+    using System.Threading.Tasks;
     using Alpha.Web.Helpers;
     using CN88.Web.Helpers;
     using Features.Models;
@@ -11,8 +12,6 @@
     using MediatR;
     using Requests;
     using Sunplus.Agent.Utilities;
-    using System.Net;
-    using System.Threading.Tasks;
     using ViewModels;
 
     public class SubAccountHandler :

@@ -241,12 +241,9 @@
     <Compile Include="BetLists\Constants\TotalBetTypeConstants.cs" />
     <Compile Include="BetLists\Constants\WagerMonitoringMarket.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\BetListOfReportBaseCriteria.cs" />
-    <Compile Include="BetLists\Criteria\StartedWagerByAccountCriteria.cs" />
-    <Compile Include="BetLists\Criteria\EventWagerByAccountCriteria.cs" />
-    <Compile Include="BetLists\Criteria\StartedWagerDetailsCriteria.cs" />
-    <Compile Include="BetLists\Criteria\EventWagerDetailsCriteria.cs" />
-    <Compile Include="BetLists\Params\StartedWagerDetailsParam.cs" />
-    <Compile Include="BetLists\Params\StartedWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Criteria\TotalBets\StartedWagerCriteria.cs" />
+    <Compile Include="BetLists\Criteria\TotalBets\EventWagerCriteria.cs" />
+    <Compile Include="BetLists\Params\StartedWagerParam.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMatchByIdCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorBetTypeGroupCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorSportGroupCriteria.cs" />
@@ -256,8 +253,7 @@
     <Compile Include="BetLists\Models\WagerMonitoring\League.cs" />
     <Compile Include="BetLists\Models\WagerMonitoring\MatchInfo.cs" />
     <Compile Include="BetLists\Models\WagerMonitoring\MonitorBetTypeGroup.cs" />
-    <Compile Include="BetLists\Params\EventWagerDetailsParam.cs" />
-    <Compile Include="BetLists\Params\EventWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Params\EventWagerParam.cs" />
     <Compile Include="BetLists\Params\WagerMonitoringParam.cs" />
     <Compile Include="BetLists\WagerMonitoringService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -270,15 +266,14 @@
     <Compile Include="BetLists\Criteria\BetListOfStatementCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\AbnormalBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\OldCancelledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\GetParlaySubTicketsCriteria.cs" />
-    <Compile Include="BetLists\Criteria\GetParlayDetailCriteria.cs" />
+    <Compile Include="BetLists\Criteria\Parlay\GetParlaySubTicketsCriteria.cs" />
+    <Compile Include="BetLists\Criteria\Parlay\GetParlayDetailCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\OldSettledBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\CancelledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\OutrightWagerByAccountCriteria.cs" />
-    <Compile Include="BetLists\Criteria\TotalBetParlayCriteria.cs" />
+    <Compile Include="BetLists\Criteria\TotalBets\OutrightWagerCriteria.cs" />
+    <Compile Include="BetLists\Criteria\Parlay\TotalBetParlayCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\UnsettledBetListCriteria.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\SettledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\OutrightWagerDetailsCriteria.cs" />
     <Compile Include="BetLists\Helpers\BetTypeHelper.cs" />
     <Compile Include="BetLists\Models\BetListData.cs" />
     <Compile Include="BetLists\Models\MatchDetailModel.cs" />
@@ -286,13 +281,12 @@
     <Compile Include="BetLists\Models\ParlayDetailModel.cs" />
     <Compile Include="BetLists\Models\ParlayDetailReportModel.cs" />
     <Compile Include="BetLists\Models\TicketDto.cs" />
-    <Compile Include="BetLists\Params\OutrightWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Params\OutrightWagerParam.cs" />
     <Compile Include="BetLists\Params\BetListOfReportParam.cs" />
     <Compile Include="BetLists\Params\BetListOfStatementParam.cs" />
     <Compile Include="BetLists\Params\GetParlaySubTicketsParam.cs" />
     <Compile Include="BetLists\Params\GetParlayDetailParam.cs" />
     <Compile Include="BetLists\Params\GetTotalBetParlayParam.cs" />
-    <Compile Include="BetLists\Params\OutrightWagerDetailsParam.cs" />
     <Compile Include="BetLists\Resources\BetListsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

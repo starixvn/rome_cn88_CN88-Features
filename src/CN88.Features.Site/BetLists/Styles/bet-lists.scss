@@ -356,7 +356,7 @@
         position: relative;
         top: 3px;
         content: "";
-        background: url(../Content/Images/q_Icon_2.png) no-repeat scroll left center transparent;
+        background: url(Images/q_Icon_2.png) no-repeat scroll left center transparent;
         display: inline-block;
         height: 15px;
         width: 15px;
@@ -397,7 +397,6 @@ body.phone {
         display: none;
     }
 
-
     .popup-modal {
         padding: 16px 12px;
 
@@ -427,7 +426,6 @@ body.phone {
             margin-top: 10px;
         }
 
-
         .fix-column {
             line-height: 16px;
         }
@@ -448,7 +446,6 @@ body.phone {
         }
     }
 
-
     .cn88-more-info,
     .cn88-more-info:hover {
         display: inline-block;
@@ -461,7 +458,6 @@ body.phone {
             background-image: url("images/details.svg");
         }
     }
-
 
     .tbl-betlists > thead {
         tr > th {

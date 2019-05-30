@@ -9,10 +9,7 @@
         public CustomerStatusCommand(IUser viewer)
             : base(viewer)
         {
-            LanguageKey = viewer.LanguageKey;
         }
-
-        public string LanguageKey { get; }
 
         public byte UpdateStatusId { get; set; }
     }

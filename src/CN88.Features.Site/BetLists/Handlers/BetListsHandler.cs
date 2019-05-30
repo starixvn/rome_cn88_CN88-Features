@@ -55,7 +55,7 @@
             AccountingPeriodService accountingPeriodService,
             BrowserHelper browserHelper)
         {
-            this.betListService = service;
+            betListService = service;
             this.ticketHelper = ticketHelper;
             this.cn88Builder = cn88Builder;
             this.builder = builder;
@@ -143,7 +143,7 @@
 
         public OutrightWagerByAccountViewModel Handle(OutrightWagerByAccountQuery message)
         {
-            var param = new OutrightWagerByAccountParam(
+            var param = new OutrightWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
@@ -151,14 +151,14 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = betListService.GetOutrightWagerByAccount(param);
+            var betlistData = betListService.GetOutrightWager(param);
 
             return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public OutrightWagerDetailsViewModel Handle(OutrightWagerDetailsQuery message)
         {
-            var param = new OutrightWagerDetailsParam(
+            var param = new OutrightWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
@@ -166,14 +166,14 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = betListService.GetOutrightWagerDetails(param);
+            var betlistData = betListService.GetOutrightWager(param);
 
             return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public EventWagerByAccountViewModel Handle(EventWagerByAccountQuery message)
         {
-            var param = new EventWagerByAccountParam(
+            var param = new EventWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
@@ -184,14 +184,14 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = betListService.GetEventWagerByAccount(param);
+            var betlistData = betListService.GetEventWager(param);
 
             return new EventWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public EventWagerDetailsViewModel Handle(EventWagerDetailsQuery message)
         {
-            var param = new EventWagerDetailsParam(
+            var param = new EventWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
@@ -202,14 +202,14 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = betListService.GetEventWagerDetails(param);
+            var betlistData = betListService.GetEventWager(param);
 
             return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerByAccountViewModel Handle(StartedWagerByAccountQuery message)
         {
-            var param = new StartedWagerByAccountParam(
+            var param = new StartedWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
@@ -220,14 +220,14 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = betListService.GetStartedWagerByAccount(param);
+            var betlistData = betListService.GetStartedWager(param);
 
             return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerDetailsViewModel Handle(StartedWagerDetailsQuery message)
         {
-            var param = new StartedWagerDetailsParam(
+            var param = new StartedWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
@@ -238,7 +238,7 @@
                 message.StakeCondition,
                 message.Stake);
 
-            var betlistData = betListService.GetStartedWagerDetails(param);
+            var betlistData = betListService.GetStartedWager(param);
 
             return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }

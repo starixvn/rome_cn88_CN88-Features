@@ -1,4 +1,4 @@
-﻿namespace CN88.Features.BetLists.Criteria
+﻿namespace CN88.Features.BetLists.Criteria.Parlay
 {
     using Fanex.Data.Repository;
     using Params;

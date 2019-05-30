@@ -2,9 +2,9 @@
 {
     using System;
 
-    public class StartedWagerByAccountParam
+    public class EventWagerParam
     {
-        public StartedWagerByAccountParam(
+        public EventWagerParam(
             int custId,
             DateTime limitedDate,
             int roleId,

@@ -1,11 +1,11 @@
-﻿namespace CN88.Features.BetLists.Criteria
+﻿namespace CN88.Features.BetLists.Criteria.TotalBets
 {
     using Fanex.Data.Repository;
     using Params;
 
-    public class EventWagerByAccountCriteria : CriteriaBase
+    public class EventWagerCriteria : CriteriaBase
     {
-        public EventWagerByAccountCriteria(EventWagerByAccountParam param)
+        public EventWagerCriteria(EventWagerParam param)
         {
             CustId = param.CustId;
             RoleId = param.RoleId;
