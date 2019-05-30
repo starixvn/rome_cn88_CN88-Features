@@ -109,7 +109,7 @@
                                     `<span class="icon-more-action"></span></a>` +
                                 `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
                                     `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='1'>${this.indexManager.viewResources.ResetPassword}</li>` +
-                                    `<li class='icon-add' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.EditMember}</li>` +
+                                    `<li class='icon-edit' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.EditMember}</li>` +
                                 `</ul>` +
                             `</div>` +                       
                         "</td>" +

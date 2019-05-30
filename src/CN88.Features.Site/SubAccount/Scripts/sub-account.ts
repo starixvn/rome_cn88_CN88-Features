@@ -104,7 +104,7 @@ class SubAccount {
             self.openPopup(self.resources.newSubAccount, self.urls.newSubAccount, 948, 470);
         });
 
-        this.tableSubAccount.find(".icon-unlock").click(function (): void {
+        this.tableSubAccount.find(".icon-unlock, .opt-unlock").click(function (): void {
             const param: ISubAccountParam = self.getSubAccountParam(this);
 
             self.top.popupManager.bootboxConfirm(

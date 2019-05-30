@@ -23,15 +23,18 @@
            data-descendingsort="false">
         <thead class="tableFloatingHeaderOriginal">
             <tr>
-                <th class="header sorting" data-colindex="0" data-sortedname="UserName">@SubAccountResource.UserName</th>
+                <th class="header sorting" data-colindex="0" data-sortedname="UserName">                    
+                    <div class="username">@SubAccountResource.UserName <span class="hide-desktop">/</span> </div> 
+                    <div class="hide-desktop">@SubAccountResource.NickName</div>                    
+                </th>
                 <th class="header sorting hide-mobile" data-colindex="1" data-sortedname="FirstName">@SubAccountResource.Name</th>
-                <th class="header sorting" data-colindex="2" data-sortedname="NickName">@SubAccountResource.NickName</th>
+                <th class="header sorting hide-mobile" data-colindex="2" data-sortedname="NickName">@SubAccountResource.NickName</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
                 <th class="text-center hide-mobile">@SubAccountResource.ACManagement<br />@SubAccountResource.ViewOnly</th>
                 <th class="text-center hide-mobile">@SubAccountResource.ACManagement<br />@SubAccountResource.EditView</th>
                 <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.ViewOnly</th>
                 <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.EditView</th>
-                <th class="text-center">@SubAccountResource.Reports</th>
+                <th class="text-center col-reports">@SubAccountResource.Reports</th>
                 <th class="header sorting hide-mobile" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
                 <th class="col-action">@SubAccountResource.Action</th>
             </tr>
@@ -43,9 +46,15 @@
                 {
                     var permission = item.Permissions;
                     <tr>
-                        <td><div class="username">@item.UserName</div></td>
+
+                        <td>
+                            <div class="username">
+                                @item.UserName
+                                <div class="nickname-mobile">@item.NickName</div>
+                            </div>
+                        </td>
                         <td class="hide-mobile">@WebUtility.HtmlDecode(item.FirstName)</td>
-                        <td>@item.NickName</td>
+                        <td class="hide-mobile">@item.NickName</td>
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewTotalBets)
                         </td>
@@ -67,7 +76,7 @@
                                         <span class="icon-more-action"></span>
                                     </a>
                                     <ul id="dropdown-@item.SubAccId" class="dropdown-menu">
-                                        @RenderActionCell_Mobile()
+                                        @RenderActionCell_Mobile(item.Closed)
                                     </ul>
                                 </div>
                             }
@@ -117,7 +126,7 @@
         <span class="icon-unlock" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ClickToUnlock"></span>
     }
 }
-@helper RenderActionCell_Mobile()
+@helper RenderActionCell_Mobile(bool isClosed)
 {
     <li>
         <span class="opt-pass">@SubAccountResource.ResetPassword</span>
@@ -128,4 +137,10 @@
     <li>
         <span class="opt-edit">@SubAccountResource.EditSubAccount</span>
     </li>
+    if (isClosed)
+    {
+        <li>
+            <span class="opt-unlock">@SubAccountResource.ClickToUnlock</span>
+        </li>
+    }
 }

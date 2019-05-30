@@ -146,13 +146,17 @@
             margin-left: 0;
         }
 
-        .icon-unlock  {
+        .icon-unlock {
             margin-left: 6px;
         }
     }
 
     th {
         padding: 4px 8px;
+    }
+
+    .hide-desktop {
+        display: none;
     }
 }
 
@@ -170,7 +174,7 @@ body.mobile {
         width: auto;
 
         .username {
-            min-width: 75px;
+            min-width: 65px;
             word-break: break-all;
         }
 
@@ -192,8 +196,13 @@ body.mobile {
         }
 
         .col-action {
-            width: 54px;
-            min-width: 54px;
+            width: 46px;
+            min-width: 46px;
+            text-align: center;
+        }
+
+        .col-reports {
+            min-width: 38px;
         }
 
         .add-new {
@@ -213,6 +222,14 @@ body.mobile {
 
         .icon-minus {
             font-size: 16px;
+        }
+
+        .hide-desktop {
+            display: block;
+        }
+
+        .username .hide-desktop {
+            display: inline-block;
         }
     }
 
