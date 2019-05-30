@@ -21,7 +21,6 @@
     registerEvents = () => {
         if (this.isMobile) {
             this.reportTable.stacktable();
-            this.$('body').backtop();
         }
         else {
             this.pagerComponent.render();

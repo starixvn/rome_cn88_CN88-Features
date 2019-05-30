@@ -24,7 +24,9 @@ class BetListOfReport {
         pageIndex: null,
         filterToggleIcon: null,
         reportTable: null,
-        reportPager: null
+        reportPager: null,
+        iconBackTop: null,
+        body: null
     };
 
     constructor(options: any) {
@@ -49,7 +51,9 @@ class BetListOfReport {
         if (this.isMobile) {
             this.elements.reportTable.stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
-            this.$('body').backtop();
+            if (this.elements.iconBackTop.length === 0) {
+                this.elements.body.backtop();
+            }
         }
         else {
             this.pagerComponent.render();
@@ -74,6 +78,8 @@ class BetListOfReport {
         this.elements.filterToggleIcon = this.$("#filter-toggle-icon");
         this.elements.reportTable = this.$("#tbl-report");
         this.elements.reportPager = this.$("#report-pager");
+        this.elements.iconBackTop = this.$("#back-top-component");
+        this.elements.body = this.$("body");
     };
 
     registerEvents = () => {

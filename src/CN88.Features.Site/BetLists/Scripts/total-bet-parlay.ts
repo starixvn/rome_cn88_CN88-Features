@@ -34,7 +34,6 @@
         if (this.isMobile) {
             this.$("#tbl-report").stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
-            this.$('body').backtop();
         }
         else {
             this.pagerComponent.render();
