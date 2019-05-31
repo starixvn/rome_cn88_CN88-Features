@@ -10,7 +10,7 @@
 }
 @model NewViewModel
 <div class="modal-sub-account">
-    <div id="message-container"></div>
+    <div id="message-container" class="message-container"></div>
     <div class="head-title">@SubAccountResource.AccountDetails</div>
     @using (Html.BeginForm("New", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
     {
