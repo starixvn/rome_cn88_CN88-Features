@@ -2,7 +2,7 @@
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
     isMobile: boolean;
-    reportTable: any;
+    reportTable: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -35,4 +35,4 @@
 $(document).ready(() => {
     const betListOfStatement = new BetListOfStatement($, new ClientPagerComponent($));
     betListOfStatement.init();
-})
+});

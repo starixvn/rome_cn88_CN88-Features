@@ -33,9 +33,9 @@
         const first = betTypes[0];
         this.betTypeSelectionComponent.$dropdown.append(`<option value="${first[0].Value}">${first[0].Text}</option>`);
 
-        for (let betTypeGroups of betTypes) {
-            if (betTypeGroups[0].SportTypeGroup == sportType) {
-                for (let betTypeGroup of betTypeGroups) {
+        for (const betTypeGroups of betTypes) {
+            if (betTypeGroups[0].SportTypeGroup.toString() === sportType) {
+                for (const betTypeGroup of betTypeGroups) {
                     this.betTypeSelectionComponent.$dropdown.append(`<option value="${betTypeGroup.Value}">${betTypeGroup.Text}</option>`);
                 }
 

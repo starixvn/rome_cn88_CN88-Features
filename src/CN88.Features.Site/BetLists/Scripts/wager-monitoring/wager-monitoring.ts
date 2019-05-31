@@ -163,9 +163,15 @@
         const clickTouchedEvent = "click touchend";
 
         if (this.isMobile) {
-            this.$filterForm.find(".link").parent().on(clickTouchedEvent, this.openFilterModal);
+            this.$filterForm.find(".link").parent().on(clickTouchedEvent, (event: JQueryEventObject) => {
+                const link = this.$(event.currentTarget).find("a.link");
+                this.openFilterModal(link.data("target"));
+            });
         } else {
-            this.$filterForm.find(".link").on(clickTouchedEvent, this.openFilterModal);
+            this.$filterForm.find(".link").on(clickTouchedEvent, (event: JQueryEventObject) => {
+                const link = this.$(event.currentTarget);
+                this.openFilterModal(link.data("target"));
+            });
         }
 
         this.$btnPause.on(clickTouchedEvent, this.onPauseClick);
@@ -195,10 +201,9 @@
         });
     }
 
-    openFilterModal = (e: JQueryEventObject) => {
-        const link = this.$(e.target);
-        this.filterModal.show(link.data("target"), this.getParam(), this.updateFilterForm);
-    };
+    openFilterModal(targetTab: string): void {
+        this.filterModal.show(targetTab, this.getParam(), this.updateFilterForm);
+    }
 
     onPauseClick = () => {
         this.$.ajax({
@@ -345,18 +350,19 @@
                 const isCollapsed = btnIcon.hasClass('icon-add');
                 const $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
                 const $tr = btnIcon.parent().parent();
+                const speedOfEffect = 200;
 
                 if (isCollapsed) {
                     btnIcon.removeClass('icon-add')
                         .addClass('icon-minus');
                     $tr.removeClass('stack-collapsed').addClass('stack-expanded');
-                    $nextRows.show(200);
+                    $nextRows.show(speedOfEffect);
                 }
                 else {
                     btnIcon.removeClass('icon-minus')
                         .addClass('icon-add');
                     $tr.removeClass('stack-expanded').addClass('stack-collapsed');
-                    $nextRows.hide(200);
+                    $nextRows.hide(speedOfEffect);
                 }
             });
     }

@@ -345,6 +345,7 @@
   {
     "outputFileName": "BetLists/bundles/wager-monitoring/index.js",
     "inputFiles": [
+      "Shared/Scripts/core.js",
       "Shared/Scripts/components/single-selection-dropdown.js",
       "BetLists/Scripts/wager-monitoring/multi-selection-checkbox.js",
       "BetLists/Scripts/wager-monitoring/filter-modal.js",

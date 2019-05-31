@@ -26,19 +26,18 @@ class MultiSelectionCheckboxComponent {
         this.$checkboxAll = this.$("#" + this.options.checkboxAllId);
         this.$listItem = this.$("#" + this.options.listItemId);
         this.$hiddenInput = this.$("#" + this.options.hiddenInputId);
-        this.$checkboxes = this.$listItem.children().not(".hide").find("input[type='checkbox']");
+        const $checkboxes = this.$listItem.children().not(".hide").find("input[type='checkbox']");
+        this.$checkboxes = $checkboxes;
 
-        let self = this;
-
-        this.$checkboxAll.change(function () {
-            self.$checkboxes.prop("checked", this.checked);
+        this.$checkboxAll.change(() => {
+            $checkboxes.prop("checked", this.$checkboxAll.is(":checked"));
         });
 
-        this.$checkboxes.on("click touchend", function () {
-            if (this.checked) {
-                self.isCheckAll();
+        this.$checkboxes.on("click touchend", (eventObject: JQueryEventObject) => {
+            if (this.$(eventObject.target).is(":checked")) {
+                this.isCheckAll();
             } else {
-                self.$checkboxAll.prop("checked", false);
+                this.$checkboxAll.prop("checked", false);
             }
         });
     };
@@ -58,35 +57,30 @@ class MultiSelectionCheckboxComponent {
     };
 
     getSelectedItems = () => {
-        let selected = [];
+        const selected = [];
 
         if (this.$checkboxAll.is(":checked")) {
             return selected;
         }
 
         const selectedCheckboxs = this.$listItem.find(".item").children("input:checked");
-
-        const this$ = this.$;
-
-        selectedCheckboxs.each(function () {
-            selected.push([this$(this).val()]);
+        selectedCheckboxs.each((index: number, elem: Element) => {
+            selected.push([this.$(elem).val()]);
         });
 
         return selected;
     };
 
     getSelectedItemTexts = () => {
-        let selected = [];
+        const selected = [];
 
         if (this.$checkboxAll.is(":checked")) {
             return selected;
         }
 
         const selectedOptions = this.$listItem.find("input:checked");
-        const this$ = this.$;
-
-        selectedOptions.each(function () {
-            selected.push([this$(this).attr("data-text")]);
+        selectedOptions.each((index: number, elem: Element) => {
+            selected.push([this.$(elem).attr("data-text")]);
         });
 
         return selected;
@@ -98,11 +92,10 @@ class MultiSelectionCheckboxComponent {
 
     search = (text) => {
         const lowerCaseText = text.toLowerCase();
-        const this$ = this.$;
         this.$checkboxAll.prop("checked", false);
 
-        this.$checkboxes.each(function () {
-            const chk = this$(this);
+        this.$checkboxes.each((index: number, elem: Element) => {
+            const chk = this.$(elem);
             const chkValue = chk.attr("data-text").toLowerCase();
             if (chkValue.indexOf(lowerCaseText) === -1) {
                 chk.prop("checked", false);
@@ -115,10 +108,9 @@ class MultiSelectionCheckboxComponent {
     };
 
     clearSearch = () => {
-        const this$ = this.$;
         this.$checkboxAll.prop("checked", true);
-        this.$checkboxes.each(function () {
-            const chk = this$(this);
+        this.$checkboxes.each((index: number, elem: Element) => {
+            const chk = this.$(elem);
             chk.prop("checked", true);
             chk.parent().removeClass("hide");
         });

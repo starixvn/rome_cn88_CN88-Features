@@ -91,11 +91,7 @@ class BetListOfReport {
         if (!isNaN(expiredSessionSeconds)) {
             this.checkIn();
 
-            const $this = this;
-
-            setInterval(function () {
-                $this.checkIn();
-            }, expiredSessionSeconds * 1000);
+            setInterval(this.checkIn, expiredSessionSeconds * 1000);
         }
     };
 
@@ -117,21 +113,20 @@ class BetListOfReport {
     onchangeSportType = () => {
         const sportType = this.sportGroupSelectionComponent.$dropdown.val();
         this.betTypeSelectionComponent.$dropdown.empty();
-        let first = betTypes[0];
-        this.betTypeSelectionComponent.$dropdown.append('<option value=' + first[0].Value + '>' + first[0].Text + '</option>');
-        for (var i = 0; i < betTypes.length; i++) {
-            var betTypeGroup = betTypes[i];
+        const first = betTypes[0];
+        this.betTypeSelectionComponent.$dropdown.append(`<option value="${first[0].Value}">${first[0].Text}</option>`);
 
-            if (betTypeGroup[0].SportTypeGroup == sportType) {
-                for (let j = 0; j < betTypeGroup.length; j++) {
-                    this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[j].Value + '>' + betTypeGroup[j].Text + '</option>');
+        for (const betTypeGroups of betTypes) {
+            if (betTypeGroups[0].SportTypeGroup.toString() === sportType) {
+                for (const betTypeGroup of betTypeGroups) {
+                    this.betTypeSelectionComponent.$dropdown.append(`<option value="${betTypeGroup.Value}">${betTypeGroup.Text}</option>`);
                 }
 
                 break;
             }
         }
 
-        this.betTypeSelectionComponent.$dropdown.multiselect('destroy');
+        this.betTypeSelectionComponent.$dropdown.multiselect("destroy");
         this.betTypeSelectionComponent.$dropdown.multiselect({
             multiple: false,
             maxHeight: 300,
