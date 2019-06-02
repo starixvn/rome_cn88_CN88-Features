@@ -13,11 +13,14 @@
 @model IndexViewModel
 <div class="subacc-page">
     <div id="message-container"></div>
-    <div>
-        <button class="btn-submit add-new" id="btnNewSubAccount">
-            <span class="icon-add"></span>@SubAccountResource.NewSubAccount
-        </button>
-    </div>
+    @if (Model.ViewerIsActive)
+    {
+        <div>
+            <button class="btn-submit add-new" id="btnNewSubAccount">
+                <span class="icon-add"></span>@SubAccountResource.NewSubAccount
+            </button>
+        </div>
+    }
     <table class="tbl-style2 tbl-subaccount"
            id="tbl-subaccount"
            data-totalrecords="@Model.SubAccounts.Count()"
@@ -39,7 +42,10 @@
                 <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.EditView</th>
                 <th class="text-center col-reports">@SubAccountResource.Reports</th>
                 <th class="header sorting hide-mobile" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
-                <th class="col-action">@SubAccountResource.Action</th>
+                @if (Model.ViewerIsActive)
+                {
+                    <th>@SubAccountResource.Action</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -71,7 +77,9 @@
                             @RenderPermissionCell(permission.ViewReports)
                         </td>
                         <td class="hide-mobile">@item.CreateDateString</td>
-                        <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
+                        @if (Model.ViewerIsActive)
+                        {
+                            <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
                             @if (Model.IsDevice)
                             {
                                 <div class="dropdown visible-mobile">
@@ -94,14 +102,15 @@
                             {
                                 @RenderActionCell(item.Closed)
                             }
-                        </td>
+                            </td>
+                        }
                     </tr>
                 }
             }
             else
             {
                 <tr>
-                    <td colspan="9" class="text-center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@(Model.ViewerIsActive ? 9 : 8)" class="text-center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
         </tbody>

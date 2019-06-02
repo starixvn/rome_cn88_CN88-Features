@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.SubAccount.Requests
 {
+    using CN88.Features.CustomerList;
     using Features.Models;
     using MediatR;
     using Site.Requests;
@@ -11,5 +12,7 @@
             : base(viewer)
         {
         }
+
+        public bool ViewerIsActive => ViewerStatusId == CustomerStatus.Active;
     }
 }

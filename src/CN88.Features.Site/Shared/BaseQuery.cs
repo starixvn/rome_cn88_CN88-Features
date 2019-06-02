@@ -49,7 +49,6 @@
 
         public string LanguageKey { get; }
 
-
         public virtual bool IsValid()
             => ViewerId > 0
             && !string.IsNullOrWhiteSpace(ViewerName)
