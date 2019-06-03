@@ -208,6 +208,11 @@ body.mobile {
             width: 46px;
             min-width: 46px;
             text-align: center;
+
+            .dropdown .dropdown-menu li span {
+                display: inline-block;
+                width: 100%;
+            }
         }
 
         .col-reports {
