@@ -32,7 +32,7 @@
     viewDownlineFunction: Function;
     addDownlineFunction: Function;
     reportColSpan: number;
-    minPageSize: number = 10;
+    minPageSize = 10;
 
     constructor(
         $: JQueryStatic,
@@ -59,7 +59,7 @@
         this.indexManager = indexManager;
         this.renderList = renderList;
         this.levelId = levelId;
-        this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 9 : 8;
+        this.reportColSpan = levelId === siteInfrastructure.roleId.member ? 9 : 8;
         this.viewDownlineFunction = viewDownlineFunction;
         this.addDownlineFunction = addDownlineFunction;
 
@@ -69,15 +69,14 @@
             new SingleSelectionDropdownOption("dropdown-status-" + this.levelNameLowerCase, "UserSelectedStatusId" + this.levelName));
         this.$dropdownStatus = this.$("#dropdown-status-" + this.levelNameLowerCase);
         this.$tblReport.stickyTableHeaders();
-        var self = this;
-        this.$("#btn-submit-" + this.levelName.toLowerCase()).click(function () {
-            self.reportParam.PageIndex = 1;
+        this.$("#btn-submit-" + this.levelName.toLowerCase()).click(() => {
+            this.reportParam.PageIndex = 1;
 
-            if (self.indexManager.isDevice) {
-                self.indexManager.masterToggleHandler.hideFilter();
+            if (this.indexManager.isDevice) {
+                this.indexManager.masterToggleHandler.hideFilter();
             }
 
-            self.viewList();
+            this.viewList();
         });
     }
 
@@ -86,7 +85,8 @@
         this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
         this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
         this.$formReport = this.$("#form-" + this.levelNameLowerCase);
-    };
+    }
+
     public loadData() {
         this.$.ajax({
             method: "GET",
@@ -122,70 +122,69 @@
         this.loadData();
     };
     public bindReportEvents(rs) {
-        var self = this;
-        this.$tblReport.find(".view-statement").click(function () {
-            var $this = self.$(this);
-            var viewStatementUrl = $("#viewStatementtUrl").val() + "?CustName=" + $this.attr("username") + "&CustId=" + $this.attr("cust-id");
+        this.$tblReport.find(".view-statement").click((e) => {
+            const $this = this.$(e.currentTarget);
+            const viewStatementUrl = `${this.$("#viewStatementtUrl").val()}?CustName=${$this.attr("username")}&CustId=${$this.attr("cust-id")}`;
 
-            if (self.indexManager.isDevice) {
+            if (this.indexManager.isDevice) {
                 window.open(viewStatementUrl, "_blank");
             } else {
                 window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
             }
         });
 
-        this.$tblReport.find(".view-downline").click(function () {
-            var $this = self.$(this);
-            if (self.indexManager.isDevice) {
-                self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"));
+        this.$tblReport.find(".view-downline").click((e) => {
+            const $this = this.$(e.currentTarget);
+            if (this.indexManager.isDevice) {
+                this.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"));
             } else {
-                self.viewDownlineFunction($this.attr("cust-id"), $this.html());
+                this.viewDownlineFunction($this.attr("cust-id"), $this.html());
             }
         });
 
-        this.$tblReport.find(".col-credit").click(function () {
-            var $this = self.$(this);
+        this.$tblReport.find(".col-credit").click((e) => {
+            const $this = this.$(e.currentTarget);
 
-            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), self.levelId);
+            this.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), this.levelId);
         });
 
-        this.$tblReport.find(".col-status").click(function () {
-            var $this = self.$(this);
+        this.$tblReport.find(".col-status").click((e) => {
+            const $this = this.$(e.currentTarget);
 
-            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));
+            this.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));
         });
 
-        this.$tblReport.find(".icon-pass").click(function () {
-            var $this = self.$(this);
+        this.$tblReport.find(".icon-pass").click((e) => {
+            const $this = this.$(e.currentTarget);
 
-            self.indexManager.resetPassword($this.attr("cust-id"), $this.attr("username"), $this.attr("cust-role"));
+            this.indexManager.resetPassword($this.attr("cust-id"), $this.attr("username"), $this.attr("cust-role"));
         });
 
-        this.$tblReport.find(".icon-security").click(function () {
-            var $this = self.$(this);
+        this.$tblReport.find(".icon-security").click((e) => {
+            const $this = this.$(e.currentTarget);
 
-            self.indexManager.resetSecurityCode($this.attr("cust-id"), $this.attr("username"));
+            this.indexManager.resetSecurityCode($this.attr("cust-id"), $this.attr("username"));
         });
 
-        this.$tblReport.find(".icon-edit").click(function () {
-            var $this = self.$(this);
+        this.$tblReport.find(".icon-edit").click((e) => {
+            const $this = this.$(e.currentTarget);
 
-            self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam);
+            this.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), this.levelId, this.reportParam);
         });
 
-        this.$tblReport.find(".icon-add").click(function () {
-            var $this = self.$(this);
+        this.$tblReport.find(".icon-add").click((e) => {
+            const $this = this.$(e.currentTarget);
 
-            self.addDownlineFunction($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
+            this.addDownlineFunction($this.attr("cust-id"), '', this.levelId - 1, this.reportParam, $this.attr("username"));
         });
 
-        var buttonAddNew = this.$(".add-directdownline-" + this.levelNameLowerCase);
+        const buttonAddNew = this.$(".add-directdownline-" + this.levelNameLowerCase);
         if (rs.SearchAccountId > 0) {
             buttonAddNew.removeAttr("disabled");
-            buttonAddNew.click(function () {
-                var $this = self.$(this);
+            buttonAddNew.click((e) => {
+                const $this = this.$(e.currentTarget);
 
-                self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam, $this.attr("downline-username"));
+                this.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), this.levelId, this.reportParam, $this.attr("downline-username"));
             });
         }
         else {
@@ -196,17 +195,21 @@
         this.$("#PageIndex" + this.levelName).remove();
         this.$("#PageSize" + this.levelName).remove();
         if (rs.TotalCustomers >= this.minPageSize) {
-            var footer = "<div id='report-pager-" + this.levelNameLowerCase + "' " +
-                "data-labelpage='" + this.viewResources.Page + "'" +
-                "data-labelof='" + this.viewResources.Of + "'" +
-                "data-labeldisplayitems='" + this.viewResources.Pager_DisplayItems + "'" +
-                "data-pageindex='" + this.reportParam.PageIndex + "'" +
-                "data-pagesize='" + this.reportParam.PageSize + "'" +
-                "data-totalrecords='" + rs.TotalCustomers + "'" +
-                "></div>";
+            const footer = `<div id='report-pager-${this.levelNameLowerCase}'` +
+                `data-labelpage='${this.viewResources.Page}'` +
+                `data-labelof='${this.viewResources.Of}'` +
+                `data-labeldisplayitems='${this.viewResources.Pager_DisplayItems}'` +
+                `data-pageindex='${this.reportParam.PageIndex}'` +
+                `data-pagesize='${this.reportParam.PageSize}'` +
+                `data-totalrecords='${rs.TotalCustomers}'></div>`;
 
             this.$("#pager-" + this.levelNameLowerCase).html(footer);
-            this.pager.render(new PagerOption(this.pagingList, "report-pager-" + this.levelNameLowerCase, "form-" + this.levelNameLowerCase, "PageIndex" + this.levelName, "PageSize" + this.levelName));
+            this.pager.render(new PagerOption(
+                this.pagingList,
+                "report-pager-" + this.levelNameLowerCase,
+                "form-" + this.levelNameLowerCase,
+                "PageIndex" + this.levelName,
+                "PageSize" + this.levelName));
         } else {
             this.$("#pager-" + this.levelNameLowerCase).html("");
         }
