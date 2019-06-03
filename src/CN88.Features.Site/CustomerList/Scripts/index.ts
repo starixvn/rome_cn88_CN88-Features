@@ -322,6 +322,7 @@ class CustomerList {
     };
 
     addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
+        const mainiFrame: JQuery = this.topWindow.$("#main");
         if (this.AccountManagementEditView) {
             reportParam.CustId = custId;
             reportParam.Username = username;
@@ -331,8 +332,9 @@ class CustomerList {
             this.storeCurrentPage(reportParam);
             this.topWindow.showCN88CancelButton = true;
             this.topWindow.showCN88SaveAndNewButton = true;
-
-            window.location.href = this.CreateCustomerLink + "?" + this.$.param({
+            
+            mainiFrame.show();
+            mainiFrame.attr("src", this.CreateCustomerLink + "?" + this.$.param({
                 Language: this.Language,
                 ProductId: 1,
                 CustomerLevel: custLevelId,
@@ -340,9 +342,9 @@ class CustomerList {
                 IsReadOnly: !this.AccountManagementEditView,
                 UplineId: custId,
                 ActorLevel: this.ActorLevel
-            });
+            }));
         } else {
-            window.location.href = this.AccessDenyPage;
+            mainiFrame.attr("src", this.AccessDenyPage);
         }
     };
     getStatusName = (status: number) => {
