@@ -93,7 +93,7 @@
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.1-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
     <Reference Include="CN88.Web, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.5-accountstatus01\lib\net461\CN88.Web.dll</HintPath>
+      <HintPath>..\..\packages\CN88.Web.1.0.0.5-accountstatus02\lib\net461\CN88.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -730,7 +730,7 @@
     <Content Include="Web.AppSettings.uat.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.local.config">
+    <Content Include="Web.AppSettings.local.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.config">

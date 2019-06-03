@@ -2,7 +2,7 @@
 <Functions>
   <Function Name="Shared">
     <Setting Key="CS_SportType_Sel" SpName="CS_SportType_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_BetType_Sel" SpName="CS_BetType_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetType_Sel" SpName="CS_BetType_Sel_xpre" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="BetTypeGroup" ObjectProperty="Id" />
     </Setting>
     <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
@@ -158,6 +158,13 @@
       <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData"></Mapping>
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
+    </Setting>
+  </Function>
+  <Function Name="Customer List">
+    <Setting Key="CS_Customer_DownlineList_Sel" SpName="CS_Customer_DownlineList_Sel_UAT2" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping DataField="firstname" ObjectProperty="Name"></Mapping>
+      <Mapping DataField="createddate" ObjectProperty="CreationDate"></Mapping>
+      <Mapping DataField="isclosed" ObjectProperty="Closed"></Mapping>
     </Setting>
   </Function>
 </Functions>
