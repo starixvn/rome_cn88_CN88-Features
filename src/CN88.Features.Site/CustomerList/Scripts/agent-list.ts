@@ -27,13 +27,14 @@ class AgentList extends BaseList {
 
         this.cacheDOMElements();
 
-        this.$("#btn-submit-agent").off("click").on("click", () => {
-            this.reportParam.PageIndex = 1;
-            if (this.indexManager.isDevice) {
-                this.indexManager.agentToggleHandler.hideFilter();
+        var self = this;
+        this.$("#btn-submit-agent").off("click").on("click", function () {
+            self.reportParam.PageIndex = 1;
+            if (self.indexManager.isDevice) {
+                self.indexManager.agentToggleHandler.hideFilter();
             }
 
-            this.viewAgents(this.reportParam.CustId);
+            self.viewAgents(self.reportParam.CustId);
         });
 
         if (this.directDownline >= siteInfrastructure.roleId.master) {
@@ -53,7 +54,7 @@ class AgentList extends BaseList {
     viewAgents = (custId: number) => {
         this.$.blockUI();
         this.reportParam = {
-            DownlineUsername: this.$viewedMaster.val(),
+            DownlineUsername: this.$("#txt-viewed-master").val(),
             Username: this.$username.val(),
             SearchRoleId: siteInfrastructure.roleId.agent,
             CustId: custId,
@@ -62,8 +63,9 @@ class AgentList extends BaseList {
             PageIndex: this.reportParam.PageIndex
         };
 
-        if (this.directDownline !== siteInfrastructure.roleId.agent
-            && this.reportParam.DownlineUsername) {
+        if (this.directDownline != siteInfrastructure.roleId.agent &&
+            (this.reportParam.DownlineUsername == "" ||
+                this.reportParam.DownlineUsername == undefined)) {
             this.$errAgent.removeClass("display-none");
             this.$.unblockUI();
             return;
@@ -74,7 +76,7 @@ class AgentList extends BaseList {
     };
     renderAgentList = (rs: any) => {
         if (rs.SearchAccountId > 0) {
-            const buttonAddNew = this.$(".add-directdownline-agent");
+            let buttonAddNew = this.$(".add-directdownline-agent");
             buttonAddNew.attr("cust-id", rs.SearchAccountId);
             buttonAddNew.attr("username", rs.Username);
             buttonAddNew.attr("downline-username", rs.DownlineUsername);
@@ -90,21 +92,22 @@ class AgentList extends BaseList {
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
         if (this.indexManager.isDevice) {
-            if (rs.Customers.length === 0) {
-                html = `<tr><td colspan='4' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
+            if (rs.Customers.length == 0) {
+                html = "<tr><td colspan='4' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
             } else {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                    const customer = rs.Customers[i],
+                    let customer = rs.Customers[i],
                         custId = customer.CustId,
                         username = customer.Username;
 
                     html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                         `<td class='link view-downline' cust-id='${custId}' username='${username}'><div class='username-wrapper'>${username} <br /> ${customer.Nickname}</div></td>` +
-                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='${customer.Status}'>${this.indexManager.getStatusName(customer.Status)}</td>` +
-                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>${this.numeral(customer.Credit).format("###,0.00")}</td>` +
+                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                         "<td class='col-action text-center'>" +
                         `<div class="dropdown">` +
-                        `<a id="${custId}" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="icon-more-action"></span></a>` +
+                        `<a id="${custId}" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+                        `<span class="icon-more-action"></span></a>` +
                         `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
                         `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='2'>${this.indexManager.viewResources.ResetPassword}</li>` +
                         `<li class='icon-security' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.ResetSecurityCode}</li>` +
@@ -118,21 +121,21 @@ class AgentList extends BaseList {
             }
         } else {
             if (rs.Customers.length == 0) {
-                html = `<tr><td colspan='8' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
+                html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
             } else {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                    const customer = rs.Customers[i],
+                    let customer = rs.Customers[i],
                         custId = customer.CustId,
                         username = customer.Username;
 
                     html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
-                        `<td class='col-no'>${customerIndex}</td>` +
+                        "<td class='col-no'>" + customerIndex + "</td>" +
                         `<td class='link view-downline' cust-id='${custId}'>${username}</td>` +
-                        `<td>${customer.Name}</td>` +
-                        `<td>${customer.Nickname}</td>` +
-                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>${this.numeral(customer.Credit).format("###,0.00")}</td>` +
-                        `<td class='col-date'>${customer.CreationDateStr}</td>` +
-                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='${customer.Status}'>${this.indexManager.getStatusName(customer.Status)}</td>` +
+                        "<td>" + customer.Name + "</td>" +
+                        "<td>" + customer.Nickname + "</td>" +
+                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
+                        "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
+                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                         "<td class='col-action text-center'>" +
                         `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='2'></span>` +
                         `<span class='icon-security' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetSecurityCode}' cust-id='${custId}' username='${username}'></span>` +
@@ -143,6 +146,7 @@ class AgentList extends BaseList {
                 }
             }
         }
+
 
         this.$tblReport.find("> tbody").empty().html(html);
         this.$(window).trigger('resize.stickyTableHeaders');
@@ -160,7 +164,7 @@ class AgentList extends BaseList {
         this.viewAgents(custId);
     };
     initAutoComplete = () => {
-        const queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
+        let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
             this.$.param({ isDir: true, issub: false, ismember: false });
         initAutoComplete(this.$viewedMaster[0], queryUsernameURL);
         this.$output.css("top", this.$viewedMaster.offset().top + 30);
