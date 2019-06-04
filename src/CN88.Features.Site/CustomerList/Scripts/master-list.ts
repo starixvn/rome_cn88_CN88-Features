@@ -1,4 +1,8 @@
-﻿class MasterList extends BaseList {
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
+/// <reference path="base-list.ts" />
+
+class MasterList extends BaseList {
     searchSuggestionMaster: JQuery;
     usernameAutoSuggestionPath: string;
     $output: JQuery;
@@ -122,7 +126,7 @@
     initAutoComplete = () => {
         let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
             this.$.param({ isDir: true, issub: false, ismember: false });
-        initAutoComplete(this.searchSuggestionMaster[0], queryUsernameURL);
+        //initAutoComplete(this.searchSuggestionMaster[0], queryUsernameURL);
         this.$output.css("top", this.searchSuggestionMaster.offset().top + 30);
         this.$output.css("left", this.searchSuggestionMaster.offset().left);
     };

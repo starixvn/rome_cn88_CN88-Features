@@ -1,4 +1,14 @@
 ﻿"use strict";
+
+/// <reference path="old-legacy.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="../../shared/scripts/components/sort.ts" />
+/// <reference path="../../shared/scripts/components/link-builder.ts" />
+/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+
 class OldWagerReport extends OldLegacyReport {
     $tabSettlement: JQuery;
     $tabValidStake: JQuery;

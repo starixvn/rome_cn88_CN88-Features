@@ -1,9 +1,9 @@
 ﻿namespace Common {
     export class PopupDetails {
         private static instance: PopupDetails;
-        private topWindow: any;
+        private topWindow: Window;
 
-        public static Instance(topWindow: any): PopupDetails {
+        public static Instance(topWindow: Window): PopupDetails {
             this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PopupDetails() : this.instance;
             this.instance.topWindow = topWindow;
 
@@ -11,8 +11,8 @@
         }
 
         public Show = (options: any) => {
-            this.topWindow.popupManager.init($, this.topWindow);
-            this.topWindow.popupManager.open(options);
+            this.topWindow["popupManager"].init($, this.topWindow);
+            this.topWindow["popupManager"].open(options);
         }
     }
 }

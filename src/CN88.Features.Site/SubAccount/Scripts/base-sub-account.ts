@@ -1,4 +1,6 @@
-﻿abstract class BaseSubAccount {
+﻿/// <reference path="../../shared/scripts/components/message.ts" />
+
+abstract class BaseSubAccount {
     $: JQueryStatic;
     top: any;
     elements: any;
@@ -129,3 +131,5 @@
         return headers;
     }
 }
+
+export { BaseSubAccount };

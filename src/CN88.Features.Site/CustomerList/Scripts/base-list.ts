@@ -1,4 +1,7 @@
-﻿class BaseList {
+﻿/// <reference path="../../shared/scripts/components/pager.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+
+class BaseList {
     $: JQueryStatic;
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
@@ -22,7 +25,7 @@
     };
 
     viewResources: any;
-    indexManager = null;
+    indexManager: any = null;
 
     levelName: string;
     levelNameLowerCase: string;
@@ -107,18 +110,18 @@
         this.$.blockUI();
         this.reportParam = {
             DownlineUsername: null,
-            Username: this.$username.val(),
+            Username: <string>this.$username.val(),
             SearchRoleId: this.levelId,
             CustId: 0,
-            Status: this.$dropdownStatus.find("option:selected").val(),
+            Status: <number>this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
         };
         this.loadData();
     };
     pagingList = () => {
-        this.reportParam.PageIndex = this.$("#PageIndex" + this.levelName).val();
-        this.reportParam.PageSize = this.$("#PageSize" + this.levelName).val();
+        this.reportParam.PageIndex = <number>this.$("#PageIndex" + this.levelName).val();
+        this.reportParam.PageSize = <number>this.$("#PageSize" + this.levelName).val();
         this.loadData();
     };
     public bindReportEvents(rs) {

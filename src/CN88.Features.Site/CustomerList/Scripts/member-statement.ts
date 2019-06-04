@@ -1,4 +1,7 @@
-﻿class MemberStatement {
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
+
+class MemberStatement {
     $: JQueryStatic;
     $reportForm: JQuery;
     topWindow: any;

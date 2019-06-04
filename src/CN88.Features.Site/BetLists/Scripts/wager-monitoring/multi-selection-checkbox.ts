@@ -1,5 +1,4 @@
-﻿"use strict";
-class MultiSelectionCheckboxOption {
+﻿class MultiSelectionCheckboxOption {
     constructor(
         public checkboxAllId = "checkbox-all",
         public listItemId = "ListId",
@@ -17,8 +16,8 @@ class MultiSelectionCheckboxComponent {
     options = new MultiSelectionCheckboxOption();
 
     constructor($: JQueryStatic) {
-        this.$ = $;
-    }
+        this.$ = $; 
+    } 
 
     render = (options: MultiSelectionCheckboxOption = new MultiSelectionCheckboxOption()) => {
         this.options = this.$.extend({}, this.options, options) as MultiSelectionCheckboxOption;
@@ -59,7 +58,7 @@ class MultiSelectionCheckboxComponent {
     getSelectedItems = () => {
         const selected = [];
 
-        if (this.$checkboxAll.is(":checked")) {
+        if (this.$checkboxAll.is(":checked")) { 
             return selected;
         }
 

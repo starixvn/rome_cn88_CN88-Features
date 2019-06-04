@@ -1,9 +1,8 @@
-﻿/// <reference path="../../shared/scripts/core.ts" />
-/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+﻿/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="../../shared/scripts/components/link-builder.ts" />
-/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
 /// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
 
 class BetListOfReport {
     $: JQueryStatic;
@@ -29,7 +28,7 @@ class BetListOfReport {
         body: null
     };
 
-    constructor(options: any) {
+    constructor(options: BetListReportOptions) {
         this.$ = options.$;
 
         this.dateRangePickerComponent = options.dateRangePickerComponent;
@@ -87,11 +86,11 @@ class BetListOfReport {
 
         this.elements.excelIcon.click(this.onExportExcelEvent);
 
-        const expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
+        const expiredSessionSeconds: number = <number>this.$('#expiredSessionSeconds').val();
         if (!isNaN(expiredSessionSeconds)) {
             this.checkIn();
-
-            setInterval(this.checkIn, expiredSessionSeconds * 1000);
+            const oneThousand = 1000;
+            setInterval(this.checkIn, expiredSessionSeconds * oneThousand);
         }
     };
 
@@ -113,6 +112,7 @@ class BetListOfReport {
     onchangeSportType = () => {
         const sportType = this.sportGroupSelectionComponent.$dropdown.val();
         this.betTypeSelectionComponent.$dropdown.empty();
+        const betTypes = window["betTypes"];
         const first = betTypes[0];
         this.betTypeSelectionComponent.$dropdown.append(`<option value="${first[0].Value}">${first[0].Text}</option>`);
 
@@ -140,17 +140,30 @@ class BetListOfReport {
     }
 }
 
+class BetListReportOptions
+{
+    constructor(
+        public $: JQueryStatic,
+        public dateRangePickerComponent: DateRangePickerComponent,
+        public sportGroupSelectionComponent: SingleSelectionDropdownComponent,
+        public betTypeSelectionComponent: SingleSelectionDropdownComponent,
+        public liveStatusSelectionComponent: SingleSelectionDropdownComponent,
+        public linkBuilderComponent: LinkBuilderComponent,
+        public pagerComponent: ClientPagerComponent,
+        public toggleHandler: ToggleHandler
+    ) {}
+}
+
 $(document).ready(() => {
-    const betListOfReport = new BetListOfReport({
-        $: $,
-        dateRangePickerComponent: new DateRangePickerComponent($),
-        sportGroupSelectionComponent: new SingleSelectionDropdownComponent($),
-        betTypeSelectionComponent: new SingleSelectionDropdownComponent($),
-        liveStatusSelectionComponent: new SingleSelectionDropdownComponent($),
-        linkBuilderComponent: new LinkBuilderComponent($),
-        pagerComponent: new ClientPagerComponent($),
-        toggleHandler: new ToggleHandler($)
-    });
+    const betListOfReport = new BetListOfReport(new BetListReportOptions(
+        $,
+        new DateRangePickerComponent($),
+        new SingleSelectionDropdownComponent($),
+        new SingleSelectionDropdownComponent($),
+        new SingleSelectionDropdownComponent($),
+        new LinkBuilderComponent($),
+        new ClientPagerComponent($),
+        new ToggleHandler($)));
 
     betListOfReport.init();
 });

@@ -1,12 +1,4 @@
-﻿/// <reference path="../core.ts" />
-
-"use strict";
-
-interface JQuery {
-    nexDatePicker(option: any): void;
-}
-
-class DateRangePickerOption {
+﻿class DateRangePickerOption {
     constructor(
         public selectorId: string = "daterange-picker",
         public reportFormId: string = "report-form",

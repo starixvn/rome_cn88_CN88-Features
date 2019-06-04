@@ -1,4 +1,8 @@
-﻿class TotalBetParlay {
+﻿/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+class TotalBetParlay {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
 

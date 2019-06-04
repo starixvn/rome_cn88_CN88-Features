@@ -1,4 +1,6 @@
-﻿class OnlineMember {
+﻿/// <reference path="../../shared/scripts/components/pager.ts" />
+
+class OnlineMember {
     $: JQueryStatic;
     pagerComponent: PagerComponent;
 

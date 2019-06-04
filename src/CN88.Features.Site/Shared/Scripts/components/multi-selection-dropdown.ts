@@ -146,3 +146,5 @@ class MultiSelectionDropdownComponent {
         });
     };
 }
+
+export { MultiSelectionDropdownComponent, MultiSelectionDropdownOption };

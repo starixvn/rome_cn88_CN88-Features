@@ -6,7 +6,7 @@
     }
 
     init = () => {
-        var mode = this.$("#DisplayMode").val();
+        const mode = this.$("#DisplayMode").val();
 
         if (mode === "1") {
             this.$("#sub-menu-wager").parent().addClass("active");

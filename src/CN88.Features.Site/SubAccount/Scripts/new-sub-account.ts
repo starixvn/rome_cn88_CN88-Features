@@ -1,11 +1,8 @@
-﻿interface String {
-    encrypt(secretKey: string): string;
-}
+﻿import { BaseSubAccount } from "./base-sub-account";
 
 declare var CryptoJS: any;
 
-String.prototype.encrypt = function (secretKey: string): string {
-    let plainText: string = this.toString();
+const encrypt = function (plainText: string, secretKey: string): string {
     const passPhrase = "a5s8d2e9c172";
     let key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
     let iv = key;
@@ -46,7 +43,7 @@ class NewSubAccount extends BaseSubAccount {
         let formData: any = super.getFormData();
         formData.suffix1 = this.elements.suffix1.val();
         formData.suffix2 = this.elements.suffix2.val();
-        formData.password = password.encrypt(hashKey);
+        formData.password = encrypt(password, hashKey);
 
         return formData;
     }

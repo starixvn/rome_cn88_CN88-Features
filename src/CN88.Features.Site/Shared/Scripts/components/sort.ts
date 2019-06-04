@@ -1,7 +1,5 @@
-﻿"use strict";
-interface JQuery {
-    tablesorter(option: any): void;
-}
+﻿/// <reference path="link-builder.ts" />
+
 
 class SortOption {
     constructor(

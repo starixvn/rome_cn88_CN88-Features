@@ -1,4 +1,6 @@
-﻿class WagerByAccount {
+﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+class WagerByAccount {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
     isMobile: boolean;
@@ -22,14 +24,13 @@
             this.pagerComponent.render();
         }
 
-        const self = this;
+        const dataUrl = this.$("#lnk-wager-details").attr("data-url");
         this.$("#lnk-wager-details").click(function () {
-            const url = self.$(this).attr("data-url");
-            if (!url) {
+            if (!dataUrl) {
                 return;
             }
 
-            window.location.href = url;
+            window.location.href = dataUrl;
         });
     };
 }

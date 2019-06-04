@@ -1,4 +1,8 @@
 ﻿"use strict";
+
+/// <reference path="../../shared/scripts/components/sort.ts" />
+/// <reference path="../../shared/scripts/components/link-builder.ts" />
+
 interface ISubAccountParam {
     subAccountId: number;
     subAccountName: string;

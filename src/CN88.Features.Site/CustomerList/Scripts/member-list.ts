@@ -1,4 +1,8 @@
-﻿class MemberList extends BaseList {
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="base-list.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
+
+class MemberList extends BaseList {
     $viewedAgent: JQuery;
     $errMember: JQuery;
     directDownline: number;
@@ -162,7 +166,7 @@
     initAutoComplete = () => {
         let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
             this.$.param({ isDir: this.directDownline == siteInfrastructure.roleId.agent, issub: false, ismember: true });
-        initAutoComplete(this.$viewedAgent[0], queryUsernameURL);
+        //initAutoComplete(this.$viewedAgent[0], queryUsernameURL);
 
         this.$output.css("top", this.$viewedAgent.offset().top + 30);
         this.$output.css("left", this.$viewedAgent.offset().left);

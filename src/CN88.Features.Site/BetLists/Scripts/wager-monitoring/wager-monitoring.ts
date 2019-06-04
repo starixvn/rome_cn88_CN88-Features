@@ -1,4 +1,8 @@
-﻿class WagerMonitoring {
+﻿/// <reference path="../../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../../shared/scripts/components/filter-toggle.ts" />
+
+
+class WagerMonitoring {
     $: JQueryStatic;
     $tblReport: JQuery;
     $filterForm: JQuery;
@@ -81,11 +85,11 @@
         this.renderComponents();
         this.registerEvents();
 
-        this.pageSize = this.$("#PageSize").val();
-        this.pauseUrl = this.$("#pause-url").val();
-        this.getBetsUrl = this.$("#get-bets-url").val();
-        this.intervalTime = this.$("#IntervalTime").val();
-        this.numberOfRowPerTicket = this.isMobile ? this.$("#NumberOfMobileRowsPerTicket").val() : 1;
+        this.pageSize = <number>this.$("#PageSize").val();
+        this.pauseUrl = <string>this.$("#pause-url").val();
+        this.getBetsUrl = <string>this.$("#get-bets-url").val();
+        this.intervalTime = <number>this.$("#IntervalTime").val();
+        this.numberOfRowPerTicket = this.isMobile ? <number>this.$("#NumberOfMobileRowsPerTicket").val() : 1;
 
         setInterval(this.getLastBets, this.intervalTime * 1000);
 
@@ -124,22 +128,22 @@
         this.$sound = this.$("#sound");
 
         this.resources = {
-            lblPerSports: $("#lbl-PerSports").val(),
-            lblStakeMode_0: $("#lbl-StakeMode_0").val(),
-            lblStakeMode_1: $("#lbl-StakeMode_1").val(),
-            lblStakeMode_2: $("#lbl-StakeMode_2").val(),
-            lblStakeMode_3: $("#lbl-StakeMode_3").val(),
-            lblStakeMode_4: $("#lbl-StakeMode_4").val(),
-            lblMarkets: $("#lbl-Markets").val(),
-            lblAllMarkets: $("#lbl-AllMarkets").val(),
-            lblLeague: $("#lbl-League").val(),
-            lblAllLeagues: $("#lbl-AllLeagues").val(),
-            lblEvent: $("#lbl-Event").val(),
-            lblAllEvents: $("#lbl-AllEvents").val(),
-            lblBetType: $("#lbl-BetType").val(),
-            lblAllBetTypes: $("#lbl-AllBetTypes").val(),
-            lblOn: $("#lbl-On").val(),
-            lblOff: $("#lbl-Off").val()
+            lblPerSports: <string>$("#lbl-PerSports").val(),
+            lblStakeMode_0: <string>$("#lbl-StakeMode_0").val(),
+            lblStakeMode_1: <string>$("#lbl-StakeMode_1").val(),
+            lblStakeMode_2: <string>$("#lbl-StakeMode_2").val(),
+            lblStakeMode_3: <string>$("#lbl-StakeMode_3").val(),
+            lblStakeMode_4: <string>$("#lbl-StakeMode_4").val(),
+            lblMarkets: <string>$("#lbl-Markets").val(),
+            lblAllMarkets: <string>$("#lbl-AllMarkets").val(),
+            lblLeague: <string>$("#lbl-League").val(),
+            lblAllLeagues: <string>$("#lbl-AllLeagues").val(),
+            lblEvent: <string>$("#lbl-Event").val(),
+            lblAllEvents: <string>$("#lbl-AllEvents").val(),
+            lblBetType: <string>$("#lbl-BetType").val(),
+            lblAllBetTypes: <string>$("#lbl-AllBetTypes").val(),
+            lblOn: <string>$("#lbl-On").val(),
+            lblOff: <string>$("#lbl-Off").val()
         };
     }
 

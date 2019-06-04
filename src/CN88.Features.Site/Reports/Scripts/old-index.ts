@@ -1,4 +1,7 @@
-﻿"use strict";
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="old-base-report.ts" />
+
 class OldReportIndexView extends OldBaseReport {
     $displayMode: JQuery;
     $reportType: JQuery;

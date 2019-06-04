@@ -1,4 +1,6 @@
-﻿class WagerDetailsBetList {
+﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+class WagerDetailsBetList {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
     isMobile: boolean;
@@ -22,14 +24,13 @@
             this.pagerComponent.render();
         }
 
-        const self = this;
+        const betListUrl = this.$("#lnk-bet-list-by-account").attr("data-url");
         this.$("#lnk-bet-list-by-account").click(function () {
-            const url = self.$(this).attr("data-url");
-            if (!url) {
+            if (!betListUrl) {
                 return;
             }
 
-            window.location.href = url;
+            window.location.href = betListUrl;
         });
     };
 }

@@ -1016,6 +1016,7 @@
     <Content Include="Reports\Styles\settlement-summary.scss" />
     <Content Include="Reports\Styles\old-report.scss" />
     <Content Include="CustomerList\Styles\_variables.scss" />
+    <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

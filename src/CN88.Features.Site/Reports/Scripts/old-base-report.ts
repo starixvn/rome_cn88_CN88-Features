@@ -1,4 +1,7 @@
-﻿class OldBaseReport {
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+
+class OldBaseReport {
     $: JQueryStatic;
     $subMenuItems: JQuery;
     $subMenuWager: JQuery;

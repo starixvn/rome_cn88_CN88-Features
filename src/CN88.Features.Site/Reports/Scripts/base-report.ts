@@ -1,4 +1,7 @@
-﻿class BaseReport {
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+
+class BaseReport {
     $: JQueryStatic;
 
     dateRangePickerComponent: DateRangePickerComponent;
@@ -30,6 +33,7 @@
         const sportType = this.sportGroupSelectionComponent.$dropdown.val();
 
         this.betTypeSelectionComponent.$dropdown.empty();
+        const betTypes = window["betTypes"];
         const first = betTypes[0];
         this.betTypeSelectionComponent.$dropdown.append(`<option value="${first[0].Value}">${first[0].Text}</option>`);
 

@@ -1,4 +1,6 @@
-﻿class BetListOfStatement {
+﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+class BetListOfStatement {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
     isMobile: boolean;

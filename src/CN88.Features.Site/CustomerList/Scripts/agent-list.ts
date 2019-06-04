@@ -1,4 +1,8 @@
-﻿declare var initAutoComplete: Function;
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
+/// <reference path="base-list.ts" />
+
+declare var initAutoComplete: Function;
 
 class AgentList extends BaseList {
     $viewedMaster: JQuery;
@@ -46,19 +50,19 @@ class AgentList extends BaseList {
         super.cacheDOMElements();
 
         this.$viewedMaster = this.$("#txt-viewed-master");
-        this.directDownline = parseInt(this.$("#directDownline").val());
+        this.directDownline = parseInt(<string>this.$("#directDownline").val());
         this.$errAgent = this.$("#msg-err-agent");
-        this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
+        this.usernameAutoSuggestionPath = <string>this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
     }
     viewAgents = (custId: number) => {
         this.$.blockUI();
         this.reportParam = {
             DownlineUsername: this.$("#txt-viewed-master").val(),
-            Username: this.$username.val(),
+            Username: <string>this.$username.val(),
             SearchRoleId: siteInfrastructure.roleId.agent,
             CustId: custId,
-            Status: this.$dropdownStatus.find("option:selected").val(),
+            Status: <number>this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
         };

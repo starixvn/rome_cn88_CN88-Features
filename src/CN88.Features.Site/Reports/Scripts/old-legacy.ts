@@ -1,4 +1,11 @@
-﻿class OldLegacyReport extends OldBaseReport {
+﻿/// <reference path="old-base-report.ts" />
+/// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/sort.ts" />
+/// <reference path="../../shared/scripts/components/link-builder.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+
+class OldLegacyReport extends OldBaseReport {
     $tooltip: JQuery;
     $reportForm: JQuery;
     $exportExcelForm: JQuery;

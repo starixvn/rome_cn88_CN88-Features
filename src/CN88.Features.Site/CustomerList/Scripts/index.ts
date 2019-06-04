@@ -1,4 +1,11 @@
-﻿class CustomerList {
+﻿/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
+/// <reference path="master-list.ts" />
+/// <reference path="agent-list.ts" />
+/// <reference path="member-list.ts" />
+
+class CustomerList {
     $: JQueryStatic;
     topWindow: any;
     numeral: any;
@@ -150,50 +157,50 @@
     };
 
     cacheDOMElements = () => {
-        this.directDownline = this.$("#directDownline").val();
+        this.directDownline = <string>this.$("#directDownline").val();
         this.$navTabs = this.$("#nav-tabs");
 
-        this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
-        this.viewResources.Open = this.$("#Open").val();
-        this.viewResources.Closed = this.$("#Closed").val();
-        this.viewResources.Suspended = this.$("#Suspended").val();
+        this.viewResources.NoInformationIsAvailable = <string>this.$("#NoInformationIsAvailable").val();
+        this.viewResources.Open = <string>this.$("#Open").val();
+        this.viewResources.Closed = <string>this.$("#Closed").val();
+        this.viewResources.Suspended = <string>this.$("#Suspended").val();
 
-        this.viewResources.Page = this.$("#Page").val();
-        this.viewResources.Of = this.$("#of").val();
-        this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
-        this.viewResources.Disabled = this.$("#Disabled").val();
+        this.viewResources.Page = <string>this.$("#Page").val();
+        this.viewResources.Of = <string>this.$("#of").val();
+        this.viewResources.Pager_DisplayItems = <string>this.$("#Pager_DisplayItems").val();
+        this.viewResources.Disabled = <string>this.$("#Disabled").val();
 
-        this.viewResources.NewMember = this.$("#NewMember").val();
-        this.viewResources.NewAgent = this.$("#NewAgent").val();
-        this.viewResources.EditMember = this.$("#EditMember").val();
-        this.viewResources.EditAgent = this.$("#EditAgent").val();
-        this.viewResources.EditMasterAgent = this.$("#EditMasterAgent").val();
+        this.viewResources.NewMember = <string>this.$("#NewMember").val();
+        this.viewResources.NewAgent = <string>this.$("#NewAgent").val();
+        this.viewResources.EditMember = <string>this.$("#EditMember").val();
+        this.viewResources.EditAgent = <string>this.$("#EditAgent").val();
+        this.viewResources.EditMasterAgent = <string>this.$("#EditMasterAgent").val();
 
-        this.viewResources.ResetPassword = this.$("#ResetPassword").val();
-        this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
+        this.viewResources.ResetPassword = <string>this.$("#ResetPassword").val();
+        this.viewResources.ResetSecurityCode = <string>this.$("#ResetSecurityCode").val();
 
-        this.EditCustomerLink = this.$("#EditCustomerLink").val();
-        this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
-        this.CurrentLink = this.$("#CurrentLink").val();
-        this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
-        this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
-        this.AccessDenyPage = this.$("#AccessDenyPage").val();
+        this.EditCustomerLink = <string>this.$("#EditCustomerLink").val();
+        this.CreateCustomerLink = <string>this.$("#CreateCustomerLink").val();
+        this.CurrentLink = <string>this.$("#CurrentLink").val();
+        this.ResetPasswordLink = <string>this.$("#ResetPasswordLink").val();
+        this.ResetSecurityCodeLink = <string>this.$("#ResetSecurityCodeLink").val();
+        this.AccessDenyPage = <string>this.$("#AccessDenyPage").val();
 
         this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
-        this.Language = this.$("#Language").val();
-        this.ViewerId = this.$("#ViewerId").val();
-        this.ActorLevel = this.$("#ActorLevel").val();
+        this.Language = <string>this.$("#Language").val();
+        this.ViewerId = <string>this.$("#ViewerId").val();
+        this.ActorLevel = <string>this.$("#ActorLevel").val();
 
-        this.UpdateCreditLink = this.$("#UpdateCreditLink").val();
-        this.UpdateStatusLink = this.$("#UpdateStatusLink").val();
+        this.UpdateCreditLink = <string>this.$("#UpdateCreditLink").val();
+        this.UpdateStatusLink = <string>this.$("#UpdateStatusLink").val();
 
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
-            Username: this.$("#Username").val(),
-            SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
+            Username: <string>this.$("#Username").val(),
+            SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
             CustId: 0,
-            Status: parseInt(this.$("#Status").val()),
-            PageSize: parseInt(this.$("#PageSize").val()),
+            Status: parseInt(<string>this.$("#Status").val()),
+            PageSize: parseInt(<string>this.$("#PageSize").val()),
             PageIndex: 1
         };
     };

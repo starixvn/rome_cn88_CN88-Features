@@ -1,4 +1,7 @@
-﻿"use strict";
+﻿/// <reference path="base-report.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+
 var betTypes = betTypes;
 let NexDatePickerHelper: any;
 class ReportIndexView extends BaseReport {

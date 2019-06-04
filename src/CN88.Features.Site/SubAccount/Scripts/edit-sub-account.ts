@@ -1,4 +1,6 @@
-﻿class EditSubAccount extends BaseSubAccount {
+﻿import { BaseSubAccount } from "./base-sub-account";
+
+class EditSubAccount extends BaseSubAccount {
     constructor($: JQueryStatic, top: any) {
         super($, top);
     }

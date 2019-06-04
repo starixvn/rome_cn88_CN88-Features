@@ -1,4 +1,11 @@
-﻿class LegacyReport extends BaseReport {
+﻿/// <reference path="base-report.ts" />
+/// <reference path="../../shared/scripts/components/sort.ts" />
+/// <reference path="../../shared/scripts/components/link-builder.ts" />
+/// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+
+class LegacyReport extends BaseReport {
     $tooltip: JQuery;
     $reportForm: JQuery;
     $exportExcelForm: JQuery;
@@ -35,7 +42,7 @@
 
         this.cacheDOMElements();
         this.renderComponents();
-        this.registerEvents();
+        this.registerEvents(); 
 
         this.$.unblockUI();
     };
