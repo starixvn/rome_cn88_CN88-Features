@@ -52,7 +52,7 @@ class AgentList extends BaseList {
         this.$viewedMaster = this.$("#txt-viewed-master");
         this.directDownline = parseInt(<string>this.$("#directDownline").val());
         this.$errAgent = this.$("#msg-err-agent");
-        this.usernameAutoSuggestionPath = <string>this.$("#usernameAutoSuggestionPath").val();
+        this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
     }
     viewAgents = (custId: number) => {

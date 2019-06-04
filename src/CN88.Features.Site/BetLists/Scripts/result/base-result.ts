@@ -88,13 +88,13 @@
 
     export class BaseResultDetails {
         protected readonly ResultDetailsPath: string = Common.AppPath.ResultsAppPath() + "Normal/ResultDetails";
-        protected readonly SportTypeGroup: string = <string>$("#sport-type-group").val();
-        protected readonly BetTypeGroup: string = <string>$("#bet-type-group").val();
-        protected readonly FromDate: string = <string>$("#from-date").val();
-        protected readonly ToDate: string = <string>$("#to-date").val();
-        protected readonly CustId: string = <string>$("#cust-id").val();
-        protected readonly ViewerLevelId: string = <string>$("#viewer-level-id").val();
-        protected readonly BetListType: string = <string>$("#bet-list-type").val();
+        protected readonly SportTypeGroup: string = $("#sport-type-group").val();
+        protected readonly BetTypeGroup: string = $("#bet-type-group").val();
+        protected readonly FromDate: string = $("#from-date").val();
+        protected readonly ToDate: string = $("#to-date").val();
+        protected readonly CustId: string = $("#cust-id").val();
+        protected readonly ViewerLevelId: string = $("#viewer-level-id").val();
+        protected readonly BetListType: string = $("#bet-list-type").val();
         private static instance: BaseResultDetails;
 
         public static get Instance() {

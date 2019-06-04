@@ -85,10 +85,10 @@ class WagerMonitoring {
         this.renderComponents();
         this.registerEvents();
 
-        this.pageSize = <number>this.$("#PageSize").val();
-        this.pauseUrl = <string>this.$("#pause-url").val();
-        this.getBetsUrl = <string>this.$("#get-bets-url").val();
-        this.intervalTime = <number>this.$("#IntervalTime").val();
+        this.pageSize = this.$("#PageSize").val();
+        this.pauseUrl = this.$("#pause-url").val();
+        this.getBetsUrl = this.$("#get-bets-url").val();
+        this.intervalTime = this.$("#IntervalTime").val();
         this.numberOfRowPerTicket = this.isMobile ? <number>this.$("#NumberOfMobileRowsPerTicket").val() : 1;
 
         setInterval(this.getLastBets, this.intervalTime * 1000);

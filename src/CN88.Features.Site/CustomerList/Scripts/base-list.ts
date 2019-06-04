@@ -120,8 +120,8 @@ class BaseList {
         this.loadData();
     };
     pagingList = () => {
-        this.reportParam.PageIndex = <number>this.$("#PageIndex" + this.levelName).val();
-        this.reportParam.PageSize = <number>this.$("#PageSize" + this.levelName).val();
+        this.reportParam.PageIndex = this.$("#PageIndex" + this.levelName).val();
+        this.reportParam.PageSize = this.$("#PageSize" + this.levelName).val();
         this.loadData();
     };
     public bindReportEvents(rs) {

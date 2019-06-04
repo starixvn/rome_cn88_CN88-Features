@@ -1,4 +1,5 @@
 ﻿namespace BetList.SubTickets {
+    const showSubTickets = "show-sub-tickets";
     export class ParlaySubTickets {
         private static instance: ParlaySubTickets;
         private isShowAllSubBets = false;
@@ -8,28 +9,27 @@
             return this.instance;
         }
 
-        public ShowSubBetsCN88 = (transId: string, index: any, refNo: any,
-            handicap1: any, handicap2: any, betCheck: any, betTeam: any, custId: any, sourceElement: any) => {
-            var $parent = $(sourceElement).parent();
+        public ShowSubBetsCN88 = (transId: string, index, refNo,
+            handicap1, handicap2, betCheck, betTeam, custId, sourceElement) => {
+            const $parent = $(sourceElement).parent();
 
-            if ($parent.hasClass("cn88-mix-parlay-collapse")) {
-                $parent.removeClass("cn88-mix-parlay-collapse");
+            const mixParlyCollapseClass = "cn88-mix-parlay-collapse";
+            if ($parent.hasClass(mixParlyCollapseClass)) {
+                $parent.removeClass(mixParlyCollapseClass);
                 $parent.find(".cn88-offername").removeClass("hide");
             }
             else {
-                $parent.addClass("cn88-mix-parlay-collapse");
+                $parent.addClass(mixParlyCollapseClass);
                 $parent.find(".cn88-offername").addClass("hide");
             }
 
-            var row = $(".tbl-bet-list tr[data-trans-id='" + transId + "']");
+            const row = $(".tbl-bet-list tr[data-trans-id='" + transId + "']");
 
-            const ticketsContent: JQuery = $("#cn88-sub-tickets-" + transId + "-" + index);
-            const comboOfferName = $('#combinationOfferName_' + transId + "_" + index);
+            const ticketsContent: JQuery = $(`#cn88-sub-tickets-${transId}-${index}`);
+            const comboOfferName = $(`#combinationOfferName_-${transId}-${index}`);
 
             if (ticketsContent.html() === "") {
-                let moreInfo = $(".tbl-bet-list tr[data-trans-id='" + transId + "'] .cn88-mix-parlay");
-
-                var params = $.param({
+                const params = $.param({
                     transId: transId,
                     custId: custId,
                     betCheck: betCheck,
@@ -40,7 +40,7 @@
 
                 $.ajax({
                     method: 'GET',
-                    url: Common.AppPath.BetListAppPath() + "BetLists/ParlaySubTickets?" + params,
+                    url: `${Common.AppPath.BetListAppPath()}BetLists/ParlaySubTickets?${params}`,
                     beforeSend: () => {
                         const blockIconContent = '<span class="block-icon-small"></span>';
                         ticketsContent.html(blockIconContent);
@@ -52,7 +52,7 @@
                             comboOfferName.hide();
                         }
 
-                        row.attr("show-sub-tickets", "1");
+                        row.attr(showSubTickets, "1");
                     },
                 });
 
@@ -62,13 +62,13 @@
             if (ticketsContent.is(":visible") && !this.isShowAllSubBets) {
                 ticketsContent.hide();
                 comboOfferName.show();
-                row.attr("show-sub-tickets", "0");
+                row.attr(showSubTickets, "0");
             }
             else {
                 ticketsContent.show();
                 if (ticketsContent.find(".offer-name-list").length) {
                     comboOfferName.hide();
-                    row.attr("show-sub-tickets", "1");
+                    row.attr(showSubTickets, "1");
                 }
             }
         }

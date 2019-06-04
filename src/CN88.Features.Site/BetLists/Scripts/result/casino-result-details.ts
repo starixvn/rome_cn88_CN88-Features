@@ -1,4 +1,6 @@
 ﻿namespace BetLists.Result {
+    const thirdPartyDetail = 'ThirdParty/Detail';
+
     export class AllbetResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -22,7 +24,7 @@
                 sportId: sportTypeId
             });
 
-            var options = {
+            const options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 855,
@@ -33,6 +35,7 @@
         }
     }
 
+    
     export class RnGCasinoResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -53,8 +56,8 @@
                 productId: 6
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
+            const options = {
+                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
                 title: "",
                 width: 855,
                 height: 725
@@ -85,8 +88,8 @@
                 productId: 22
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
+            const options = {
+                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
                 title: "",
                 width: 855,
                 height: 725
@@ -117,8 +120,8 @@
                 productId: 24
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
+            const options = {
+                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
                 title: "",
                 width: 855,
                 height: 725
@@ -149,8 +152,8 @@
                 productId: 32
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
+            const options = {
+                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
                 title: "",
                 width: 855,
                 height: 725
@@ -181,8 +184,8 @@
                 productId: 30
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
+            const options = {
+                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
                 title: "",
                 width: 855,
                 height: 725

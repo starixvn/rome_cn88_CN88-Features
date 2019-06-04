@@ -10,7 +10,7 @@
             return this.instance;
         }
 
-        public Show = (options: any) => {
+        public Show = (options) => {
             this.topWindow["popupManager"].init($, this.topWindow);
             this.topWindow["popupManager"].open(options);
         }

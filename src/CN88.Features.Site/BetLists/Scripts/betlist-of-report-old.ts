@@ -20,4 +20,4 @@
 $(document).ready(() => {
     const betListOfReportOld = new BetListOfReportOld($);
     betListOfReportOld.init();
-})
+});

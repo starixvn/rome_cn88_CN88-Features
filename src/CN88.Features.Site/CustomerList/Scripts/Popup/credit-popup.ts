@@ -1,6 +1,4 @@
-﻿declare var Cleave: any;
-
-class CreditPopup extends PopupBase {
+﻿class CreditPopup extends PopupBase {
 	cleaveCredit: any;
 	constructor($: JQueryStatic, topWindow: any) {
 		super($, topWindow);

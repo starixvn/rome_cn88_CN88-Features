@@ -86,7 +86,7 @@ class BetListOfReport {
 
         this.elements.excelIcon.click(this.onExportExcelEvent);
 
-        const expiredSessionSeconds: number = <number>this.$('#expiredSessionSeconds').val();
+        const expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
         if (!isNaN(expiredSessionSeconds)) {
             this.checkIn();
             const oneThousand = 1000;
@@ -140,8 +140,7 @@ class BetListOfReport {
     }
 }
 
-class BetListReportOptions
-{
+class BetListReportOptions {
     constructor(
         public $: JQueryStatic,
         public dateRangePickerComponent: DateRangePickerComponent,
