@@ -55,7 +55,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.7\lib\net461\Alpha.SecurityCode.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.1\lib\net461\Alpha.SmartPunter.dll</HintPath>
@@ -92,8 +93,13 @@
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.1-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
+    <Reference Include="CN88.Web, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.0.8\lib\net461\CN88.Web.dll</HintPath>
+=======
     <Reference Include="CN88.Web, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.Web.1.0.0.5-accountstatus01\lib\net461\CN88.Web.dll</HintPath>
+>>>>>>> 113198 - Upgrade cn88.web package
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -688,7 +694,6 @@
     <Content Include="Reports\Styles\settlement-summary.min.css">
       <DependentUpon>settlement-summary.css</DependentUpon>
     </Content>
-    <Content Include="Shared\Styles\images\user_unlock.svg" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
       <DependentUpon>edit-sub-account.js</DependentUpon>
@@ -1096,7 +1101,6 @@
     <TypeScriptCompile Include="Shared\Scripts\components\message.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\filter-toggle.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
-    <TypeScriptCompile Include="Shared\Scripts\components\bootstrap-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
