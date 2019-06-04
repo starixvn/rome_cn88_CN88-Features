@@ -318,4 +318,13 @@
   <data name="UnlockConfirmTitle" xml:space="preserve">
     <value>Unlock Account</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="ViewOnly" xml:space="preserve">
+    <value>View Only</value>
+  </data>
 </root>
