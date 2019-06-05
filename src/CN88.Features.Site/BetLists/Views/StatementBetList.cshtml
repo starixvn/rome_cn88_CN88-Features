@@ -9,12 +9,17 @@
     @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
 }
 
+@if (Model.IsMobile)
+{
+    <div class="new-page-header">Statement</div>
+}
+
 <div class="betlist-container betlist-statement">
     @if (Model.IsMobile)
     {
         <div class="page-title-mobile btn-back back-area">
             <span class="icon-chevron-left  back-step"></span>
-            @BetListsResources.Statement | @Model.Date.ToLongDay()
+            @*@BetListsResources.Statement |*@ @Model.Date.ToLongDay()
         </div>
         <div class="username">@Model.CustName</div>
         @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)

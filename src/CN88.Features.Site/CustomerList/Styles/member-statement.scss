@@ -23,12 +23,16 @@ body.phone {
         padding: 12px;
 
         .page-title {
-            display: none;
+            //display: none;
+            display: inline-block;
+            width: auto;
+            padding: 5px 0;
         }
 
         .filter-mobile {
-            display: table;
-            width: 100%;
+            display: inline-block;
+            position: absolute;
+            right: 12px;
         }
 
         .filter {
