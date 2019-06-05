@@ -1,24 +1,11 @@
 ﻿namespace CN88.Features.Shared.Models
 {
-    using System;
-
     public class BetTypeGroup
     {
-        public BetTypeGroup()
-        {
-        }
-
-        internal BetTypeGroup(int sportTypeGroup, int id, Func<int, string> getBetTypeDisplayName)
-        {
-            SportTypeGroup = sportTypeGroup;
-            Id = id;
-            DisplayName = getBetTypeDisplayName(id);
-        }
-
         public int SportTypeGroup { get; }
 
         public int Id { get; }
 
-        public string DisplayName { get; }
+        public string DisplayName { get; internal set; }
     }
 }
