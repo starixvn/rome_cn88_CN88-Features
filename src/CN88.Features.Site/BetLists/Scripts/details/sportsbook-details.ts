@@ -8,7 +8,7 @@
         }
 
         public ShowComboParlayDetails = (refNo: string, winlostDate: Date, transId: string,
-            betId: string, custId: string, betTeam: string, sourceElement: any) => {
+            betId: string, custId: string, betTeam: string, sourceElement) => {
             const params = $.param({
                 refNo: refNo,
                 transId: transId,
@@ -17,7 +17,7 @@
             });
 
             const options = {
-                url: Common.AppPath.BetListAppPath() + "BetLists/ParlayDetail?" + params,
+                url: `${Common.AppPath.BetListAppPath()}BetLists/ParlayDetail?${params}`,
                 title: "",
                 width: 800,
                 height: 438

@@ -9,7 +9,7 @@ class TotalBetParlay {
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
     stakeModeSelectionComponent: SingleSelectionDropdownComponent;
     viewModeSelectionComponent: SingleSelectionDropdownComponent;
-    cleaveStakeLimit: any;
+    cleaveStakeLimit: Cleave;
     $stakeLimit: JQuery;
     toggleHandler: ToggleHandler;
     isMobile: boolean;

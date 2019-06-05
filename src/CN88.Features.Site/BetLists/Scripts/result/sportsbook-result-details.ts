@@ -24,7 +24,7 @@
                 isViewResultFromBetList: true
             });
 
-            var options = {
+            const options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 800,
@@ -56,7 +56,7 @@
                 isViewResultFromBetList: true
             });
 
-            var options = {
+            const options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 820,
@@ -94,7 +94,7 @@
                 hdp2: hdp2
             });
 
-            var options = {
+            const options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 800,
