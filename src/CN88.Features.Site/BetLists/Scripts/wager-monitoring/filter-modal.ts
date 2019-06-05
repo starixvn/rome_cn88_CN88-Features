@@ -32,7 +32,7 @@ class FilterModal {
     sportGroup: number;
     isOpeningFilter = false;
 
-    cleaveAllSportStake: any;
+    cleaveAllSportStake: Cleave;
     cleavePerSportStake = {};
 
     constructor($: JQueryStatic) {
@@ -224,7 +224,7 @@ class FilterModal {
 
     getParameters = () => {
         const conditions = [];
-        const isSelectAllSports = Common.Utils.ParseBoolean(<string>this.$("input[name='stake-filter-option']:checked").val());
+        const isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
         if (!isSelectAllSports) {
             const $perSportsConditions = this.$perSportList.children();
             $perSportsConditions.each((index: number, elem: Element) => {

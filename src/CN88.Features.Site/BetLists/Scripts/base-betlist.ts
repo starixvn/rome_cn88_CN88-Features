@@ -8,4 +8,4 @@ $(document).ready(() => {
     showCombMPDetail = BetList.Details.ParlayTicketDetails.Instance.ShowComboParlayDetails;
     showParlaySubBetsCN88 = BetList.SubTickets.ParlaySubTickets.Instance.ShowSubBetsCN88;
     showAllParlaySubBetsCN88 = BetList.SubTickets.ParlaySubTickets.Instance.ShowAllParlaySubBetsCN88;
-})
+});
