@@ -131,5 +131,3 @@ abstract class BaseSubAccount {
         return headers;
     }
 }
-
-export { BaseSubAccount };

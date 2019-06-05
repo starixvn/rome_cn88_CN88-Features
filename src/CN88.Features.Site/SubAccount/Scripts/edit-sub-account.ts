@@ -1,4 +1,4 @@
-﻿import { BaseSubAccount } from "./base-sub-account";
+﻿/// <reference path="base-sub-account.ts" />
 
 class EditSubAccount extends BaseSubAccount {
     constructor($: JQueryStatic, top: any) {

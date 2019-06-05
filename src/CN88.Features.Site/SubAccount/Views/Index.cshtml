@@ -73,7 +73,17 @@
                             {
                                 <div class="dropdown visible-mobile">
                                     <a class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="icon-more-action"></span>
+                                        @if (item.Closed)
+                                        {
+                                            <span class="icon-user-unlock">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="icon-more-action"></span>
+                                        }
                                     </a>
                                     <ul id="dropdown-@item.SubAccId" class="dropdown-menu">
                                         @RenderActionCell_Mobile(item.Closed)

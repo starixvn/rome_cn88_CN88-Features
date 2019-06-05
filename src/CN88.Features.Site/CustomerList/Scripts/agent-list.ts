@@ -105,13 +105,14 @@ class AgentList extends BaseList {
                         username = customer.Username;
 
                     html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
-                        `<td class='link view-downline' cust-id='${custId}' username='${username}'><div class='username-wrapper'>${username} <br /> ${customer.Nickname}</div></td>` +
+                        `<td class='link view-downline' cust-id='${custId}' username='${username}'><div class='username-wrapper'>${username}/ <br /> ${customer.Nickname}</div></td>` +
                         `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                         `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                         "<td class='col-action text-center'>" +
                         `<div class="dropdown">` +
                         `<a id="${custId}" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
-                        `<span class="icon-more-action"></span></a>` +
+                        (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
+                        `</a>` +
                         `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
                         `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='2'>${this.indexManager.viewResources.ResetPassword}</li>` +
                         `<li class='icon-security' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.ResetSecurityCode}</li>` +
