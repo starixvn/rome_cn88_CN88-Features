@@ -56,15 +56,20 @@
                 productId: 6
             });
 
-            const options = {
-                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
+    }
+
+    function openThirdPartyPopup(params: string) {
+
+        const options = {
+            url: `${Common.AppPath.ResultsAppPath()}${thirdPartyDetail}${params}`,
+            title: "",
+            width: 855,
+            height: 725
+        };
+
+        Common.PopupDetails.Instance(window.top).Show(options);
     }
 
     export class MacauGamesResultDetails extends BaseResultDetails implements ResultDetails {
@@ -88,14 +93,7 @@
                 productId: 22
             });
 
-            const options = {
-                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 
@@ -120,14 +118,7 @@
                 productId: 24
             });
 
-            const options = {
-                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 
@@ -152,14 +143,7 @@
                 productId: 32
             });
 
-            const options = {
-                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 
@@ -184,14 +168,7 @@
                 productId: 30
             });
 
-            const options = {
-                url: Common.AppPath.ResultsAppPath() + thirdPartyDetail + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 }
