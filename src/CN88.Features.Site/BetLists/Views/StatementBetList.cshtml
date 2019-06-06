@@ -11,7 +11,7 @@
 
 @if (Model.IsMobile)
 {
-    <div class="new-page-header">Statement</div>
+    <div class="new-page-header">@BetListsResources.Statement</div>
 }
 
 <div class="betlist-container betlist-statement">
@@ -19,7 +19,7 @@
     {
         <div class="page-title-mobile btn-back back-area">
             <span class="icon-chevron-left  back-step"></span>
-            @*@BetListsResources.Statement |*@ @Model.Date.ToLongDay()
+            @Model.Date.ToLongDay()
         </div>
         <div class="username">@Model.CustName</div>
         @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)

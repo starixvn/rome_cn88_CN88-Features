@@ -8,10 +8,11 @@
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/member-statement")
 }
 
-@if (Model.IsMobile)
-{
-    <div class="new-page-header">Statement</div>
-}
+    @if (Model.IsMobile)
+    {
+        <div class="new-page-header">@BetListsResources.Statement</div>
+    }
+
     <div class="member-statement">
         <div class="page-title">@Model.CustName</div>
         @if (Model.IsMobile)
