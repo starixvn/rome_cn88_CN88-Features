@@ -439,14 +439,18 @@ body.phone {
 
         .modal-footer {
             width: 100%;
-            margin: 0;
-            padding-top: 0;
-            padding-bottom: 0;
+            padding: 0 12px 12px;
             background-color: #fff;
 
             .btn {
-                width: 100%;
-                margin: 0 0 12px;
+                float: left;
+                width: 30.6%;
+                margin-left: 4%;
+                margin-right: 0;
+            }
+
+            .btn:first-child {
+                margin-left: 0;
             }
         }
 
@@ -505,7 +509,6 @@ body.phone {
     .tab-content > .tab-pane.stake {
         .lists .item {
             flex-direction: column;
-            margin-bottom: 5px;
         }
     }
 

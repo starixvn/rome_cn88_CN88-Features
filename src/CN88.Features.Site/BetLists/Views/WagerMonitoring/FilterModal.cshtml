@@ -91,18 +91,9 @@
             </div>
         </div>
         <div class="modal-footer">
-            @if (Model.IsMobile)
-            {
-                <button type="button" id="btn-submit" class="btn btn-submit">@SharedResources.Submit</button>
-                <button type="button" id="btn-reset" class="btn btn-secondary">@SharedResources.ResetToDefault</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">@SharedResources.Cancel</button>
-            }
-            else
-            {
-                <button type="button" class="btn btn-default" data-dismiss="modal">@SharedResources.Cancel</button>
-                <button type="button" id="btn-reset" class="btn btn-secondary">@SharedResources.ResetToDefault</button>
-                <button type="button" id="btn-submit" class="btn btn-submit">@SharedResources.Submit</button>
-            }
+            <button type="button" class="btn btn-default" data-dismiss="modal">@SharedResources.Cancel</button>
+            <button type="button" id="btn-reset" class="btn btn-secondary">@SharedResources.ResetToDefault</button>
+            <button type="button" id="btn-submit" class="btn btn-submit">@SharedResources.Submit</button>
         </div>
     </div>
 </div>
