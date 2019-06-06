@@ -36,8 +36,6 @@
 
         public byte NewStatusId { get; }
 
-        public byte SystemID => 2;
-
         public string Language { get; }
 
         public string IP { get; }

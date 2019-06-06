@@ -19,6 +19,7 @@
             IP = viewer.IP;
             LanguageKey = viewer.LanguageKey;
             Language = viewer.Language;
+            ViewerStatusId = viewer.StatusId;
         }
 
         public int CustId { get; set; }
@@ -39,9 +40,7 @@
 
         public byte ViewerLevelId { get; }
 
-        public byte ViewerStatusId => viewer.StatusId;
-
-        //public bool IsActiveViewer => viewer.StatusId.Equals(CustomerStatus.Active);
+        public byte ViewerStatusId { get; }
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
 

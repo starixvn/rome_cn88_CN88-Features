@@ -62,7 +62,7 @@ class MasterList extends BaseList {
                         nickname = customer.Nickname ? customer.Nickname : "---",
                         name = customer.Name ? customer.Name : "---";
 
-                    html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
+                    html += `<tr class='row-customer' cust-id='${custId}'>` +
                         `<td class='link view-downline' cust-id='${custId}' username='${username}'>` +
                         `<div class='username-wrapper'>${username}
                                 <div class="cust-nickname">${nickname}</div>

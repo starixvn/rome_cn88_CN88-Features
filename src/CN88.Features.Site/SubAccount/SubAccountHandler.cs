@@ -46,7 +46,7 @@
             var viewerIsActive = message.ViewerIsActive;
             var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
 
-            return new IndexViewModel(subAccounts, viewerIsActive);
+            return new IndexViewModel(subAccounts, viewerIsActive, browserHelper);
         }
 
         public NewViewModel Handle(NewQuery message)
