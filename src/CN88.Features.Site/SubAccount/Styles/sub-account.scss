@@ -137,13 +137,13 @@
         [class*="icon"] {
             margin: 0 9px;
 
-            &:first-child {
-                margin-left: 0;
-            }
-
             &:hover:not(:disabled) {
                 cursor: pointer;
             }
+        }
+
+        [class*="icon"]:first-child {
+            margin-left: 0;
         }
 
         .icon-unlock {
@@ -154,7 +154,7 @@
     th {
         padding: 4px 8px;
     }
-
+    
     .username {
         display: inline-block;
     }

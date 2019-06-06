@@ -184,8 +184,13 @@ body.phone {
         }
 
         .username-wrapper {
-            width: 124px;
+            min-width: 124px;
             word-break: break-all;
+
+            .cust-name {
+                margin-top: 5px;
+                color: #3b3b3b;
+            }
         }
 
 
@@ -196,6 +201,7 @@ body.phone {
 
             .username-wrapper {
                 width: 78px;
+
                 .nickname-mobile {
                     color: #3b3b3b;
                 }
