@@ -131,7 +131,7 @@
     }
 
     export class BaseResultDetails {
-        protected readonly ResultDetailsPath: string = `${Common.AppPath.ResultsAppPath()}Normal/ResultDetails"`;
+        protected readonly ResultDetailsPath: string = `${Common.AppPath.ResultsAppPath()}Normal/ResultDetails`;
         protected readonly SportTypeGroup: string = $("#sport-type-group").val();
         protected readonly BetTypeGroup: string = $("#bet-type-group").val();
         protected readonly FromDate: string = $("#from-date").val();
