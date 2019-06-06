@@ -689,6 +689,7 @@
     <Content Include="Reports\Styles\settlement-summary.min.css">
       <DependentUpon>settlement-summary.css</DependentUpon>
     </Content>
+    <Content Include="Shared\Styles\images\user_unlock.svg" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
       <DependentUpon>edit-sub-account.js</DependentUpon>
