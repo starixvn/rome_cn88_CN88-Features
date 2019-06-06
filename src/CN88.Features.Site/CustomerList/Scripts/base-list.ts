@@ -198,7 +198,8 @@ class BaseList {
         this.$tblReport.find("> tfoot").empty();
         this.$("#PageIndex" + this.levelName).remove();
         this.$("#PageSize" + this.levelName).remove();
-        if (rs.TotalCustomers >= this.minPageSize) {
+        const pagerElement = this.$("#pager-" + this.levelNameLowerCase);
+        if (rs.TotalCustomers >= this.minPageSize && pagerElement.length > 0) {
             var footer = "<div id='report-pager-" + this.levelNameLowerCase + "' " +
                 "data-labelpage='" + this.viewResources.Page + "'" +
                 "data-labelof='" + this.viewResources.Of + "'" +
@@ -208,10 +209,10 @@ class BaseList {
                 "data-totalrecords='" + rs.TotalCustomers + "'" +
                 "></div>";
 
-            this.$("#pager-" + this.levelNameLowerCase).html(footer);
+            pagerElement.html(footer);
             this.pager.render(new PagerOption(this.pagingList, "report-pager-" + this.levelNameLowerCase, "form-" + this.levelNameLowerCase, "PageIndex" + this.levelName, "PageSize" + this.levelName));
         } else {
-            this.$("#pager-" + this.levelNameLowerCase).html("");
+            pagerElement.html("");
         }
 
         this.initTooltip();
