@@ -188,8 +188,10 @@ body.phone {
             word-break: break-all;
 
             .cust-name {
+                display: block;
                 margin-top: 5px;
-                color: #3b3b3b;
+                color: #865800;
+                font-style: italic;
             }
         }
 
@@ -200,6 +202,7 @@ body.phone {
             }
 
             .username-wrapper {
+                min-width: 78px;
                 width: 78px;
 
                 .nickname-mobile {
