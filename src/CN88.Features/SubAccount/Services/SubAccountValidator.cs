@@ -89,14 +89,18 @@
 
         public string FilterWithValidPermissions(string pageAccess)
         {
+            if (string.IsNullOrWhiteSpace(pageAccess))
+            {
+                return string.Empty;
+            }
+
             pageAccess = AddViewOnlyModeToEditMode(pageAccess);
 
-            return string.IsNullOrWhiteSpace(pageAccess)
-            ? string.Empty
-            : string.Join("", pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Intersect(ValidPermissions));
+            return string.Join(string.Empty, pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Intersect(ValidPermissions));
         }
 
-        private string AddViewOnlyModeToEditMode(string pageAccess)
+        private static string AddViewOnlyModeToEditMode(string pageAccess)
         {
             var modes = pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             var existEditMode = modes.Any(i => i == PageAccessType.UpdateAccount);
