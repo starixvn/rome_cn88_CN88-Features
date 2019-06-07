@@ -164,7 +164,9 @@
     }
 }
 
-.icon-more-action, .visible-mobile {
+.icon-more-action,
+.visible-mobile,
+.nickname-mobile {
     display: none;
 }
 
@@ -247,6 +249,7 @@ body.mobile {
         }
 
         .nickname-mobile {
+            display: block;
             margin-top: 5px;
             color: #865800;
             font-style: italic;
