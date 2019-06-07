@@ -75,11 +75,6 @@ class BaseList {
         var self = this;
         this.$("#btn-submit-" + this.levelName.toLowerCase()).click(function () {
             self.reportParam.PageIndex = 1;
-
-            if (self.indexManager.isDevice) {
-                self.indexManager.masterToggleHandler.hideFilter();
-            }
-
             self.viewList();
         });
     }
@@ -117,6 +112,11 @@ class BaseList {
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
         };
+
+        if (this.indexManager.isDevice) {
+            this.indexManager.masterToggleHandler.hideFilter();
+        }
+
         this.loadData();
     };
     pagingList = () => {

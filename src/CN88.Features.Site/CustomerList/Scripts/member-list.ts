@@ -32,11 +32,6 @@ class MemberList extends BaseList {
         let self = this;
         this.$("#btn-submit-member").off("click").on("click", function () {
             self.reportParam.PageIndex = 1;
-
-            if (self.indexManager.isDevice) {
-                self.indexManager.memberToggleHandler.hideFilter();
-            }
-
             self.viewMembers(self.reportParam.CustId);
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
@@ -74,6 +69,11 @@ class MemberList extends BaseList {
         }
 
         this.$errMember.addClass("display-none");
+
+        if (this.indexManager.isDevice) {
+            this.indexManager.memberToggleHandler.hideFilter();
+        }
+
         this.loadData();
     };
     renderMemberList = (rs: any) => {
@@ -105,18 +105,18 @@ class MemberList extends BaseList {
                     html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                         `<td class='link view-statement' username='${username}' cust-id='${custId}'><div class='username-wrapper'>${username} <span class="cust-name">${customer.Nickname}</span></div></td>` +
                         "<td>" + customer.Group + "</td>" +
-                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +                        
+                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                         `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                         "<td class='col-action text-center'>" +
-                            `<div class="dropdown">` +
-                                `<a id="${custId}" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+                        `<div class="dropdown">` +
+                        `<a id="${custId}" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
                         (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
-                                `</a>` +
-                                `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
-                                    `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='1'>${this.indexManager.viewResources.ResetPassword}</li>` +
-                                    `<li class='icon-edit' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.EditMember}</li>` +
-                                `</ul>` +
-                            `</div>` +                       
+                        `</a>` +
+                        `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
+                        `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='1'>${this.indexManager.viewResources.ResetPassword}</li>` +
+                        `<li class='icon-edit' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.EditMember}</li>` +
+                        `</ul>` +
+                        `</div>` +
                         "</td>" +
                         "</tr>";
                 }
@@ -147,7 +147,7 @@ class MemberList extends BaseList {
                 }
             }
         }
-        
+
 
         this.$tblReport.find("> tbody").empty().html(html);
         this.$(window).trigger('resize.stickyTableHeaders');

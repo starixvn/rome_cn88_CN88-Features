@@ -34,10 +34,6 @@ class AgentList extends BaseList {
         var self = this;
         this.$("#btn-submit-agent").off("click").on("click", function () {
             self.reportParam.PageIndex = 1;
-            if (self.indexManager.isDevice) {
-                self.indexManager.agentToggleHandler.hideFilter();
-            }
-
             self.viewAgents(self.reportParam.CustId);
         });
 
@@ -76,6 +72,11 @@ class AgentList extends BaseList {
         }
 
         this.$errAgent.addClass("display-none");
+
+        if (this.indexManager.isDevice) {
+            this.indexManager.agentToggleHandler.hideFilter();
+        }
+
         this.loadData();
     };
     renderAgentList = (rs: any) => {
