@@ -433,7 +433,7 @@ body.phone {
         }
 
         .modal-body {
-            height: calc(100% - 41px - 126px);
+            height: calc(100% - 41px - 54px);
             padding: 0;
         }
 
@@ -456,7 +456,6 @@ body.phone {
 
         .tab-content {
             padding: 12px 12px 0;
-            text-transform: uppercase;
         }
 
         .wager-monitoring .page-title {
@@ -509,6 +508,7 @@ body.phone {
     .tab-content > .tab-pane.stake {
         .lists .item {
             flex-direction: column;
+            text-transform: uppercase;
         }
     }
 
