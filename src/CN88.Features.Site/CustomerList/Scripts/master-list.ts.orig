@@ -62,24 +62,22 @@ class MasterList extends BaseList {
                         nickname = customer.Nickname ? customer.Nickname : "---",
                         name = customer.Name ? customer.Name : "---";
 
-<<<<<<< HEAD
-                    html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
+                    html += `<tr class='row-customer' cust-id='${custId}'>` +
                         `<td class='link view-downline' cust-id='${custId}' username='${username}'>` +
                         `<div class='username-wrapper'>${username}
                                 <div class="cust-nickname">${nickname}</div>
                                 <div class="cust-name">${name}</div>
                             </div>
                         </td>` +
-=======
-                    html += `<tr class='row-customer' cust-id='${custId}'>` +
-                        `<td class='link view-downline' cust-id='${custId}' username='${username}'><div class='username-wrapper'>${username}/ <br /> <span class="cust-name">${customer.Nickname}</span></div></td>` +
-                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
->>>>>>> 113198 - rebase mobile friendly
                         `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                         `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                         "<td class='col-action text-center'>" +
                         `<div class="dropdown">` +
+<<<<<<< HEAD
                         `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+=======
+                        `<a id="${custId}" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+>>>>>>> 113198 - improve performance load customerlist when update
                         (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
                         `</a>` +
                         `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
@@ -98,35 +96,37 @@ class MasterList extends BaseList {
                 html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
             } else {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                    let customer = rs.Customers[i],
+                    const customer = rs.Customers[i],
                         custId = customer.CustId,
-                    username = customer.Username,
-                    status = customer.Status,
-                    closed = customer.Closed,
-                    userAttr = `cust-id='${custId}' username='${username}'`,
-                    iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
+                        username = customer.Username,
+                        status = customer.Status,
+                        closed = customer.Closed,
+                        userAttr = `cust-id='${custId}' username='${username}'`,
+                        iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
 
-                let actionColumn = '';
+                    let actionColumn = '',
+                        creditColumn = `<td class='text-right'> ${this.numeral(customer.Credit).format("###,0.00")} </td>`,
+                        statusColumn = `<td class='text-center'> ${this.indexManager.getStatusName(status)}</td>`;
 
-                if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
-                    const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='3'/>`;
-                    const securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
-                    const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMasterAgent}'/>`;
-                    const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewAgent}'/>` : '';
-                    const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+                    if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
+                        const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='3'/>`;
+                        const securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
+                        const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMasterAgent}'/>`;
+                        const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewAgent}'/>` : '';
+                        const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
-                    actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
-                }
+                        actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
+                        creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>`;
+                        statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${this.indexManager.getStatusName(customer.Status)}</td>`;
+                    }
 
-                html += `<tr class='row-customer' cust-id='${custId}'>` +
-                    `<td class='col-no'> ${customerIndex} </td>` +
-                    `<td class='link view-downline' cust-id='${custId}'> ${username} </td>` +
-                    `<td>${customer.Name}</td>` +
-                    `<td>${customer.Nickname}</td>` +
-                    `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
-                    `<td class='col-date'> ${customer.CreationDateStr} </td>` +
-                    `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${this.indexManager.getStatusName(customer.Status)}</td>` +
-                    `<td class='col-action text-left'> ${actionColumn} </td></tr>`;
+                    html += `<tr class='row-customer' cust-id='${custId}'>` +
+                        `<td class='col-no'> ${customerIndex} </td>` +
+                        `<td class='link view-downline' cust-id='${custId}'> ${username} </td>` +
+                        `<td>${customer.Name}</td>` +
+                        `<td>${customer.Nickname}</td>` +
+                        `${creditColumn}<td class='col-date'> ${customer.CreationDateStr} </td>` +
+                        `${statusColumn}<td class='col-action text-left'> ${actionColumn} </td></tr>`;
                 }
             }
         }

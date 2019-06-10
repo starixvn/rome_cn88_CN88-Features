@@ -374,20 +374,20 @@ class CustomerList {
         this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.member + "']").click();
         this.memberList.viewMembersOfAgent(custId, username);
     };
-    reloadCreditValue = (custId: any, newValue: any) => {
-        this.$(".col-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
-    };
-    reloadStatusValue = (custId: any, newValue: any) => {
-        let column = this.$(".col-status[cust-id='" + custId + "']");
-        column.html(this.getStatusName(newValue));
-        column.attr("current-status", newValue);
-    };
     removeUnlock = (custId: any) => {
         this.$(".icon-unlock[cust-id='" + custId + "']").remove();
     };
     storeCurrentPage = (reportParam: any) => {
         let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
+    };
+    reloadData = () => {
+        setTimeout(() => {
+            const submitBtn = this.$('input[id^="btn-submit-"]:visible')[0];
+            if (submitBtn !== undefined) {
+                submitBtn.click();
+            }
+        }, 1500);
     };
 };
 

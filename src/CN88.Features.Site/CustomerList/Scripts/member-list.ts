@@ -136,34 +136,34 @@ class MemberList extends BaseList {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                     let customer = rs.Customers[i],
                         custId = customer.CustId,
-                    username = customer.Username,
-                    status = customer.Status,
-                    closed = customer.Closed,
-                    userAttr = `cust-id='${custId}' username='${username}'`,
-                    iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`; 
-                
-                let actionColumn = '';
+                        username = customer.Username,
+                        status = customer.Status,
+                        closed = customer.Closed,
+                        userAttr = `cust-id='${custId}' username='${username}'`,
+                        iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
 
-                if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
-                    const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='1'/>`;
-                    const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMember}'/>`;
-                    const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
-                    actionColumn = `${resetPasswordIcon} ${editIcon} ${unclockIcon}`;
-                }
+                    let actionColumn = '',
+                        creditColumn = `<td class='text-right'> ${this.numeral(customer.Credit).format("###,0.00")} </td>`,
+                        statusColumn = `<td class='text-center'> ${this.indexManager.getStatusName(status)}</td>`;
 
-                let statusColumn = parseInt(rs.SearchAccountStatus) === siteInfrastructure.customerStatus.active ?
-                    `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>` :
-                    `<td class='text-center'> ${this.indexManager.getStatusName(status)}</td>`;
+                    if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
+                        const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='1'/>`;
+                        const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMember}'/>`;
+                        const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
-                html += `<tr class='row-customer' cust-id='${custId}'>` +
-                    `<td class='col-no'> ${customerIndex} </td>` +
+                        actionColumn = `${resetPasswordIcon} ${editIcon} ${unclockIcon}`;
+                        creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>`;
+                        statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>`;
+                    }
+
+                    html += `<tr class='row-customer' cust-id='${custId}'>` +
+                        `<td class='col-no'> ${customerIndex} </td>` +
                         `<td class='link view-statement' username='${username}' cust-id='${custId}'>${username}</td>` +
-                    `<td>${customer.Name}</td>` +
-                    `<td>${customer.Nickname}</td>` +
-                    `<td>${customer.Group}</td>` +
-                    `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>` +
-                    `<td class='col-date'> ${customer.CreationDateStr} </td>` +
-                    `${statusColumn}<td class='col-action text-left'> ${actionColumn} </td></tr>`;
+                        `<td>${customer.Name}</td>` +
+                        `<td>${customer.Nickname}</td>` +
+                        `<td>${customer.Group}</td>` +
+                        `${creditColumn}<td class='col-date'> ${customer.CreationDateStr} </td>` +
+                        `${statusColumn}<td class='col-action text-left'> ${actionColumn} </td></tr>`;
                 }
             }
         }
