@@ -83,9 +83,9 @@ class CustomerList {
         this.agentToggleHandler = agentToggleHandler;
         this.memberToggleHandler = memberToggleHandler;
 
-        this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($), numeral, new PagerComponent($));
-        this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($), numeral, new PagerComponent($));
-        this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($), numeral, new PagerComponent($));
+        this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
+        this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
+        this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
     }
 
     init = () => {

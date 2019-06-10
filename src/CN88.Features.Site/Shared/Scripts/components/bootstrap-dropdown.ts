@@ -6,12 +6,14 @@ class BootstrapDropdownOption {
 
 class BootstrapDropdownComponent {
     $: JQueryStatic;
+    topWindow: any;
     $dropdown: JQuery;
 
     options = new BootstrapDropdownOption();
 
-    constructor($: JQueryStatic) {
+    constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
+        this.topWindow = topWindow;
     }
 
     render = (options: BootstrapDropdownOption = new BootstrapDropdownOption()) => {
@@ -21,6 +23,7 @@ class BootstrapDropdownComponent {
         this.$dropdown = $dropdown;
 
         let this$ = this.$;
+        let thisWindow = this.topWindow;
 
         $dropdown.on("shown.bs.dropdown", function () {
             var $window = this$(window);
@@ -30,8 +33,9 @@ class BootstrapDropdownComponent {
             var ulOffset = $ul.offset();
 
             var spaceUp = (ulOffset.top - $button.height() - $ul.height()) - $window.scrollTop();
-            var spaceDown = $window.scrollTop() + $window.height() - (ulOffset.top + $ul.height());
-
+            var spaceDown = $window.scrollTop() + thisWindow.$("#main").height() - (ulOffset.top + $ul.height());
+            //alert(ulOffset.top + "-" + $button.height() + "-" + $ul.height() + "-" + $window.scrollTop());
+            //alert($window.scrollTop() + "-" + thisWindow.$("#main").height() + "-" + ulOffset.top + "-" + $ul.height());
             if (spaceUp > spaceDown) {
                 $this.addClass("dropup");
             }

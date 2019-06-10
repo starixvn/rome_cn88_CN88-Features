@@ -202,5 +202,5 @@ class SubAccount {
 }
 
 $(() => {
-    new SubAccount($, top, new SortComponent($, new LinkBuilderComponent($)), new BootstrapDropdownComponent($)).init();
+    new SubAccount($, top, new SortComponent($, new LinkBuilderComponent($)), new BootstrapDropdownComponent($, top)).init();
 });
