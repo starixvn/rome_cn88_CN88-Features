@@ -1,4 +1,6 @@
 ﻿@{
+    /**/
+
     Layout = "~/Shared/Views/_Layout.cshtml";
     ViewBag.Title = CN88.Features.SubAccount.AppResources.SubAccountResource.SubAccount;
 }
@@ -23,9 +25,9 @@
            data-descendingsort="false">
         <thead class="tableFloatingHeaderOriginal">
             <tr>
-                <th class="header sorting" data-colindex="0" data-sortedname="UserName">                    
-                    <div class="username">@SubAccountResource.UserName </div> 
-                    <div class="hide-desktop">@SubAccountResource.NickName</div>                    
+                <th class="header sorting" data-colindex="0" data-sortedname="UserName">
+                    <div class="username">@SubAccountResource.UserName </div>
+                    <div class="hide-desktop">@SubAccountResource.NickName</div>
                 </th>
                 <th class="header sorting hide-mobile" data-colindex="1" data-sortedname="FirstName">@SubAccountResource.Name</th>
                 <th class="header sorting hide-mobile" data-colindex="2" data-sortedname="NickName">@SubAccountResource.NickName</th>
@@ -46,7 +48,6 @@
                 {
                     var permission = item.Permissions;
                     <tr>
-
                         <td>
                             <div class="username">
                                 @item.UserName
@@ -121,10 +122,12 @@
 @Html.Hidden(nameof(Model.VerifySecurityCodeLink), Model.VerifySecurityCodeLink)
 @helper RenderPermissionCell(bool hasPermission)
 {
+    /**/
     <span class="@(hasPermission ? "icon-success " : "icon-minus")"></span>
 }
 @helper RenderActionCell(bool isClosed)
 {
+    /**/
     <span class="icon-pass hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetPassword"></span>
     <span class="icon-security hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetSecurityCode"></span>
     <span class="icon-edit hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.EditSubAccount"></span>
@@ -135,6 +138,7 @@
 }
 @helper RenderActionCell_Mobile(bool isClosed)
 {
+    /**/
     <li>
         <span class="opt-pass">@SubAccountResource.ResetPassword</span>
     </li>
@@ -147,7 +151,7 @@
     if (isClosed)
     {
         <li>
-            <span class="opt-unlock">@SubAccountResource.ClickToUnlock</span>
+            <span class="opt-unlock">@SharedResources.Unlock</span>
         </li>
     }
 }
