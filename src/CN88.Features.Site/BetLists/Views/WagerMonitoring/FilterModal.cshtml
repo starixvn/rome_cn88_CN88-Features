@@ -61,7 +61,9 @@
                     </ul>
                 </div>
                 <div class="tab-pane fade bettype" id="bettype" role="tabpanel" aria-labelledby="bettype-tab">
-                    <input type="checkbox" id="checkbox-all-bettypes" @(Model.SelectedAllBetTypes ? "checked=\"checked\"" : string.Empty) value="" />@SharedResources.AllBetTypes
+                    <input type="checkbox" id="checkbox-all-bettypes" @(Model.SelectedAllBetTypes ? "checked=\"checked\"" : string.Empty) value="" />
+                    <label for="checkbox-all-bettypes">@SharedResources.AllBetTypes</label>
+                    
                     <div class="lists list-block" id="list-bettype">
                         @{
                             if (Model.SportGroup == SportGroupConstants.AllSports)
@@ -112,8 +114,9 @@
     {
         <li class="item">
             
-            <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=\"checked\"" : string.Empty) data-text="@item.Text" data-group-id="@groupId" id="@groupId" />
-            <label for="@groupId">@item.Text</label>
+            <input type="checkbox" value="@item.Value" @(item.Selected ? "checked=checked" : string.Empty)
+                   data-text="@item.Text" data-group-id="@groupId" id="item-@item.Value" />
+            <label for="item-@item.Value">@item.Text</label>
         </li>
     }
 }
