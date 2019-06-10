@@ -31,6 +31,7 @@ class WagerMonitoring {
     $iconSpeakerText: JQuery;
     $sound: JQuery;
 
+    pauseWindow: Window;
     ajaxRequest: JQueryXHR;
     filterModal: FilterModal;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
@@ -209,6 +210,12 @@ class WagerMonitoring {
     }
 
     onPauseClick = () => {
+        if (this.isMobile) {
+            this.pauseWindow = window.open("", "_blank");
+        } else {
+            this.pauseWindow = window.open("", "Pause", "height=800,width=1280");
+        }
+
         this.$.ajax({
             url: this.pauseUrl,
             success: (html) => {
@@ -220,11 +227,9 @@ class WagerMonitoring {
 
     onPauseClickSuccess(html: string): void {
         const result = html.replace('<table></table>', this.$tblReport.prop("outerHTML"));
-        const features = this.isMobile ? "" : "height=800,width=1280";
-        const pauseWindow = window.open("", "Pause", features);
-        pauseWindow.document.open();
-        pauseWindow.document.write(result);
-        pauseWindow.document.close();
+        this.pauseWindow.document.open();
+        this.pauseWindow.document.write(result);
+        this.pauseWindow.document.close();
     }
 
     getParam = () => {
