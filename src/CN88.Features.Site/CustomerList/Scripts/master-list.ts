@@ -10,9 +10,10 @@ class MasterList extends BaseList {
     constructor(
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
+        bootstrapDropdownComponent: BootstrapDropdownComponent,
         numeral: any,
         pager: PagerComponent) {
-        super($, statusComponent, numeral, pager, "Master");
+        super($, statusComponent, bootstrapDropdownComponent, numeral, pager, "Master");
     }
 
     public init(viewResources: any, indexManager: any) {
@@ -65,7 +66,7 @@ class MasterList extends BaseList {
                         `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                         "<td class='col-action text-center'>" +
                         `<div class="dropdown">` +
-                         `<a id="${custId}" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+                        `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
                         (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
                                 `</a>` +
                                 `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +

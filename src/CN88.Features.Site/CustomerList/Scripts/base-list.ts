@@ -6,6 +6,7 @@ class BaseList {
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
+    bootstrapDropdownComponent: BootstrapDropdownComponent;
 
     $tooltip: JQuery;
     $dropdownStatus: JQuery;
@@ -40,11 +41,13 @@ class BaseList {
     constructor(
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
+        bootstrapDropdownComponent: BootstrapDropdownComponent,
         numeral: any,
-        pager: PagerComponent,
+        pager: PagerComponent,        
         levelName: string) {
         this.$ = $;
         this.statusComponent = statusComponent;
+        this.bootstrapDropdownComponent = bootstrapDropdownComponent;
         this.numeral = numeral;
         this.pager = pager;
         this.levelName = levelName;
@@ -214,6 +217,8 @@ class BaseList {
         } else {
             pagerElement.html("");
         }
+
+        this.bootstrapDropdownComponent.render(new BootstrapDropdownOption(".tbl-downlinelist .dropdown"));
 
         this.initTooltip();
         this.$.unblockUI();

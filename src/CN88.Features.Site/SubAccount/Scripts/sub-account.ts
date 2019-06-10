@@ -15,14 +15,17 @@ class SubAccount {
     resources: any;
     urls: any;
     sortComponent: SortComponent;
+    bootstrapDropdownComponent: BootstrapDropdownComponent;
 
     constructor(
         $: JQueryStatic,
         top: any,
-        sortComponent: SortComponent) {
+        sortComponent: SortComponent,
+        bootstrapDropdownComponent: BootstrapDropdownComponent) {
         this.$ = $;
         this.top = top;
         this.sortComponent = sortComponent;
+        this.bootstrapDropdownComponent = bootstrapDropdownComponent;
     }
 
     init(): void {
@@ -41,6 +44,7 @@ class SubAccount {
                     2: { sorter: "text" },
                     7: { sorter: "text" }
                 }));
+        this.bootstrapDropdownComponent.render(new BootstrapDropdownOption(".tbl-subaccount .dropdown"));
     }
 
     cacheElements(): void {
@@ -198,5 +202,5 @@ class SubAccount {
 }
 
 $(() => {
-    new SubAccount($, top, new SortComponent($, new LinkBuilderComponent($))).init();
+    new SubAccount($, top, new SortComponent($, new LinkBuilderComponent($)), new BootstrapDropdownComponent($)).init();
 });

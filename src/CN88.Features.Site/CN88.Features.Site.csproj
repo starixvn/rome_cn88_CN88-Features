@@ -1095,6 +1095,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\message.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\filter-toggle.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\bootstrap-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
