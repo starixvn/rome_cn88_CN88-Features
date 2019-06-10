@@ -83,17 +83,17 @@ class NewSubAccount extends BaseSubAccount {
         let whiteSpace: RegExp = /^\S*$/;
         let whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
 
-        let regex1: RegExp = /^(?=.{8,100}$).*\d/i;
-        let regex2: RegExp = /^(?=.{8,100}$).*[a-z]/;
-        let regex3: RegExp = /^(?=.{8,100}$).*[A-Z]/;
-        let regex4: RegExp = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+        let regex1: RegExp = /^(?=.{6,12}$).*\d/i;
+        let regex2: RegExp = /^(?=.{6,12}$).*[a-z]/;
+        let regex3: RegExp = /^(?=.{6,12}$).*[A-Z]/;
+        let regex4: RegExp = /^(?=.{6,12}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
 
         let case1: number = password.search(regex1) !== -1 ? 1 : 0;
         let case2: number = password.search(regex2) !== -1 ? 1 : 0;
         let case3: number = password.search(regex3) !== -1 ? 1 : 0;
         let case4: number = password.search(regex4) !== -1 ? 1 : 0;
 
-        return (case1 + case2 + case3 + case4 >= 3) && whiteSpaceCase;
+        return (case1 + case2 + case3 + case4 >= 2) && whiteSpaceCase;
     }
 }
 

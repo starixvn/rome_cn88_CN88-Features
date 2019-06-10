@@ -27,10 +27,10 @@
 
     public class SubAccountValidatorImpl : SubAccountValidator
     {
-        private static readonly Regex PasswordRule1 = new Regex(@"^(?=.*\d).{8,100}$");
-        private static readonly Regex PasswordRule2 = new Regex(@"^(?=.*[a-z]).{8,100}$");
-        private static readonly Regex PasswordRule3 = new Regex(@"^(?=.*[A-Z]).{8,100}$");
-        private static readonly Regex PasswordRule4 = new Regex(@"^(?=.*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]).{8,100}$");
+        private static readonly Regex PasswordRule1 = new Regex(@"^(?=.*\d).{6,12}$");
+        private static readonly Regex PasswordRule2 = new Regex(@"^(?=.*[a-z]).{6,12}$");
+        private static readonly Regex PasswordRule3 = new Regex(@"^(?=.*[A-Z]).{6,12}$");
+        private static readonly Regex PasswordRule4 = new Regex(@"^(?=.*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]).{6,12}$");
         private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
 
         /* [B]: Account Management Edit & View
@@ -82,7 +82,7 @@
             var rule3 = PasswordRule3.Match(password).Success ? 1 : 0;
             var rule4 = PasswordRule4.Match(password).Success ? 1 : 0;
 
-            return (rule1 + rule2 + rule3 + rule4 >= 3) && NoWhiteSpace.Match(password).Success
+            return (rule1 + rule2 + rule3 + rule4 >= 2) && NoWhiteSpace.Match(password).Success
                 ? Result.CreateSuccessResult()
                 : Result.CreateErrorResult(message: SubAccountResource.PasswordWrongRuleError);
         }
@@ -115,8 +115,8 @@
         }
 
         private static bool IsEqualsPasswordHint(string password)
-            => password.Equals("59D7!4$h", StringComparison.OrdinalIgnoreCase) ||
-            password.Equals("493abcDE", StringComparison.OrdinalIgnoreCase);
+            => password.Equals("BCD!$#H", StringComparison.OrdinalIgnoreCase) ||
+            password.Equals("4593abcd", StringComparison.OrdinalIgnoreCase);
 
         private static bool IsContainsInvalidChars(string password, IEnumerable<string> invalidPasswords)
             => invalidPasswords.Any(item => password.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
