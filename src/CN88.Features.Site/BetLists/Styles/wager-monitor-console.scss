@@ -377,6 +377,12 @@ body.phone {
             padding: 10px 0 5px;
         }
 
+        .btn-function:hover {
+            background-color: transparent;
+            color: #3b3b3b;
+            border: 1px solid #c8c8c8;
+        }
+
         [class*="icon-"],
         .icon-pause {
             font-size: 8px !important;
@@ -456,6 +462,11 @@ body.phone {
 
         .tab-content {
             padding: 12px 12px 0;
+
+            label {
+                font-weight: normal;
+                margin-bottom: 0;
+            }
         }
 
         .wager-monitoring .page-title {
@@ -467,6 +478,8 @@ body.phone {
         }
 
         .lists {
+            margin-top: 0;
+
             .sport-name {
                 display: block !important;
                 width: 100%;
@@ -529,6 +542,12 @@ body.phone {
 
         .form-control:first-child {
             font-size: $font-size-mobile-input;
+        }
+
+        .icon-close {
+            top: 0;
+            right: 30px;
+            padding: 10px;
         }
     }
 }
