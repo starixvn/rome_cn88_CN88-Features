@@ -187,7 +187,7 @@
     <value>账户管理</value>
   </data>
   <data name="PasswordRule" xml:space="preserve">
-    <value>&lt;p&gt;Password must be between 6 to 12 characters without white-space and contain at least 2 of the following:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;大写字母[A-Z]&lt;/li&gt;&lt;li&gt;小写字母[a-z]&lt;/li&gt;&lt;li&gt;数字[0-9]&lt;/li&gt;&lt;li&gt;特殊字符（!,,#等...）&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;：BCD!$#H, 4593abcd&lt;/p&gt;&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：您的密码输入的时候要注意字母的大小写&lt;/p&gt;</value>
+    <value>&lt;p&gt;密码必须是6-12个字符且没有空格，并且至少包含以下2个条件：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;大写字母[A-Z]&lt;/li&gt;&lt;li&gt;小写字母[a-z]&lt;/li&gt;&lt;li&gt;数字[0-9]&lt;/li&gt;&lt;li&gt;特殊字符（!,,#等...）&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;：BCD!$#H, 4593abcd&lt;/p&gt;&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：您的密码输入的时候要注意字母的大小写&lt;/p&gt;</value>
   </data>
   <data name="RequiredNameError" xml:space="preserve">
     <value>「名称」必填</value>
