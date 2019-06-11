@@ -180,6 +180,7 @@
   {
     "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
     "inputFiles": [
+      "Shared/Scripts/core.js",
       "Shared/Scripts/components/message.js",
       "Shared/Scripts/components/sort.js",
       "Shared/Scripts/components/link-builder.js",

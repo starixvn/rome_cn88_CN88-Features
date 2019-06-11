@@ -14,6 +14,8 @@ class SubAccount {
     tableSubAccount: JQuery;
     resources: any;
     urls: any;
+    isDevice: boolean;
+
     sortComponent: SortComponent;
     bootstrapDropdownComponent: BootstrapDropdownComponent;
 
@@ -26,24 +28,28 @@ class SubAccount {
         this.top = top;
         this.sortComponent = sortComponent;
         this.bootstrapDropdownComponent = bootstrapDropdownComponent;
+        this.isDevice = cn88Features.convertAttributeToBool(this.$("#IsDevice").val());
     }
 
     init(): void {
         this.cacheElements();
         this.bindEvents();
 
-        this.sortComponent.render(
-            new SortOption(
-                this.tableSubAccount,
-                this.tableSubAccount.data("totalrecords") > 1,
-                true,
-                this.sortComponent.afterSort,
-                {
-                    0: { sorter: "text" },
-                    1: { sorter: "text" },
-                    2: { sorter: "text" },
-                    7: { sorter: "text" }
-                }));
+        if (!this.isDevice) {
+            this.sortComponent.render(
+                new SortOption(
+                    this.tableSubAccount,
+                    this.tableSubAccount.data("totalrecords") > 1,
+                    true,
+                    this.sortComponent.afterSort,
+                    {
+                        0: { sorter: "text" },
+                        1: { sorter: "text" },
+                        2: { sorter: "text" },
+                        7: { sorter: "text" }
+                    }));
+        }
+
         this.bootstrapDropdownComponent.render(new BootstrapDropdownOption(".tbl-subaccount .dropdown"));
     }
 
