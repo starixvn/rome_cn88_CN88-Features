@@ -55,8 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.7-JSonSC\lib\net461\Alpha.SecurityCode.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.1\lib\net461\Alpha.SmartPunter.dll</HintPath>
