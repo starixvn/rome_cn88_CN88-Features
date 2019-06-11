@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 class BootstrapDropdownOption {
-    constructor(public dropdownId: string = "dropdown-single") {}
+    constructor(public dropdownId: string = "dropdown-single") { }
 }
 
 class BootstrapDropdownComponent {
@@ -33,9 +33,7 @@ class BootstrapDropdownComponent {
             var ulOffset = $ul.offset();
 
             var spaceUp = (ulOffset.top - $button.height() - $ul.height()) - $window.scrollTop();
-            var spaceDown = $window.scrollTop() + thisWindow.$("#main").height() - (ulOffset.top + $ul.height());
-            //alert(ulOffset.top + "-" + $button.height() + "-" + $ul.height() + "-" + $window.scrollTop());
-            //alert($window.scrollTop() + "-" + thisWindow.$("#main").height() + "-" + ulOffset.top + "-" + $ul.height());
+            var spaceDown = $window.scrollTop() + thisWindow.$("#main").innerHeight() - (ulOffset.top + $ul.height());
             if (spaceUp > spaceDown) {
                 $this.addClass("dropup");
             }
