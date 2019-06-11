@@ -6,7 +6,6 @@
     "CustomerList/StatusPopup",
     "CN88CustomerSetting/ViewCN88CustomerSetting/Edit",
 	"CN88CustomerSetting/ViewCN88CustomerSetting/Create",
-	"CN88CustomerSetting/ViewCN88CustomerSetting/QuerySetting",
     "CustomerList/UpdateCredit",
     "CustomerList/UpdateCustomerStatus",
     "CN88CustomerSetting/UpdateCN88CustomerSetting/Update",
