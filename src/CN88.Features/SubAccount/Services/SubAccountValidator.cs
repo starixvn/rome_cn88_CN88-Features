@@ -88,9 +88,31 @@
         }
 
         public string FilterWithValidPermissions(string pageAccess)
-            => string.IsNullOrWhiteSpace(pageAccess)
-            ? string.Empty
-            : string.Join("", pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Intersect(ValidPermissions));
+        {
+            if (string.IsNullOrWhiteSpace(pageAccess))
+            {
+                return string.Empty;
+            }
+
+            pageAccess = AddViewOnlyModeToEditMode(pageAccess);
+
+            return string.Join(string.Empty, pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Intersect(ValidPermissions));
+        }
+
+        private static string AddViewOnlyModeToEditMode(string pageAccess)
+        {
+            var modes = pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var existEditMode = modes.Any(i => i == PageAccessType.UpdateAccount);
+            var notExistViewMode = !modes.Any(i => i == PageAccessType.ViewMemberInfo);
+
+            if (existEditMode && notExistViewMode)
+            {
+                modes.Add(PageAccessType.ViewMemberInfo);
+            }
+
+            return string.Join(",", modes);
+        }
 
         private static bool IsEqualsPasswordHint(string password)
             => password.Equals("59D7!4$h", StringComparison.OrdinalIgnoreCase) ||

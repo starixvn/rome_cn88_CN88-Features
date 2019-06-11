@@ -60,10 +60,12 @@
 
         public ReportViewModel Handle(ReportQuery message)
         {
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            message.FromDate = message.FromDate < lastPeriod.FromDate ? lastPeriod.FromDate : message.FromDate;
             var sportGroups = sportGroupService.GetSportGroups();
             var allBetTypes = betTypeService.GetBetTypeGroups();
             var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
-            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            
 
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);

@@ -41,7 +41,7 @@
                 ? await ViewAsync(message)
                 : View(NoInformationPageViewPath);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
         public async Task<ActionResult> Edit(UpdateCommand message)
             => Json(
                 message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
