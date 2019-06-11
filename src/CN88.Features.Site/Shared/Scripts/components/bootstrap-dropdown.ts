@@ -31,10 +31,13 @@ class BootstrapDropdownComponent {
             var $button = $this.children(".dropdown-toggle");
             var $ul = $this.children(".dropdown-menu");
             var ulOffset = $ul.offset();
+            var isiOS = /iPhone/i.test(navigator.userAgent);
+            var scrollTop = isiOS ? thisWindow.$("body").scrollTop() : $window.scrollTop();
 
-            var spaceUp = (ulOffset.top - $button.height() - $ul.height()) - $window.scrollTop();
-            var spaceDown = $window.scrollTop() + thisWindow.$("#content").height() - (ulOffset.top + $ul.height());
-            if (spaceUp > spaceDown) {
+            var spaceUp = (ulOffset.top - $button.height() - $ul.height()) - scrollTop;
+            var spaceDown = scrollTop + thisWindow.$("#content").height() - (ulOffset.top + $ul.height());
+
+            if (spaceDown < 0 && (spaceUp >= 0 || spaceUp > spaceDown)) {
                 $this.addClass("dropup");
             }
         }).on("hidden.bs.dropdown", function () {

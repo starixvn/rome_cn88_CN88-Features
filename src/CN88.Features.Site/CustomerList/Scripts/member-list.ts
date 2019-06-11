@@ -104,7 +104,12 @@ class MemberList extends BaseList {
                         username = customer.Username;
 
                     html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
-                        `<td class='link view-statement' username='${username}' cust-id='${custId}'><div class='username-wrapper'>${username} <span class="cust-name">${customer.Nickname}</span></div></td>` +
+                        `<td class='link view-statement' cust-id='${custId}' username='${username}'>` +
+                            `<div class='username-wrapper'>${username}
+                                <div class="cust-nickname">${customer.Nickname}</div>
+                                <div class="cust-name">${customer.Name}</div>
+                            </div>
+                        </td>` +
                         "<td>" + customer.Group + "</td>" +
                         `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                         `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +

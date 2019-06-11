@@ -52,6 +52,7 @@
                             <div class="username">
                                 @item.UserName
                                 <div class="nickname-mobile">@item.NickName</div>
+                                <div class="name-mobile">@WebUtility.HtmlDecode(item.FirstName)</div>
                             </div>
                         </td>
                         <td class="hide-mobile">@WebUtility.HtmlDecode(item.FirstName)</td>

@@ -187,10 +187,16 @@ body.phone {
             min-width: 124px;
             word-break: break-all;
 
-            .cust-name {
-                display: block;
+            .cust-nickname {
                 margin-top: 5px;
                 color: #865800;
+                font-style: italic;
+            }
+
+            .cust-name {
+                margin-top: 5px;
+                color: #3B3B3B;
+                font-size: 9.5px;
                 font-style: italic;
             }
         }
