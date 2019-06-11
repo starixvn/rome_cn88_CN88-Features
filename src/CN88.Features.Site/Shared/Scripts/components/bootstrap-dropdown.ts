@@ -33,7 +33,7 @@ class BootstrapDropdownComponent {
             var ulOffset = $ul.offset();
 
             var spaceUp = (ulOffset.top - $button.height() - $ul.height()) - $window.scrollTop();
-            var spaceDown = $window.scrollTop() + thisWindow.$("#main").innerHeight() - (ulOffset.top + $ul.height());
+            var spaceDown = $window.scrollTop() + thisWindow.$("#content").height() - (ulOffset.top + $ul.height());
             if (spaceUp > spaceDown) {
                 $this.addClass("dropup");
             }
