@@ -42,7 +42,7 @@ class WagerMonitoring {
     getBetsUrl: string;
     intervalTime: number;
     isCalling = false;
-    isSpeakOn = true;
+    isSpeakOn: boolean;
     speakerOnText: string;
     speakerOffText: string;
     isMobile: boolean;
@@ -90,6 +90,7 @@ class WagerMonitoring {
         this.getBetsUrl = this.$("#get-bets-url").val();
         this.intervalTime = this.$("#IntervalTime").val();
         this.numberOfRowPerTicket = this.isMobile ? this.$("#NumberOfMobileRowsPerTicket").val() : 1;
+        this.isSpeakOn = this.isMobile ? false : true;
 
         setInterval(this.getLastBets, this.intervalTime * 1000);
 
