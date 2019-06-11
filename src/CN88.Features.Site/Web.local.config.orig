@@ -9,13 +9,8 @@
     <section name="CN88CustomerSettingConfiguration" type="CN88.CustomerSetting.Client.Configurations.CN88CustomerSettingConfiguration, CN88.CustomerSetting.Client" />
     <section name="Fanex.Caching" type="Fanex.Caching.Configuration.CacheSettings, Fanex.Caching" />
   </configSections>
-<<<<<<< HEAD
-  <CN88CustomerSettingConfiguration System="2" ServiceUris="http://ha.nexdev.net:7203/V1/api" CdnUris="http://ha.nexdev.net:7204/V1/staticresources" SecretKey="U6BUFHtVcq5SPQcTl7tHLBG/LF6d5YVRKHrCHD9M+Vw=" ClientLogCategory="DCS-Client" CustomCssUrl="/site-features/CustomerList/bundles/styles/customizeDCSCN88.min.css?v={{version}}" />
-  <appSettings file="Web.AppSettings.local.config" />
-=======
-  <CN88CustomerSettingConfiguration System="2" ServiceUris="http://ha.nexdev.net:7203/V1/api" CdnUris="http://ha.nexdev.net:7204/V1/staticresources" SecretKey="U6BUFHtVcq5SPQcTl7tHLBG/LF6d5YVRKHrCHD9M+Vw=" ClientLogCategory="DCS-Client" CustomCssUrl="/site-features/CustomerList/bundles/styles/customizeDCSCN88.min.css" />
+  <CN88CustomerSettingConfiguration System="2" ServiceUris="http://ha.nexdev.net:7203/V3/api" CdnUris="http://ha.nexdev.net:7204/V3/staticresources" SecretKey="U6BUFHtVcq5SPQcTl7tHLBG/LF6d5YVRKHrCHD9M+Vw=" ClientLogCategory="DCS-Client" CustomCssUrl="/site-features/CustomerList/bundles/styles/customizeDCSCN88.min.css" />
   <appSettings file="Web.AppSettings.config" />
->>>>>>> 113198 - Fix sonar
   <system.web>
     <pages buffer="true" enableViewState="false" />
     <compilation debug="true" targetFramework="4.6.1" />
