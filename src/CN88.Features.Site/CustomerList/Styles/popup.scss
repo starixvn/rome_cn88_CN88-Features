@@ -2,11 +2,12 @@
 @import "../../Shared/Styles/variables";
 
 body {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .popup-modal {
     padding: 16px 20px;
+
     .msg {
         margin-top: 0;
         width: 100%;
@@ -49,10 +50,13 @@ body {
     text-align: right;
 }
 
+.txt-credit {
+    text-align: right;
+}
+
 // For Phone
 
 body.phone {
-
     .popup-modal {
         padding-left: 12px;
         padding-right: 12px;
@@ -69,7 +73,6 @@ body.phone {
     }
 
     .form {
-
         .form-group {
             display: table;
             width: 100%;

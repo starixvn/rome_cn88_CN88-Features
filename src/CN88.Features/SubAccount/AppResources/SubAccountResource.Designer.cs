@@ -313,15 +313,6 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Unlock {
-            get {
-                return ResourceManager.GetString("Unlock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Do you want to unlock this account?.
         /// </summary>
         public static string UnlockAccountConfirmMessage {

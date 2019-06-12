@@ -300,4 +300,7 @@
   <data name="ParlayText" xml:space="preserve">
     <value>綜合過關</value>
   </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>解鎖</value>
+  </data>
 </root>
