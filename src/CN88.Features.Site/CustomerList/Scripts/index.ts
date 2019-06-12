@@ -241,8 +241,8 @@ class CustomerList {
         this.openPopup(popupTitle, url, 'modal modal-credit', 490, 280);
     };
 
-    updateStatus = (custId: any, username: any, statusId: any) => {
-        let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId }),
+    updateStatus = (custId: number, username: string, statusId: number, uplineStatusId: number) => {
+        let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId, uplineStatusId: uplineStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-status', 490, 210);
@@ -382,12 +382,14 @@ class CustomerList {
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
     reloadData = () => {
+        const timeoutDefault = 2000;
+
         setTimeout(() => {
             const submitBtn = this.$('input[id^="btn-submit-"]:visible')[0];
             if (submitBtn !== undefined) {
                 submitBtn.click();
             }
-        }, 1500);
+        }, timeoutDefault);
     };
 };
 

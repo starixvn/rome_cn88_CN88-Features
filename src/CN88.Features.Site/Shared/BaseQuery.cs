@@ -60,5 +60,7 @@
             => ViewerId > 0
             && !string.IsNullOrWhiteSpace(ViewerName)
             && !string.IsNullOrWhiteSpace(Language);
+
+        public virtual string ErrorMessage { get; set; }
     }
 }

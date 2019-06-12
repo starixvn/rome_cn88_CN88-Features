@@ -1,6 +1,7 @@
 ﻿class PopupBase {
     public $: JQueryStatic;
     public topWindow: any;
+
     resources = {
         UpdateSuccessfully: '',
         InvalidCredit: '',
@@ -26,11 +27,9 @@
     };
 
     public submit(url: string, data: any) {
-        const self = this;
         this.$.blockUI();
-
-        const mainFrame = this.topWindow.main;
-
+        const self = this, unauthorizedCode = 403, mainFrame = this.topWindow.main;
+       
         if (typeof mainFrame.customerList !== "undefined") {
             mainFrame.customerList.reloadData();
         }
@@ -48,7 +47,7 @@
                 data.IsSuccess ? self.updateSuccesfully() : self.showFailedMessage(data.Message);
             })
             .fail(function (jqXHR: JQueryXHR) {
-                if (jqXHR.status === 403) {
+                if (jqXHR.status === unauthorizedCode) {
                     self.showFailedMessage(jqXHR.responseJSON.message);
                 }
             })
@@ -57,10 +56,11 @@
 
     updateSuccesfully() {
         this.showSuccesfullyMessage();
+        const timeoutDefault = 2000;
 
         setTimeout(() => {
             this.closePopup();
-        }, 1500);
+        }, timeoutDefault);
     };
 
     showSuccesfullyMessage() {

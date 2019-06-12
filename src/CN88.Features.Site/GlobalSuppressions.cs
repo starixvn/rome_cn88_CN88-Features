@@ -68,3 +68,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Build", "S125:Remove this commented out code.", Justification = "<Pending>", Scope = "member", Target = "~P:CN88.Features.Site.Requests.BaseQuery.ActorLevel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Build", "S2325:Make 'UnlockSubAccountLink' a static property.", Justification = "<Pending>", Scope = "member", Target = "~P:CN88.Features.Site.SubAccount.ViewModels.IndexViewModel.UnlockSubAccountLink")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Build", "S2325:Make 'VerifySecurityCodeLink' a static property.", Justification = "<Pending>", Scope = "member", Target = "~P:CN88.Features.Site.SubAccount.ViewModels.IndexViewModel.VerifySecurityCodeLink")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "<Pending>", Scope = "member", Target = "~M:CN88.Features.Site.Shared.Controllers.FeatureBaseController.BuildErrorResult(System.String)~CN88.Features.Models.Result")]
+

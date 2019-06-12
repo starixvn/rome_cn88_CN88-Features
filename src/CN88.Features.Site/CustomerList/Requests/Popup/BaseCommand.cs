@@ -10,7 +10,8 @@
         {
         }
 
-        // TO DO
         public override bool IsValid() => base.IsValid() && !IsInternal;
+
+        public override string ErrorMessage => string.Empty;
     }
 }

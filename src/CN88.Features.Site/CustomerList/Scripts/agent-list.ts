@@ -147,7 +147,7 @@ class AgentList extends BaseList {
                         iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
 
                     let actionColumn = '',
-                        creditColumn = `<td class='text-right link'> ${this.numeral(customer.Credit).format("###,0.00")} </td>`,
+                        creditColumn = `<td class='text-right'> ${this.numeral(customer.Credit).format("###,0.00")} </td>`,
                         statusColumn = `<td class='text-center'> ${this.indexManager.getStatusName(status)}</td>`;
 
                     if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
@@ -159,7 +159,7 @@ class AgentList extends BaseList {
 
                         actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
                         creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>`;
-                        statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>`;
+                        statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${status}' direct-upline-status='${rs.SearchAccountStatus}'> ${this.indexManager.getStatusName(status)}</td>`;
                     }
 
                     html += `<tr class='row-customer' cust-id='${custId}'>` +

@@ -41,14 +41,14 @@
             get => $"~/{ControllerContext.RouteData.Values["Controller"]}/Views";
         }
 
-
         protected ActionResult JsonData<TResponse>(
            IRequest<TResponse> message,
            JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
         {
-            if (!(message as BaseQuery).IsValid())
+            var baseQuery = message as BaseQuery;
+            if (!baseQuery.IsValid())
             {
-                return Json(Result.CreateForbiddenResult());
+                return Json(BuildErrorResult(baseQuery.ErrorMessage));
             }
 
             return Json(mediator.Send(message), jsonRequestBehavior);
@@ -58,9 +58,10 @@
             IRequest<TResponse> message,
             JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
         {
-            if (!(message as BaseQuery).IsValid())
+            var baseQuery = message as BaseQuery;
+            if (!baseQuery.IsValid())
             {
-                return Json(Result.CreateForbiddenResult());
+                return Json(BuildErrorResult(baseQuery.ErrorMessage));
             }
 
             return Json(await mediator.Send(message).ConfigureAwait(false), jsonRequestBehavior);
@@ -79,5 +80,10 @@
 
         private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
             => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
+
+        private Result BuildErrorResult(string message)
+            => string.IsNullOrEmpty(message) ?
+                    Result.CreateForbiddenResult() :
+                    Result.CreateErrorResult(message: message);
     }
 }

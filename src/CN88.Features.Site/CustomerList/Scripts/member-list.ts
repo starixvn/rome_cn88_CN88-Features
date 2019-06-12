@@ -153,7 +153,7 @@ class MemberList extends BaseList {
 
                         actionColumn = `${resetPasswordIcon} ${editIcon} ${unclockIcon}`;
                         creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>`;
-                        statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${status}'> ${this.indexManager.getStatusName(status)}</td>`;
+                        statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${status}' direct-upline-status='${rs.SearchAccountStatus}'> ${this.indexManager.getStatusName(status)}</td>`;
                     }
 
                     html += `<tr class='row-customer' cust-id='${custId}'>` +

@@ -327,4 +327,7 @@
   <data name="UnlockConfirmTitle" xml:space="preserve">
     <value>Unlock Account</value>
   </data>
+  <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
+    <value>Update status failed. Upline level is not active.</value>
+  </data>
 </root>

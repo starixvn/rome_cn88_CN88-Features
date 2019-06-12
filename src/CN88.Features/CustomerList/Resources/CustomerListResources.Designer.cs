@@ -610,6 +610,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update status failed. Upline level is not active..
+        /// </summary>
+        public static string UpdateStatusFailedCauseOfDirectUplineNotActive {
+            get {
+                return ResourceManager.GetString("UpdateStatusFailedCauseOfDirectUplineNotActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Successfully!.
         /// </summary>
         public static string UpdateSuccessfully {

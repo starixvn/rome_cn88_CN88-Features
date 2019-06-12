@@ -22,7 +22,12 @@
         let custId = this.$("#CustId").val(),
             oldStatusId = this.$("#CurrentStatusId").val(),
             newStatusId = this.$("#dropdown-status").val(),
-            data = { "CustId": custId, "OldStatusId": oldStatusId, "NewStatusId": newStatusId };
+            data = {
+                "CustId": custId,
+                "OldStatusId": oldStatusId,
+                "NewStatusId": newStatusId,
+                "UplineStatusId": this.$("#direct-upline-status").val()
+            };
 
         if (oldStatusId === newStatusId) {
             this.showFailedMessage(this.resources.ThereIsNoChange);
