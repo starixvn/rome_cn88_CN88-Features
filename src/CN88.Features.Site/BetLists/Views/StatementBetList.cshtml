@@ -19,7 +19,7 @@
     {
         <div class="page-title-mobile btn-back back-area">
             <span class="icon-chevron-left  back-step"></span>
-            @Model.Date.ToLongDay()
+            @Model.Date.ToLongDay(CN88.Features.CustomerList.Resources.CustomerListResources.ResourceManager)
         </div>
         <div class="username">@Model.CustName</div>
         @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
@@ -28,7 +28,7 @@
     {
         <div class="page-title">
             <button class="btn-back"><span class="icon-chevron-left"></span>@BetListsResources.Back</button>
-            @BetListsResources.Statement @Model.CustName | @Model.Date.ToLongDay()
+            @BetListsResources.Statement @Model.CustName | @Model.Date.ToLongDay(CN88.Features.CustomerList.Resources.CustomerListResources.ResourceManager)
         </div>
         @Html.Partial("~/BetLists/Views/BetListTable.cshtml")
         @Pager.Render(Model.PagerViewModel)
