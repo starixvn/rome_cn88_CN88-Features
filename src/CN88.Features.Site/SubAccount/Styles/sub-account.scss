@@ -16,7 +16,7 @@
     .account-data {
         width: 50%;
         display: inline-block;
-        padding: 20px 40px;
+        padding: 20px;
         vertical-align: top;
 
         &.general-info {
@@ -25,14 +25,21 @@
 
         .title {
             border-bottom: 2px solid #831e1e;
-            padding: 0 16px 12px;
+            padding: 0 16px 12px 0;
         }
 
         .account-data-content {
-            padding: 12px 0px 12px 30px;
+            padding: 12px 0;
 
             .form-group {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 margin: 0 0 15px;
+            }
+
+            .checkbox {
+                width: 100%;
             }
 
             .radio label, .checkbox label {
@@ -47,17 +54,29 @@
                 display: inline-block;
                 width: calc(100% - 140px);
 
-                &.username-box {
-                    width: unset;
-                }
-
                 .control {
                     width: 100%;
                     margin: 0;
                 }
+            }
+
+            .username-box {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: wrap;
 
                 .name {
                     font-weight: normal;
+                    margin-bottom: 0;
+                }
+
+                select {
+                    background-position: right 6px center;
+                }
+
+                .suffix-container {
+                    padding-left: 4px;
                 }
             }
 
@@ -66,6 +85,7 @@
                 width: 140px;
                 text-align: left;
                 margin-right: -4px;
+                padding-top: 0;
             }
         }
     }
@@ -294,12 +314,10 @@ body.mobile {
                 padding: 12px 0;
 
                 .username-box {
-                    display: block;
-                    width: 100%;
+                    justify-content: space-between;
 
                     .name {
                         text-transform: uppercase;
-                        width: calc(100% - 112px);
                     }
 
                     select {
@@ -330,6 +348,10 @@ body.mobile {
                             margin-top: 5px;
                         }
                     }
+                }
+
+                .form-group {
+                    display: block;
                 }
             }
 

@@ -20,10 +20,12 @@
             <div class="account-data-content">
                 <div class="form-group">
                     <label class="control-label required">@SubAccountResource.UserName <span class="star">*</span></label>
-                    <div class="content-control pull-right username-box">
+                    <div class="content-control username-box">
                         <label class="name">@Model.SubAccountName</label>
-                        @Html.DropDownList("suffix1", Model.Suffix1, new { id = "suffix1" })
-                        @Html.DropDownList("suffix2", Model.Suffix2, new { id = "suffix2" })
+                        <div class="suffix-container">
+                            @Html.DropDownList("suffix1", Model.Suffix1, new { id = "suffix1" })
+                            @Html.DropDownList("suffix2", Model.Suffix2, new { id = "suffix2" })
+                        </div>                        
                     </div>
                 </div>
                 <div class="form-group">
