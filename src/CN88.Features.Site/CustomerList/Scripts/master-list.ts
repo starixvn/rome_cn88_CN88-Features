@@ -58,13 +58,15 @@ class MasterList extends BaseList {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                     let customer = rs.Customers[i],
                         custId = customer.CustId,
-                        username = customer.Username;
+                        username = customer.Username,
+                        nickname = customer.Nickname ? customer.Nickname : "---",
+                        name = customer.Name ? customer.Name : "---";
 
                     html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                         `<td class='link view-downline' cust-id='${custId}' username='${username}'>` +
-                            `<div class='username-wrapper'>${username}
-                                <div class="cust-nickname">${customer.Nickname}</div>
-                                <div class="cust-name">${customer.Name}</div>
+                        `<div class='username-wrapper'>${username}
+                                <div class="cust-nickname">${nickname}</div>
+                                <div class="cust-name">${name}</div>
                             </div>
                         </td>` +
                         `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
@@ -73,13 +75,13 @@ class MasterList extends BaseList {
                         `<div class="dropdown">` +
                         `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
                         (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
-                                `</a>` +
-                                `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
-                                    `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='3'>${this.indexManager.viewResources.ResetPassword}</li>` +
-                                    `<li class='icon-security' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.ResetSecurityCode}</li>` +
-                                    `<li class='icon-edit' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.EditMasterAgent}</li>` +
-                                    `<li class='icon-add' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.NewAgent}</li>` +
-                                `</ul>` +
+                        `</a>` +
+                        `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
+                        `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='3'>${this.indexManager.viewResources.ResetPassword}</li>` +
+                        `<li class='icon-security' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.ResetSecurityCode}</li>` +
+                        `<li class='icon-edit' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.EditMasterAgent}</li>` +
+                        `<li class='icon-add' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.NewAgent}</li>` +
+                        `</ul>` +
                         `</div>` +
                         "</td>" +
                         "</tr>";
@@ -112,8 +114,6 @@ class MasterList extends BaseList {
                 }
             }
         }
-
-        
 
         this.$tblReport.find("> tbody").empty().html(html);
         this.$(window).trigger('resize.stickyTableHeaders');

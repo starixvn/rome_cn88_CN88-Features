@@ -104,15 +104,17 @@ class AgentList extends BaseList {
                 for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                     let customer = rs.Customers[i],
                         custId = customer.CustId,
-                        username = customer.Username;
+                        username = customer.Username,
+                        nickname = customer.Nickname ? customer.Nickname : "---",
+                        name = customer.Name ? customer.Name : "---";
 
                     html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
                         `<td class='link view-downline' cust-id='${custId}' username='${username}'>` +
-                            `<div class='username-wrapper'>${username}
-                                <div class="cust-nickname">${customer.Nickname}</div>
-                                <div class="cust-name">${customer.Name}</div>
+                        `<div class='username-wrapper'>${username}
+                                <div class="cust-nickname">${nickname}</div>
+                                <div class="cust-name">${name}</div>
                             </div>
-                        </td>` +                        
+                        </td>` +
                         `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                         `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                         "<td class='col-action text-center'>" +
@@ -158,7 +160,6 @@ class AgentList extends BaseList {
                 }
             }
         }
-
 
         this.$tblReport.find("> tbody").empty().html(html);
         this.$(window).trigger('resize.stickyTableHeaders');

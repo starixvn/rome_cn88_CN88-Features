@@ -52,8 +52,8 @@
                         <td>
                             <div class="username">
                                 @item.UserName
-                                <div class="nickname-mobile">@item.NickName</div>
-                                <div class="name-mobile">@WebUtility.HtmlDecode(item.FirstName)</div>
+                                <div class="nickname-mobile">@(string.IsNullOrWhiteSpace(item.NickName) ? "---" : item.NickName)</div>
+                                <div class="name-mobile">@(string.IsNullOrWhiteSpace(item.FirstName) ? "---" : WebUtility.HtmlDecode(item.FirstName))</div>
                             </div>
                         </td>
                         <td class="hide-mobile">@WebUtility.HtmlDecode(item.FirstName)</td>
