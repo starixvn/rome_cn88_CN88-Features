@@ -42,6 +42,7 @@
         private readonly SportGroupService sportGroupService;
         private readonly BettypeGroupService betTypeService;
         private readonly AccountingPeriodService accountingPeriodService;
+        private readonly CacheRefService cacheRefService;
 
         private readonly BrowserHelper browserHelper;
 
@@ -53,7 +54,8 @@
             SportGroupService sportGroupService,
             BettypeGroupService betTypeService,
             AccountingPeriodService accountingPeriodService,
-            BrowserHelper browserHelper)
+            BrowserHelper browserHelper,
+            CacheRefService cacheRefService)
         {
             betListService = service;
             this.ticketHelper = ticketHelper;
@@ -65,6 +67,7 @@
             this.accountingPeriodService = accountingPeriodService;
 
             this.browserHelper = browserHelper;
+            this.cacheRefService = cacheRefService;
         }
 
         public BetListOfReportViewModel Handle(BetListOfReportQuery message)
@@ -138,7 +141,7 @@
 
             var tickets = betListService.GetParlaySubTickets(param);
 
-            return new ParlaySubTicketsViewModel(message, new BetListData(tickets, null), cn88Builder, builder, ticketHelper);
+            return new ParlaySubTicketsViewModel(message, new BetListData(tickets, null), cn88Builder, builder, ticketHelper, cacheRefService);
         }
 
         public OutrightWagerByAccountViewModel Handle(OutrightWagerByAccountQuery message)

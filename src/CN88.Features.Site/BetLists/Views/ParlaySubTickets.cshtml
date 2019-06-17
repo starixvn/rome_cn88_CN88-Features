@@ -3,7 +3,6 @@
 @{
     Layout = null;
 }
-
 @if (Model.HasValidData)
 {
     foreach (var unitStakeByOfferNames in Model.UnitStakeByOfferNames)
@@ -18,6 +17,7 @@
     foreach (var ticket in Model.BetListData.Tickets)
     {
         <div class="ticket-list">
+            <div class="sport-type">@Model.GetSportName(ticket.SportTypeId)</div>
             <div class="bet-type">@Model.CN88Builder.CreateBetInfoBuilder(ticket.BetTypeId).RenderBetTypeName(ticket, Model.TicketHelper)</div>
             @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, null)))
             <div class="event-date">@ticket.EventDate.ToGlobalShowtime()</div>
