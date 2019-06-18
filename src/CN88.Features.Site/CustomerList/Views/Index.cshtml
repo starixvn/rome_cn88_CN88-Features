@@ -200,29 +200,35 @@
 
 @helper RenderContainer(UserLevel level)
 {
-    var levelName = level.DisplayName.ToLower();
-    var columns = new[]
-    {
-        new { Text = CustomerListResources.No, ClassName = "col-no", Show = true},
-        new { Text = CustomerListResources.Username, ClassName = "col-username", Show = true},
-        new { Text = CustomerListResources.Name, ClassName = "col-name", Show = true},
-        new { Text = CustomerListResources.Nickname, ClassName = "col-nickname", Show = true},
+var levelName = level.DisplayName.ToLower();
+var columns = new[]
+{
+        new { Text = CustomerListResources.No, ClassName = "col-no", Show = !Model.IsDevice},
+        new {
+            Text = Model.IsDevice ? 
+            $"{CustomerListResources.Username} <br /> {CustomerListResources.Nickname} <br /> {CustomerListResources.Name}" : 
+            CustomerListResources.Username,
+            ClassName = "col-username",
+            Show = true
+        },
+        new { Text = CustomerListResources.Name, ClassName = "col-name", Show = !Model.IsDevice},
+        new { Text = CustomerListResources.Nickname, ClassName = "col-nickname", Show = !Model.IsDevice},
         new { Text = CustomerListResources.Group, ClassName = string.Empty, Show = level.IsMemberLevel()},
         new { Text = CustomerListResources.Credit, ClassName = "text-right", Show = true},
-        new { Text = CustomerListResources.CreationDate, ClassName = "col-creation-date", Show = true},
+        new { Text = CustomerListResources.CreationDate, ClassName = "col-creation-date", Show = !Model.IsDevice},
         new { Text = CustomerListResources.Status, ClassName = "text-center", Show = true},
         new { Text = CustomerListResources.Action, ClassName = "col-action text-center", Show = true}
     }.ToList();
 
     <div id="@($"{levelName}-container")">
-        <table id="@($"tbl-{levelName}")" class="tbl-style2">
+        <table id="@($"tbl-{levelName}")" class="tbl-style2 tbl-downlinelist">
             <thead>
                 <tr>
                     @foreach (var column in columns)
                     {
                         if (column.Show)
                         {
-                            <th class="@column.ClassName">@column.Text</th>
+                            <th class="@column.ClassName">@Html.Raw(column.Text)</th>
                         }
                     }
                 </tr>
