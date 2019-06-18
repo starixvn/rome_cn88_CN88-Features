@@ -11,6 +11,8 @@
             : base(viewer)
         {
         }
+
+        public bool IsSetMenu { get; set; }
     }
 
     public class SettlementSummaryQuery : ReportBaseQuery, IRequest<SettlementSummaryReport>
