@@ -223,7 +223,7 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;&lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;&lt;li&gt;Numeric [0-9]&lt;/li&gt;&lt;li&gt;Special character (!,,#,etc..)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: your password is cAsE sEnSiTiVe&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Password must be between 6 to 12 characters without white-space and contain at least 2 of the following:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;&lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;&lt;li&gt;Numeric [0-9]&lt;/li&gt;&lt;li&gt;Special character (!,,#,etc..)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: BCD!$#H, 4593abcd&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: your password is cAsE sEnSiTiVe&lt;/p&gt;.
         /// </summary>
         public static string PasswordRule {
             get {

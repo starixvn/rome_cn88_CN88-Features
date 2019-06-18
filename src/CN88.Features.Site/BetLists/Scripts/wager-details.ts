@@ -1,4 +1,6 @@
-﻿class WagerDetailsBetList {
+﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+class WagerDetailsBetList {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
     isMobile: boolean;
@@ -12,7 +14,7 @@
     }
 
     init = () => {
-        this.isMobile = this.$("#isMobile").val() == "True";
+        this.isMobile = this.$("#isMobile").val() === "True";
 
         if (this.isMobile) {
             this.$("#tbl-report").stacktable();
@@ -22,14 +24,13 @@
             this.pagerComponent.render();
         }
 
-        var self = this;
+        const betListUrl = this.$("#lnk-bet-list-by-account").attr("data-url");
         this.$("#lnk-bet-list-by-account").click(function () {
-            var url = self.$(this).attr("data-url");
-            if (!url) {
+            if (!betListUrl) {
                 return;
             }
 
-            window.location.href = url;
+            window.location.href = betListUrl;
         });
     };
 }
@@ -37,4 +38,4 @@
 $(document).ready(() => {
     const wagerDetails = new WagerDetailsBetList($, new ClientPagerComponent($));
     wagerDetails.init();
-})
+});

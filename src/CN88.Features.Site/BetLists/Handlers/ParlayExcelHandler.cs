@@ -21,8 +21,8 @@
 
     public class ParlayExcelHandler : BetListExcelBaseHandler, IRequestHandler<GetParlayDetailExcelQuery, ExcelFileViewModel>
     {
-        private BetListsService service;
-        private ITicketHelper ticketHelper;
+        private readonly BetListsService service;
+        private readonly ITicketHelper ticketHelper;
         private readonly ParlayDetailWorkbook workbook;
 
         public ParlayExcelHandler(

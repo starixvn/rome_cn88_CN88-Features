@@ -1,0 +1,188 @@
+﻿@using Fanex.BetList.Core.Entities
+@using CN88.Features.Extensions
+@using CN88.Features.Site.BetLists.Helpers
+@using CN88.Features.BetLists.Models
+@using Fanex.BetList.Core.Utils
+@using CN88.Features.BetLists.Helpers
+@using CN88.Features.BetLists.Resources
+@using CN88.BetList.Core.Builders
+@using Fanex.BetList.Core.Builder
+﻿@using CN88.Features.Shared.AppResources
+@using CN88.Features.Site.Shared.ViewModels.Components
+
+@helper RenderTransDate(ITicket ticket, bool isMobile = false)
+{
+    if (isMobile)
+    {
+        @ticket.TransDate.ToShortDateFormat() 
+        @: 
+        @ticket.TransDate.ToLongTime24h()
+    }
+    else
+    {
+        <td class="text-left no-wrap">
+            @ticket.TransDate.ToShortDateFormat()
+            <br />
+            @ticket.TransDate.ToLongTime24h()
+        </td>
+    }
+}
+
+
+@helper RenderStake(ITicket ticket, int divisor)
+{
+    <td class="stake-block bl_underdog text-right">
+        @(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))
+    </td>
+}
+
+
+@helper RenderPayout(TicketDto ticket, int divisor)
+{
+    <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
+}
+
+@helper RenderStatus(TicketDto ticket, IBetListHTMLBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP, bool isMobile = false)
+{
+    var status = new HtmlString(builder.BuildStatus(ticket, helper, ticketData, isShowVNIP));
+
+    if (isMobile)
+    {
+        @status
+    }
+    else
+    {
+        <td class="text-center">
+            @status
+        </td>
+    }
+}
+
+@helper RenderComm(TicketDto ticket, bool isMobile = false)
+{
+    var formattedPlayerDiscount = (ticket.PlayerDiscount * 100).ToString("#,##0.00");
+    var showComm = !BetTypeHelper.NotShowComm(ticket.BetTypeId);
+    var ugroupName = (ticket.UGroup ?? string.Empty).ToUpper();
+
+    if (isMobile)
+    {
+        @ticket.UserName
+
+        if (showComm)
+        {
+            <div class="com-info">@ugroupName @formattedPlayerDiscount</div>
+        }
+    }
+    else
+    {
+        <td>
+            <div>@ticket.UserName</div>
+            @if (showComm)
+            {
+                <div class="com-info">@ugroupName @formattedPlayerDiscount</div>
+            }
+        </td>
+    }
+}
+
+@helper RenderBetID(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, GetCachePropertyById getOddsTypeNameFunc, bool isMobile = false)
+{
+    var betInfo = new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => getOddsTypeNameFunc(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType))));
+
+    if (isMobile)
+    {
+        @betInfo
+    }
+    else
+    {
+        <td>@betInfo</td>
+    }
+}
+
+@helper RenderWinLoss(ITicket ticket, int divisor, bool isMobile = false)
+{
+    var winloss = new HtmlString(ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round()));
+    if (isMobile)
+    {
+        @winloss
+    }
+    else
+    {
+        <td class="text-right">@winloss</td>
+    }
+}
+
+@helper RenderNoInformation(int colspan)
+{
+    <tr>
+        <td colspan="@colspan" class="text-center" data-isNoInfo="true">@BetListsResources.NoInformationIsAvailable</td>
+    </tr>
+}
+
+@helper RenderDetail(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isMobile = false)
+{
+    var choice = new HtmlString(builder.BuildChoice(ticket, helper, ticketData));
+
+    if (isMobile)
+    {
+        @choice
+    }
+    else
+    {
+        <td>
+            @choice
+        </td>
+    }
+}
+
+
+@helper RenderTotalRows(string winLoss, string stake, string total, int noOfDetails, int numberOfColumns)
+{
+    <tr class="total">
+        <th colspan="3">@BetListsResources.Total</th>
+        <th>@noOfDetails.ToString("#,##0")</th>
+        <th class="text-right">@(new HtmlString(stake))</th>
+        <th class="text-right winloss">@(new HtmlString(winLoss))</th>
+        <th colspan="@(numberOfColumns - 6)"></th>
+    </tr>
+
+    <tr class="winloss-comm">
+        <th colspan="5" mobile-colspan="2">@BetListsResources.WinLossWithCommission</th>
+        <th class="text-right">@(new HtmlString(total))</th>
+        <th colspan="@(numberOfColumns- 6)"></th>
+    </tr>
+}
+
+@helper RenderTotalBetsBreadcrumb(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel)
+{
+    var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
+    var linkIndex = 0;
+    var lastLinkIndex = linkLength - 1;
+
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb">
+            @foreach (var custinfo in viewModel.BreadcrumbLevel)
+            {
+                if (linkIndex == lastLinkIndex)
+                {
+                    <li>
+                        @(custinfo.CustName)
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="breadcrumb-link"
+                           href="@(viewModel.BuildBreadcrumbLink(custinfo, currentRequestUrl, breadcrumbParamByLevel, linkIndex,false))">
+                            @(custinfo.CustName)
+                        </a>
+                    </li>
+
+                }
+
+                linkIndex++;
+            }
+        </ul>
+    </div>
+}
+

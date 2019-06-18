@@ -1,0 +1,80 @@
+﻿
+.old-report {
+    .menubar {
+        height: 39px;
+    }
+
+    .list-menu {
+        overflow: hidden;
+        width: 100%;
+
+        .menu-item {
+            float: left;
+            border: none;
+
+            &:first-child {
+                background: inherit;
+            }
+        }
+    }
+
+    .sub-menu {
+        padding: 0;
+        background-color: #fff;
+    }
+
+    .new-page-content {
+        min-width: 424px;
+    }
+
+    #tblAccountingSheet {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .create-form {
+        padding: 0 20px;
+        margin-top: 0;
+    }
+}
+
+body.phone.old-report {
+    .menubar {
+        display: none;
+    }
+
+    .new-page-content {
+        top: 0;
+        min-width: 100%;
+
+        .create-filter {
+            padding-top: 0;
+        }
+
+        .nav-tabs > li {
+            width: 50%;
+        }
+    }
+
+    .old-report-filter {
+        .page-title {
+            display: none;
+        }
+
+        .nav-tabs {
+            display: none;
+        }
+
+        #dropdown-wagerRptType {
+            width: 100%;
+        }
+
+        .create-form {
+            padding: 0;
+        }
+
+        #wagerReport {
+            padding: 0 0 15px;
+        }
+    }
+}

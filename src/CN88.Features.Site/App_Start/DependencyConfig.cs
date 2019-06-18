@@ -12,7 +12,6 @@
     using Fanex.RemotingRef;
     using global::CN88.BetList.Core.Builders;
     using global::CN88.Features.BetLists;
-    using global::CN88.Features.BetLists.DataAccesses;
     using global::CN88.Features.CustomerList;
     using global::CN88.Features.CustomerList.DataAccesses;
     using global::CN88.Features.CustomerList.Services;
@@ -26,13 +25,13 @@
     using global::CN88.Features.Site.Shared.Controllers;
     using global::CN88.Features.Site.Shared.Helpers;
     using global::CN88.Features.SubAccount.Services;
+    using global::CN88.Web.Helpers;
     using MediatR;
     using ONEbook.SpreadSheets;
     using ONEbook.SpreadSheets.NPOI;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using SmartPunter.DataAccesses;
     using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
@@ -55,7 +54,9 @@
             RegisterServices(container);
 
             // This is an extension method from the integration package.
+#pragma warning disable S3902 // "Assembly.GetExecutingAssembly" should not be called
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+#pragma warning restore S3902 // "Assembly.GetExecutingAssembly" should not be called
 
             // This is an extension method from the integration package as well.
             container.RegisterMvcIntegratedFilterProvider();
@@ -93,7 +94,6 @@
 
             container.RegisterSingleton<CustomerListDataAccess, CustomerListDataAccessImpl>();
             container.RegisterSingleton<SportGroupDataAccess, SportGroupDataAccessImpl>();
-            container.Register<ISmartPunterDataAccess, SmartPunterDataAccess>(Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)
@@ -107,7 +107,7 @@
             container.RegisterSingleton<ReportDateService, ReportDateServiceImpl>();
             container.RegisterSingleton<BrowserHelper, BrowserHelperImpl>();
 
-            container.RegisterPerWebRequest<SessionManager, SessionManagerImpl>();
+            container.Register<SessionManager, SessionManagerImpl>(Lifestyle.Scoped);
 
             container.RegisterSingleton<SportGroupService, SportGroupServiceImpl>();
             container.RegisterSingleton<BettypeGroupService, BettypeGroupServiceImpl>();
@@ -120,16 +120,9 @@
             container.RegisterSingleton<ReportService, ReportServiceImpl>();
             container.RegisterSingleton<PasswordService, PasswordServiceImpl>();
 
-            container.RegisterPerWebRequest<SubAccountService, SubAccountServiceImpl>();
-            container.RegisterPerWebRequest<SubAccountValidator, SubAccountValidatorImpl>();
+            container.Register<SubAccountService, SubAccountServiceImpl>(Lifestyle.Scoped);
+            container.Register<SubAccountValidator, SubAccountValidatorImpl>(Lifestyle.Scoped);
 
-            container.RegisterSingleton<ISmartPunterService, SmartPunterService>();
-            container.Register(
-                () => SmartPunterBetListMonitor.CreateInstance(
-                    container.GetInstance<IUserSession>(),
-                    container.GetInstance<ISmartPunterService>(),
-                    IPHelper.CustomerIP),
-                Lifestyle.Singleton);
             container.RegisterSingleton<BetListsService, BetListsServiceImpl>();
 
             container.Register(typeof(Workbook<>), typeof(NpoiWorkbook<>), Lifestyle.Scoped);
@@ -145,14 +138,17 @@
 
         private static void RegisterBetListCore(Container container)
         {
-            container.RegisterPerWebRequest<ITicketHelper, TicketHelper>();
-            container.RegisterPerWebRequest<IBetListCN88HtmlBuilder, BetListCN88HtmlBuilder>();
-            container.RegisterPerWebRequest<IBetListHTMLBuilder, BetListHTMLBuilder>();
+            container.Register<ITicketHelper, TicketHelper>(Lifestyle.Scoped);
+            container.Register<IBetListCN88HtmlBuilder, BetListCN88HtmlBuilder>(Lifestyle.Scoped);
+            container.Register<IBetListHTMLBuilder, BetListHTMLBuilder>(Lifestyle.Scoped);
 
-            container.RegisterPerWebRequest<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>();
+            container.Register<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>(Lifestyle.Scoped);
 
-            container.RegisterPerWebRequest<IBetListExcelBuilder>(() => container.GetInstance<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
-            container.RegisterPerWebRequest<IBetListCN88ExcelBuilder, BetListCN88ExcelBuilder>();
+            container.Register<IBetListExcelBuilder>(
+                () => container.GetInstance<IBetListFactory<BetListExcelBuilder>>().CreateBuilder()
+                , Lifestyle.Scoped);
+
+            container.Register<IBetListCN88ExcelBuilder, BetListCN88ExcelBuilder>(Lifestyle.Scoped);
 
             container.RegisterSingleton<ParlayDetailWorkbook, ParlayDetailWorkbookImpl>();
             container.RegisterSingleton<BetListOfReportWorkbook, BetListOfReportWorkbookImpl>();

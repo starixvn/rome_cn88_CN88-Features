@@ -1,0 +1,35 @@
+﻿.tblAccountingSheet {
+    > thead > tr > th {
+        text-align: center;
+        font-weight: normal;
+        color: #3b3b3b;
+    }
+
+    > tbody > tr > td {
+        text-align: left;
+        padding: 12px;
+    }
+
+    > tbody > tr:last-child > td {
+        border-bottom: none;
+    }
+}
+
+// For Phone
+body.phone {
+    .tblAccountingSheet {
+        > thead > tr th {
+            padding-top: 0;
+            padding-bottom: 10px;
+            background-color: transparent;
+        }
+
+        > tbody > tr > td {
+            padding: 8px 0;
+        }
+
+        .reportNo {
+            padding-right: 4px;
+        }
+    }
+}

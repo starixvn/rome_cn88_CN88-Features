@@ -1,6 +1,9 @@
-﻿class WagerMonitoring {
+﻿/// <reference path="../../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../../shared/scripts/components/filter-toggle.ts" />
+
+class WagerMonitoring {
     $: JQueryStatic;
-    $tblBetList: JQuery;
+    $tblReport: JQuery;
     $filterForm: JQuery;
     $wagerMonitoringPath: JQuery;
 
@@ -21,24 +24,29 @@
     $sportStakeConditions: JQuery;
     $minTransId: JQuery;
 
-    $iconPause: JQuery;
-    $iconDelete: JQuery;
+    $btnPause: JQuery;
+    $btnClear: JQuery;
+    $btnSpeaker: JQuery;
     $iconSpeaker: JQuery;
     $iconSpeakerText: JQuery;
-    $sound: any;
+    $sound: JQuery;
 
+    pauseWindow: Window;
     ajaxRequest: JQueryXHR;
     filterModal: FilterModal;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
+    toggleHandler: ToggleHandler;
 
     pageSize: number;
     pauseUrl: string;
     getBetsUrl: string;
     intervalTime: number;
-    isCalling: boolean = false;
-    isSpeakOn: boolean = true;
+    isCalling = false;
+    isSpeakOn: boolean;
     speakerOnText: string;
     speakerOffText: string;
+    isMobile: boolean;
+    numberOfRowPerTicket: number;
 
     resources = {
         lblPerSports: '',
@@ -59,10 +67,15 @@
         lblOff: ''
     };
 
-    constructor($: JQueryStatic) {
+    constructor(
+        $: JQueryStatic,
+        filterModal: FilterModal,
+        sportGroupSelectionComponent: SingleSelectionDropdownComponent,
+        toggleHandler: ToggleHandler) {
         this.$ = $;
-        this.filterModal = new FilterModal($);
-        this.sportGroupSelectionComponent = new SingleSelectionDropdownComponent($);
+        this.filterModal = filterModal;
+        this.sportGroupSelectionComponent = sportGroupSelectionComponent;
+        this.toggleHandler = toggleHandler;
     }
 
     init(): void {
@@ -76,14 +89,18 @@
         this.pauseUrl = this.$("#pause-url").val();
         this.getBetsUrl = this.$("#get-bets-url").val();
         this.intervalTime = this.$("#IntervalTime").val();
+        this.numberOfRowPerTicket = this.isMobile ? this.$("#NumberOfMobileRowsPerTicket").val() : 1;
+        this.isSpeakOn = !this.isMobile;
 
-        setInterval(() => { this.getLastBets() }, this.intervalTime * 1000);
+        setInterval(this.getLastBets, this.intervalTime * 1000);
 
         this.$.unblockUI();
     }
 
     cacheElements(): void {
-        this.$tblBetList = this.$("#tbl-betlist");
+        this.$tblReport = this.$("#tbl-report");
+        this.isMobile = this.$tblReport.data("ismobile");
+
         this.$filterForm = this.$("#filter-form");
         this.$wagerMonitoringPath = this.$("#WagerMonitoringPath");
 
@@ -104,11 +121,12 @@
         this.$sportStakeConditions = this.$("#SportStakeConditions");
         this.$minTransId = this.$("#MinTransId");
 
-        this.$iconPause = this.$(".icon-pause");
-        this.$iconDelete = this.$(".icon-delete");
+        this.$btnPause = this.$("#btnPause");
+        this.$btnClear = this.$("#btnClear");
+        this.$btnSpeaker = this.$("#btnSpeaker");
         this.$iconSpeaker = this.$(".icon-audio-speaker");
         this.$iconSpeakerText = this.$("#icon-audio-text");
-        this.$sound = document.getElementById("sound");
+        this.$sound = this.$("#sound");
 
         this.resources = {
             lblPerSports: $("#lbl-PerSports").val(),
@@ -131,49 +149,74 @@
     }
 
     renderComponents(): void {
+        if (this.isMobile) {
+            this.$tblReport.stacktable();
+            this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "filter-form", "tbl-report-stack"));
+            this.$("body").backtop();
+            this.$tblReport = this.$("#tbl-report-stack");
+        }
         this.sportGroupSelectionComponent.render(
-            new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", () => { this.onSportGroupChange(); }));
+            new SingleSelectionDropdownOption("dropdown-sportgroup", "UserSelectedSportGroupId", this.onSportGroupChange));
     }
 
-    onSportGroupChange(): void {
-        var sportGroup = this.sportGroupSelectionComponent.$dropdown.val();
-        window.location.href = this.$wagerMonitoringPath.val() + "?SportGroup=" + sportGroup;
+    onSportGroupChange = () => {
+        const sportGroup = this.sportGroupSelectionComponent.$dropdown.val();
+        window.location.href = `${this.$wagerMonitoringPath.val()}?SportGroup=${sportGroup}`;
     }
 
     registerEvents(): void {
-        let self = this;
+        const clickTouchedEvent = "click touchend";
 
-        this.$filterForm.find(".link").on("click touchend", function () {
-            let link = $(this);
-            self.filterModal.show(link.data("target"), self.getParam(), () => { self.updateFilterForm(); });
+        if (this.isMobile) {
+            this.$filterForm.find(".link").parent().on(clickTouchedEvent, (event: JQueryEventObject) => {
+                const link = this.$(event.currentTarget).find("a.link");
+                this.openFilterModal(link.data("target"));
+            });
+        } else {
+            this.$filterForm.find(".link").on(clickTouchedEvent, (event: JQueryEventObject) => {
+                const link = this.$(event.currentTarget);
+                this.openFilterModal(link.data("target"));
+            });
+        }
+
+        this.$btnPause.on(clickTouchedEvent, this.onPauseClick);
+
+        this.$btnClear.on(clickTouchedEvent, () => {
+            this.$tblReport.find("tbody").empty();
         });
 
-        this.$iconPause.parent().on("click touchend", () => {
-            this.onPauseClick();
-        });
+        this.$btnSpeaker.on(clickTouchedEvent, (event: JQueryEventObject) => {
+            if (event.type === "touchend") {
+                this.$btnSpeaker.off("click");
+            }
 
-        this.$iconDelete.parent().on("click touchend", () => {
-            this.$tblBetList.find("tbody").empty();
-        });
-
-        this.$iconSpeaker.parent().on("click touchend", () => {
             this.isSpeakOn = !this.isSpeakOn;
 
             if (this.isSpeakOn) {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-off").addClass("icon-audio-speaker-on");
                 this.$iconSpeakerText.text(this.resources.lblOn);
-                this.$iconSpeaker.parent().removeClass("off").addClass("on");
+                this.$btnSpeaker.removeClass("off").addClass("on");
             } else {
                 this.$iconSpeaker.removeClass("icon-audio-speaker-on").addClass("icon-audio-speaker-off");
                 this.$iconSpeakerText.text(this.resources.lblOff);
-                this.$iconSpeaker.parent().removeClass("on").addClass("off");
+                this.$btnSpeaker.removeClass("on").addClass("off");
             }
 
-            this.$sound.play();
+            this.playSound();
         });
     }
 
-    onPauseClick(): void {
+    openFilterModal(targetTab: string): void {
+        this.filterModal.show(targetTab, this.getParam(), this.updateFilterForm);
+    }
+
+    onPauseClick = () => {
+        if (this.isMobile) {
+            this.pauseWindow = window.open("", "_blank");
+        } else {
+            this.pauseWindow = window.open("", "Pause", "height=800,width=1280");
+        }
+
         this.$.ajax({
             url: this.pauseUrl,
             success: (html) => {
@@ -181,14 +224,13 @@
             },
             complete: this.$.unblockUI
         });
-    }
+    };
 
     onPauseClickSuccess(html: string): void {
-        let result = html.replace('<table></table>', this.$tblBetList.prop("outerHTML"));
-        let w = window.open("", "Pause", "height=800,width=1280");
-        w.document.open();
-        w.document.write(result);
-        w.document.close();
+        const result = html.replace('<table></table>', this.$tblReport.prop("outerHTML"));
+        this.pauseWindow.document.open();
+        this.pauseWindow.document.write(result);
+        this.pauseWindow.document.close();
     }
 
     getParam = () => {
@@ -203,14 +245,15 @@
             this.$matchIds.val(),
             this.$betTypeGroupIds.val()
         );
-    }
+    };
 
-    updateFilterForm(): void {
+    updateFilterForm = () => {
         this.$.blockUI();
 
-        var param = this.filterModal.getParameters();
+        const param = this.filterModal.getParameters();
 
-        this.$stakeLnk.html(param.isSelectAllSports ? `${this.resources["lblStakeMode_" + param.stakeMode]} ${param.stakeLimit}` : this.resources.lblPerSports);
+        const stakeMode = this.resources[`lblStakeMode_${param.stakeMode}`];
+        this.$stakeLnk.html(param.isSelectAllSports ? `${stakeMode} ${param.stakeLimit}` : this.resources.lblPerSports);
         this.$maketLnk.html(param.markets.length ? param.markets : this.resources.lblAllMarkets);
         this.$leagueLnk.html(param.leagueIds.length ? `${this.resources.lblLeague} (${param.leagueIds.length})` : this.resources.lblAllLeagues);
         this.$eventLnk.html(param.matchIds.length ? `${this.resources.lblEvent} (${param.matchIds.length})` : this.resources.lblAllEvents);
@@ -226,9 +269,9 @@
         this.$sportStakeConditions.val(param.sportStakeConditions);
 
         this.$.unblockUI();
-    }
+    };
 
-    getLastBets(): void {
+    getLastBets = () => {
         if (this.filterModal.isOpeningFilter) {
             return;
         }
@@ -240,7 +283,7 @@
         this.$.blockUI();
 
         this.isCalling = true;
-        let param = {
+        const param = {
             sportGroup: this.$sportGroup.val(),
             isSelectAllSports: this.$("#IsSelectAllSports").val(),
             stakeMode: this.$("#StakeMode").val(),
@@ -257,10 +300,10 @@
             method: "POST",
             data: param,
             url: this.getBetsUrl,
-            success: (result) => { this.successGetLastBets(result) },
+            success: (result) => { this.successGetLastBets(result); },
             complete: this.$.unblockUI
         });
-    }
+    };
 
     abortRequest(): void {
         if (this.ajaxRequest) {
@@ -273,30 +316,78 @@
             return;
         }
 
-        let $responseTable = this.$(responseHtml);
-        let totalRecords = $responseTable.data("totalrecords");
-        let minTransId = $responseTable.data("mintransid");
+        const $responseTable = this.$(responseHtml);
+        const totalRecords = $responseTable.data("totalrecords");
+        const minTransId = $responseTable.data("mintransid");
         this.$minTransId.val(minTransId);
 
         if (totalRecords > 0) {
-            this.$tblBetList.find("tbody").prepend($responseTable.find("tbody").html());
+            this.$tblReport.find("tbody").prepend($responseTable.find("tbody").html());
+            this.removeRows();
 
-            var numberOfRows = this.$tblBetList.find("tbody tr").length;
-
-            if (numberOfRows > this.pageSize) {
-                this.$tblBetList.find("tbody tr").slice(-(numberOfRows - this.pageSize)).remove();
+            if (this.isMobile) {
+                this.bindShowPossEvent();
             }
 
             if (this.isSpeakOn) {
-                this.$sound.play();
+                this.playSound();
             }
         }
 
         this.isCalling = false;
     }
+
+    removeRows(): void {
+        const selector = this.isMobile ? "tbody tr.fixed-row" : "tbody tr";
+        const numberOfRows = this.$tblReport.find(selector).length;
+
+        if (numberOfRows > this.pageSize) {
+            this.$tblReport.find("tbody tr").slice(-(numberOfRows - this.pageSize) * this.numberOfRowPerTicket).remove();
+        }
+    }
+
+    bindShowPossEvent(): void {
+        const $stackTableElement = this.$("#tbl-report-stack");
+
+        $stackTableElement
+            .find('.btn-collapse-expanse')
+            .parent()
+            .off('click.stack')
+            .on('click.stack', function () {
+                const btnIcon = $(this).find(".btn-collapse-expanse");
+                const rowIndex = btnIcon.parent().attr('data-stack-row');
+                const isCollapsed = btnIcon.hasClass('icon-add');
+                const $nextRows = $stackTableElement.find('.stack-row-' + rowIndex);
+                const $tr = btnIcon.parent().parent();
+                const speedOfEffect = 200;
+
+                if (isCollapsed) {
+                    btnIcon.removeClass('icon-add')
+                        .addClass('icon-minus');
+                    $tr.removeClass('stack-collapsed').addClass('stack-expanded');
+                    $nextRows.show(speedOfEffect);
+                }
+                else {
+                    btnIcon.removeClass('icon-minus')
+                        .addClass('icon-add');
+                    $tr.removeClass('stack-expanded').addClass('stack-collapsed');
+                    $nextRows.hide(speedOfEffect);
+                }
+            });
+    }
+
+    playSound(): void {
+        this.$sound.load();
+        this.$sound.trigger("play");
+    }
 }
 
 $(document).ready(() => {
-    const wagerMonitoring = new WagerMonitoring($);
+    const wagerMonitoring = new WagerMonitoring(
+        $,
+        new FilterModal($),
+        new SingleSelectionDropdownComponent($),
+        new ToggleHandler($));
+
     wagerMonitoring.init();
-})
+});

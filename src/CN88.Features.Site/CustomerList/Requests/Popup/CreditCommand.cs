@@ -9,10 +9,7 @@
         public CreditCommand(IUser viewer)
             : base(viewer)
         {
-            LanguageKey = viewer.LanguageKey;
         }
-
-        public string LanguageKey { get; }
 
         public decimal CreditAmount { get; set; }
     }

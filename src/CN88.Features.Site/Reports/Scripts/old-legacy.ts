@@ -1,8 +1,10 @@
-﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
-/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="pt-history.ts" />
+﻿/// <reference path="old-base-report.ts" />
+/// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/sort.ts" />
+/// <reference path="../../shared/scripts/components/link-builder.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
-"use strict";
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+
 class OldLegacyReport extends OldBaseReport {
     $tooltip: JQuery;
     $reportForm: JQuery;
@@ -16,7 +18,6 @@ class OldLegacyReport extends OldBaseReport {
     sortComponent: SortComponent;
     linkBuilderComponent: LinkBuilderComponent;
     pagerComponent: ClientPagerComponent;
-    //ptHistory: PTHistory;
 
     constructor(
         $: JQueryStatic,
@@ -42,9 +43,6 @@ class OldLegacyReport extends OldBaseReport {
         this.cacheDOMElements();
         this.renderComponents();
 
-        //this.ptHistory = new PTHistory(this.$);
-        //this.ptHistory.init();
-
         this.registerEvents();
 
         this.$subMenuLegacy.parent().addClass("active");
@@ -68,7 +66,7 @@ class OldLegacyReport extends OldBaseReport {
         super.renderComponents();
 
         if (!this.isMobile) {
-            let headers = this.$custLevelId.val() == "4"
+            const headers = this.$custLevelId.val() === "4"
                 ? { 0: { sorter: "text" } }
                 : { 0: { sorter: "text" }, 1: { sorter: "text" } };
             this.sortComponent.render(
@@ -94,20 +92,21 @@ class OldLegacyReport extends OldBaseReport {
         this.$excelIcon.click(() => { this.onExportExcelEvent(); })
 
         this.$("body").on("click touchend", (event) => {
-            let tooltip = this.$(event.target);
+            const tooltip = this.$(event.target);
+            const showTooltipClass = "tooltip-show";
             if (tooltip.hasClass("more-info")) {
-                var isShowing = tooltip.hasClass("tooltip-show");
+                const isShowing = tooltip.hasClass(showTooltipClass);
 
-                var showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
                 showingToolTips.tooltip("hide");
-                showingToolTips.removeClass("tooltip-show");
+                showingToolTips.removeClass(showTooltipClass);
 
                 if (isShowing) {
                     tooltip.tooltip("hide");
-                    tooltip.removeClass("tooltip-show");
+                    tooltip.removeClass(showTooltipClass);
                 } else {
                     tooltip.tooltip("show");
-                    tooltip.addClass("tooltip-show");
+                    tooltip.addClass(showTooltipClass);
                 }
 
                 event.stopPropagation();

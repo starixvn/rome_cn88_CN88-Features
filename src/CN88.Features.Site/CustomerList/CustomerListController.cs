@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using System.Web.SessionState;
     using Alpha.Web.Filters;
+    using CN88.Web.Helpers;
     using CustomerList;
     using CustomerList.Requests;
     using MediatR;
@@ -13,8 +14,7 @@
     [SessionState(SessionStateBehavior.ReadOnly), RestrictHeadlineFilter]
     public class CustomerListController : FeatureBaseController
     {
-        public CustomerListController(IMediator mediator)
-     : base(mediator)
+        public CustomerListController(IMediator mediator) : base(mediator)
         {
         }
 
@@ -22,7 +22,6 @@
         public async Task<ActionResult> Index(IndexQuery message)
             => await ViewAsync(message);
 
-        //[HttpGet]
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
             => Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
 
@@ -54,7 +53,6 @@
                 $"&UplineId={message.ViewerId}",
                 $"&ActorLevel={message.ViewerLevelId}",
                 "&ProductId=1");
-
 
             return Redirect(urlString);
         }

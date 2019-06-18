@@ -1,7 +1,4 @@
 ﻿"use strict";
-interface JQuery {
-    toggleHandler(option: any): void;
-}
 
 class ToggleHandlerOption {
     constructor(

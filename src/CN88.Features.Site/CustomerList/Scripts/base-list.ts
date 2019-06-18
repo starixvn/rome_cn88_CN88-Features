@@ -1,8 +1,12 @@
-﻿class BaseList {
+﻿/// <reference path="../../shared/scripts/components/pager.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+
+class BaseList {
     $: JQueryStatic;
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
+    bootstrapDropdownComponent: BootstrapDropdownComponent;
 
     $tooltip: JQuery;
     $dropdownStatus: JQuery;
@@ -22,7 +26,7 @@
     };
 
     viewResources: any;
-    indexManager = null;
+    indexManager: any = null;
 
     levelName: string;
     levelNameLowerCase: string;
@@ -37,11 +41,13 @@
     constructor(
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
+        bootstrapDropdownComponent: BootstrapDropdownComponent,
         numeral: any,
-        pager: PagerComponent,
+        pager: PagerComponent,        
         levelName: string) {
         this.$ = $;
         this.statusComponent = statusComponent;
+        this.bootstrapDropdownComponent = bootstrapDropdownComponent;
         this.numeral = numeral;
         this.pager = pager;
         this.levelName = levelName;
@@ -72,11 +78,6 @@
         var self = this;
         this.$("#btn-submit-" + this.levelName.toLowerCase()).click(function () {
             self.reportParam.PageIndex = 1;
-
-            if (self.indexManager.isDevice) {
-                self.indexManager.masterToggleHandler.hideFilter();
-            }
-
             self.viewList();
         });
     }
@@ -107,13 +108,18 @@
         this.$.blockUI();
         this.reportParam = {
             DownlineUsername: null,
-            Username: this.$username.val(),
+            Username: <string>this.$username.val(),
             SearchRoleId: this.levelId,
             CustId: 0,
-            Status: this.$dropdownStatus.find("option:selected").val(),
+            Status: <number>this.$dropdownStatus.find("option:selected").val(),
             PageSize: this.reportParam.PageSize,
             PageIndex: this.reportParam.PageIndex
         };
+
+        if (this.indexManager.isDevice) {
+            this.indexManager.masterToggleHandler.hideFilter();
+        }
+
         this.loadData();
     };
     pagingList = () => {
@@ -127,13 +133,20 @@
             var $this = self.$(this);
             var viewStatementUrl = $("#viewStatementtUrl").val() + "?CustName=" + $this.attr("username") + "&CustId=" + $this.attr("cust-id");
 
-            window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
+            if (self.indexManager.isDevice) {
+                window.open(viewStatementUrl, "_blank");
+            } else {
+                window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
+            }
         });
 
         this.$tblReport.find(".view-downline").click(function () {
             var $this = self.$(this);
-
-            self.viewDownlineFunction($this.attr("cust-id"), $this.html());
+            if (self.indexManager.isDevice) {
+                self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"));
+            } else {
+                self.viewDownlineFunction($this.attr("cust-id"), $this.html());
+            }
         });
 
         this.$tblReport.find(".col-credit").click(function () {
@@ -188,7 +201,8 @@
         this.$tblReport.find("> tfoot").empty();
         this.$("#PageIndex" + this.levelName).remove();
         this.$("#PageSize" + this.levelName).remove();
-        if (rs.TotalCustomers >= this.minPageSize) {
+        const pagerElement = this.$("#pager-" + this.levelNameLowerCase);
+        if (rs.TotalCustomers >= this.minPageSize && pagerElement.length > 0) {
             var footer = "<div id='report-pager-" + this.levelNameLowerCase + "' " +
                 "data-labelpage='" + this.viewResources.Page + "'" +
                 "data-labelof='" + this.viewResources.Of + "'" +
@@ -198,11 +212,13 @@
                 "data-totalrecords='" + rs.TotalCustomers + "'" +
                 "></div>";
 
-            this.$("#pager-" + this.levelNameLowerCase).html(footer);
+            pagerElement.html(footer);
             this.pager.render(new PagerOption(this.pagingList, "report-pager-" + this.levelNameLowerCase, "form-" + this.levelNameLowerCase, "PageIndex" + this.levelName, "PageSize" + this.levelName));
         } else {
-            this.$("#pager-" + this.levelNameLowerCase).html("");
+            pagerElement.html("");
         }
+
+        this.bootstrapDropdownComponent.render(new BootstrapDropdownOption(".tbl-downlinelist .dropdown"));
 
         this.initTooltip();
         this.$.unblockUI();

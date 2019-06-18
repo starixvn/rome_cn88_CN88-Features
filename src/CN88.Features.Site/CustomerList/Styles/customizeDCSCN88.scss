@@ -1,120 +1,42 @@
-﻿@import "../../Shared/Styles/variables";
+﻿// Icon back to top
 
-.customer-setting {
-    min-width: 760px;
-}
+.back-to-top {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    background: #777;
+    padding: 11px 17px;
+    cursor: pointer;
+    opacity: .7;
 
-@media (max-device-width: $screen-device-lower768),
-    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
-    body {
-        padding-top: 0;
-        padding-bottom: 37px;
-        font-size: 10.5px;
-    }
-
-    .customer-setting {
-        min-width: initial;
-    }
-
-    .setting-type-1 .col {
-        width: 100% !important;
-        padding: 12px 5px;
-    }
-
-    .setting-type-1 .sub-header,
-    .block__header {
-        font-weight: bold;
-    }
-
-    .block__header {
-        padding-left: 12px;
-        color: #852423;
-        border-bottom-color: #BDBDBD;
-    }
-
-    .setting-type-1 .sub-header {
-        border-bottom-width: 1px;
-    }
-
-    .setting-type-1 .row {
-        margin-left: 12px;
-    }
-
-    /*.customer-level-3,
-    .customer-level-2 {
-        .last-setting-type {
-            min-width: 600px;
-        }
-    }*/
-
-        .customer-level-3,
-        .customer-level-2 {
-            .setting-type-2 {
-                width: 100%;
-                overflow-x: auto;
-
-                //min-width: 600px;
-                > .block__header,
-                > .block__lbl-group,
-                > .block__item-group {
-                    width: 600px;
-                }
-            }
-        }
-    
-    .customer-level-1 {
-        .full-width .block__lbl {
-            width: 29%;
-        }
-
-        .full-width .block__value,
-        .w80-percent {
-            width: 80% !important;
-        }
-    }
-
-    .block__cell {
-        flex-direction: column;
-    }
-
-    select.setting-field {
-        min-width: 50px;
-    }
-
-    .block__lbl--padding-left {
-        padding-left: 2px;
-    }
-
-    .full-width .block__lbl {
-        width: 12%;
-    }
-
-    .full-width .block__value,
-    .w80-percent {
-        width: 88% !important;
-    }
-
-    .block__cell, .block__lbl, .block__value {
-        padding-left: 2px;
-        padding-right: 2px;
-    }
-
-    .system-2 {
-        padding-bottom: 50px;
-    }
-
-    .btn-container {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+    .icon {
+        position: relative;
+        display: block;
+        width: 2px;
+        height: 15px;
         background: #fff;
-        margin: 0;
-        padding: 12px;
-        z-index: 90;
-    }
+        margin: 0 auto;
 
-    .setting-field--constraint {
-        margin-top: 2px;
+        &:before, &:after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            display: block;
+            width: 8px;
+            height: 2px;
+            background: #fff;
+        }
+
+        &:before {
+            left: -5px;
+            transform: rotate(-45deg);
+            transform-origin: 50% 100%;
+        }
+
+        &:after {
+            right: -5px;
+            transform: rotate(45deg);
+            transform-origin: 50% 100%;
+        }
     }
 }

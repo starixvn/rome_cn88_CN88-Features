@@ -1,11 +1,15 @@
-﻿class TotalBetParlay {
+﻿/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+class TotalBetParlay {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
 
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
     stakeModeSelectionComponent: SingleSelectionDropdownComponent;
     viewModeSelectionComponent: SingleSelectionDropdownComponent;
-    cleaveStakeLimit: any;
+    cleaveStakeLimit: Cleave;
     $stakeLimit: JQuery;
     toggleHandler: ToggleHandler;
     isMobile: boolean;
@@ -29,12 +33,11 @@
 
     init = () => {
         this.$.blockUI();
-        this.isMobile = this.$("#isMobile").val() == "True";
+        this.isMobile = this.$("#isMobile").val() === "True";
 
         if (this.isMobile) {
             this.$("#tbl-report").stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
-            this.$('body').backtop();
         }
         else {
             this.pagerComponent.render();
@@ -61,7 +64,7 @@
         this.stakeModeSelectionComponent.updateSelectedValue();
         this.viewModeSelectionComponent.updateSelectedValue();
 
-        let stake = parseFloat(this.cleaveStakeLimit.getRawValue()) || 0;
+        const stake = parseFloat(this.cleaveStakeLimit.getRawValue()) || 0;
         this.$stakeLimit.val(stake);
     };
 }
@@ -75,4 +78,4 @@ $(document).ready(() => {
         new SingleSelectionDropdownComponent($),
         new ToggleHandler($));
     totalBetParlay.init();
-})
+});

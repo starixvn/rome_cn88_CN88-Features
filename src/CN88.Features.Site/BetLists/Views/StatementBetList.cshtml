@@ -1,0 +1,39 @@
+﻿@using CN88.Features.Extensions
+@model BetListOfStatementViewModel
+@{
+    ViewBag.Title = BetListsResources.BetList;
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
+}
+@if (Model.IsMobile)
+{
+    <div class="new-page-header">@BetListsResources.Statement</div>
+}
+<div class="betlist-container betlist-statement">
+    @if (Model.IsMobile)
+    {
+        <div class="page-title-mobile btn-back back-area">
+            <span class="icon-chevron-left  back-step"></span>
+            @Model.Date.ToLongDay(CN88.Features.BetLists.Resources.BetListsResources.ResourceManager)
+        </div>
+        <div class="username">@Model.CustName</div>
+        @Html.Partial("~/BetLists/Views/BetListTableMobile.cshtml", Model)
+    }
+    else
+    {
+        <div class="page-title">
+            <button class="btn-back"><span class="icon-chevron-left"></span>@BetListsResources.Back</button>
+            @BetListsResources.Statement @Model.CustName | @Model.Date.ToLongDay(CN88.Features.BetLists.Resources.BetListsResources.ResourceManager)
+        </div>
+        @Html.Partial("~/BetLists/Views/BetListTable.cshtml")
+        @Pager.Render(Model.PagerViewModel)
+    }
+</div>
+@Html.Partial("~/BetLists/Views/Components/Popup.cshtml")
+@Html.Partial("~/BetLists/Views/Components/HiddenFields.cshtml")
+@Html.Hidden("from-date", Model.Date)
+@section Scripts{
+    @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-statement")
+}

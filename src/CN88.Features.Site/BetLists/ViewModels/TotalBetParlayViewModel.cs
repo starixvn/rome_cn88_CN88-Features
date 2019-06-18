@@ -2,17 +2,15 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.Web.Helpers;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;
-    using Features.Shared.Configurations;
     using Requests;
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
 
-    public class TotalBetParlayViewModel : BetListTableViewModel
+    public class TotalBetParlayViewModel : BetListViewModelBase
     {
         public TotalBetParlayViewModel(
             TotalBetParlayQuery message,
@@ -25,62 +23,22 @@
             IEnumerable<SelectListItemExt> viewModes,
             bool isMobile,
             string[] excludingTicketStatus = null)
+            : base(message, betListData, ticketHelper, cn88Builder, builder, isMobile, excludingTicketStatus)
         {
-            Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
-
-            CustLevel = message.ActorLevel;
-            DisplayVNIP = message.DisplayVNIP;
-            CustName = message.CustName;
-            CustId = message.CustId;
-
             SportGroupId = message.SportGroupId;
             ViewMode = message.ViewMode;
             StakeMode = message.StakeMode;
             StakeLimit = message.StakeLimit;
 
-            NoOfColumns = CustLevel.IsSuperLevel() || CustLevel.IsHeadline() ? 10 : CustLevel.IsMasterLevel() ? 8 : 7;
-
-            BetListData = betListData;
-            BetListTotal = new BetListTotal(betListData, Divisor, excludingTicketStatus);
-            TicketHelper = ticketHelper;
-            CN88Builder = cn88Builder;
-            Builder = builder;
-
-            ViewerIdOrViewerAdminId = message.ViewerIdOrViewerAdminId;
-            ViewerLevelId = message.ViewerLevelId;
-
-            PageIndex = message.PageIndex;
-            PageSize = message.PageSize;
-
             SportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.SportGroupId);
             StakeSelectionViewModel = new StakeSelectionViewModel(stakeModes, message.StakeMode, message.StakeLimit);
             ViewModeSelectionViewModel = new SingleSelectionViewModel(viewModes, message.ViewMode);
-            PagerViewModel = new PagerViewModel(message.PageIndex, message.PageSize, betListData.Tickets.Count());
 
             TotalPayout = BetListData.Tickets.Sum(ticket => ticket.Payout) / Divisor;
 
-            IsMobile = isMobile;
-
             IsShowPayout = true;
-
             IsShowWinLoss = false;
         }
-
-        public int PageIndex { get; }
-
-        public int PageSize { get; }
-
-        public string OldMainPath => MicroSites.OldMainUrl("~");
-
-        public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
-
-        public string TotalBetsForecastPath => AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
-
-        public int CustId { get; }
-
-        public int ViewerIdOrViewerAdminId { get; }
-
-        public byte ViewerLevelId { get; }
 
         public int SportGroupId { get; }
 
@@ -92,10 +50,10 @@
 
         public SingleSelectionViewModel SportGroupSelectionViewModel { get; }
 
-        public PagerViewModel PagerViewModel { get; private set; }
-
         public StakeSelectionViewModel StakeSelectionViewModel { get; }
 
         public SingleSelectionViewModel ViewModeSelectionViewModel { get; }
+
+        protected override int GetMaxColumn() => 10;
     }
 }

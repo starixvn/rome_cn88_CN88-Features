@@ -2,6 +2,6 @@
 {
     public static class TotalBetTypeConstants
     {
-        public static readonly byte Started = 5;
+        public const byte Started = 5;
     }
 }

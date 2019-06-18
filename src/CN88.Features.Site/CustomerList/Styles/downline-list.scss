@@ -1,5 +1,5 @@
 ﻿@import "../../Shared/Styles/variables";
-@import "variables";
+@import "_variables.scss";
 
 body {
     padding: 14px;
@@ -125,8 +125,7 @@ body.phone {
         margin-top: 18px;
 
         [class^="icon-filter"] {
-            float: left;
-            margin-right: 10px;
+            float: right;
         }
 
         .add-new {
@@ -142,17 +141,88 @@ body.phone {
     }
 
     .filter {
+        display: table;
+
         .form-group .control {
             width: 100%;
             margin-left: 0;
         }
 
-        .add-new {
-            display: none;
+        .txt-username-nickname {
+            font-size: $font-size-mobile-input;
         }
 
         .btn-submit {
             width: 100%;
         }
+    }
+
+    .tbl-downlinelist {
+        width: 100%;
+
+        .col-action {
+            width: 54px;
+            min-width: 54px;
+            padding: 0;
+        }
+
+        .col-credit {
+            min-width: 90px;
+        }
+
+        .col-status {
+            min-width: 54px;
+        }
+
+        .col-action .dropdown .dropdown-menu [class^="icon"] {
+            margin: 0;
+        }
+
+        .col-action .dropdown .dropdown-menu [class^="icon"]:before,
+        .col-action .dropdown .dropdown-menu [class^="icon"]:after {
+            display: none;
+        }
+
+        .username-wrapper {
+            min-width: 124px;
+            word-break: break-all;
+
+            .cust-nickname {
+                margin-top: 5px;
+                color: #865800;
+                font-style: italic;
+            }
+
+            .cust-name {
+                margin-top: 5px;
+                color: #3B3B3B;
+                font-size: 9.5px;
+                font-style: italic;
+            }
+        }
+
+
+        &.level-member {
+            .col-username {
+                min-width: 58px;
+            }
+
+            .username-wrapper {
+                min-width: 78px;
+                width: auto;
+
+                .nickname-mobile {
+                    color: #3b3b3b;
+                }
+            }
+        }
+    }
+    // status
+    .row-closed.reason-0,
+    .row-closed.reason-1,
+    .row-closed.reason-2,
+    .row-closed.reason-3,
+    .row-suspended {
+        background-color: transparent;
     }
 }

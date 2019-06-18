@@ -7,10 +7,11 @@
 
     public class WinLostBlockViewModel
     {
+        const string defaultValue = "0.00";
+
         public WinLostBlockViewModel(ITicket ticket, int divisor)
         {
             SetData(ticket, divisor);
-            CommVisibility = DisplayComm(ticket);
         }
 
         public string WinLost { get; private set; }
@@ -18,8 +19,6 @@
         public bool CommVisibility { get; }
 
         public string Comm { get; private set; }
-
-        private static bool DisplayComm(ITicket ticket) => false;
 
         private void SetData(ITicket ticket, int divisor)
         {
@@ -31,31 +30,27 @@
                 return;
             }
 
-            var status = ticket.Status.ToLowerInvariant();
-
-            switch (status)
+            switch (ticket.Status.ToLowerInvariant())
             {
                 case BetStatus.Running:
                 case BetStatus.Waiting:
-                    WinLost = "0.00";
+                case BetStatus.Reject:
+                    WinLost = defaultValue;
                     Comm = string.Empty;
                     break;
 
                 case BetStatus.Void:
-                    WinLost = ticket.BetTypeId == 500 ? "(NW) 0.00" : "0.00";
-                    Comm = "0.00";
-                    break;
-
-                case BetStatus.Reject:
-                    WinLost = "0.00";
-                    Comm = string.Empty;
+                    WinLost = ticket.BetTypeId == 500 ? "(NW) 0.00" : defaultValue;
+                    Comm = defaultValue;
                     break;
 
                 default:
-                    WinLost = ticket.BetTypeId == 500 
-                        ? "(NW) " + ConvertByBetType.Winloss((ticket.ActualStake / divisor).Round()) 
+                    WinLost = ticket.BetTypeId == 500
+                        ? "(NW) " + ConvertByBetType.Winloss((ticket.ActualStake / divisor).Round())
                         : ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round());
-                    Comm = ticket.BetTypeId == 500 ? ConvertByBetType.Winloss(ticket.PlayerComm) : ConvertByBetType.Comm(ticket.PlayerComm);
+                    Comm = ticket.BetTypeId == 500
+                        ? ConvertByBetType.Winloss(ticket.PlayerComm)
+                        : ConvertByBetType.Comm(ticket.PlayerComm);
                     break;
             }
         }

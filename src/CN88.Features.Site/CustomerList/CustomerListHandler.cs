@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using CN88.Web.Helpers;
     using CustomerList;
     using CustomerList.Requests;
     using CustomerList.ViewModels;
@@ -15,17 +16,16 @@
     using Features.Shared.Models;
     using Features.Shared.Services;
     using MediatR;
-    using Shared.Helpers;
     using Shared.ViewModels;
 
     public class CustomerListHandler :
-         IRequestHandler<IndexQuery, IndexViewModel>,
-         IRequestHandler<CustomerListQuery, CustomerListViewModel>,
-         IRequestHandler<CreditPopupQuery, CreditRangeViewModel>,
-         IRequestHandler<CustomerStatusPopupQuery, StatusPopupViewModel>,
-         IRequestHandler<CreditCommand, Result>,
-         IRequestHandler<CustomerStatusCommand, Result>,
-         IRequestHandler<OnlineMembersQuery, OnlineMemberViewModel>,
+        IRequestHandler<IndexQuery, IndexViewModel>,
+        IRequestHandler<CustomerListQuery, CustomerListViewModel>,
+        IRequestHandler<CreditPopupQuery, CreditRangeViewModel>,
+        IRequestHandler<CustomerStatusPopupQuery, StatusPopupViewModel>,
+        IRequestHandler<CreditCommand, Result>,
+        IRequestHandler<CustomerStatusCommand, Result>,
+        IRequestHandler<OnlineMembersQuery, OnlineMemberViewModel>,
         IRequestHandler<MemberStatementQuery, MemberStatementViewModel>
     {
         private readonly CustomerListService service;
@@ -105,13 +105,12 @@
 
         public MemberStatementViewModel Handle(MemberStatementQuery message)
         {
-            var param = new MemberStatementParam
-            {
-                CustId = message.CustId,
-                FromDate = message.UserSelectedFromDate,
-                ToDate = message.UserSelectedToDate,
-                SportType = message.UserSelectedSportGroupId
-            };
+            var param = new MemberStatementParam(
+                message.CustId,
+                message.UserSelectedSportGroupId,
+                message.UserSelectedFromDate,
+                message.UserSelectedToDate);
+
             var statements = statementService.Get(param);
             var sportGroups = sportService.GetSportGroups();
 
@@ -122,7 +121,8 @@
                 message,
                 BuildSportTypeSelectListItems(sportGroups, message.UserSelectedSportGroupId),
                 BuildDateTimeSelectListItems(fromDates, message.UserSelectedFromDate),
-                BuildDateTimeSelectListItems(fromDates, message.UserSelectedToDate));
+                BuildDateTimeSelectListItems(fromDates, message.UserSelectedToDate),
+                browserHelper.IsMobile());
         }
 
         private IEnumerable<SelectListItemExt> BuildSportTypeSelectListItems(

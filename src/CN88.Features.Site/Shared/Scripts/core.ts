@@ -162,7 +162,3 @@ class CN88Features {
 }
 
 const cn88Features = new CN88Features($, store);
-
-interface JQuery {
-    stickyTableHeaders(): void;
-}

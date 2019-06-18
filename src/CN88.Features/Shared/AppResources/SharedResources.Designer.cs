@@ -610,6 +610,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unlock.
+        /// </summary>
+        public static string Unlock {
+            get {
+                return ResourceManager.GetString("Unlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Code.
         /// </summary>
         public static string UserCode {

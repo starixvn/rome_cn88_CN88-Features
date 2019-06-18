@@ -2,19 +2,17 @@
 {
     using Alpha.Auth.Configurations;
     using Alpha.Web.Helpers;
+    using CN88.Web.Helpers;
     using Features.Shared.Models;
-    using Shared.Helpers;
 
     public class IndexViewModel
     {
-        private IndexQuery query;
-
-        private readonly BrowserHelper browserHelper;
+        private readonly IndexQuery query;
 
         public IndexViewModel(IndexQuery query, BrowserHelper browserHelper)
         {
             this.query = query;
-            this.browserHelper = browserHelper;
+            IsDevice = browserHelper.IsMobile() && !browserHelper.IsTablet();
         }
 
         public UserLevel ActorLevel => query.ActorLevel;
@@ -65,6 +63,8 @@
 
         private string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~");
 
-        public bool IsDevice => browserHelper.IsMobile() && !browserHelper.IsTablet();
+        public bool IsDevice { get; }
+
+        public bool IsNotPhone => !IsDevice;
     }
 }

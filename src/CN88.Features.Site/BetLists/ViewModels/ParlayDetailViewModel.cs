@@ -54,7 +54,8 @@
 
         public bool IsRunningTicket { get; }
 
-        public string HugeDataLabel => string.Format(BetListsResources.CombinationResultTooHuge, BuildComboParlayDetailExcelPath(Query));
+        public string HugeDataLabel 
+            => string.Format(BetListsResources.CombinationResultTooHuge, BuildComboParlayDetailExcelPath(Query));
 
         public string SubTotalWinLost(IEnumerable<ParlayDetailWrapper> group)
             => ConvertByBetType.Winloss(group.Sum(item => item.ParlayDetail.WinLost + item.ParlayDetail.PlayerComm));

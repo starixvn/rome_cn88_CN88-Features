@@ -6,7 +6,6 @@
     using MediatR;
     using Requests.WagerMonitoring;
     using Shared.Controllers;
-    using ViewModels.WagerMonitoring;
     using Web.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
@@ -30,9 +29,8 @@
             => await ViewAsync(message);
 
         [HttpGet, RestrictHeadlineFilter]
-        public ActionResult Pause()
-            => View("~/BetLists/Views/WagerMonitoring/Pause.cshtml");
+        public ActionResult Pause() => View($"{FeatureFolder}/Pause.cshtml");
 
-        protected override string FeatureFolder => "~/BetLists/Views/WagerMonitoring/";
+        protected override string FeatureFolder => "~/BetLists/Views/WagerMonitoring";
     }
 }

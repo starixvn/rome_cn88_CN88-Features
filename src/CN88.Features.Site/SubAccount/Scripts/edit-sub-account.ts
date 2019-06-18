@@ -1,4 +1,6 @@
-﻿class EditSubAccount extends BaseSubAccount {
+﻿/// <reference path="base-sub-account.ts" />
+
+class EditSubAccount extends BaseSubAccount {
     constructor($: JQueryStatic, top: any) {
         super($, top);
     }

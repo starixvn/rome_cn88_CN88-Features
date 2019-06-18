@@ -1,9 +1,6 @@
 ﻿"use strict";
 
 declare var numeral: any;
-interface JQuery {
-    stickyTableHeaders(): void;
-}
 
 class SiteInfrastructure {
     pageList = [50, 100, 200, 500];

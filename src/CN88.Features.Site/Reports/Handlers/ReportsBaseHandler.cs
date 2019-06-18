@@ -9,7 +9,7 @@
 
     public class ReportsBaseHandler : BaseHandler
     {
-        protected internal ReportParam CreateReportParam(ReportBaseQuery message)
+        protected internal static ReportParam CreateReportParam(ReportBaseQuery message)
             => new ReportParam(
                 message.CustId,
                 message.IsOwner,
@@ -21,7 +21,7 @@
                 message.UserSelectedLiveStatusId,
                 message.CustLevel);
 
-        protected internal ReportModel AccumulateGrandTotal(IEnumerable<ReportModel> reportData)
+        protected internal static ReportModel AccumulateGrandTotal(IEnumerable<ReportModel> reportData)
         {
             var grandTotal = new ReportModel();
 
@@ -36,7 +36,7 @@
             return grandTotal;
         }
 
-        protected internal IEnumerable<AccountingPeriodGroup> BuildAccountingPeriodGroup(IEnumerable<AccountingPeriod> periods)
+        protected internal static IEnumerable<AccountingPeriodGroup> BuildAccountingPeriodGroup(IEnumerable<AccountingPeriod> periods)
         {
             var groups = periods
                 .OrderBy(p => p.PeriodId)

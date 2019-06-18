@@ -1,0 +1,14 @@
+﻿@model BetListViewModelBase
+
+@Html.Hidden("betlist-path", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+@Html.Hidden("old-main-path", Model.OldMainPath)
+@Html.Hidden("sport-type-group", Model.SportTypeGroup)
+@Html.Hidden("bet-type-group", Model.BetTypeGroup)
+@Html.Hidden("results-path", Model.ResultsPath)
+@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("viewer-id", Model.ViewerIdOrViewerAdminId)
+@Html.Hidden("viewer-level-id", Model.ViewerLevelId)
+@Html.Hidden("cust-id", Model.CustId)
+@Html.Hidden("colossusBets-PopUpDetail-Title", BetListsResources.ColossusBetsPopUpDetailTitle)
+@Html.Hidden("isMobile", Model.IsMobile)

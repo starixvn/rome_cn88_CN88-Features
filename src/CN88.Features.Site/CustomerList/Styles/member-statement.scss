@@ -17,3 +17,34 @@
         width: 170px;
     }
 }
+
+body.phone {
+    .member-statement {
+        padding: 12px;
+
+        .page-title {
+            //display: none;
+            display: inline-block;
+            width: auto;
+            padding: 5px 0;
+        }
+
+        .filter-mobile {
+            display: inline-block;
+            position: absolute;
+            right: 12px;
+        }
+
+        .filter {
+            display: none;
+
+            .btn-submit {
+                width: 100%;
+            }
+        }
+
+        .tbl-member-statement {
+            margin-top: 12px;
+        }
+    }
+}

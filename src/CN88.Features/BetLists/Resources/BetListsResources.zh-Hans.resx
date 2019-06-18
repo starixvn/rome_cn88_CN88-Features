@@ -294,4 +294,25 @@
   <data name="OneXTwoMoneyline" xml:space="preserve">
     <value>独赢盘 / 胜负盘</value>
   </data>
+  <data name="Friday" xml:space="preserve">
+    <value>星期五</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>星期一</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>星期六</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>星期日</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>星期四</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>星期二</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>星期三</value>
+  </data>
 </root>

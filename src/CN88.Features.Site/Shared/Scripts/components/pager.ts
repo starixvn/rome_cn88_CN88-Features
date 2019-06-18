@@ -1,7 +1,4 @@
 ﻿"use strict";
-interface JQuery {
-    pagination(option: any): void;
-}
 
 class PagerOption {
     constructor(

@@ -1,11 +1,8 @@
-﻿interface String {
-    encrypt(secretKey: string): string;
-}
+﻿/// <reference path="base-sub-account.ts" />
 
 declare var CryptoJS: any;
 
-String.prototype.encrypt = function (secretKey: string): string {
-    let plainText: string = this.toString();
+const encrypt = function (plainText: string, secretKey: string): string {
     const passPhrase = "a5s8d2e9c172";
     let key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
     let iv = key;
@@ -38,6 +35,33 @@ class NewSubAccount extends BaseSubAccount {
         this.elements.suffix2 = this.$("#suffix2");
         this.elements.password = this.$("#password");
         this.elements.confirmPassword = this.$("#confirmPassword");
+
+        this.$("body").on("click touchend", (event) => {
+            const target = this.$(event.target);
+            const showTooltipClass = "tooltip-show";
+
+            if (target.hasClass("icon-info")) {
+                const isShowing = target.hasClass(showTooltipClass);
+
+                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                showingToolTips.tooltip("hide");
+                showingToolTips.removeClass(showTooltipClass);
+
+                if (isShowing) {
+                    target.tooltip("hide");
+                    target.removeClass(showTooltipClass);
+                } else {
+                    target.tooltip("show");
+                    target.addClass(showTooltipClass);
+                }
+
+                event.stopPropagation();
+                return false;
+            }
+
+            this.elements.passRule.tooltip("hide");
+            this.elements.passRule.removeClass(showTooltipClass);
+        });
     }
 
     protected getFormData(): any {
@@ -46,7 +70,7 @@ class NewSubAccount extends BaseSubAccount {
         let formData: any = super.getFormData();
         formData.suffix1 = this.elements.suffix1.val();
         formData.suffix2 = this.elements.suffix2.val();
-        formData.password = password.encrypt(hashKey);
+        formData.password = encrypt(password, hashKey);
 
         return formData;
     }
@@ -86,17 +110,17 @@ class NewSubAccount extends BaseSubAccount {
         let whiteSpace: RegExp = /^\S*$/;
         let whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
 
-        let regex1: RegExp = /^(?=.{8,100}$).*\d/i;
-        let regex2: RegExp = /^(?=.{8,100}$).*[a-z]/;
-        let regex3: RegExp = /^(?=.{8,100}$).*[A-Z]/;
-        let regex4: RegExp = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+        let regex1: RegExp = /^(?=.{6,12}$).*\d/i;
+        let regex2: RegExp = /^(?=.{6,12}$).*[a-z]/;
+        let regex3: RegExp = /^(?=.{6,12}$).*[A-Z]/;
+        let regex4: RegExp = /^(?=.{6,12}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
 
         let case1: number = password.search(regex1) !== -1 ? 1 : 0;
         let case2: number = password.search(regex2) !== -1 ? 1 : 0;
         let case3: number = password.search(regex3) !== -1 ? 1 : 0;
         let case4: number = password.search(regex4) !== -1 ? 1 : 0;
 
-        return (case1 + case2 + case3 + case4 >= 3) && whiteSpaceCase;
+        return (case1 + case2 + case3 + case4 >= 2) && whiteSpaceCase;
     }
 }
 

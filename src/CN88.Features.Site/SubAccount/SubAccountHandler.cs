@@ -1,6 +1,9 @@
 ﻿namespace CN88.Features.Site.SubAccount
 {
+    using System.Net;
+    using System.Threading.Tasks;
     using Alpha.Web.Helpers;
+    using CN88.Web.Helpers;
     using Features.Models;
     using Features.SubAccount.Constants;
     using Features.SubAccount.Models;
@@ -9,8 +12,6 @@
     using MediatR;
     using Requests;
     using Sunplus.Agent.Utilities;
-    using System.Net;
-    using System.Threading.Tasks;
     using ViewModels;
 
     public class SubAccountHandler :
@@ -26,19 +27,22 @@
         private readonly SubAccountService subAccountService;
         private readonly Encryptor encryptor;
         private readonly SessionManager sessionManager;
+        private readonly BrowserHelper browserHelper;
 
         public SubAccountHandler(
             SubAccountService subAccountService,
             Encryptor encryptor,
-            SessionManager sessionManager)
+            SessionManager sessionManager,
+            BrowserHelper browserHelper)
         {
             this.subAccountService = subAccountService;
             this.encryptor = encryptor;
             this.sessionManager = sessionManager;
+            this.browserHelper = browserHelper;
         }
 
         public async Task<IndexViewModel> Handle(IndexQuery message)
-            => new IndexViewModel(await subAccountService.GetSubAccountsAsync(message.ViewerId));
+            => new IndexViewModel(await subAccountService.GetSubAccountsAsync(message.ViewerId), browserHelper);
 
         public NewViewModel Handle(NewQuery message)
             => new NewViewModel(message.ViewerName + SubAccountConst.SubAccountPadding, GenerateHashKey());

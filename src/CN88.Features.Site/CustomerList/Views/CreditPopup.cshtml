@@ -16,7 +16,8 @@
     </div>
     <div class="form-group">
         <label>@CustomerListResources.Credit</label>
-        <input class="txt-credit control" id="credit" type="text" />
+        <input class="txt-credit control" id="credit" type="text" inputmode="numeric" />
+
         <div class="credit-range">[@Model.CreditModel.MinCredit.ToString("N2"); @Model.CreditModel.MaxCredit.ToString("N2")]</div>
     </div>
     <div class="list-button">

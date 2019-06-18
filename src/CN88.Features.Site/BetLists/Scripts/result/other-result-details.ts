@@ -14,8 +14,8 @@
             betId?: number) => {
             const params = "?" + $.param({ gambleId: matchId });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ng2/TicketDetail' + params,
+            const options = {
+                url: `${Common.AppPath.ResultsAppPath()}ng2/TicketDetail${params}`,
                 title: "",
                 width: 520,
                 height: 450
@@ -47,8 +47,8 @@
                 transId3rd: betCheck
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'pokergames/Index' + params,
+            const options = {
+                url: `${Common.AppPath.ResultsAppPath}pokergames/Index${params}`,
                 title: "",
                 width: 1099,
                 height: 570,

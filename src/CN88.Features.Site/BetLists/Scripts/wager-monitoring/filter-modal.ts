@@ -1,14 +1,14 @@
 ﻿class FilterParam {
     constructor(
-        public sportGroup: number = 0,
-        public isSelectAllSports: boolean = true,
-        public stakeMode: number = 1,
-        public stakeLimit: number = 0,
-        public sportStakeConditions: string = "",
-        public market: string = "",
-        public leagueIds: string = "",
-        public matchIds: string = "",
-        public betTypeGroupIds: string = "") {
+        public sportGroup = 0,
+        public isSelectAllSports = true,
+        public stakeMode = 1,
+        public stakeLimit = 0,
+        public sportStakeConditions = "",
+        public market = "",
+        public leagueIds = "",
+        public matchIds = "",
+        public betTypeGroupIds = "") {
     }
 }
 
@@ -20,6 +20,7 @@ class FilterModal {
     $searchLeagueTextbox: JQuery;
     $clearSearchEventButton: JQuery;
     $searchEventTextbox: JQuery;
+    $perSportList: JQuery;
     onSubmit: Function;
 
     filterParam: FilterParam;
@@ -29,10 +30,10 @@ class FilterModal {
     betTypeMultiSelectionComponent: MultiSelectionCheckboxComponent;
 
     sportGroup: number;
-    isOpeningFilter: boolean = false;
+    isOpeningFilter = false;
 
-    cleaveAllSportStake: any;
-    cleavePerSportStake: any = {};
+    cleaveAllSportStake: Cleave;
+    cleavePerSportStake = {};
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -46,7 +47,7 @@ class FilterModal {
     }
 
     show = (targetTabId: string, filterParam: FilterParam = new FilterParam(), onSubmit: Function = null) => {
-        this.filterParam = <FilterParam>this.$.extend({}, this.filterParam, filterParam);
+        this.filterParam = this.$.extend({}, this.filterParam, filterParam) as FilterParam;
         this.onSubmit = onSubmit;
 
         this.$.blockUI();
@@ -83,6 +84,7 @@ class FilterModal {
         this.$searchLeagueTextbox = $("#txtSearchLeague");
         this.$clearSearchEventButton = $("#btnClearSearchEvent");
         this.$searchEventTextbox = $("#txtSearchEvent");
+        this.$perSportList = $("#list-persports");
     }
 
     renderComponents(): void {
@@ -100,11 +102,10 @@ class FilterModal {
             delimiter: ','
         });
 
-        let $perSportsConditions = this.$("#list-persports").children();
-        let self = this;
-        $perSportsConditions.each(function () {
-            let id = self.$(this).data("id");
-            self.cleavePerSportStake[id] = new Cleave('#StakeLimit-' + id, {
+        const $perSportsConditions = this.$perSportList.children();
+        $perSportsConditions.each((index: number, elem: Element) => {
+            const id = this.$(elem).data("id");
+            this.cleavePerSportStake[id] = new Cleave(`#StakeLimit-${id}`, {
                 numeral: true,
                 numeralPositiveOnly: true,
                 numeralDecimalMark: '.',
@@ -119,89 +120,87 @@ class FilterModal {
     }
 
     registerEvents(): void {
+        const clickTouchendEvent = "click touchend";
+
         this.$("input[name='stake-filter-option']").change(() => {
             this.onStakeFilterOptionChange();
         });
 
-        var self = this;
-        var mainMarkets = self.$("[data-group-id='chk-main-markets']");
-        var otherMarkets = self.$("[data-group-id='chk-other-markets']");
-        this.$("#chk-main-markets").on("click touchend", function () {
-            self.clickCheckboxAll(mainMarkets, this);
+        const $mainMarkets = this.$("[data-group-id='chk-main-markets']");
+        const $otherMarkets = this.$("[data-group-id='chk-other-markets']");
+        const $chkMainMarkets = this.$("#chk-main-markets");
+        const $chkOtherMarkets = this.$("#chk-other-markets");
+
+        $chkMainMarkets.on(clickTouchendEvent, () => {
+            this.clickCheckboxAll($mainMarkets, $chkMainMarkets);
         });
 
-        this.$("#chk-other-markets").on("click touchend", function () {
-            self.clickCheckboxAll(otherMarkets, this);
+        $chkOtherMarkets.on(clickTouchendEvent, () => {
+            this.clickCheckboxAll($otherMarkets, $chkOtherMarkets);
         });
-        mainMarkets.on("click touchend", function () {
-            if (this.checked) {
-                self.isCheckAll(mainMarkets, self.$("#chk-main-markets"));
+
+        $mainMarkets.on(clickTouchendEvent, () => {
+            this.isCheckAll($mainMarkets, $chkMainMarkets);
+        });
+
+        $otherMarkets.on(clickTouchendEvent, () => {
+            this.isCheckAll($otherMarkets, $chkOtherMarkets);
+        });
+
+        this.$("#btnSearchLeague").on(clickTouchendEvent, this.searchLeague);
+
+        this.$searchLeagueTextbox.keyup((e: JQueryKeyEventObject) => {
+            if (e.keyCode === cn88Features.keyCode.enter) {
+                this.searchLeague();
             }
         });
-        otherMarkets.on("click touchend", function () {
-            if (this.checked) {
-                self.isCheckAll(otherMarkets, self.$("#chk-other-markets"));
-            }
-        });
 
-        this.$("#btnSearchLeague").on("click touchend", () => {
-            self.searchLeague();
-        });
-
-        this.$searchLeagueTextbox.keyup(function (e) {
-            if (e.keyCode == 13) {
-                self.searchLeague();
-            }
-        });
-
-        this.$clearSearchLeagueButton.on("click touchend", () => {
+        this.$clearSearchLeagueButton.on(clickTouchendEvent, () => {
             this.$searchLeagueTextbox.val("");
             this.leagueMultiSelectionComponent.clearSearch();
         });
 
-        this.$("#btnSearchEvent").on("click touchend", () => {
-            self.searchEvent();
-        });
+        this.$("#btnSearchEvent").on(clickTouchendEvent, this.searchEvent);
 
-        this.$searchEventTextbox.keyup(function (e) {
-            if (e.keyCode == 13) {
-                self.searchEvent();
+        this.$searchEventTextbox.keyup((e: JQueryKeyEventObject) => {
+            if (e.keyCode === cn88Features.keyCode.enter) {
+                this.searchEvent();
             }
         });
 
-        this.$clearSearchEventButton.on("click touchend", () => {
+        this.$clearSearchEventButton.on(clickTouchendEvent, () => {
             this.$searchEventTextbox.val("");
             this.eventMultiSelectionComponent.clearSearch();
         });
 
-        this.$("#btn-submit").on("click touchend", () => {
+        this.$("#btn-submit").on(clickTouchendEvent, () => {
             this.onSubmit();
             this.hide();
         });
 
-        this.$("#btn-reset").on("click touchend", this.resetFilter);
+        this.$("#btn-reset").on(clickTouchendEvent, this.resetFilter);
     }
 
-    searchLeague(): void {
-        let searchText = this.$searchLeagueTextbox.val();
+    searchLeague = () => {
+        const searchText = this.$searchLeagueTextbox.val();
         if (searchText) {
             this.leagueMultiSelectionComponent.search(searchText);
         } else {
             this.leagueMultiSelectionComponent.clearSearch();
         }
-    }
+    };
 
-    searchEvent(): void {
-        let searchText = this.$searchEventTextbox.val();
+    searchEvent = () => {
+        const searchText = this.$searchEventTextbox.val();
         if (searchText) {
             this.eventMultiSelectionComponent.search(searchText);
         } else {
             this.eventMultiSelectionComponent.clearSearch();
         }
-    }
+    };
 
-    clickCheckboxAll = (groupItems, allCheckbox) => {
-        if (allCheckbox.checked) {
+    clickCheckboxAll = (groupItems: JQuery, allCheckbox: JQuery) => {
+        if (allCheckbox.is(":checked")) {
             groupItems.prop("checked", true);
 
             this.betTypeMultiSelectionComponent.isCheckAll();
@@ -218,24 +217,21 @@ class FilterModal {
             if (!this.checked) {
                 isAllChecked = false;
             }
-        })
+        });
 
-        if (isAllChecked) {
-            allCheckbox.prop("checked", true);
-        }
+        allCheckbox.prop("checked", isAllChecked);
     };
 
     getParameters = () => {
-        let conditions = [];
-        let isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
+        const conditions = [];
+        const isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
         if (!isSelectAllSports) {
-            let $perSportsConditions = this.$("#list-persports").children();
-            let self = this;
-            $perSportsConditions.each(function () {
-                let $this = self.$;
-                let sportGroupId = $this(this).data("id");
-                let stakeMode = $this(this).find("select").children("option:selected").val();
-                let stakeLimit = self.cleavePerSportStake[sportGroupId].getRawValue();
+            const $perSportsConditions = this.$perSportList.children();
+            $perSportsConditions.each((index: number, elem: Element) => {
+                const $elem = this.$(elem);
+                const sportGroupId = $elem.data("id");
+                const stakeMode = $elem.find("select").children("option:selected").val();
+                const stakeLimit = this.cleavePerSportStake[sportGroupId].getRawValue();
                 conditions.push({
                     sportGroupId: sportGroupId,
                     stakeMode: stakeMode,
@@ -259,12 +255,12 @@ class FilterModal {
     };
 
     onStakeFilterOptionChange(): void {
-        let listAllSportsId = "#list-allsports";
-        let listPerSportsId = "#list-persports";
+        const listAllSportsId = "#list-allsports";
+        const listPerSportsId = "#list-persports";
         let enabledElement: string;
         let disabledElement: string;
 
-        let isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
+        const isSelectAllSports = Common.Utils.ParseBoolean(this.$("input[name='stake-filter-option']:checked").val());
 
         if (isSelectAllSports) {
             enabledElement = listAllSportsId;
@@ -295,22 +291,18 @@ class FilterModal {
 
     resetFilter = () => {
         this.$("#rd-all-sports").click();
-
         this.$(".dropdown-stake-condition > select").multiselect("select", 1);
-
-        var $AllSportsStakeLimit = this.$("#AllSportsStakeLimit");
-        $AllSportsStakeLimit.val(0);
-
+        this.$("#AllSportsStakeLimit").val(0);
         this.$(".StakeLimit").val(0);
 
-        let $allMarketsCheckbox = this.$("#checkbox-all-markets");
+        const $allMarketsCheckbox = this.$("#checkbox-all-markets");
         $allMarketsCheckbox.prop("checked", true);
         $allMarketsCheckbox.change();
 
         this.$clearSearchLeagueButton.click();
         this.$clearSearchEventButton.click();
 
-        let $allBetTypesCheckbox = this.$("#checkbox-all-bettypes");
+        const $allBetTypesCheckbox = this.$("#checkbox-all-bettypes");
         $allBetTypesCheckbox.prop("checked", true);
         $allBetTypesCheckbox.change();
     }

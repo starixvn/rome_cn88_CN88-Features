@@ -3,6 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using CN88.Features.BetLists.Criteria.BetListOfReport;
+    using CN88.Features.BetLists.Criteria.Parlay;
+    using CN88.Features.BetLists.Criteria.TotalBets;
     using Criteria;
     using Extensions;
     using Fanex.BetList.Core.Entities;
@@ -21,19 +24,13 @@
 
         IEnumerable<TicketDto> GetParlaySubTickets(GetParlaySubTicketsParam param);
 
-        BetListData GetOutrightWagerByAccount(OutrightWagerByAccountParam param);
+        BetListData GetOutrightWager(OutrightWagerParam param);
 
-        BetListData GetOutrightWagerDetails(OutrightWagerDetailsParam param);
-
-        BetListData GetEventWagerByAccount(EventWagerByAccountParam param);
-
-        BetListData GetEventWagerDetails(EventWagerDetailsParam param);
+        BetListData GetEventWager(EventWagerParam param);
 
         BetListData GetTotalBetParlay(GetTotalBetParlayParam param);
 
-        BetListData GetStartedWagerByAccount(StartedWagerByAccountParam param);
-
-        BetListData GetStartedWagerDetails(StartedWagerDetailsParam param);
+        BetListData GetStartedWager(StartedWagerParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
@@ -80,44 +77,13 @@
         }
 
         public BetListData GetBetListOfStatement(BetListOfStatementParam param)
-        {
-            var criteria = new BetListOfStatementCriteria(param, reportDateService.GetMoveBetsDay());
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+            => GetBetListData(new BetListOfStatementCriteria(param, reportDateService.GetMoveBetsDay()));
 
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
+        public BetListData GetOutrightWager(OutrightWagerParam param)
+            => GetBetListData(new OutrightWagerCriteria(param));
 
-        public BetListData GetOutrightWagerByAccount(OutrightWagerByAccountParam param)
-        {
-            var criteria = new OutrightWagerByAccountCriteria(param);
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
-
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
-
-        public BetListData GetOutrightWagerDetails(OutrightWagerDetailsParam param)
-        {
-            var criteria = new OutrightWagerDetailsCriteria(param);
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
-
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
-
-        public BetListData GetEventWagerByAccount(EventWagerByAccountParam param)
-        {
-            var criteria = new EventWagerByAccountCriteria(param);
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
-
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
-
-        public BetListData GetEventWagerDetails(EventWagerDetailsParam param)
-        {
-            var criteria = new EventWagerDetailsCriteria(param);
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
-
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
+        public BetListData GetEventWager(EventWagerParam param)
+            => GetBetListData(new EventWagerCriteria(param));
 
         public ParlayDetailReportModel GetParlayDetails(GetParlayDetailParam param)
         {
@@ -137,28 +103,10 @@
         }
 
         public BetListData GetTotalBetParlay(GetTotalBetParlayParam param)
-        {
-            var criteria = new TotalBetParlayCriteria(param, reportDateService.GetMoveBetsDay());
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+            => GetBetListData(new TotalBetParlayCriteria(param, reportDateService.GetMoveBetsDay()));
 
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
-
-        public BetListData GetStartedWagerByAccount(StartedWagerByAccountParam param)
-        {
-            var criteria = new StartedWagerByAccountCriteria(param);
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
-
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
-
-        public BetListData GetStartedWagerDetails(StartedWagerDetailsParam param)
-        {
-            var criteria = new StartedWagerDetailsCriteria(param);
-            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
-
-            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
-        }
+        public BetListData GetStartedWager(StartedWagerParam param)
+            => GetBetListData(new StartedWagerCriteria(param));
 
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetListBeforeBalanceUpDay(BetListOfReportParam param, DateTime fromDate, DateTime toDate)
           => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
@@ -167,5 +115,12 @@
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetList(BetListOfReportParam param, DateTime fromDate)
             => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
                 BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), fromDate, param.ToDate, isBackup: false));
+
+        private BetListData GetBetListData(CriteriaBase criteria)
+        {
+            var betListDataTuple = dynamicRepository.FetchMultiple<TicketDto, TicketData>(criteria);
+
+            return new BetListData(betListDataTuple.Item1, betListDataTuple.Item2.ToList<ITicketData>());
+        }
     }
 }

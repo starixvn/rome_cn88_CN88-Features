@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using BetList.Core.Builders;
+    using CN88.Features.Shared.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;
@@ -15,7 +16,8 @@
             BetListData betListData,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
-            ITicketHelper ticketHelper)
+            ITicketHelper ticketHelper,
+            CacheRefService cacheRefService)
         {
             BetListData = betListData;
             CN88Builder = cn88Builder;
@@ -24,15 +26,17 @@
 
             ticketHelper.IsShowOddsWithChoice = true;
             HideOfferNameUnitStakes = string.IsNullOrEmpty(query.BetCheck);
-            ParlayOfferNames = string.IsNullOrEmpty(query.BetCheck) ?
-                new List<string>() :
-                ticketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2);
+            ParlayOfferNames = string.IsNullOrEmpty(query.BetCheck)
+                ? new List<string>()
+                : ticketHelper.GetCombinationMPOfferNameList(query.BetTeam, query.BetCheck, query.Handicap1, query.Handicap2);
             ParlaySingleTickets = betListData.Tickets
                 .Where(t => t.Stake > 0)
                 .OrderBy(t => t.MatchId)
                 .ToList();
 
             UnitStakeByOfferNames = GetUnitStakeByOfferName(query);
+
+            CacheRefService = cacheRefService;
         }
 
         public IDictionary<string, string> UnitStakeByOfferNames { get; }
@@ -51,9 +55,12 @@
 
         public ITicketHelper TicketHelper { get; }
 
+        public CacheRefService CacheRefService { get; }
+
         public bool HasValidData
-            => ParlaySingleTickets.Any() &&
-            (HideOfferNameUnitStakes || ParlayOfferNames.Count <= ParlaySingleTickets.Count);
+            => ParlaySingleTickets.Any()
+                && (HideOfferNameUnitStakes
+                    || ParlayOfferNames.Count <= ParlaySingleTickets.Count);
 
         private IDictionary<string, string> GetUnitStakeByOfferName(GetParlaySubTicketsQuery query)
         {
@@ -78,5 +85,7 @@
 
             return offerNameUnitStakes;
         }
+
+        public string GetSportName(int sportType) => CacheRefService.GetSportName(sportType);
     }
 }

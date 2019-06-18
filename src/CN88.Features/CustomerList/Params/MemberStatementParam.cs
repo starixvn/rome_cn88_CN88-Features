@@ -2,12 +2,24 @@
 {
     public class MemberStatementParam
     {
-        public int CustId { get; set; }
+        public MemberStatementParam(
+            int custId,
+            int sportType,
+            int fromDate,
+            int toDate)
+        {
+            CustId = custId;
+            SportType = sportType;
+            FromDate = fromDate;
+            ToDate = toDate;
+        }
 
-        public int SportType { get; set; }
+        public int CustId { get; }
 
-        public int FromDate { get; set; }
+        public int SportType { get; }
 
-        public int ToDate { get; set; }
+        public int FromDate { get; }
+
+        public int ToDate { get; }
     }
 }

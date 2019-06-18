@@ -3,7 +3,7 @@
     width: 1240px;
 }
 
-#message-container {
+.message-container {
     padding: 0 20px;
 }
 
@@ -16,7 +16,7 @@
     .account-data {
         width: 50%;
         display: inline-block;
-        padding: 20px 40px;
+        padding: 20px;
         vertical-align: top;
 
         &.general-info {
@@ -25,14 +25,21 @@
 
         .title {
             border-bottom: 2px solid #831e1e;
-            padding: 0 16px 12px;
+            padding: 0 16px 12px 0;
         }
 
         .account-data-content {
-            padding: 12px 0px 12px 30px;
+            padding: 12px 0;
 
             .form-group {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 margin: 0 0 15px;
+            }
+
+            .checkbox {
+                width: 100%;
             }
 
             .radio label, .checkbox label {
@@ -47,17 +54,26 @@
                 display: inline-block;
                 width: calc(100% - 140px);
 
-                &.username-box {
-                    width: unset;
-                }
-
                 .control {
                     width: 100%;
                     margin: 0;
                 }
+            }
+
+            .username-box {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: wrap;
 
                 .name {
                     font-weight: normal;
+                    margin-bottom: 0;
+                    padding-right: 4px;
+                }
+
+                select {
+                    background-position: right 6px center;
                 }
             }
 
@@ -66,6 +82,7 @@
                 width: 140px;
                 text-align: left;
                 margin-right: -4px;
+                padding-top: 0;
             }
         }
     }
@@ -115,7 +132,7 @@
     }
 }
 
-#tbl-subaccount {
+.tbl-subaccount {
     width: 100%;
 
     .icon-minus {
@@ -146,12 +163,243 @@
             margin-left: 0;
         }
 
-        .icon-unlock  {
+        .icon-unlock {
             margin-left: 6px;
         }
     }
 
     th {
         padding: 4px 8px;
+    }
+    
+    .username {
+        display: inline-block;
+    }
+
+    .hide-desktop {
+        display: none;
+    }
+}
+
+.icon-more-action,
+.visible-mobile,
+.nickname-mobile,
+.name-mobile {
+    display: none;
+}
+
+body.mobile {
+    .hide-mobile {
+        display: none;
+    }
+
+    .message-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .subacc-page {
+        padding: 12px;
+        width: auto;
+
+        .username {
+            min-width: 65px;
+            word-break: break-all;
+        }
+
+        .icon-more-action {
+            display: block;
+            margin: 0;
+        }
+
+        .icon-success {
+            font-size: 16px;
+        }
+
+        .visible-mobile {
+            display: table-cell;
+        }
+
+        .col-action .dropdown.visible-mobile {
+            display: inline-block;
+        }
+
+        .col-action {
+            width: 46px;
+            min-width: 46px;
+            text-align: center;
+
+            .dropdown .dropdown-menu li span {
+                display: inline-block;
+                width: 100%;
+            }
+        }
+
+        .col-reports {
+            min-width: 38px;
+        }
+
+        .add-new {
+            line-height: 30px;
+            float: none;
+
+            .icon-add {
+                top: 3px;
+            }
+        }
+    }
+
+    .tbl-subaccount {
+        th {
+            padding: 4px;
+        }
+
+        .icon-minus {
+            font-size: 16px;
+        }
+
+        .hide-desktop {
+            display: block;
+        }
+
+        .username .hide-desktop {
+            display: inline-block;
+        }
+
+        .nickname-mobile {
+            display: block;
+            margin-top: 5px;
+            color: #865800;
+            font-style: italic;
+        }
+
+        .name-mobile {
+            display: block;
+            margin-top: 5px;
+            color: #3B3B3B;
+            font-size: 9.5px;
+            font-style: italic;
+        }
+
+        .icon-user-unlock {
+            position: relative;
+            top: 2px;
+            display: inline-block;
+            width: 21px;
+            height: 21px;
+            margin: 0 !important;
+            background: url(../../Shared/Styles/images/user_unlock.svg) no-repeat;
+        }
+    }
+
+    .modal-sub-account {
+        .head-title {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 12px;
+            text-transform: uppercase;
+            color: #852423;
+            font-weight: bold;
+            border-color: #BDBDBD;
+        }
+
+        .account-data {
+            width: 100%;
+            padding: 12px;
+
+            .account-data-content {
+                padding: 12px 0;
+
+                .username-box {
+                    justify-content: space-between;
+
+                    .name {
+                        text-transform: uppercase;
+                    }
+
+                    select {
+                        font-size: 16px;
+                        width: 50px;
+                    }
+
+                    #suffix1 {
+                        margin-right: 4px;
+                    }
+                }
+
+                .content-control {
+                    width: 100%;
+
+                    .control {
+                        font-size: 16px;
+                    }
+                }
+
+                .checkbox {
+                    padding-top: 0;
+
+                    label {
+                        line-height: 27px;
+
+                        input[type="checkbox"] {
+                            margin-top: 5px;
+                        }
+                    }
+                }
+
+                .form-group {
+                    display: block;
+                }
+            }
+
+
+            &.permission {
+                padding-top: 0;
+
+                .account-data-content {
+                    padding-bottom: 0;
+                }
+
+                .form-group {
+                    margin-bottom: 10px;
+                }
+            }
+
+            &.general-info {
+                padding-bottom: 0;
+            }
+
+            .title {
+                padding: 0;
+                padding-bottom: 5px;
+                border-width: 1px;
+                font-weight: bold;
+            }
+
+            .control-label {
+                text-transform: uppercase;
+                display: block;
+            }
+        }
+
+        .list-button {
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-bottom: 12px;
+            overflow: hidden;
+
+            .btn-cancel, .btn-submit {
+                float: left;
+                width: 48%;
+            }
+
+            .btn-cancel {
+                margin-right: 4%;
+            }
+
+            .btn-submit {
+                margin-right: 0;
+            }
+        }
     }
 }

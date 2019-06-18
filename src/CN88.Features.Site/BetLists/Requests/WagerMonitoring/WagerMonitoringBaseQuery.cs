@@ -1,12 +1,9 @@
 ﻿namespace CN88.Features.Site.BetLists.Requests.WagerMonitoring
 {
-    using System.Collections.Generic;
     using Features.Models;
     using Features.Shared.Constants;
-    using Models;
-    using Site.Requests;
 
-    public class WagerMonitoringBaseQuery : BaseQuery
+    public class WagerMonitoringBaseQuery : BetListBaseQuery
 
     {
         public WagerMonitoringBaseQuery(IUser viewer) : base(viewer)

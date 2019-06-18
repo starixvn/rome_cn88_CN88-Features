@@ -1,12 +1,13 @@
 ﻿namespace CN88.Features.Site.Reports.Filters
 {
-    using System.Web.Mvc;
-    using Alpha.Web.Helpers;
     using System;
     using System.Configuration;
     using System.Linq;
+    using System.Web.Mvc;
+    using Alpha.Web.Helpers;
     using Sunplus.Agent.Model.Entities;
 
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public class ReCheckPasswordAttribute : AuthorizeAttribute
     {
         private const string VerifyPasswordSessionKey = "OldReports.VerifiedPassword";
@@ -22,7 +23,7 @@
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
-            
+
             if (UserSession.Current?.IsInternal == true)
             {
                 return;
@@ -35,32 +36,44 @@
                 request.Url.PathAndQuery.Contains("OldReports");
             if (isOldReport || isViewBetlistOldReport)
             {
-                var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
-                elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
-                var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
+                ReCheckPassword(filterContext);
+            }
+        }
 
-                if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
-                    (DateTime.Now - elapsed).TotalSeconds >= expiredSeconds)
+        private void ReCheckPassword(AuthorizationContext filterContext)
+        {
+            var elapsed = sessionMananger.Get<DateTime>(VerifiedTimeElapsed);
+            elapsed = elapsed == DateTime.MinValue ? DateTime.Now : elapsed;
+            var expiredSeconds = int.Parse(ConfigurationManager.AppSettings["OldReports:ExpiredSessionSeconds"]);
+
+            if (!sessionMananger.Get<bool>(VerifyPasswordSessionKey) ||
+                (DateTime.Now - elapsed).TotalSeconds >= expiredSeconds)
+            {
+                HandleNoAuthorized(filterContext);
+            }
+
+            if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
+            {
+                filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
+            }
+        }
+
+        private static void HandleNoAuthorized(AuthorizationContext filterContext)
+        {
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                const int NotAuthorizedCode = 302;
+                filterContext.HttpContext.Response.StatusCode = NotAuthorizedCode;
+                filterContext.HttpContext.Response.End();
+                filterContext.Result = new JsonResult
                 {
-                    if (filterContext.HttpContext.Request.IsAjaxRequest())
-                    {
-                        filterContext.HttpContext.Response.StatusCode = 302;
-                        filterContext.HttpContext.Response.End();
-                        filterContext.Result = new JsonResult
-                        {
-                            Data = new { message = "You are not authorized on this function!" },
-                            JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                        };
-                    }
-                    else
-                    {
-                        filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
-                    }
-                }
-                else if (Equals(filterContext.RouteData.Values["action"], "VerifyPassword"))
-                {
-                    filterContext.Result = new RedirectResult("~/OldReports/Index?DisplayMode=1");
-                }
+                    Data = new { message = "You are not authorized on this function!" },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult("~/OldReports/VerifyPassword");
             }
         }
     }

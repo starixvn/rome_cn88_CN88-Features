@@ -122,3 +122,4 @@ interface JQuery {
      */
     unblock(option?: JQBlockUIOptions): JQuery;
 }
+

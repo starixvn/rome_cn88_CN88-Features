@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project":{  
+        "serverId":"localsonarqube",
+        "projectKey": "CN88-Features"
+    }
+}

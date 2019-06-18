@@ -29,14 +29,28 @@
         }
 
         public IEnumerable<BetTypeGroup> GetBetTypeGroups()
+        {
+            var bettypeGroups = QueryBetTypeGroups();
+            var bettypeIds = bettypeGroups.Select(betType => betType.Id).Distinct();
+            var bettypeNames = new Dictionary<int, string>();
+
+            foreach (var id in bettypeIds)
+            {
+                bettypeNames.Add(id, cacheRefService.GetBetTypeName(id));
+            }
+
+            foreach (var betType in bettypeGroups)
+            {
+                betType.DisplayName = bettypeNames[betType.Id];
+            }
+
+            return bettypeGroups;
+        }
+
+        private IEnumerable<BetTypeGroup> QueryBetTypeGroups()
             => ConfiguredCacheService.GetOrSet(
                 BetTypesCacheKey,
-                () =>
-                {
-                    var betTypes = dynamicRepository.Fetch<BetTypeGroup>(new GetBetTypeGroupBySportCriteria());
-
-                    return betTypes.Select(bettype => new BetTypeGroup(bettype.SportTypeGroup, bettype.Id, cacheRefService.GetBetTypeName));
-                },
+                () => dynamicRepository.Fetch<BetTypeGroup>(new GetBetTypeGroupBySportCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
     }
 }

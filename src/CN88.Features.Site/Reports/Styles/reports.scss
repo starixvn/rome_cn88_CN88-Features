@@ -34,13 +34,6 @@ body {
     }
 }
 
-.tblSettlementSummary,
-.tblAccountingSheet {
-    > tbody > tr:last-child > td {
-        border-bottom: none;
-    }
-}
-
 .result-container {
     background-color: #fff;
 }
@@ -50,6 +43,11 @@ body {
 
     .form-group {
         margin: 0 0 15px;
+
+        .btn-default, .btn-secondary {
+            width: 112px;
+            margin-right: 4px;
+        }
 
         &.list-buttons {
             width: 350px;
@@ -64,11 +62,6 @@ body {
             .btn-default, .btn-secondary {
                 width: 172px;
             }
-        }
-
-        .btn-default, .btn-secondary {
-            width: 112px;
-            margin-right: 4px;
         }
     }
 
@@ -151,19 +144,16 @@ body {
 
         .tooltip-arrow:after {
             position: absolute;
+            bottom: -6px;
             width: 0;
             height: 0;
-            border-color: transparent;
-            border-style: solid;
-        }
-
-        .tooltip-arrow:after {
-            content: '';
-            border-width: 4px;
-            border-bottom-color: #ececec !important;
-            bottom: -6px;
-            border-top-width: 0;
             margin-left: -4px;
+            border-style: solid;
+            border-width: 4px;
+            border-color: transparent;
+            border-bottom-color: #ececec !important;
+            border-top-width: 0;
+            content: '';
         }
     }
 
@@ -284,39 +274,6 @@ body {
     transform: rotate(180deg);
 }
 
-.tblSettlementSummary {
-    > thead > tr {
-        &:first-child th {
-            border: none;
-            padding-bottom: 4px;
-            color: #333;
-        }
-
-        &:nth-child(2) th {
-            padding: 4px 0 10px;
-            font-size: 12px;
-        }
-
-        > th {
-            font-weight: normal;
-            text-align: center;
-
-            [class*="-settlement"] {
-                padding-bottom: 8px;
-            }
-        }
-    }
-
-    > tbody > tr > td {
-        text-align: center;
-
-        &:first-child {
-            text-align: left;
-            padding: 12px;
-            width: 150px;
-        }
-    }
-}
 
 .nav-tabs > li.report-name:hover:after {
     width: 0;
@@ -337,18 +294,6 @@ body {
         padding: 13px 8px;
     }
 
-    > tbody > tr > td, > tfoot > tr > td {
-        padding: 7px 8px;
-
-        &.profit-margin span {
-            color: #000;
-            padding-left: 10px;
-            &.negative-value{
-                color: #B50000;
-            }
-        }
-    }
-
     > thead > tr.total > th {
         color: #fff;
         background-color: #2C3E50;
@@ -363,59 +308,22 @@ body {
     > thead > tr.total > th.negative-value {
         color: #ffbeb4;
     }
-}
 
-.tblAccountingSheet {
-    > thead > tr > th {
-        text-align: center;
-        font-weight: normal;
-        color: #3b3b3b;
-    }
+    > tbody > tr > td,
+    > tfoot > tr > td {
+        padding: 7px 8px;
 
-    > tbody > tr > td {
-        text-align: left;
-        padding: 12px;
-    }
-}
+        &.profit-margin span {
+            color: #000;
+            padding-left: 10px;
 
-.old-report {
-    .menubar {
-        height: 39px;
-    }
-
-    .list-menu {
-        overflow: hidden;
-        width: 100%;
-
-        .menu-item {
-            float: left;
-            border: none;
-
-            &:first-child {
-                background: inherit;
+            &.negative-value {
+                color: #B50000;
             }
         }
     }
-
-    .sub-menu {
-        padding: 0;
-        background-color: #fff;
-    }
-
-    .new-page-content {
-        min-width: 424px;
-    }
-
-    #tblAccountingSheet {
-        width: 100%;
-        white-space: nowrap;
-    }
-
-    .create-form {
-        padding: 0 20px;
-        margin-top: 0;
-    }
 }
+
 
 .report-detail .accountingsheet-control {
     .multiselect .multiselect-selected-text {
@@ -427,7 +335,7 @@ body {
     }
 }
 
-@media all and (min-width: 768px) {
+@media all and (min-width: $screen-device-greater768) {
     .wager-report {
         .filter-container {
             width: 400px;
@@ -453,6 +361,16 @@ body.phone {
         display: none;
     }
 
+    .btn-group,
+    .create-form .btn-group {
+        width: 100%;
+
+        button.multiselect {
+            width: 100%;
+            text-align: left;
+        }
+    }
+
     .wager-report {
         width: 100%;
         padding: 0;
@@ -476,16 +394,6 @@ body.phone {
 
     .dropdown {
         width: 100%;
-    }
-
-    .create-form .btn-group,
-    .btn-group {
-        width: 100%;
-
-        button.multiselect {
-            width: 100%;
-            text-align: left;
-        }
     }
 
     .create-form {
@@ -532,30 +440,27 @@ body.phone {
 
         .form-group.list-buttons {
             width: 100%;
-        }
-
-        .form-group.has-two-buttons .btn-quick-choice {
-            float: left;
-            width: 48%;
-            margin-right: 0;
-
-            &:first-child {
-                margin-right: 4%;
-            }
+            margin-top: 20px;
         }
 
         .form-group.has-three-buttons .btn-quick-choice {
             float: left;
             width: 30.5%;
             margin-right: 4%;
-
-            &:last-child {
-                margin-right: 0;
-            }
         }
 
-        .form-group.list-buttons {
-            margin-top: 20px;
+        .form-group.has-two-buttons .btn-quick-choice {
+            float: left;
+            width: 48%;
+            margin-right: 0;
+        }
+
+        .form-group.has-two-buttons .btn-quick-choice:first-child {
+            margin-right: 4%;
+        }
+
+        .form-group.has-three-buttons .btn-quick-choice:last-child {
+            margin-right: 0;
         }
 
         .form-group.list-buttons [class^="btn"] {
@@ -565,39 +470,6 @@ body.phone {
 
         .form-group.list-buttons .btn-default {
             margin-right: 4%;
-        }
-    }
-
-    .tblSettlementSummary {
-        > thead > tr th {
-            padding-top: 0;
-            padding-bottom: 0;
-            background-color: transparent;
-        }
-
-        > tbody > tr > td {
-            padding: 8px 0;
-
-            &:first-child {
-                width: 120px;
-                padding: 8px 0;
-            }
-        }
-    }
-
-    .tblAccountingSheet {
-        > thead > tr th {
-            padding-top: 0;
-            padding-bottom: 10px;
-            background-color: transparent;
-        }
-
-        > tbody > tr > td {
-            padding: 8px 0;
-        }
-
-        .reportNo {
-            padding-right: 4px;
         }
     }
     // Settled Wager
@@ -613,7 +485,7 @@ body.phone {
             width: 100%;
         }
 
-        .btn-submit {
+        .form-group .btn-submit {
             width: 100%;
         }
 
@@ -677,47 +549,6 @@ body.phone {
     .pagination {
         padding-left: 12px;
         padding-right: 12px;
-    }
-
-    &.old-report {
-        .menubar {
-            display: none;
-        }
-
-        .new-page-content {
-            top: 0;
-            min-width: 100%;
-
-            .create-filter {
-                padding-top: 0;
-            }
-
-            .nav-tabs > li {
-                width: 50%;
-            }
-        }
-
-        .old-report-filter {
-            .page-title {
-                display: none;
-            }
-
-            .nav-tabs {
-                display: none;
-            }
-
-            #dropdown-wagerRptType {
-                width: 100%;
-            }
-
-            .create-form {
-                padding: 0;
-            }
-
-            #wagerReport {
-                padding: 0 0 15px;
-            }
-        }
     }
 }
 

@@ -1,6 +1,7 @@
-﻿/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
-/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
-"use strict";
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+/// <reference path="old-base-report.ts" />
+
 class OldReportIndexView extends OldBaseReport {
     $displayMode: JQuery;
     $reportType: JQuery;
@@ -85,12 +86,12 @@ class OldReportIndexView extends OldBaseReport {
     }
 
     resetReportType(): void {
-        (<HTMLSelectElement>this.$wagerRptTypeDropdown[0]).selectedIndex = 0;
+        (this.$wagerRptTypeDropdown[0] as HTMLSelectElement).selectedIndex = 0;
         this.$wagerRptTypeDropdown.multiselect("refresh");
     }
 
     resetAccountingSheet(): void {
-        (<HTMLSelectElement>this.accountingPeriodSelectionComponent.$dropdown[0]).selectedIndex = 0;
+        (this.accountingPeriodSelectionComponent.$dropdown[0] as HTMLSelectElement).selectedIndex = 0;
         this.accountingPeriodSelectionComponent.$dropdown.multiselect("refresh");
     }
 

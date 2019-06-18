@@ -59,7 +59,8 @@
 
             RefDataTypeContainer
                 .ConnectTo(new Uri(AppSettings.RemoteRefURL))
-                .FromApplication("CN88.Features.Site");
+                .FromApplication("CN88.Features.Site")
+                .RegisterSupportedLanguages("en-US", "zh-Hans", "zh-TW");
         }
 
         /// <summary>

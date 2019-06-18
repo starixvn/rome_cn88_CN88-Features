@@ -1,4 +1,11 @@
-﻿class CustomerList {
+﻿/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
+/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
+/// <reference path="master-list.ts" />
+/// <reference path="agent-list.ts" />
+/// <reference path="member-list.ts" />
+
+class CustomerList {
     $: JQueryStatic;
     topWindow: any;
     numeral: any;
@@ -76,9 +83,9 @@
         this.agentToggleHandler = agentToggleHandler;
         this.memberToggleHandler = memberToggleHandler;
 
-        this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
-        this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
-        this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
+        this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
+        this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
+        this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
     }
 
     init = () => {
@@ -189,11 +196,11 @@
 
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
-            Username: this.$("#Username").val(),
-            SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
+            Username: <string>this.$("#Username").val(),
+            SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
             CustId: 0,
-            Status: parseInt(this.$("#Status").val()),
-            PageSize: parseInt(this.$("#PageSize").val()),
+            Status: parseInt(<string>this.$("#Status").val()),
+            PageSize: parseInt(<string>this.$("#PageSize").val()),
             PageIndex: 1
         };
     };

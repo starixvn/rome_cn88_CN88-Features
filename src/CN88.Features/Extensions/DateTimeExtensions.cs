@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Extensions
 {
     using System;
+    using System.Resources;
 
     public static class DateTimeExtensions
     {
@@ -20,8 +21,8 @@
         public static string ToTimeFormat(this DateTime date)
             => date.ToString(TimeFormat);
 
-        public static string ToLongDay(this DateTime date)
-            => date.ToString("yyyy-MM-dd dddd");
+        public static string ToLongDay(this DateTime date, ResourceManager resourceManager)
+            => $"{date.ToShortDateFormat()} {resourceManager.GetString(date.ToString("dddd"))}";
 
         public static string ToLongTime24h(this DateTime dateTime)
             => dateTime.ToString(LongTime24h);

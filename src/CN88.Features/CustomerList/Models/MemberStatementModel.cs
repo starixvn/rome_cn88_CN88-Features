@@ -18,12 +18,7 @@
         public DateTime WinLostDate { get; }
 
         public string WinLostDateStr
-        {
-            get
-            {
-                return $"{WinLostDate.ToShortDateFormat()} {resourceManager.GetString(WinLostDate.ToString("dddd"))}";
-            }
-        }
+            => $"{WinLostDate.ToShortDateFormat()} {resourceManager.GetString(WinLostDate.ToString("dddd"))}";
 
         public decimal? Stake { get; }
 

@@ -7,69 +7,85 @@
 @section Styles {
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/member-statement")
 }
-<div class="member-statement">
-    <div class="page-title">@Model.CustName</div>
-    <form class="form-inline filter" role="form" id="report-form">
-        @Html.Hidden("CustName", Model.CustName)
-        @Html.Hidden("CustId", Model.CustId)
-        @SportGroupSelection.Render(Model.SportTypeSelectionViewModel, true)
-        @DateTimeSelection.Render(Model.FromDateSelectionViewModel, "fromdate", @BetListsResources.Date)
-        @DateTimeSelection.Render(Model.ToDateSelectionViewModel, "todate", @SharedResources.To)
-        <div class="form-group">
-            <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
-        </div>
-    </form>
-    <table class="tbl-style2">
-        <thead>
-            <tr>
-                <th>@BetListsResources.Date</th>
-                <th class="text-right">@BetListsResources.Stake</th>
-                <th class="text-right">@ReportResources.ValidStake</th>
-                <th class="text-right">@BetListsResources.WinLoss</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (!Model.Statements.Any())
-            {
+
+    @if (Model.IsMobile)
+    {
+        <div class="new-page-header">@BetListsResources.Statement</div>
+    }
+
+    <div class="member-statement">
+        <div class="page-title">@Model.CustName</div>
+        @if (Model.IsMobile)
+        {
+
+            <div class="filter-mobile">
+                <span class="icon-filter-down" id="filter-toggle-icon"></span>
+            </div>
+        }
+
+        <form class="form-inline filter" role="form" id="report-form">
+            @Html.Hidden("CustName", Model.CustName)
+            @Html.Hidden("CustId", Model.CustId)
+            @SportGroupSelection.Render(Model.SportTypeSelectionViewModel, true)
+            @DateTimeSelection.Render(Model.FromDateSelectionViewModel, "fromdate", @BetListsResources.Date)
+            @DateTimeSelection.Render(Model.ToDateSelectionViewModel, "todate", @SharedResources.To)
+            <div class="form-group">
+                <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
+            </div>
+        </form>
+
+        <table class="tbl-style2 tbl-member-statement" id="tbl-member-statement">
+            <thead>
                 <tr>
-                    <td class="text-center" colspan="4">@SharedResources.NoInformationIsAvailable</td>
+                    <th>@BetListsResources.Date</th>
+                    <th class="text-right">@BetListsResources.Stake</th>
+                    <th class="text-right">@ReportResources.ValidStake</th>
+                    <th class="text-right">@BetListsResources.WinLoss</th>
                 </tr>
-            }
-            @foreach (var item in Model.Statements)
-            {
-                <tr>
-                    <td>
-                        @if (item.HasTicket)
-                        {
-                            <a href="@Model.BetListOfStatementUrl(item.WinLostDate)">@item.WinLostDateStr</a>
-                        }
-                        else
-                        {
-                            @item.WinLostDateStr
-                        }
-                    </td>
-                    <td class="text-right">@item.StakeStr</td>
-                    <td class="text-right">@item.ValidStakeStr</td>
-                    <td class="text-right">@Html.Raw(item.WinLossStr)</td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            @if (Model.Statements.Any())
-            {
-                <tr>
-                    <td>@ReportResources.Total</td>
-                    <td class="text-right">@Model.TotalStakeStr</td>
-                    <td class="text-right">@Model.TotalValidStakeStr</td>
-                    <td class="text-right">@Html.Raw(Model.TotalWinLossStr)</td>
-                </tr>
-            }
-        </tfoot>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @if (!Model.Statements.Any())
+                {
+                    <tr>
+                        <td class="text-center" colspan="4">@SharedResources.NoInformationIsAvailable</td>
+                    </tr>
+                }
+                @foreach (var item in Model.Statements)
+                {
+                    <tr>
+                        <td>
+                            @if (item.HasTicket)
+                            {
+                                <a href="@Model.BetListOfStatementUrl(item.WinLostDate)">@item.WinLostDateStr</a>
+                            }
+                            else
+                            {
+                                @item.WinLostDateStr
+                            }
+                        </td>
+                        <td class="text-right">@item.StakeStr</td>
+                        <td class="text-right">@item.ValidStakeStr</td>
+                        <td class="text-right">@Html.Raw(item.WinLossStr)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                @if (Model.Statements.Any())
+                {
+                    <tr>
+                        <td>@ReportResources.Total</td>
+                        <td class="text-right">@Model.TotalStakeStr</td>
+                        <td class="text-right">@Model.TotalValidStakeStr</td>
+                        <td class="text-right">@Html.Raw(Model.TotalWinLossStr)</td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>
 @Html.Hidden("Warning", SharedResources.Warning)
 @Html.Hidden("OK", SharedResources.OK)
 @Html.Hidden("InvalidDateRange", CustomerListResources.InvalidDateRange)
+@Html.Hidden(nameof(Model.IsMobile), Model.IsMobile)
 @section Scripts {
     @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/memberstatement")
 }

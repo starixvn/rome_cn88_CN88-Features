@@ -13,7 +13,7 @@
 
     public class BetListExcelBaseHandler
     {
-        private const string ExcelTemplateDir = "~/BetLists/ExcelTemplates/{0}.{1}";
+        private const string ExcelTemplateDir = "~/BetLists/Excels/Templates/{0}.{1}";
         private const string FontTahoma = "Tahoma";
         private Func<string, string> mapPath;
 

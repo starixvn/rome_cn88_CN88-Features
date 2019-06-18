@@ -26,13 +26,6 @@
 
         public DateTime MoveBetsDay { get; }
 
-        public override string GetSettingKey()
-            => ReportLevel.IsMemberLevel()
-                ? "CS_Rpt_Winloss_Member"
-                : ReportLevel.IsAgentLevel()
-                ? "CS_Rpt_Winloss_Agent"
-                : ReportLevel.IsMasterLevel()
-                ? "CS_Rpt_Winloss_Master"
-                : "CS_Rpt_Winloss_Super";
+        public override string GetSettingKey() => $"CS_Rpt_Winloss_{ReportLevel.DisplayName}";
     }
 }

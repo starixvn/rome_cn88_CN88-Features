@@ -13,12 +13,15 @@
 
     public class MemberStatementViewModel
     {
+        private readonly MemberStatementQuery message;
+
         public MemberStatementViewModel(
             IEnumerable<MemberStatementModel> statements,
             MemberStatementQuery message,
             IEnumerable<SelectListItemExt> sportGroups,
             IEnumerable<SelectListItemExt> fromDates,
-            IEnumerable<SelectListItemExt> toDates)
+            IEnumerable<SelectListItemExt> toDates,
+            bool isMobile)
         {
             Statements = statements;
             TotalStake = statements.Sum(i => i.Stake);
@@ -28,9 +31,8 @@
             FromDateSelectionViewModel = new SingleSelectionViewModel(fromDates, message.UserSelectedFromDate);
             ToDateSelectionViewModel = new SingleSelectionViewModel(toDates, message.UserSelectedToDate);
             this.message = message;
+            IsMobile = isMobile;
         }
-
-        private MemberStatementQuery message;
 
         public IEnumerable<MemberStatementModel> Statements { get; }
 
@@ -90,5 +92,7 @@
                ["Date"] = date,
                ["SportTypeGroup"] = message.UserSelectedSportGroupId
            });
+
+        public bool IsMobile { get; }
     }
 }

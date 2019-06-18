@@ -1,4 +1,6 @@
 ﻿namespace BetLists.Result {
+    const thirdPartyDetail = 'ThirdParty/Detail';
+
     export class AllbetResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -22,7 +24,7 @@
                 sportId: sportTypeId
             });
 
-            var options = {
+            const options = {
                 url: this.ResultDetailsPath + params,
                 title: "",
                 width: 855,
@@ -33,6 +35,7 @@
         }
     }
 
+    
     export class RnGCasinoResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -53,15 +56,20 @@
                 productId: 6
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
+    }
+
+    function openThirdPartyPopup(params: string) {
+
+        const options = {
+            url: `${Common.AppPath.ResultsAppPath()}${thirdPartyDetail}${params}`,
+            title: "",
+            width: 855,
+            height: 725
+        };
+
+        Common.PopupDetails.Instance(window.top).Show(options);
     }
 
     export class MacauGamesResultDetails extends BaseResultDetails implements ResultDetails {
@@ -85,14 +93,7 @@
                 productId: 22
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 
@@ -117,14 +118,7 @@
                 productId: 24
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 
@@ -149,14 +143,7 @@
                 productId: 32
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 
@@ -181,14 +168,7 @@
                 productId: 30
             });
 
-            var options = {
-                url: Common.AppPath.ResultsAppPath() + 'ThirdParty/Detail' + params,
-                title: "",
-                width: 855,
-                height: 725
-            };
-
-            Common.PopupDetails.Instance(window.top).Show(options);
+            openThirdPartyPopup(params);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿class MemberList extends BaseList {
+﻿/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="base-list.ts" />
+/// <reference path="../../shared/scripts/components/pager.ts" />
+
+class MemberList extends BaseList {
     $viewedAgent: JQuery;
     $errMember: JQuery;
     directDownline: number;
@@ -9,9 +13,10 @@
     constructor(
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
+        bootstrapDropdownComponent: BootstrapDropdownComponent,
         numeral: any,
         pager: PagerComponent) {
-        super($, statusComponent, numeral, pager, "Member");
+        super($, statusComponent, bootstrapDropdownComponent, numeral, pager, "Member");
     }
 
     public init(viewResources: any, indexManager: any) {
@@ -28,11 +33,6 @@
         let self = this;
         this.$("#btn-submit-member").off("click").on("click", function () {
             self.reportParam.PageIndex = 1;
-
-            if (self.indexManager.isDevice) {
-                self.indexManager.memberToggleHandler.hideFilter();
-            }
-
             self.viewMembers(self.reportParam.CustId);
         });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
@@ -70,6 +70,11 @@
         }
 
         this.$errMember.addClass("display-none");
+
+        if (this.indexManager.isDevice) {
+            this.indexManager.memberToggleHandler.hideFilter();
+        }
+
         this.loadData();
     };
     renderMemberList = (rs: any) => {
@@ -89,28 +94,65 @@
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
-        if (rs.Customers.length == 0) {
-            html = "<tr><td colspan='9' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
-        } else {
-            for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                let customer = rs.Customers[i],
-                    custId = customer.CustId,
-                    username = customer.Username;
+        if (this.indexManager.isDevice) {
+            if (rs.Customers.length == 0) {
+                html = "<tr><td colspan='9' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
+            } else {
+                for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
+                    let customer = rs.Customers[i],
+                        custId = customer.CustId,
+                        username = customer.Username,
+                        nickname = customer.Nickname ? customer.Nickname : "---",
+                        name = customer.Name ? customer.Name : "---";
 
-                html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
-                    "<td class='col-no'>" + customerIndex + "</td>" +
-                    `<td class='link view-statement' username='${username}' cust-id='${custId}'>${username}</td>` +
-                    "<td>" + customer.Name + "</td>" +
-                    "<td>" + customer.Nickname + "</td>" +
-                    "<td>" + customer.Group + "</td>" +
-                    `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
-                    "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
-                    `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
-                    "<td class='col-action text-center'>" +
-                    `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='1'></span>` +
-                    `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.EditMember}'></span>` +
-                    "</td>" +
-                    "</tr>";
+                    html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
+                        `<td class='link view-statement' cust-id='${custId}' username='${username}'>` +
+                        `<div class='username-wrapper'>${username}
+                                <div class="cust-nickname">${nickname}</div>
+                                <div class="cust-name">${name}</div>
+                            </div>
+                        </td>` +
+                        "<td>" + customer.Group + "</td>" +
+                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
+                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                        "<td class='col-action text-center'>" +
+                        `<div class="dropdown">` +
+                        `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+                        (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
+                        `</a>` +
+                        `<ul class="dropdown-menu" aria-labelledby="${custId}" >` +
+                        `<li class='icon-pass' cust-id='${custId}' username='${username}' cust-role='1'>${this.indexManager.viewResources.ResetPassword}</li>` +
+                        `<li class='icon-edit' cust-id='${custId}' username='${username}'>${this.indexManager.viewResources.EditMember}</li>` +
+                        `</ul>` +
+                        `</div>` +
+                        "</td>" +
+                        "</tr>";
+                }
+            }
+        } else {
+            if (rs.Customers.length == 0) {
+                html = "<tr><td colspan='9' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
+            } else {
+                for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
+                    let customer = rs.Customers[i],
+                        custId = customer.CustId,
+                        username = customer.Username;
+
+                    html += `<tr class='row-customer ${this.indexManager.getCustomerColor(customer)}' cust-id='${custId}'>` +
+                        "<td class='col-no'>" + customerIndex + "</td>" +
+                        `<td class='link view-statement' username='${username}' cust-id='${custId}'>${username}</td>` +
+                        "<td>" + customer.Name + "</td>" +
+                        "<td>" + customer.Nickname + "</td>" +
+                        "<td>" + customer.Group + "</td>" +
+                        `<td class='text-right link col-credit' cust-id='${custId}' username='${username}'>` + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
+                        "<td class='col-date'>" + customer.CreationDateStr + "</td>" +
+                        `<td class='col-status text-center link' cust-id='${custId}' username='${username}' current-status='` + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                        "<td class='col-action text-center'>" +
+                        `<span class='icon-pass' data-toggle='tooltip' data-placement='top' title='${this.indexManager.viewResources.ResetPassword}' cust-id='${custId}' username='${username}' cust-role='1'></span>` +
+                        `<span class='icon-edit' data-toggle='tooltip' data-placement='top' cust-id='${custId}' username='${username}' title='${this.indexManager.viewResources.EditMember}'></span>` +
+                        "</td>" +
+                        "</tr>";
+                }
             }
         }
 
@@ -132,7 +174,7 @@
     initAutoComplete = () => {
         let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
             this.$.param({ isDir: this.directDownline == siteInfrastructure.roleId.agent, issub: false, ismember: true });
-        initAutoComplete(this.$viewedAgent[0], queryUsernameURL);
+        //initAutoComplete(this.$viewedAgent[0], queryUsernameURL);
 
         this.$output.css("top", this.$viewedAgent.offset().top + 30);
         this.$output.css("left", this.$viewedAgent.offset().left);

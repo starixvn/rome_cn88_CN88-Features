@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -132,10 +132,6 @@
       <HintPath>..\..\packages\MessagePack.1.7.3.4\lib\net45\MessagePack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
       <Private>True</Private>
@@ -244,12 +240,10 @@
     <Compile Include="BetLists\Constants\TotalBetParlaySport.cs" />
     <Compile Include="BetLists\Constants\TotalBetTypeConstants.cs" />
     <Compile Include="BetLists\Constants\WagerMonitoringMarket.cs" />
-    <Compile Include="BetLists\Criteria\StartedWagerByAccountCriteria.cs" />
-    <Compile Include="BetLists\Criteria\EventWagerByAccountCriteria.cs" />
-    <Compile Include="BetLists\Criteria\StartedWagerDetailsCriteria.cs" />
-    <Compile Include="BetLists\Criteria\EventWagerDetailsCriteria.cs" />
-    <Compile Include="BetLists\Params\StartedWagerDetailsParam.cs" />
-    <Compile Include="BetLists\Params\StartedWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\BetListOfReportBaseCriteria.cs" />
+    <Compile Include="BetLists\Criteria\TotalBets\StartedWagerCriteria.cs" />
+    <Compile Include="BetLists\Criteria\TotalBets\EventWagerCriteria.cs" />
+    <Compile Include="BetLists\Params\StartedWagerParam.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMatchByIdCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorBetTypeGroupCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorSportGroupCriteria.cs" />
@@ -259,8 +253,7 @@
     <Compile Include="BetLists\Models\WagerMonitoring\League.cs" />
     <Compile Include="BetLists\Models\WagerMonitoring\MatchInfo.cs" />
     <Compile Include="BetLists\Models\WagerMonitoring\MonitorBetTypeGroup.cs" />
-    <Compile Include="BetLists\Params\EventWagerDetailsParam.cs" />
-    <Compile Include="BetLists\Params\EventWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Params\EventWagerParam.cs" />
     <Compile Include="BetLists\Params\WagerMonitoringParam.cs" />
     <Compile Include="BetLists\WagerMonitoringService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -268,27 +261,19 @@
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />
     <Compile Include="Shared\Constants\SportGroupConstants.cs" />
     <Compile Include="Shared\Constants\StakeModeConstant.cs" />
-    <Compile Include="BetLists\Criteria\OldAbnormalBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\BetListOfReportCriteriaFactory.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\OldAbnormalBetListCriteria.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\BetListOfReportCriteriaFactory.cs" />
     <Compile Include="BetLists\Criteria\BetListOfStatementCriteria.cs" />
-    <Compile Include="BetLists\Criteria\AbnormalBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\OldCancelledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\GetParlaySubTicketsCriteria.cs" />
-    <Compile Include="BetLists\Criteria\GetParlayDetailCriteria.cs" />
-    <Compile Include="BetLists\Criteria\OldSettledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\CancelledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\OutrightWagerByAccountCriteria.cs" />
-    <Compile Include="BetLists\Criteria\TotalBetParlayCriteria.cs" />
-    <Compile Include="BetLists\Criteria\UnsettledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\SettledBetListCriteria.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\InternalAdminCheckerCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\NAPUserPermissionCriteria.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterSMACheckerCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterSMACheckerWriteLogCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterWriteLogCommand.cs" />
-    <Compile Include="BetLists\Criteria\SmartPunter\SmartPunterWriteLogNoDataCommand.cs" />
-    <Compile Include="BetLists\Criteria\OutrightWagerDetailsCriteria.cs" />
-    <Compile Include="BetLists\DataAccesses\SmartPunterDataAccess.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\AbnormalBetListCriteria.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\OldCancelledBetListCriteria.cs" />
+    <Compile Include="BetLists\Criteria\Parlay\GetParlaySubTicketsCriteria.cs" />
+    <Compile Include="BetLists\Criteria\Parlay\GetParlayDetailCriteria.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\OldSettledBetListCriteria.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\CancelledBetListCriteria.cs" />
+    <Compile Include="BetLists\Criteria\TotalBets\OutrightWagerCriteria.cs" />
+    <Compile Include="BetLists\Criteria\Parlay\TotalBetParlayCriteria.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\UnsettledBetListCriteria.cs" />
+    <Compile Include="BetLists\Criteria\BetListOfReport\SettledBetListCriteria.cs" />
     <Compile Include="BetLists\Helpers\BetTypeHelper.cs" />
     <Compile Include="BetLists\Models\BetListData.cs" />
     <Compile Include="BetLists\Models\MatchDetailModel.cs" />
@@ -296,13 +281,12 @@
     <Compile Include="BetLists\Models\ParlayDetailModel.cs" />
     <Compile Include="BetLists\Models\ParlayDetailReportModel.cs" />
     <Compile Include="BetLists\Models\TicketDto.cs" />
-    <Compile Include="BetLists\Params\OutrightWagerByAccountParam.cs" />
+    <Compile Include="BetLists\Params\OutrightWagerParam.cs" />
     <Compile Include="BetLists\Params\BetListOfReportParam.cs" />
     <Compile Include="BetLists\Params\BetListOfStatementParam.cs" />
     <Compile Include="BetLists\Params\GetParlaySubTicketsParam.cs" />
     <Compile Include="BetLists\Params\GetParlayDetailParam.cs" />
     <Compile Include="BetLists\Params\GetTotalBetParlayParam.cs" />
-    <Compile Include="BetLists\Params\OutrightWagerDetailsParam.cs" />
     <Compile Include="BetLists\Resources\BetListsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -455,11 +439,6 @@
     <EmbeddedResource Include="SubAccount\AppResources\SubAccountResource.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
@@ -469,7 +448,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

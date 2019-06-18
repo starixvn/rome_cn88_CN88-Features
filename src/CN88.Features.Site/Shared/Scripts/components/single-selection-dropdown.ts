@@ -1,8 +1,4 @@
 ﻿"use strict";
-interface JQuery {
-    multiselect(option: any): void;
-    multiselect(func: string, options: any): void;
-}
 
 class SingleSelectionDropdownOption {
     constructor(

@@ -7,12 +7,8 @@
 
     public class BaseQuery
     {
-        private readonly IUser viewer;
-
         protected BaseQuery(IUser viewer)
         {
-            this.viewer = viewer;
-
             ViewerId = viewer.Id;
             ViewerName = viewer.Name;
             NickName = viewer.NickName;

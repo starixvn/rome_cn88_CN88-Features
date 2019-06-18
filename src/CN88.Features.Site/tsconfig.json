@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "types": [],
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "typeRoots": [ "./typings/globals/", "./Shared/Scripts/", "./node_modules/@types" ],
+    "module": "commonjs"
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot",
+    "obj",
+    "bin"
+  ]
+}

@@ -1,9 +1,8 @@
-﻿/// <reference path="../../shared/scripts/core.ts" />
-/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
+﻿/// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="../../shared/scripts/components/link-builder.ts" />
-/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
 /// <reference path="../../shared/scripts/components/client-pager.ts" />
+/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
 
 class BetListOfReport {
     $: JQueryStatic;
@@ -24,28 +23,22 @@ class BetListOfReport {
         pageIndex: null,
         filterToggleIcon: null,
         reportTable: null,
-        reportPager: null
+        reportPager: null,
+        iconBackTop: null,
+        body: null
     };
 
-    constructor(
-        $: JQueryStatic,
-        dateRangePickerComponent: DateRangePickerComponent,
-        sportGroupSelectionComponent: SingleSelectionDropdownComponent,
-        betTypeSelectionComponent: SingleSelectionDropdownComponent,
-        liveStatusSelectionComponent: SingleSelectionDropdownComponent,
-        linkBuilderComponent: LinkBuilderComponent,
-        pagerComponent: ClientPagerComponent,
-        toggleHandler: ToggleHandler) {
-        this.$ = $;
+    constructor(options: BetListReportOptions) {
+        this.$ = options.$;
 
-        this.dateRangePickerComponent = dateRangePickerComponent;
-        this.sportGroupSelectionComponent = sportGroupSelectionComponent;
-        this.betTypeSelectionComponent = betTypeSelectionComponent;
-        this.liveStatusSelectionComponent = liveStatusSelectionComponent;
-        this.toggleHandler = toggleHandler;
+        this.dateRangePickerComponent = options.dateRangePickerComponent;
+        this.sportGroupSelectionComponent = options.sportGroupSelectionComponent;
+        this.betTypeSelectionComponent = options.betTypeSelectionComponent;
+        this.liveStatusSelectionComponent = options.liveStatusSelectionComponent;
+        this.toggleHandler = options.toggleHandler;
 
-        this.linkBuilderComponent = linkBuilderComponent;
-        this.pagerComponent = pagerComponent;
+        this.linkBuilderComponent = options.linkBuilderComponent;
+        this.pagerComponent = options.pagerComponent;
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
     }
 
@@ -57,7 +50,9 @@ class BetListOfReport {
         if (this.isMobile) {
             this.elements.reportTable.stacktable();
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-report-stack"));
-            this.$('body').backtop();
+            if (this.elements.iconBackTop.length === 0) {
+                this.elements.body.backtop();
+            }
         }
         else {
             this.pagerComponent.render();
@@ -82,24 +77,20 @@ class BetListOfReport {
         this.elements.filterToggleIcon = this.$("#filter-toggle-icon");
         this.elements.reportTable = this.$("#tbl-report");
         this.elements.reportPager = this.$("#report-pager");
+        this.elements.iconBackTop = this.$("#back-top-component");
+        this.elements.body = this.$("body");
     };
 
     registerEvents = () => {
-        let self = this;
-
         this.elements.reportForm.submit(this.onReportSubmit);
 
         this.elements.excelIcon.click(this.onExportExcelEvent);
 
-        let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
+        const expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
         if (!isNaN(expiredSessionSeconds)) {
             this.checkIn();
-
-            let $this = this;
-
-            setInterval(function () {
-                $this.checkIn();
-            }, expiredSessionSeconds * 1000);
+            const oneThousand = 1000;
+            setInterval(this.checkIn, expiredSessionSeconds * oneThousand);
         }
     };
 
@@ -119,23 +110,23 @@ class BetListOfReport {
     };
 
     onchangeSportType = () => {
-        let sportType = this.sportGroupSelectionComponent.$dropdown.val();
+        const sportType = this.sportGroupSelectionComponent.$dropdown.val();
         this.betTypeSelectionComponent.$dropdown.empty();
-        let first = betTypes[0];
-        this.betTypeSelectionComponent.$dropdown.append('<option value=' + first[0].Value + '>' + first[0].Text + '</option>');
-        for (var i = 0; i < betTypes.length; i++) {
-            var betTypeGroup = betTypes[i];
+        const betTypes = window["betTypes"];
+        const first = betTypes[0];
+        this.betTypeSelectionComponent.$dropdown.append(`<option value="${first[0].Value}">${first[0].Text}</option>`);
 
-            if (betTypeGroup[0].SportTypeGroup == sportType) {
-                for (var j = 0; j < betTypeGroup.length; j++) {
-                    this.betTypeSelectionComponent.$dropdown.append('<option value=' + betTypeGroup[j].Value + '>' + betTypeGroup[j].Text + '</option>');
+        for (const betTypeGroups of betTypes) {
+            if (betTypeGroups[0].SportTypeGroup.toString() === sportType) {
+                for (const betTypeGroup of betTypeGroups) {
+                    this.betTypeSelectionComponent.$dropdown.append(`<option value="${betTypeGroup.Value}">${betTypeGroup.Text}</option>`);
                 }
 
                 break;
             }
         }
 
-        this.betTypeSelectionComponent.$dropdown.multiselect('destroy')
+        this.betTypeSelectionComponent.$dropdown.multiselect("destroy");
         this.betTypeSelectionComponent.$dropdown.multiselect({
             multiple: false,
             maxHeight: 300,
@@ -149,8 +140,21 @@ class BetListOfReport {
     }
 }
 
+class BetListReportOptions {
+    constructor(
+        public $: JQueryStatic,
+        public dateRangePickerComponent: DateRangePickerComponent,
+        public sportGroupSelectionComponent: SingleSelectionDropdownComponent,
+        public betTypeSelectionComponent: SingleSelectionDropdownComponent,
+        public liveStatusSelectionComponent: SingleSelectionDropdownComponent,
+        public linkBuilderComponent: LinkBuilderComponent,
+        public pagerComponent: ClientPagerComponent,
+        public toggleHandler: ToggleHandler
+    ) {}
+}
+
 $(document).ready(() => {
-    const betListOfReport = new BetListOfReport(
+    const betListOfReport = new BetListOfReport(new BetListReportOptions(
         $,
         new DateRangePickerComponent($),
         new SingleSelectionDropdownComponent($),
@@ -158,6 +162,7 @@ $(document).ready(() => {
         new SingleSelectionDropdownComponent($),
         new LinkBuilderComponent($),
         new ClientPagerComponent($),
-        new ToggleHandler($));
+        new ToggleHandler($)));
+
     betListOfReport.init();
-})
+});

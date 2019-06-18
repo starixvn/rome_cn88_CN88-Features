@@ -9,6 +9,15 @@
 
     public class SportStakeConditionViewModel
     {
+        private static readonly IEnumerable<SelectListItem> stackModes =
+            StakeModeConstant.Modes.Select(
+                mode =>
+                new SelectListItem
+                {
+                    Text = SharedResources.ResourceManager.GetString($"StakeMode_{mode}"),
+                    Value = mode.ToString()
+                });
+
         public SportStakeConditionViewModel(
             bool isSelectAllSports,
             int allSportsStakeMode,
@@ -29,11 +38,6 @@
 
         public IEnumerable<SportStakeCondition> PerSportsStakeConditions { get; }
 
-        public IEnumerable<SelectListItem> StakeModes
-            => StakeModeConstant.Modes.Select(mode => new SelectListItem
-            {
-                Text = SharedResources.ResourceManager.GetString($"StakeMode_{mode}"),
-                Value = mode.ToString()
-            });
+        public IEnumerable<SelectListItem> StakeModes => stackModes;
     }
 }

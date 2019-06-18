@@ -1,4 +1,6 @@
-﻿class WagerByAccount {
+﻿/// <reference path="../../shared/scripts/components/client-pager.ts" />
+
+class WagerByAccount {
     $: JQueryStatic;
     pagerComponent: ClientPagerComponent;
     isMobile: boolean;
@@ -12,7 +14,7 @@
     }
 
     init = () => {
-        this.isMobile = this.$("#isMobile").val() == "True";
+        this.isMobile = this.$("#isMobile").val() === "True";
 
         if (this.isMobile) {
             this.$("#tbl-report").stacktable();
@@ -22,14 +24,13 @@
             this.pagerComponent.render();
         }
 
-        var self = this;
+        const dataUrl = this.$("#lnk-wager-details").attr("data-url");
         this.$("#lnk-wager-details").click(function () {
-            var url = self.$(this).attr("data-url");
-            if (!url) {
+            if (!dataUrl) {
                 return;
             }
 
-            window.location.href = url;
+            window.location.href = dataUrl;
         });
     };
 }
@@ -37,4 +38,4 @@
 $(document).ready(() => {
     const betListByAccount = new WagerByAccount($, new ClientPagerComponent($));
     betListByAccount.init();
-})
+});

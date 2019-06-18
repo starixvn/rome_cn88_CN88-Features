@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -55,8 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.SecurityCode, Version=3.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.6\lib\net461\Alpha.SecurityCode.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Alpha.SecurityCode.3.0.0.7\lib\net461\Alpha.SecurityCode.dll</HintPath>
     </Reference>
     <Reference Include="Alpha.SmartPunter, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SmartPunter.1.0.0.1\lib\net461\Alpha.SmartPunter.dll</HintPath>
@@ -90,12 +89,11 @@
     <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="CN88.CustomerSetting.Client, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.1-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.8\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.0.9\lib\net461\CN88.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -289,33 +287,18 @@
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sentry, Version=1.1.0.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sentry.1.1.0\lib\net461\Sentry.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sentry.PlatformAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sentry.PlatformAbstractions.1.0.0\lib\net45\Sentry.PlatformAbstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sentry.Protocol, Version=1.0.2.0, Culture=neutral, PublicKeyToken=fba2ec45388e2af0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sentry.Protocol.1.0.2\lib\net46\Sentry.Protocol.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="SharpRaven, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SharpRaven.2.4.0\lib\net45\SharpRaven.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SimpleInjector, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.3.3.2\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SimpleInjector, Version=4.6.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.4.6.0\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector.Integration.Web, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.Integration.Web.3.3.2\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SimpleInjector.Integration.Web, Version=4.6.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.Integration.Web.4.6.0\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.Integration.Web.Mvc.3.3.2\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=4.6.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.Integration.Web.Mvc.4.6.0\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
@@ -386,6 +369,24 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -399,26 +400,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Web.Razor">
-      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Webpages">
-      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Webpages.Deployment">
-      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Webpages.Razor">
-      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Helpers">
-      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc">
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -532,30 +515,35 @@
     <Content Include="BetLists\bundles\wager-details.min.js">
       <DependentUpon>wager-details.js</DependentUpon>
     </Content>
-    <Content Include="BetLists\bundles\wager-monitoring.css" />
-    <Content Include="BetLists\bundles\wager-monitoring.js" />
-    <Content Include="BetLists\bundles\wager-monitoring.min.css">
-      <DependentUpon>wager-monitoring.css</DependentUpon>
+    <Content Include="BetLists\bundles\wager-monitoring\index.js" />
+    <Content Include="BetLists\bundles\wager-monitoring\index.min.js">
+      <DependentUpon>index.js</DependentUpon>
     </Content>
-    <Content Include="BetLists\bundles\wager-monitoring.min.js">
-      <DependentUpon>wager-monitoring.js</DependentUpon>
+    <Content Include="BetLists\bundles\wager-monitoring\pause.js" />
+    <Content Include="BetLists\bundles\wager-monitoring\pause.min.js">
+      <DependentUpon>pause.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\wager-monitoring\styles.css" />
+    <Content Include="BetLists\bundles\wager-monitoring\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
+    </Content>
+    <Content Include="BetLists\Styles\audio\TPBTLOW.mp3" />
     <Content Include="BetLists\Styles\bet-lists.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
     <Content Include="BetLists\Styles\bet-lists.min.css">
       <DependentUpon>bet-lists.scss</DependentUpon>
     </Content>
+    <Content Include="BetLists\Styles\CoreBetListCN88.css" />
+    <Content Include="BetLists\Styles\images\add.png" />
     <Content Include="BetLists\Styles\images\details.svg" />
     <Content Include="BetLists\Styles\images\icon-collapse.png" />
     <Content Include="BetLists\Styles\images\icon-expand.png" />
-    <Content Include="BetLists\Content\CoreBetListCN88.css" />
-    <Content Include="BetLists\Content\images\add.png" />
-    <Content Include="BetLists\Content\images\minus.png" />
-    <Content Include="BetLists\Content\images\q_Icon2_1.png" />
-    <Content Include="BetLists\Content\images\q_Icon_2.png" />
+    <Content Include="BetLists\Styles\images\minus.png" />
     <Content Include="BetLists\Styles\images\minus_details.svg" />
     <Content Include="BetLists\Styles\images\plus_details.svg" />
+    <Content Include="BetLists\Styles\images\q_Icon2_1.png" />
+    <Content Include="BetLists\Styles\images\q_Icon_2.png" />
     <Content Include="BetLists\Styles\wager-monitor-console.css">
       <DependentUpon>wager-monitor-console.scss</DependentUpon>
     </Content>
@@ -669,6 +657,18 @@
     <Content Include="Reports\bundles\wager.min.js">
       <DependentUpon>wager.js</DependentUpon>
     </Content>
+    <Content Include="Reports\Styles\accounting-sheet.css">
+      <DependentUpon>accounting-sheet.scss</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\accounting-sheet.min.css">
+      <DependentUpon>accounting-sheet.css</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\old-report.css">
+      <DependentUpon>old-report.scss</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\old-report.min.css">
+      <DependentUpon>old-report.css</DependentUpon>
+    </Content>
     <Content Include="Reports\Styles\reports.css">
       <DependentUpon>reports.scss</DependentUpon>
     </Content>
@@ -682,6 +682,13 @@
       <DependentUpon>security.css</DependentUpon>
     </Content>
     <Content Include="Reports\Scripts\aes.js" />
+    <Content Include="Reports\Styles\settlement-summary.css">
+      <DependentUpon>settlement-summary.scss</DependentUpon>
+    </Content>
+    <Content Include="Reports\Styles\settlement-summary.min.css">
+      <DependentUpon>settlement-summary.css</DependentUpon>
+    </Content>
+    <Content Include="Shared\Styles\images\user_unlock.svg" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
       <DependentUpon>edit-sub-account.js</DependentUpon>
@@ -708,7 +715,6 @@
     <Content Include="Web.local.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Code\BetLists\Stake.cshtml" />
     <Content Include="Web.uat.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -730,6 +736,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\LoggingManager.cs" />
+    <Compile Include="BetLists\Excels\BetListOfReportWorkbook.cs" />
+    <Compile Include="BetLists\Excels\ParlayDetailWorkbook.cs" />
     <Compile Include="BetLists\Extensions\SelectListItemExtensions.cs" />
     <Compile Include="BetLists\Handlers\BetListExcelBaseHandler.cs" />
     <Compile Include="BetLists\Handlers\BetListOfReportExcelHandler.cs" />
@@ -737,43 +745,42 @@
     <Compile Include="BetLists\Handlers\WagerMonitoringHandler.cs" />
     <Compile Include="BetLists\Helpers\BetListHelpers.cs" />
     <Compile Include="BetLists\Models\SportStakeCondition.cs" />
+    <Compile Include="BetLists\Requests\BetListBaseQuery.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
-    <Compile Include="BetLists\Requests\StartedWagerDetailsQuery.cs" />
-    <Compile Include="BetLists\Requests\StartedWagerByAccountQuery.cs" />
-    <Compile Include="BetLists\Requests\EventWagerDetailsQuery.cs" />
-    <Compile Include="BetLists\Requests\EventWagerByAccountQuery.cs" />
-    <Compile Include="BetLists\Requests\OutrightWagerByAccountQuery.cs" />
+    <Compile Include="BetLists\Requests\Totalbets\StartedWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\Requests\Totalbets\StartedWagerByAccountQuery.cs" />
+    <Compile Include="BetLists\Requests\Totalbets\EventWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\Requests\Totalbets\EventWagerByAccountQuery.cs" />
+    <Compile Include="BetLists\Requests\Totalbets\OutrightWagerByAccountQuery.cs" />
     <Compile Include="BetLists\Requests\BetListOfStatementQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailExcelQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlaySubTicketsQuery.cs" />
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
-    <Compile Include="BetLists\Requests\OutrightWagerDetailsQuery.cs" />
-    <Compile Include="BetLists\ViewModels\BetListTableViewModel.cs" />
-    <Compile Include="BetLists\ViewModels\StartedWagerDetailsViewModel.cs" />
-    <Compile Include="BetLists\ViewModels\StartedWagerByAccountViewModel.cs" />
+    <Compile Include="BetLists\Requests\Totalbets\OutrightWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\ViewModels\BetListViewModelBase.cs" />
+    <Compile Include="BetLists\ViewModels\Totalbets\StartedWagerDetailsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\Totalbets\StartedWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringBaseQuery.cs" />
     <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringFilterQuery.cs" />
     <Compile Include="BetLists\Requests\WagerMonitoring\WagerMonitoringQuery.cs" />
-    <Compile Include="BetLists\ViewModels\EventWagerByAccountViewModel.cs" />
-    <Compile Include="BetLists\ViewModels\OutrightWagerByAccountViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\Totalbets\EventWagerByAccountViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\Totalbets\OutrightWagerByAccountViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListOfStatementViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListTotal.cs" />
-    <Compile Include="BetLists\ViewModels\EventWagerDetailsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\Totalbets\EventWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailViewModel.cs" />
     <Compile Include="BetLists\ViewModels\ParlayDetailWrapper.cs" />
     <Compile Include="BetLists\ViewModels\ParlaySubTicketsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\SportStakeConditionViewModel.cs" />
     <Compile Include="BetLists\ViewModels\TotalBetParlayViewModel.cs" />
-    <Compile Include="BetLists\ViewModels\OutrightWagerDetailsViewModel.cs" />
+    <Compile Include="BetLists\ViewModels\Totalbets\OutrightWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WagerMonitoring\BetTypeSelectListItem.cs" />
     <Compile Include="BetLists\ViewModels\WagerMonitoring\FilterFormViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WagerMonitoring\WagerMonitoringFilterViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WagerMonitoring\WagerMonitoringViewModel.cs" />
     <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
     <Compile Include="BetLists\WagerMonitoringController.cs" />
-    <Compile Include="BetLists\Workbooks\BetListOfReportWorkbook.cs" />
-    <Compile Include="BetLists\Workbooks\ParlayDetailWorkbook.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -802,7 +809,6 @@
     <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
-    <Compile Include="Shared\Helpers\BrowserHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\StakeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
@@ -908,7 +914,7 @@
     <Content Include="BetLists\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="BetLists\Views\BetListOfReport.cshtml" />
+    <Content Include="BetLists\Views\ReportBetList.cshtml" />
     <Content Include="App_Data\ExcelTemplates\Reports\Super.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\Member.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\Agent.xls" />
@@ -916,44 +922,34 @@
     <Content Include="App_Data\ExcelTemplates\Reports\Master.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\MasterOwner.xls" />
     <Content Include="App_Data\ExcelTemplates\Reports\SuperOwner.xls" />
-    <Content Include="App_Code\BetLists\BetListTotal.cshtml" />
-    <Content Include="App_Code\BetLists\NoInfomation.cshtml" />
-    <Content Include="App_Code\BetLists\TransDate.cshtml" />
-    <Content Include="App_Code\BetLists\Comm.cshtml" />
-    <Content Include="App_Code\BetLists\BetID.cshtml" />
-    <Content Include="App_Code\BetLists\Details.cshtml" />
-    <Content Include="App_Code\BetLists\Status.cshtml" />
+    <Content Include="App_Code\BetListHelper.cshtml" />
     <Content Include="BetLists\Styles\bet-lists.scss" />
     <Content Include="App_Data\securitycode.json" />
     <Content Include="BetLists\Views\ParlayDetail.cshtml" />
     <Content Include="BetLists\Views\ParlaySubTickets.cshtml" />
     <Content Include="App_Code\Reports\ReportHtmlHelpers.cshtml" />
-    <Content Include="BetLists\ExcelTemplates\ParlayDetail.xls" />
+    <Content Include="BetLists\Excels\Templates\ParlayDetail.xls" />
     <Content Include="BetLists\Views\Filter.cshtml" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Agent.xls" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Master.xls" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Super.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Agent.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Master.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Super.xls" />
     <Content Include="App_Code\Components\DateTimeSelection.cshtml" />
-    <Content Include="BetLists\Views\BetListOfStatement.cshtml" />
+    <Content Include="BetLists\Views\StatementBetList.cshtml" />
     <Content Include="BetLists\Views\OutrightWagerByAccount.cshtml" />
     <Content Include="BetLists\Views\OutrightWagerDetails.cshtml" />
     <Content Include="BetLists\Views\TotalBetParlay.cshtml" />
     <Content Include="App_Code\Components\StakeSelection.cshtml" />
     <Content Include="App_Code\Components\ViewModeSelection.cshtml" />
-    <Content Include="App_Code\BetLists\WinLoss.cshtml" />
-    <Content Include="App_Code\BetLists\TotalBetBreadcrumb.cshtml" />
     <Content Include="BetLists\Views\EventWagerDetails.cshtml" />
     <Content Include="BetLists\Views\EventWagerByAccount.cshtml" />
-    <Content Include="App_Code\BetLists\Payout.cshtml" />
-    <Content Include="BetLists\ExcelTemplates\BetListOfReport_Headline.xls" />
+    <Content Include="BetLists\Excels\Templates\BetListOfReport_Headline.xls" />
     <Content Include="BetLists\Views\StartedWagerByAccount.cshtml" />
     <Content Include="BetLists\Views\StartedWagerDetails.cshtml" />
     <Content Include="App_Data\securitycode.pro.json" />
     <Content Include="App_Data\securitycode.napinternal.json" />
-    <Content Include="BetLists\Views\ReportBetListMobile.cshtml" />
     <Content Include="BetLists\Views\BetListTable.cshtml" />
     <Content Include="BetLists\Views\BetListTableMobile.cshtml" />
-    <Content Include="BetLists\Views\BackLinkMobile.cshtml" />
+    <Content Include="BetLists\Views\Components\BackLinkMobile.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\FilterForm.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\FilterModal.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\SportStakeConditionFilter.cshtml" />
@@ -961,8 +957,13 @@
     <Content Include="BetLists\Styles\wager-monitor-console.scss" />
     <Content Include="BetLists\Views\WagerMonitoring\LastBets.cshtml" />
     <Content Include="BetLists\Views\WagerMonitoring\Pause.cshtml" />
-    <Content Include="BetLists\Content\audio\TPBTLOW.ogg" />
     <Content Include="CN88.Features.Site.ruleset" />
+    <Content Include="BetLists\Views\Components\PossessColumns.cshtml" />
+    <Content Include="BetLists\Views\Components\PayoutColumn.cshtml" />
+    <Content Include="BetLists\Views\Components\Popup.cshtml" />
+    <Content Include="BetLists\Views\Components\HiddenFields.cshtml" />
+    <Content Include="BetLists\Views\Components\TotalRows.cshtml" />
+    <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -978,8 +979,6 @@
     <Content Include="CustomerList\Views\OnlineMembers.cshtml" />
     <Content Include="CustomerList\Views\MemberStatement.cshtml" />
     <Content Include="Reports\Views\VerifyPassword.cshtml" />
-    <Content Include="Reports\Styles\_variables.scss" />
-    <Content Include="Reports\Styles\_mixins.scss" />
     <Content Include="Reports\Styles\security.scss" />
     <Content Include="Reports\Views\OldIndex.cshtml" />
     <Content Include="Reports\Views\Index\OldCreateReport.cshtml" />
@@ -1009,6 +1008,18 @@
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MasterTable.cshtml" />
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MemberTable.cshtml" />
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\SuperTable.cshtml" />
+    <Content Include="CustomerList\Views\Components\LevelTabs.cshtml" />
+    <Content Include="CustomerList\Views\Components\MasterList.cshtml" />
+    <Content Include="CustomerList\Views\Components\AgentList.cshtml" />
+    <Content Include="CustomerList\Views\Components\MemberList.cshtml" />
+    <Content Include="Reports\Styles\accounting-sheet.scss" />
+    <Content Include="Reports\Styles\settlement-summary.scss" />
+    <Content Include="Reports\Styles\old-report.scss" />
+    <Content Include="CustomerList\Styles\_variables.scss" />
+    <Content Include="tsconfig.json" />
+    <Content Include="typings\globals\cleave.js\LICENSE" />
+    <Content Include="typings\globals\cleave.js\package.json" />
+    <Content Include="typings\globals\cleave.js\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1026,11 +1037,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CN88.Features\CN88.Features.csproj">
       <Project>{db2cd304-10b8-44cd-81ea-f9743e38e71b}</Project>
@@ -1057,6 +1063,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\filter-modal.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\pause.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
@@ -1087,6 +1094,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\message.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\filter-toggle.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\pager.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\bootstrap-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
@@ -1095,6 +1103,9 @@
     <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\sub-account.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cleave.js\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cleave.js\options\creditCard.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cleave.js\options\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery.blockui\index.d.ts" />
@@ -1143,8 +1154,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>

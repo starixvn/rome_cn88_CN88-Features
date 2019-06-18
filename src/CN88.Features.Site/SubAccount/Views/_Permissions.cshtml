@@ -7,47 +7,39 @@
     <div class="title">@SubAccountResource.Permissions</div>
     <div class="account-data-content">
         <div class="form-group">
-            <div class="">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="@PageAccessType.ViewTotalBets" id="totalBets" @(Model.ViewTotalBets ? "checked=checked" : string.Empty)> @SubAccountResource.TotalBets
-                    </label>
-                </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="@PageAccessType.ViewTotalBets" id="totalBets" @(Model.ViewTotalBets ? "checked=checked" : string.Empty)> @SubAccountResource.TotalBets
+                </label>
             </div>
         </div>
         <div class="form-group">
-            <div class="">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"
-                               value="@PageAccessType.ViewMemberInfo" id="acManagementViewOnly"
-                               @(Model.ViewMemberInfo ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.ViewOnly
-                    </label>
-                </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           value="@PageAccessType.ViewMemberInfo" id="acManagementViewOnly"
+                           @(Model.ViewMemberInfo ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.ViewOnly
+               </label>
             </div>
         </div>
         <div class="form-group">
-            <div class="">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"
-                                value="@PageAccessType.UpdateAccount"
-                                id="acManagementEditView"
-                                @(Model.UpdateAccount ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.EditView
-                    </label>
-                </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                            value="@PageAccessType.UpdateAccount"
+                            id="acManagementEditView"
+                            @(Model.UpdateAccount ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.EditView
+                </label>
             </div>
         </div>
         <div class="form-group">
-            <div class="">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"
-                                value="@PageAccessType.ViewReports"
-                                id="reports"
-                                @(Model.ViewReports ? "checked=checked" : string.Empty)> @SubAccountResource.Reports
-                    </label>
-                </div>
+            <div class="checkbox">
+            <label>
+                <input type="checkbox"
+                        value="@PageAccessType.ViewReports"
+                        id="reports"
+                        @(Model.ViewReports ? "checked=checked" : string.Empty)> @SubAccountResource.Reports
+                </label>
             </div>
         </div>
     </div>

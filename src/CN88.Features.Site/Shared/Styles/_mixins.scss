@@ -1,38 +1,37 @@
-﻿
-/// Adds a browser prefix to the property
+﻿/// Adds a browser prefix to the property
 /// @param {*} $property Property
 /// @param {*} $value Value
 
 @mixin css3-prefix($property, $value) {
-  -webkit-#{$property}: #{$value};
-   -khtml-#{$property}: #{$value};
-     -moz-#{$property}: #{$value};
-      -ms-#{$property}: #{$value};
-       -o-#{$property}: #{$value};
-          #{$property}: #{$value};
+    -webkit-#{$property}: #{$value};
+    -khtml-#{$property}: #{$value};
+    -moz-#{$property}: #{$value};
+    -ms-#{$property}: #{$value};
+    -o-#{$property}: #{$value};
+    #{$property}: #{$value};
 }
 
 /// Box Shadow
 
 @mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
-  @if ($inset != "") {
-    @include css3-prefix('box-shadow', $inset $x $y $blur $color);
-  } @else {
-    @include css3-prefix('box-shadow', $x $y $blur $color);
-  }
+    @if ($inset != "") {
+        @include css3-prefix('box-shadow', $inset $x $y $blur $color);
+    }
+    @else {
+        @include css3-prefix('box-shadow', $x $y $blur $color);
+    }
 }
 
 @mixin box-shadow-multiple($string) {
     @include css3-prefix('box-shadow', $string);
 }
 
-
 /// Box Sizing
 /// @param {*} $type [border-box] - Type
 /// @require {mixin} css3-prefix
 
 @mixin box-sizing($type: border-box) {
-  @include css3-prefix('box-sizing', $type);
+    @include css3-prefix('box-sizing', $type);
 }
 
 /// Border Radius
@@ -48,14 +47,13 @@
 /// @require {mixin} css3-prefix
 
 @mixin transition($properties...) {
+    @if length($properties) >= 1 {
+        @include css3-prefix('transition', $properties);
+    }
 
-  @if length($properties) >= 1 {
-    @include css3-prefix('transition', $properties);
-  }
-
-  @else {
-    @include css3-prefix('transition',  "all 0.2s ease-in-out 0s");
-  }
+    @else {
+        @include css3-prefix('transition', "all 0.2s ease-in-out 0s");
+    }
 }
 
 /// Transform
@@ -63,19 +61,20 @@
 /// @require {mixin} css3-prefix
 
 @mixin transform($params) {
-  @include css3-prefix('transform', $params);
+    @include css3-prefix('transform', $params);
 }
 
 @mixin shadow($top, $left, $blur, $color, $inset: false) {
- @if $inset {
-    -webkit-box-shadow:inset $top $left $blur $color;
-    -moz-box-shadow:inset $top $left $blur $color;
-    box-shadow:inset $top $left $blur $color;
-  } @else {
-    -webkit-box-shadow: $top $left $blur $color;
-    -moz-box-shadow: $top $left $blur $color;
-    box-shadow: $top $left $blur $color;
-  }
+    @if $inset {
+        -webkit-box-shadow: inset $top $left $blur $color;
+        -moz-box-shadow: inset $top $left $blur $color;
+        box-shadow: inset $top $left $blur $color;
+    }
+    @else {
+        -webkit-box-shadow: $top $left $blur $color;
+        -moz-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
+    }
 }
 
 //Keyframes
@@ -83,12 +82,15 @@
     @-webkit-keyframes #{$animationName} {
         @content;
     }
+
     @-moz-keyframes #{$animationName} {
         @content;
     }
+
     @-o-keyframes #{$animationName} {
         @content;
     }
+
     @keyframes #{$animationName} {
         @content;
     }
@@ -126,21 +128,22 @@
             @include transform(scale(1));
         }
     }
-    
 }
 
 @mixin keyframes-rippleDuplicate() {
     @include keyframes(rippleDuplicate) {
-          0% {
+        0% {
             transform: scale(0);
-          }
-          40% {
+        }
+
+        40% {
             transform: scale(1);
-          }
-          100% {
+        }
+
+        100% {
             opacity: 0;
             transform: scale(1);
-          }
+        }
     }
 }
 
@@ -151,7 +154,7 @@
         position: relative;
         content: '';
         display: block;
-    }      
+    }
 
     &:hover:after {
         position: absolute;
@@ -171,4 +174,3 @@
         animation: ripple 1s ease-out;
     }
 }
-

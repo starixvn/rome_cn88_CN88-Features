@@ -315,4 +315,7 @@
   <data name="ParlayText" xml:space="preserve">
     <value>Parlay</value>
   </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>Unlock</value>
+  </data>
 </root>
