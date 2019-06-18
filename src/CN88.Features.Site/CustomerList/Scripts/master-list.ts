@@ -73,99 +73,105 @@ class MasterList extends BaseList {
         this.$output.css("left", this.searchSuggestionMaster.offset().left);
     };
     buildBodyOnDesktopMode(rs: any) {
+        if (rs.Customers.length == 0) {
+            return this.buildNoInfoContent(false);
+        } 
+
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
-        if (rs.Customers.length == 0) {
-            html = "<tr><td colspan='8' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
-        } else {
-            for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                const customer = rs.Customers[i],
-                    custId = customer.CustId,
-                    username = customer.Username,
-                    status = customer.Status,
-                    closed = customer.Closed,
-                    userAttr = `cust-id='${custId}' username='${username}'`,
-                    iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`;
+        for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
+            const customer = rs.Customers[i],
+                custId = customer.CustId,
+                username = customer.Username,
+                status = customer.Status,
+                statusName = this.indexManager.getStatusName(status),
+                closed = customer.Closed,
+                userAttr = `cust-id='${custId}' username='${username}'`,
+                iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`,
+                creditFormat = this.numeral(customer.Credit).format("###,0.00");
 
-                let actionColumn = '',
-                    creditColumn = `<td class='text-right'> ${this.numeral(customer.Credit).format("###,0.00")} </td>`,
-                    statusColumn = `<td class='text-center'> ${this.indexManager.getStatusName(status)}</td>`;
+            let actionColumn = '',
+                creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
+                statusColumn = `<td class='text-center'> ${statusName}</td>`;
 
-                if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
-                    const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='3'/>`;
-                    const securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
-                    const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMasterAgent}'/>`;
-                    const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewAgent}'/>` : '';
-                    const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+            if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
+                creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat} </td>`;
+                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
 
-                    actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
-                    creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")} </td>`;
-                    statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${this.indexManager.getStatusName(customer.Status)}</td>`;
-                }
+                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role='3'/>`;
+                const securityCodeIcon = `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
+                const editIcon = `<span class='icon-edit' ${iconAttr} title='${this.indexManager.viewResources.EditMasterAgent}'/>`;
+                const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewAgent}'/>` : '';
+                const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
 
-                html += `<tr class='row-customer' cust-id='${custId}'>` +
-                    `<td class='col-no'> ${customerIndex} </td>` +
-                    `<td class='link view-downline' cust-id='${custId}'> ${username} </td>` +
-                    `<td>${customer.Name}</td>` +
-                    `<td>${customer.Nickname}</td>` +
-                    `${creditColumn}<td class='col-date'> ${customer.CreationDateStr} </td>` +
-                    `${statusColumn}<td class='col-action text-left'> ${actionColumn} </td></tr>`;
+                actionColumn = `<td class='col-action text-left'>${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>`;
             }
+
+            html += `<tr class='row-customer' cust-id='${custId}'>` +
+                `<td class='col-no'> ${customerIndex} </td>` +
+                `<td class='link view-downline' cust-id='${custId}'> ${username} </td>` +
+                `<td>${customer.Name}</td>` +
+                `<td>${customer.Nickname}</td>` +
+                `${creditColumn}<td class='col-date'> ${customer.CreationDateStr} </td>` +
+                `${statusColumn}  ${actionColumn} </tr>`;
         }
 
         return html;
     };
     buildBodyOnMobileMode(rs: any) {
+        if (rs.Customers.length == 0) {
+            return this.buildNoInfoContent(true);
+        } 
+
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
-        if (rs.Customers.length == 0) {
-            html = "<tr><td colspan='4' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
-        } else {
-            for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-                let customer = rs.Customers[i],
-                    status = customer.Status,
-                    custId = customer.CustId,
-                    username = customer.Username,
-                    nickname = customer.Nickname ? customer.Nickname : "---",
-                    name = customer.Name ? customer.Name : "---",
-                    userAttr = `cust-id='${custId}' username='${username}'`;
+        for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
+            let customer = rs.Customers[i],
+                status = customer.Status,
+                statusName = this.indexManager.getStatusName(status),
+                custId = customer.CustId,
+                username = customer.Username,
+                nickname = customer.Nickname ? customer.Nickname : "---",
+                name = customer.Name ? customer.Name : "---",
+                userAttr = `cust-id='${custId}' username='${username}'`,
+                creditFormat = this.numeral(customer.Credit).format("###,0.00");
 
-                let actionColumn = '',
-                    creditColumn = `<td class='text-right'> ${this.numeral(customer.Credit).format("###,0.00")} </td>`,
-                    statusColumn = `<td class='text-center'> ${this.indexManager.getStatusName(status)}</td>`;
-
-                if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
-                    const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role='3'>${this.indexManager.viewResources.ResetPassword}</li>`;
-                    const securityCodeIcon = `<li class='icon-security' ${userAttr}>${this.indexManager.viewResources.ResetSecurityCode}</li>`;
-                    const editIcon = `<li class='icon-edit' ${userAttr}>${this.indexManager.viewResources.EditMasterAgent}</li>`;
-                    const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<li class='icon-add' ${userAttr}>${this.indexManager.viewResources.NewAgent}</li>` : '';
-                    const unclockIcon = closed ? `<li class='icon-unlock' ${userAttr}>Unlock Trans</li>` : '';
-
-                    actionColumn = "<td class='col-action text-center'>" +
-                        `<div class="dropdown">` +
-                        `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
-                        (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
-                        `</a>` +
-                        `<ul class="dropdown-menu" aria-labelledby="${custId}" >${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</ul>` +
-                        `</div>` +
-                        "</td>" +
-                        "";
-
-                    creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${this.numeral(customer.Credit).format("###,0.00")}</td>`;
-                    statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${this.indexManager.getStatusName(customer.Status)}</td>`;
-                }
-
-
-                html += `<tr class='row-customer' cust-id='${custId}'>` +
-                    `<td class='link view-downline' ${userAttr}>` +
-                        `<div class='username-wrapper'>${username}
+            let actionColumn = '',
+                creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
+                statusColumn = `<td class='text-center'> ${statusName}</td>`,
+                viewDownlineColumn = `<td class='link view-downline' ${userAttr}>` +
+                    `<div class='username-wrapper'>${username}
                                 <div class="cust-nickname">${nickname}</div>
                                 <div class="cust-name">${name}</div>
                             </div>
-                    </td>${creditColumn} ${statusColumn} ${actionColumn}</tr>`;
+                    </td>`;
+
+            if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
+                creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat}</td>`;
+                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
+
+                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role='3'>${this.indexManager.viewResources.ResetPassword}</li>`;
+                const securityCodeIcon = `<li class='icon-security' ${userAttr}>${this.indexManager.viewResources.ResetSecurityCode}</li>`;
+                const editIcon = `<li class='icon-edit' ${userAttr}>${this.indexManager.viewResources.EditMasterAgent}</li>`;
+                const addDownlineIcon = status == siteInfrastructure.customerStatus.active ? `<li class='icon-add' ${userAttr}>${this.indexManager.viewResources.NewAgent}</li>` : '';
+                const unclockIcon = closed ? `<li class='icon-unlock' ${userAttr}>Unlock Trans</li>` : '';
+
+                actionColumn = "<td class='col-action text-center'>" +
+                    `<div class="dropdown">` +
+                    `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+                    (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
+                    `</a>` +
+                    `<ul class="dropdown-menu" aria-labelledby="${custId}" >${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</ul>` +
+                    `</div>` +
+                    "</td>" +
+                    "";
             }
+
+            html += `<tr class='row-customer' cust-id='${custId}'> ${viewDownlineColumn} ${creditColumn} ${statusColumn} ${actionColumn}</tr>`;
         }
 
         return html
     };
+    buildNoInfoContent = (mobileView) =>
+        `<tr><td colspan='${mobileView ? 4 : 8}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
 }

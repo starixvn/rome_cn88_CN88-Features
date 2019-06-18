@@ -1013,10 +1013,6 @@
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MasterTable.cshtml" />
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MemberTable.cshtml" />
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\SuperTable.cshtml" />
-    <Content Include="CustomerList\Views\Components\LevelTabs.cshtml" />
-    <Content Include="CustomerList\Views\Components\MasterList.cshtml" />
-    <Content Include="CustomerList\Views\Components\AgentList.cshtml" />
-    <Content Include="CustomerList\Views\Components\MemberList.cshtml" />
     <Content Include="Reports\Styles\accounting-sheet.scss" />
     <Content Include="Reports\Styles\settlement-summary.scss" />
     <Content Include="Reports\Styles\old-report.scss" />
