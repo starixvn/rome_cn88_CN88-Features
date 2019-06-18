@@ -172,14 +172,15 @@ class MemberList extends BaseList {
         this.$(window).trigger('resize.stickyTableHeaders');
         super.bindReportEvents(rs);
     };
-    viewMembersOfAgent = (custId: any, username: any) => {
+    viewMembersOfAgent = (custId: any, username: any, status: number) => {
         this.$viewedAgent.val(username);
         this.$username.val("");
 
         this.reportParam.PageIndex = 1;
         this.reportParam.PageSize = 100;
+        this.reportParam.Status = status;
 
-        this.statusComponent.changeSelection(siteInfrastructure.customerStatus.all);
+        this.statusComponent.changeSelection(status);
 
         this.viewMembers(custId);
     };

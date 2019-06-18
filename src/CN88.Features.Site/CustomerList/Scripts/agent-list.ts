@@ -177,14 +177,15 @@ class AgentList extends BaseList {
         this.$(window).trigger('resize.stickyTableHeaders');
         super.bindReportEvents(rs);
     };
-    viewAgentsOfMaster = (custId: any, username: any) => {
+    viewAgentsOfMaster = (custId: any, username: any, status: number) => {
         this.$viewedMaster.val(username);
         this.$username.val("");
 
         this.reportParam.PageIndex = 1;
         this.reportParam.PageSize = 100;
+        this.reportParam.Status = status;
 
-        this.statusComponent.changeSelection(siteInfrastructure.customerStatus.all);
+        this.statusComponent.changeSelection(status);
 
         this.viewAgents(custId);
     };

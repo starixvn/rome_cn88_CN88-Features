@@ -144,9 +144,9 @@ class BaseList {
         this.$tblReport.find(".view-downline").click(function () {
             var $this = self.$(this);
             if (self.indexManager.isDevice) {
-                self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"));
+                self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.reportParam.Status);
             } else {
-                self.viewDownlineFunction($this.attr("cust-id"), $this.html());
+                self.viewDownlineFunction($this.attr("cust-id"), $this.html(), self.reportParam.Status);
             }
         });
 

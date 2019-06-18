@@ -366,13 +366,13 @@ class CustomerList {
 
         return "";
     };
-    viewMaster = (custId: any, username: any) => {
+    viewMaster = (custId: any, username: any, status: number) => {
         this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.agent + "']").click();
-        this.agentList.viewAgentsOfMaster(custId, username);
+        this.agentList.viewAgentsOfMaster(custId, username, status);
     };
-    viewAgent = (custId: any, username: any) => {
+    viewAgent = (custId: any, username: any, status: number) => {
         this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.member + "']").click();
-        this.memberList.viewMembersOfAgent(custId, username);
+        this.memberList.viewMembersOfAgent(custId, username, status);
     };
     removeUnlock = (custId: any) => {
         this.$(".icon-unlock[cust-id='" + custId + "']").remove();
