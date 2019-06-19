@@ -19,25 +19,23 @@ class AgentList extends BaseList {
         numeral: any,
         pager: PagerComponent) {
         super($, statusComponent, bootstrapDropdownComponent, numeral, pager, "Agent");
-    }
+    };
 
     public init(viewResources: any, indexManager: any) {
         super.init(
             viewResources,
             indexManager,
-            this.renderAgentList,
             siteInfrastructure.roleId.agent,
             indexManager.viewAgent,
             indexManager.addNewDownline);
 
         this.cacheDOMElements();
 
-        var self = this;
-        this.$("#btn-submit-agent").off("click").on("click", function () {
-            self.reportParam.PageIndex = 1;
-            self.viewAgents(self.reportParam.CustId);
+        this.$("#btn-submit-agent").off("click").on("click", () => {
+            this.reportParam.PageIndex = 1;
+            this.viewAgents(this.reportParam.CustId);
         });
-    }
+    };
 
     public cacheDOMElements() {
         super.cacheDOMElements();
@@ -47,18 +45,10 @@ class AgentList extends BaseList {
         this.$errAgent = this.$("#msg-err-agent");
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
-    }
-    viewAgents = (custId: number) => {
-        this.$.blockUI();
-        this.reportParam = {
-            DownlineUsername: this.$("#txt-viewed-master").val(),
-            Username: <string>this.$username.val(),
-            SearchRoleId: siteInfrastructure.roleId.agent,
-            CustId: custId,
-            Status: <number>this.$dropdownStatus.find("option:selected").val(),
-            PageSize: this.reportParam.PageSize,
-            PageIndex: this.reportParam.PageIndex
-        };
+    };
+
+    viewAgents(custId: number) {
+        this.viewList(this.$("#txt-viewed-master").val(), custId);
 
         if (this.directDownline != siteInfrastructure.roleId.agent &&
             (this.reportParam.DownlineUsername == "" ||
@@ -69,29 +59,13 @@ class AgentList extends BaseList {
         }
 
         this.$errAgent.addClass("display-none");
-
-        if (this.indexManager.isDevice) {
-            this.indexManager.agentToggleHandler.hideFilter();
-        }
-
-        this.loadData();
     };
-    renderAgentList = (rs: any) => {
-        this.renderCustomerList(rs, 2, 'agent');
-    };
-    viewAgentsOfMaster = (custId: any, username: any, status: number) => {
+    viewAgentsOfMaster(custId: number, username: string, status: number) {
         this.$viewedMaster.val(username);
-        this.$username.val("");
-
-        this.reportParam.PageIndex = 1;
-        this.reportParam.PageSize = 100;
-        this.reportParam.Status = status;
-
-        this.statusComponent.changeSelection(status);
-
+        this.setStateWhenViewDownlines(status);
         this.viewAgents(custId);
     };
-    reloadState = (reportParam: any) => {
+    reloadState(reportParam: any) {
         this.$("#txt-viewed-master").val(reportParam.DownlineUsername);
         this.baseReloadState(reportParam, 'Agent');
         this.viewAgents(reportParam.CustId);

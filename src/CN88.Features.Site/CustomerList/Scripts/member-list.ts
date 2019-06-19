@@ -23,17 +23,15 @@ class MemberList extends BaseList {
         super.init(
             viewResources,
             indexManager,
-            this.renderMemberList,
             siteInfrastructure.roleId.member,
             null,
             indexManager.addNewDownline);
 
         this.cacheDOMElements();
 
-        let self = this;
-        this.$("#btn-submit-member").off("click").on("click", function () {
-            self.reportParam.PageIndex = 1;
-            self.viewMembers(self.reportParam.CustId);
+        this.$("#btn-submit-member").off("click").on("click", () => {
+            this.reportParam.PageIndex = 1;
+            this.viewMembers(this.reportParam.CustId);
         });
     }
 
@@ -46,17 +44,8 @@ class MemberList extends BaseList {
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
     }
-    viewMembers = (custId: number) => {
-        this.$.blockUI();
-        this.reportParam = {
-            DownlineUsername: this.$("#txt-viewed-agent").val(),
-            Username: this.$username.val(),
-            SearchRoleId: siteInfrastructure.roleId.member,
-            CustId: custId,
-            Status: this.$dropdownStatus.find("option:selected").val(),
-            PageSize: this.reportParam.PageSize,
-            PageIndex: this.reportParam.PageIndex
-        };
+    viewMembers(custId: number) {
+        this.viewList(this.$("#txt-viewed-agent").val(), custId);
 
         if (this.directDownline != siteInfrastructure.roleId.member &&
             (this.reportParam.DownlineUsername == "" ||
@@ -67,29 +56,13 @@ class MemberList extends BaseList {
         }
 
         this.$errMember.addClass("display-none");
-
-        if (this.indexManager.isDevice) {
-            this.indexManager.memberToggleHandler.hideFilter();
-        }
-
-        this.loadData();
     };
-    renderMemberList = (rs: any) => {
-        this.renderCustomerList(rs, 1, 'member');
-    };
-    viewMembersOfAgent = (custId: any, username: any, status: number) => {
+    viewMembersOfAgent(custId: number, username: string, status: number) {
         this.$viewedAgent.val(username);
-        this.$username.val("");
-
-        this.reportParam.PageIndex = 1;
-        this.reportParam.PageSize = 100;
-        this.reportParam.Status = status;
-
-        this.statusComponent.changeSelection(status);
-
+        this.setStateWhenViewDownlines(status);
         this.viewMembers(custId);
     };
-    reloadState = (reportParam: any) => {
+    reloadState(reportParam: any){
         this.$("#txt-viewed-agent").val(reportParam.DownlineUsername);
         this.baseReloadState(reportParam, 'Member');
         this.viewMembers(reportParam.CustId);

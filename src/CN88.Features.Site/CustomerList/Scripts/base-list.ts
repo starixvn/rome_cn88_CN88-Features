@@ -30,7 +30,6 @@ class BaseList {
 
     levelName: string;
     levelNameLowerCase: string;
-    renderList: Function;
 
     levelId: number;
     viewDownlineFunction: Function;
@@ -57,13 +56,11 @@ class BaseList {
     public init(
         viewResources: any,
         indexManager: any,
-        renderList: Function,
         levelId: number,
         viewDownlineFunction: Function,
         addDownlineFunction: Function) {
         this.viewResources = viewResources;
         this.indexManager = indexManager;
-        this.renderList = renderList;
         this.levelId = levelId;
         this.viewDownlineFunction = viewDownlineFunction;
         this.addDownlineFunction = addDownlineFunction;
@@ -89,7 +86,7 @@ class BaseList {
             url: this.getCustomerListUrl,
             cache: false,
             success: (rs) => {
-                this.renderList(rs);
+                this.renderCustomerList(rs);
             }
         });
     }
@@ -206,9 +203,9 @@ class BaseList {
         this.$.unblockUI();
     };
 
-    renderCustomerList(rs: any, custRole: number, custRoleName: string) {
+    renderCustomerList(rs: any) {
         if (rs.SearchAccountId > 0) {
-            var buttonAddNew = this.$(`.add-directdownline-${custRoleName}`);
+            var buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
             buttonAddNew.attr("cust-id", rs.SearchAccountId);
             buttonAddNew.attr("username", rs.Username);
             buttonAddNew.attr("downline-username", rs.DownlineUsername);
@@ -221,14 +218,14 @@ class BaseList {
         this.$tblReport.removeClass("display-none");
 
         this.$tblReport.find("> tbody").empty().html(
-            this.indexManager.isDevice ? this.buildBodyOnMobileMode(rs, custRole) : this.buildBodyOnDesktopMode(rs, custRole)
+            this.indexManager.isDevice ? this.buildBodyOnMobileMode(rs) : this.buildBodyOnDesktopMode(rs)
         );
         this.$(window).trigger('resize.stickyTableHeaders');
         this.bindReportEvents(rs);
     };
 
-    buildBodyOnDesktopMode(rs: any, custRole: number) {
-        const isAgent = custRole === 2, isMember = custRole === 1;
+    buildBodyOnDesktopMode(rs: any) {
+        const isAgent = this.levelId === 2, isMember = this.levelId === 1;
         if (rs.Customers.length == 0) {
             return this.buildNoInfoContent(isMember ? 9 : 8);
         }
@@ -257,7 +254,7 @@ class BaseList {
                 creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat} </td>`;
                 statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
 
-                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role=${custRole}/>`;
+                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role=${this.levelId}/>`;
 
                 const securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
 
@@ -285,8 +282,8 @@ class BaseList {
 
         return html;
     };
-    buildBodyOnMobileMode(rs: any, custRole: number) {
-        const isAgent = custRole === 2, isMember = custRole === 1;
+    buildBodyOnMobileMode(rs: any) {
+        const isAgent = this.levelId === siteInfrastructure.roleId.agent, isMember = this.levelId === siteInfrastructure.roleId.member;
         if (rs.Customers.length == 0) {
             return this.buildNoInfoContent(isMember ? 5: 4);
         }
@@ -321,7 +318,7 @@ class BaseList {
                 creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat}</td>`;
                 statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
 
-                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${custRole}>${this.indexManager.viewResources.ResetPassword}</li>`;
+                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${this.levelId}>${this.indexManager.viewResources.ResetPassword}</li>`;
 
                 const securityCodeIcon = isMember ? '' : `<li class='icon-security' ${userAttr}>${this.indexManager.viewResources.ResetSecurityCode}</li>`;
 
@@ -353,7 +350,7 @@ class BaseList {
     };
     buildNoInfoContent = (colspan: number) =>
         `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
-    baseReloadState = (reportParam: any, custRoleName: string) => {
+    baseReloadState(reportParam: any, custRoleName: string) {
         this.$username.val(reportParam.Username);
         this.$dropdownStatus.val(this.$(`#dropdown-status-${custRoleName.toLowerCase()}`).val());
         this.reportParam.PageSize = reportParam.PageSize;
@@ -362,4 +359,32 @@ class BaseList {
         this.$(`#PageIndex${custRoleName}`).val(reportParam.PageIndex);
         this.$(`#PageSize${custRoleName}`).val(reportParam.PageIndex);
     };
+    setStateWhenViewDownlines(status: number) {
+        this.$username.val("");
+        this.reportParam.PageIndex = 1;
+        this.reportParam.PageSize = 100;
+        this.reportParam.Status = status;
+        this.statusComponent.changeSelection(status);
+    };
+    viewList(downlineUsername: string = null, custId: number = 0) {
+        this.$.blockUI();
+        this.reportParam = {
+            DownlineUsername: downlineUsername,
+            Username: <string>this.$username.val(),
+            SearchRoleId: this.levelId,
+            CustId: custId,
+            Status: <number>this.$dropdownStatus.find("option:selected").val(),
+            PageSize: this.reportParam.PageSize,
+            PageIndex: this.reportParam.PageIndex
+        };
+
+        if (this.indexManager.isDevice) {
+            this.levelId === siteInfrastructure.roleId.master ?
+                this.indexManager.masterToggleHandler.hideFilter() :
+                this.levelId === siteInfrastructure.roleId.agent ? this.indexManager.agentToggleHandler.hideFilter() :
+                    this.indexManager.memberToggleHandler.hideFilter();
+        }
+
+        this.loadData();
+    }
 }
