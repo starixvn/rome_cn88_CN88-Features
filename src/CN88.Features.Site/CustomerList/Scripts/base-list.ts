@@ -64,16 +64,16 @@ class BaseList {
         this.cacheDOMElements();
 
         this.statusComponent.render(
-            new SingleSelectionDropdownOption("dropdown-status-" + this.levelNameLowerCase, "UserSelectedStatusId" + this.levelName));
-        this.$dropdownStatus = this.$("#dropdown-status-" + this.levelNameLowerCase);
+            new SingleSelectionDropdownOption(`dropdown-status-${this.levelNameLowerCase}`, `UserSelectedStatusId${this.levelName}`));
+        this.$dropdownStatus = this.$(`#dropdown-status-${this.levelNameLowerCase}`);
         this.$tblReport.stickyTableHeaders();
     }
 
     public cacheDOMElements() {
-        this.$username = this.$("#txt-username-" + this.levelNameLowerCase);
+        this.$username = this.$(`#txt-username-${this.levelNameLowerCase}`);
         this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
-        this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
-        this.$formReport = this.$("#form-" + this.levelNameLowerCase);
+        this.$tblReport = this.$(`#tbl-${this.levelNameLowerCase}`);
+        this.$formReport = this.$(`#form-${this.levelNameLowerCase}`);
     };
 
     loadData() {
@@ -93,8 +93,8 @@ class BaseList {
     };
 
     pagingList = () => {
-        this.reportParam.PageIndex = this.$("#PageIndex" + this.levelName).val();
-        this.reportParam.PageSize = this.$("#PageSize" + this.levelName).val();
+        this.reportParam.PageIndex = this.$(`#PageIndex${this.levelName}`).val();
+        this.reportParam.PageSize = this.$(`#PageSize${this.levelName}`).val();
         this.loadData();
     };
 
@@ -102,22 +102,17 @@ class BaseList {
         var self = this;
         this.$tblReport.find(".view-statement").click(function () {
             var $this = self.$(this);
-            var viewStatementUrl = $("#viewStatementtUrl").val() + "?CustName=" + $this.attr("username") + "&CustId=" + $this.attr("cust-id");
-
-            if (self.indexManager.isDevice) {
-                window.open(viewStatementUrl, "_blank");
-            } else {
+            var viewStatementUrl = `${$("#viewStatementtUrl").val()}?CustName=${$this.attr("username")}&CustId=${$this.attr("cust-id")}`;
+            self.indexManager.isDevice ?
+                window.open(viewStatementUrl, "_blank") :
                 window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
-            }
         });
 
         this.$tblReport.find(".view-downline").click(function () {
             var $this = self.$(this);
-            if (self.indexManager.isDevice) {
-                self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.reportParam.Status);
-            } else {
+            self.indexManager.isDevice ? 
+                self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.reportParam.Status) :
                 self.viewDownlineFunction($this.attr("cust-id"), $this.html(), self.reportParam.Status);
-            }
         });
 
         this.$tblReport.find(".col-credit").click(function () {
@@ -155,7 +150,7 @@ class BaseList {
             self.indexManager.addNewDownline($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
         });
 
-        var buttonAddNew = this.$(".add-directdownline-" + this.levelNameLowerCase);
+        var buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
         this.$tblReport.find(".icon-unlock").click(function () {
             var $this = self.$(this);
 
@@ -174,22 +169,23 @@ class BaseList {
             buttonAddNew.attr("disabled", "disabled");
         }
 
+        const pageIndex = `PageIndex${this.levelName}`, pageSize = `PageSize${this.levelName}`;
         this.$tblReport.find("> tfoot").empty();
-        this.$("#PageIndex" + this.levelName).remove();
-        this.$("#PageSize" + this.levelName).remove();
-        const pagerElement = this.$("#pager-" + this.levelNameLowerCase);
+        this.$(`#${pageIndex}`).remove();
+        this.$(`#${pageSize}`).remove();
+
+        const pagerElement = this.$(`#pager-${this.levelNameLowerCase}`);
         if (rs.TotalCustomers >= this.minPageSize && pagerElement.length > 0) {
-            var footer = "<div id='report-pager-" + this.levelNameLowerCase + "' " +
-                "data-labelpage='" + this.viewResources.Page + "'" +
-                "data-labelof='" + this.viewResources.Of + "'" +
-                "data-labeldisplayitems='" + this.viewResources.Pager_DisplayItems + "'" +
-                "data-pageindex='" + this.reportParam.PageIndex + "'" +
-                "data-pagesize='" + this.reportParam.PageSize + "'" +
-                "data-totalrecords='" + rs.TotalCustomers + "'" +
-                "></div>";
+            var footer = `<div id='report-pager-${this.levelNameLowerCase}'` +
+                `data-labelpage='${this.viewResources.Page}'` +
+                `data-labelof='${this.viewResources.Of}'` +
+                `data-labeldisplayitems='${this.viewResources.Pager_DisplayItems}'` +
+                `data-pageindex='${this.reportParam.PageIndex}'` +
+                `data-pagesize='${this.reportParam.PageSize}'` +
+                `data-totalrecords='${rs.TotalCustomers}'></div>`;
 
             pagerElement.html(footer);
-            this.pager.render(new PagerOption(this.pagingList, "report-pager-" + this.levelNameLowerCase, "form-" + this.levelNameLowerCase, "PageIndex" + this.levelName, "PageSize" + this.levelName));
+            this.pager.render(new PagerOption(this.pagingList, `report-pager-${this.levelNameLowerCase}`, `form-${this.levelNameLowerCase}`, pageIndex, pageSize));
         } else {
             pagerElement.html("");
         }
