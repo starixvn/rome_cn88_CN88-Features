@@ -21,13 +21,11 @@ class AgentList extends BaseList {
         super($, statusComponent, bootstrapDropdownComponent, numeral, pager, "Agent");
     };
 
-    public init(viewResources: any, indexManager: any) {
+    public init(indexManager: any) {
         super.init(
-            viewResources,
             indexManager,
             siteInfrastructure.roleId.agent,
-            indexManager.viewAgent,
-            indexManager.addNewDownline);
+            indexManager.viewAgent);
 
         this.cacheDOMElements();
 

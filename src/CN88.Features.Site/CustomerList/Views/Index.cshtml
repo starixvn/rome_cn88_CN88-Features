@@ -163,8 +163,8 @@
             @if (renderUplineSearchingText)
             {
                 <div class="form-group">
-                    <label>@uplineLevelName</label>
-                    <input id="@($"txt-viewed-{uplineLevelName}")" class="control" type="text" value="" />
+                    <label>@(level.IsAgentLevel() ? CustomerListResources.Master : CustomerListResources.Agent)</label>
+                    <input id="@($"txt-viewed-{level.GetDirectUpLineLevel().DisplayName.ToLower()}")" class="control" type="text" value="" />
                 </div>
             }
 

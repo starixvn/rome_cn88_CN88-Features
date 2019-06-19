@@ -33,7 +33,6 @@ class BaseList {
 
     levelId: number;
     viewDownlineFunction: Function;
-    addDownlineFunction: Function;
     minPageSize: number = 10;
     viewerStatusId: number;
 
@@ -54,16 +53,13 @@ class BaseList {
     }
 
     public init(
-        viewResources: any,
         indexManager: any,
         levelId: number,
-        viewDownlineFunction: Function,
-        addDownlineFunction: Function) {
-        this.viewResources = viewResources;
+        viewDownlineFunction: Function) {
         this.indexManager = indexManager;
+        this.viewResources = indexManager.viewResources;
         this.levelId = levelId;
         this.viewDownlineFunction = viewDownlineFunction;
-        this.addDownlineFunction = addDownlineFunction;
         this.viewerStatusId = parseInt(this.$("#ViewerStatusId").val());
         this.cacheDOMElements();
 
@@ -79,7 +75,8 @@ class BaseList {
         this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
         this.$formReport = this.$("#form-" + this.levelNameLowerCase);
     };
-    public loadData() {
+
+    loadData() {
         this.$.ajax({
             method: "GET",
             data: this.reportParam,
@@ -100,7 +97,8 @@ class BaseList {
         this.reportParam.PageSize = this.$("#PageSize" + this.levelName).val();
         this.loadData();
     };
-    public bindReportEvents(rs) {
+
+    bindReportEvents(rs) {
         var self = this;
         this.$tblReport.find(".view-statement").click(function () {
             var $this = self.$(this);
@@ -154,8 +152,7 @@ class BaseList {
 
         this.$tblReport.find(".icon-add").click(function () {
             var $this = self.$(this);
-
-            self.addDownlineFunction($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
+            self.indexManager.addNewDownline($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
         });
 
         var buttonAddNew = this.$(".add-directdownline-" + this.levelNameLowerCase);
@@ -170,7 +167,7 @@ class BaseList {
             buttonAddNew.click(function () {
                 var $this = self.$(this);
 
-                self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam, $this.attr("downline-username"));
+                self.indexManager.addNewDownline($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam, $this.attr("downline-username"));
             });
         }
         else {

@@ -16,13 +16,11 @@ class MasterList extends BaseList {
         super($, statusComponent, bootstrapDropdownComponent, numeral, pager, "Master");
     }
 
-    public init(viewResources: any, indexManager: any) {
+    public init(indexManager: any) {
         super.init(
-            viewResources,
             indexManager,
             siteInfrastructure.roleId.master,
-            indexManager.viewMaster,
-            indexManager.addNewDownline);
+            indexManager.viewMaster);
 
         this.cacheDOM();
 

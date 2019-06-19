@@ -19,13 +19,11 @@ class MemberList extends BaseList {
         super($, statusComponent, bootstrapDropdownComponent, numeral, pager, "Member");
     }
 
-    public init(viewResources: any, indexManager: any) {
+    public init(indexManager: any) {
         super.init(
-            viewResources,
             indexManager,
             siteInfrastructure.roleId.member,
-            null,
-            indexManager.addNewDownline);
+            null);
 
         this.cacheDOMElements();
 

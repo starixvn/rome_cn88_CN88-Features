@@ -97,9 +97,9 @@ class CustomerList {
     init = () => {
         this.cacheDOMElements();
 
-        this.masterList.init(this.viewResources, this);
-        this.agentList.init(this.viewResources, this);
-        this.memberList.init(this.viewResources, this);
+        this.masterList.init(this);
+        this.agentList.init(this);
+        this.memberList.init(this);
 
         this.$navTabs.find("li[level='" + this.directDownline + "']").addClass("active");
         this.$(".tab-content[level='" + this.directDownline + "']").removeClass("display-none");
