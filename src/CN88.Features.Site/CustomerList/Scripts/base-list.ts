@@ -35,7 +35,6 @@ class BaseList {
     levelId: number;
     viewDownlineFunction: Function;
     addDownlineFunction: Function;
-    reportColSpan: number;
     minPageSize: number = 10;
     viewerStatusId: number;
 
@@ -66,7 +65,6 @@ class BaseList {
         this.indexManager = indexManager;
         this.renderList = renderList;
         this.levelId = levelId;
-        this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 9 : 8;
         this.viewDownlineFunction = viewDownlineFunction;
         this.addDownlineFunction = addDownlineFunction;
         this.viewerStatusId = parseInt(this.$("#ViewerStatusId").val());
@@ -76,11 +74,6 @@ class BaseList {
             new SingleSelectionDropdownOption("dropdown-status-" + this.levelNameLowerCase, "UserSelectedStatusId" + this.levelName));
         this.$dropdownStatus = this.$("#dropdown-status-" + this.levelNameLowerCase);
         this.$tblReport.stickyTableHeaders();
-        var self = this;
-        this.$("#btn-submit-" + this.levelName.toLowerCase()).click(function () {
-            self.reportParam.PageIndex = 1;
-            self.viewList();
-        });
     }
 
     public cacheDOMElements() {
@@ -105,24 +98,6 @@ class BaseList {
         this.$('[data-toggle="tooltip"]').tooltip();
     };
 
-    viewList = () => {
-        this.$.blockUI();
-        this.reportParam = {
-            DownlineUsername: null,
-            Username: <string>this.$username.val(),
-            SearchRoleId: this.levelId,
-            CustId: 0,
-            Status: <number>this.$dropdownStatus.find("option:selected").val(),
-            PageSize: this.reportParam.PageSize,
-            PageIndex: this.reportParam.PageIndex
-        };
-
-        if (this.indexManager.isDevice) {
-            this.indexManager.masterToggleHandler.hideFilter();
-        }
-
-        this.loadData();
-    };
     pagingList = () => {
         this.reportParam.PageIndex = this.$("#PageIndex" + this.levelName).val();
         this.reportParam.PageSize = this.$("#PageSize" + this.levelName).val();
@@ -269,7 +244,8 @@ class BaseList {
                 closed = customer.Closed,
                 userAttr = `cust-id='${custId}' username='${username}'`,
                 iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`,
-                creditFormat = this.numeral(customer.Credit).format("###,0.00");
+                creditFormat = this.numeral(customer.Credit).format("###,0.00"),
+                usernameLink = isMember ? 'view-statement' : 'view-downline';
 
             let actionColumn = '',
                 creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
@@ -300,7 +276,7 @@ class BaseList {
 
             html += `<tr class='row-customer' cust-id='${custId}'>` +
                 `<td class='col-no'> ${customerIndex} </td>` +
-                `<td class='link view-downline' cust-id='${custId}'> ${username} </td>` +
+                `<td class='link ${usernameLink}' ${iconAttr}> ${username} </td>` +
                 `<td>${customer.Name}</td>` +
                 `<td>${customer.Nickname}</td>` +
                 `${groupColumn}${creditColumn}<td class='col-date'> ${customer.CreationDateStr} </td>` +
@@ -326,12 +302,13 @@ class BaseList {
                 nickname = customer.Nickname ? customer.Nickname : "---",
                 name = customer.Name ? customer.Name : "---",
                 userAttr = `cust-id='${custId}' username='${username}'`,
-                creditFormat = this.numeral(customer.Credit).format("###,0.00");
+                creditFormat = this.numeral(customer.Credit).format("###,0.00"),
+                usernameLink = isMember ? 'view-statement' : 'view-downline';
 
             let actionColumn = '',
                 creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
                 statusColumn = `<td class='text-center'> ${statusName}</td>`,
-                viewDownlineColumn = `<td class='link view-downline' ${userAttr}>` +
+                viewDownlineColumn = `<td class='link ${usernameLink}' ${userAttr}>` +
                     `<div class='username-wrapper'>${username}
                                 <div class="cust-nickname">${nickname}</div>
                                 <div class="cust-name">${name}</div>

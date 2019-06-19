@@ -26,6 +26,12 @@ class MasterList extends BaseList {
             indexManager.addNewDownline);
 
         this.cacheDOM();
+
+        var self = this;
+        this.$("#btn-submit-master").click(function () {
+            self.reportParam.PageIndex = 1;
+            self.viewMasters();
+        });
     }
 
     cacheDOM = () => {
@@ -33,12 +39,29 @@ class MasterList extends BaseList {
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
     };
+    viewMasters = () => {
+        this.$.blockUI();
+        this.reportParam = {
+            DownlineUsername: null,
+            Username: <string>this.$username.val(),
+            SearchRoleId: this.levelId,
+            CustId: 0,
+            Status: <number>this.$dropdownStatus.find("option:selected").val(),
+            PageSize: this.reportParam.PageSize,
+            PageIndex: this.reportParam.PageIndex
+        };
 
+        if (this.indexManager.isDevice) {
+            this.indexManager.masterToggleHandler.hideFilter();
+        }
+
+        this.loadData();
+    };
     renderMasterList = (rs: any) => {
         this.renderCustomerList(rs, 3, 'master');
     };
     reloadState = (reportParam: any) => {
         this.baseReloadState(reportParam, 'Master');
-        this.viewList();
+        this.viewMasters();
     };
 }

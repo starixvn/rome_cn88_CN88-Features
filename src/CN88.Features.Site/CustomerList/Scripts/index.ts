@@ -143,7 +143,7 @@ class CustomerList {
         } else {
             switch (parseInt(this.directDownline)) {
                 case siteInfrastructure.roleId.master:
-                    this.masterList.viewList();
+                    this.masterList.viewMasters();
                     break;
                 case siteInfrastructure.roleId.agent:
                     this.agentList.viewAgents(this.reportParam.CustId);
