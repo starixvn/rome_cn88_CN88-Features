@@ -43,7 +43,7 @@ class MemberList extends BaseList {
         this.$output = this.$("#output");
     }
     viewMembers(custId: number) {
-        this.viewList(this.$("#txt-viewed-agent").val(), custId);
+        this.viewList(this.$viewedAgent.val(), custId);
 
         if (this.directDownline != siteInfrastructure.roleId.member &&
             (this.reportParam.DownlineUsername == "" ||
@@ -61,7 +61,7 @@ class MemberList extends BaseList {
         this.viewMembers(custId);
     };
     reloadState(reportParam: any){
-        this.$("#txt-viewed-agent").val(reportParam.DownlineUsername);
+        this.$viewedAgent.val(reportParam.DownlineUsername);
         this.baseReloadState(reportParam, 'Member');
         this.viewMembers(reportParam.CustId);
     };

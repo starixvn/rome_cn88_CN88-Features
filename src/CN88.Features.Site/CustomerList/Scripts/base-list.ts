@@ -251,19 +251,19 @@ class BaseList {
                 creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat} </td>`;
                 statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
 
-                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.indexManager.viewResources.ResetPassword}' cust-role=${this.levelId}/>`;
+                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.viewResources.ResetPassword}' cust-role=${this.levelId}/>`;
 
-                const securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${this.indexManager.viewResources.ResetSecurityCode}'/>`;
+                const securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${this.viewResources.ResetSecurityCode}'/>`;
 
                 const editIconText = isMember ?
-                    this.indexManager.viewResources.EditMember :
-                    isAgent ? this.indexManager.viewResources.EditAgent :
-                        this.indexManager.viewResources.EditMasterAgent;
+                    this.viewResources.EditMember :
+                    isAgent ? this.viewResources.EditAgent :
+                        this.viewResources.EditMasterAgent;
                 const editIcon = `<span class='icon-edit' ${iconAttr} title='${editIconText}'/>`;
 
-                const addDownlineIcon = status === siteInfrastructure.customerStatus.active && !isMember? `<span class='icon-add' ${iconAttr} title='${this.indexManager.viewResources.NewAgent}'/>` : '';
+                const addDownlineIcon = status === siteInfrastructure.customerStatus.active && !isMember? `<span class='icon-add' ${iconAttr} title='${this.viewResources.NewAgent}'/>` : '';
 
-                const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.indexManager.viewResources.UnlockTooltip}'/>` : '';
+                const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.viewResources.UnlockTooltip}'/>` : '';
 
                 actionColumn = `<td class='col-action text-left'>${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>`;
             }
@@ -315,17 +315,17 @@ class BaseList {
                 creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat}</td>`;
                 statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
 
-                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${this.levelId}>${this.indexManager.viewResources.ResetPassword}</li>`;
+                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${this.levelId}>${this.viewResources.ResetPassword}</li>`;
 
-                const securityCodeIcon = isMember ? '' : `<li class='icon-security' ${userAttr}>${this.indexManager.viewResources.ResetSecurityCode}</li>`;
+                const securityCodeIcon = isMember ? '' : `<li class='icon-security' ${userAttr}>${this.viewResources.ResetSecurityCode}</li>`;
 
                 const editIconText = isMember ?
-                    this.indexManager.viewResources.EditMember :
-                    isAgent ? this.indexManager.viewResources.EditAgent :
-                        this.indexManager.viewResources.EditMasterAgent;
+                    this.viewResources.EditMember :
+                    isAgent ? this.viewResources.EditAgent :
+                        this.viewResources.EditMasterAgent;
                 const editIcon = `<li class='icon-edit' ${userAttr}>${editIconText}</li>`;
 
-                const addDownlineIcon = status === siteInfrastructure.customerStatus.active && !isMember ? `<li class='icon-add' ${userAttr}>${this.indexManager.viewResources.NewAgent}</li>` : '';
+                const addDownlineIcon = status === siteInfrastructure.customerStatus.active && !isMember ? `<li class='icon-add' ${userAttr}>${this.viewResources.NewAgent}</li>` : '';
 
                 const unclockIcon = closed ? `<li class='icon-unlock' ${userAttr}>Unlock Trans</li>` : '';
 

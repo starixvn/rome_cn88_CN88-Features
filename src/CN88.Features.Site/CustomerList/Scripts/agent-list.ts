@@ -46,7 +46,7 @@ class AgentList extends BaseList {
     };
 
     viewAgents(custId: number) {
-        this.viewList(this.$("#txt-viewed-master").val(), custId);
+        this.viewList(this.$viewedMaster.val(), custId);
 
         if (this.directDownline != siteInfrastructure.roleId.agent &&
             (this.reportParam.DownlineUsername == "" ||
@@ -64,7 +64,7 @@ class AgentList extends BaseList {
         this.viewAgents(custId);
     };
     reloadState(reportParam: any) {
-        this.$("#txt-viewed-master").val(reportParam.DownlineUsername);
+        this.$viewedMaster.val(reportParam.DownlineUsername);
         this.baseReloadState(reportParam, 'Agent');
         this.viewAgents(reportParam.CustId);
     };
