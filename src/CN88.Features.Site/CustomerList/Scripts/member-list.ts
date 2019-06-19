@@ -35,9 +35,6 @@ class MemberList extends BaseList {
             self.reportParam.PageIndex = 1;
             self.viewMembers(self.reportParam.CustId);
         });
-        if (this.directDownline >= siteInfrastructure.roleId.agent) {
-            //this.initAutoComplete();
-        }
     }
 
     public cacheDOMElements() {
@@ -92,24 +89,9 @@ class MemberList extends BaseList {
 
         this.viewMembers(custId);
     };
-    initAutoComplete = () => {
-        let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
-            this.$.param({ isDir: this.directDownline == siteInfrastructure.roleId.agent, issub: false, ismember: true });
-        //initAutoComplete(this.$viewedAgent[0], queryUsernameURL);
-
-        this.$output.css("top", this.$viewedAgent.offset().top + 30);
-        this.$output.css("left", this.$viewedAgent.offset().left);
-    };
     reloadState = (reportParam: any) => {
         this.$("#txt-viewed-agent").val(reportParam.DownlineUsername);
-        this.$username.val(reportParam.Username);
-        this.$dropdownStatus.val(this.$("#dropdown-status-member").val());
-        this.reportParam.PageSize = reportParam.PageSize;
-        this.reportParam.PageIndex = reportParam.PageIndex;
-
-        this.$("#PageIndexMember").val(reportParam.PageIndex);
-        this.$("#PageSizeMember").val(reportParam.PageIndex);
-
+        this.baseReloadState(reportParam, 'Member');
         this.viewMembers(reportParam.CustId);
     };
 }

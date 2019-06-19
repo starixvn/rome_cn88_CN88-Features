@@ -38,21 +38,7 @@ class MasterList extends BaseList {
         this.renderCustomerList(rs, 3, 'master');
     };
     reloadState = (reportParam: any) => {
-        this.$username.val(reportParam.Username);
-        this.$dropdownStatus.val(this.$("#dropdown-status-master").val());
-        this.reportParam.PageSize = reportParam.PageSize;
-        this.reportParam.PageIndex = reportParam.PageIndex;
-
-        this.$("#PageIndexMaster").val(reportParam.PageIndex);
-        this.$("#PageSizeMaster").val(reportParam.PageIndex);
-
+        this.baseReloadState(reportParam, 'Master');
         this.viewList();
-    };
-    initAutoComplete = () => {
-        let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
-            this.$.param({ isDir: true, issub: false, ismember: false });
-        //initAutoComplete(this.searchSuggestionMaster[0], queryUsernameURL);
-        this.$output.css("top", this.searchSuggestionMaster.offset().top + 30);
-        this.$output.css("left", this.searchSuggestionMaster.offset().left);
     };
 }

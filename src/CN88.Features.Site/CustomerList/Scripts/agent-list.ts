@@ -37,10 +37,6 @@ class AgentList extends BaseList {
             self.reportParam.PageIndex = 1;
             self.viewAgents(self.reportParam.CustId);
         });
-
-        if (this.directDownline >= siteInfrastructure.roleId.master) {
-            //this.initAutoComplete();
-        }
     }
 
     public cacheDOMElements() {
@@ -95,23 +91,9 @@ class AgentList extends BaseList {
 
         this.viewAgents(custId);
     };
-    initAutoComplete = () => {
-        let queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
-            this.$.param({ isDir: true, issub: false, ismember: false });
-        initAutoComplete(this.$viewedMaster[0], queryUsernameURL);
-        this.$output.css("top", this.$viewedMaster.offset().top + 30);
-        this.$output.css("left", this.$viewedMaster.offset().left);
-    };
     reloadState = (reportParam: any) => {
         this.$("#txt-viewed-master").val(reportParam.DownlineUsername);
-        this.$username.val(reportParam.Username);
-        this.$dropdownStatus.val(this.$("#dropdown-status-agent").val());
-        this.reportParam.PageSize = reportParam.PageSize;
-        this.reportParam.PageIndex = reportParam.PageIndex;
-
-        this.$("#PageIndexAgent").val(reportParam.PageIndex);
-        this.$("#PageSizeAgent").val(reportParam.PageIndex);
-
+        this.baseReloadState(reportParam, 'Agent');
         this.viewAgents(reportParam.CustId);
     };
 }

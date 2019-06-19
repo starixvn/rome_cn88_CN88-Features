@@ -376,4 +376,13 @@ class BaseList {
     };
     buildNoInfoContent = (colspan: number) =>
         `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
+    baseReloadState = (reportParam: any, custRoleName: string) => {
+        this.$username.val(reportParam.Username);
+        this.$dropdownStatus.val(this.$(`#dropdown-status-${custRoleName.toLowerCase()}`).val());
+        this.reportParam.PageSize = reportParam.PageSize;
+        this.reportParam.PageIndex = reportParam.PageIndex;
+
+        this.$(`#PageIndex${custRoleName}`).val(reportParam.PageIndex);
+        this.$(`#PageSize${custRoleName}`).val(reportParam.PageIndex);
+    };
 }
