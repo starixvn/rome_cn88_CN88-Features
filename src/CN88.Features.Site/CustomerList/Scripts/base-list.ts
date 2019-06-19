@@ -230,6 +230,28 @@ class BaseList {
         this.initTooltip();
         this.$.unblockUI();
     };
+
+    renderCustomerList(rs: any, custRole: number, custRoleName: string) {
+        if (rs.SearchAccountId > 0) {
+            var buttonAddNew = this.$(`.add-directdownline-${custRoleName}`);
+            buttonAddNew.attr("cust-id", rs.SearchAccountId);
+            buttonAddNew.attr("username", rs.Username);
+            buttonAddNew.attr("downline-username", rs.DownlineUsername);
+        }
+
+        if (!rs.Customers) {
+            return;
+        }
+
+        this.$tblReport.removeClass("display-none");
+
+        this.$tblReport.find("> tbody").empty().html(
+            this.indexManager.isDevice ? this.buildBodyOnMobileMode(rs, custRole) : this.buildBodyOnDesktopMode(rs, custRole)
+        );
+        this.$(window).trigger('resize.stickyTableHeaders');
+        this.bindReportEvents(rs);
+    };
+
     buildBodyOnDesktopMode(rs: any, custRole: number) {
         const isAgent = custRole === 2, isMember = custRole === 1;
         if (rs.Customers.length == 0) {

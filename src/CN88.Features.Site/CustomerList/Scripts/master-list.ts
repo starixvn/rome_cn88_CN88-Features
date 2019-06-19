@@ -35,24 +35,7 @@ class MasterList extends BaseList {
     };
 
     renderMasterList = (rs: any) => {
-        if (rs.SearchAccountId > 0) {
-            var buttonAddNew = this.$(".add-directdownline-master");
-            buttonAddNew.attr("cust-id", rs.SearchAccountId);
-            buttonAddNew.attr("username", rs.Username);
-            buttonAddNew.attr("downline-username", rs.DownlineUsername);
-        }
-
-        if (!rs.Customers) {
-            return;
-        }
-
-        this.$tblReport.removeClass("display-none");
-
-        this.$tblReport.find("> tbody").empty().html(
-            this.indexManager.isDevice ? this.buildBodyOnMobileMode(rs, 3) : this.buildBodyOnDesktopMode(rs, 3)
-        );
-        this.$(window).trigger('resize.stickyTableHeaders');
-        super.bindReportEvents(rs);
+        this.renderCustomerList(rs, 3, 'master');
     };
     reloadState = (reportParam: any) => {
         this.$username.val(reportParam.Username);

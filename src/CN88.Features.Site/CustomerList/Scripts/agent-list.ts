@@ -81,24 +81,7 @@ class AgentList extends BaseList {
         this.loadData();
     };
     renderAgentList = (rs: any) => {
-        if (rs.SearchAccountId > 0) {
-            let buttonAddNew = this.$(".add-directdownline-agent");
-            buttonAddNew.attr("cust-id", rs.SearchAccountId);
-            buttonAddNew.attr("username", rs.Username);
-            buttonAddNew.attr("downline-username", rs.DownlineUsername);
-        }
-
-        if (!rs.Customers) {
-            return;
-        }
-
-        this.$tblReport.removeClass("display-none");
-
-        this.$tblReport.find("> tbody").empty().html(
-            this.indexManager.isDevice ? this.buildBodyOnMobileMode(rs, 2) : this.buildBodyOnDesktopMode(rs, 2)
-        );
-        this.$(window).trigger('resize.stickyTableHeaders');
-        super.bindReportEvents(rs);
+        this.renderCustomerList(rs, 2, 'agent');
     };
     viewAgentsOfMaster = (custId: any, username: any, status: number) => {
         this.$viewedMaster.val(username);

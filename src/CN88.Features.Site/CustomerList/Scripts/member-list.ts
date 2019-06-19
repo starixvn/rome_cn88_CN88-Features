@@ -78,24 +78,7 @@ class MemberList extends BaseList {
         this.loadData();
     };
     renderMemberList = (rs: any) => {
-        if (rs.SearchAccountId > 0) {
-            var buttonAddNew = this.$(".add-directdownline-member");
-            buttonAddNew.attr("cust-id", rs.SearchAccountId);
-            buttonAddNew.attr("username", rs.Username);
-            buttonAddNew.attr("downline-username", rs.DownlineUsername);
-        }
-
-        if (!rs.Customers) {
-            return;
-        }
-
-        this.$tblReport.removeClass("display-none");
-
-        this.$tblReport.find("> tbody").empty().html(
-            this.indexManager.isDevice ? this.buildBodyOnMobileMode(rs, 1) : this.buildBodyOnDesktopMode(rs, 1)
-        );
-        this.$(window).trigger('resize.stickyTableHeaders');
-        super.bindReportEvents(rs);
+        this.renderCustomerList(rs, 1, 'member');
     };
     viewMembersOfAgent = (custId: any, username: any, status: number) => {
         this.$viewedAgent.val(username);
