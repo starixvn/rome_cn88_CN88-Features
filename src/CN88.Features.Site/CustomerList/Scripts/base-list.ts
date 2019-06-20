@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../shared/scripts/components/pager.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="viewmodel/view-model.ts" />
 
 class BaseList {
     $: JQueryStatic;
@@ -25,7 +26,7 @@ class BaseList {
         PageIndex: 1
     };
 
-    viewResources: any;
+    viewResources: ViewResources;
     indexManager: any = null;
 
     levelName: string;

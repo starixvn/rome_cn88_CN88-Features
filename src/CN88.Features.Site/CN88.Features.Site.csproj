@@ -1076,6 +1076,7 @@
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\popup-base.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\ViewModel\view-model.ts" />
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\pt-history.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\client-pager.ts" />

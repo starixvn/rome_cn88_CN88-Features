@@ -4,6 +4,7 @@
 /// <reference path="master-list.ts" />
 /// <reference path="agent-list.ts" />
 /// <reference path="member-list.ts" />
+/// <reference path="viewmodel/view-model.ts" />
 
 class CustomerList {
     $: JQueryStatic;
@@ -38,28 +39,7 @@ class CustomerList {
         PageIndex: 1
     };
 
-    viewResources = {
-        NoInformationIsAvailable: '',
-        Suspended: '',
-        Page: '',
-        Of: '',
-        Pager_DisplayItems: '',
-        ResetSecurityCodeDisabled: '',
-        Disabled: '',
-        NewMember: '',
-        NewAgent: '',
-        EditMember: '',
-        EditAgent: '',
-        EditMasterAgent: '',
-        ResetPassword: '',
-        ResetSecurityCode: '',
-        Active: '',
-        ViewOnly: '',
-        Inactive: '',
-        UnlockTooltip: '',
-        UnlockConfirmTitle: '',
-        UnlockConfirmMessage: ''
-    };
+    viewResources: ViewResources;
 
     masterList: MasterList;
     agentList: AgentList;
@@ -77,12 +57,15 @@ class CustomerList {
         topWindow: any,
         masterToggleHandler: ToggleHandler,
         agentToggleHandler: ToggleHandler,
-        memberToggleHandler: ToggleHandler) {
+        memberToggleHandler: ToggleHandler,
+        viewResources:ViewResources) {
         this.$ = $;
         this.topWindow = topWindow;
         this.statusComponent = statusComponent;
         this.numeral = numeral;
         this.pager = pager;
+        this.viewResources = viewResources;
+
         this.masterToggleHandler = masterToggleHandler;
         this.agentToggleHandler = agentToggleHandler;
         this.memberToggleHandler = memberToggleHandler;
@@ -164,29 +147,29 @@ class CustomerList {
         this.directDownline = this.$("#directDownline").val();
         this.$navTabs = this.$("#nav-tabs");
 
-        this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
+        //this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
         
-        this.viewResources.Active = this.$("#Active").val();
-        this.viewResources.ViewOnly = this.$("#ViewOnly").val();
-        this.viewResources.Inactive = this.$("#Inactive").val();
-        this.viewResources.Suspended = this.$("#Suspended").val();
+        //this.viewResources.Active = this.$("#Active").val();
+        //this.viewResources.ViewOnly = this.$("#ViewOnly").val();
+        //this.viewResources.Inactive = this.$("#Inactive").val();
+        //this.viewResources.Suspended = this.$("#Suspended").val();
 
-        this.viewResources.Page = this.$("#Page").val();
-        this.viewResources.Of = this.$("#of").val();
-        this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
-        this.viewResources.Disabled = this.$("#Disabled").val();
+        //this.viewResources.Page = this.$("#Page").val();
+        //this.viewResources.Of = this.$("#of").val();
+        //this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
+        //this.viewResources.Disabled = this.$("#Disabled").val();
 
-        this.viewResources.NewMember = this.$("#NewMember").val();
-        this.viewResources.NewAgent = this.$("#NewAgent").val();
-        this.viewResources.EditMember = this.$("#EditMember").val();
-        this.viewResources.EditAgent = this.$("#EditAgent").val();
-        this.viewResources.EditMasterAgent = this.$("#EditMasterAgent").val();
+        //this.viewResources.NewMember = this.$("#NewMember").val();
+        //this.viewResources.NewAgent = this.$("#NewAgent").val();
+        //this.viewResources.EditMember = this.$("#EditMember").val();
+        //this.viewResources.EditAgent = this.$("#EditAgent").val();
+        //this.viewResources.EditMasterAgent = this.$("#EditMasterAgent").val();
 
-        this.viewResources.ResetPassword = this.$("#ResetPassword").val();
-        this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
-        this.viewResources.UnlockTooltip = this.$("#UnlockTooltip").val();
-        this.viewResources.UnlockConfirmTitle = this.$("#UnlockConfirmTitle").val();
-        this.viewResources.UnlockConfirmMessage = this.$("#UnlockConfirmMessage").val();
+        //this.viewResources.ResetPassword = this.$("#ResetPassword").val();
+        //this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
+        //this.viewResources.UnlockTooltip = this.$("#UnlockTooltip").val();
+        //this.viewResources.UnlockConfirmTitle = this.$("#UnlockConfirmTitle").val();
+        //this.viewResources.UnlockConfirmMessage = this.$("#UnlockConfirmMessage").val();
 
         this.EditCustomerLink = this.$("#EditCustomerLink").val();
         this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
@@ -385,7 +368,8 @@ const customerList = new CustomerList(
     window.top,
     new ToggleHandler($),
     new ToggleHandler($),
-    new ToggleHandler($));
+    new ToggleHandler($),
+    new ViewResources($));
 
 $(() => {
     customerList.init();
