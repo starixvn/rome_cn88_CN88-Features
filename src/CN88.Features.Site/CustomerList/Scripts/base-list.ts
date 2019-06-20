@@ -227,7 +227,7 @@ class BaseList {
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
         const { viewerStatusId, levelId } = this,
             { active } = siteInfrastructure.customerStatus,
-            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, UnlockTooltip } = this.viewResources;
+            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources;
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
             const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
@@ -250,7 +250,8 @@ class BaseList {
                     securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${ResetSecurityCode}'/>`,
                     editIconText = isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
                     editIcon = `<span class='icon-edit' ${iconAttr} title='${editIconText}'/>`,
-                    addDownlineIcon = Status === active && !isMember ? `<span class='icon-add' ${iconAttr} title='${NewAgent}'/>` : '',
+                    addDownlineIconText = isAgent ? NewMember : NewAgent,
+                    addDownlineIcon = Status === active && !isMember ? `<span class='icon-add' ${iconAttr} title='${addDownlineIconText}'/>` : '',
                     unclockIcon = Closed ? `<span class='icon-unlock' ${iconAttr} title='${UnlockTooltip}'/>` : '';
 
                 actionColumn = `<td class='col-action text-left'>${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>`;
@@ -268,68 +269,66 @@ class BaseList {
         return html;
     };
     buildBodyOnMobileMode(rs: any) {
-        const isAgent = this.levelId === siteInfrastructure.roleId.agent, isMember = this.levelId === siteInfrastructure.roleId.member;
+        const { viewerStatusId, levelId } = this,
+            { agent, member } = siteInfrastructure.roleId,
+            isAgent = levelId === agent, isMember = levelId === member;
+
         if (rs.Customers.length == 0) {
             return this.buildNoInfoContent(isMember ? 5 : 4);
         }
 
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
+
+        const { active } = siteInfrastructure.customerStatus,
+            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources;
+
+
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            let customer = rs.Customers[i],
-                status = customer.Status,
+            let { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
                 statusName = this.indexManager.getStatusName(status),
-                custId = customer.CustId,
-                closed = customer.Closed,
-                username = customer.Username,
-                nickname = customer.Nickname ? customer.Nickname : "---",
-                name = customer.Name ? customer.Name : "---",
-                userAttr = `cust-id='${custId}' username='${username}'`,
-                creditFormat = this.numeral(customer.Credit).format("###,0.00"),
+                nickname = Nickname ? Nickname : "---",
+                name = Name ? Name : "---",
+                userAttr = `cust-id='${CustId}' username='${Username}'`,
+                creditFormat = this.numeral(Credit).format("###,0.00"),
                 usernameLink = isMember ? 'view-statement' : 'view-downline';
 
             let actionColumn = '',
                 creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
                 statusColumn = `<td class='text-center'> ${statusName}</td>`,
                 viewDownlineColumn = `<td class='link ${usernameLink}' ${userAttr}>` +
-                    `<div class='username-wrapper'>${username}
+                    `<div class='username-wrapper'>${Username}
                                 <div class="cust-nickname">${nickname}</div>
                                 <div class="cust-name">${name}</div>
                             </div>
                     </td>`;
 
-            const groupColumn = isMember ? `<td>${customer.Group}</td>` : '';
+            const groupColumn = isMember ? `<td>${Group}</td>` : '';
 
-            if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
+            if (viewerStatusId === active) {
                 creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat}</td>`;
-                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
+                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'> ${statusName}</td>`;
 
-                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${this.levelId}>${this.viewResources.ResetPassword}</li>`;
-
-                const securityCodeIcon = isMember ? '' : `<li class='icon-security' ${userAttr}>${this.viewResources.ResetSecurityCode}</li>`;
-
-                const editIconText = isMember ?
-                    this.viewResources.EditMember :
-                    isAgent ? this.viewResources.EditAgent :
-                        this.viewResources.EditMasterAgent;
-                const editIcon = `<li class='icon-edit' ${userAttr}>${editIconText}</li>`;
-
-                const addDownlineIcon = status === siteInfrastructure.customerStatus.active && !isMember ? `<li class='icon-add' ${userAttr}>${this.viewResources.NewAgent}</li>` : '';
-
-                const unclockIcon = closed ? `<li class='icon-unlock' ${userAttr}>${this.viewResources.UnlockConfirmTitle}</li>` : '';
+                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${levelId}>${ResetPassword}</li>`,
+                    securityCodeIcon = isMember ? '' : `<li class='icon-security' ${userAttr}>${ResetSecurityCode}</li>`,
+                    editIconText = isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
+                    editIcon = `<li class='icon-edit' ${userAttr}>${editIconText}</li>`,
+                    addDownlineIconText = isAgent ? NewMember : NewAgent,
+                    addDownlineIcon = Status === active && !isMember ? `<li class='icon-add' ${userAttr}>${addDownlineIconText}</li>` : '',
+                    unclockIcon = Closed ? `<li class='icon-unlock' ${userAttr}>${UnlockConfirmTitle}</li>` : '';
 
                 actionColumn = "<td class='col-action text-center'>" +
                     `<div class="dropdown">` +
-                    `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
-                    (closed ? `<span class="icon-user-unlock"></span>` : `<span class="icon-more-action"></span>`) +
+                    `<a id="${CustId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
+                    (Closed ? `<span class="icon-user-unlock"></span>` : `<span class="icon-more-action"></span>`) +
                     `</a>` +
-                    `<ul class="dropdown-menu" aria-labelledby="${custId}" >${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</ul>` +
+                    `<ul class="dropdown-menu" aria-labelledby="${CustId}" >${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</ul>` +
                     `</div>` +
                     "</td>" +
                     "";
             }
 
-            html += `<tr class='row-customer' cust-id='${custId}'> ${viewDownlineColumn} ${groupColumn} ${creditColumn} ${statusColumn} ${actionColumn}</tr>`;
+            html += `<tr class='row-customer' cust-id='${CustId}'> ${viewDownlineColumn} ${groupColumn} ${creditColumn} ${statusColumn} ${actionColumn}</tr>`;
         }
 
         return html
