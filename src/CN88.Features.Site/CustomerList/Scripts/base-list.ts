@@ -336,13 +336,14 @@ class BaseList {
     buildNoInfoContent = (colspan: number) =>
         `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
     baseReloadState(reportParam: any, custRoleName: string) {
-        this.$username.val(reportParam.Username);
+        const { Username, PageSize, PageIndex} = reportParam;
+        this.$username.val(Username);
         this.$dropdownStatus.val(this.$(`#dropdown-status-${custRoleName.toLowerCase()}`).val());
-        this.reportParam.PageSize = reportParam.PageSize;
-        this.reportParam.PageIndex = reportParam.PageIndex;
+        this.reportParam.PageSize = PageSize;
+        this.reportParam.PageIndex = PageIndex;
 
-        this.$(`#PageIndex${custRoleName}`).val(reportParam.PageIndex);
-        this.$(`#PageSize${custRoleName}`).val(reportParam.PageIndex);
+        this.$(`#PageIndex${custRoleName}`).val(PageIndex);
+        this.$(`#PageSize${custRoleName}`).val(PageIndex);
     };
     setStateWhenViewDownlines(status: number) {
         this.$username.val("");
@@ -363,11 +364,14 @@ class BaseList {
             PageIndex: this.reportParam.PageIndex
         };
 
+        const { masterToggleHandler, agentToggleHandler, memberToggleHandler } = this.indexManager,
+            { master, agent} = siteInfrastructure.roleId;
+
         if (this.indexManager.isDevice) {
-            this.levelId === siteInfrastructure.roleId.master ?
-                this.indexManager.masterToggleHandler.hideFilter() :
-                this.levelId === siteInfrastructure.roleId.agent ? this.indexManager.agentToggleHandler.hideFilter() :
-                    this.indexManager.memberToggleHandler.hideFilter();
+            this.levelId === master ?
+                masterToggleHandler.hideFilter() :
+                this.levelId === agent ? agentToggleHandler.hideFilter() :
+                    memberToggleHandler.hideFilter();
         }
 
         this.loadData();

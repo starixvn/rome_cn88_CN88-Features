@@ -9,26 +9,6 @@
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/downline-list")
 }
 
-<!----------------- Desktop Tab view ---------------->
-<!--<ul id="nav-tabs" class="nav nav-tabs-style2" role="tablist">
-    @if (Model.ActorLevel.IsSuperLevel())
-    {
-        <li class="lnk-changetab" role="presentation" level="@UserLevel.Master.Value">
-            <a>@CustomerListResources.Master</a>
-        </li>
-    }
-
-    @if (Model.ActorLevel.IsMasterOrSuperLevel())
-    {
-        <li class="lnk-changetab" role="presentation" level="@UserLevel.Agent.Value">
-            <a>@CustomerListResources.Agent</a>
-        </li>
-    }
-
-    <li class="lnk-changetab" role="presentation" level="@UserLevel.Member.Value">
-        <a>@CustomerListResources.Member</a>
-    </li>
-</ul>-->
 <!----------------- Mobile Tab view ---------------->
 <ul id="nav-tabs" class="nav @(Model.IsDevice ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
@@ -44,6 +24,7 @@
     @RenderMobileTab(UserLevel.Member, CustomerListResources.Member)
 </ul>
 
+<!----------------- Desktop Tab view ---------------->
 @if (Model.ActorLevel.IsSuperLevel())
 {
     @RenderContent(UserLevel.Master, CustomerListResources.NewMasterAgent)
@@ -143,12 +124,12 @@
     var uplineLevelName = level.GetDirectUpLineLevel().DisplayName.ToLower();
     var options = new[]
     {
-        new { Value = CustomerStatus.All, Text = CustomerListResources.All },
-        new { Value = CustomerStatus.Active, Text = CustomerListResources.Active },
-        new { Value = CustomerStatus.ViewOnly, Text = CustomerListResources.ViewOnly },
-        new { Value = CustomerStatus.Suspended, Text = CustomerListResources.Suspended },
-        new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
-    }.ToList();
+new { Value = CustomerStatus.All, Text = CustomerListResources.All },
+new { Value = CustomerStatus.Active, Text = CustomerListResources.Active },
+new { Value = CustomerStatus.ViewOnly, Text = CustomerListResources.ViewOnly },
+new { Value = CustomerStatus.Suspended, Text = CustomerListResources.Suspended },
+new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
+}.ToList();
 
     if (Model.IsDevice)
     {
@@ -200,44 +181,44 @@
 
 @helper RenderContainer(UserLevel level)
 {
-var levelName = level.DisplayName.ToLower();
-var columns = new[]
-{
-        new { Text = CustomerListResources.No, ClassName = "col-no", Show = !Model.IsDevice},
-        new {
-            Text = Model.IsDevice ? 
-            $"{CustomerListResources.Username} <br /> {CustomerListResources.Nickname} <br /> {CustomerListResources.Name}" : 
-            CustomerListResources.Username,
-            ClassName = "col-username",
-            Show = true
-        },
-        new { Text = CustomerListResources.Name, ClassName = "col-name", Show = !Model.IsDevice},
-        new { Text = CustomerListResources.Nickname, ClassName = "col-nickname", Show = !Model.IsDevice},
-        new { Text = CustomerListResources.Group, ClassName = string.Empty, Show = level.IsMemberLevel()},
-        new { Text = CustomerListResources.Credit, ClassName = "text-right", Show = true},
-        new { Text = CustomerListResources.CreationDate, ClassName = "col-creation-date", Show = !Model.IsDevice},
-        new { Text = CustomerListResources.Status, ClassName = "text-center", Show = true},
-        new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true}
-    }.ToList();
+    var levelName = level.DisplayName.ToLower();
+    var columns = new[]
+    {
+new { Text = CustomerListResources.No, ClassName = "col-no", Show = !Model.IsDevice},
+new {
+Text = Model.IsDevice ?
+$"{CustomerListResources.Username} <br /> {CustomerListResources.Nickname} <br /> {CustomerListResources.Name}" :
+CustomerListResources.Username,
+ClassName = "col-username",
+Show = true
+},
+new { Text = CustomerListResources.Name, ClassName = "col-name", Show = !Model.IsDevice},
+new { Text = CustomerListResources.Nickname, ClassName = "col-nickname", Show = !Model.IsDevice},
+new { Text = CustomerListResources.Group, ClassName = string.Empty, Show = level.IsMemberLevel()},
+new { Text = CustomerListResources.Credit, ClassName = "text-right", Show = true},
+new { Text = CustomerListResources.CreationDate, ClassName = "col-creation-date", Show = !Model.IsDevice},
+new { Text = CustomerListResources.Status, ClassName = "text-center", Show = true},
+new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true}
+}.ToList();
 
-    <div id="@($"{levelName}-container")">
+<div id="@($"{levelName}-container")">
         <table id="@($"tbl-{levelName}")" class="tbl-style2 tbl-downlinelist @($"level-{levelName}")">
-            <thead>
-                <tr>
-                    @foreach (var column in columns)
+        <thead>
+            <tr>
+                @foreach (var column in columns)
+                {
+                    if (column.Show)
                     {
-                        if (column.Show)
-                        {
-                            <th class="@column.ClassName">@Html.Raw(column.Text)</th>
-                        }
+                        <th class="@column.ClassName">@Html.Raw(column.Text)</th>
                     }
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot></tfoot>
-        </table>
-        <div id="@($"pager-{levelName}")"></div>
-    </div>
+                }
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+    </table>
+    <div id="@($"pager-{levelName}")"></div>
+</div>
 }
 
 @helper RenderAddNewButton(string levelName, string submitButtonLabel)
