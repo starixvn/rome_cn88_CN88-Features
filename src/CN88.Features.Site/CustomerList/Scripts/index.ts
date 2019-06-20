@@ -16,18 +16,9 @@ class CustomerList {
     agentToggleHandler: ToggleHandler;
     memberToggleHandler: ToggleHandler;
 
-    directDownline: string;
     $navTabs: JQuery;
-    EditCustomerLink: string;
-    CreateCustomerLink: string;
-    UpdateCreditLink: string;
-    UpdateStatusLink: string;
     AccessDenyPage: string;
     isDevice: boolean = false;
-
-    CurrentLink: string;
-    ResetPasswordLink: string;
-    ResetSecurityCodeLink: string;
 
     reportParam = {
         DownlineUsername: null,
@@ -82,8 +73,9 @@ class CustomerList {
         this.agentList.init(this);
         this.memberList.init(this);
 
-        this.$navTabs.find("li[level='" + this.directDownline + "']").addClass("active");
-        this.$(".tab-content[level='" + this.directDownline + "']").removeClass("display-none");
+        const directDownline = this.$("#directDownline").val();
+        this.$navTabs.find(`li[level='${directDownline}']`).addClass("active");
+        this.$(`.tab-content[level='${directDownline}']`).removeClass("display-none");
 
         let self = this;
         this.$(".lnk-changetab").click(function () {
@@ -122,7 +114,7 @@ class CustomerList {
                     break;
             }
         } else {
-            switch (parseInt(this.directDownline)) {
+            switch (parseInt(directDownline)) {
                 case siteInfrastructure.roleId.master:
                     this.masterList.viewMasters();
                     break;
@@ -144,47 +136,14 @@ class CustomerList {
     };
 
     cacheDOMElements = () => {
-        this.directDownline = this.$("#directDownline").val();
         this.$navTabs = this.$("#nav-tabs");
 
-        //this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
-        
-        //this.viewResources.Active = this.$("#Active").val();
-        //this.viewResources.ViewOnly = this.$("#ViewOnly").val();
-        //this.viewResources.Inactive = this.$("#Inactive").val();
-        //this.viewResources.Suspended = this.$("#Suspended").val();
-
-        //this.viewResources.Page = this.$("#Page").val();
-        //this.viewResources.Of = this.$("#of").val();
-        //this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
-        //this.viewResources.Disabled = this.$("#Disabled").val();
-
-        //this.viewResources.NewMember = this.$("#NewMember").val();
-        //this.viewResources.NewAgent = this.$("#NewAgent").val();
-        //this.viewResources.EditMember = this.$("#EditMember").val();
-        //this.viewResources.EditAgent = this.$("#EditAgent").val();
-        //this.viewResources.EditMasterAgent = this.$("#EditMasterAgent").val();
-
-        //this.viewResources.ResetPassword = this.$("#ResetPassword").val();
-        //this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
-        //this.viewResources.UnlockTooltip = this.$("#UnlockTooltip").val();
-        //this.viewResources.UnlockConfirmTitle = this.$("#UnlockConfirmTitle").val();
-        //this.viewResources.UnlockConfirmMessage = this.$("#UnlockConfirmMessage").val();
-
-        this.EditCustomerLink = this.$("#EditCustomerLink").val();
-        this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
-        this.CurrentLink = this.$("#CurrentLink").val();
-        this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
-        this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
         this.AccessDenyPage = this.$("#AccessDenyPage").val();
 
         this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
         this.Language = this.$("#Language").val();
         this.ViewerId = this.$("#ViewerId").val();
         this.ActorLevel = this.$("#ActorLevel").val();
-
-        this.UpdateCreditLink = this.$("#UpdateCreditLink").val();
-        this.UpdateStatusLink = this.$("#UpdateStatusLink").val();
 
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
@@ -202,28 +161,32 @@ class CustomerList {
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-        let url = this.UpdateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
+        const updateCreditLink = this.$("#UpdateCreditLink").val();
+        let url = updateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
             popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-credit', 490, 280);
     };
 
     updateStatus = (custId: number, username: string, statusId: number, uplineStatusId: number) => {
-        let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId, uplineStatusId: uplineStatusId }),
+        const updateStatusLink = this.$("#UpdateStatusLink").val();
+        let url = updateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId, uplineStatusId: uplineStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-status', 490, 210);
     };
 
     resetPassword = (custId: number, username: string, custLevelId: number) => {
-        let url: string = `${this.ResetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
+        const resetPasswordLink = this.$("#ResetPasswordLink").val();
+        let url: string = `${resetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
         let popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-password', 490, 430);
     };
 
     resetSecurityCode = (custId: number, username: string) => {
-        let url: string = `${this.ResetSecurityCodeLink}?custId=${custId}`;
+        const resetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
+        let url: string = `${resetSecurityCodeLink}?custId=${custId}`;
         let popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-password', 490, 344);
@@ -245,7 +208,8 @@ class CustomerList {
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
 
-        window.location.href = this.EditCustomerLink + "?" + this.$.param({
+        const editCustomerLink = this.$("#EditCustomerLink").val();
+        window.location.href = editCustomerLink + "?" + this.$.param({
             Language: this.Language,
             ProductId: 1,
             CustomerLevel: custLevelId,
@@ -299,9 +263,10 @@ class CustomerList {
             this.storeCurrentPage(reportParam);
             this.topWindow.showCN88CancelButton = true;
             this.topWindow.showCN88SaveAndNewButton = true;
-            
+
+            const createCustomerLink = this.$("#CreateCustomerLink").val();
             mainiFrame.show();
-            mainiFrame.attr("src", this.CreateCustomerLink + "?" + this.$.param({
+            mainiFrame.attr("src", createCustomerLink + "?" + this.$.param({
                 Language: this.Language,
                 ProductId: 1,
                 CustomerLevel: custLevelId,
@@ -345,7 +310,8 @@ class CustomerList {
         this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
     storeCurrentPage = (reportParam: any) => {
-        let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
+        const currentLink = this.$("#CurrentLink").val();
+        let currentPage = currentLink + "?" + this.$.param(reportParam);
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
     reloadData = () => {

@@ -54,7 +54,7 @@ class BaseList {
     }
 
     public init(
-        indexManager: any,
+        indexManager: CustomerList,
         levelId: number,
         viewDownlineFunction: Function) {
         this.indexManager = indexManager;
@@ -228,43 +228,77 @@ class BaseList {
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
         const { viewerStatusId, levelId } = this,
             { active } = siteInfrastructure.customerStatus,
+            isActivedViewer = viewerStatusId === active,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources;
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
-                statusName = this.indexManager.getStatusName(Status),
-                userAttr = `cust-id='${CustId}' username='${Username}'`,
-                iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`,
-                creditFormat = this.numeral(Credit).format("###,0.00"),
-                usernameLink = isMember ? 'view-statement' : 'view-downline',
-                groupColumn = isMember ? `<td>${Group}</td>` : '';
+            const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i];
 
-            let actionColumn = '',
-                creditColumn = `<td class='text-right'>${creditFormat}</td>`,
-                statusColumn = `<td class='text-center'>${statusName}</td>`;
+            let actionColumn = '';
 
-            if (viewerStatusId === active) {
-                creditColumn = `<td class='text-right link col-credit' ${userAttr}>${creditFormat}</td>`;
-                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'>${statusName}</td>`;
+            if (isActivedViewer) {
+                //const iconAttr = `data-toggle='tooltip' data-placement='top' cust-id='${CustId}' username='${Username}'`,
+                //    resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${ResetPassword}' cust-role=${levelId}/>`,
 
-                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${ResetPassword}' cust-role=${levelId}/>`,
-                    securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${ResetSecurityCode}'/>`,
-                    editIconText = isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
-                    editIcon = `<span class='icon-edit' ${iconAttr} title='${editIconText}'/>`,
-                    addDownlineIconText = isAgent ? NewMember : NewAgent,
-                    addDownlineIcon = Status === active && !isMember ? `<span class='icon-add' ${iconAttr} title='${addDownlineIconText}'/>` : '',
-                    unclockIcon = Closed ? `<span class='icon-unlock' ${iconAttr} title='${UnlockTooltip}'/>` : '';
+                //    securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${ResetSecurityCode}'/>`,
 
-                actionColumn = `<td class='col-action text-left'>${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>`;
+                //    editIconText = isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
+                //    editIcon = `<span class='icon-edit' ${iconAttr} title='${editIconText}'/>`,
+
+                //    addDownlineIconText = isAgent ? NewMember : NewAgent,
+                //    addDownlineIcon = Status === active && !isMember ? `<span class='icon-add' ${iconAttr} title='${addDownlineIconText}'/>` : '',
+
+                //    unclockIcon = Closed ? `<span class='icon-unlock' ${iconAttr} title='${UnlockTooltip}'/>` : '';
+
+                const iconAttributes: Attribute[] = [
+                    new Attribute('data-toggle', 'tooltip'),
+                    new Attribute('data-placement', 'top'),
+                    new Attribute('cust-id', CustId),
+                    new Attribute('username', Username),
+                ];
+
+                const spans: WrapperSpan[] = [
+                    new WrapperSpan([
+                        new Attribute('class', 'icon-pass'),
+                        new Attribute('title', ResetPassword),
+                        new Attribute('cust-role', levelId.toString())].concat(iconAttributes)),
+                    isMember ? null : new WrapperSpan([
+                        new Attribute('class', 'icon-security'),
+                        new Attribute('title', ResetSecurityCode)].concat(iconAttributes)),
+                    new WrapperSpan([
+                        new Attribute('class', 'icon-edit'),
+                        new Attribute('title', isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent)].concat(iconAttributes)),
+                    Status === active && !isMember ? new WrapperSpan([
+                        new Attribute('class', 'icon-add'),
+                        new Attribute('title', isAgent ? NewMember : NewAgent)].concat(iconAttributes)) : null,
+                    Closed ? new WrapperSpan([
+                        new Attribute('class', 'icon-unlock'),
+                        new Attribute('title', UnlockTooltip)].concat(iconAttributes)) : null
+                ];
+
+                spans.forEach(span => {
+                    if (span !== null) {
+                        actionColumn += span.ToString();
+                    }
+                });
+
+                //actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
             }
 
-            html += `<tr class='row-customer' cust-id='${CustId}'>` +
-                `<td class='col-no'>${customerIndex}</td>` +
-                `<td class='link ${usernameLink}' ${iconAttr}>${Username}</td>` +
-                `<td>${Name}</td>` +
-                `<td>${Nickname}</td>` +
-                `${groupColumn}${creditColumn}<td class='col-date'>${CreationDateStr}</td>` +
-                `${statusColumn}  ${actionColumn} </tr>`;
+            const columns: ColumnContent[] = [
+                new ColumnContent(customerIndex.toString(), [new Attribute('class', 'col-no')]),
+                new ColumnContent(Username, [new Attribute('class', `link ${isMember ? 'view-statement' : 'view-downline'}`)]),
+                new ColumnContent(Name),
+                new ColumnContent(Nickname),
+                isMember ? new ColumnContent(Group) : null,
+                new ColumnContent(this.numeral(Credit).format("###,0.00"), [new Attribute('class', `text-right ${isActivedViewer ? 'link col-credit' : ''}`)]),
+                new ColumnContent(CreationDateStr, [new Attribute('class', 'col-date')]),
+                new ColumnContent(this.indexManager.getStatusName(Status), [new Attribute('class', `text-center ${isActivedViewer ? 'link col-status' : ''}`)]),
+                new ColumnContent(actionColumn, [new Attribute('class', 'col-action text-left')]),
+            ];
+
+            const rowContent = new RowContent(columns, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]);
+            html += rowContent.ToString();
         }
 
         return html;
