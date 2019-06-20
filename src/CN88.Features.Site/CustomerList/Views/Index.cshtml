@@ -221,7 +221,7 @@ var columns = new[]
     }.ToList();
 
     <div id="@($"{levelName}-container")">
-        <table id="@($"tbl-{levelName}")" class="tbl-style2 tbl-downlinelist">
+        <table id="@($"tbl-{levelName}")" class="tbl-style2 tbl-downlinelist @($"level-{levelName}")">
             <thead>
                 <tr>
                     @foreach (var column in columns)
