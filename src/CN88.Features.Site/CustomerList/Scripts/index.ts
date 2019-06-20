@@ -40,8 +40,6 @@ class CustomerList {
 
     viewResources = {
         NoInformationIsAvailable: '',
-        Open: '',
-        Closed: '',
         Suspended: '',
         Page: '',
         Of: '',
@@ -167,13 +165,11 @@ class CustomerList {
         this.$navTabs = this.$("#nav-tabs");
 
         this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
-        this.viewResources.Open = this.$("#Open").val();
-        this.viewResources.Closed = this.$("#Closed").val();
-        this.viewResources.Suspended = this.$("#Suspended").val();
-
+        
         this.viewResources.Active = this.$("#Active").val();
         this.viewResources.ViewOnly = this.$("#ViewOnly").val();
         this.viewResources.Inactive = this.$("#Inactive").val();
+        this.viewResources.Suspended = this.$("#Suspended").val();
 
         this.viewResources.Page = this.$("#Page").val();
         this.viewResources.Of = this.$("#of").val();
@@ -219,7 +215,7 @@ class CustomerList {
     };
     changeTab = function (level: string) {
         this.$(".tab-content").addClass("display-none");
-        this.$(".tab-content[level='" + level + "']").removeClass("display-none");
+        this.$(`.tab-content[level='${level}']`).removeClass("display-none");
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
@@ -294,7 +290,7 @@ class CustomerList {
                     }})
                     .done(function (data) {
                         if (data.IsSuccess) {
-                            self.$(".icon-unlock[cust-id='" + custId + "']").remove();
+                            self.$(`.icon-unlock[cust-id='${custId}']`).remove();
                         }
                         else {
                             self.topWindow.popupManager.bootboxAlert(self.viewResources.UnlockConfirmTitle, data.Message);
@@ -355,15 +351,15 @@ class CustomerList {
         return "";
     };
     viewMaster = (custId: any, username: any, status: number) => {
-        this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.agent + "']").click();
+        this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.agent}']`).click();
         this.agentList.viewAgentsOfMaster(custId, username, status);
     };
     viewAgent = (custId: any, username: any, status: number) => {
-        this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.member + "']").click();
+        this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.member}']`).click();
         this.memberList.viewMembersOfAgent(custId, username, status);
     };
     removeUnlock = (custId: any) => {
-        this.$(".icon-unlock[cust-id='" + custId + "']").remove();
+        this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
     storeCurrentPage = (reportParam: any) => {
         let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
