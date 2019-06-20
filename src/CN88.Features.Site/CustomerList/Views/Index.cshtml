@@ -135,7 +135,10 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
     {
         <div class="filter-mobile">
             <span class="icon-filter-down" id="@($"{levelName}-filter-toggle-icon")"></span>
-            @RenderAddNewButton(levelName, submitButtonLabel)
+            @if (Model.ViewerStatusId != CustomerStatus.ViewOnly)
+            {
+                @RenderAddNewButton(levelName, submitButtonLabel)
+            }
         </div>
     }
 
@@ -224,6 +227,7 @@ new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true
 @helper RenderAddNewButton(string levelName, string submitButtonLabel)
 {
     <button id="add-directdownline"
+            disabled
             cust-id=""
             username=""
             downline-username=""

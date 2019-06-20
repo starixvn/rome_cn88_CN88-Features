@@ -283,7 +283,6 @@ class BaseList {
         const { active } = siteInfrastructure.customerStatus,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources;
 
-
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
             let { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
                 statusName = this.indexManager.getStatusName(status),
@@ -336,7 +335,7 @@ class BaseList {
     buildNoInfoContent = (colspan: number) =>
         `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
     baseReloadState(reportParam: any, custRoleName: string) {
-        const { Username, PageSize, PageIndex} = reportParam;
+        const { Username, PageSize, PageIndex } = reportParam;
         this.$username.val(Username);
         this.$dropdownStatus.val(this.$(`#dropdown-status-${custRoleName.toLowerCase()}`).val());
         this.reportParam.PageSize = PageSize;
@@ -365,7 +364,7 @@ class BaseList {
         };
 
         const { masterToggleHandler, agentToggleHandler, memberToggleHandler } = this.indexManager,
-            { master, agent} = siteInfrastructure.roleId;
+            { master, agent } = siteInfrastructure.roleId;
 
         if (this.indexManager.isDevice) {
             this.levelId === master ?
