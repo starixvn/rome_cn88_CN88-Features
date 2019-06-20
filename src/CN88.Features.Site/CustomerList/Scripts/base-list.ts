@@ -329,7 +329,7 @@ class BaseList {
                 actionColumn = "<td class='col-action text-center'>" +
                     `<div class="dropdown">` +
                     `<a id="${custId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
-                    (username.Closed ? `<span class="icon-user-unlock"><span class="path1"></span><span class="path2"></span></span>` : `<span class="icon-more-action"></span>`) +
+                    (closed ? `<span class="icon-user-unlock"></span>` : `<span class="icon-more-action"></span>`) +
                     `</a>` +
                     `<ul class="dropdown-menu" aria-labelledby="${custId}" >${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</ul>` +
                     `</div>` +
