@@ -310,19 +310,19 @@
     <value>星期三</value>
   </data>
   <data name="UnlockTooltip" xml:space="preserve">
-    <value>Click to unlock</value>
+    <value>点击解锁</value>
   </data>
   <data name="UnlockConfirmMessage" xml:space="preserve">
-    <value>Do you want to unlock this account?</value>
+    <value>确定解锁此账户?</value>
   </data>
   <data name="UnlockConfirmTitle" xml:space="preserve">
-    <value>Unlock Account</value>
+    <value>解锁此账户</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>Active</value>
+    <value>已激活</value>
   </data>
   <data name="Inactive" xml:space="preserve">
-    <value>Inactive</value>
+    <value>已失效</value>
   </data>
   <data name="ViewOnly" xml:space="preserve">
     <value>View Only</value>

@@ -288,6 +288,7 @@ class BaseList {
                 status = customer.Status,
                 statusName = this.indexManager.getStatusName(status),
                 custId = customer.CustId,
+                closed = customer.Closed,
                 username = customer.Username,
                 nickname = customer.Nickname ? customer.Nickname : "---",
                 name = customer.Name ? customer.Name : "---",
@@ -323,7 +324,7 @@ class BaseList {
 
                 const addDownlineIcon = status === siteInfrastructure.customerStatus.active && !isMember ? `<li class='icon-add' ${userAttr}>${this.viewResources.NewAgent}</li>` : '';
 
-                const unclockIcon = closed ? `<li class='icon-unlock' ${userAttr}>Unlock Trans</li>` : '';
+                const unclockIcon = closed ? `<li class='icon-unlock' ${userAttr}>${this.viewResources.UnlockConfirmTitle}</li>` : '';
 
                 actionColumn = "<td class='col-action text-center'>" +
                     `<div class="dropdown">` +
