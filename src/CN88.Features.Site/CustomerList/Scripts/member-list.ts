@@ -4,11 +4,6 @@
 
 class MemberList extends BaseList {
     $viewedAgent: JQuery;
-    $errMember: JQuery;
-    directDownline: number;
-
-    $output: JQuery;
-    usernameAutoSuggestionPath: string;
 
     constructor(
         $: JQueryStatic,
@@ -35,25 +30,22 @@ class MemberList extends BaseList {
 
     public cacheDOMElements() {
         super.cacheDOMElements();
-
         this.$viewedAgent = this.$("#txt-viewed-agent");
-        this.directDownline = parseInt(this.$("#directDownline").val());
-        this.$errMember = this.$("#msg-err-member");
-        this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
-        this.$output = this.$("#output");
     }
     viewMembers(custId: number) {
         this.viewList(this.$viewedAgent.val(), custId);
+        const directDownline = parseInt(this.$("#directDownline").val()),
+            $errMember = this.$("#msg-err-member"),
+            { DownlineUsername } = this.reportParam;
 
-        if (this.directDownline != siteInfrastructure.roleId.member &&
-            (this.reportParam.DownlineUsername == "" ||
-                this.reportParam.DownlineUsername == undefined)) {
-            this.$errMember.removeClass("display-none");
+        if (directDownline != siteInfrastructure.roleId.member &&
+            (DownlineUsername == "" || DownlineUsername == undefined)) {
+            $errMember.removeClass("display-none");
             this.$.unblockUI();
             return;
         }
 
-        this.$errMember.addClass("display-none");
+        $errMember.addClass("display-none");
     };
     viewMembersOfAgent(custId: number, username: string, status: number) {
         this.$viewedAgent.val(username);

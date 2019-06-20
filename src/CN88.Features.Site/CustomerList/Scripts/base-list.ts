@@ -41,7 +41,7 @@ class BaseList {
         statusComponent: SingleSelectionDropdownComponent,
         bootstrapDropdownComponent: BootstrapDropdownComponent,
         numeral: any,
-        pager: PagerComponent,        
+        pager: PagerComponent,
         levelName: string) {
         this.$ = $;
         this.statusComponent = statusComponent;
@@ -110,7 +110,7 @@ class BaseList {
 
         this.$tblReport.find(".view-downline").click(function () {
             var $this = self.$(this);
-            self.indexManager.isDevice ? 
+            self.indexManager.isDevice ?
                 self.viewDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.reportParam.Status) :
                 self.viewDownlineFunction($this.attr("cust-id"), $this.html(), self.reportParam.Status);
         });
@@ -218,58 +218,50 @@ class BaseList {
     };
 
     buildBodyOnDesktopMode(rs: any) {
-        const isAgent = this.levelId === 2, isMember = this.levelId === 1;
+        const { agent, member } = siteInfrastructure.roleId, isAgent = this.levelId === agent, isMember = this.levelId === member;
         if (rs.Customers.length == 0) {
             return this.buildNoInfoContent(isMember ? 9 : 8);
         }
 
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
+        const { viewerStatusId, levelId } = this,
+            { active } = siteInfrastructure.customerStatus,
+            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, UnlockTooltip } = this.viewResources;
+
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            const customer = rs.Customers[i],
-                custId = customer.CustId,
-                username = customer.Username,
-                status = customer.Status,
-                statusName = this.indexManager.getStatusName(status),
-                closed = customer.Closed,
-                userAttr = `cust-id='${custId}' username='${username}'`,
+            const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
+                statusName = this.indexManager.getStatusName(Status),
+                userAttr = `cust-id='${CustId}' username='${Username}'`,
                 iconAttr = `data-toggle='tooltip' data-placement='top' ${userAttr}`,
-                creditFormat = this.numeral(customer.Credit).format("###,0.00"),
-                usernameLink = isMember ? 'view-statement' : 'view-downline';
+                creditFormat = this.numeral(Credit).format("###,0.00"),
+                usernameLink = isMember ? 'view-statement' : 'view-downline',
+                groupColumn = isMember ? `<td>${Group}</td>` : '';
 
             let actionColumn = '',
                 creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
                 statusColumn = `<td class='text-center'> ${statusName}</td>`;
 
-            const groupColumn = isMember ? `<td>${customer.Group}</td>` : '';
-
-            if (this.viewerStatusId === siteInfrastructure.customerStatus.active) {
+            if (viewerStatusId === active) {
                 creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat} </td>`;
-                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${customer.Status}'> ${statusName}</td>`;
+                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'> ${statusName}</td>`;
 
-                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${this.viewResources.ResetPassword}' cust-role=${this.levelId}/>`;
-
-                const securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${this.viewResources.ResetSecurityCode}'/>`;
-
-                const editIconText = isMember ?
-                    this.viewResources.EditMember :
-                    isAgent ? this.viewResources.EditAgent :
-                        this.viewResources.EditMasterAgent;
-                const editIcon = `<span class='icon-edit' ${iconAttr} title='${editIconText}'/>`;
-
-                const addDownlineIcon = status === siteInfrastructure.customerStatus.active && !isMember? `<span class='icon-add' ${iconAttr} title='${this.viewResources.NewAgent}'/>` : '';
-
-                const unclockIcon = closed ? `<span class='icon-unlock' ${iconAttr} title='${this.viewResources.UnlockTooltip}'/>` : '';
+                const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${ResetPassword}' cust-role=${levelId}/>`,
+                    securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${ResetSecurityCode}'/>`,
+                    editIconText = isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
+                    editIcon = `<span class='icon-edit' ${iconAttr} title='${editIconText}'/>`,
+                    addDownlineIcon = Status === active && !isMember ? `<span class='icon-add' ${iconAttr} title='${NewAgent}'/>` : '',
+                    unclockIcon = Closed ? `<span class='icon-unlock' ${iconAttr} title='${UnlockTooltip}'/>` : '';
 
                 actionColumn = `<td class='col-action text-left'>${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</td>`;
             }
 
-            html += `<tr class='row-customer' cust-id='${custId}'>` +
+            html += `<tr class='row-customer' cust-id='${CustId}'>` +
                 `<td class='col-no'> ${customerIndex} </td>` +
-                `<td class='link ${usernameLink}' ${iconAttr}> ${username} </td>` +
-                `<td>${customer.Name}</td>` +
-                `<td>${customer.Nickname}</td>` +
-                `${groupColumn}${creditColumn}<td class='col-date'> ${customer.CreationDateStr} </td>` +
+                `<td class='link ${usernameLink}' ${iconAttr}> ${Username} </td>` +
+                `<td>${Name}</td>` +
+                `<td>${Nickname}</td>` +
+                `${groupColumn}${creditColumn}<td class='col-date'> ${CreationDateStr} </td>` +
                 `${statusColumn}  ${actionColumn} </tr>`;
         }
 
@@ -278,7 +270,7 @@ class BaseList {
     buildBodyOnMobileMode(rs: any) {
         const isAgent = this.levelId === siteInfrastructure.roleId.agent, isMember = this.levelId === siteInfrastructure.roleId.member;
         if (rs.Customers.length == 0) {
-            return this.buildNoInfoContent(isMember ? 5: 4);
+            return this.buildNoInfoContent(isMember ? 5 : 4);
         }
 
         let html = "";

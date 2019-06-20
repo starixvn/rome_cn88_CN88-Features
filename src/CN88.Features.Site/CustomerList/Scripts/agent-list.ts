@@ -6,11 +6,6 @@ declare var initAutoComplete: Function;
 
 class AgentList extends BaseList {
     $viewedMaster: JQuery;
-    $errAgent: JQuery;
-    directDownline: number;
-
-    $output: JQuery;
-    usernameAutoSuggestionPath: string;
 
     constructor(
         $: JQueryStatic,
@@ -37,26 +32,23 @@ class AgentList extends BaseList {
 
     public cacheDOMElements() {
         super.cacheDOMElements();
-
         this.$viewedMaster = this.$("#txt-viewed-master");
-        this.directDownline = parseInt(<string>this.$("#directDownline").val());
-        this.$errAgent = this.$("#msg-err-agent");
-        this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
-        this.$output = this.$("#output");
     };
 
     viewAgents(custId: number) {
         this.viewList(this.$viewedMaster.val(), custId);
+        const directDownline = parseInt(<string>this.$("#directDownline").val()),
+            $errAgent = this.$("#msg-err-agent"),
+            { DownlineUsername } = this.reportParam;
 
-        if (this.directDownline != siteInfrastructure.roleId.agent &&
-            (this.reportParam.DownlineUsername == "" ||
-                this.reportParam.DownlineUsername == undefined)) {
-            this.$errAgent.removeClass("display-none");
+        if (directDownline != siteInfrastructure.roleId.agent &&
+            (DownlineUsername == "" || DownlineUsername == undefined)) {
+            $errAgent.removeClass("display-none");
             this.$.unblockUI();
             return;
         }
 
-        this.$errAgent.addClass("display-none");
+        $errAgent.addClass("display-none");
     };
     viewAgentsOfMaster(custId: number, username: string, status: number) {
         this.$viewedMaster.val(username);
