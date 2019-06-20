@@ -174,7 +174,7 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
                 <div id="@($"msg-err-{levelName}")" class="msg msg-error display-none">@requiredHint</div>
             }
 
-            @if (!Model.IsDevice && Model.ViewerStatusId != CustomerStatus.ViewOnly)
+            @if (Model.IsNotPhone && Model.ViewerStatusId != CustomerStatus.ViewOnly)
             {
                 @RenderAddNewButton(levelName, submitButtonLabel)
             }
@@ -220,7 +220,10 @@ new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true
         <tbody></tbody>
         <tfoot></tfoot>
     </table>
-    <div id="@($"pager-{levelName}")"></div>
+    @if (Model.IsNotPhone)
+    {
+        <div id="@($"pager-{levelName}")"></div>
+    }
 </div>
 }
 

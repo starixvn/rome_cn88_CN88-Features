@@ -239,12 +239,12 @@ class BaseList {
                 groupColumn = isMember ? `<td>${Group}</td>` : '';
 
             let actionColumn = '',
-                creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
-                statusColumn = `<td class='text-center'> ${statusName}</td>`;
+                creditColumn = `<td class='text-right'>${creditFormat}</td>`,
+                statusColumn = `<td class='text-center'>${statusName}</td>`;
 
             if (viewerStatusId === active) {
-                creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat} </td>`;
-                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'> ${statusName}</td>`;
+                creditColumn = `<td class='text-right link col-credit' ${userAttr}>${creditFormat}</td>`;
+                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'>${statusName}</td>`;
 
                 const resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${ResetPassword}' cust-role=${levelId}/>`,
                     securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${ResetSecurityCode}'/>`,
@@ -258,11 +258,11 @@ class BaseList {
             }
 
             html += `<tr class='row-customer' cust-id='${CustId}'>` +
-                `<td class='col-no'> ${customerIndex} </td>` +
-                `<td class='link ${usernameLink}' ${iconAttr}> ${Username} </td>` +
+                `<td class='col-no'>${customerIndex}</td>` +
+                `<td class='link ${usernameLink}' ${iconAttr}>${Username}</td>` +
                 `<td>${Name}</td>` +
                 `<td>${Nickname}</td>` +
-                `${groupColumn}${creditColumn}<td class='col-date'> ${CreationDateStr} </td>` +
+                `${groupColumn}${creditColumn}<td class='col-date'>${CreationDateStr}</td>` +
                 `${statusColumn}  ${actionColumn} </tr>`;
         }
 
@@ -284,7 +284,7 @@ class BaseList {
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources;
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            let { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
+            let { CustId, Username, Status, Credit, Closed, Group, Name, Nickname } = rs.Customers[i],
                 statusName = this.indexManager.getStatusName(status),
                 nickname = Nickname ? Nickname : "---",
                 name = Name ? Name : "---",
@@ -293,8 +293,8 @@ class BaseList {
                 usernameLink = isMember ? 'view-statement' : 'view-downline';
 
             let actionColumn = '',
-                creditColumn = `<td class='text-right'> ${creditFormat} </td>`,
-                statusColumn = `<td class='text-center'> ${statusName}</td>`,
+                creditColumn = `<td class='text-right'>${creditFormat}</td>`,
+                statusColumn = `<td class='text-center'>${statusName}</td>`,
                 viewDownlineColumn = `<td class='link ${usernameLink}' ${userAttr}>` +
                     `<div class='username-wrapper'>${Username}
                                 <div class="cust-nickname">${nickname}</div>
@@ -305,8 +305,8 @@ class BaseList {
             const groupColumn = isMember ? `<td>${Group}</td>` : '';
 
             if (viewerStatusId === active) {
-                creditColumn = `<td class='text-right link col-credit' ${userAttr}> ${creditFormat}</td>`;
-                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'> ${statusName}</td>`;
+                creditColumn = `<td class='text-right link col-credit' ${userAttr}>${creditFormat}</td>`;
+                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'>${statusName}</td>`;
 
                 const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${levelId}>${ResetPassword}</li>`,
                     securityCodeIcon = isMember ? '' : `<li class='icon-security' ${userAttr}>${ResetSecurityCode}</li>`,
