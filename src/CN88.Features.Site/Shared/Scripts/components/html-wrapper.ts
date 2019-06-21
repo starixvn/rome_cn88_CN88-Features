@@ -10,7 +10,7 @@ class Attribute {
     }
 }
 
-class WrapperElement {
+class ElementWrapper {
     private Attributes: Attribute[];
     private Content: string;
     private Tag: string;
@@ -32,20 +32,20 @@ class WrapperElement {
     }
 }
 
-class WrapperSpan extends WrapperElement {
+class SpanWrapper extends ElementWrapper {
     constructor(content: string = '', attributes: Attribute[] = []) {
         super('span', content, attributes);
     }
 }
 
-class WrapperDiv extends WrapperElement{
+class DivWrapper extends ElementWrapper{
     constructor(content: string, attributes: Attribute[] = []) {
         super('div', content, attributes);
     }
 }
 
-class WrapperUl extends WrapperElement {
-    constructor(liArray: WrapperLi[] = [], attributes: Attribute[] = []) {
+class UnoderListWrapper extends ElementWrapper {
+    constructor(liArray: ListItemWrapper[] = [], attributes: Attribute[] = []) {
         let content = '';
         liArray.forEach(li => {
             content += li.ToString();
@@ -55,29 +55,29 @@ class WrapperUl extends WrapperElement {
     }
 }
 
-class WrapperLi extends WrapperElement {
+class ListItemWrapper extends ElementWrapper {
     constructor(content: string, attributes: Attribute[] = []) {
         super('li', content, attributes);
     }
 }
 
-class WrapperAnchor extends WrapperElement {
+class AnchorWrapper extends ElementWrapper {
     constructor(content: string, attributes: Attribute[] = []) {
         super('a', content, attributes);
     }
 }
 
-class ColumnContent extends WrapperElement {
+class ColumnWrapper extends ElementWrapper {
     constructor(content: string, attributes: Attribute[] = []) {
         super('td', content, attributes);
     }
 }
 
-class RowContent {
+class RowWrapper {
     private Attributes: Attribute[];
-    private Columns: ColumnContent[];
+    private Columns: ColumnWrapper[];
 
-    constructor(columns: ColumnContent[], attributes: Attribute[] = []) {
+    constructor(columns: ColumnWrapper[], attributes: Attribute[] = []) {
         this.Attributes = attributes;
         this.Columns = columns;
     }

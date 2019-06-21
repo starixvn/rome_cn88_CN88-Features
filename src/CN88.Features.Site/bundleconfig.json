@@ -110,6 +110,7 @@
       "Shared/scripts/components/pager.js",
       "Shared/Scripts/components/html-wrapper.js",
       "CustomerList/scripts/ViewModel/view-model.js",
+      "CustomerList/scripts/Helpers/customer-list-helper.js",
       "CustomerList/scripts/site-infrastructure.js",
       "CustomerList/scripts/base-list.js",
       "CustomerList/scripts/master-list.js",

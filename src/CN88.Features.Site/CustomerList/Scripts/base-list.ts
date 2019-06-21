@@ -37,6 +37,7 @@ class BaseList {
     viewDownlineFunction: Function;
     minPageSize: number = 10;
     viewerStatusId: number;
+    customerListHelper: CustomerListHelper;
 
     constructor(
         $: JQueryStatic,
@@ -60,6 +61,9 @@ class BaseList {
         viewDownlineFunction: Function) {
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
+
+        this.customerListHelper = new CustomerListHelper(indexManager.viewResources, indexManager.getStatusName, indexManager.numeral);
+
         this.levelId = levelId;
         this.viewDownlineFunction = viewDownlineFunction;
         this.viewerStatusId = parseInt(this.$("#ViewerStatusId").val());
@@ -213,338 +217,12 @@ class BaseList {
         this.$tblReport.removeClass("display-none");
 
         this.$tblReport.find("> tbody").empty().html(
-            this.buildBody(rs, !this.indexManager.isDevice)
+            this.customerListHelper.buildBody(rs, !this.indexManager.isDevice, this.viewerStatusId, this.levelId, this.reportParam)
         );
         this.$(window).trigger('resize.stickyTableHeaders');
         this.bindReportEvents(rs);
     };
-    buildActionColumnOnDesktop(customer: any) {
-        const { agent, member } = siteInfrastructure.roleId, isAgent = this.levelId === agent, isMember = this.levelId === member;
-        const { viewerStatusId, levelId } = this,
-            { active } = siteInfrastructure.customerStatus,
-            isActivedViewer = viewerStatusId === active,
-            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources;
-        const { CustId, Username, Status, Closed } = customer, emptyContent = '';
-        let actionColumn = '';
 
-        const commonAttributesJson = [
-            {
-                Name: 'cust-id',
-                Value: CustId
-            },
-            {
-                Name: 'username',
-                Value: Username
-            },
-        ];
-        const iconAttributesJson = [
-            {
-                Name: 'data-toggle',
-                Value: `tooltip`
-            },
-            {
-                Name: 'data-placement',
-                Value: `top`
-            }
-        ].concat(commonAttributesJson);
-
-        const actionsJson = [
-            {
-                Content: emptyContent,
-                Attributes: [
-                    {
-                        Name: 'class',
-                        Value: 'icon-pass'
-                    },
-                    {
-                        Name: 'title',
-                        Value: ResetPassword
-                    },
-                    {
-                        Name: 'cust-role',
-                        Value: levelId.toString()
-                    }].concat(iconAttributesJson),
-                Visibile: isActivedViewer
-            },
-            {
-                Content: emptyContent,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-security'
-                },
-                {
-                    Name: 'title',
-                    Value: ResetSecurityCode
-                }].concat(iconAttributesJson),
-                Visibile: isActivedViewer && !isMember
-            },
-            {
-                Content: emptyContent,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-edit'
-                },
-                {
-                    Name: 'title',
-                    Value: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent
-                }].concat(iconAttributesJson),
-                Visibile: isActivedViewer
-            },
-            {
-                Content: emptyContent,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-add'
-                },
-                {
-                    Name: 'title',
-                    Value: isAgent ? NewMember : NewAgent
-                }].concat(iconAttributesJson),
-                Visibile: isActivedViewer && Status === active && !isMember
-            },
-            {
-                Content: emptyContent,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-unlock'
-                },
-                {
-                    Name: 'title',
-                    Value: UnlockTooltip
-                }].concat(iconAttributesJson),
-                Visibile: isActivedViewer && Closed
-            },
-        ];
-
-        const actionSpans: WrapperSpan[] = [];
-
-        actionsJson.forEach(item => {
-            if (item.Visibile) {
-                const attrs: Attribute[] = [];
-                item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
-                actionSpans.push(new WrapperSpan(item.Content, attrs));
-            }
-        });
-
-        actionSpans.forEach(span => {
-            actionColumn += span.ToString();
-        });
-
-        return actionColumn;
-    }
-    buildActionColumnOnMobile(customer: any) {
-        const { agent, member } = siteInfrastructure.roleId, isAgent = this.levelId === agent, isMember = this.levelId === member;
-        const { viewerStatusId, levelId } = this,
-            { active } = siteInfrastructure.customerStatus,
-            isActivedViewer = viewerStatusId === active,
-            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources;
-        const { CustId, Username, Status, Closed } = customer, emptyContent = '';
-
-        const commonAttributesJson = [
-            {
-                Name: 'cust-id',
-                Value: CustId
-            },
-            {
-                Name: 'username',
-                Value: Username
-            },
-        ];
-
-        const anchorWrapper = new WrapperAnchor(
-            new WrapperSpan(emptyContent, [new Attribute('class', `${Closed ? 'icon-user-unlock' : 'icon-more-action'}`)]).ToString(),
-            [
-                new Attribute('id', CustId),
-                new Attribute('class', 'dropdown-toggle'),
-                new Attribute('type', 'button'),
-                new Attribute('data-toggle', 'dropdown'),
-                new Attribute('aria-haspopup', 'true'),
-                new Attribute('aria-expanded', 'false'),
-            ]
-        );
-
-        const liesJson = [
-            {
-                Content: ResetPassword,
-                Attributes: [
-                    {
-                        Name: 'class',
-                        Value: 'icon-pass'
-                    },
-                    {
-                        Name: 'cust-role',
-                        Value: levelId.toString()
-                    }].concat(commonAttributesJson),
-                Visibile: isActivedViewer
-            },
-            {
-                Content: ResetSecurityCode,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-security'
-                }].concat(commonAttributesJson),
-                Visibile: isActivedViewer && !isMember
-            },
-            {
-                Content: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-edit'
-                }].concat(commonAttributesJson),
-                Visibile: isActivedViewer
-            },
-            {
-                Content: isAgent ? NewMember : NewAgent,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-add'
-                }].concat(commonAttributesJson),
-                Visibile: isActivedViewer && Status === active && !isMember
-            },
-            {
-                Content: UnlockConfirmTitle,
-                Attributes: [{
-                    Name: 'class',
-                    Value: 'icon-unlock'
-                }].concat(commonAttributesJson),
-                Visibile: isActivedViewer && Closed
-            },
-        ];
-
-        const actionLis: WrapperLi[] = [];
-        liesJson.forEach(item => {
-            if (item.Visibile) {
-                const attrs: Attribute[] = [];
-                item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
-                actionLis.push(new WrapperLi(item.Content, attrs));
-            }
-        });
-
-        const ul = new WrapperUl(actionLis, [
-            new Attribute('class', 'dropdown-menu'),
-            new Attribute('aria-labelledby', CustId)
-        ]);
-
-        return new WrapperDiv(`${anchorWrapper.ToString()}${ul.ToString()}`, [new Attribute('class', 'dropdown')]).ToString();
-    }
-    buildUsernameColumnContentOnMobile(Username: string,Nickname: string, Name: string) {
-        const nickNameDiv = new WrapperDiv(Nickname ? Nickname : "---", [new Attribute('class', 'cust-nickname')]);
-        const nameDiv = new WrapperDiv(Name ? Name : "---", [new Attribute('class', 'cust-name')]);
-        return new WrapperDiv(`${Username}${nickNameDiv.ToString()}${nameDiv.ToString()}`, [new Attribute('class', 'username-wrapper')]).ToString();
-    }
-    buildBody(rs: any, isDesktop: boolean) {
-        const { member } = siteInfrastructure.roleId, isMember = this.levelId === member;
-        if (rs.Customers.length == 0) {
-            return this.buildNoInfoContent(isMember ? 9 : 8);
-        }
-
-        let html = "";
-        let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
-        const { viewerStatusId } = this, { active } = siteInfrastructure.customerStatus, isActivedViewer = viewerStatusId === active;
-
-        for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            const { CustId, Username, Status, Credit, Group, Name, Nickname, CreationDateStr } = rs.Customers[i];
-
-            const commonAttributesJson = [
-                {
-                    Name: 'cust-id',
-                    Value: CustId
-                },
-                {
-                    Name: 'username',
-                    Value: Username
-                },
-            ];
-
-            let attributesJson = [
-                {
-                    Content: customerIndex.toString(),
-                    Attributes: [{
-                        Name: 'class',
-                        Value: 'col-no'
-                    }],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: isDesktop ? Username : this.buildUsernameColumnContentOnMobile(Username, Nickname, Name),
-                    Attributes: [{
-                        Name: 'class',
-                        Value: `link ${isMember ? 'view-statement' : 'view-downline'}`
-                    }].concat(isActivedViewer ? commonAttributesJson : []),
-                    Visibile: true
-                },
-                {
-                    Content: Name,
-                    Attributes: [],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: Nickname,
-                    Attributes: [],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: Group,
-                    Attributes: [],
-                    Visibile: isMember
-                },
-                {
-                    Content: this.numeral(Credit).format("###,0.00"),
-                    Attributes: [{
-                        Name: 'class',
-                        Value: `text-right ${isActivedViewer ? 'link col-credit' : ''}`
-                    }].concat(isActivedViewer ? commonAttributesJson : []),
-                    Visibile: true
-                },
-                {
-                    Content: CreationDateStr,
-                    Attributes: [{
-                        Name: 'class',
-                        Value: 'col-date'
-                    }],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: this.indexManager.getStatusName(Status),
-                    Attributes: [{
-                        Name: 'class',
-                        Value: `text-center ${isActivedViewer ? 'link col-status' : ''}`
-                    }].concat(isActivedViewer ? commonAttributesJson.concat([{
-                        Name: 'current-status',
-                        Value: Status
-                    }]) : []),
-                    Visibile: true
-                },
-                {
-                    Content: isDesktop ?
-                        this.buildActionColumnOnDesktop(rs.Customers[i]) :
-                        this.buildActionColumnOnMobile(rs.Customers[i]),
-                    Attributes: [{
-                        Name: 'class',
-                        Value: 'col-action text-left'
-                    }],
-                    Visibile: true
-                },
-            ];
-
-            const columns1: ColumnContent[] = [];
-
-            attributesJson.forEach(item => {
-                if (item.Visibile) {
-                    const attrs: Attribute[] = [];
-                    item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
-                    columns1.push(new ColumnContent(item.Content, attrs));
-                }
-            });
-
-            const rowContent = new RowContent(columns1, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]);
-            html += rowContent.ToString();
-        }
-
-        return html;
-    };
-    buildNoInfoContent = (colspan: number) =>
-        `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
     baseReloadState(reportParam: any, custRoleName: string) {
         const { Username, PageSize, PageIndex } = reportParam;
         this.$username.val(Username);
@@ -555,6 +233,7 @@ class BaseList {
         this.$(`#PageIndex${custRoleName}`).val(PageIndex);
         this.$(`#PageSize${custRoleName}`).val(PageIndex);
     };
+
     setStateWhenViewDownlines(status: number) {
         this.$username.val("");
         this.reportParam.PageIndex = 1;
@@ -562,6 +241,7 @@ class BaseList {
         this.reportParam.Status = status;
         this.statusComponent.changeSelection(status);
     };
+
     viewList(downlineUsername: string = null, custId: number = 0) {
         this.$.blockUI();
         this.reportParam = {

@@ -26,12 +26,13 @@ class MemberList extends BaseList {
             this.reportParam.PageIndex = 1;
             this.viewMembers(this.reportParam.CustId);
         });
-    }
+    };
 
     public cacheDOMElements() {
         super.cacheDOMElements();
         this.$viewedAgent = this.$("#txt-viewed-agent");
-    }
+    };
+
     viewMembers(custId: number) {
         this.viewList(this.$viewedAgent.val(), custId);
         const directDownline = parseInt(this.$("#directDownline").val()),
@@ -47,11 +48,13 @@ class MemberList extends BaseList {
 
         $errMember.addClass("display-none");
     };
+
     viewMembersOfAgent(custId: number, username: string, status: number) {
         this.$viewedAgent.val(username);
         this.setStateWhenViewDownlines(status);
         this.viewMembers(custId);
     };
+
     reloadState(reportParam: any){
         this.$viewedAgent.val(reportParam.DownlineUsername);
         this.baseReloadState(reportParam, 'Member');

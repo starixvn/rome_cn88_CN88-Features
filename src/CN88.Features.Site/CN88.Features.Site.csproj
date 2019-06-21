@@ -1066,6 +1066,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\pause.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\Helpers\customer-list-helper.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />

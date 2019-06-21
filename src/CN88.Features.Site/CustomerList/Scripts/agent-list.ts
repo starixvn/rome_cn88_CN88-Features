@@ -50,11 +50,13 @@ class AgentList extends BaseList {
 
         $errAgent.addClass("display-none");
     };
+
     viewAgentsOfMaster(custId: number, username: string, status: number) {
         this.$viewedMaster.val(username);
         this.setStateWhenViewDownlines(status);
         this.viewAgents(custId);
     };
+
     reloadState(reportParam: any) {
         this.$viewedMaster.val(reportParam.DownlineUsername);
         this.baseReloadState(reportParam, 'Agent');
