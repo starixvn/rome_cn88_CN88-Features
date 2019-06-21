@@ -220,30 +220,19 @@ class BaseList {
     };
 
     buildBodyOnDesktopMode(rs: any) {
-        const { agent, member } = siteInfrastructure.roleId, isAgent = this.levelId === agent, isMember = this.levelId === member;
+        const { agent, member } = siteInfrastructure.roleId, isMember = this.levelId === member;
         if (rs.Customers.length == 0) {
             return this.buildNoInfoContent(isMember ? 9 : 8);
         }
 
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
-        const { viewerStatusId, levelId } = this,
+        const { viewerStatusId } = this,
             { active } = siteInfrastructure.customerStatus,
-            isActivedViewer = viewerStatusId === active,
-            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources;
+            isActivedViewer = viewerStatusId === active;
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
-                emptyContent = '';
-
-            let actionColumn = '';
-
-            const commonAttributes: Attribute[] = [
-                new Attribute('data-toggle', 'tooltip'),
-                new Attribute('data-placement', 'top'),
-                new Attribute('cust-id', CustId),
-                new Attribute('username', Username),
-            ];
+            const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i];
 
             const commonAttributesJson = [
                 {
@@ -255,152 +244,6 @@ class BaseList {
                     Value: Username
                 },
             ];
-
-            let creditAttrs = [new Attribute('class', `text-right ${isActivedViewer ? 'link col-credit' : ''}`)];
-            let statusAttrs = [new Attribute('class', `text-center ${isActivedViewer ? 'link col-status' : ''}`)];
-
-            if (isActivedViewer) {
-                creditAttrs = creditAttrs.concat(commonAttributes);
-
-                statusAttrs.push(new Attribute('current-status', Status));
-                statusAttrs = statusAttrs.concat(commonAttributes);
-
-                const iconAttributes: Attribute[] = [
-                    new Attribute('data-toggle', 'tooltip'),
-                    new Attribute('data-placement', 'top')
-                ].concat(commonAttributes);
-
-                const iconAttributesJson = [
-                    {
-                        Name: 'data-toggle',
-                        Value: `tooltip`
-                    },
-                    {
-                        Name: 'data-placement',
-                        Value: `top`
-                    }
-                ].concat(commonAttributesJson);
-
-                const actionsJson = [
-                    {
-                        Content: emptyContent,
-                        Attributes: [
-                            {
-                            Name: 'class',
-                            Value: 'icon-pass'
-                        },
-                            {
-                                Name: 'title',
-                                Value: ResetPassword
-                            },
-                            {
-                                Name: 'cust-role',
-                                Value: levelId.toString()
-                            }].concat(iconAttributesJson),
-                        Visibile: true
-                    },
-                    {
-                        Content: emptyContent,
-                        Attributes: [{
-                            Name: 'class',
-                            Value: 'icon-security'
-                        },
-                            {
-                                Name: 'title',
-                                Value: ResetSecurityCode
-                            }].concat(iconAttributesJson),
-                        Visibile: !isMember
-                    },
-                    {
-                        Content: emptyContent,
-                        Attributes: [{
-                            Name: 'class',
-                            Value: 'icon-edit'
-                        },
-                        {
-                            Name: 'title',
-                            Value: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent
-                            }].concat(iconAttributesJson),
-                        Visibile: true
-                    },
-                    {
-                        Content: emptyContent,
-                        Attributes: [{
-                            Name: 'class',
-                            Value: 'icon-add'
-                        },
-                        {
-                            Name: 'title',
-                            Value: isAgent ? NewMember : NewAgent
-                            }].concat(iconAttributesJson),
-                        Visibile: Status === active && !isMember
-                    },
-                    {
-                        Content: emptyContent,
-                        Attributes: [{
-                            Name: 'class',
-                            Value: 'icon-unlock'
-                        },
-                        {
-                            Name: 'title',
-                            Value: UnlockTooltip
-                            }].concat(iconAttributesJson),
-                        Visibile: Closed
-                    },
-                ];
-
-                const actionSpans: WrapperSpan[] = [];
-
-                actionsJson.forEach(item => {
-                    if (item.Visibile) {
-                        const attrs: Attribute[] = [];
-                        item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
-                        actionSpans.push(new WrapperSpan(item.Content, attrs));
-                    }
-                });
-
-                const spans: WrapperSpan[] = [
-                    new WrapperSpan(emptyContent, [
-                        new Attribute('class', 'icon-pass'),
-                        new Attribute('title', ResetPassword),
-                        new Attribute('cust-role', levelId.toString())
-                    ].concat(iconAttributes)),
-                    new WrapperSpan(emptyContent, [
-                        new Attribute('class', 'icon-security'),
-                        new Attribute('title', ResetSecurityCode)
-                    ].concat(iconAttributes)),
-                    //new WrapperSpan(emptyContent, [
-                    //    new Attribute('class', 'icon-security'),
-                    //    new Attribute('title', ResetSecurityCode)
-                    //].concat(iconAttributes), !isMember),
-
-                    new WrapperSpan(emptyContent, [
-                        new Attribute('class', 'icon-edit'),
-                        new Attribute('title', isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent)
-                    ].concat(iconAttributes)),
-                    //new WrapperSpan(emptyContent, [
-                    //    new Attribute('class', 'icon-add'),
-                    //    new Attribute('title', isAgent ? NewMember : NewAgent)
-                    //].concat(iconAttributes), Status === active && !isMember),
-                    //new WrapperSpan(emptyContent, [
-                    //    new Attribute('class', 'icon-unlock'),
-                    //    new Attribute('title', UnlockTooltip)
-                    //].concat(iconAttributes), Closed),
-                    new WrapperSpan(emptyContent, [
-                        new Attribute('class', 'icon-add'),
-                        new Attribute('title', isAgent ? NewMember : NewAgent)
-                    ].concat(iconAttributes)),
-                    new WrapperSpan(emptyContent, [
-                        new Attribute('class', 'icon-unlock'),
-                        new Attribute('title', UnlockTooltip)
-                    ].concat(iconAttributes))
-                ];
-
-                actionSpans.forEach(span => {
-                    actionColumn += span.ToString();
-                });
-            }
-
 
             let attributesJson = [
                 {
@@ -462,7 +305,7 @@ class BaseList {
                     Visibile: true
                 },
                 {
-                    Content: actionColumn,
+                    Content: this.buildActionColumnOnDesktop(rs.Customers[i]),
                     Attributes: [{
                         Name: 'class',
                         Value: 'col-action text-left'
@@ -470,18 +313,6 @@ class BaseList {
                     Visibile: true
                 },
             ];
-
-            //const columns: ColumnContent[] = [
-            //    new ColumnContent(customerIndex.toString(), [new Attribute('class', 'col-no')]),
-            //    new ColumnContent(Username, [new Attribute('class', `link ${isMember ? 'view-statement' : 'view-downline'}`)]),
-            //    new ColumnContent(Name),
-            //    new ColumnContent(Nickname),
-            //    new ColumnContent(Group, [], isMember),
-            //    new ColumnContent(this.numeral(Credit).format("###,0.00"), creditAttrs),
-            //    new ColumnContent(CreationDateStr, [new Attribute('class', 'col-date')]),
-            //    new ColumnContent(this.indexManager.getStatusName(Status), statusAttrs),
-            //    new ColumnContent(actionColumn, [new Attribute('class', 'col-action text-left')]),
-            //];
 
             const columns1: ColumnContent[] = [];
 
@@ -499,6 +330,120 @@ class BaseList {
 
         return html;
     };
+    buildActionColumnOnDesktop(customer: any) {
+        const { agent, member } = siteInfrastructure.roleId, isAgent = this.levelId === agent, isMember = this.levelId === member;
+        const { viewerStatusId, levelId } = this,
+            { active } = siteInfrastructure.customerStatus,
+            isActivedViewer = viewerStatusId === active,
+            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources;
+        const { CustId, Username, Status, Closed} = customer, emptyContent = '';
+        let actionColumn = '';
+
+        const commonAttributesJson = [
+            {
+                Name: 'cust-id',
+                Value: CustId
+            },
+            {
+                Name: 'username',
+                Value: Username
+            },
+        ];
+        const iconAttributesJson = [
+            {
+                Name: 'data-toggle',
+                Value: `tooltip`
+            },
+            {
+                Name: 'data-placement',
+                Value: `top`
+            }
+        ].concat(commonAttributesJson);
+
+        const actionsJson = [
+            {
+                Content: emptyContent,
+                Attributes: [
+                    {
+                        Name: 'class',
+                        Value: 'icon-pass'
+                    },
+                    {
+                        Name: 'title',
+                        Value: ResetPassword
+                    },
+                    {
+                        Name: 'cust-role',
+                        Value: levelId.toString()
+                    }].concat(iconAttributesJson),
+                Visibile: isActivedViewer
+            },
+            {
+                Content: emptyContent,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-security'
+                },
+                {
+                    Name: 'title',
+                    Value: ResetSecurityCode
+                }].concat(iconAttributesJson),
+                Visibile: isActivedViewer && !isMember
+            },
+            {
+                Content: emptyContent,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-edit'
+                },
+                {
+                    Name: 'title',
+                    Value: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent
+                }].concat(iconAttributesJson),
+                Visibile: isActivedViewer
+            },
+            {
+                Content: emptyContent,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-add'
+                },
+                {
+                    Name: 'title',
+                    Value: isAgent ? NewMember : NewAgent
+                }].concat(iconAttributesJson),
+                Visibile: isActivedViewer && Status === active && !isMember
+            },
+            {
+                Content: emptyContent,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-unlock'
+                },
+                {
+                    Name: 'title',
+                    Value: UnlockTooltip
+                }].concat(iconAttributesJson),
+                Visibile: isActivedViewer && Closed
+            },
+        ];
+
+        const actionSpans: WrapperSpan[] = [];
+
+        actionsJson.forEach(item => {
+            if (item.Visibile) {
+                const attrs: Attribute[] = [];
+                item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
+                actionSpans.push(new WrapperSpan(item.Content, attrs));
+            }
+        });
+
+        actionSpans.forEach(span => {
+            actionColumn += span.ToString();
+        });
+
+        return actionColumn;
+    }
     buildBodyOnMobileMode(rs: any) {
         const { viewerStatusId, levelId } = this,
             { agent, member } = siteInfrastructure.roleId,
