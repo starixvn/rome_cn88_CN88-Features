@@ -19,6 +19,8 @@
                ITicketHelper ticketHelper,
                bool isExportingExcel = false)
         {
+            Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
+
             IsDataTooHuge = parlayDetailData.ParlayDetails.Count() > 5000;
             Query = query;
 
@@ -29,11 +31,11 @@
             if (allowInitializingData)
             {
                 ParlayDetailWrappers = new List<ParlayDetailWrapper>(parlayDetailData.ParlayDetails
-                        .Select(d => new ParlayDetailWrapper(d, parlayDetailData.MatchDetails, ticketHelper)));
+                        .Select(d => new ParlayDetailWrapper(d, parlayDetailData.MatchDetails, ticketHelper, Divisor)));
                 ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate);
 
                 OutStanding = BetListHelpers.Stake(parlayDetailData.Outstanding);
-                TotalWinLost = ConvertByBetType.Winloss(parlayDetailData.ParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
+                TotalWinLost = ConvertByBetType.Winloss(parlayDetailData.ParlayDetails.Sum(d => d.WinLost + d.PlayerComm) / Divisor);
                 IsRunningTicket = !parlayDetailData.ParlayDetails.Any();
             }
         }
@@ -54,11 +56,13 @@
 
         public bool IsRunningTicket { get; }
 
-        public string HugeDataLabel 
+        public int Divisor { get; }
+
+        public string HugeDataLabel
             => string.Format(BetListsResources.CombinationResultTooHuge, BuildComboParlayDetailExcelPath(Query));
 
         public string SubTotalWinLost(IEnumerable<ParlayDetailWrapper> group)
-            => ConvertByBetType.Winloss(group.Sum(item => item.ParlayDetail.WinLost + item.ParlayDetail.PlayerComm));
+            => ConvertByBetType.Winloss(group.Sum(item => item.ParlayDetail.WinLost + item.ParlayDetail.PlayerComm) / Divisor);
 
         private static string BuildComboParlayDetailExcelPath(GetParlayDetailQuery query)
         {

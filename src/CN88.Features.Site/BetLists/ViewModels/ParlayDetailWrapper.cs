@@ -26,7 +26,8 @@
         public ParlayDetailWrapper(
             ParlayDetailModel parlayDetail,
             IEnumerable<MatchDetailModel> matchDetails,
-            ITicketHelper ticketHelper)
+            ITicketHelper ticketHelper,
+            int divisor)
         {
             ParlayDetail = parlayDetail;
             MatchDetails = matchDetails;
@@ -35,9 +36,9 @@
             Status = statusToResources.TryGetValue(ParlayDetail.Status.ToLowerInvariant(), out statusResource) ? statusResource : string.Empty;
             Events = GetEvents(ticketHelper);
             WinLostDate = parlayDetail.WinLostDate.ToShortDateFormat();
-            WinLost = ConvertByBetType.Winloss(parlayDetail.WinLost);
-            Comm = ConvertByBetType.Comm(parlayDetail.PlayerComm);
-            Stake = BetListHelpers.Stake(parlayDetail.Stake);
+            WinLost = ConvertByBetType.Winloss(parlayDetail.WinLost / divisor);
+            Comm = (parlayDetail.PlayerComm / divisor).ToString("#,##0.0000");
+            Stake = BetListHelpers.Stake(parlayDetail.Stake / divisor);
         }
 
         public ParlayDetailModel ParlayDetail { get; }

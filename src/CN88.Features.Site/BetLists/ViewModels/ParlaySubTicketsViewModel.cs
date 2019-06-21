@@ -19,6 +19,8 @@
             ITicketHelper ticketHelper,
             CacheRefService cacheRefService)
         {
+            Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
+
             BetListData = betListData;
             CN88Builder = cn88Builder;
             Builder = builder;
@@ -57,6 +59,8 @@
 
         public CacheRefService CacheRefService { get; }
 
+        public int Divisor { get; }
+
         public bool HasValidData
             => ParlaySingleTickets.Any()
                 && (HideOfferNameUnitStakes
@@ -79,7 +83,7 @@
                 {
                     var comboTicket = isSystemParlay ? ParlaySingleTickets[0] : ParlaySingleTickets[i];
 
-                    offerNameUnitStakes.Add(ParlayOfferNames[i], comboTicket.Currency + " " + comboTicket.Stake.ToString("N0"));
+                    offerNameUnitStakes.Add(ParlayOfferNames[i], comboTicket.Currency + " " + (comboTicket.Stake / Divisor).ToString("#,##0.00"));
                 }
             }
 
