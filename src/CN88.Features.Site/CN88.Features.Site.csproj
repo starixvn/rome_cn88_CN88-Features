@@ -1098,6 +1098,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\bootstrap-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\html-wrapper.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />

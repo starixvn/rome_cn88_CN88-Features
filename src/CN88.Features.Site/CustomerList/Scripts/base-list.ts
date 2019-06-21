@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../shared/scripts/components/pager.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 /// <reference path="viewmodel/view-model.ts" />
+/// <reference path="../../shared/scripts/components/html-wrapper.ts" />
 
 class BaseList {
     $: JQueryStatic;
@@ -237,19 +238,6 @@ class BaseList {
             let actionColumn = '';
 
             if (isActivedViewer) {
-                //const iconAttr = `data-toggle='tooltip' data-placement='top' cust-id='${CustId}' username='${Username}'`,
-                //    resetPasswordIcon = `<span class='icon-pass' ${iconAttr} title='${ResetPassword}' cust-role=${levelId}/>`,
-
-                //    securityCodeIcon = isMember ? '' : `<span class='icon-security' ${iconAttr} title='${ResetSecurityCode}'/>`,
-
-                //    editIconText = isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
-                //    editIcon = `<span class='icon-edit' ${iconAttr} title='${editIconText}'/>`,
-
-                //    addDownlineIconText = isAgent ? NewMember : NewAgent,
-                //    addDownlineIcon = Status === active && !isMember ? `<span class='icon-add' ${iconAttr} title='${addDownlineIconText}'/>` : '',
-
-                //    unclockIcon = Closed ? `<span class='icon-unlock' ${iconAttr} title='${UnlockTooltip}'/>` : '';
-
                 const iconAttributes: Attribute[] = [
                     new Attribute('data-toggle', 'tooltip'),
                     new Attribute('data-placement', 'top'),
@@ -261,19 +249,24 @@ class BaseList {
                     new WrapperSpan([
                         new Attribute('class', 'icon-pass'),
                         new Attribute('title', ResetPassword),
-                        new Attribute('cust-role', levelId.toString())].concat(iconAttributes)),
-                    isMember ? null : new WrapperSpan([
+                        new Attribute('cust-role', levelId.toString())
+                    ].concat(iconAttributes)),
+                    new WrapperSpan([
                         new Attribute('class', 'icon-security'),
-                        new Attribute('title', ResetSecurityCode)].concat(iconAttributes)),
+                        new Attribute('title', ResetSecurityCode)
+                    ].concat(iconAttributes), '', !isMember),
                     new WrapperSpan([
                         new Attribute('class', 'icon-edit'),
-                        new Attribute('title', isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent)].concat(iconAttributes)),
-                    Status === active && !isMember ? new WrapperSpan([
+                        new Attribute('title', isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent)
+                    ].concat(iconAttributes)),
+                    new WrapperSpan([
                         new Attribute('class', 'icon-add'),
-                        new Attribute('title', isAgent ? NewMember : NewAgent)].concat(iconAttributes)) : null,
-                    Closed ? new WrapperSpan([
+                        new Attribute('title', isAgent ? NewMember : NewAgent)
+                    ].concat(iconAttributes), '', Status === active && !isMember),
+                    new WrapperSpan([
                         new Attribute('class', 'icon-unlock'),
-                        new Attribute('title', UnlockTooltip)].concat(iconAttributes)) : null
+                        new Attribute('title', UnlockTooltip)
+                    ].concat(iconAttributes), '', Closed)
                 ];
 
                 spans.forEach(span => {
@@ -281,8 +274,6 @@ class BaseList {
                         actionColumn += span.ToString();
                     }
                 });
-
-                //actionColumn = `${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}`;
             }
 
             const columns: ColumnContent[] = [
