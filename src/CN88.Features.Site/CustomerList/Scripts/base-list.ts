@@ -220,16 +220,14 @@ class BaseList {
     };
 
     buildBodyOnDesktopMode(rs: any) {
-        const { agent, member } = siteInfrastructure.roleId, isMember = this.levelId === member;
+        const { member } = siteInfrastructure.roleId, isMember = this.levelId === member;
         if (rs.Customers.length == 0) {
             return this.buildNoInfoContent(isMember ? 9 : 8);
         }
 
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
-        const { viewerStatusId } = this,
-            { active } = siteInfrastructure.customerStatus,
-            isActivedViewer = viewerStatusId === active;
+        const { viewerStatusId } = this, { active } = siteInfrastructure.customerStatus, isActivedViewer = viewerStatusId === active;
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
             const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i];
@@ -330,13 +328,14 @@ class BaseList {
 
         return html;
     };
+
     buildActionColumnOnDesktop(customer: any) {
         const { agent, member } = siteInfrastructure.roleId, isAgent = this.levelId === agent, isMember = this.levelId === member;
         const { viewerStatusId, levelId } = this,
             { active } = siteInfrastructure.customerStatus,
             isActivedViewer = viewerStatusId === active,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources;
-        const { CustId, Username, Status, Closed} = customer, emptyContent = '';
+        const { CustId, Username, Status, Closed } = customer, emptyContent = '';
         let actionColumn = '';
 
         const commonAttributesJson = [
@@ -444,6 +443,103 @@ class BaseList {
 
         return actionColumn;
     }
+
+    buildActionColumnOnMobile(customer: any) {
+        const { agent, member } = siteInfrastructure.roleId, isAgent = this.levelId === agent, isMember = this.levelId === member;
+        const { viewerStatusId, levelId } = this,
+            { active } = siteInfrastructure.customerStatus,
+            isActivedViewer = viewerStatusId === active,
+            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources;
+        const { CustId, Username, Status, Closed } = customer, emptyContent = '';
+
+        const commonAttributesJson = [
+            {
+                Name: 'cust-id',
+                Value: CustId
+            },
+            {
+                Name: 'username',
+                Value: Username
+            },
+        ];
+
+        const anchorWrapper = new WrapperAnchor(
+            new WrapperSpan(emptyContent, [new Attribute('class', `${Closed ? 'icon-user-unlock' : 'icon-more-action'}`)]).ToString(),
+            [
+                new Attribute('id', CustId),
+                new Attribute('class', 'dropdown-toggle'),
+                new Attribute('type', 'button'),
+                new Attribute('data-toggle', 'dropdown'),
+                new Attribute('aria-haspopup', 'true'),
+                new Attribute('aria-expanded', 'false'),
+            ]
+        );
+
+        const liesJson = [
+            {
+                Content: ResetPassword,
+                Attributes: [
+                    {
+                        Name: 'class',
+                        Value: 'icon-pass'
+                    },
+                    {
+                        Name: 'cust-role',
+                        Value: levelId.toString()
+                    }].concat(commonAttributesJson),
+                Visibile: isActivedViewer
+            },
+            {
+                Content: ResetSecurityCode,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-security'
+                }].concat(commonAttributesJson),
+                Visibile: isActivedViewer && !isMember
+            },
+            {
+                Content: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-edit'
+                }].concat(commonAttributesJson),
+                Visibile: isActivedViewer
+            },
+            {
+                Content: isAgent ? NewMember : NewAgent,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-add'
+                }].concat(commonAttributesJson),
+                Visibile: isActivedViewer && Status === active && !isMember
+            },
+            {
+                Content: UnlockConfirmTitle,
+                Attributes: [{
+                    Name: 'class',
+                    Value: 'icon-unlock'
+                }].concat(commonAttributesJson),
+                Visibile: isActivedViewer && Closed
+            },
+        ];
+
+        const actionLis: WrapperLi[] = [];
+        liesJson.forEach(item => {
+            if (item.Visibile) {
+                const attrs: Attribute[] = [];
+                item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
+                actionLis.push(new WrapperLi(item.Content, attrs));
+            }
+        });
+
+        const ul = new WrapperUl(actionLis, [
+            new Attribute('class', 'dropdown-menu'),
+            new Attribute('aria-labelledby', CustId)
+        ]);
+
+        return new WrapperDiv(`${anchorWrapper.ToString()}${ul.ToString()}`, [new Attribute('class', 'dropdown')]).ToString();
+    }
+
     buildBodyOnMobileMode(rs: any) {
         const { viewerStatusId, levelId } = this,
             { agent, member } = siteInfrastructure.roleId,
@@ -456,92 +552,80 @@ class BaseList {
         let html = "";
         let customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
-        const { active } = siteInfrastructure.customerStatus,
-            { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources;
+        const { active } = siteInfrastructure.customerStatus;
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            let { CustId, Username, Status, Credit, Closed, Group, Name, Nickname } = rs.Customers[i],
-                emptyContent = '',
-                isActivedViewer = viewerStatusId === active,
-                statusName = this.indexManager.getStatusName(status),
-                nickname = Nickname ? Nickname : "---",
-                name = Name ? Name : "---",
-                userAttr = `cust-id='${CustId}' username='${Username}'`,
-                creditFormat = this.numeral(Credit).format("###,0.00"),
-                usernameLink = isMember ? 'view-statement' : 'view-downline';
+            let { CustId, Username, Status, Credit, Group, Name, Nickname } = rs.Customers[i],
+                isActivedViewer = viewerStatusId === active;
 
-            let actionColumn = '';
-            const commonAttributes: Attribute[] = [
-                new Attribute('cust-id', `${CustId}`),
-                new Attribute('username', Username),
-            ];
-
-            let creditAttrs = [new Attribute('class', `text-right ${isActivedViewer ? 'link col-credit' : ''}`)];
-            let statusAttrs = [new Attribute('class', `text-center ${isActivedViewer ? 'link col-status' : ''}`)];
-
-            if (isActivedViewer) {
-                creditAttrs = creditAttrs.concat(commonAttributes);
-
-                statusAttrs.push(new Attribute('current-status', Status));
-                statusAttrs = statusAttrs.concat(commonAttributes);
-
-                const unlockIcon = new WrapperSpan(emptyContent, [new Attribute('class', 'icon-user-unlock')]);
-                const moreActionIcon = new WrapperSpan(emptyContent, [new Attribute('class', 'icon-more-action')]);
-                const anchorWrapper = new WrapperAnchor(
-                    (Closed ? unlockIcon : moreActionIcon).ToString(),
-                    [
-                        new Attribute('id', CustId),
-                        new Attribute('class', 'dropdown-toggle'),
-                        new Attribute('type', 'button'),
-                        new Attribute('data-toggle', 'dropdown'),
-                        new Attribute('aria-haspopup', 'true'),
-                        new Attribute('aria-expanded', 'false'),
-                    ]
-                );
-
-                const liArray: WrapperLi[] = [
-                    new WrapperLi(ResetPassword, [
-                        new Attribute('class', 'icon-pass'),
-                        new Attribute('cust-role', levelId.toString())
-                    ].concat(commonAttributes)),
-                    //new WrapperLi(ResetSecurityCode,
-                    //    [new Attribute('class', 'icon-security')].concat(commonAttributes), !isMember),
-                    new WrapperLi(ResetSecurityCode,
-                        [new Attribute('class', 'icon-security')].concat(commonAttributes)),
-                    new WrapperLi(isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
-                        [new Attribute('class', 'icon-edit')].concat(commonAttributes)),
-                    //new WrapperLi(isAgent ? NewMember : NewAgent,
-                    //    [new Attribute('class', 'icon-add')].concat(commonAttributes), Status === active && !isMember),
-                    //new WrapperLi(UnlockConfirmTitle,
-                    //    [new Attribute('class', 'icon-unlock')].concat(commonAttributes), Closed),
-                    new WrapperLi(isAgent ? NewMember : NewAgent,
-                        [new Attribute('class', 'icon-add')].concat(commonAttributes)),
-                    new WrapperLi(UnlockConfirmTitle,
-                        [new Attribute('class', 'icon-unlock')].concat(commonAttributes))
-                ];
-
-                const ul = new WrapperUl(liArray, [
-                    new Attribute('class', 'dropdown-menu'),
-                    new Attribute('aria-labelledby', CustId)
-                ]);
-
-                actionColumn = new WrapperDiv(`${anchorWrapper.ToString()}${ul.ToString()}`, [new Attribute('class', 'dropdown')]).ToString();
-            }
-
-            const nickNameDiv = new WrapperDiv(nickname, [new Attribute('class', 'cust-nickname')]);
-            const nameDiv = new WrapperDiv(name, [new Attribute('class', 'cust-name')]);
+            const nickNameDiv = new WrapperDiv(Nickname ? Nickname : "---", [new Attribute('class', 'cust-nickname')]);
+            const nameDiv = new WrapperDiv(Name ? Name : "---", [new Attribute('class', 'cust-name')]);
             const usernameDiv = new WrapperDiv(`${Username}${nickNameDiv.ToString()}${nameDiv.ToString()}`, [new Attribute('class', 'username-wrapper')]);
 
-            const columns: ColumnContent[] = [
-                new ColumnContent(usernameDiv.ToString(), [new Attribute('class', `link ${isMember ? 'view-statement' : 'view-downline'}`)].concat(commonAttributes)),
-                //new ColumnContent(Group, [], isMember),
-                new ColumnContent(this.numeral(Credit).format("###,0.00"), creditAttrs),
-                new ColumnContent(this.indexManager.getStatusName(Status), statusAttrs),
-                new ColumnContent(actionColumn, [new Attribute('class', 'col-action text-center')])
+            const commonAttributesJson = [
+                {
+                    Name: 'cust-id',
+                    Value: CustId
+                },
+                {
+                    Name: 'username',
+                    Value: Username
+                },
+            ];
+            let attributesJson = [
+                {
+                    Content: usernameDiv.ToString(),
+                    Attributes: [{
+                        Name: 'class',
+                        Value: `link ${isMember ? 'view-statement' : 'view-downline'}`
+                    }].concat(commonAttributesJson),
+                    Visibile: true
+                },
+                {
+                    Content: Group,
+                    Attributes: [],
+                    Visibile: isMember
+                },
+                {
+                    Content: this.numeral(Credit).format("###,0.00"),
+                    Attributes: [{
+                        Name: 'class',
+                        Value: `text-right ${isActivedViewer ? 'link col-credit' : ''}`
+                    }].concat(isActivedViewer ? commonAttributesJson : []),
+                    Visibile: true
+                },
+                {
+                    Content: this.indexManager.getStatusName(Status),
+                    Attributes: [{
+                        Name: 'class',
+                        Value: `text-center ${isActivedViewer ? 'link col-status' : ''}`
+                    }].concat(isActivedViewer ? commonAttributesJson.concat([{
+                        Name: 'current-status',
+                        Value: Status
+                    }]) : []),
+                    Visibile: true
+                },
+                {
+                    Content: this.buildActionColumnOnMobile(rs.Customers[i]),
+                    Attributes: [{
+                        Name: 'class',
+                        Value: 'col-action text-center'
+                    }],
+                    Visibile: true
+                },
             ];
 
-            const rowContent = new RowContent(columns, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]);
-            html += rowContent.ToString();
+            const columns1: ColumnContent[] = [];
+
+            attributesJson.forEach(item => {
+                if (item.Visibile) {
+                    const attrs: Attribute[] = [];
+                    item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
+                    columns1.push(new ColumnContent(item.Content, attrs));
+                }
+            });
+
+            html += new RowContent(columns1, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]).ToString();
         }
 
         return html
