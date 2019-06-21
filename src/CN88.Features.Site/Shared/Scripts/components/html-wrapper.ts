@@ -14,35 +14,62 @@ class WrapperElement {
     private Attributes: Attribute[];
     private Content: string;
     private Tag: string;
-    public Visible: boolean;
 
-    constructor(tag: string, content: string, attributes: Attribute[] = [], visible: boolean = true) {
+    constructor(tag: string, content: string, attributes: Attribute[] = []) {
         this.Tag = tag;
         this.Attributes = attributes;
         this.Content = content;
-        this.Visible = visible;
     }
 
     ToString = () => {
         let attrs = '';
         this.Attributes.forEach(attr => {
             const { Name, Value } = attr;
-            attrs += `${Name}='${Value} '`;
+            attrs += `${Name}='${Value}' `;
         });
 
-        return this.Visible ? `<${this.Tag} ${attrs}>${this.Content}</${this.Tag}>` : '';
+        return `<${this.Tag} ${attrs}>${this.Content}</${this.Tag}>`;
     }
 }
 
 class WrapperSpan extends WrapperElement {
-    constructor(attributes: Attribute[] = [], content: string = '', visible: boolean = true) {
-        super('span', content, attributes, visible);
+    constructor(content: string = '', attributes: Attribute[] = []) {
+        super('span', content, attributes);
     }
 }
 
-class ColumnContent extends WrapperElement{
-    constructor(content: string, attributes: Attribute[] = [], visible: boolean = true) {
-        super('td', content, attributes, visible);
+class WrapperDiv extends WrapperElement{
+    constructor(content: string, attributes: Attribute[] = []) {
+        super('div', content, attributes);
+    }
+}
+
+class WrapperUl extends WrapperElement {
+    constructor(liArray: WrapperLi[] = [], attributes: Attribute[] = []) {
+        let content = '';
+        liArray.forEach(li => {
+            content += li.ToString();
+        });
+
+        super('ul', content, attributes);
+    }
+}
+
+class WrapperLi extends WrapperElement {
+    constructor(content: string, attributes: Attribute[] = []) {
+        super('li', content, attributes);
+    }
+}
+
+class WrapperAnchor extends WrapperElement {
+    constructor(content: string, attributes: Attribute[] = []) {
+        super('a', content, attributes);
+    }
+}
+
+class ColumnContent extends WrapperElement {
+    constructor(content: string, attributes: Attribute[] = []) {
+        super('td', content, attributes);
     }
 }
 

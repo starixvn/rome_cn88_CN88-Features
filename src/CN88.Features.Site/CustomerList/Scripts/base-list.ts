@@ -233,62 +233,267 @@ class BaseList {
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources;
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i];
+            const { CustId, Username, Status, Credit, Closed, Group, Name, Nickname, CreationDateStr } = rs.Customers[i],
+                emptyContent = '';
 
             let actionColumn = '';
 
+            const commonAttributes: Attribute[] = [
+                new Attribute('data-toggle', 'tooltip'),
+                new Attribute('data-placement', 'top'),
+                new Attribute('cust-id', CustId),
+                new Attribute('username', Username),
+            ];
+
+            const commonAttributesJson = [
+                {
+                    Name: 'cust-id',
+                    Value: CustId
+                },
+                {
+                    Name: 'username',
+                    Value: Username
+                },
+            ];
+
+            let creditAttrs = [new Attribute('class', `text-right ${isActivedViewer ? 'link col-credit' : ''}`)];
+            let statusAttrs = [new Attribute('class', `text-center ${isActivedViewer ? 'link col-status' : ''}`)];
+
             if (isActivedViewer) {
+                creditAttrs = creditAttrs.concat(commonAttributes);
+
+                statusAttrs.push(new Attribute('current-status', Status));
+                statusAttrs = statusAttrs.concat(commonAttributes);
+
                 const iconAttributes: Attribute[] = [
                     new Attribute('data-toggle', 'tooltip'),
-                    new Attribute('data-placement', 'top'),
-                    new Attribute('cust-id', CustId),
-                    new Attribute('username', Username),
+                    new Attribute('data-placement', 'top')
+                ].concat(commonAttributes);
+
+                const iconAttributesJson = [
+                    {
+                        Name: 'data-toggle',
+                        Value: `tooltip`
+                    },
+                    {
+                        Name: 'data-placement',
+                        Value: `top`
+                    }
+                ].concat(commonAttributesJson);
+
+                const actionsJson = [
+                    {
+                        Content: emptyContent,
+                        Attributes: [
+                            {
+                            Name: 'class',
+                            Value: 'icon-pass'
+                        },
+                            {
+                                Name: 'title',
+                                Value: ResetPassword
+                            },
+                            {
+                                Name: 'cust-role',
+                                Value: levelId.toString()
+                            }].concat(iconAttributesJson),
+                        Visibile: true
+                    },
+                    {
+                        Content: emptyContent,
+                        Attributes: [{
+                            Name: 'class',
+                            Value: 'icon-security'
+                        },
+                            {
+                                Name: 'title',
+                                Value: ResetSecurityCode
+                            }].concat(iconAttributesJson),
+                        Visibile: !isMember
+                    },
+                    {
+                        Content: emptyContent,
+                        Attributes: [{
+                            Name: 'class',
+                            Value: 'icon-edit'
+                        },
+                        {
+                            Name: 'title',
+                            Value: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent
+                            }].concat(iconAttributesJson),
+                        Visibile: true
+                    },
+                    {
+                        Content: emptyContent,
+                        Attributes: [{
+                            Name: 'class',
+                            Value: 'icon-add'
+                        },
+                        {
+                            Name: 'title',
+                            Value: isAgent ? NewMember : NewAgent
+                            }].concat(iconAttributesJson),
+                        Visibile: Status === active && !isMember
+                    },
+                    {
+                        Content: emptyContent,
+                        Attributes: [{
+                            Name: 'class',
+                            Value: 'icon-unlock'
+                        },
+                        {
+                            Name: 'title',
+                            Value: UnlockTooltip
+                            }].concat(iconAttributesJson),
+                        Visibile: Closed
+                    },
                 ];
 
+                const actionSpans: WrapperSpan[] = [];
+
+                actionsJson.forEach(item => {
+                    if (item.Visibile) {
+                        const attrs: Attribute[] = [];
+                        item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
+                        actionSpans.push(new WrapperSpan(item.Content, attrs));
+                    }
+                });
+
                 const spans: WrapperSpan[] = [
-                    new WrapperSpan([
+                    new WrapperSpan(emptyContent, [
                         new Attribute('class', 'icon-pass'),
                         new Attribute('title', ResetPassword),
                         new Attribute('cust-role', levelId.toString())
                     ].concat(iconAttributes)),
-                    new WrapperSpan([
+                    new WrapperSpan(emptyContent, [
                         new Attribute('class', 'icon-security'),
                         new Attribute('title', ResetSecurityCode)
-                    ].concat(iconAttributes), '', !isMember),
-                    new WrapperSpan([
+                    ].concat(iconAttributes)),
+                    //new WrapperSpan(emptyContent, [
+                    //    new Attribute('class', 'icon-security'),
+                    //    new Attribute('title', ResetSecurityCode)
+                    //].concat(iconAttributes), !isMember),
+
+                    new WrapperSpan(emptyContent, [
                         new Attribute('class', 'icon-edit'),
                         new Attribute('title', isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent)
                     ].concat(iconAttributes)),
-                    new WrapperSpan([
+                    //new WrapperSpan(emptyContent, [
+                    //    new Attribute('class', 'icon-add'),
+                    //    new Attribute('title', isAgent ? NewMember : NewAgent)
+                    //].concat(iconAttributes), Status === active && !isMember),
+                    //new WrapperSpan(emptyContent, [
+                    //    new Attribute('class', 'icon-unlock'),
+                    //    new Attribute('title', UnlockTooltip)
+                    //].concat(iconAttributes), Closed),
+                    new WrapperSpan(emptyContent, [
                         new Attribute('class', 'icon-add'),
                         new Attribute('title', isAgent ? NewMember : NewAgent)
-                    ].concat(iconAttributes), '', Status === active && !isMember),
-                    new WrapperSpan([
+                    ].concat(iconAttributes)),
+                    new WrapperSpan(emptyContent, [
                         new Attribute('class', 'icon-unlock'),
                         new Attribute('title', UnlockTooltip)
-                    ].concat(iconAttributes), '', Closed)
+                    ].concat(iconAttributes))
                 ];
 
-                spans.forEach(span => {
-                    if (span !== null) {
-                        actionColumn += span.ToString();
-                    }
+                actionSpans.forEach(span => {
+                    actionColumn += span.ToString();
                 });
             }
 
-            const columns: ColumnContent[] = [
-                new ColumnContent(customerIndex.toString(), [new Attribute('class', 'col-no')]),
-                new ColumnContent(Username, [new Attribute('class', `link ${isMember ? 'view-statement' : 'view-downline'}`)]),
-                new ColumnContent(Name),
-                new ColumnContent(Nickname),
-                isMember ? new ColumnContent(Group) : null,
-                new ColumnContent(this.numeral(Credit).format("###,0.00"), [new Attribute('class', `text-right ${isActivedViewer ? 'link col-credit' : ''}`)]),
-                new ColumnContent(CreationDateStr, [new Attribute('class', 'col-date')]),
-                new ColumnContent(this.indexManager.getStatusName(Status), [new Attribute('class', `text-center ${isActivedViewer ? 'link col-status' : ''}`)]),
-                new ColumnContent(actionColumn, [new Attribute('class', 'col-action text-left')]),
+
+            let attributesJson = [
+                {
+                    Content: customerIndex.toString(),
+                    Attributes: [{
+                        Name: 'class',
+                        Value: 'col-no'
+                    }],
+                    Visibile: true
+                },
+                {
+                    Content: Username,
+                    Attributes: [{
+                        Name: 'class',
+                        Value: `link ${isMember ? 'view-statement' : 'view-downline'}`
+                    }],
+                    Visibile: true
+                },
+                {
+                    Content: Name,
+                    Attributes: [],
+                    Visibile: true
+                },
+                {
+                    Content: Nickname,
+                    Attributes: [],
+                    Visibile: true
+                },
+                {
+                    Content: Group,
+                    Attributes: [],
+                    Visibile: isMember
+                },
+                {
+                    Content: this.numeral(Credit).format("###,0.00"),
+                    Attributes: [{
+                        Name: 'class',
+                        Value: `text-right ${isActivedViewer ? 'link col-credit' : ''}`
+                    }].concat(isActivedViewer ? commonAttributesJson : []),
+                    Visibile: true
+                },
+                {
+                    Content: CreationDateStr,
+                    Attributes: [{
+                        Name: 'class',
+                        Value: 'col-date'
+                    }],
+                    Visibile: true
+                },
+                {
+                    Content: this.indexManager.getStatusName(Status),
+                    Attributes: [{
+                        Name: 'class',
+                        Value: `text-center ${isActivedViewer ? 'link col-status' : ''}`
+                    }].concat(isActivedViewer ? commonAttributesJson.concat([{
+                        Name: 'current-status',
+                        Value: Status
+                    }]) : []),
+                    Visibile: true
+                },
+                {
+                    Content: actionColumn,
+                    Attributes: [{
+                        Name: 'class',
+                        Value: 'col-action text-left'
+                    }],
+                    Visibile: true
+                },
             ];
 
-            const rowContent = new RowContent(columns, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]);
+            //const columns: ColumnContent[] = [
+            //    new ColumnContent(customerIndex.toString(), [new Attribute('class', 'col-no')]),
+            //    new ColumnContent(Username, [new Attribute('class', `link ${isMember ? 'view-statement' : 'view-downline'}`)]),
+            //    new ColumnContent(Name),
+            //    new ColumnContent(Nickname),
+            //    new ColumnContent(Group, [], isMember),
+            //    new ColumnContent(this.numeral(Credit).format("###,0.00"), creditAttrs),
+            //    new ColumnContent(CreationDateStr, [new Attribute('class', 'col-date')]),
+            //    new ColumnContent(this.indexManager.getStatusName(Status), statusAttrs),
+            //    new ColumnContent(actionColumn, [new Attribute('class', 'col-action text-left')]),
+            //];
+
+            const columns1: ColumnContent[] = [];
+
+            attributesJson.forEach(item => {
+                if (item.Visibile) {
+                    const attrs: Attribute[] = [];
+                    item.Attributes.forEach(attr => attrs.push(new Attribute(attr.Name, attr.Value)));
+                    columns1.push(new ColumnContent(item.Content, attrs));
+                }
+            });
+
+            const rowContent = new RowContent(columns1, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]);
             html += rowContent.ToString();
         }
 
@@ -311,6 +516,8 @@ class BaseList {
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
             let { CustId, Username, Status, Credit, Closed, Group, Name, Nickname } = rs.Customers[i],
+                emptyContent = '',
+                isActivedViewer = viewerStatusId === active,
                 statusName = this.indexManager.getStatusName(status),
                 nickname = Nickname ? Nickname : "---",
                 name = Name ? Name : "---",
@@ -318,42 +525,78 @@ class BaseList {
                 creditFormat = this.numeral(Credit).format("###,0.00"),
                 usernameLink = isMember ? 'view-statement' : 'view-downline';
 
-            let actionColumn = '',
-                creditColumn = `<td class='text-right'>${creditFormat}</td>`,
-                statusColumn = `<td class='text-center'>${statusName}</td>`,
-                viewDownlineColumn = `<td class='link ${usernameLink}' ${userAttr}>` +
-                    `<div class='username-wrapper'>${Username}
-                                <div class="cust-nickname">${nickname}</div>
-                                <div class="cust-name">${name}</div>
-                            </div>
-                    </td>`;
+            let actionColumn = '';
+            const commonAttributes: Attribute[] = [
+                new Attribute('cust-id', `${CustId}`),
+                new Attribute('username', Username),
+            ];
 
-            const groupColumn = isMember ? `<td>${Group}</td>` : '';
+            let creditAttrs = [new Attribute('class', `text-right ${isActivedViewer ? 'link col-credit' : ''}`)];
+            let statusAttrs = [new Attribute('class', `text-center ${isActivedViewer ? 'link col-status' : ''}`)];
 
-            if (viewerStatusId === active) {
-                creditColumn = `<td class='text-right link col-credit' ${userAttr}>${creditFormat}</td>`;
-                statusColumn = `<td class='col-status text-center link' ${userAttr} current-status='${Status}'>${statusName}</td>`;
+            if (isActivedViewer) {
+                creditAttrs = creditAttrs.concat(commonAttributes);
 
-                const resetPasswordIcon = `<li class='icon-pass' ${userAttr} cust-role=${levelId}>${ResetPassword}</li>`,
-                    securityCodeIcon = isMember ? '' : `<li class='icon-security' ${userAttr}>${ResetSecurityCode}</li>`,
-                    editIconText = isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
-                    editIcon = `<li class='icon-edit' ${userAttr}>${editIconText}</li>`,
-                    addDownlineIconText = isAgent ? NewMember : NewAgent,
-                    addDownlineIcon = Status === active && !isMember ? `<li class='icon-add' ${userAttr}>${addDownlineIconText}</li>` : '',
-                    unclockIcon = Closed ? `<li class='icon-unlock' ${userAttr}>${UnlockConfirmTitle}</li>` : '';
+                statusAttrs.push(new Attribute('current-status', Status));
+                statusAttrs = statusAttrs.concat(commonAttributes);
 
-                actionColumn = "<td class='col-action text-center'>" +
-                    `<div class="dropdown">` +
-                    `<a id="${CustId}" class="dropdown-toggle" type = "button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >` +
-                    (Closed ? `<span class="icon-user-unlock"></span>` : `<span class="icon-more-action"></span>`) +
-                    `</a>` +
-                    `<ul class="dropdown-menu" aria-labelledby="${CustId}" >${resetPasswordIcon} ${securityCodeIcon} ${editIcon} ${addDownlineIcon} ${unclockIcon}</ul>` +
-                    `</div>` +
-                    "</td>" +
-                    "";
+                const unlockIcon = new WrapperSpan(emptyContent, [new Attribute('class', 'icon-user-unlock')]);
+                const moreActionIcon = new WrapperSpan(emptyContent, [new Attribute('class', 'icon-more-action')]);
+                const anchorWrapper = new WrapperAnchor(
+                    (Closed ? unlockIcon : moreActionIcon).ToString(),
+                    [
+                        new Attribute('id', CustId),
+                        new Attribute('class', 'dropdown-toggle'),
+                        new Attribute('type', 'button'),
+                        new Attribute('data-toggle', 'dropdown'),
+                        new Attribute('aria-haspopup', 'true'),
+                        new Attribute('aria-expanded', 'false'),
+                    ]
+                );
+
+                const liArray: WrapperLi[] = [
+                    new WrapperLi(ResetPassword, [
+                        new Attribute('class', 'icon-pass'),
+                        new Attribute('cust-role', levelId.toString())
+                    ].concat(commonAttributes)),
+                    //new WrapperLi(ResetSecurityCode,
+                    //    [new Attribute('class', 'icon-security')].concat(commonAttributes), !isMember),
+                    new WrapperLi(ResetSecurityCode,
+                        [new Attribute('class', 'icon-security')].concat(commonAttributes)),
+                    new WrapperLi(isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent,
+                        [new Attribute('class', 'icon-edit')].concat(commonAttributes)),
+                    //new WrapperLi(isAgent ? NewMember : NewAgent,
+                    //    [new Attribute('class', 'icon-add')].concat(commonAttributes), Status === active && !isMember),
+                    //new WrapperLi(UnlockConfirmTitle,
+                    //    [new Attribute('class', 'icon-unlock')].concat(commonAttributes), Closed),
+                    new WrapperLi(isAgent ? NewMember : NewAgent,
+                        [new Attribute('class', 'icon-add')].concat(commonAttributes)),
+                    new WrapperLi(UnlockConfirmTitle,
+                        [new Attribute('class', 'icon-unlock')].concat(commonAttributes))
+                ];
+
+                const ul = new WrapperUl(liArray, [
+                    new Attribute('class', 'dropdown-menu'),
+                    new Attribute('aria-labelledby', CustId)
+                ]);
+
+                actionColumn = new WrapperDiv(`${anchorWrapper.ToString()}${ul.ToString()}`, [new Attribute('class', 'dropdown')]).ToString();
             }
 
-            html += `<tr class='row-customer' cust-id='${CustId}'> ${viewDownlineColumn} ${groupColumn} ${creditColumn} ${statusColumn} ${actionColumn}</tr>`;
+            const nickNameDiv = new WrapperDiv(nickname, [new Attribute('class', 'cust-nickname')]);
+            const nameDiv = new WrapperDiv(name, [new Attribute('class', 'cust-name')]);
+            const usernameDiv = new WrapperDiv(`${Username}${nickNameDiv.ToString()}${nameDiv.ToString()}`, [new Attribute('class', 'username-wrapper')]);
+
+            const columns: ColumnContent[] = [
+                new ColumnContent(usernameDiv.ToString(), [new Attribute('class', `link ${isMember ? 'view-statement' : 'view-downline'}`)].concat(commonAttributes)),
+                //new ColumnContent(Group, [], isMember),
+                new ColumnContent(this.numeral(Credit).format("###,0.00"), creditAttrs),
+                new ColumnContent(this.indexManager.getStatusName(Status), statusAttrs),
+                new ColumnContent(actionColumn, [new Attribute('class', 'col-action text-center')])
+            ];
+
+            const rowContent = new RowContent(columns, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]);
+            html += rowContent.ToString();
         }
 
         return html
