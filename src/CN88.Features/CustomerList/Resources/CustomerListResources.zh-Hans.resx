@@ -325,7 +325,7 @@
     <value>已失效</value>
   </data>
   <data name="ViewOnly" xml:space="preserve">
-    <value>View Only</value>
+    <value>仅供检视</value>
   </data>
   <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
     <value>Update status failed. Upline level is not active.</value>
