@@ -45,12 +45,7 @@ class DivWrapper extends ElementWrapper{
 }
 
 class UnoderListWrapper extends ElementWrapper {
-    constructor(liArray: ListItemWrapper[] = [], attributes: Attribute[] = []) {
-        let content = '';
-        liArray.forEach(li => {
-            content += li.ToString();
-        });
-
+    constructor(content: string, attributes: Attribute[] = []) {
         super('ul', content, attributes);
     }
 }
@@ -73,28 +68,8 @@ class ColumnWrapper extends ElementWrapper {
     }
 }
 
-class RowWrapper {
-    private Attributes: Attribute[];
-    private Columns: ColumnWrapper[];
-
-    constructor(columns: ColumnWrapper[], attributes: Attribute[] = []) {
-        this.Attributes = attributes;
-        this.Columns = columns;
-    }
-
-    ToString = () => {
-        let attrs = '', content = '';
-        this.Attributes.forEach(attr => {
-            const { Name, Value } = attr;
-            attrs += `${Name}='${Value} '`;
-        });
-
-        this.Columns.forEach(column => {
-            if (column !== null) {
-                content += column.ToString();
-            }
-        });
-
-        return `<tr ${attrs}>${content}</tr>`;
+class RowWrapper extends ElementWrapper {
+    constructor(content: string, attributes: Attribute[] = []) {
+        super('tr', content, attributes);
     }
 }

@@ -22,7 +22,7 @@ class CustomerListHelper {
         status: number,
         closed: boolean) {
         return {
-            PassWord: {
+            Password: {
                 Attributes: [{ Name: 'class', Value: 'icon-pass' }, { Name: 'cust-role', Value: levelId.toString() }],
                 Visibile: isActivedViewer
             },
@@ -51,14 +51,13 @@ class CustomerListHelper {
             isActivedViewer = viewerStatusId === active,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
-        let actionColumn = '';
 
         const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed);
         const actionsJson = [
             {
                 Content: emptyContent,
-                Attributes: [{ Name: 'title', Value: ResetPassword }].concat(actionAttributeJson.PassWord.Attributes),
-                Visibile: actionAttributeJson.PassWord.Visibile
+                Attributes: [{ Name: 'title', Value: ResetPassword }].concat(actionAttributeJson.Password.Attributes),
+                Visibile: actionAttributeJson.Password.Visibile
             },
             {
                 Content: emptyContent,
@@ -84,26 +83,16 @@ class CustomerListHelper {
             }
         ];
 
-        const iconAttributesJson = [
-            { Name: 'data-toggle', Value: 'tooltip' },
-            { Name: 'data-placement', Value: 'top' }
-        ].concat(this.buildCommonAttributesJson(CustId, Username));
+        const iconAttributesJson = [{ Name: 'data-toggle', Value: 'tooltip' }, { Name: 'data-placement', Value: 'top' }]
+            .concat(this.buildCommonAttributesJson(CustId, Username));
 
-        const actionSpans: SpanWrapper[] = [];
-
-        actionsJson.forEach(item => {
-            if (item.Visibile) {
-                actionSpans.push(
-                    new SpanWrapper(item.Content,
-                        item.Attributes.concat(iconAttributesJson).map(attr => new Attribute(attr.Name, attr.Value))));
+        return actionsJson.map(span => {
+            if (span.Visibile) {
+                return new SpanWrapper(span.Content,
+                    span.Attributes.concat(iconAttributesJson)
+                        .map(attr => new Attribute(attr.Name, attr.Value))).ToString();
             }
-        });
-
-        actionSpans.forEach(span => {
-            actionColumn += span.ToString();
-        });
-
-        return actionColumn;
+        }).join();
     }
 
     private buildActionColumnOnMobile(customer: any, viewerStatusId: number, levelId: number) {
@@ -127,24 +116,22 @@ class CustomerListHelper {
 
         const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed);
         const listItemsJson = [
-            { ...{ Content: ResetPassword }, ...actionAttributeJson.PassWord },
+            { ...{ Content: ResetPassword }, ...actionAttributeJson.Password },
             { ...{ Content: ResetSecurityCode }, ...actionAttributeJson.Security },
             { ...{ Content: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent }, ...actionAttributeJson.EditAccount },
             { ...{ Content: isAgent ? NewMember : NewAgent }, ...actionAttributeJson.AddAccount },
             { ...{ Content: UnlockConfirmTitle }, ...actionAttributeJson.UnlockAccount }
         ];
 
-        const actionListItem: ListItemWrapper[] = [];
-        listItemsJson.forEach(item => {
-            if (item.Visibile) {
-                actionListItem.push(
-                    new ListItemWrapper(item.Content,
-                        item.Attributes.concat(this.buildCommonAttributesJson(CustId, Username))
-                            .map(attr => new Attribute(attr.Name, attr.Value))));
+        const unorderContent = listItemsJson.map(listItem => {
+            if (listItem.Visibile) {
+                return new ListItemWrapper(listItem.Content,
+                    listItem.Attributes.concat(this.buildCommonAttributesJson(CustId, Username))
+                        .map(attr => new Attribute(attr.Name, attr.Value))).ToString();
             }
-        });
+        }).join();
 
-        const unorderListWrapper = new UnoderListWrapper(actionListItem, [
+        const unorderListWrapper = new UnoderListWrapper(unorderContent, [
             new Attribute('class', 'dropdown-menu'),
             new Attribute('aria-labelledby', CustId)
         ]);
@@ -162,16 +149,15 @@ class CustomerListHelper {
         `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
 
     public buildBody(rs: any, isDesktop: boolean, viewerStatusId: number, levelId: number, reportParam: any) {
-        const { member } = siteInfrastructure.roleId, isMember = levelId === member;
+        const { member } = siteInfrastructure.roleId, isMember = levelId === member,
+            { active } = siteInfrastructure.customerStatus, isActivedViewer = viewerStatusId === active;
 
         if (rs.Customers.length == 0) {
             const noInfoColspans = isDesktop ? 9 : 5;
             return this.buildNoInfoContent(isMember ? noInfoColspans : noInfoColspans - 1);
         }
 
-        let html = "";
-        let customerIndex = reportParam.PageSize * (reportParam.PageIndex - 1) + 1;
-        const { active } = siteInfrastructure.customerStatus, isActivedViewer = viewerStatusId === active;
+        let customerIndex = reportParam.PageSize * (reportParam.PageIndex - 1) + 1, bodyContent = '';
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
             const { CustId, Username, Status, Credit, Group, Name, Nickname, CreationDateStr } = rs.Customers[i];
@@ -181,12 +167,12 @@ class CustomerListHelper {
             const columnsAttributesJson = [
                 {
                     Content: customerIndex.toString(),
-                    Attributes: [{Name: 'class',Value: 'col-no'}],
+                    Attributes: [{ Name: 'class', Value: 'col-no' }],
                     Visibile: isDesktop
                 },
                 {
                     Content: isDesktop ? Username : this.buildUsernameColumnContentOnMobile(Username, Nickname, Name),
-                    Attributes: [{Name: 'class',Value: `link ${isMember ? 'view-statement' : 'view-downline'}`}]
+                    Attributes: [{ Name: 'class', Value: `link ${isMember ? 'view-statement' : 'view-downline'}` }]
                         .concat(isActivedViewer ? commonAttributesJson : []),
                     Visibile: true
                 },
@@ -213,7 +199,7 @@ class CustomerListHelper {
                 },
                 {
                     Content: CreationDateStr,
-                    Attributes: [{ Name: 'class', Value: 'col-date'}],
+                    Attributes: [{ Name: 'class', Value: 'col-date' }],
                     Visibile: isDesktop
                 },
                 {
@@ -227,23 +213,22 @@ class CustomerListHelper {
                     Content: isDesktop ?
                         this.buildActionColumnOnDesktop(rs.Customers[i], viewerStatusId, levelId) :
                         this.buildActionColumnOnMobile(rs.Customers[i], viewerStatusId, levelId),
-                    Attributes: [{Name: 'class', Value: 'col-action text-left'}],
+                    Attributes: [{ Name: 'class', Value: 'col-action text-left' }],
                     Visibile: true
                 }
             ];
 
-            const columns: ColumnWrapper[] = [];
-
-            columnsAttributesJson.forEach(item => {
-                if (item.Visibile) {
-                    columns.push(new ColumnWrapper(item.Content, item.Attributes.map(attr => new Attribute(attr.Name, attr.Value))));
+            const rowContent = columnsAttributesJson.map(column => {
+                if (column.Visibile) {
+                    return new ColumnWrapper(column.Content,
+                        column.Attributes.map(attr => new Attribute(attr.Name, attr.Value))).ToString();
                 }
-            });
+            }).join();
 
-            const rowContent = new RowWrapper(columns, [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]);
-            html += rowContent.ToString();
+            bodyContent += new RowWrapper(rowContent,
+                [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]).ToString();
         }
 
-        return html;
+        return bodyContent;
     };
 }
