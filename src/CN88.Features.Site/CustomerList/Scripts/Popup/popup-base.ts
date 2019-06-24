@@ -26,12 +26,12 @@
         this.topWindow.popupManager.close();
     };
 
-    public submit(url: string, data: any) {
+    public submit(url: string, data: any, levelName) {
         this.$.blockUI();
         const self = this, unauthorizedCode = 403, mainFrame = this.topWindow.main;
        
         if (typeof mainFrame.customerList !== "undefined") {
-            mainFrame.customerList.reloadData();
+            mainFrame.customerList.reloadData(levelName);
         }
 
         this.$.ajax({

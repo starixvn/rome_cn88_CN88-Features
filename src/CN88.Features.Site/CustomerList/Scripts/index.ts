@@ -168,9 +168,9 @@ class CustomerList {
         this.openPopup(popupTitle, url, 'modal modal-credit', 490, 280);
     };
 
-    updateStatus = (custId: number, username: string, statusId: number, uplineStatusId: number) => {
+    updateStatus = (custId: number, username: string, custLevelId: any, statusId: number, uplineStatusId: number) => {
         const updateStatusLink = this.$("#UpdateStatusLink").val();
-        let url = updateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId, uplineStatusId: uplineStatusId }),
+        let url = updateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId, custLevelId: custLevelId, uplineStatusId: uplineStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-status', 490, 210);
@@ -314,11 +314,11 @@ class CustomerList {
         let currentPage = currentLink + "?" + this.$.param(reportParam);
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
-    reloadData = () => {
+    reloadData = (levelName: string) => {
         const timeoutDefault = 2000;
-
+        
         setTimeout(() => {
-            const submitBtn = this.$('input[id^="btn-submit-"]:visible')[0];
+            const submitBtn = this.$(`input[id^='btn-submit-${levelName}']`)[0];
             if (submitBtn !== undefined) {
                 submitBtn.click();
             }

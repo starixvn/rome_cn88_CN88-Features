@@ -32,6 +32,7 @@
             credit = parseFloat(this.cleaveCredit.getRawValue()),
             custId = this.$("#CustId").val(),
             custLevelId = this.$("#CustLevelId").val(),
+            custLevelName = this.$("#CustLevelName").val(),
             data = {
                 "CustId": custId,
                 "CustLevelId": custLevelId,
@@ -48,7 +49,7 @@
             return;
         }
 
-        this.submit("UpdateCredit", data);
+        this.submit("UpdateCredit", data, custLevelName);
     };
 }
 

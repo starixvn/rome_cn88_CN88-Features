@@ -30,6 +30,7 @@
 @Html.Hidden("MaxCredit", Model.CreditModel.MaxCredit)
 @Html.Hidden("CustId", Model.CustId)
 @Html.Hidden("CustLevelId", Model.CustLevel.Value)
+@Html.Hidden("CustLevelName", Model.CustLevel.DisplayName.ToLower())
 @Html.Hidden("UpdateSuccessfully", CustomerListResources.UpdateSuccessfully)
 @Html.Hidden("InvalidCredit", CustomerListResources.InvalidCredit)
 @Html.Hidden("InputNumberError", CustomerListResources.InputNumberError)

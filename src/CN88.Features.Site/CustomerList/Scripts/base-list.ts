@@ -130,7 +130,7 @@ class BaseList {
         this.$tblReport.find(".col-status").click(function () {
             var $this = self.$(this);
 
-            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"), $this.attr("direct-upline-status"));
+            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), self.levelId, $this.attr("current-status"), $this.attr("direct-upline-status"));
         });
 
         this.$tblReport.find(".icon-pass").click(function () {

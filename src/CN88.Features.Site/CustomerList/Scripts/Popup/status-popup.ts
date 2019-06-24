@@ -22,6 +22,7 @@
         let custId = this.$("#CustId").val(),
             oldStatusId = this.$("#CurrentStatusId").val(),
             newStatusId = this.$("#dropdown-status").val(),
+            custLevelName = this.$("#CustLevelName").val(),
             data = {
                 "CustId": custId,
                 "OldStatusId": oldStatusId,
@@ -34,7 +35,7 @@
             return;
         }
 
-        this.submit("UpdateCustomerStatus", data);
+        this.submit("UpdateCustomerStatus", data, custLevelName);
     };
 };
 
