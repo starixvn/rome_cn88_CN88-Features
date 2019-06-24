@@ -51,34 +51,36 @@ class CustomerListHelper {
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
-        const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed);
+        const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed),
+            { Password, Security, EditAccount, AddAccount, UnlockAccount } = actionAttributeJson;
+
         const actionsJson = [
             {
                 Content: emptyContent,
-                Attributes: [{ Name: 'title', Value: ResetPassword }].concat(actionAttributeJson.Password.Attributes),
-                Visibile: actionAttributeJson.Password.Visibile
+                Attributes: [{ Name: 'title', Value: ResetPassword }].concat(Password.Attributes),
+                Visibile: Password.Visibile
             },
             {
                 Content: emptyContent,
-                Attributes: [{ Name: 'title', Value: ResetSecurityCode }].concat(actionAttributeJson.Security.Attributes),
-                Visibile: actionAttributeJson.Security.Visibile
+                Attributes: [{ Name: 'title', Value: ResetSecurityCode }].concat(Security.Attributes),
+                Visibile: Security.Visibile
             },
             {
                 Content: emptyContent,
                 Attributes: [{ Name: 'title', Value: isMember ? EditMember : isAgent ? EditAgent : EditMasterAgent }]
-                    .concat(actionAttributeJson.EditAccount.Attributes),
-                Visibile: actionAttributeJson.EditAccount.Visibile
+                    .concat(EditAccount.Attributes),
+                Visibile: EditAccount.Visibile
             },
             {
                 Content: emptyContent,
                 Attributes: [{ Name: 'title', Value: isMember ? EditMember : isAgent ? NewMember : NewAgent }]
-                    .concat(actionAttributeJson.AddAccount.Attributes),
-                Visibile: actionAttributeJson.AddAccount.Visibile
+                    .concat(AddAccount.Attributes),
+                Visibile: AddAccount.Visibile
             },
             {
                 Content: emptyContent,
-                Attributes: [{ Name: 'title', Value: UnlockTooltip }].concat(actionAttributeJson.UnlockAccount.Attributes),
-                Visibile: actionAttributeJson.UnlockAccount.Visibile
+                Attributes: [{ Name: 'title', Value: UnlockTooltip }].concat(UnlockAccount.Attributes),
+                Visibile: UnlockAccount.Visibile
             }
         ];
 

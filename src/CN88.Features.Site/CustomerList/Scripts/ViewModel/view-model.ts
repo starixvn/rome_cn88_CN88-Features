@@ -22,6 +22,8 @@ class ViewResources {
     public UnlockTooltip: string;
     public UnlockConfirmTitle: string;
     public UnlockConfirmMessage: string;
+    public Ok: string;
+    public Cancel: string;
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -49,5 +51,7 @@ class ViewResources {
         this.UnlockTooltip = this.$("#UnlockTooltip").val();
         this.UnlockConfirmTitle = this.$("#UnlockConfirmTitle").val();
         this.UnlockConfirmMessage = this.$("#UnlockConfirmMessage").val();
+        this.Ok = this.$("#OK").val();
+        this.Cancel = this.$("#Cancel").val();
     }
 }

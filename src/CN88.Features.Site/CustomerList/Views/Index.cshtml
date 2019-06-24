@@ -71,6 +71,9 @@
 @Html.Hidden("UnlockConfirmTitle", CustomerListResources.UnlockConfirmTitle)
 @Html.Hidden("UnlockConfirmMessage", CustomerListResources.UnlockConfirmMessage)
 
+@Html.Hidden(nameof(SharedResources.OK), SharedResources.OK)
+@Html.Hidden(nameof(SharedResources.Cancel), SharedResources.Cancel)
+
 @Html.Hidden("NewMember", CustomerListResources.NewMember)
 @Html.Hidden("NewAgent", CustomerListResources.NewAgent)
 @Html.Hidden("EditMember", CustomerListResources.EditMember)
@@ -205,7 +208,7 @@ new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true
 }.ToList();
 
 <div id="@($"{levelName}-container")">
-        <table id="@($"tbl-{levelName}")" class="tbl-style2 tbl-downlinelist @($"level-{levelName}")">
+    <table id="@($"tbl-{levelName}")" class="tbl-style2 tbl-downlinelist @($"level-{levelName}")">
         <thead>
             <tr>
                 @foreach (var column in columns)

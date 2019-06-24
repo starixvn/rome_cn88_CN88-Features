@@ -249,7 +249,7 @@ class CustomerList {
                         }
                     });
             },
-            350
+            350, this.viewResources.Ok, this.viewResources.Cancel
         );
     };
 
