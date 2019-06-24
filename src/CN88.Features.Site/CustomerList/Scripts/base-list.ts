@@ -160,7 +160,7 @@ class BaseList {
         this.$tblReport.find(".icon-unlock").click(function () {
             var $this = self.$(this);
 
-            self.indexManager.updateUnlock($this.attr("cust-id"));
+            self.indexManager.updateUnlock($this.attr("cust-id"), $this.attr("username"));
         });
 
         if (rs.SearchAccountId > 0 && parseInt(rs.SearchAccountStatus) === siteInfrastructure.customerStatus.active) {

@@ -220,11 +220,11 @@ class CustomerList {
         });
     };
 
-    updateUnlock = (custId: any) => {
+    updateUnlock = (custId: number, username: string) => {
         let self = this;
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.bootboxConfirm(
-            this.viewResources.UnlockConfirmTitle,
+            `${this.viewResources.UnlockConfirmTitle} - ${username}`,
             this.viewResources.UnlockConfirmMessage,
             () => {
                 self.$.ajax({
@@ -248,7 +248,8 @@ class CustomerList {
                             self.topWindow.popupManager.bootboxAlert(jqXHR.responseJSON.message);
                         }
                     });
-            }
+            },
+            350
         );
     };
 

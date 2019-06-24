@@ -47,8 +47,7 @@ class CustomerListHelper {
 
     private buildActionColumnOnDesktop(customer: any, viewerStatusId: number, levelId: number) {
         const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
-            { active } = siteInfrastructure.customerStatus,
-            isActivedViewer = viewerStatusId === active,
+            isActivedViewer = viewerStatusId === siteInfrastructure.customerStatus.active,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
@@ -86,13 +85,16 @@ class CustomerListHelper {
         const iconAttributesJson = [{ Name: 'data-toggle', Value: 'tooltip' }, { Name: 'data-placement', Value: 'top' }]
             .concat(this.buildCommonAttributesJson(CustId, Username));
 
-        return actionsJson.map(span => {
+        let columnContent = '';
+        actionsJson.forEach(span => {
             if (span.Visibile) {
-                return new SpanWrapper(span.Content,
+                columnContent += new SpanWrapper(span.Content,
                     span.Attributes.concat(iconAttributesJson)
                         .map(attr => new Attribute(attr.Name, attr.Value))).ToString();
             }
-        }).join();
+        });
+
+        return columnContent;
     }
 
     private buildActionColumnOnMobile(customer: any, viewerStatusId: number, levelId: number) {
@@ -123,13 +125,14 @@ class CustomerListHelper {
             { ...{ Content: UnlockConfirmTitle }, ...actionAttributeJson.UnlockAccount }
         ];
 
-        const unorderContent = listItemsJson.map(listItem => {
+        let unorderContent = '';
+        listItemsJson.forEach(listItem => {
             if (listItem.Visibile) {
-                return new ListItemWrapper(listItem.Content,
+                unorderContent += new ListItemWrapper(listItem.Content,
                     listItem.Attributes.concat(this.buildCommonAttributesJson(CustId, Username))
                         .map(attr => new Attribute(attr.Name, attr.Value))).ToString();
             }
-        }).join();
+        });
 
         const unorderListWrapper = new UnoderListWrapper(unorderContent, [
             new Attribute('class', 'dropdown-menu'),
@@ -148,85 +151,91 @@ class CustomerListHelper {
     private buildNoInfoContent = (colspan: number) =>
         `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
 
-    public buildBody(rs: any, isDesktop: boolean, viewerStatusId: number, levelId: number, reportParam: any) {
+    private buildCoulunAttributesJson(customer: any, isDesktop: boolean, viewerStatusId: number, levelId: number, customerIndex: number) {
         const { member } = siteInfrastructure.roleId, isMember = levelId === member,
-            { active } = siteInfrastructure.customerStatus, isActivedViewer = viewerStatusId === active;
+             isActivedViewer = viewerStatusId === siteInfrastructure.customerStatus.active,
+            { CustId, Username, Status, Credit, Group, Name, Nickname, CreationDateStr } = customer,
+            commonAttributesJson = this.buildCommonAttributesJson(CustId, Username);
 
+        return [
+            {
+                Content: customerIndex.toString(),
+                Attributes: [{ Name: 'class', Value: 'col-no' }],
+                Visibile: isDesktop
+            },
+            {
+                Content: isDesktop ? Username : this.buildUsernameColumnContentOnMobile(Username, Nickname, Name),
+                Attributes: [{ Name: 'class', Value: `link ${isMember ? 'view-statement' : 'view-downline'}` }]
+                    .concat(isActivedViewer ? commonAttributesJson : []),
+                Visibile: true
+            },
+            {
+                Content: Name,
+                Attributes: [],
+                Visibile: isDesktop
+            },
+            {
+                Content: Nickname,
+                Attributes: [],
+                Visibile: isDesktop
+            },
+            {
+                Content: Group,
+                Attributes: [],
+                Visibile: isMember
+            },
+            {
+                Content: this.numeral(Credit).format("###,0.00"),
+                Attributes: [{ Name: 'class', Value: `text-right ${isActivedViewer ? 'link col-credit' : ''}` }]
+                    .concat(isActivedViewer ? commonAttributesJson : []),
+                Visibile: true
+            },
+            {
+                Content: CreationDateStr,
+                Attributes: [{ Name: 'class', Value: 'col-date' }],
+                Visibile: isDesktop
+            },
+            {
+                Content: this.getStatusName(Status),
+                Attributes: [{ Name: 'class', Value: `text-center ${isActivedViewer ? 'link col-status' : ''}` }]
+                    .concat(isActivedViewer ?
+                        commonAttributesJson.concat([{ Name: 'current-status', Value: Status }]) : []),
+                Visibile: true
+            },
+            {
+                Content: isDesktop ?
+                    this.buildActionColumnOnDesktop(customer, viewerStatusId, levelId) :
+                    this.buildActionColumnOnMobile(customer, viewerStatusId, levelId),
+                Attributes: [{ Name: 'class', Value: 'col-action text-left' }],
+                Visibile: true
+            }
+        ];
+    }
+
+    public buildBody(rs: any, isDesktop: boolean, viewerStatusId: number, levelId: number, reportParam: any) {
         if (rs.Customers.length == 0) {
             const noInfoColspans = isDesktop ? 9 : 5;
-            return this.buildNoInfoContent(isMember ? noInfoColspans : noInfoColspans - 1);
+            return this.buildNoInfoContent(levelId === siteInfrastructure.roleId.member ? noInfoColspans : noInfoColspans - 1);
         }
 
         let customerIndex = reportParam.PageSize * (reportParam.PageIndex - 1) + 1, bodyContent = '';
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            const { CustId, Username, Status, Credit, Group, Name, Nickname, CreationDateStr } = rs.Customers[i];
-
-            const commonAttributesJson = this.buildCommonAttributesJson(CustId, Username);
-
-            const columnsAttributesJson = [
-                {
-                    Content: customerIndex.toString(),
-                    Attributes: [{ Name: 'class', Value: 'col-no' }],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: isDesktop ? Username : this.buildUsernameColumnContentOnMobile(Username, Nickname, Name),
-                    Attributes: [{ Name: 'class', Value: `link ${isMember ? 'view-statement' : 'view-downline'}` }]
-                        .concat(isActivedViewer ? commonAttributesJson : []),
-                    Visibile: true
-                },
-                {
-                    Content: Name,
-                    Attributes: [],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: Nickname,
-                    Attributes: [],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: Group,
-                    Attributes: [],
-                    Visibile: isMember
-                },
-                {
-                    Content: this.numeral(Credit).format("###,0.00"),
-                    Attributes: [{ Name: 'class', Value: `text-right ${isActivedViewer ? 'link col-credit' : ''}` }]
-                        .concat(isActivedViewer ? commonAttributesJson : []),
-                    Visibile: true
-                },
-                {
-                    Content: CreationDateStr,
-                    Attributes: [{ Name: 'class', Value: 'col-date' }],
-                    Visibile: isDesktop
-                },
-                {
-                    Content: this.getStatusName(Status),
-                    Attributes: [{ Name: 'class', Value: `text-center ${isActivedViewer ? 'link col-status' : ''}` }]
-                        .concat(isActivedViewer ?
-                            commonAttributesJson.concat([{ Name: 'current-status', Value: Status }]) : []),
-                    Visibile: true
-                },
-                {
-                    Content: isDesktop ?
-                        this.buildActionColumnOnDesktop(rs.Customers[i], viewerStatusId, levelId) :
-                        this.buildActionColumnOnMobile(rs.Customers[i], viewerStatusId, levelId),
-                    Attributes: [{ Name: 'class', Value: 'col-action text-left' }],
-                    Visibile: true
-                }
-            ];
-
-            const rowContent = columnsAttributesJson.map(column => {
-                if (column.Visibile) {
-                    return new ColumnWrapper(column.Content,
-                        column.Attributes.map(attr => new Attribute(attr.Name, attr.Value))).ToString();
-                }
-            }).join();
+            let rowContent = ''
+            this.buildCoulunAttributesJson(
+                    rs.Customers[i],
+                    isDesktop,
+                    viewerStatusId,
+                levelId,
+                customerIndex).forEach(column => {
+                    if (column.Visibile) {
+                        rowContent += new ColumnWrapper(column.Content,
+                            column.Attributes.map(attr => new Attribute(attr.Name, attr.Value))).ToString();
+                    }
+                });
 
             bodyContent += new RowWrapper(rowContent,
-                [new Attribute('class', 'row-customer'), new Attribute('cust-id', CustId)]).ToString();
+                [new Attribute('class', 'row-customer'), new Attribute('cust-id', rs.Customers[i].CustId)]).ToString();
         }
 
         return bodyContent;
