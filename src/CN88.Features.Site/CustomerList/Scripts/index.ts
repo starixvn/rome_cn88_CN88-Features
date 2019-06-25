@@ -237,7 +237,9 @@ class CustomerList {
                     }})
                     .done(function (data) {
                         if (data.IsSuccess) {
-                            self.$(`.icon-unlock[cust-id='${custId}']`).remove();
+                            self.isDevice ?
+                                self.$(`tr[cust-id='${custId}']`).find('.icon-user-unlock').removeClass().addClass('icon-more-action') :
+                                self.$(`.icon-unlock[cust-id='${custId}']`).remove();
                         }
                         else {
                             self.topWindow.popupManager.bootboxAlert(self.viewResources.UnlockConfirmTitle, data.Message);
@@ -306,9 +308,6 @@ class CustomerList {
     viewAgent = (custId: any, username: any, status: number) => {
         this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.member}']`).click();
         this.memberList.viewMembersOfAgent(custId, username, status);
-    };
-    removeUnlock = (custId: any) => {
-        this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
     storeCurrentPage = (reportParam: any) => {
         const currentLink = this.$("#CurrentLink").val();
