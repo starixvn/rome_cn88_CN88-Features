@@ -31,7 +31,7 @@ class MasterList extends BaseList {
     };
 
     reloadState(reportParam: any) {
-        this.baseReloadState(reportParam, 'Master');
+        this.baseReloadState(reportParam);
         this.viewMasters();
     };
 }

@@ -57,7 +57,7 @@ class MemberList extends BaseList {
 
     reloadState(reportParam: any){
         this.$viewedAgent.val(reportParam.DownlineUsername);
-        this.baseReloadState(reportParam, 'Member');
+        this.baseReloadState(reportParam);
         this.viewMembers(reportParam.CustId);
     };
 }
