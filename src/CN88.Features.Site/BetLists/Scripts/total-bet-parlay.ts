@@ -51,7 +51,8 @@ class TotalBetParlay {
             numeral: true,
             numeralPositiveOnly: true,
             numeralDecimalMark: '.',
-            delimiter: ','
+            delimiter: ',',
+            numeralDecimalScale: 3
         });
 
         this.$stakeLimit = this.$("#StakeLimit");

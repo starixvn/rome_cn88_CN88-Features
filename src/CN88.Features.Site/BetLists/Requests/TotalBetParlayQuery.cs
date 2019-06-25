@@ -6,6 +6,8 @@
 
     public class TotalBetParlayQuery : BetListBaseQuery, IRequest<TotalBetParlayViewModel>
     {
+        private const long maxStakeLimit = 9999999999999999;
+
         public TotalBetParlayQuery(IUser viewer) : base(viewer)
         {
             CustId = viewer.Id;
@@ -20,5 +22,8 @@
         public int StakeMode { get; set; } = 1;
 
         public decimal StakeLimit { get; set; }
+
+        public override bool IsValid()
+            => base.IsValid() && StakeLimit <= maxStakeLimit;
     }
 }

@@ -70,3 +70,4 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Build", "S2325:Make 'VerifySecurityCodeLink' a static property.", Justification = "<Pending>", Scope = "member", Target = "~P:CN88.Features.Site.SubAccount.ViewModels.IndexViewModel.VerifySecurityCodeLink")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "<Pending>", Scope = "member", Target = "~M:CN88.Features.Site.Shared.Controllers.FeatureBaseController.BuildErrorResult(System.String)~CN88.Features.Models.Result")]
 
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2148:Underscores should be used to make large numbers readable", Justification = "<Pending>", Scope = "member", Target = "~F:CN88.Features.Site.BetLists.Requests.TotalBetParlayQuery.maxStakeLimit")]
