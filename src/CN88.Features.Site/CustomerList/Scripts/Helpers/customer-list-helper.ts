@@ -106,6 +106,10 @@ class CustomerListHelper {
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
+        if (!isActivedViewer) {
+            return emptyContent;
+        }
+
         const anchorWrapper = new AnchorWrapper(
             new SpanWrapper(emptyContent, [new Attribute('class', `${Closed ? 'icon-user-unlock' : 'icon-more-action'}`)]).ToString(),
             [
