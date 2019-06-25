@@ -171,8 +171,7 @@ class CustomerListHelper {
             },
             {
                 Content: isDesktop ? Username : this.buildUsernameColumnContentOnMobile(Username, Nickname, Name),
-                Attributes: [{ Name: 'class', Value: `link ${isMember ? 'view-statement' : 'view-downline'}` }]
-                    .concat(isActivedViewer ? commonAttributesJson : []),
+                Attributes: [{ Name: 'class', Value: `link ${isMember ? 'view-statement' : 'view-downline'}` }].concat(commonAttributesJson),
                 Visibile: true
             },
             {
