@@ -20,6 +20,7 @@
             LanguageKey = viewer.LanguageKey;
             Language = viewer.Language;
             ViewerStatusId = viewer.StatusId;
+            AccountManagementEditView = viewer.AccountManagementEditView;
         }
 
         public int CustId { get; set; }
@@ -47,6 +48,8 @@
         public IEnumerable<CustInfo> BreadcrumbLevel { get; set; } = Enumerable.Empty<CustInfo>();
 
         public int SubAccountId { get; }
+
+        public bool AccountManagementEditView { get; }
 
         public bool IsInternal { get; }
 

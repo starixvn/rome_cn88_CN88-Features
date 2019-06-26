@@ -224,15 +224,10 @@ class BaseList {
     };
 
     baseReloadState(reportParam: any) {
-        const { Username, PageSize, PageIndex, Status } = reportParam;
+        const { Username, PageSize, PageIndex } = reportParam;
         this.$username.val(Username);
-        this.$dropdownStatus.val(this.$(`#dropdown-status-${this.levelNameLowerCase}`).val());
-        this.reportParam.PageSize = PageSize;
-        this.reportParam.PageIndex = PageIndex;
-        this.reportParam.Status = Status;
-
         this.$(`#PageIndex${this.levelName}`).val(PageIndex);
-        this.$(`#PageSize${this.levelName}`).val(PageIndex);
+        this.$(`#PageSize${this.levelName}`).val(PageSize);
     };
 
     setStateWhenViewDownlines(status: number) {

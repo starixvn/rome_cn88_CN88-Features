@@ -10,7 +10,7 @@
         {
         }
 
-        public override bool IsValid() => base.IsValid() && !IsInternal;
+        public override bool IsValid() => base.IsValid() && !IsInternal && AccountManagementEditView;
 
         public override string ErrorMessage => string.Empty;
     }
