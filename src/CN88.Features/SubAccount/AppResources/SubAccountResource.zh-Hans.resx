@@ -145,7 +145,7 @@
     <value>名称</value>
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
-    <value>您的密码不得包含您的用户名或昵称。</value>
+    <value>您的密码不得包含您的用户名或登入账号。</value>
   </data>
   <data name="NewSubAccount" xml:space="preserve">
     <value>新子账户</value>
@@ -199,7 +199,7 @@
     <value>成功更新</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>昵称</value>
+    <value>登入账号</value>
   </data>
   <data name="UnlockSubAccount" xml:space="preserve">
     <value>解锁子账户</value>
