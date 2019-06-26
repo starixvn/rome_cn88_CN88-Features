@@ -151,13 +151,13 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
             {
                 <div class="form-group">
                     <label>@(level.IsAgentLevel() ? CustomerListResources.Master : CustomerListResources.Agent)</label>
-                    <input id="@($"txt-viewed-{level.GetDirectUpLineLevel().DisplayName.ToLower()}")" class="control" type="text" value="" />
+                    <input id="@($"txt-viewed-{level.GetDirectUpLineLevel().DisplayName.ToLower()}")" class="control txt-username-nickname" type="text" value="" />
                 </div>
             }
 
             <div class="form-group">
                 <label>@CustomerListResources.UsernameOrNameContains</label>
-                <input id="@($"txt-username-{levelName}")" class="control" type="text" value="" />
+                <input id="@($"txt-username-{levelName}")" class="control txt-username-nickname" type="text" value="" />
             </div>
             <div class="form-group">
                 <label>@CustomerListResources.Status</label>

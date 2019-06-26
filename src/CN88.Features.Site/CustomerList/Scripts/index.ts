@@ -242,7 +242,7 @@ class CustomerList {
                                 self.$(`.icon-unlock[cust-id='${custId}']`).remove();
                         }
                         else {
-                            self.topWindow.popupManager.bootboxAlert(self.viewResources.UnlockConfirmTitle, data.Message);
+                            self.topWindow.popupManager.bootboxAlert(self.viewResources.UnlockConfirmTitle, data.Message, undefined, 350);
                         }
                     })
                     .fail(function (jqXHR: JQueryXHR) {
