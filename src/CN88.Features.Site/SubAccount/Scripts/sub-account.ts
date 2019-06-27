@@ -18,17 +18,20 @@ class SubAccount {
 
     sortComponent: SortComponent;
     bootstrapDropdownComponent: BootstrapDropdownComponent;
+    securityCodeChecker: SecurityCodeChecker;
 
     constructor(
         $: JQueryStatic,
         top: any,
         sortComponent: SortComponent,
-        bootstrapDropdownComponent: BootstrapDropdownComponent) {
+        bootstrapDropdownComponent: BootstrapDropdownComponent,
+        securityCodeChecker: SecurityCodeChecker) {
         this.$ = $;
         this.top = top;
         this.sortComponent = sortComponent;
         this.bootstrapDropdownComponent = bootstrapDropdownComponent;
         this.isDevice = cn88Features.convertAttributeToBool(this.$("#IsDevice").val());
+        this.securityCodeChecker = securityCodeChecker;
     }
 
     init(): void {
@@ -128,16 +131,19 @@ class SubAccount {
                     self.$.blockUI();
                     const options = {
                         url: self.urls.unlockSubAccount,
-                        data: { custId: param.subAccountId }
+                        data: { custId: param.subAccountId },
+                        onComplete: () => {
+                            location.reload(true);
+                        }
                     };
 
                     self.$.ajax({
                         type: "POST",
                         url: options.url,
                         data: options.data,
-                        headers: self.setupAntiXSRF(),
+                        headers: self.securityCodeChecker.setupAntiXSRF(),
                         dataType: "json",
-                        success: (result) => { self.checkSecurityCode(result, options); },
+                        success: (result) => { self.securityCodeChecker.checkSecurityCode(result, options); },
                         complete: self.$.unblockUI
                     });
                 },
@@ -145,27 +151,6 @@ class SubAccount {
                 self.resources.okLabel,
                 self.resources.cancelLabel);
         });
-    }
-
-    checkSecurityCode(result: any, options: any): void {
-        if (result.code === 999991) {
-            this.top[options.url] = () => {
-                this.$.ajax({
-                    type: "POST",
-                    url: options.url,
-                    data: options.data,
-                    headers: this.setupAntiXSRF(),
-                    dataType: "json",
-                    success: (result) => { location.reload(true); },
-                    complete: options.onComplete,
-                });
-            };
-
-            this.showSecCodePopup(options.url);
-            return;
-        }
-
-        location.reload(true);
     }
 
     getSubAccountParam(element: HTMLElement): ISubAccountParam {
@@ -186,27 +171,13 @@ class SubAccount {
             height: height
         });
     }
-
-    showSecCodePopup(preUrl: string): void {
-        this.top.popupManager.init(this.$, this.top);
-        this.top.popupManager.open({
-            title: "",
-            url: this.urls.verifySecurityCode,
-            width: 500,
-            height: 190,
-            preUrl: preUrl
-        });
-    }
-
-    private setupAntiXSRF(): any {
-        let token: string = this.$("input[name=__RequestVerificationToken]").val();
-        let headers: any = {};
-        headers["__RequestVerificationToken"] = token;
-
-        return headers;
-    }
 }
 
 $(() => {
-    new SubAccount($, top, new SortComponent($, new LinkBuilderComponent($)), new BootstrapDropdownComponent($, top)).init();
+    new SubAccount(
+        $,
+        top,
+        new SortComponent($, new LinkBuilderComponent($)),
+        new BootstrapDropdownComponent($, top),
+        new SecurityCodeChecker($, top)).init();
 });

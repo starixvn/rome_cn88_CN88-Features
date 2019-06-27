@@ -12,7 +12,8 @@
     "CN88CustomerSetting/CreateCN88Customer/Create",
     "SubAccount/New",
     "SubAccount/Edit",
-    "SubAccount/Unlock"
+    "SubAccount/Unlock",
+    "CustomerList/UnlockCustomer"
   ],
   "sites": [
   ],

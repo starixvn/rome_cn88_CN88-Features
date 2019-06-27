@@ -94,7 +94,8 @@
 @Html.Hidden("PageSize", Model.PageSize)
 @Html.Hidden("PageIndex", Model.PageIndex)
 @Html.Hidden("IsDevice", Model.IsDevice ? 1 : 0)
-
+@Html.Hidden(nameof(Model.UnlockCustomerPath), Model.UnlockCustomerPath)
+@Html.Hidden(nameof(Model.VerifySecurityCodeLink), Model.VerifySecurityCodeLink)
 @Html.AntiForgeryToken()
 
 @section Scripts {

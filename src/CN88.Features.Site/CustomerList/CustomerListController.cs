@@ -1,14 +1,13 @@
 ﻿namespace CN88.Features.Site.Controllers
 {
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
-    using System.Web.SessionState;
     using Alpha.Web.Filters;
-    using CN88.Web.Helpers;
     using CustomerList;
     using CustomerList.Requests;
     using MediatR;
     using Shared.Controllers;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using System.Web.SessionState;
     using Web.Filters;
 
     [SessionState(SessionStateBehavior.ReadOnly), RestrictHeadlineFilter]

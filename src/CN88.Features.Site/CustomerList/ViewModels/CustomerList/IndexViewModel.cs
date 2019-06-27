@@ -68,5 +68,9 @@
         public bool IsDevice { get; }
 
         public bool IsNotPhone => !IsDevice;
+
+        public string UnlockCustomerPath => $"{SiteFeaturePath}/CustomerList/UnlockCustomer";
+
+        public string VerifySecurityCodeLink => $"{SiteMainPath}/SecurityCode/VerifySecurityCode";
     }
 }

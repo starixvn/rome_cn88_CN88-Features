@@ -15,6 +15,7 @@ class CustomerList {
     masterToggleHandler: ToggleHandler;
     agentToggleHandler: ToggleHandler;
     memberToggleHandler: ToggleHandler;
+    securityCodeChecker: SecurityCodeChecker;
 
     $navTabs: JQuery;
     AccessDenyPage: string;
@@ -49,7 +50,8 @@ class CustomerList {
         masterToggleHandler: ToggleHandler,
         agentToggleHandler: ToggleHandler,
         memberToggleHandler: ToggleHandler,
-        viewResources:ViewResources) {
+        viewResources: ViewResources,
+        securityCodeChecker: SecurityCodeChecker) {
         this.$ = $;
         this.topWindow = topWindow;
         this.statusComponent = statusComponent;
@@ -64,6 +66,7 @@ class CustomerList {
         this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
         this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
         this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
+        this.securityCodeChecker = securityCodeChecker;
     }
 
     init = () => {
@@ -221,38 +224,36 @@ class CustomerList {
     };
 
     updateUnlock = (custId: number, username: string) => {
-        let self = this;
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.bootboxConfirm(
             `${this.viewResources.UnlockConfirmTitle} - ${username}`,
             this.viewResources.UnlockConfirmMessage,
             () => {
-                self.$.ajax({
+                this.$.ajax({
                     type: "POST",
                     url: 'UnlockCustomer',
                     data: { "CustId": custId},
                     dataType: "json",
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader("__RequestVerificationToken", self.$("input[name=\"__RequestVerificationToken\"]").val());
-                    }})
-                    .done(function (data) {
-                        if (data.IsSuccess) {
-                            self.isDevice ?
-                                self.$(`tr[cust-id='${custId}']`).find('.icon-user-unlock').removeClass().addClass('icon-more-action') :
-                                self.$(`.icon-unlock[cust-id='${custId}']`).remove();
-                        }
-                        else {
-                            self.topWindow.popupManager.bootboxAlert(self.viewResources.UnlockConfirmTitle, data.Message, undefined, 350);
-                        }
-                    })
-                    .fail(function (jqXHR: JQueryXHR) {
-                        if (jqXHR.status === 403) {
-                            self.topWindow.popupManager.bootboxAlert(jqXHR.responseJSON.message);
-                        }
+                    headers: this.securityCodeChecker.setupAntiXSRF(),
+                    success: (result) => {
+                        this.securityCodeChecker.checkSecurityCode(result, {
+                            url: this.$("#UnlockCustomerPath").val(),
+                            data: { "CustId": custId },
+                            onComplete: this.completedUnlock,
+                            alertTitle: this.viewResources.UnlockConfirmTitle
+                        }); },
+                    complete: this.$.unblockUI
                     });
             },
             350, this.viewResources.Ok, this.viewResources.Cancel
         );
+    };
+
+    completedUnlock() {
+        this.$.blockUI();
+        setTimeout(() => {
+            location.reload(true);
+        }, 2000);
     };
 
     addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
@@ -326,17 +327,16 @@ class CustomerList {
     };
 };
 
-const customerList = new CustomerList(
-    $,
-    new SingleSelectionDropdownComponent($),
-    numeral,
-    new PagerComponent($),
-    window.top,
-    new ToggleHandler($),
-    new ToggleHandler($),
-    new ToggleHandler($),
-    new ViewResources($));
-
 $(() => {
-    customerList.init();
+        new CustomerList(
+            $,
+            new SingleSelectionDropdownComponent($),
+            numeral,
+            new PagerComponent($),
+            window.top,
+            new ToggleHandler($),
+            new ToggleHandler($),
+            new ToggleHandler($),
+            new ViewResources($),
+            new SecurityCodeChecker($, top)).init();
 });
