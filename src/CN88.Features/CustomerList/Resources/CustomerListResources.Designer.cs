@@ -19,7 +19,7 @@ namespace CN88.Features.CustomerList.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class CustomerListResources {
@@ -66,6 +66,15 @@ namespace CN88.Features.CustomerList.Resources {
         public static string Action {
             get {
                 return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
             }
         }
         
@@ -228,6 +237,15 @@ namespace CN88.Features.CustomerList.Resources {
         public static string Group {
             get {
                 return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive.
+        /// </summary>
+        public static string Inactive {
+            get {
+                return ResourceManager.GetString("Inactive", resourceCulture);
             }
         }
         
@@ -547,6 +565,33 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to unlock this account?.
+        /// </summary>
+        public static string UnlockConfirmMessage {
+            get {
+                return ResourceManager.GetString("UnlockConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock Account.
+        /// </summary>
+        public static string UnlockConfirmTitle {
+            get {
+                return ResourceManager.GetString("UnlockConfirmTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to unlock.
+        /// </summary>
+        public static string UnlockTooltip {
+            get {
+                return ResourceManager.GetString("UnlockTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Credit.
         /// </summary>
         public static string UpdateCredit {
@@ -561,6 +606,15 @@ namespace CN88.Features.CustomerList.Resources {
         public static string UpdateStatus {
             get {
                 return ResourceManager.GetString("UpdateStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update status failed. Upline level is not active..
+        /// </summary>
+        public static string UpdateStatusFailedCauseOfDirectUplineNotActive {
+            get {
+                return ResourceManager.GetString("UpdateStatusFailedCauseOfDirectUplineNotActive", resourceCulture);
             }
         }
         
@@ -615,6 +669,15 @@ namespace CN88.Features.CustomerList.Resources {
         public static string ValidStake {
             get {
                 return ResourceManager.GetString("ValidStake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Only.
+        /// </summary>
+        public static string ViewOnly {
+            get {
+                return ResourceManager.GetString("ViewOnly", resourceCulture);
             }
         }
         

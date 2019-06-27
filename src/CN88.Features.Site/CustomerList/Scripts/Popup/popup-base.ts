@@ -1,6 +1,7 @@
 ﻿class PopupBase {
     public $: JQueryStatic;
     public topWindow: any;
+
     resources = {
         UpdateSuccessfully: '',
         InvalidCredit: '',
@@ -11,26 +12,27 @@
     constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
         this.topWindow = topWindow;
-    }
+    };
 
     public registerEvents() {
         this.$(".btn-cancel").bind("click", this.closePopup);
-    }
+    };
 
     public getResource() {
         this.resources.UpdateSuccessfully = this.$("#UpdateSuccessfully").val();
-    }
+    };
 
     closePopup = () => {
         this.topWindow.popupManager.close();
-    }
+    };
 
-    public reloadCallback(custId: any, newValue: any) {
-    }
-
-    public submit(url: string, data: any, custId: any, newValue: any) {
-        let self = this;
+    public submit(url: string, data: any, levelName) {
         this.$.blockUI();
+        const self = this, unauthorizedCode = 403, mainFrame = this.topWindow.main;
+       
+        if (typeof mainFrame.customerList !== "undefined") {
+            mainFrame.customerList.reloadData(levelName);
+        }
 
         this.$.ajax({
             type: "POST",
@@ -42,37 +44,36 @@
             }
         })
             .done(function (data) {
-                data.Result.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Result.Message);
+                data.IsSuccess ? self.updateSuccesfully() : self.showFailedMessage(data.Message);
             })
             .fail(function (jqXHR: JQueryXHR) {
-                if (jqXHR.status === 403) {
+                if (jqXHR.status === unauthorizedCode) {
                     self.showFailedMessage(jqXHR.responseJSON.message);
                 }
             })
             .always(function () { self.$.unblockUI(); });
-    }
+    };
 
-    updateSuccesfully(custId: any, newValue: any) {
-        let self = this;
+    updateSuccesfully() {
         this.showSuccesfullyMessage();
+        const timeoutDefault = 2000;
 
         setTimeout(() => {
-            self.reloadCallback(custId, newValue);
-            this.topWindow.popupManager.close();
-        }, 3000);
-    }
+            this.closePopup();
+        }, timeoutDefault);
+    };
 
     showSuccesfullyMessage() {
         this.$("#error-message").html('')
             .text(this.resources.UpdateSuccessfully)
             .removeClass("hidden msg-error")
             .addClass("msg-success");
-    }
+    };
 
     public showFailedMessage(message: any) {
         this.$("#error-message").html('')
             .text(message)
             .removeClass("hidden msg-success")
             .addClass("msg-error");
-    }
+    };
 };

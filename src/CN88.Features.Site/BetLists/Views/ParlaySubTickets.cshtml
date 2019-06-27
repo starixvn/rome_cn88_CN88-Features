@@ -20,7 +20,7 @@
             <div class="group-sport-bet-types">
                 <span class="sport-type">@Model.GetSportName(ticket.SportTypeId)</span>
                 <span class="bet-type">@Model.CN88Builder.CreateBetInfoBuilder(ticket.BetTypeId).RenderBetTypeName(ticket, Model.TicketHelper)</span>
-            </div>            
+            </div>
             @(new HtmlString(Model.CN88Builder.BuildChoice(ticket, Model.TicketHelper, null)))
             <div class="event-date">@ticket.EventDate.ToGlobalShowtime()</div>
             @Html.Raw(Model.Builder.CreateStatusBuilder(ticket.BetTypeId).RenderStatusResultText(ticket, null))

@@ -20,6 +20,8 @@
 
         Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
 
+        Result UnlockCustomer(UnlockCustomerParam param);
+
         IEnumerable<OnlineMemberModel> OnlineMembers(OnlineMembersParam param);
     }
 
@@ -58,11 +60,6 @@
 
         public Result UpdateCredit(UpdateCreditParam param)
         {
-            if (param.IsInternal)
-            {
-                return Result.CreateErrorResult(101, CustomerListResources.NotAuthorized);
-            }
-
             var credit = GetCreditRangeModel(param.SearchAccountId, param.SearchAccountRoleId == UserLevel.Member.Value);
             if (param.CreditAmount < credit.MinCredit || param.CreditAmount > credit.MaxCredit)
             {
@@ -79,30 +76,42 @@
 
             dynamicRepository.Execute(command);
 
-            return command.ErrCode.Equals(0)
-               ? Result.CreateSuccessResult()
-               : Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+            return command.ErrCode.Equals(0) ? 
+                Result.CreateSuccessResult() : 
+                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
         public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
-            if (param.IsInternal)
-            {
-                return Result.CreateErrorResult(101, CustomerListResources.NotAuthorized);
-            }
-
             var command = new UpdateCustomerStatusCriteria(
                     param.SearchAccountId,
                     param.ActorId,
                     param.SubAccountId,
-                    param.UpdateStatusId,
+                    param.OldStatusId,
+                    param.NewStatusId,
                     param.Language,
                     param.IP);
 
             dynamicRepository.Execute(command);
 
-            return command.ErrCode.Equals(0)
-                ? Result.CreateSuccessResult() :
+            return command.ErrCode.Equals(0) ? 
+                Result.CreateSuccessResult() :
+                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+        }
+
+        public Result UnlockCustomer(UnlockCustomerParam param)
+        {
+            var command = new UnlockCustomerCriteria(
+                    param.SearchAccountId,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.Language,
+                    param.IP);
+
+            dynamicRepository.Execute(command);
+
+            return command.ErrCode.Equals(0) ? 
+                Result.CreateSuccessResult() :
                 Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 

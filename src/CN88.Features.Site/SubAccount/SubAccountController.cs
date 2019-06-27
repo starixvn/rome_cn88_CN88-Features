@@ -12,7 +12,6 @@
     [RestrictHeadlineFilter]
     public class SubAccountController : FeatureBaseController
     {
-     
         public SubAccountController(IMediator mediator)
             : base(mediator)
         {

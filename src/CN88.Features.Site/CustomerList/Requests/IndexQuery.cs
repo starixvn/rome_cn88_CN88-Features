@@ -10,6 +10,9 @@
         private const int DefaultPageSize = 100;
 
         private readonly IUser viewer;
+        private const byte defaultStatusId = 4;
+        private const byte defaultPageSize = 100;
+        private const byte defaultPageIndex= 100;
 
         public IndexQuery()
             : this(null)
@@ -32,10 +35,10 @@
 
         public byte SearchRoleId { get; set; }
 
-        public byte Status { get; set; }
+        public byte Status { get; set; } = defaultStatusId;
 
-        public int PageSize { get; set; } = DefaultPageSize;
+        public int PageSize { get; set; } = defaultPageSize;
 
-        public int PageIndex { get; set; } = 1;
+        public int PageIndex { get; set; } = defaultPageIndex;
     }
 }

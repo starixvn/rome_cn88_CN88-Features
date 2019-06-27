@@ -12,5 +12,7 @@
         }
 
         public bool AccountManagementEditView { get; }
+
+
     }
 }

@@ -9,14 +9,16 @@
             int searchAccountId,
             int actorId,
             int subAccountId,
-            byte updateStatusId,
+            byte oldStatusId,
+            byte newStatusId,
             string language,
             string ip)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
             SubAccountId = subAccountId;
-            UpdateStatusId = updateStatusId;
+            OldStatusId = oldStatusId;
+            NewStatusId = newStatusId;
             Language = language;
             IP = ip;
         }
@@ -30,10 +32,9 @@
         [SpParam(SqlParamName = "SubAccId")]
         public int SubAccountId { get; }
 
-        [SpParam(SqlParamName = "UpdStatusId")]
-        public byte UpdateStatusId { get; }
+        public byte OldStatusId { get; }
 
-        public byte SystemID => 2;
+        public byte NewStatusId { get; }
 
         public string Language { get; }
 
@@ -43,7 +44,7 @@
 
         public string ErrMsg { get; set; }
 
-        public override string GetSettingKey() => "CS_Customer_Status_Upd";
+        public override string GetSettingKey() => "CS_CustomerStatusUpd";
 
         public override bool IsValid() => SearchAccountId > 0 && ActorId > 0;
     }

@@ -1,46 +1,45 @@
 ﻿class StatusPopup extends PopupBase {
-	constructor($: JQueryStatic, topWindow: any) {
-		super($, topWindow);
-	}
+    constructor($: JQueryStatic, topWindow: any) {
+        super($, topWindow);
+    };
 
-	init = () => {
-		this.registerEvents();
-		this.getResource();
-	}
+    init = () => {
+        this.registerEvents();
+        this.getResource();
+    };
 
-	registerEvents() {
-		super.registerEvents();
-		this.$(".btn-submit").bind("click", this.updateStatus);
-	}
+    registerEvents() {
+        super.registerEvents();
+        this.$(".btn-submit").bind("click", this.updateStatus);
+    };
 
-	getResource() {
-		super.getResource();
-		this.resources.ThereIsNoChange = this.$("#ThereIsNoChange").val();
-	}
+    getResource() {
+        super.getResource();
+        this.resources.ThereIsNoChange = this.$("#ThereIsNoChange").val();
+    };
 
-	updateStatus = () => {
-		let custId = this.$("#CustId").val(),
-			updateStatusId = this.$("#dropdown-status").val(),
-			data = { "CustId": custId, "UpdateStatusId": updateStatusId };
+    updateStatus = () => {
+        let custId = this.$("#CustId").val(),
+            oldStatusId = this.$("#CurrentStatusId").val(),
+            newStatusId = this.$("#dropdown-status").val(),
+            custLevelName = this.$("#CustLevelName").val(),
+            data = {
+                "CustId": custId,
+                "OldStatusId": oldStatusId,
+                "NewStatusId": newStatusId,
+                "UplineStatusId": this.$("#direct-upline-status").val()
+            };
 
-		if (this.$("#CurrentStatusId").val() === updateStatusId) {
-			this.showFailedMessage(this.resources.ThereIsNoChange);
-			return;
-		}
+        if (oldStatusId === newStatusId) {
+            this.showFailedMessage(this.resources.ThereIsNoChange);
+            return;
+        }
 
-		this.submit("UpdateCustomerStatus", data, custId, updateStatusId);
-	}
-
-	reloadCallback(custId: any, newValue: any) {
-		let mainFrame = this.topWindow.main;
-
-		if (typeof mainFrame.customerList !== "undefined" && typeof mainFrame.customerList.reloadStatusValue === "function") {
-			mainFrame.customerList.reloadStatusValue(custId, newValue);
-		}
-	}
+        this.submit("UpdateCustomerStatus", data, custLevelName);
+    };
 };
 
 $(() => {
-	const statusPopup: any = new StatusPopup($, window.top);
-	statusPopup.init();
+    const statusPopup: any = new StatusPopup($, window.top);
+    statusPopup.init();
 });

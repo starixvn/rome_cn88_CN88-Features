@@ -1,76 +1,35 @@
 ﻿namespace CN88.Features.CustomerList.DataAccesses
 {
     using System.Collections.Generic;
-    using CN88.Features.Models;
     using CustomerList.Criteria;
     using Fanex.Common;
     using Fanex.Data;
-    using Fanex.Data.Repository;
     using Models;
 
     public interface CustomerListDataAccess
     {
         CustomerListModel GetCustomerList(CustomerListCriteria criteria);
-
-        Result UpdateNonQuery(NonQueryCommand command);
     }
 
     public class CustomerListDataAccessImpl : CustomerListDataAccess
     {
         public CustomerListModel GetCustomerList(CustomerListCriteria criteria)
         {
-            if (!criteria.IsValid())
-            {
-                return new CustomerListModel();
-            }
-
-            var totalCustomers = 0;
-            var customers = new List<CustomerModel>();
-            var uplineId = 0;
-
             using (var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey()))
             {
-                using (var reader = objectDb.ExecuteReader(criteria))
+                IEnumerable<CustomerModel> downlines;
+                using (var resultReader = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
-                    if (reader != null)
-                    {
-                        while (reader.Read())
-                        {
-                            customers.Add(new CustomerModel(
-                                custId: Converter.ToInt(reader["CustId"]),
-                                username: Converter.ToString2(reader["Username"]),
-                                name: Converter.ToString2(reader["FirstName"]),
-                                nickname: Converter.ToString2(reader["nickname"]),
-                                group: Converter.ToString2(reader["Group"]),
-                                credit: Converter.ToDecimal(reader["Credit"]),
-                                creationDate: Converter.ToDateTime(reader["CreatedDate"]),
-                                status: Converter.ToInt(reader["Status"]),
-                                closeReason: Converter.ToInt(reader["ClosedReason"])));
-                        }
-
-                        reader.Close();
-                    }
+                     downlines = resultReader.Read<CustomerModel>();
                 }
 
                 var outputParams = objectDb.GetOuputParams();
-                totalCustomers = Converter.ToInt(outputParams["totalrows"]);
-                uplineId = Converter.ToInt(outputParams["uplineid"]);
-            }
 
-            return new CustomerListModel(totalCustomers, customers, uplineId);
-        }
-
-        public Result UpdateNonQuery(NonQueryCommand command)
-        {
-            using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
-            {
-                objectDb.ExecuteNonQueryAsync(command.GetSpParams());
-
-                var outputParams = objectDb.GetOuputParams();
-
-                return new Result(
-                    int.Parse(outputParams["errcode"].ToString()),
-                    outputParams["errmsg"]?.ToString());
+                return new CustomerListModel(
+                    Converter.ToInt(outputParams["totalrows"]), 
+                    downlines, 
+                    Converter.ToInt(outputParams["uplineid"]),
+                    outputParams["uplineStatus"] == null ? (byte)4 : (byte)outputParams["uplineStatus"]);
             }
         }
     }

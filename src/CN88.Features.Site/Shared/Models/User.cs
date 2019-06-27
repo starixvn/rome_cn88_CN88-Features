@@ -40,5 +40,7 @@
         public int AdminId => userSession.AdminId;
 
         public DateTime LimitedDateToShowInfo => userSession.GetProperty<DateTime>("CustomerDateLimit");
+
+        public byte StatusId => userSession.GetProperty<byte>("CUSTOMERSTATUS");
     }
 }

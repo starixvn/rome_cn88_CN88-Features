@@ -24,9 +24,10 @@
         IRequestHandler<CreditPopupQuery, CreditRangeViewModel>,
         IRequestHandler<CustomerStatusPopupQuery, StatusPopupViewModel>,
         IRequestHandler<CreditCommand, Result>,
+         IRequestHandler<UnlockCustomerCommand, Result>,
         IRequestHandler<CustomerStatusCommand, Result>,
         IRequestHandler<OnlineMembersQuery, OnlineMemberViewModel>,
-        IRequestHandler<MemberStatementQuery, MemberStatementViewModel>
+         IRequestHandler<MemberStatementQuery, MemberStatementViewModel>
     {
         private readonly CustomerListService service;
         private readonly MemberStatementService statementService;
@@ -64,6 +65,7 @@
                 model,
                 model.UplineId,
                 message.Username,
+                model.UplineStatus,
                 message.DownlineUsername);
         }
 
@@ -81,19 +83,26 @@
                 message.ViewerId,
                 message.SubAccountId,
                 message.LanguageKey,
-                message.IP,
-                message.IsInternal));
+                message.IP));
 
+        public Result Handle(UnlockCustomerCommand message)
+         => service.UnlockCustomer(new UnlockCustomerParam(
+                message.CustId,
+                message.ViewerId,
+                message.SubAccountId,
+                message.LanguageKey,
+                message.IP));
+        
         public Result Handle(CustomerStatusCommand message)
             => service.UpdateCustomerStatus(new UpdateCustomerStatusParam(
                message.CustId,
                message.ViewerId,
                message.SubAccountId,
-               message.UpdateStatusId,
+               message.OldStatusId,
+               message.NewStatusId,
                message.LanguageKey,
                message.IP,
-               message.ViewerName,
-               message.IsInternal));
+               message.ViewerName));
 
         public OnlineMemberViewModel Handle(OnlineMembersQuery message)
         {

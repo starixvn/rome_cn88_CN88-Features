@@ -9,13 +9,19 @@
     {
         private readonly BrowserHelper browserHelper;
 
-        public IndexViewModel(IEnumerable<SubAccountItem> subAccounts, BrowserHelper browserHelper)
+        public IndexViewModel(
+            IEnumerable<SubAccountItem> subAccounts,
+            bool viewerIsActive,
+            BrowserHelper browserHelper)
         {
             SubAccounts = subAccounts;
             this.browserHelper = browserHelper;
+            ViewerIsActive = viewerIsActive;
         }
 
         public IEnumerable<SubAccountItem> SubAccounts { get; }
+
+        public bool ViewerIsActive { get; }
 
         public string NewSubAccountLink
             => UrlHelper.GetFeaturesAppPath("~/SubAccount/New");

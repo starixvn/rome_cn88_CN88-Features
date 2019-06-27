@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -92,8 +92,8 @@
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.1-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.9\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.1.0\lib\net461\CN88.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -688,7 +688,6 @@
     <Content Include="Reports\Styles\settlement-summary.min.css">
       <DependentUpon>settlement-summary.css</DependentUpon>
     </Content>
-    <Content Include="Shared\Styles\images\user_unlock.svg" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
       <DependentUpon>edit-sub-account.js</DependentUpon>
@@ -728,6 +727,9 @@
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.uat.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.local.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.config">
@@ -782,6 +784,8 @@
     <Compile Include="BetLists\ViewModels\WinLostBlockViewModel.cs" />
     <Compile Include="BetLists\WagerMonitoringController.cs" />
     <Compile Include="CustomerList\Requests\MemberStatementQuery.cs" />
+    <Compile Include="CustomerList\Requests\Popup\BaseCommand.cs" />
+    <Compile Include="CustomerList\Requests\Popup\UnlockCustomerCommand.cs" />
     <Compile Include="CustomerList\ViewModels\CustomerList\MemberStatementViewModel.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Reports\Constants\ReportSortPropertyConstants.cs" />
@@ -1008,10 +1012,6 @@
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MasterTable.cshtml" />
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\MemberTable.cshtml" />
     <Content Include="Reports\Views\Wager\UnsettledAndCancelledMobile\SuperTable.cshtml" />
-    <Content Include="CustomerList\Views\Components\LevelTabs.cshtml" />
-    <Content Include="CustomerList\Views\Components\MasterList.cshtml" />
-    <Content Include="CustomerList\Views\Components\AgentList.cshtml" />
-    <Content Include="CustomerList\Views\Components\MemberList.cshtml" />
     <Content Include="Reports\Styles\accounting-sheet.scss" />
     <Content Include="Reports\Styles\settlement-summary.scss" />
     <Content Include="Reports\Styles\old-report.scss" />
@@ -1066,6 +1066,7 @@
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\pause.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\Helpers\customer-list-helper.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />
@@ -1076,6 +1077,7 @@
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\popup-base.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\ViewModel\view-model.ts" />
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\pt-history.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\client-pager.ts" />
@@ -1097,6 +1099,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\bootstrap-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\components\html-wrapper.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
@@ -1155,7 +1158,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.3.1.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>

@@ -1,8 +1,7 @@
 ﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
-    using System.Collections.Generic;
-    using System.Web;
     using CN88.Features.CustomerList.Models;
+    using System.Collections.Generic;
 
     public class CustomerListViewModel
     {
@@ -10,24 +9,22 @@
             CustomerListModel model,
             int searchAccountId,
             string searchAccountUsername,
+            byte searchAccountStatus,
             string downlineUsername)
         {
             SearchAccountId = searchAccountId;
             SearchAccountUsername = searchAccountUsername;
+            SearchAccountStatus = searchAccountStatus;
             DownlineUsername = downlineUsername;
             TotalCustomers = model.TotalCustomers;
             Customers = model.Customers;
-
-            foreach (var customer in Customers)
-            {
-                customer.Name = HttpUtility.HtmlEncode(customer.Name);
-                customer.Group = HttpUtility.HtmlEncode(customer.Group);
-            }
         }
 
         public int SearchAccountId { get; }
 
         public string SearchAccountUsername { get; }
+
+        public byte SearchAccountStatus { get; }
 
         public string DownlineUsername { get; }
 

@@ -47,6 +47,8 @@
 
         public int ViewerId => query.ViewerId;
 
+        public byte ViewerStatusId => query.ViewerStatusId;
+
         public string DownlineUsername => query.DownlineUsername;
 
         public string Username => query.Username;

@@ -24,9 +24,6 @@
         [SpParam(SqlParamName = "CustId")]
         public int SearchAccountId { get; }
 
-        [SpParam(Ignored = true)]
-        public byte SearchAccountRoleId { get; }
-
         [SpParam(SqlParamName = "UpdCredit")]
         public decimal CreditAmount { get; }
 

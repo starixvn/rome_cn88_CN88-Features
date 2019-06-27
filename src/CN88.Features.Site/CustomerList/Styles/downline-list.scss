@@ -30,6 +30,10 @@ body {
     }
 }
 
+.text-left {
+    text-align: left;
+}
+
 .tbl-style2 {
     width: 100%;
 
@@ -42,7 +46,7 @@ body {
     }
 
     .col-action {
-        width: 133px;
+        width: 200px;
     }
 
     .col-status {
@@ -60,6 +64,7 @@ body {
 
 .icon-add {
     color: #25a77b;
+    margin: 0 9px;
 }
 
 .icon-pass,
@@ -76,6 +81,10 @@ body {
 
 .icon-edit {
     font-size: 19px;
+}
+
+.multiselect .multiselect-selected-text {
+    width: 128px;
 }
 
 // Status

@@ -42,7 +42,12 @@
         }
 
         public async Task<IndexViewModel> Handle(IndexQuery message)
-            => new IndexViewModel(await subAccountService.GetSubAccountsAsync(message.ViewerId), browserHelper);
+        {
+            var viewerIsActive = message.ViewerIsActive;
+            var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
+
+            return new IndexViewModel(subAccounts, viewerIsActive, browserHelper);
+        }
 
         public NewViewModel Handle(NewQuery message)
             => new NewViewModel(message.ViewerName + SubAccountConst.SubAccountPadding, GenerateHashKey());

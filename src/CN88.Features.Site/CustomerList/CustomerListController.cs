@@ -22,6 +22,7 @@
         public async Task<ActionResult> Index(IndexQuery message)
             => await ViewAsync(message);
 
+        [HttpGet]
         public async Task<JsonResult> GetCustomerList(CustomerListQuery message)
             => Json(await mediator.Send(message), JsonRequestBehavior.AllowGet);
 
@@ -34,12 +35,16 @@
              => await ViewAsync(message);
 
         [HttpPost, AntiXsrfFilter]
-        public ActionResult UpdateCredit(CreditCommand command)
-            => JsonData(command);
+        public async Task<ActionResult> UpdateCredit(CreditCommand command)
+            => await JsonDataAsync(command);
 
         [HttpPost, AntiXsrfFilter]
-        public ActionResult UpdateCustomerStatus(CustomerStatusCommand command)
-            => JsonData(command);
+        public async Task<ActionResult> UnlockCustomer(UnlockCustomerCommand command)
+            => await JsonDataAsync(command);
+
+        [HttpPost, AntiXsrfFilter]
+        public async Task<ActionResult> UpdateCustomerStatus(CustomerStatusCommand command)
+            => await JsonDataAsync(command);
 
         [HttpGet]
         public ActionResult Create(CreateCustomerQuery message)

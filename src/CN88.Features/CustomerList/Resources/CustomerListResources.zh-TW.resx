@@ -309,4 +309,25 @@
   <data name="Wednesday" xml:space="preserve">
     <value>星期三</value>
   </data>
+  <data name="UnlockTooltip" xml:space="preserve">
+    <value>點擊解鎖</value>
+  </data>
+  <data name="UnlockConfirmMessage" xml:space="preserve">
+    <value>確定解鎖此帳戶?</value>
+  </data>
+  <data name="UnlockConfirmTitle" xml:space="preserve">
+    <value>解鎖此帳戶</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>已啟用</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>已失效</value>
+  </data>
+  <data name="ViewOnly" xml:space="preserve">
+    <value>僅供檢視</value>
+  </data>
+  <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
+    <value>Update status failed. Upline level is not active.</value>
+  </data>
 </root>

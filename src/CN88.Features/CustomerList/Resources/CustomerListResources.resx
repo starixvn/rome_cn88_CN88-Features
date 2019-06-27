@@ -309,4 +309,25 @@
   <data name="Wednesday" xml:space="preserve">
     <value>Wednesday</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="ViewOnly" xml:space="preserve">
+    <value>View Only</value>
+  </data>
+  <data name="UnlockTooltip" xml:space="preserve">
+    <value>Click to unlock</value>
+  </data>
+  <data name="UnlockConfirmMessage" xml:space="preserve">
+    <value>Do you want to unlock this account?</value>
+  </data>
+  <data name="UnlockConfirmTitle" xml:space="preserve">
+    <value>Unlock Account</value>
+  </data>
+  <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
+    <value>Update status failed. Upline level is not active.</value>
+  </data>
 </root>

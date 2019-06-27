@@ -6,20 +6,20 @@
             int searchAccountId,
             int actorId,
             int subAccountId,
-            byte updateStatusId,
+            byte oldStatusId,
+            byte newStatusId,
             string language,
             string ip,
-            string actorName,
-            bool isInternal)
+            string actorName)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
             SubAccountId = subAccountId;
-            UpdateStatusId = updateStatusId;
+            OldStatusId = oldStatusId;
+            NewStatusId = newStatusId;
             Language = language;
             IP = ip;
             ActorName = actorName;
-            IsInternal = isInternal;
         }
 
         public int SearchAccountId { get; }
@@ -28,14 +28,14 @@
 
         public int SubAccountId { get; }
 
-        public byte UpdateStatusId { get; }
+        public byte OldStatusId { get; }
+
+        public byte NewStatusId { get; }
 
         public string Language { get; }
 
         public string IP { get; }
 
         public string ActorName { get; }
-
-        public bool IsInternal { get; }
     }
 }

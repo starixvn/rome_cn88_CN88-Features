@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.CustomerList
 {
+    using CN88.Features.CustomerList;
     using CN88.Features.Models;
     using CN88.Features.Site.CustomerList.ViewModels;
     using CN88.Features.Site.Requests;
@@ -11,6 +12,8 @@
         {
         }
 
-        public int UpdateStatusId { get; set; }
+        public int StatusId { get; set; }
+
+        public byte UplineStatusId { get; set; } = CustomerStatus.Active;
     }
 }

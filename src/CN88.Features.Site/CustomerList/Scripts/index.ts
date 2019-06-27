@@ -4,6 +4,7 @@
 /// <reference path="master-list.ts" />
 /// <reference path="agent-list.ts" />
 /// <reference path="member-list.ts" />
+/// <reference path="viewmodel/view-model.ts" />
 
 class CustomerList {
     $: JQueryStatic;
@@ -15,18 +16,9 @@ class CustomerList {
     agentToggleHandler: ToggleHandler;
     memberToggleHandler: ToggleHandler;
 
-    directDownline: string;
     $navTabs: JQuery;
-    EditCustomerLink: string;
-    CreateCustomerLink: string;
-    UpdateCreditLink: string;
-    UpdateStatusLink: string;
     AccessDenyPage: string;
     isDevice: boolean = false;
-
-    CurrentLink: string;
-    ResetPasswordLink: string;
-    ResetSecurityCodeLink: string;
 
     reportParam = {
         DownlineUsername: null,
@@ -38,24 +30,7 @@ class CustomerList {
         PageIndex: 1
     };
 
-    viewResources = {
-        NoInformationIsAvailable: '',
-        Open: '',
-        Closed: '',
-        Suspended: '',
-        Page: '',
-        Of: '',
-        Pager_DisplayItems: '',
-        ResetSecurityCodeDisabled: '',
-        Disabled: '',
-        NewMember: '',
-        NewAgent: '',
-        EditMember: '',
-        EditAgent: '',
-        EditMasterAgent: '',
-        ResetPassword: '',
-        ResetSecurityCode: ''
-    };
+    viewResources: ViewResources;
 
     masterList: MasterList;
     agentList: AgentList;
@@ -73,12 +48,15 @@ class CustomerList {
         topWindow: any,
         masterToggleHandler: ToggleHandler,
         agentToggleHandler: ToggleHandler,
-        memberToggleHandler: ToggleHandler) {
+        memberToggleHandler: ToggleHandler,
+        viewResources:ViewResources) {
         this.$ = $;
         this.topWindow = topWindow;
         this.statusComponent = statusComponent;
         this.numeral = numeral;
         this.pager = pager;
+        this.viewResources = viewResources;
+
         this.masterToggleHandler = masterToggleHandler;
         this.agentToggleHandler = agentToggleHandler;
         this.memberToggleHandler = memberToggleHandler;
@@ -91,12 +69,13 @@ class CustomerList {
     init = () => {
         this.cacheDOMElements();
 
-        this.masterList.init(this.viewResources, this);
-        this.agentList.init(this.viewResources, this);
-        this.memberList.init(this.viewResources, this);
+        this.masterList.init(this);
+        this.agentList.init(this);
+        this.memberList.init(this);
 
-        this.$navTabs.find("li[level='" + this.directDownline + "']").addClass("active");
-        this.$(".tab-content[level='" + this.directDownline + "']").removeClass("display-none");
+        const directDownline = this.$("#directDownline").val();
+        this.$navTabs.find(`li[level='${directDownline}']`).addClass("active");
+        this.$(`.tab-content[level='${directDownline}']`).removeClass("display-none");
 
         let self = this;
         this.$(".lnk-changetab").click(function () {
@@ -135,9 +114,9 @@ class CustomerList {
                     break;
             }
         } else {
-            switch (parseInt(this.directDownline)) {
+            switch (parseInt(directDownline)) {
                 case siteInfrastructure.roleId.master:
-                    this.masterList.viewList();
+                    this.masterList.viewMasters();
                     break;
                 case siteInfrastructure.roleId.agent:
                     this.agentList.viewAgents(this.reportParam.CustId);
@@ -157,42 +136,14 @@ class CustomerList {
     };
 
     cacheDOMElements = () => {
-        this.directDownline = this.$("#directDownline").val();
         this.$navTabs = this.$("#nav-tabs");
 
-        this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
-        this.viewResources.Open = this.$("#Open").val();
-        this.viewResources.Closed = this.$("#Closed").val();
-        this.viewResources.Suspended = this.$("#Suspended").val();
-
-        this.viewResources.Page = this.$("#Page").val();
-        this.viewResources.Of = this.$("#of").val();
-        this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
-        this.viewResources.Disabled = this.$("#Disabled").val();
-
-        this.viewResources.NewMember = this.$("#NewMember").val();
-        this.viewResources.NewAgent = this.$("#NewAgent").val();
-        this.viewResources.EditMember = this.$("#EditMember").val();
-        this.viewResources.EditAgent = this.$("#EditAgent").val();
-        this.viewResources.EditMasterAgent = this.$("#EditMasterAgent").val();
-
-        this.viewResources.ResetPassword = this.$("#ResetPassword").val();
-        this.viewResources.ResetSecurityCode = this.$("#ResetSecurityCode").val();
-
-        this.EditCustomerLink = this.$("#EditCustomerLink").val();
-        this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
-        this.CurrentLink = this.$("#CurrentLink").val();
-        this.ResetPasswordLink = this.$("#ResetPasswordLink").val();
-        this.ResetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
         this.AccessDenyPage = this.$("#AccessDenyPage").val();
 
         this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
         this.Language = this.$("#Language").val();
         this.ViewerId = this.$("#ViewerId").val();
         this.ActorLevel = this.$("#ActorLevel").val();
-
-        this.UpdateCreditLink = this.$("#UpdateCreditLink").val();
-        this.UpdateStatusLink = this.$("#UpdateStatusLink").val();
 
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
@@ -206,68 +157,42 @@ class CustomerList {
     };
     changeTab = function (level: string) {
         this.$(".tab-content").addClass("display-none");
-        this.$(".tab-content[level='" + level + "']").removeClass("display-none");
-
-        switch (parseInt(level)) {
-            case siteInfrastructure.roleId.master:
-                //this.masterList.initAutoComplete();
-                break;
-            case siteInfrastructure.roleId.agent:
-                //this.agentList.initAutoComplete();
-                break;
-            case siteInfrastructure.roleId.member:
-                //this.memberList.initAutoComplete();
-                break;
-        }
-    };
-
-    getCustomerColor = (customer: any) => {
-        if (customer.Status == siteInfrastructure.customerStatus.open) {
-            return "row-open";
-        }
-
-        if (customer.Status == siteInfrastructure.customerStatus.suspended) {
-            return "row-suspended";
-        }
-
-        if (customer.Status == siteInfrastructure.customerStatus.closed) {
-            return "row-closed reason-" + customer.CloseReason;
-        }
-
-        return "";
+        this.$(`.tab-content[level='${level}']`).removeClass("display-none");
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-        let url = this.UpdateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
+        const updateCreditLink = this.$("#UpdateCreditLink").val();
+        let url = updateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
             popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-credit', 490, 280);
     };
 
-    updateStatus = (custId: any, username: any, updateStatusId: any) => {
-        let url = this.UpdateStatusLink + '?' + this.$.param({ custId: custId, UpdateStatusId: updateStatusId }),
+    updateStatus = (custId: number, username: string, custLevelId: any, statusId: number, uplineStatusId: number) => {
+        const updateStatusLink = this.$("#UpdateStatusLink").val();
+        let url = updateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId, custLevelId: custLevelId, uplineStatusId: uplineStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-status', 490, 210);
     };
 
     resetPassword = (custId: number, username: string, custLevelId: number) => {
-        let url: string = `${this.ResetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
+        const resetPasswordLink = this.$("#ResetPasswordLink").val();
+        let url: string = `${resetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
         let popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-password', 490, 430);
     };
 
     resetSecurityCode = (custId: number, username: string) => {
-        let url: string = `${this.ResetSecurityCodeLink}?custId=${custId}`;
+        const resetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
+        let url: string = `${resetSecurityCodeLink}?custId=${custId}`;
         let popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
 
         this.openPopup(popupTitle, url, 'modal modal-password', 490, 344);
     };
 
     openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {
-        let self = this;
-
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.open({
             title: popupTitle,
@@ -283,7 +208,8 @@ class CustomerList {
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
 
-        window.location.href = this.EditCustomerLink + "?" + this.$.param({
+        const editCustomerLink = this.$("#EditCustomerLink").val();
+        window.location.href = editCustomerLink + "?" + this.$.param({
             Language: this.Language,
             ProductId: 1,
             CustomerLevel: custLevelId,
@@ -293,7 +219,44 @@ class CustomerList {
             ActorLevel: this.ActorLevel
         });
     };
+
+    updateUnlock = (custId: number, username: string) => {
+        let self = this;
+        this.topWindow.popupManager.init(this.$, this.topWindow);
+        this.topWindow.popupManager.bootboxConfirm(
+            `${this.viewResources.UnlockConfirmTitle} - ${username}`,
+            this.viewResources.UnlockConfirmMessage,
+            () => {
+                self.$.ajax({
+                    type: "POST",
+                    url: 'UnlockCustomer',
+                    data: { "CustId": custId},
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("__RequestVerificationToken", self.$("input[name=\"__RequestVerificationToken\"]").val());
+                    }})
+                    .done(function (data) {
+                        if (data.IsSuccess) {
+                            self.isDevice ?
+                                self.$(`tr[cust-id='${custId}']`).find('.icon-user-unlock').removeClass().addClass('icon-more-action') :
+                                self.$(`.icon-unlock[cust-id='${custId}']`).remove();
+                        }
+                        else {
+                            self.topWindow.popupManager.bootboxAlert(self.viewResources.UnlockConfirmTitle, data.Message, undefined, 350);
+                        }
+                    })
+                    .fail(function (jqXHR: JQueryXHR) {
+                        if (jqXHR.status === 403) {
+                            self.topWindow.popupManager.bootboxAlert(jqXHR.responseJSON.message);
+                        }
+                    });
+            },
+            350, this.viewResources.Ok, this.viewResources.Cancel
+        );
+    };
+
     addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
+        const mainiFrame: JQuery = this.topWindow.$("#main");
         if (this.AccountManagementEditView) {
             reportParam.CustId = custId;
             reportParam.Username = username;
@@ -304,7 +267,9 @@ class CustomerList {
             this.topWindow.showCN88CancelButton = true;
             this.topWindow.showCN88SaveAndNewButton = true;
 
-            window.location.href = this.CreateCustomerLink + "?" + this.$.param({
+            const createCustomerLink = this.$("#CreateCustomerLink").val();
+            mainiFrame.show();
+            mainiFrame.attr("src", createCustomerLink + "?" + this.$.param({
                 Language: this.Language,
                 ProductId: 1,
                 CustomerLevel: custLevelId,
@@ -312,60 +277,52 @@ class CustomerList {
                 IsReadOnly: !this.AccountManagementEditView,
                 UplineId: custId,
                 ActorLevel: this.ActorLevel
-            });
+            }));
         } else {
-            window.location.href = this.AccessDenyPage;
+            mainiFrame.attr("src", this.AccessDenyPage);
         }
     };
     getStatusName = (status: number) => {
-        if (status == siteInfrastructure.customerStatus.open) {
-            return this.viewResources.Open;
+        if (status == siteInfrastructure.customerStatus.active) {
+            return this.viewResources.Active;
         }
 
-        if (status == siteInfrastructure.customerStatus.closed) {
-            return this.viewResources.Closed;
+        if (status == siteInfrastructure.customerStatus.viewOnly) {
+            return this.viewResources.ViewOnly;
         }
 
         if (status == siteInfrastructure.customerStatus.suspended) {
             return this.viewResources.Suspended;
         }
 
+        if (status == siteInfrastructure.customerStatus.inactive) {
+            return this.viewResources.Inactive;
+        }
+
         return "";
     };
-    viewMaster = (custId: any, username: any) => {
-        this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.agent + "']").click();
-        this.agentList.viewAgentsOfMaster(custId, username);
+    viewMaster = (custId: any, username: any, status: number) => {
+        this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.agent}']`).click();
+        this.agentList.viewAgentsOfMaster(custId, username, status);
     };
-    viewAgent = (custId: any, username: any) => {
-        this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.member + "']").click();
-        this.memberList.viewMembersOfAgent(custId, username);
-    };
-    reloadCreditValue = (custId: any, newValue: any) => {
-        this.$(".col-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
-    };
-    reloadStatusValue = (custId: any, newValue: any) => {
-        let column = this.$(".col-status[cust-id='" + custId + "']");
-        column.html(this.getStatusName(newValue));
-        column.attr("current-status", newValue);
-
-        this.$(".row-customer[cust-id='" + custId + "']")
-            .removeClass()
-            .addClass("row-customer " + this.reloadStatusColor(newValue));
-    };
-    reloadStatusColor = (status: any) => {
-        if (status == siteInfrastructure.customerStatus.open) {
-            return "row-open";
-        }
-
-        if (status == siteInfrastructure.customerStatus.suspended) {
-            return "row-suspended";
-        }
-
-        return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Upline;
+    viewAgent = (custId: any, username: any, status: number) => {
+        this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.member}']`).click();
+        this.memberList.viewMembersOfAgent(custId, username, status);
     };
     storeCurrentPage = (reportParam: any) => {
-        let currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
+        const currentLink = this.$("#CurrentLink").val();
+        let currentPage = currentLink + "?" + this.$.param(reportParam);
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
+    };
+    reloadData = (levelName: string) => {
+        const timeoutDefault = 2000;
+        
+        setTimeout(() => {
+            const submitBtn = this.$(`input[id^='btn-submit-${levelName}']`)[0];
+            if (submitBtn !== undefined) {
+                submitBtn.click();
+            }
+        }, timeoutDefault);
     };
 };
 
@@ -377,7 +334,8 @@ const customerList = new CustomerList(
     window.top,
     new ToggleHandler($),
     new ToggleHandler($),
-    new ToggleHandler($));
+    new ToggleHandler($),
+    new ViewResources($));
 
 $(() => {
     customerList.init();
