@@ -38,7 +38,7 @@
             CurrentPeriod = currentPeriod;
             LastPeriod = lastPeriod;
             IsMobile = isMobile;
-
+            IsSetMenu = query.IsSetMenu;
             var liveStatuses = LiveStatusConstants.LiveStatuses
                 .Select(s => new SelectListItemExt
                 {
@@ -60,6 +60,7 @@
 
         public bool IsMobile { get; }
 
+        public bool IsSetMenu { get; }
         public IEnumerable<SelectListItem> WagerReportTypes => ReportTypeConstants.WagerReportTypes
             .Select(t => new SelectListItem
             {

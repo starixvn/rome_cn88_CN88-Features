@@ -42,14 +42,17 @@ class ReportIndexView extends BaseReport {
 
     defaultFromDate: Date;
     defaultToDate: Date;
+    topWindow: any;
 
     constructor(
         $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
-        liveStatusSelectionComponent: SingleSelectionDropdownComponent) {
+        liveStatusSelectionComponent: SingleSelectionDropdownComponent,
+        topWindow: any) {
         super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent);
+        this.topWindow = topWindow;
     }
 
     init = () => {
@@ -59,6 +62,11 @@ class ReportIndexView extends BaseReport {
         this.renderComponents();
         this.calculatedDate();
         this.registerEvents();
+
+        if (this.$("#IsSetMenu").val() == "1") {
+            this.topWindow.indexManager.activeMainMenu("menu-REPORTS");
+            this.topWindow.indexManager.activeSubMenu("sub-menu-WAGERREPORT", "menu-REPORTS");
+        }
 
         this.$.unblockUI();
     };
@@ -290,7 +298,8 @@ $(function () {
         new DateRangePickerComponent($),
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new SingleSelectionDropdownComponent($));
+        new SingleSelectionDropdownComponent($),
+        top);
 
     reportIndexView.init();
 });

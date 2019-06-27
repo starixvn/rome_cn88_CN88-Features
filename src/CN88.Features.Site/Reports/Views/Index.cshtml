@@ -62,6 +62,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" value="@(Model.IsSetMenu?1:0)" id="IsSetMenu" />
 @section Scripts{
     @StaticResources.RenderScripts("~/Reports/bundles/index")
     <script>
