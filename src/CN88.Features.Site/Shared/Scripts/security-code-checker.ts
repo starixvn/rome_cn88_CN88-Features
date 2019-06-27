@@ -20,9 +20,9 @@ class SecurityCodeChecker {
                     data: options.data,
                     headers: this.setupAntiXSRF(),
                     dataType: "json",
-                    success: (result) => {
+                    success: result => {
                         result.IsSuccess ?
-                            options.onComplete(result) :
+                            options.onComplete(options.onCompleteParams) :
                             this.top.popupManager.bootboxAlert(options.alertTitle, result.Message, undefined, 350);
                     }
                 });
@@ -32,7 +32,7 @@ class SecurityCodeChecker {
             return;
         }
 
-        location.reload(true);
+        options.onComplete(options.onCompleteParams);
     }
 
     showSecCodePopup(preUrl: string): void {

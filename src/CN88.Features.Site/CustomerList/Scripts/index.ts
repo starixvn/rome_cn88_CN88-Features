@@ -240,7 +240,8 @@ class CustomerList {
                             url: this.$("#UnlockCustomerPath").val(),
                             data: { "CustId": custId },
                             onComplete: this.completedUnlock,
-                            alertTitle: this.viewResources.UnlockConfirmTitle
+                            alertTitle: this.viewResources.UnlockConfirmTitle,
+                            onCompleteParams: { custId: custId, $this: this }
                         }); },
                     complete: this.$.unblockUI
                     });
@@ -249,11 +250,11 @@ class CustomerList {
         );
     };
 
-    completedUnlock() {
-        this.$.blockUI();
-        setTimeout(() => {
-            location.reload(true);
-        }, 2000);
+    completedUnlock(params: any) {
+        const { custId, $this } = params;
+        $this.isDevice ?
+            $this.$(`tr[cust-id='${custId}']`).find('.icon-user-unlock').removeClass().addClass('icon-more-action') :
+            $this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
 
     addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
