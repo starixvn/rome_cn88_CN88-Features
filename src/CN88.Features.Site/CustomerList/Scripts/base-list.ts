@@ -48,6 +48,7 @@ class BaseList {
         bootstrapDropdownComponent: BootstrapDropdownComponent,
         numeral: any,
         pager: PagerComponent,
+        levelId: number,
         levelName: string
     ) {
         this.$ = $;
@@ -57,16 +58,14 @@ class BaseList {
         this.pager = pager;
         this.levelName = levelName;
         this.levelNameLowerCase = levelName.toLowerCase();
+        this.levelId = levelId;
     }
 
-    public init(indexManager: CustomerList, levelId: number, downlineObject: BaseList) {
+    public init(indexManager: CustomerList, downlineObject: BaseList) {
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
 
         this.customerListHelper = new CustomerListHelper(indexManager.viewResources, indexManager.getStatusName, indexManager.numeral);
-
-        this.levelId = levelId;
-        this.viewerStatusId = parseInt(this.$("#ViewerStatusId").val());
 
         this.$downlineObject = downlineObject;
 
@@ -90,6 +89,8 @@ class BaseList {
         this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
         this.$tblReport = this.$(`#tbl-${this.levelNameLowerCase}`);
         this.$formReport = this.$(`#form-${this.levelNameLowerCase}`);
+        this.viewerStatusId = parseInt(this.$("#ViewerStatusId").val());
+
         if (this.levelId < siteInfrastructure.roleId.master) {
             this.$viewedDirectUpline = this.$(`#txt-viewed-${this.levelId === siteInfrastructure.roleId.agent ? 'master' : 'agent'}`);
         }
@@ -128,10 +129,7 @@ class BaseList {
         });
 
         this.$tblReport.find(".view-downline").click(function () {
-            var $this = self.$(this);
-            self.indexManager.isDevice ?
-                self.viewDownlines($this.attr("cust-id"), $this.attr("username"), self.reportParam.Status) :
-                self.viewDownlines($this.attr("cust-id"), $this.html(), self.reportParam.Status);
+            self.viewDownlines(this);
         });
 
         this.$tblReport.find(".col-credit").click(function () {
@@ -161,7 +159,7 @@ class BaseList {
         this.$tblReport.find(".icon-edit").click(function () {
             var $this = self.$(this);
 
-            self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam);
+            self.indexManager.updateAccount($this.attr("cust-id"), self.levelId, self.reportParam);
         });
 
         this.$tblReport.find(".icon-add").click(function () {
@@ -215,16 +213,6 @@ class BaseList {
         this.$.unblockUI();
     };
 
-    viewDownlines = (custId: any, username: any, status: number) => {
-        this.$(`.lnk-changetab[level='${this.levelId - 1}']`).click();
-        this.$downlineObject.$viewedDirectUpline.val(username);
-        //this.$viewedDirectUpline.val(username);
-        this.$downlineObject.setStateWhenViewDownlines(status);
-        this.$downlineObject.viewList(username, custId);
-
-        //this.agentList.viewDownlines(custId, username, status);
-    };
-
     renderCustomerList(rs: any) {
         if (rs.SearchAccountId > 0) {
             var buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
@@ -261,12 +249,23 @@ class BaseList {
             this.viewList(DownlineUsername, reportParam.CustId);
     };
 
-    setStateWhenViewDownlines(status: number) {
-        this.$username.val("");
-        this.reportParam.PageIndex = 1;
-        this.reportParam.PageSize = 100;
-        this.reportParam.Status = status;
-        this.statusComponent.changeSelection(status);
+    viewDownlines = (element: any) => {
+        const $this = this.$(element),
+            custId = parseInt($this.attr("cust-id")),
+            status = this.reportParam.Status,
+            username = this.indexManager.isDevice ? $this.attr("username") : $this.html();
+
+        this.$(`.lnk-changetab[level='${this.levelId - 1}']`).click();
+
+        this.$downlineObject.$viewedDirectUpline.val(username);
+        this.$downlineObject.$username.val("");
+
+        this.$downlineObject.reportParam.PageIndex = 1;
+        this.$downlineObject.reportParam.PageSize = 100;
+        this.$downlineObject.reportParam.Status = status;
+        this.$downlineObject.statusComponent.changeSelection(status);
+
+        this.$downlineObject.viewList(username, custId);
     };
 
     viewList(downlineUsername: string = null, custId: number = 0) {
