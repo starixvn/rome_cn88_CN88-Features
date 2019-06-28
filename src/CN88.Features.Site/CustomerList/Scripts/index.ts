@@ -43,6 +43,7 @@ class CustomerList {
 
     init = () => {
         this.cacheDOMElements();
+        this.topWindow.popupManager.init(this.$, this.topWindow);
 
         this.masterList.init(this, this.agentList);
         this.agentList.init(this, this.memberList);
@@ -130,46 +131,50 @@ class CustomerList {
         this.$(`.tab-content[level='${level}']`).removeClass("display-none");
     };
 
-    updateCredit = (custId: any, username: any, custLevelId: any) => {
-        const updateCreditLink = this.$("#UpdateCreditLink").val() + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
-            popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
+    updateCredit(event: any, custLevelId: number) {
+        const $this = this.$(event.currentTarget),
+            updateCreditLink = this.$("#UpdateCreditLink").val() + '?' + this.$.param({ custId: $this.attr("cust-id"), custLevelId: custLevelId }),
+            popupTitle = `${this.$('#UpdateCredit').val()} - ${$this.attr("username")}`;
 
         this.openPopup(popupTitle, updateCreditLink, 'modal modal-credit', 490, 280);
     };
 
-    updateStatus = (custId: string, username: string, custLevelId: any, statusId: string, uplineStatusId: string) => {
-        const updateStatusLink = this.$("#UpdateStatusLink").val() + '?' + this.$.param({ custId: custId, statusId: statusId, custLevelId: custLevelId, uplineStatusId: uplineStatusId }),
-            popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
+    updateStatus(event: any, custLevelId: number) {
+        const $this = this.$(event.currentTarget),
+            params = {
+                custId: $this.attr("cust-id"),
+                statusId: $this.attr("current-status"),
+                custLevelId: custLevelId,
+                uplineStatusId: $this.attr("direct-upline-status")
+            },
+            updateStatusLink = `${this.$('#UpdateStatusLink').val()}?${this.$.param(params)}`,
+            popupTitle = `${this.$('#UpdateStatus').val()} - ${$this.attr("username")}`;
 
         this.openPopup(popupTitle, updateStatusLink, 'modal modal-status', 490, 210);
     };
 
-    resetPassword = (custId: string, username: string, custLevelId: string) => {
-        const resetPasswordLink = `${this.$("#ResetPasswordLink").val()}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`,
+    resetPassword(event: any) {
+        const $this = this.$(event.currentTarget), username = $this.attr("username"),
+            params = {custId: $this.attr("cust-id"), username, custLevelId: $this.attr("cust-role")},
+            resetPasswordLink = `${this.$('#ResetPasswordLink').val()}?${this.$.param(params)}`,
             popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
         this.openPopup(popupTitle, resetPasswordLink, 'modal modal-password', 490, 430);
     };
 
-    resetSecurityCode = (custId: string, username: string) => {
-        const resetSecurityCodeLink = `${this.$("#ResetSecurityCodeLink").val()}?custId=${custId}`,
-            popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
+    resetSecurityCode(event: any) {
+        const $this = this.$(event.currentTarget),
+            resetSecurityCodeLink = `${this.$("#ResetSecurityCodeLink").val()}?custId=${$this.attr("cust-id")}`,
+            popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${$this.attr("username")}`;
 
         this.openPopup(popupTitle, resetSecurityCodeLink, 'modal modal-password', 490, 344);
     };
 
-    openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {
-        this.topWindow.popupManager.init(this.$, this.topWindow);
-        this.topWindow.popupManager.open({
-            title: popupTitle,
-            url: url,
-            width: width,
-            height: height,
-            popupCss: modifiedClass
-        });
+    openPopup(title: string, url: string, popupCss: string, width: number = 480, height: number = 300) {
+        this.topWindow.popupManager.open({title, url, width, height, popupCss});
     };
 
-    updateAccount = (custId: any, custLevelId: any, reportParam: any) => {
+    updateAccount(custId: string, custLevelId: number, reportParam: ReportParam) {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
@@ -186,7 +191,10 @@ class CustomerList {
         });
     };
 
-    updateUnlock = (custId: string, username: string) => {
+    updateUnlock(event: any) {
+        const $this = this.$(event.currentTarget),
+            username = $this.attr("username"),
+            custId = parseInt($this.attr("cust-id"));
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.bootboxConfirm(
             `${this.viewResources.UnlockConfirmTitle} - ${username}`,
@@ -221,8 +229,11 @@ class CustomerList {
             $this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
 
-    addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: ReportParam, downlineUsername: string = '') => {
-        const mainiFrame: JQuery = this.topWindow.$("#main");
+    addNewDownline = (event: any, custLevelId: any, reportParam: ReportParam, downlineUsername: string = '') => {
+        const $this = this.$(event.currentTarget),
+            username = $this.attr("username"),
+            custId = parseInt($this.attr("cust-id")),
+            mainiFrame: JQuery = this.topWindow.$("#main");
         if (this.AccountManagementEditView) {
             reportParam.CustId = custId;
             reportParam.Username = username;
@@ -246,20 +257,6 @@ class CustomerList {
             }));
         } else {
             mainiFrame.attr("src", this.AccessDenyPage);
-        }
-    };
-
-    getStatusName(status: number) {
-        switch (status) {
-            case siteInfrastructure.customerStatus.active:
-                return this.viewResources.Active;
-            case siteInfrastructure.customerStatus.viewOnly:
-                return this.viewResources.ViewOnly;
-            case siteInfrastructure.customerStatus.suspended:
-                return this.viewResources.Suspended;
-            case siteInfrastructure.customerStatus.inactive:
-                return this.viewResources.Inactive;
-            default: return '';
         }
     };
 

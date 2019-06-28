@@ -64,7 +64,7 @@ class BaseList {
         this.viewResources = indexManager.viewResources;
         this.reportParam = indexManager.reportParam;
 
-        this.customerListHelper = new CustomerListHelper(indexManager.viewResources, indexManager.getStatusName, indexManager.numeral);
+        this.customerListHelper = new CustomerListHelper(indexManager.viewResources, indexManager.numeral);
         this.$downlineObject = downlineObject;
         this.statusComponent.render(
             new SingleSelectionDropdownOption(`dropdown-status-${this.levelNameLowerCase}`, `UserSelectedStatusId${this.levelName}`));
@@ -105,7 +105,7 @@ class BaseList {
         });
     }
 
-    initTooltip = () => {
+    initTooltip() {
         this.$('[data-toggle="tooltip"]').tooltip();
     };
 
@@ -125,59 +125,22 @@ class BaseList {
                 window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
         });
 
-        this.$tblReport.find(".view-downline").click(function () {
-            self.viewDownlines(this);
-        });
+        this.$tblReport.find(".view-downline").click(event => this.viewDownlines(event));
+        this.$tblReport.find(".col-credit").click(event => this.indexManager.updateCredit(event, this.levelId));
+        this.$tblReport.find(".col-status").click(event => this.indexManager.updateStatus(event, this.levelId));
+        this.$tblReport.find(".icon-pass").click(event => this.indexManager.resetPassword(event));
+        this.$tblReport.find(".icon-security").click(event => this.indexManager.resetSecurityCode(event));
 
-        this.$tblReport.find(".col-credit").click(function () {
-            var $this = self.$(this);
+        this.$tblReport.find(".icon-edit").click(event =>
+            this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
 
-            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), self.levelId);
-        });
+        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.levelId - 1, this.reportParam));
+        this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
 
-        this.$tblReport.find(".col-status").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), self.levelId, $this.attr("current-status"), $this.attr("direct-upline-status"));
-        });
-
-        this.$tblReport.find(".icon-pass").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.resetPassword($this.attr("cust-id"), $this.attr("username"), $this.attr("cust-role"));
-        });
-
-        this.$tblReport.find(".icon-security").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.resetSecurityCode($this.attr("cust-id"), $this.attr("username"));
-        });
-
-        this.$tblReport.find(".icon-edit").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.updateAccount($this.attr("cust-id"), self.levelId, self.reportParam);
-        });
-
-        this.$tblReport.find(".icon-add").click(function () {
-            var $this = self.$(this);
-            self.indexManager.addNewDownline($this.attr("cust-id"), '', self.levelId - 1, self.reportParam, $this.attr("username"));
-        });
-
-        var buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
-        this.$tblReport.find(".icon-unlock").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.updateUnlock($this.attr("cust-id"), $this.attr("username"));
-        });
-
+        const buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
         if (rs.SearchAccountId > 0 && parseInt(rs.SearchAccountStatus) === siteInfrastructure.customerStatus.active) {
             buttonAddNew.removeAttr("disabled");
-            buttonAddNew.click(function () {
-                var $this = self.$(this);
-
-                self.indexManager.addNewDownline($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam, $this.attr("downline-username"));
-            });
+            buttonAddNew.click(event => this.indexManager.addNewDownline(event, this.levelId, this.reportParam, this.$(event.currentTarget).attr("downline-username")));
         }
         else {
             buttonAddNew.attr("disabled", "disabled");
@@ -244,8 +207,8 @@ class BaseList {
         this.viewList();
     };
 
-    viewDownlines = (element: any) => {
-        const $this = this.$(element),
+    viewDownlines = (event: any) => {
+        const $this = this.$(event.currentTarget),
             custId = parseInt($this.attr("cust-id")),
             username = this.indexManager.isDevice ? $this.attr("username") : $this.html();
 

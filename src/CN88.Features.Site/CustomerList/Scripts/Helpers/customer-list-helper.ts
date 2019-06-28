@@ -3,14 +3,26 @@
 
 class CustomerListHelper {
     viewResources: ViewResources;
-    getStatusName: Function;
     numeral: Function;
 
-    constructor(viewResources: ViewResources, getStatusName: Function, numeral: Function) {
+    constructor(viewResources: ViewResources, numeral: Function) {
         this.viewResources = viewResources;
-        this.getStatusName = getStatusName;
         this.numeral = numeral;
     }
+
+    getStatusName(status: number) {
+        switch (status) {
+            case siteInfrastructure.customerStatus.active:
+                return this.viewResources.Active;
+            case siteInfrastructure.customerStatus.viewOnly:
+                return this.viewResources.ViewOnly;
+            case siteInfrastructure.customerStatus.suspended:
+                return this.viewResources.Suspended;
+            case siteInfrastructure.customerStatus.inactive:
+                return this.viewResources.Inactive;
+            default: return '';
+        }
+    };
 
     private buildCommonAttributesJson = (CustId: any, Username: string) =>
         [{ Name: 'cust-id', Value: CustId }, { Name: 'username', Value: Username }];
