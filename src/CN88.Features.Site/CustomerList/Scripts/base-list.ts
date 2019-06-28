@@ -244,9 +244,7 @@ class BaseList {
         this.$(`#PageIndex${this.levelName}`).val(PageIndex);
         this.$(`#PageSize${this.levelName}`).val(PageSize);
 
-        this.levelId === siteInfrastructure.roleId.master ?
-            this.viewList() :
-            this.viewList(DownlineUsername, reportParam.CustId);
+        this.viewList(DownlineUsername, reportParam.CustId);
     };
 
     viewDownlines = (element: any) => {

@@ -55,3 +55,26 @@ class ViewResources {
         this.Cancel = this.$("#Cancel").val();
     }
 }
+
+class ReportParam {
+    $: JQueryStatic;
+    public DownlineUsername: string;
+    public Username: string;
+    public SearchRoleId: number;
+    public CustId: number;
+    public Status: number;
+    public PageSize: number;
+    public PageIndex: number;
+
+    constructor($: JQueryStatic) {
+        this.$ = $;
+
+        this.DownlineUsername = this.$("#DownlineUsername").val();
+        this.Username = this.$("#Username").val();
+        this.SearchRoleId = parseInt(<string>this.$("#SearchRoleId").val());
+        this.CustId = 0;
+        this.Status = parseInt(<string>this.$("#Status").val());
+        this.PageSize = parseInt(<string>this.$("#PageSize").val());
+        this.SearchRoleId = 1;
+    }
+}

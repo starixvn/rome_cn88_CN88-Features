@@ -155,41 +155,38 @@ class CustomerList {
             PageIndex: 1
         };
     };
+
     changeTab = function (level: string) {
         this.$(".tab-content").addClass("display-none");
         this.$(`.tab-content[level='${level}']`).removeClass("display-none");
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-        const updateCreditLink = this.$("#UpdateCreditLink").val();
-        let url = updateCreditLink + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
+        const updateCreditLink = this.$("#UpdateCreditLink").val() + '?' + this.$.param({ custId: custId, custLevelId: custLevelId }),
             popupTitle = `${this.$('#UpdateCredit').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-credit', 490, 280);
+        this.openPopup(popupTitle, updateCreditLink, 'modal modal-credit', 490, 280);
     };
 
     updateStatus = (custId: number, username: string, custLevelId: any, statusId: number, uplineStatusId: number) => {
-        const updateStatusLink = this.$("#UpdateStatusLink").val();
-        let url = updateStatusLink + '?' + this.$.param({ custId: custId, statusId: statusId, custLevelId: custLevelId, uplineStatusId: uplineStatusId }),
+        const updateStatusLink = this.$("#UpdateStatusLink").val() + '?' + this.$.param({ custId: custId, statusId: statusId, custLevelId: custLevelId, uplineStatusId: uplineStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-status', 490, 210);
+        this.openPopup(popupTitle, updateStatusLink, 'modal modal-status', 490, 210);
     };
 
     resetPassword = (custId: number, username: string, custLevelId: number) => {
-        const resetPasswordLink = this.$("#ResetPasswordLink").val();
-        let url: string = `${resetPasswordLink}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`;
-        let popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
+        const resetPasswordLink = `${this.$("#ResetPasswordLink").val()}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`,
+            popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-password', 490, 430);
+        this.openPopup(popupTitle, resetPasswordLink, 'modal modal-password', 490, 430);
     };
 
     resetSecurityCode = (custId: number, username: string) => {
-        const resetSecurityCodeLink = this.$("#ResetSecurityCodeLink").val();
-        let url: string = `${resetSecurityCodeLink}?custId=${custId}`;
-        let popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
+        const resetSecurityCodeLink = `${this.$("#ResetSecurityCodeLink").val()}?custId=${custId}`,
+            popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
 
-        this.openPopup(popupTitle, url, 'modal modal-password', 490, 344);
+        this.openPopup(popupTitle, resetSecurityCodeLink, 'modal modal-password', 490, 344);
     };
 
     openPopup = (popupTitle: string, url: string, modifiedClass: string, width: number = 480, height: number = 300) => {
@@ -281,6 +278,7 @@ class CustomerList {
             mainiFrame.attr("src", this.AccessDenyPage);
         }
     };
+
     getStatusName = (status: number) => {
         if (status == siteInfrastructure.customerStatus.active) {
             return this.viewResources.Active;
@@ -300,11 +298,12 @@ class CustomerList {
 
         return "";
     };
-    storeCurrentPage = (reportParam: any) => {
-        const currentLink = this.$("#CurrentLink").val();
-        let currentPage = currentLink + "?" + this.$.param(reportParam);
+
+    storeCurrentPage(reportParam: any) {
+        const currentPage = this.$("#CurrentLink").val() + "?" + this.$.param(reportParam);
         siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
+
     reloadData = (levelName: string) => {
         const timeoutDefault = 2000;
         
