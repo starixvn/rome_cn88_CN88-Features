@@ -7,8 +7,6 @@ class CustomerList {
     $: JQueryStatic;
     topWindow: any;
     numeral: any;
-    statusComponent: SingleSelectionDropdownComponent;
-    pager: PagerComponent;
     securityCodeChecker: SecurityCodeChecker;
 
     $navTabs: JQuery;
@@ -28,23 +26,19 @@ class CustomerList {
 
     constructor(
         $: JQueryStatic,
-        statusComponent: SingleSelectionDropdownComponent,
         numeral: any,
-        pager: PagerComponent,
         topWindow: any,
-        viewResources: ViewResources,
-        securityCodeChecker: SecurityCodeChecker) {
+        viewResources: ViewResources = null,
+        securityCodeChecker: SecurityCodeChecker = null) {
         this.$ = $;
         this.topWindow = topWindow;
-        this.statusComponent = statusComponent;
         this.numeral = numeral;
-        this.pager = pager;
-        this.viewResources = viewResources;
+        this.viewResources = viewResources === null ? new ViewResources($) : viewResources;
+        this.securityCodeChecker = securityCodeChecker === null ? new SecurityCodeChecker($, top) : securityCodeChecker;
 
-        this.masterList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), new ToggleHandler($), siteInfrastructure.roleId.master, "Master");
-        this.agentList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), new ToggleHandler($), siteInfrastructure.roleId.agent, "Agent");
-        this.memberList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), new ToggleHandler($), siteInfrastructure.roleId.member, "Member");
-        this.securityCodeChecker = securityCodeChecker;
+        this.masterList = new BaseList($, topWindow, numeral, siteInfrastructure.roleId.master, "Master");
+        this.agentList = new BaseList($, topWindow, numeral, siteInfrastructure.roleId.agent, "Agent");
+        this.memberList = new BaseList($, topWindow, numeral, siteInfrastructure.roleId.member, "Member");
     }
 
     init = () => {
@@ -100,10 +94,10 @@ class CustomerList {
                     this.masterList.viewList();
                     break;
                 case siteInfrastructure.roleId.agent:
-                    this.agentList.viewList(this.agentList.$viewedDirectUpline.val());
+                    this.agentList.viewList();
                     break;
                 case siteInfrastructure.roleId.member:
-                    this.memberList.viewList(this.memberList.$viewedDirectUpline.val());
+                    this.memberList.viewList();
                     break;
             }
         }
@@ -287,12 +281,5 @@ class CustomerList {
 };
 
 $(() => {
-    new CustomerList(
-        $,
-        new SingleSelectionDropdownComponent($),
-        numeral,
-        new PagerComponent($),
-        window.top,
-        new ViewResources($),
-        new SecurityCodeChecker($, top)).init();
+    new CustomerList($, numeral,  window.top).init();
 });

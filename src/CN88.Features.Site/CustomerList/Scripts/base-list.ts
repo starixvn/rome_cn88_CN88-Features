@@ -5,6 +5,7 @@
 
 class BaseList {
     $: JQueryStatic;
+    topWindow: any;
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
     toggleHandler: ToggleHandler;
@@ -36,36 +37,35 @@ class BaseList {
 
     constructor(
         $: JQueryStatic,
-        statusComponent: SingleSelectionDropdownComponent,
-        bootstrapDropdownComponent: BootstrapDropdownComponent,
+        topWindow: any,
         numeral: any,
-        pager: PagerComponent,
-        toggleHandler: ToggleHandler,
         levelId: number,
-        levelName: string
+        levelName: string,
+        toggleHandler: ToggleHandler = null,
+        pager: PagerComponent = null,
+        bootstrapDropdownComponent: BootstrapDropdownComponent = null,
+        statusComponent: SingleSelectionDropdownComponent = null
     ) {
         this.$ = $;
-        this.statusComponent = statusComponent;
-        this.bootstrapDropdownComponent = bootstrapDropdownComponent;
+        this.topWindow = topWindow;
+        this.statusComponent = statusComponent === null ? new SingleSelectionDropdownComponent($) : statusComponent;
+        this.bootstrapDropdownComponent = bootstrapDropdownComponent === null ? new BootstrapDropdownComponent($, topWindow) : bootstrapDropdownComponent;
         this.numeral = numeral;
-        this.pager = pager;
-        this.toggleHandler = toggleHandler;
+        this.pager = pager === null ? new PagerComponent($) : pager;
+        this.toggleHandler = toggleHandler === null ? new ToggleHandler($) : toggleHandler;
         this.levelName = levelName;
         this.levelNameLowerCase = levelName.toLowerCase();
         this.levelId = levelId;
     }
 
     public init(indexManager: CustomerList, downlineObject: BaseList) {
+        this.cacheDOMElements();
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
         this.reportParam = indexManager.reportParam;
 
         this.customerListHelper = new CustomerListHelper(indexManager.viewResources, indexManager.getStatusName, indexManager.numeral);
-
         this.$downlineObject = downlineObject;
-
-        this.cacheDOMElements();
-
         this.statusComponent.render(
             new SingleSelectionDropdownOption(`dropdown-status-${this.levelNameLowerCase}`, `UserSelectedStatusId${this.levelName}`));
 
@@ -77,9 +77,7 @@ class BaseList {
         }
         this.$(`#btn-submit-${this.levelNameLowerCase}`).off("click").on("click", () => {
             this.reportParam.PageIndex = 1;
-            this.levelId === this.indexManager.ActorLevel - 1 ?
-                this.viewList() :
-                this.viewList(this.$viewedDirectUpline.val());
+            this.viewList();
         });
     }
 
@@ -233,9 +231,9 @@ class BaseList {
         this.bindReportEvents(rs);
     };
 
-    reloadState(reportParam: any) {
+    reloadState(reportParam: ReportParam) {
         const { Username, PageSize, PageIndex, DownlineUsername } = reportParam;
-        if (this.levelId < siteInfrastructure.roleId.master) {
+        if (this.levelId < this.indexManager.ActorLevel - 1) {
             this.$viewedDirectUpline.val(DownlineUsername);
         }
 
@@ -243,13 +241,12 @@ class BaseList {
         this.$(`#PageIndex${this.levelName}`).val(PageIndex);
         this.$(`#PageSize${this.levelName}`).val(PageSize);
 
-        this.viewList(DownlineUsername);
+        this.viewList();
     };
 
     viewDownlines = (element: any) => {
         const $this = this.$(element),
             custId = parseInt($this.attr("cust-id")),
-            status = this.reportParam.Status,
             username = this.indexManager.isDevice ? $this.attr("username") : $this.html();
 
         this.$(`.lnk-changetab[level='${this.levelId - 1}']`).click();
@@ -259,17 +256,18 @@ class BaseList {
 
         this.reportParam.PageIndex = 1;
         this.reportParam.PageSize = 100;
-        this.reportParam.Status = status;
         this.reportParam.CustId = custId;
+        this.reportParam.Username = username;
 
-        this.statusComponent.changeSelection(status);
-
-        this.$downlineObject.viewList(username);
+        this.statusComponent.changeSelection(this.reportParam.Status);
+        this.$downlineObject.viewList();
     };
 
-    viewList(downlineUsername: string = null) {
+    viewList() {
         this.$.blockUI();
-        this.reportParam.DownlineUsername = downlineUsername;
+        this.reportParam.DownlineUsername =
+            this.levelId === this.indexManager.ActorLevel - 1 ? null : this.$viewedDirectUpline.val();
+
         this.reportParam.Username = this.$username.val();
         this.reportParam.SearchRoleId = this.levelId;
         this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
