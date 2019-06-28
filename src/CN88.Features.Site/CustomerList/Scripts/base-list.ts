@@ -7,6 +7,7 @@ class BaseList {
     $: JQueryStatic;
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
+    toggleHandler: ToggleHandler;
     pager: PagerComponent;
     bootstrapDropdownComponent: BootstrapDropdownComponent;
 
@@ -39,6 +40,7 @@ class BaseList {
         bootstrapDropdownComponent: BootstrapDropdownComponent,
         numeral: any,
         pager: PagerComponent,
+        toggleHandler: ToggleHandler,
         levelId: number,
         levelName: string
     ) {
@@ -47,6 +49,7 @@ class BaseList {
         this.bootstrapDropdownComponent = bootstrapDropdownComponent;
         this.numeral = numeral;
         this.pager = pager;
+        this.toggleHandler = toggleHandler;
         this.levelName = levelName;
         this.levelNameLowerCase = levelName.toLowerCase();
         this.levelId = levelId;
@@ -69,6 +72,9 @@ class BaseList {
         this.$dropdownStatus = this.$(`#dropdown-status-${this.levelNameLowerCase}`);
         this.$tblReport.stickyTableHeaders();
 
+        if (this.indexManager.isDevice) {
+            this.toggleHandler.render(new ToggleHandlerOption(`${this.levelNameLowerCase}-filter-toggle-icon`, `form-${this.levelNameLowerCase}`, `${this.levelNameLowerCase}-container`));
+        }
         this.$(`#btn-submit-${this.levelNameLowerCase}`).off("click").on("click", () => {
             this.reportParam.PageIndex = 1;
             this.levelId === this.indexManager.ActorLevel - 1 ?
@@ -268,7 +274,7 @@ class BaseList {
         this.reportParam.SearchRoleId = this.levelId;
         this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
 
-        if (this.levelId < siteInfrastructure.roleId.master) {
+        if (this.levelId < this.indexManager.ActorLevel - 1) {
             const directDownline = parseInt(<string>this.$("#directDownline").val()),
                 $err = this.$(`#msg-err-${this.levelNameLowerCase}`),
                 { DownlineUsername } = this.reportParam;
@@ -283,14 +289,8 @@ class BaseList {
             $err.addClass("display-none");
         }
 
-        const { masterToggleHandler, agentToggleHandler, memberToggleHandler } = this.indexManager,
-            { master, agent } = siteInfrastructure.roleId;
-
         if (this.indexManager.isDevice) {
-            this.levelId === master ?
-                masterToggleHandler.hideFilter() :
-                this.levelId === agent ? agentToggleHandler.hideFilter() :
-                    memberToggleHandler.hideFilter();
+            this.toggleHandler.hideFilter();
         }
 
         this.loadData();

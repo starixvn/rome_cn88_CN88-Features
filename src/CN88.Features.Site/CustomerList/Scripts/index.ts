@@ -9,9 +9,6 @@ class CustomerList {
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
-    masterToggleHandler: ToggleHandler;
-    agentToggleHandler: ToggleHandler;
-    memberToggleHandler: ToggleHandler;
     securityCodeChecker: SecurityCodeChecker;
 
     $navTabs: JQuery;
@@ -35,9 +32,6 @@ class CustomerList {
         numeral: any,
         pager: PagerComponent,
         topWindow: any,
-        masterToggleHandler: ToggleHandler,
-        agentToggleHandler: ToggleHandler,
-        memberToggleHandler: ToggleHandler,
         viewResources: ViewResources,
         securityCodeChecker: SecurityCodeChecker) {
         this.$ = $;
@@ -47,20 +41,16 @@ class CustomerList {
         this.pager = pager;
         this.viewResources = viewResources;
 
-        this.masterToggleHandler = masterToggleHandler;
-        this.agentToggleHandler = agentToggleHandler;
-        this.memberToggleHandler = memberToggleHandler;
-
-        this.masterList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($),siteInfrastructure.roleId.master, "Master");
-        this.agentList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), siteInfrastructure.roleId.agent, "Agent");
-        this.memberList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), siteInfrastructure.roleId.member, "Member");
+        this.masterList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), new ToggleHandler($), siteInfrastructure.roleId.master, "Master");
+        this.agentList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), new ToggleHandler($), siteInfrastructure.roleId.agent, "Agent");
+        this.memberList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), new ToggleHandler($), siteInfrastructure.roleId.member, "Member");
         this.securityCodeChecker = securityCodeChecker;
     }
 
     init = () => {
         this.cacheDOMElements();
 
-        this.masterList.init(this,  this.agentList);
+        this.masterList.init(this, this.agentList);
         this.agentList.init(this, this.memberList);
         this.memberList.init(this, null);
 
@@ -117,13 +107,6 @@ class CustomerList {
                     break;
             }
         }
-
-        this.isDevice = this.$("#IsDevice").val() == "1";
-        if (this.isDevice) {
-            this.masterToggleHandler.render(new ToggleHandlerOption("master-filter-toggle-icon", "form-master", "master-container"));
-            this.agentToggleHandler.render(new ToggleHandlerOption("agent-filter-toggle-icon", "form-agent", "agent-container"));
-            this.memberToggleHandler.render(new ToggleHandlerOption("member-filter-toggle-icon", "form-member", "member-container"));
-        }
     };
 
     cacheDOMElements = () => {
@@ -135,6 +118,7 @@ class CustomerList {
         this.Language = this.$("#Language").val();
         this.ViewerId = parseInt(this.$("#ViewerId").val());
         this.ActorLevel = parseInt(this.$("#ActorLevel").val());
+        this.isDevice = this.$("#IsDevice").val() == "1";
 
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
@@ -217,7 +201,7 @@ class CustomerList {
                 this.$.ajax({
                     type: "POST",
                     url: 'UnlockCustomer',
-                    data: { "CustId": custId},
+                    data: { "CustId": custId },
                     dataType: "json",
                     headers: this.securityCodeChecker.setupAntiXSRF(),
                     success: (result) => {
@@ -227,9 +211,10 @@ class CustomerList {
                             onComplete: this.completedUnlock,
                             alertTitle: this.viewResources.UnlockConfirmTitle,
                             onCompleteParams: { custId: custId, $this: this }
-                        }); },
+                        });
+                    },
                     complete: this.$.unblockUI
-                    });
+                });
             },
             350, this.viewResources.Ok, this.viewResources.Cancel
         );
@@ -242,7 +227,7 @@ class CustomerList {
             $this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
 
-    addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: any, downlineUsername: string = '') => {
+    addNewDownline = (custId: any, username: any, custLevelId: any, reportParam: ReportParam, downlineUsername: string = '') => {
         const mainiFrame: JQuery = this.topWindow.$("#main");
         if (this.AccountManagementEditView) {
             reportParam.CustId = custId;
@@ -270,24 +255,18 @@ class CustomerList {
         }
     };
 
-    getStatusName = (status: number) => {
-        if (status == siteInfrastructure.customerStatus.active) {
-            return this.viewResources.Active;
+    getStatusName(status: number) {
+        switch (status) {
+            case siteInfrastructure.customerStatus.active:
+                return this.viewResources.Active;
+            case siteInfrastructure.customerStatus.viewOnly:
+                return this.viewResources.ViewOnly;
+            case siteInfrastructure.customerStatus.suspended:
+                return this.viewResources.Suspended;
+            case siteInfrastructure.customerStatus.inactive:
+                return this.viewResources.Inactive;
+            default: return '';
         }
-
-        if (status == siteInfrastructure.customerStatus.viewOnly) {
-            return this.viewResources.ViewOnly;
-        }
-
-        if (status == siteInfrastructure.customerStatus.suspended) {
-            return this.viewResources.Suspended;
-        }
-
-        if (status == siteInfrastructure.customerStatus.inactive) {
-            return this.viewResources.Inactive;
-        }
-
-        return "";
     };
 
     storeCurrentPage(reportParam: any) {
@@ -297,7 +276,7 @@ class CustomerList {
 
     reloadData = (levelName: string) => {
         const timeoutDefault = 2000;
-        
+
         setTimeout(() => {
             const submitBtn = this.$(`input[id^='btn-submit-${levelName}']`)[0];
             if (submitBtn !== undefined) {
@@ -308,15 +287,12 @@ class CustomerList {
 };
 
 $(() => {
-        new CustomerList(
-            $,
-            new SingleSelectionDropdownComponent($),
-            numeral,
-            new PagerComponent($),
-            window.top,
-            new ToggleHandler($),
-            new ToggleHandler($),
-            new ToggleHandler($),
-            new ViewResources($),
-            new SecurityCodeChecker($, top)).init();
+    new CustomerList(
+        $,
+        new SingleSelectionDropdownComponent($),
+        numeral,
+        new PagerComponent($),
+        window.top,
+        new ViewResources($),
+        new SecurityCodeChecker($, top)).init();
 });
