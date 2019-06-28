@@ -33,9 +33,9 @@ class CustomerList {
 
     viewResources: ViewResources;
 
-    masterList: MasterList;
-    agentList: AgentList;
-    memberList: MemberList;
+    masterList: BaseList;
+    agentList: BaseList;
+    memberList: BaseList;
     AccountManagementEditView: boolean;
     Language: string;
     ViewerId: string;
@@ -63,18 +63,18 @@ class CustomerList {
         this.agentToggleHandler = agentToggleHandler;
         this.memberToggleHandler = memberToggleHandler;
 
-        this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
-        this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
-        this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($));
+        this.masterList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), "Master");
+        this.agentList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), "Agent");
+        this.memberList = new BaseList($, new SingleSelectionDropdownComponent($), new BootstrapDropdownComponent($, topWindow), numeral, new PagerComponent($), "Member");
         this.securityCodeChecker = securityCodeChecker;
     }
 
     init = () => {
         this.cacheDOMElements();
 
-        this.masterList.init(this);
-        this.agentList.init(this);
-        this.memberList.init(this);
+        this.masterList.init(this, siteInfrastructure.roleId.master, this.agentList);
+        this.agentList.init(this, siteInfrastructure.roleId.agent, this.memberList);
+        this.memberList.init(this, siteInfrastructure.roleId.member, null);
 
         const directDownline = this.$("#directDownline").val();
         this.$navTabs.find(`li[level='${directDownline}']`).addClass("active");
@@ -110,7 +110,7 @@ class CustomerList {
 
                     let memberUsername = location.search.split(/[?&]/)[1].split('=')[1];
                     let agentUsername = memberUsername.substr(0, memberUsername.length - 2);
-                    this.agentList.$viewedMaster.val(agentUsername);
+                    this.agentList.$viewedDirectUpline.val(agentUsername);
                     this.$("#btn-submit-agent").click();
 
                     this.memberList.reloadState(this.reportParam);
@@ -119,13 +119,13 @@ class CustomerList {
         } else {
             switch (parseInt(directDownline)) {
                 case siteInfrastructure.roleId.master:
-                    this.masterList.viewMasters();
+                    this.masterList.viewList();
                     break;
                 case siteInfrastructure.roleId.agent:
-                    this.agentList.viewAgents(this.reportParam.CustId);
+                    this.agentList.viewList(this.agentList.$viewedDirectUpline.val(), this.reportParam.CustId);
                     break;
                 case siteInfrastructure.roleId.member:
-                    this.memberList.viewMembers(this.reportParam.CustId);
+                    this.memberList.viewList(this.memberList.$viewedDirectUpline.val(), this.reportParam.CustId);
                     break;
             }
         }
@@ -303,14 +303,14 @@ class CustomerList {
 
         return "";
     };
-    viewMaster = (custId: any, username: any, status: number) => {
-        this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.agent}']`).click();
-        this.agentList.viewAgentsOfMaster(custId, username, status);
-    };
-    viewAgent = (custId: any, username: any, status: number) => {
-        this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.member}']`).click();
-        this.memberList.viewMembersOfAgent(custId, username, status);
-    };
+    //viewMaster = (custId: any, username: any, status: number) => {
+    //    this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.agent}']`).click();
+    //    this.agentList.viewDownlines(custId, username, status);
+    //};
+    //viewAgent = (custId: any, username: any, status: number) => {
+    //    this.$(`.lnk-changetab[level='${siteInfrastructure.roleId.member}']`).click();
+    //    this.memberList.viewDownlines(custId, username, status);
+    //};
     storeCurrentPage = (reportParam: any) => {
         const currentLink = this.$("#CurrentLink").val();
         let currentPage = currentLink + "?" + this.$.param(reportParam);
