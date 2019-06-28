@@ -2,6 +2,7 @@
 {
     using Alpha.Auth.Configurations;
     using Alpha.Web.Helpers;
+    using CN88.Features.CustomerList;
     using CN88.Web.Helpers;
     using Features.Shared.Models;
 
@@ -72,5 +73,8 @@
         public string UnlockCustomerPath => $"{SiteFeaturePath}/CustomerList/UnlockCustomer";
 
         public string VerifySecurityCodeLink => $"{SiteMainPath}/SecurityCode/VerifySecurityCode";
+
+        public bool IsShowAddNewButton()
+            => ViewerStatusId == CustomerStatus.Active;
     }
 }

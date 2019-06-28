@@ -139,7 +139,7 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
     {
         <div class="filter-mobile">
             <span class="icon-filter-down" id="@($"{levelName}-filter-toggle-icon")"></span>
-            @if (Model.ViewerStatusId != CustomerStatus.ViewOnly)
+            @if (Model.IsShowAddNewButton())
             {
                 @RenderAddNewButton(levelName, submitButtonLabel)
             }
@@ -178,7 +178,7 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
                 <div id="@($"msg-err-{levelName}")" class="msg msg-error display-none">@requiredHint</div>
             }
 
-            @if (Model.IsNotPhone && Model.ViewerStatusId != CustomerStatus.ViewOnly)
+            @if (Model.IsNotPhone && Model.IsShowAddNewButton())
             {
                 @RenderAddNewButton(levelName, submitButtonLabel)
             }
