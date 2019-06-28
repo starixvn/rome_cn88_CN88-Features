@@ -20,24 +20,15 @@ class BaseList {
     $viewedDirectUpline: JQuery;
 
     $downlineObject: BaseList;
-
-    reportParam = {
-        DownlineUsername: null,
-        Username: "",
-        SearchRoleId: 0,
-        CustId: 0,
-        Status: 0,
-        PageSize: 100,
-        PageIndex: 1
-    };
+    reportParam: ReportParam;
 
     viewResources: ViewResources;
-    indexManager: any = null;
+    indexManager: CustomerList = null;
 
     levelName: string;
     levelNameLowerCase: string;
-
     levelId: number;
+
     minPageSize: number = 10;
     viewerStatusId: number;
     customerListHelper: CustomerListHelper;
@@ -64,6 +55,7 @@ class BaseList {
     public init(indexManager: CustomerList, downlineObject: BaseList) {
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
+        this.reportParam = indexManager.reportParam;
 
         this.customerListHelper = new CustomerListHelper(indexManager.viewResources, indexManager.getStatusName, indexManager.numeral);
 
@@ -73,12 +65,13 @@ class BaseList {
 
         this.statusComponent.render(
             new SingleSelectionDropdownOption(`dropdown-status-${this.levelNameLowerCase}`, `UserSelectedStatusId${this.levelName}`));
+
         this.$dropdownStatus = this.$(`#dropdown-status-${this.levelNameLowerCase}`);
         this.$tblReport.stickyTableHeaders();
 
         this.$(`#btn-submit-${this.levelNameLowerCase}`).off("click").on("click", () => {
             this.reportParam.PageIndex = 1;
-            this.levelId === siteInfrastructure.roleId.master ?
+            this.levelId === this.indexManager.ActorLevel - 1 ?
                 this.viewList() :
                 this.viewList(this.$viewedDirectUpline.val(), this.reportParam.CustId);
         });

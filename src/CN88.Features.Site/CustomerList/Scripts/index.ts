@@ -18,16 +18,7 @@ class CustomerList {
     AccessDenyPage: string;
     isDevice: boolean = false;
 
-    reportParam = {
-        DownlineUsername: null,
-        Username: "",
-        SearchRoleId: 0,
-        CustId: 0,
-        Status: 0,
-        PageSize: 100,
-        PageIndex: 1
-    };
-
+    reportParam: ReportParam;
     viewResources: ViewResources;
 
     masterList: BaseList;
@@ -35,8 +26,8 @@ class CustomerList {
     memberList: BaseList;
     AccountManagementEditView: boolean;
     Language: string;
-    ViewerId: string;
-    ActorLevel: string;
+    ViewerId: number;
+    ActorLevel: number;
 
     constructor(
         $: JQueryStatic,
@@ -142,8 +133,8 @@ class CustomerList {
 
         this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
         this.Language = this.$("#Language").val();
-        this.ViewerId = this.$("#ViewerId").val();
-        this.ActorLevel = this.$("#ActorLevel").val();
+        this.ViewerId = parseInt(this.$("#ViewerId").val());
+        this.ActorLevel = parseInt(this.$("#ActorLevel").val());
 
         this.reportParam = {
             DownlineUsername: this.$("#DownlineUsername").val(),
@@ -168,21 +159,21 @@ class CustomerList {
         this.openPopup(popupTitle, updateCreditLink, 'modal modal-credit', 490, 280);
     };
 
-    updateStatus = (custId: number, username: string, custLevelId: any, statusId: number, uplineStatusId: number) => {
+    updateStatus = (custId: string, username: string, custLevelId: any, statusId: string, uplineStatusId: string) => {
         const updateStatusLink = this.$("#UpdateStatusLink").val() + '?' + this.$.param({ custId: custId, statusId: statusId, custLevelId: custLevelId, uplineStatusId: uplineStatusId }),
             popupTitle = `${this.$('#UpdateStatus').val()} - ${username}`;
 
         this.openPopup(popupTitle, updateStatusLink, 'modal modal-status', 490, 210);
     };
 
-    resetPassword = (custId: number, username: string, custLevelId: number) => {
+    resetPassword = (custId: string, username: string, custLevelId: string) => {
         const resetPasswordLink = `${this.$("#ResetPasswordLink").val()}?custId=${custId}&username=${username}&custlevelid=${custLevelId}`,
             popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
         this.openPopup(popupTitle, resetPasswordLink, 'modal modal-password', 490, 430);
     };
 
-    resetSecurityCode = (custId: number, username: string) => {
+    resetSecurityCode = (custId: string, username: string) => {
         const resetSecurityCodeLink = `${this.$("#ResetSecurityCodeLink").val()}?custId=${custId}`,
             popupTitle: string = `${this.$('#ResetSecurityCode').val()} - ${username}`;
 
@@ -200,7 +191,7 @@ class CustomerList {
         });
     };
 
-    updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+    updateAccount = (custId: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
@@ -217,7 +208,7 @@ class CustomerList {
         });
     };
 
-    updateUnlock = (custId: number, username: string) => {
+    updateUnlock = (custId: string, username: string) => {
         this.topWindow.popupManager.init(this.$, this.topWindow);
         this.topWindow.popupManager.bootboxConfirm(
             `${this.viewResources.UnlockConfirmTitle} - ${username}`,
