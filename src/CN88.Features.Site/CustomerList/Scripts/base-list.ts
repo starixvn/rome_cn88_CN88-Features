@@ -23,7 +23,7 @@ class BaseList {
     reportParam: ReportParam;
 
     viewResources: ViewResources;
-    indexManager: CustomerList = null;
+    indexManager: CustomerList;
 
     levelName: string;
     levelNameLowerCase: string;
@@ -73,7 +73,7 @@ class BaseList {
             this.reportParam.PageIndex = 1;
             this.levelId === this.indexManager.ActorLevel - 1 ?
                 this.viewList() :
-                this.viewList(this.$viewedDirectUpline.val(), this.reportParam.CustId);
+                this.viewList(this.$viewedDirectUpline.val());
         });
     }
 
@@ -237,7 +237,7 @@ class BaseList {
         this.$(`#PageIndex${this.levelName}`).val(PageIndex);
         this.$(`#PageSize${this.levelName}`).val(PageSize);
 
-        this.viewList(DownlineUsername, reportParam.CustId);
+        this.viewList(DownlineUsername);
     };
 
     viewDownlines = (element: any) => {
@@ -251,25 +251,22 @@ class BaseList {
         this.$downlineObject.$viewedDirectUpline.val(username);
         this.$downlineObject.$username.val("");
 
-        this.$downlineObject.reportParam.PageIndex = 1;
-        this.$downlineObject.reportParam.PageSize = 100;
-        this.$downlineObject.reportParam.Status = status;
-        this.$downlineObject.statusComponent.changeSelection(status);
+        this.reportParam.PageIndex = 1;
+        this.reportParam.PageSize = 100;
+        this.reportParam.Status = status;
+        this.reportParam.CustId = custId;
 
-        this.$downlineObject.viewList(username, custId);
+        this.statusComponent.changeSelection(status);
+
+        this.$downlineObject.viewList(username);
     };
 
-    viewList(downlineUsername: string = null, custId: number = 0) {
+    viewList(downlineUsername: string = null) {
         this.$.blockUI();
-        this.reportParam = {
-            DownlineUsername: downlineUsername,
-            Username: <string>this.$username.val(),
-            SearchRoleId: this.levelId,
-            CustId: custId,
-            Status: <number>this.$dropdownStatus.find("option:selected").val(),
-            PageSize: this.reportParam.PageSize,
-            PageIndex: this.reportParam.PageIndex
-        };
+        this.reportParam.DownlineUsername = downlineUsername;
+        this.reportParam.Username = this.$username.val();
+        this.reportParam.SearchRoleId = this.levelId;
+        this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
 
         if (this.levelId < siteInfrastructure.roleId.master) {
             const directDownline = parseInt(<string>this.$("#directDownline").val()),

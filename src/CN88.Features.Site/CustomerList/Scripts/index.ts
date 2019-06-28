@@ -110,10 +110,10 @@ class CustomerList {
                     this.masterList.viewList();
                     break;
                 case siteInfrastructure.roleId.agent:
-                    this.agentList.viewList(this.agentList.$viewedDirectUpline.val(), this.reportParam.CustId);
+                    this.agentList.viewList(this.agentList.$viewedDirectUpline.val());
                     break;
                 case siteInfrastructure.roleId.member:
-                    this.memberList.viewList(this.memberList.$viewedDirectUpline.val(), this.reportParam.CustId);
+                    this.memberList.viewList(this.memberList.$viewedDirectUpline.val());
                     break;
             }
         }
