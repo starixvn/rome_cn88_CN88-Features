@@ -21,7 +21,7 @@
         <div class="credit-range">[@Model.CreditModel.MinCredit.ToString("N2"); @Model.CreditModel.MaxCredit.ToString("N2")]</div>
     </div>
     <div class="list-button">
-        <button type="button" class="btn-submit">@CustomerListResources.Save</button>
+        <button type="button" class="btn-submit" @(Model.IsDisableSaveButton ? "disabled=disabled" : string.Empty)>@CustomerListResources.Save</button>
         <button type="button" class="btn-cancel">@CustomerListResources.Cancel</button>
     </div>
 </div>

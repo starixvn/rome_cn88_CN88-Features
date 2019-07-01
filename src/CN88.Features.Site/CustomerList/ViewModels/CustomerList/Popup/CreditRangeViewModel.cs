@@ -10,6 +10,7 @@
             CreditModel = creditModel;
             CustLevel = query.CustLevel;
             CustId = query.CustId;
+            IsDisableSaveButton = query.IsInternal || !query.AccountManagementEditView;
         }
 
         public CreditRangeModel CreditModel { get; }
@@ -17,5 +18,7 @@
         public UserLevel CustLevel { get; }
 
         public int CustId { get; }
+
+        public bool IsDisableSaveButton { get; }
     }
 }
