@@ -550,6 +550,18 @@
     <Content Include="BetLists\Styles\wager-monitor-console.min.css">
       <DependentUpon>wager-monitor-console.css</DependentUpon>
     </Content>
+    <Content Include="CustomerList\bundles\scripts\DownlineList\index.js" />
+    <Content Include="CustomerList\bundles\scripts\DownlineList\index.min.js">
+      <DependentUpon>index.js</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\credit-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\credit-popup.min.js">
+      <DependentUpon>credit-popup.js</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\status-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\status-popup.min.js">
+      <DependentUpon>status-popup.js</DependentUpon>
+    </Content>
     <Content Include="CustomerList\bundles\scripts\index.js" />
     <Content Include="CustomerList\bundles\scripts\index.min.js">
       <DependentUpon>index.js</DependentUpon>
@@ -1065,16 +1077,16 @@
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\pause.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Helpers\customer-list-helper.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Helpers\customer-list-helper.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\index.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Popup\credit-popup.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Popup\popup-base.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\base-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\index.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\credit-popup.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\popup-base.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\ViewModel\view-model.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\ViewModel\view-model.ts" />
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\pt-history.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\client-pager.ts" />

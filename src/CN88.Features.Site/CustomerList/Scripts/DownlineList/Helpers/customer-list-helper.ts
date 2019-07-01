@@ -1,5 +1,5 @@
 ﻿/// <reference path="../viewmodel/view-model.ts" />
-/// <reference path="../../../shared/scripts/components/html-wrapper.ts" />
+/// <reference path="../../../../shared/scripts/components/html-wrapper.ts" />
 
 class CustomerListHelper {
     viewResources: ViewResources;

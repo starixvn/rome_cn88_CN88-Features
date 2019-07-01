@@ -1,6 +1,6 @@
-﻿/// <reference path="../../shared/scripts/components/filter-toggle.ts" />
-/// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
-/// <reference path="../../shared/scripts/components/pager.ts" />
+﻿/// <reference path="../../../shared/scripts/components/filter-toggle.ts" />
+/// <reference path="../../../shared/scripts/components/single-selection-dropdown.ts" />
+/// <reference path="../../../shared/scripts/components/pager.ts" />
 /// <reference path="viewmodel/view-model.ts" />
 
 class CustomerList {
