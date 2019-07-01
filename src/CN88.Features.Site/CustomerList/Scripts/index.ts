@@ -59,7 +59,8 @@ class CustomerList {
             self.$navTabs.find("> li").removeClass("active");
             $this.addClass("active");
 
-            self.changeTab($this.attr("level"));
+            self.$(".tab-content").addClass("display-none");
+            self.$(`.tab-content[level='${$this.attr("level")}']`).removeClass("display-none");
         });
 
         this.$(".form-inline").bind("keypress", function (e) {
@@ -72,11 +73,11 @@ class CustomerList {
             this.$(".lnk-changetab[level='" + this.reportParam.SearchRoleId + "']").click();
             switch (this.reportParam.SearchRoleId) {
                 case siteInfrastructure.roleId.master:
-                    this.masterList.reloadState(this.reportParam);
+                    this.masterList.reloadPage(this.reportParam);
                     break;
                 case siteInfrastructure.roleId.agent:
                     this.$("#btn-submit-master").click();
-                    this.agentList.reloadState(this.reportParam);
+                    this.agentList.reloadPage(this.reportParam);
                     break;
                 case siteInfrastructure.roleId.member:
                     this.$("#btn-submit-master").click();
@@ -86,7 +87,7 @@ class CustomerList {
                     this.agentList.$viewedDirectUpline.val(agentUsername);
                     this.$("#btn-submit-agent").click();
 
-                    this.memberList.reloadState(this.reportParam);
+                    this.memberList.reloadPage(this.reportParam);
                     break;
             }
         } else {
@@ -126,10 +127,14 @@ class CustomerList {
         };
     };
 
-    changeTab = function (level: string) {
-        this.$(".tab-content").addClass("display-none");
-        this.$(`.tab-content[level='${level}']`).removeClass("display-none");
-    };
+    viewStatement(event: any) {
+        const $this = this.$(event.currentTarget),
+            viewStatementUrl = `${$('#viewStatementtUrl').val()}?CustName=${$this.attr('username')}&CustId=${$this.attr('cust-id')}`;
+
+        this.isDevice ?
+            window.open(viewStatementUrl, "_blank") :
+            window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
+    }
 
     updateCredit(event: any, custLevelId: number) {
         const $this = this.$(event.currentTarget),

@@ -30,6 +30,8 @@ class BaseList {
     levelName: string;
     levelNameLowerCase: string;
     levelId: number;
+    isIndirectDownlineOfActor: boolean;
+    directDownlineRoleId: number;
 
     minPageSize: number = 10;
     viewerStatusId: number;
@@ -59,22 +61,25 @@ class BaseList {
     }
 
     public init(indexManager: CustomerList, downlineObject: BaseList) {
-        this.cacheDOMElements();
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
         this.reportParam = indexManager.reportParam;
+
+        this.isIndirectDownlineOfActor = this.levelId < this.indexManager.ActorLevel - 1;
+        this.directDownlineRoleId = this.levelId - 1;
+        this.cacheDOMElements();
 
         this.customerListHelper = new CustomerListHelper(indexManager.viewResources, indexManager.numeral);
         this.$downlineObject = downlineObject;
         this.statusComponent.render(
             new SingleSelectionDropdownOption(`dropdown-status-${this.levelNameLowerCase}`, `UserSelectedStatusId${this.levelName}`));
 
-        this.$dropdownStatus = this.$(`#dropdown-status-${this.levelNameLowerCase}`);
         this.$tblReport.stickyTableHeaders();
 
         if (this.indexManager.isDevice) {
             this.toggleHandler.render(new ToggleHandlerOption(`${this.levelNameLowerCase}-filter-toggle-icon`, `form-${this.levelNameLowerCase}`, `${this.levelNameLowerCase}-container`));
         }
+
         this.$(`#btn-submit-${this.levelNameLowerCase}`).off("click").on("click", () => {
             this.reportParam.PageIndex = 1;
             this.viewList();
@@ -83,12 +88,13 @@ class BaseList {
 
     public cacheDOMElements() {
         this.$username = this.$(`#txt-username-${this.levelNameLowerCase}`);
+        this.$dropdownStatus = this.$(`#dropdown-status-${this.levelNameLowerCase}`);
         this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
         this.$tblReport = this.$(`#tbl-${this.levelNameLowerCase}`);
         this.$formReport = this.$(`#form-${this.levelNameLowerCase}`);
         this.viewerStatusId = parseInt(this.$("#ViewerStatusId").val());
 
-        if (this.levelId < siteInfrastructure.roleId.master) {
+        if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline = this.$(`#txt-viewed-${this.levelId === siteInfrastructure.roleId.agent ? 'master' : 'agent'}`);
         }
     };
@@ -105,26 +111,14 @@ class BaseList {
         });
     }
 
-    initTooltip() {
-        this.$('[data-toggle="tooltip"]').tooltip();
-    };
-
-    pagingList = () => {
+    pagingList() {
         this.reportParam.PageIndex = this.$(`#PageIndex${this.levelName}`).val();
         this.reportParam.PageSize = this.$(`#PageSize${this.levelName}`).val();
         this.loadData();
     };
 
-    bindReportEvents(rs) {
-        var self = this;
-        this.$tblReport.find(".view-statement").click(function () {
-            var $this = self.$(this);
-            var viewStatementUrl = `${$("#viewStatementtUrl").val()}?CustName=${$this.attr("username")}&CustId=${$this.attr("cust-id")}`;
-            self.indexManager.isDevice ?
-                window.open(viewStatementUrl, "_blank") :
-                window.open(viewStatementUrl, "MemberStatement", "scrollbars=1,height=500,width=1000");
-        });
-
+    bindReportEvents() {
+        this.$tblReport.find(".view-statement").click(event => this.indexManager.viewStatement(event));
         this.$tblReport.find(".view-downline").click(event => this.viewDownlines(event));
         this.$tblReport.find(".col-credit").click(event => this.indexManager.updateCredit(event, this.levelId));
         this.$tblReport.find(".col-status").click(event => this.indexManager.updateStatus(event, this.levelId));
@@ -134,52 +128,54 @@ class BaseList {
         this.$tblReport.find(".icon-edit").click(event =>
             this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
 
-        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.levelId - 1, this.reportParam));
+        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.directDownlineRoleId, this.reportParam));
         this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
 
+        this.$('[data-toggle="tooltip"]').tooltip();
+
+        this.$.unblockUI();
+    };
+
+    bindingAddNewDirectDownlineButton(rs) {
+        const { SearchAccountId, SearchAccountStatus, Username, DownlineUsername} = rs;
         const buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
-        if (rs.SearchAccountId > 0 && parseInt(rs.SearchAccountStatus) === siteInfrastructure.customerStatus.active) {
+        if (SearchAccountId > 0 && SearchAccountStatus === siteInfrastructure.customerStatus.active) {
+            buttonAddNew.attr("cust-id", SearchAccountId);
+            buttonAddNew.attr("username", Username);
+            buttonAddNew.attr("downline-username", DownlineUsername);
             buttonAddNew.removeAttr("disabled");
             buttonAddNew.click(event => this.indexManager.addNewDownline(event, this.levelId, this.reportParam, this.$(event.currentTarget).attr("downline-username")));
         }
         else {
             buttonAddNew.attr("disabled", "disabled");
         }
+    }
 
+    renderPaging(totalCustomers: number) {
         const pageIndex = `PageIndex${this.levelName}`, pageSize = `PageSize${this.levelName}`;
         this.$tblReport.find("> tfoot").empty();
         this.$(`#${pageIndex}`).remove();
         this.$(`#${pageSize}`).remove();
 
         const pagerElement = this.$(`#pager-${this.levelNameLowerCase}`);
-        if (rs.TotalCustomers >= this.minPageSize && pagerElement.length > 0) {
+        if (totalCustomers >= this.minPageSize && pagerElement.length > 0) {
             var footer = `<div id='report-pager-${this.levelNameLowerCase}'` +
                 `data-labelpage='${this.viewResources.Page}'` +
                 `data-labelof='${this.viewResources.Of}'` +
                 `data-labeldisplayitems='${this.viewResources.Pager_DisplayItems}'` +
                 `data-pageindex='${this.reportParam.PageIndex}'` +
                 `data-pagesize='${this.reportParam.PageSize}'` +
-                `data-totalrecords='${rs.TotalCustomers}'></div>`;
+                `data-totalrecords='${totalCustomers}'></div>`;
 
             pagerElement.html(footer);
             this.pager.render(new PagerOption(this.pagingList, `report-pager-${this.levelNameLowerCase}`, `form-${this.levelNameLowerCase}`, pageIndex, pageSize));
         } else {
             pagerElement.html("");
         }
-
-        this.bootstrapDropdownComponent.render(new BootstrapDropdownOption(".tbl-downlinelist .dropdown"));
-
-        this.initTooltip();
-        this.$.unblockUI();
-    };
+    }
 
     renderCustomerList(rs: any) {
-        if (rs.SearchAccountId > 0) {
-            var buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
-            buttonAddNew.attr("cust-id", rs.SearchAccountId);
-            buttonAddNew.attr("username", rs.Username);
-            buttonAddNew.attr("downline-username", rs.DownlineUsername);
-        }
+        this.bindingAddNewDirectDownlineButton(rs);
 
         if (!rs.Customers) {
             return;
@@ -191,12 +187,14 @@ class BaseList {
             this.customerListHelper.buildBody(rs, !this.indexManager.isDevice, this.viewerStatusId, this.levelId, this.reportParam)
         );
         this.$(window).trigger('resize.stickyTableHeaders');
-        this.bindReportEvents(rs);
+
+        this.bindReportEvents();
+        this.renderPaging(rs.TotalCustomers);
     };
 
-    reloadState(reportParam: ReportParam) {
+    reloadPage(reportParam: ReportParam) {
         const { Username, PageSize, PageIndex, DownlineUsername } = reportParam;
-        if (this.levelId < this.indexManager.ActorLevel - 1) {
+        if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline.val(DownlineUsername);
         }
 
@@ -207,41 +205,36 @@ class BaseList {
         this.viewList();
     };
 
-    viewDownlines = (event: any) => {
+    viewDownlines(event: any) {
         const $this = this.$(event.currentTarget),
             custId = parseInt($this.attr("cust-id")),
             username = this.indexManager.isDevice ? $this.attr("username") : $this.html();
 
-        this.$(`.lnk-changetab[level='${this.levelId - 1}']`).click();
+        this.$(`.lnk-changetab[level='${this.directDownlineRoleId}']`).click();
 
         this.$downlineObject.$viewedDirectUpline.val(username);
         this.$downlineObject.$username.val("");
 
-        this.reportParam.PageIndex = 1;
-        this.reportParam.PageSize = 100;
-        this.reportParam.CustId = custId;
-        this.reportParam.Username = username;
+        this.$downlineObject.reportParam.PageIndex = 1;
+        this.$downlineObject.reportParam.PageSize = 100;
+        this.$downlineObject.reportParam.CustId = custId;
+        this.$downlineObject.reportParam.Username = username;
 
-        this.statusComponent.changeSelection(this.reportParam.Status);
+        this.$downlineObject.statusComponent.changeSelection(this.reportParam.Status);
         this.$downlineObject.viewList();
     };
 
     viewList() {
         this.$.blockUI();
-        this.reportParam.DownlineUsername =
-            this.levelId === this.indexManager.ActorLevel - 1 ? null : this.$viewedDirectUpline.val();
-
+        this.reportParam.DownlineUsername = this.isIndirectDownlineOfActor ? this.$viewedDirectUpline.val() : null;
         this.reportParam.Username = this.$username.val();
         this.reportParam.SearchRoleId = this.levelId;
         this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
 
-        if (this.levelId < this.indexManager.ActorLevel - 1) {
-            const directDownline = parseInt(<string>this.$("#directDownline").val()),
-                $err = this.$(`#msg-err-${this.levelNameLowerCase}`),
-                { DownlineUsername } = this.reportParam;
+        if (this.isIndirectDownlineOfActor) {
+            const $err = this.$(`#msg-err-${this.levelNameLowerCase}`), { DownlineUsername } = this.reportParam;
 
-            if (directDownline != this.levelId &&
-                (DownlineUsername == "" || DownlineUsername == undefined)) {
+            if (DownlineUsername == "" || DownlineUsername == undefined) {
                 $err.removeClass("display-none");
                 this.$.unblockUI();
                 return;
