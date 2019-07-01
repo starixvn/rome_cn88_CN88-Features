@@ -11,15 +11,12 @@ class CustomerListHelper {
     }
 
     getStatusName(status: number) {
+        const { active, viewOnly, suspended, inactive } = siteInfrastructure.customerStatus;
         switch (status) {
-            case siteInfrastructure.customerStatus.active:
-                return this.viewResources.Active;
-            case siteInfrastructure.customerStatus.viewOnly:
-                return this.viewResources.ViewOnly;
-            case siteInfrastructure.customerStatus.suspended:
-                return this.viewResources.Suspended;
-            case siteInfrastructure.customerStatus.inactive:
-                return this.viewResources.Inactive;
+            case active: return this.viewResources.Active;
+            case viewOnly: return this.viewResources.ViewOnly;
+            case suspended: return this.viewResources.Suspended;
+            case inactive: return this.viewResources.Inactive;
             default: return '';
         }
     };
@@ -27,12 +24,7 @@ class CustomerListHelper {
     private buildCommonAttributesJson = (CustId: any, Username: string) =>
         [{ Name: 'cust-id', Value: CustId }, { Name: 'username', Value: Username }];
 
-    private buildActionAttributeJson(
-        levelId: number,
-        isActivedViewer: boolean,
-        isMember: boolean,
-        status: number,
-        closed: boolean) {
+    private buildActionAttributeJson( levelId: number, isActivedViewer: boolean, isMember: boolean, status: number, closed: boolean) {
         return {
             Password: {
                 Attributes: [{ Name: 'class', Value: 'icon-pass' }, { Name: 'cust-role', Value: levelId.toString() }],
@@ -223,7 +215,7 @@ class CustomerListHelper {
                 Content: isDesktop ?
                     this.buildActionColumnOnDesktop(customer, viewerStatusId, levelId) :
                     this.buildActionColumnOnMobile(customer, viewerStatusId, levelId),
-                Attributes: [{ Name: 'class', Value: 'col-action text-left' }],
+                Attributes: [{ Name: 'class', Value: `col-action ${isDesktop ? 'text-left' : 'text-center'}` }],
                 Visibile: true
             }
         ];

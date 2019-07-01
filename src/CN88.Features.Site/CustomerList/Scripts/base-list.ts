@@ -99,7 +99,21 @@ class BaseList {
         }
     };
 
-    loadData() {
+    loadData = () => {
+        const downlineUsername = this.isIndirectDownlineOfActor ? this.$viewedDirectUpline.val() : null,
+            pagerContent = this.$(`#report-pager-${this.levelNameLowerCase}`).html(),
+            existedPager = pagerContent !== '' && pagerContent !== undefined;
+
+        this.reportParam.DownlineUsername = downlineUsername;
+        this.reportParam.Username = this.$username.val();
+        this.reportParam.SearchRoleId = this.levelId;
+        this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
+
+        if (existedPager) {
+            this.reportParam.PageIndex = this.$(`#PageIndex${this.levelName}`).val();
+            this.reportParam.PageSize = this.$(`#PageSize${this.levelName}`).val();
+        }
+
         this.$.ajax({
             method: "GET",
             data: this.reportParam,
@@ -111,20 +125,14 @@ class BaseList {
         });
     }
 
-    pagingList() {
-        this.reportParam.PageIndex = this.$(`#PageIndex${this.levelName}`).val();
-        this.reportParam.PageSize = this.$(`#PageSize${this.levelName}`).val();
-        this.loadData();
-    };
-
     bindReportEvents() {
         this.$tblReport.find(".view-statement").click(event => this.indexManager.viewStatement(event));
         this.$tblReport.find(".view-downline").click(event => this.viewDownlines(event));
         this.$tblReport.find(".col-credit").click(event => this.indexManager.updateCredit(event, this.levelId));
         this.$tblReport.find(".col-status").click(event => this.indexManager.updateStatus(event, this.levelId));
+
         this.$tblReport.find(".icon-pass").click(event => this.indexManager.resetPassword(event));
         this.$tblReport.find(".icon-security").click(event => this.indexManager.resetSecurityCode(event));
-
         this.$tblReport.find(".icon-edit").click(event =>
             this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
 
@@ -132,8 +140,6 @@ class BaseList {
         this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
 
         this.$('[data-toggle="tooltip"]').tooltip();
-
-        this.$.unblockUI();
     };
 
     bindingAddNewDirectDownlineButton(rs) {
@@ -168,7 +174,7 @@ class BaseList {
                 `data-totalrecords='${totalCustomers}'></div>`;
 
             pagerElement.html(footer);
-            this.pager.render(new PagerOption(this.pagingList, `report-pager-${this.levelNameLowerCase}`, `form-${this.levelNameLowerCase}`, pageIndex, pageSize));
+            this.pager.render(new PagerOption(this.loadData, `report-pager-${this.levelNameLowerCase}`, `form-${this.levelNameLowerCase}`, pageIndex, pageSize));
         } else {
             pagerElement.html("");
         }
@@ -213,12 +219,11 @@ class BaseList {
         this.$(`.lnk-changetab[level='${this.directDownlineRoleId}']`).click();
 
         this.$downlineObject.$viewedDirectUpline.val(username);
-        this.$downlineObject.$username.val("");
+        this.$downlineObject.$username.val('');
 
         this.$downlineObject.reportParam.PageIndex = 1;
         this.$downlineObject.reportParam.PageSize = 100;
         this.$downlineObject.reportParam.CustId = custId;
-        this.$downlineObject.reportParam.Username = username;
 
         this.$downlineObject.statusComponent.changeSelection(this.reportParam.Status);
         this.$downlineObject.viewList();
@@ -226,15 +231,15 @@ class BaseList {
 
     viewList() {
         this.$.blockUI();
-        this.reportParam.DownlineUsername = this.isIndirectDownlineOfActor ? this.$viewedDirectUpline.val() : null;
-        this.reportParam.Username = this.$username.val();
-        this.reportParam.SearchRoleId = this.levelId;
-        this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
+
+        if (this.indexManager.isDevice) {
+            this.toggleHandler.hideFilter();
+        }
 
         if (this.isIndirectDownlineOfActor) {
-            const $err = this.$(`#msg-err-${this.levelNameLowerCase}`), { DownlineUsername } = this.reportParam;
-
-            if (DownlineUsername == "" || DownlineUsername == undefined) {
+            const $err = this.$(`#msg-err-${this.levelNameLowerCase}`);
+            const downlineUsername = this.isIndirectDownlineOfActor ? this.$viewedDirectUpline.val() : null;
+            if (downlineUsername === '' || downlineUsername === undefined) {
                 $err.removeClass("display-none");
                 this.$.unblockUI();
                 return;
@@ -243,10 +248,7 @@ class BaseList {
             $err.addClass("display-none");
         }
 
-        if (this.indexManager.isDevice) {
-            this.toggleHandler.hideFilter();
-        }
-
         this.loadData();
+        this.$.unblockUI();
     }
 }

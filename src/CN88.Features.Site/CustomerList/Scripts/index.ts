@@ -35,33 +35,30 @@ class CustomerList {
         this.numeral = numeral;
         this.viewResources = viewResources === null ? new ViewResources($) : viewResources;
         this.securityCodeChecker = securityCodeChecker === null ? new SecurityCodeChecker($, top) : securityCodeChecker;
-
-        this.masterList = new BaseList($, topWindow, numeral, siteInfrastructure.roleId.master, "Master");
-        this.agentList = new BaseList($, topWindow, numeral, siteInfrastructure.roleId.agent, "Agent");
-        this.memberList = new BaseList($, topWindow, numeral, siteInfrastructure.roleId.member, "Member");
     }
 
-    init = () => {
+    init() {
         this.cacheDOMElements();
         this.topWindow.popupManager.init(this.$, this.topWindow);
 
-        this.masterList.init(this, this.agentList);
-        this.agentList.init(this, this.memberList);
+        this.memberList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.member, "Member");
         this.memberList.init(this, null);
+
+        if (this.ActorLevel >= siteInfrastructure.roleId.master) {
+            this.agentList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.agent, "Agent");
+            this.agentList.init(this, this.memberList);
+        }
+
+        if (this.ActorLevel === siteInfrastructure.roleId.super) {
+            this.masterList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.master, "Master");
+            this.masterList.init(this, this.agentList);
+        }
 
         const directDownline = this.$("#directDownline").val();
         this.$navTabs.find(`li[level='${directDownline}']`).addClass("active");
         this.$(`.tab-content[level='${directDownline}']`).removeClass("display-none");
 
-        let self = this;
-        this.$(".lnk-changetab").click(function () {
-            let $this = self.$(this);
-            self.$navTabs.find("> li").removeClass("active");
-            $this.addClass("active");
-
-            self.$(".tab-content").addClass("display-none");
-            self.$(`.tab-content[level='${$this.attr("level")}']`).removeClass("display-none");
-        });
+        this.$(".lnk-changetab").click(event => this.changeTab(event));
 
         this.$(".form-inline").bind("keypress", function (e) {
             if (e.keyCode == 13) {
@@ -109,7 +106,6 @@ class CustomerList {
         this.$navTabs = this.$("#nav-tabs");
 
         this.AccessDenyPage = this.$("#AccessDenyPage").val();
-
         this.AccountManagementEditView = this.$("#AccountManagementEditView").val() === "1";
         this.Language = this.$("#Language").val();
         this.ViewerId = parseInt(this.$("#ViewerId").val());
@@ -126,6 +122,16 @@ class CustomerList {
             PageIndex: 1
         };
     };
+
+    changeTab(event: any) {
+        const $this = this.$(event.currentTarget);
+
+        this.$navTabs.find("> li").removeClass("active");
+        $this.addClass("active");
+
+        this.$(".tab-content").addClass("display-none");
+        this.$(`.tab-content[level='${$this.attr("level")}']`).removeClass("display-none");
+    }
 
     viewStatement(event: any) {
         const $this = this.$(event.currentTarget),
@@ -239,6 +245,7 @@ class CustomerList {
             username = $this.attr("username"),
             custId = parseInt($this.attr("cust-id")),
             mainiFrame: JQuery = this.topWindow.$("#main");
+
         if (this.AccountManagementEditView) {
             reportParam.CustId = custId;
             reportParam.Username = username;
