@@ -76,5 +76,8 @@
 
         public bool CanDoAddOrUpdateAction
             => ViewerStatusId == CustomerStatus.Active && AccountManagementEditView;
+
+        public bool IsShowEditSettingLink
+            => ViewerStatusId == CustomerStatus.Active;
     }
 }

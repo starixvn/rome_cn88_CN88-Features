@@ -34,8 +34,9 @@ class BaseList {
     directDownlineRoleId: number;
 
     minPageSize: number = 10;
-    viewerStatusId: number;
     customerListHelper: CustomerListHelper;
+    canDoAddOrUpdateAction: boolean;
+    isShowEditSettingLink: boolean;
 
     constructor(
         $: JQueryStatic,
@@ -43,6 +44,8 @@ class BaseList {
         numeral: any,
         levelId: number,
         levelName: string,
+        canDoAddOrUpdateAction: boolean,
+        isShowEditSettingLink: boolean,
         toggleHandler: ToggleHandler = null,
         pager: PagerComponent = null,
         bootstrapDropdownComponent: BootstrapDropdownComponent = null,
@@ -58,6 +61,8 @@ class BaseList {
         this.levelName = levelName;
         this.levelNameLowerCase = levelName.toLowerCase();
         this.levelId = levelId;
+        this.canDoAddOrUpdateAction = canDoAddOrUpdateAction;
+        this.isShowEditSettingLink = isShowEditSettingLink;
     }
 
     public init(indexManager: CustomerList, downlineObject: BaseList) {
@@ -92,7 +97,6 @@ class BaseList {
         this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
         this.$tblReport = this.$(`#tbl-${this.levelNameLowerCase}`);
         this.$formReport = this.$(`#form-${this.levelNameLowerCase}`);
-        this.viewerStatusId = parseInt(this.$("#ViewerStatusId").val());
 
         if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline = this.$(`#txt-viewed-${this.levelId === siteInfrastructure.roleId.agent ? 'master' : 'agent'}`);
@@ -190,7 +194,7 @@ class BaseList {
         this.$tblReport.removeClass("display-none");
 
         this.$tblReport.find("> tbody").empty().html(
-            this.customerListHelper.buildBody(rs, !this.indexManager.isDevice, this.viewerStatusId, this.levelId, this.reportParam)
+            this.customerListHelper.buildBody(rs, !this.indexManager.isDevice, this.canDoAddOrUpdateAction, this.levelId, this.reportParam, this.isShowEditSettingLink)
         );
         this.$(window).trigger('resize.stickyTableHeaders');
 

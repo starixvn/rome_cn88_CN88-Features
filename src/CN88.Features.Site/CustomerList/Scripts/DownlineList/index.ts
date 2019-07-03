@@ -23,6 +23,8 @@ class CustomerList {
     Language: string;
     ViewerId: number;
     ActorLevel: number;
+    canDoAddOrUpdateAction: boolean;
+    isShowEditSettingLink: boolean;
 
     constructor(
         $: JQueryStatic,
@@ -41,16 +43,16 @@ class CustomerList {
         this.cacheDOMElements();
         this.topWindow.popupManager.init(this.$, this.topWindow);
 
-        this.memberList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.member, "Member");
+        this.memberList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.member, "Member", this.canDoAddOrUpdateAction, this.isShowEditSettingLink);
         this.memberList.init(this, null);
 
         if (this.ActorLevel >= siteInfrastructure.roleId.master) {
-            this.agentList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.agent, "Agent");
+            this.agentList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.agent, "Agent", this.canDoAddOrUpdateAction, this.isShowEditSettingLink);
             this.agentList.init(this, this.memberList);
         }
 
         if (this.ActorLevel === siteInfrastructure.roleId.super) {
-            this.masterList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.master, "Master");
+            this.masterList = new BaseList(this.$, this.topWindow, numeral, siteInfrastructure.roleId.master, "Master", this.canDoAddOrUpdateAction, this.isShowEditSettingLink);
             this.masterList.init(this, this.agentList);
         }
 
@@ -121,6 +123,9 @@ class CustomerList {
             PageSize: parseInt(<string>this.$("#PageSize").val()),
             PageIndex: 1
         };
+
+        this.canDoAddOrUpdateAction = this.$("#CanDoAddOrUpdateAction").val() === "1";
+        this.isShowEditSettingLink = this.$("#IsShowEditSettingLink").val() === "1";
     };
 
     changeTab(event: any) {
@@ -189,6 +194,7 @@ class CustomerList {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
+        this.topWindow.showCN88SaveButton = this.canDoAddOrUpdateAction;
 
         const editCustomerLink = this.$("#EditCustomerLink").val();
         window.location.href = editCustomerLink + "?" + this.$.param({
@@ -255,6 +261,7 @@ class CustomerList {
             this.storeCurrentPage(reportParam);
             this.topWindow.showCN88CancelButton = true;
             this.topWindow.showCN88SaveAndNewButton = true;
+            this.topWindow.showCN88SaveButton = true;
 
             const createCustomerLink = this.$("#CreateCustomerLink").val();
             mainiFrame.show();
@@ -289,6 +296,8 @@ class CustomerList {
     };
 };
 
+const customerList = new CustomerList($, numeral, window.top);
+
 $(() => {
-    new CustomerList($, numeral,  window.top).init();
+    customerList.init();
 });
