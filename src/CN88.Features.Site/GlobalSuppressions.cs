@@ -71,3 +71,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "<Pending>", Scope = "member", Target = "~M:CN88.Features.Site.Shared.Controllers.FeatureBaseController.BuildErrorResult(System.String)~CN88.Features.Models.Result")]
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2148:Underscores should be used to make large numbers readable", Justification = "<Pending>", Scope = "member", Target = "~F:CN88.Features.Site.BetLists.Requests.TotalBetParlayQuery.maxStakeLimit")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "member", Target = "~M:CN88.Features.Site.BetLists.ViewModels.ParlaySubTicketsViewModel.#ctor(CN88.Features.Site.BetLists.Requests.GetParlaySubTicketsQuery,CN88.Features.BetLists.Models.BetListData,CN88.BetList.Core.Builders.IBetListCN88HtmlBuilder,Fanex.BetList.Core.Builder.IBetListHTMLBuilder,Fanex.BetList.Core.Entities.ITicketHelper,CN88.Features.Shared.Services.CacheRefService)")]

@@ -8,11 +8,6 @@
         public CreateCustomerQuery(IUser viewer)
             : base(viewer)
         {
-            AccountManagementEditView = viewer.AccountManagementEditView;
         }
-
-        public bool AccountManagementEditView { get; }
-
-
     }
 }
