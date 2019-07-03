@@ -194,7 +194,6 @@ class CustomerList {
         this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
-        this.topWindow.showCN88SaveButton = this.canDoAddOrUpdateAction;
 
         const editCustomerLink = this.$("#EditCustomerLink").val();
         window.location.href = editCustomerLink + "?" + this.$.param({
@@ -261,7 +260,6 @@ class CustomerList {
             this.storeCurrentPage(reportParam);
             this.topWindow.showCN88CancelButton = true;
             this.topWindow.showCN88SaveAndNewButton = true;
-            this.topWindow.showCN88SaveButton = true;
 
             const createCustomerLink = this.$("#CreateCustomerLink").val();
             mainiFrame.show();
