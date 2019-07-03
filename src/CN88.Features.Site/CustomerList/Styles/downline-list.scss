@@ -47,6 +47,10 @@ body {
 
     .col-action {
         width: 200px;
+
+        [class^="icon"]:first-child {
+            margin-left: 0;
+        }
     }
 
     .col-status {
@@ -73,10 +77,6 @@ body {
     color: #494949;
     font-size: 17px;
     margin: 0 9px;
-}
-
-.icon-pass {
-    margin-left: 0;
 }
 
 .icon-edit {
