@@ -63,6 +63,7 @@
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
 @Html.Hidden("AccessDenyPage", Model.AccessDenyPage)
 @Html.Hidden("ViewerStatusId", Model.ViewerStatusId)
+@Html.Hidden("CanDoAddOrUpdateAction", Model.CanDoAddOrUpdateAction ? 1 : 0)
 
 @Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
 @Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
@@ -139,7 +140,7 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
     {
         <div class="filter-mobile">
             <span class="icon-filter-down" id="@($"{levelName}-filter-toggle-icon")"></span>
-            @if (Model.IsShowAddNewButton())
+            @if (Model.CanDoAddOrUpdateAction)
             {
                 @RenderAddNewButton(levelName, submitButtonLabel)
             }
@@ -178,7 +179,7 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
                 <div id="@($"msg-err-{levelName}")" class="msg msg-error display-none">@requiredHint</div>
             }
 
-            @if (Model.IsNotPhone && Model.IsShowAddNewButton())
+            @if (Model.IsNotPhone && Model.CanDoAddOrUpdateAction)
             {
                 @RenderAddNewButton(levelName, submitButtonLabel)
             }

@@ -24,38 +24,42 @@ class CustomerListHelper {
     private buildCommonAttributesJson = (CustId: any, Username: string) =>
         [{ Name: 'cust-id', Value: CustId }, { Name: 'username', Value: Username }];
 
-    private buildActionAttributeJson( levelId: number, isActivedViewer: boolean, isMember: boolean, status: number, closed: boolean) {
+    private buildActionAttributeJson(
+        levelId: number,
+        canDoAddOrUpdateAction: boolean,
+        isMember: boolean,
+        status: number,
+        closed: boolean) {
         return {
             Password: {
                 Attributes: [{ Name: 'class', Value: 'icon-pass' }, { Name: 'cust-role', Value: levelId.toString() }],
-                Visibile: isActivedViewer
+                Visibile: canDoAddOrUpdateAction
             },
             Security: {
                 Attributes: [{ Name: 'class', Value: 'icon-security' }],
-                Visibile: isActivedViewer && !isMember
+                Visibile: canDoAddOrUpdateAction && !isMember
             },
             EditAccount: {
                 Attributes: [{ Name: 'class', Value: 'icon-edit' }],
-                Visibile: isActivedViewer
+                Visibile: canDoAddOrUpdateAction
             },
             AddAccount: {
                 Attributes: [{ Name: 'class', Value: 'icon-add' }],
-                Visibile: isActivedViewer && status === siteInfrastructure.customerStatus.active && !isMember
+                Visibile: canDoAddOrUpdateAction && status === siteInfrastructure.customerStatus.active && !isMember
             },
             UnlockAccount: {
                 Attributes: [{ Name: 'class', Value: 'icon-unlock' }],
-                Visibile: isActivedViewer && closed
+                Visibile: canDoAddOrUpdateAction && closed
             }
         };
     }
 
-    private buildActionColumnOnDesktop(customer: any, viewerStatusId: number, levelId: number) {
+    private buildActionColumnOnDesktop(customer: any, canDoAddOrUpdateAction: boolean, levelId: number) {
         const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
-            isActivedViewer = viewerStatusId === siteInfrastructure.customerStatus.active,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
-        const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed),
+        const actionAttributeJson = this.buildActionAttributeJson(levelId, canDoAddOrUpdateAction, isMember, Status, Closed),
             { Password, Security, EditAccount, AddAccount, UnlockAccount } = actionAttributeJson;
 
         const actionsJson = [
@@ -103,16 +107,15 @@ class CustomerListHelper {
         return columnContent;
     }
 
-    private buildActionColumnOnMobile(customer: any, viewerStatusId: number, levelId: number) {
+    private buildActionColumnOnMobile(customer: any, canDoAddOrUpdateAction: boolean, levelId: number) {
         const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
             { active } = siteInfrastructure.customerStatus,
-            isActivedViewer = viewerStatusId === active,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
-        if (!isActivedViewer) {
-            return emptyContent;
-        }
+        //if (!canDoAddOrUpdateAction) {
+        //    return emptyContent;
+        //}
 
         const anchorWrapper = new AnchorWrapper(
             new SpanWrapper(emptyContent, [new Attribute('class', `${Closed ? 'icon-user-unlock' : 'icon-more-action'}`)]).ToString(),
@@ -126,7 +129,7 @@ class CustomerListHelper {
             ]
         );
 
-        const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed);
+        const actionAttributeJson = this.buildActionAttributeJson(levelId, canDoAddOrUpdateAction, isMember, Status, Closed);
         const listItemsJson = [
             { ...{ Content: ResetPassword }, ...actionAttributeJson.Password },
             { ...{ Content: ResetSecurityCode }, ...actionAttributeJson.Security },
@@ -161,9 +164,8 @@ class CustomerListHelper {
     private buildNoInfoContent = (colspan: number) =>
         `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
 
-    private buildCoulunAttributesJson(customer: any, isDesktop: boolean, viewerStatusId: number, levelId: number, customerIndex: number) {
+    private buildCoulunAttributesJson(customer: any, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, customerIndex: number) {
         const { member } = siteInfrastructure.roleId, isMember = levelId === member,
-             isActivedViewer = viewerStatusId === siteInfrastructure.customerStatus.active,
             { CustId, Username, Status, Credit, Group, Name, Nickname, CreationDateStr } = customer,
             commonAttributesJson = this.buildCommonAttributesJson(CustId, Username);
 
@@ -195,8 +197,8 @@ class CustomerListHelper {
             },
             {
                 Content: this.numeral(Credit).format("###,0.00"),
-                Attributes: [{ Name: 'class', Value: `text-right ${isActivedViewer ? 'link col-credit' : ''}` }]
-                    .concat(isActivedViewer ? commonAttributesJson : []),
+                Attributes: [{ Name: 'class', Value: `text-right ${canDoAddOrUpdateAction ? 'link col-credit' : ''}` }]
+                    .concat(canDoAddOrUpdateAction ? commonAttributesJson : []),
                 Visibile: true
             },
             {
@@ -206,22 +208,22 @@ class CustomerListHelper {
             },
             {
                 Content: this.getStatusName(Status),
-                Attributes: [{ Name: 'class', Value: `text-center ${isActivedViewer ? 'link col-status' : ''}` }]
-                    .concat(isActivedViewer ?
+                Attributes: [{ Name: 'class', Value: `text-center ${canDoAddOrUpdateAction ? 'link col-status' : ''}` }]
+                    .concat(canDoAddOrUpdateAction ?
                         commonAttributesJson.concat([{ Name: 'current-status', Value: Status }]) : []),
                 Visibile: true
             },
             {
                 Content: isDesktop ?
-                    this.buildActionColumnOnDesktop(customer, viewerStatusId, levelId) :
-                    this.buildActionColumnOnMobile(customer, viewerStatusId, levelId),
+                    this.buildActionColumnOnDesktop(customer, canDoAddOrUpdateAction, levelId) :
+                    this.buildActionColumnOnMobile(customer, canDoAddOrUpdateAction, levelId),
                 Attributes: [{ Name: 'class', Value: `col-action ${isDesktop ? 'text-left' : 'text-center'}` }],
                 Visibile: true
             }
         ];
     }
 
-    public buildBody(rs: any, isDesktop: boolean, viewerStatusId: number, levelId: number, reportParam: any) {
+    public buildBody(rs: any, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, reportParam: any) {
         if (rs.Customers.length == 0) {
             const noInfoColspans = isDesktop ? 9 : 5;
             return this.buildNoInfoContent(levelId === siteInfrastructure.roleId.member ? noInfoColspans : noInfoColspans - 1);
@@ -232,9 +234,9 @@ class CustomerListHelper {
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
             let rowContent = ''
             this.buildCoulunAttributesJson(
-                    rs.Customers[i],
-                    isDesktop,
-                    viewerStatusId,
+                rs.Customers[i],
+                isDesktop,
+                canDoAddOrUpdateAction,
                 levelId,
                 customerIndex).forEach(column => {
                     if (column.Visibile) {

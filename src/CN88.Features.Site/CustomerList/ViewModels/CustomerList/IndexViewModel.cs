@@ -74,7 +74,7 @@
 
         public string VerifySecurityCodeLink => $"{SiteMainPath}/SecurityCode/VerifySecurityCode";
 
-        public bool IsShowAddNewButton()
-            => ViewerStatusId == CustomerStatus.Active;
+        public bool CanDoAddOrUpdateAction
+            => ViewerStatusId == CustomerStatus.Active && AccountManagementEditView;
     }
 }
