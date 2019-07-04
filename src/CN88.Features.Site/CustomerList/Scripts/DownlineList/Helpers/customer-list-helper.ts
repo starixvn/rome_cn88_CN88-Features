@@ -1,4 +1,4 @@
-﻿3/// <reference path="../viewmodel/view-model.ts" />
+﻿/// <reference path="../viewmodel/view-model.ts" />
 /// <reference path="../../../../shared/scripts/components/html-wrapper.ts" />
 
 class CustomerListHelper {
@@ -19,10 +19,11 @@ class CustomerListHelper {
             case inactive: return this.viewResources.Inactive;
             default: return '';
         }
-    };
+    }
 
-    private buildCommonAttributesJson = (CustId: any, Username: string) =>
-        [{ Name: 'cust-id', Value: CustId }, { Name: 'username', Value: Username }];
+    private buildCommonAttributesJson(CustId, Username: string) {
+        return [{ Name: 'cust-id', Value: CustId }, { Name: 'username', Value: Username }];
+    }
 
     private buildActionAttributeJson(
         levelId: number,
@@ -55,8 +56,10 @@ class CustomerListHelper {
         };
     }
 
-    private buildActionColumnOnDesktop(customer: any, canDoAddOrUpdateAction: boolean, levelId: number, isShowEditSettingLink: boolean) {
-        const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
+    private buildActionColumnOnDesktop(customer, canDoAddOrUpdateAction: boolean, levelId: number, isShowEditSettingLink: boolean) {
+        const { agent, member } = siteInfrastructure.roleId,
+            isAgent = levelId === agent,
+            isMember = levelId === member,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
@@ -110,7 +113,6 @@ class CustomerListHelper {
 
     private buildActionColumnOnMobile(customer: any, canDoAddOrUpdateAction: boolean, levelId: number, isShowEditSettingLink: boolean) {
         const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
-            { active } = siteInfrastructure.customerStatus,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
@@ -158,10 +160,11 @@ class CustomerListHelper {
         return new DivWrapper(`${Username}${nickNameDiv.ToString()}${nameDiv.ToString()}`, [new Attribute('class', 'username-wrapper')]).ToString();
     }
 
-    private buildNoInfoContent = (colspan: number) =>
-        `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
+    private buildNoInfoContent(colspan: number) {
+        return `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
+    }
 
-    private buildCoulunAttributesJson(customer: any, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, customerIndex: number, isShowEditSettingLink: boolean) {
+    private buildCoulunAttributesJson(customer, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, customerIndex: number, isShowEditSettingLink: boolean) {
         const { member } = siteInfrastructure.roleId, isMember = levelId === member,
             { CustId, Username, Status, Credit, Group, Name, Nickname, CreationDateStr } = customer,
             commonAttributesJson = this.buildCommonAttributesJson(CustId, Username);
@@ -220,16 +223,18 @@ class CustomerListHelper {
         ];
     }
 
-    public buildBody(rs: any, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, reportParam: any, isShowEditSettingLink: boolean) {
-        if (rs.Customers.length == 0) {
-            const noInfoColspans = isDesktop ? 9 : 5;
+    public buildBody(rs, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, reportParam: any, isShowEditSettingLink: boolean) {
+        if (rs.Customers.length === 0) {
+            const desktopColspans = 9;
+            const mobileColspans = 5;
+            const noInfoColspans = isDesktop ? desktopColspans : mobileColspans;
             return this.buildNoInfoContent(levelId === siteInfrastructure.roleId.member ? noInfoColspans : noInfoColspans - 1);
         }
 
         let customerIndex = reportParam.PageSize * (reportParam.PageIndex - 1) + 1, bodyContent = '';
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            let rowContent = ''
+            let rowContent = '';
             this.buildCoulunAttributesJson(
                 rs.Customers[i],
                 isDesktop,
@@ -248,5 +253,5 @@ class CustomerListHelper {
         }
 
         return bodyContent;
-    };
+    }
 }
