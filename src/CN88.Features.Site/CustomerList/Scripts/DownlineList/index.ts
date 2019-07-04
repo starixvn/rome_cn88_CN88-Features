@@ -12,8 +12,6 @@ class CustomerList {
     $navTabs: JQuery;
     AccessDenyPage: string;
     isDevice: boolean = false;
-
-    //reportParam: ReportParam;
     viewResources: ViewResources;
 
     masterList: BaseList;
@@ -231,10 +229,8 @@ class CustomerList {
             $this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
 
-    addNewDownline = (event: any, custLevelId: any, reportParam: ReportParam) => {
-        const $this = this.$(event.currentTarget),
-            custId = parseInt($this.attr("cust-id")),
-            mainiFrame: JQuery = this.topWindow.$("#main");
+    addNewDownline = (custId: string, custLevelId: any, reportParam: ReportParam) => {
+        const mainiFrame: JQuery = this.topWindow.$("#main");
 
         if (this.AccountManagementEditView) {
             this.storeCurrentPage(reportParam);

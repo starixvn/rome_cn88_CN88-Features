@@ -151,21 +151,18 @@ class BaseList {
         this.$tblReport.find(".icon-pass").click(event => this.indexManager.resetPassword(event));
         this.$tblReport.find(".icon-security").click(event => this.indexManager.resetSecurityCode(event));
         this.$tblReport.find(".icon-edit").click(event => this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
-        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.directDownlineRoleId, this.reportParam));
+        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(this.$(event.currentTarget).attr("cust-id"), this.directDownlineRoleId, this.reportParam));
         this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
 
         this.$('[data-toggle="tooltip"]').tooltip();
     };
 
     bindingAddNewDirectDownlineButton(rs) {
-        const { SearchAccountId, SearchAccountStatus, Username, DownlineUsername} = rs;
+        const { SearchAccountId, SearchAccountStatus} = rs;
         const buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
         if (SearchAccountId > 0 && SearchAccountStatus === siteInfrastructure.customerStatus.active) {
-            buttonAddNew.attr("cust-id", SearchAccountId);
-            buttonAddNew.attr("username", Username);
-            buttonAddNew.attr("downline-username", DownlineUsername);
             buttonAddNew.removeAttr("disabled");
-            buttonAddNew.click(event => this.indexManager.addNewDownline(event, this.levelId, this.reportParam));
+            buttonAddNew.click(() => this.indexManager.addNewDownline(SearchAccountId, this.levelId, this.reportParam));
         }
         else {
             buttonAddNew.attr("disabled", "disabled");
