@@ -216,7 +216,7 @@ new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true
 }
 @helper RenderMobileTab(UserLevel level, string displayName)
 {
-    <li class="lnk-changetab @(IsActiveTab(level) ? "active": string.Empty)" role="presentation">
+    <li @(IsActiveTab(level) ? "class=active" : string.Empty) role="presentation">
         <a id="@($"tab{level.Value}")" data-toggle="tab" href="@($"#tab{level.DisplayName}")">@displayName</a>
     </li>
 }

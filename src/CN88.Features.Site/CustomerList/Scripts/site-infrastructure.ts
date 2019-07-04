@@ -1,7 +1,4 @@
 ﻿"use strict";
-
-declare var numeral: any;
-
 class SiteInfrastructure {
     pageList = [50, 100, 200, 500];
 
