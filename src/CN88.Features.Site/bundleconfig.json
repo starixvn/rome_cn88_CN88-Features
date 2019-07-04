@@ -103,6 +103,7 @@
   {
     "outputFileName": "CustomerList/bundles/scripts/DownlineList/index.js",
     "inputFiles": [
+      "Shared/Scripts/core.js",
       "Shared/scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/filter-toggle.js",
       "Shared/Scripts/components/bootstrap-dropdown.js",

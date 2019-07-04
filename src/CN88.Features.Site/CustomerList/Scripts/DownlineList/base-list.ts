@@ -230,7 +230,7 @@ class BaseList {
             custId = parseInt($this.attr("cust-id")),
             username = this.indexManager.isDevice ? $this.attr("username") : $this.html();
 
-        this.$(`.lnk-changetab[level='${this.directDownlineRoleId}']`).click();
+        this.$(`#tab${this.directDownlineRoleId}`).click();
 
         this.$downlineObject.$viewedDirectUpline.val(username);
         this.$downlineObject.$username.val('');

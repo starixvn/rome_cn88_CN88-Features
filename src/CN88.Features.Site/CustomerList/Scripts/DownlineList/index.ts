@@ -55,20 +55,16 @@ class CustomerList {
         }
 
         const directDownline = this.$("#directDownline").val();
-        this.$navTabs.find(`li[level='${directDownline}']`).addClass("active");
-        this.$(`.tab-content[level='${directDownline}']`).removeClass("display-none");
-
-        this.$(".lnk-changetab").click(event => this.changeTab(event));
 
         this.$(".form-inline").bind("keypress", function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode == cn88Features.keyCode.enter) {
                 return false;
             }
         });
 
         const searchAccountRoleId = parseInt(<string>this.$("#SearchRoleId").val());
         if (searchAccountRoleId > 0) {
-            this.$(`.lnk-changetab[level='${searchAccountRoleId}']`).click();
+            this.$(`#tab${searchAccountRoleId}`).click();
             switch (searchAccountRoleId) {
                 case siteInfrastructure.roleId.master:
                     this.masterList.reloadPage();
@@ -112,16 +108,6 @@ class CustomerList {
         this.isShowEditSettingLink = this.$("#IsShowEditSettingLink").val() === "1";
     };
 
-    changeTab(event: any) {
-        const $this = this.$(event.currentTarget);
-
-        this.$navTabs.find("> li").removeClass("active");
-        $this.addClass("active");
-
-        this.$(".tab-content").addClass("display-none");
-        this.$(`.tab-content[level='${$this.attr("level")}']`).removeClass("display-none");
-    }
-
     viewStatement(event: any) {
         const $this = this.$(event.currentTarget),
             viewStatementUrl = `${$('#viewStatementtUrl').val()}?CustName=${$this.attr('username')}&CustId=${$this.attr('cust-id')}`;
@@ -155,7 +141,7 @@ class CustomerList {
 
     resetPassword(event: any) {
         const $this = this.$(event.currentTarget), username = $this.attr("username"),
-            params = {custId: $this.attr("cust-id"), username, custLevelId: $this.attr("cust-role")},
+            params = { custId: $this.attr("cust-id"), username, custLevelId: $this.attr("cust-role") },
             resetPasswordLink = `${this.$('#ResetPasswordLink').val()}?${this.$.param(params)}`,
             popupTitle: string = `${this.$('#ResetPassword').val()} - ${username}`;
 
@@ -171,7 +157,7 @@ class CustomerList {
     };
 
     openPopup(title: string, url: string, popupCss: string, width: number = 480, height: number = 300) {
-        this.topWindow.popupManager.open({title, url, width, height, popupCss});
+        this.topWindow.popupManager.open({ title, url, width, height, popupCss });
     };
 
     updateAccount(custId: string, custLevelId: number, reportParam: ReportParam) {
@@ -255,7 +241,7 @@ class CustomerList {
 
     storeCurrentPage(reportParam: any) {
         const currentPage = this.$("#CurrentLink").val() + "?" + this.$.param(reportParam);
-        siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
+        cn88Features.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
 
     reloadData = (levelName: string) => {

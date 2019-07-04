@@ -19,28 +19,6 @@ class SiteInfrastructure {
         agent: 2,
         member: 1
     };
-
-    localStorage = {
-        get: (key: string) => {
-            var result = store.enabled ? store.get(key) : $.cookie(key);
-            return result ? JSON.parse(result) : undefined;
-        },
-
-        set: (key: string, value: any) => {
-            var data = JSON.stringify(value);
-            store.enabled ? store.set(key, data) : $.cookie(key, data, this.localStorage.getCookieExpireOptions());
-        },
-
-        check: (key: string): boolean => {
-            return typeof store.get(key) !== 'undefined' || typeof $.cookie(key) !== 'undefined';
-        },
-
-        getCookieExpireOptions: () => {
-            var cookieExpire: any = { expires: 365, path: window.location.pathname };
-
-            return cookieExpire;
-        }
-    };
 }
 
 const siteInfrastructure = new SiteInfrastructure();
