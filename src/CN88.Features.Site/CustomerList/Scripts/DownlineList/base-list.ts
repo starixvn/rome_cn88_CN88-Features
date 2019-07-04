@@ -68,7 +68,7 @@ class BaseList {
     public init(indexManager: CustomerList, downlineObject: BaseList) {
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
-        this.reportParam = { ...indexManager.reportParam };
+        //this.reportParam = { ...indexManager.reportParam };
 
         this.isIndirectDownlineOfActor = this.levelId < this.indexManager.ActorLevel - 1;
         this.directDownlineRoleId = this.levelId - 1;
@@ -98,6 +98,18 @@ class BaseList {
         this.$tblReport = this.$(`#tbl-${this.levelNameLowerCase}`);
         this.$formReport = this.$(`#form-${this.levelNameLowerCase}`);
 
+        this.reportParam = this.isIndirectDownlineOfActor ?
+            new ReportParam() :
+            {
+                DownlineUsername: this.$("#DownlineUsername").val(),
+                Username: <string>this.$("#Username").val(),
+                SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
+                CustId: 0,
+                Status: parseInt(<string>this.$("#Status").val()),
+                PageSize: parseInt(<string>this.$("#PageSize").val()),
+                PageIndex: 1
+            };
+
         if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline = this.$(`#txt-viewed-${this.levelId === siteInfrastructure.roleId.agent ? 'master' : 'agent'}`);
         }
@@ -118,6 +130,8 @@ class BaseList {
             this.reportParam.PageSize = this.$(`#PageSize${this.levelName}`).val();
         }
 
+        localStorage.setItem(`${this.levelName}ReportParam`, JSON.stringify(this.reportParam));
+        console.log(`${this.levelNameLowerCase}: ${JSON.stringify(this.reportParam)}`);
         this.$.ajax({
             method: "GET",
             data: this.reportParam,
@@ -138,9 +152,9 @@ class BaseList {
         this.$tblReport.find(".icon-pass").click(event => this.indexManager.resetPassword(event));
         this.$tblReport.find(".icon-security").click(event => this.indexManager.resetSecurityCode(event));
         this.$tblReport.find(".icon-edit").click(event =>
-            this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
+            this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId));
 
-        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.directDownlineRoleId, this.reportParam));
+        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.directDownlineRoleId));
         this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
 
         this.$('[data-toggle="tooltip"]').tooltip();
@@ -154,7 +168,7 @@ class BaseList {
             buttonAddNew.attr("username", Username);
             buttonAddNew.attr("downline-username", DownlineUsername);
             buttonAddNew.removeAttr("disabled");
-            buttonAddNew.click(event => this.indexManager.addNewDownline(event, this.levelId, this.reportParam, this.$(event.currentTarget).attr("downline-username")));
+            buttonAddNew.click(event => this.indexManager.addNewDownline(event, this.levelId));
         }
         else {
             buttonAddNew.attr("disabled", "disabled");
@@ -203,6 +217,13 @@ class BaseList {
     };
 
     reloadPage() {
+        const reportParamLocalStorage = JSON.parse(localStorage.getItem(`${this.levelName}ReportParam`));
+        if (reportParamLocalStorage !== null && reportParamLocalStorage !== undefined) { 
+            this.reportParam = JSON.parse(localStorage.getItem(`${this.levelName}ReportParam`));
+        }
+
+        console.log(`${this.levelNameLowerCase}: ${JSON.stringify(this.reportParam)}`);
+
         const { Username, PageSize, PageIndex, DownlineUsername } = this.reportParam;
         if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline.val(DownlineUsername);

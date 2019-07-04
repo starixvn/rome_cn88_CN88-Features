@@ -13,7 +13,7 @@ class CustomerList {
     AccessDenyPage: string;
     isDevice: boolean = false;
 
-    reportParam: ReportParam;
+    //reportParam: ReportParam;
     viewResources: ViewResources;
 
     masterList: BaseList;
@@ -68,24 +68,20 @@ class CustomerList {
             }
         });
 
-        if (this.reportParam.SearchRoleId > 0) {
-            this.$(".lnk-changetab[level='" + this.reportParam.SearchRoleId + "']").click();
-            switch (this.reportParam.SearchRoleId) {
+        const searchAccountRoleId = parseInt(<string>this.$("#SearchRoleId").val());
+        if (searchAccountRoleId > 0) {
+            this.$(".lnk-changetab[level='" + searchAccountRoleId + "']").click();
+            switch (searchAccountRoleId) {
                 case siteInfrastructure.roleId.master:
                     this.masterList.reloadPage();
                     break;
                 case siteInfrastructure.roleId.agent:
-                    this.$("#btn-submit-master").click();
+                    this.masterList.reloadPage();
                     this.agentList.reloadPage();
                     break;
                 case siteInfrastructure.roleId.member:
-                    this.$("#btn-submit-master").click();
-
-                    let memberUsername = location.search.split(/[?&]/)[1].split('=')[1];
-                    let agentUsername = memberUsername.substr(0, memberUsername.length - 2);
-                    this.agentList.$viewedDirectUpline.val(agentUsername);
-                    this.$("#btn-submit-agent").click();
-
+                    this.masterList.reloadPage();
+                    this.agentList.reloadPage();
                     this.memberList.reloadPage();
                     break;
             }
@@ -113,16 +109,6 @@ class CustomerList {
         this.ViewerId = parseInt(this.$("#ViewerId").val());
         this.ActorLevel = parseInt(this.$("#ActorLevel").val());
         this.isDevice = this.$("#IsDevice").val() == "1";
-
-        this.reportParam = {
-            DownlineUsername: this.$("#DownlineUsername").val(),
-            Username: <string>this.$("#Username").val(),
-            SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
-            CustId: 0,
-            Status: parseInt(<string>this.$("#Status").val()),
-            PageSize: parseInt(<string>this.$("#PageSize").val()),
-            PageIndex: 1
-        };
 
         this.canDoAddOrUpdateAction = this.$("#CanDoAddOrUpdateAction").val() === "1";
         this.isShowEditSettingLink = this.$("#IsShowEditSettingLink").val() === "1";
@@ -190,8 +176,7 @@ class CustomerList {
         this.topWindow.popupManager.open({title, url, width, height, popupCss});
     };
 
-    updateAccount(custId: string, custLevelId: number, reportParam: ReportParam) {
-        this.storeCurrentPage(reportParam);
+    updateAccount(custId: string, custLevelId: number) {
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
 
@@ -245,19 +230,12 @@ class CustomerList {
             $this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
 
-    addNewDownline = (event: any, custLevelId: any, reportParam: ReportParam, downlineUsername: string = '') => {
+    addNewDownline = (event: any, custLevelId: any) => {
         const $this = this.$(event.currentTarget),
-            username = $this.attr("username"),
             custId = parseInt($this.attr("cust-id")),
             mainiFrame: JQuery = this.topWindow.$("#main");
 
         if (this.AccountManagementEditView) {
-            reportParam.CustId = custId;
-            reportParam.Username = username;
-            reportParam.SearchRoleId = custLevelId;
-            reportParam.DownlineUsername = downlineUsername;
-
-            this.storeCurrentPage(reportParam);
             this.topWindow.showCN88CancelButton = true;
             this.topWindow.showCN88SaveAndNewButton = true;
 
@@ -275,11 +253,6 @@ class CustomerList {
         } else {
             mainiFrame.attr("src", this.AccessDenyPage);
         }
-    };
-
-    storeCurrentPage(reportParam: any) {
-        const currentPage = this.$("#CurrentLink").val() + "?" + this.$.param(reportParam);
-        siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
 
     reloadData = (levelName: string) => {

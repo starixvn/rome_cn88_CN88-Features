@@ -1,4 +1,4 @@
-﻿/// <reference path="../viewmodel/view-model.ts" />
+﻿3/// <reference path="../viewmodel/view-model.ts" />
 /// <reference path="../../../../shared/scripts/components/html-wrapper.ts" />
 
 class CustomerListHelper {
