@@ -176,7 +176,8 @@ class CustomerList {
         this.topWindow.popupManager.open({title, url, width, height, popupCss});
     };
 
-    updateAccount(custId: string, custLevelId: number) {
+    updateAccount(custId: string, custLevelId: number, reportParam: ReportParam) {
+        this.storeCurrentPage(reportParam);
         this.topWindow.showCN88CancelButton = true;
         this.topWindow.showCN88SaveAndNewButton = false;
 
@@ -230,12 +231,13 @@ class CustomerList {
             $this.$(`.icon-unlock[cust-id='${custId}']`).remove();
     };
 
-    addNewDownline = (event: any, custLevelId: any) => {
+    addNewDownline = (event: any, custLevelId: any, reportParam: ReportParam) => {
         const $this = this.$(event.currentTarget),
             custId = parseInt($this.attr("cust-id")),
             mainiFrame: JQuery = this.topWindow.$("#main");
 
         if (this.AccountManagementEditView) {
+            this.storeCurrentPage(reportParam);
             this.topWindow.showCN88CancelButton = true;
             this.topWindow.showCN88SaveAndNewButton = true;
 
@@ -253,6 +255,11 @@ class CustomerList {
         } else {
             mainiFrame.attr("src", this.AccessDenyPage);
         }
+    };
+
+    storeCurrentPage(reportParam: any) {
+        const currentPage = this.$("#CurrentLink").val() + "?" + this.$.param(reportParam);
+        siteInfrastructure.localStorage.set("reloadCN88CustomerListCallBackUrl", { currentPage: currentPage });
     };
 
     reloadData = (levelName: string) => {
