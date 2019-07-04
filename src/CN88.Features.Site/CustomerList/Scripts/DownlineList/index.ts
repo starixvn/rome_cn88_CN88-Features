@@ -70,18 +70,18 @@ class CustomerList {
 
         const searchAccountRoleId = parseInt(<string>this.$("#SearchRoleId").val());
         if (searchAccountRoleId > 0) {
-            this.$(".lnk-changetab[level='" + searchAccountRoleId + "']").click();
+            this.$(`.lnk-changetab[level='${searchAccountRoleId}']`).click();
             switch (searchAccountRoleId) {
                 case siteInfrastructure.roleId.master:
                     this.masterList.reloadPage();
                     break;
                 case siteInfrastructure.roleId.agent:
-                    this.masterList.reloadPage();
+                    this.masterList && this.masterList.reloadPage();
                     this.agentList.reloadPage();
                     break;
                 case siteInfrastructure.roleId.member:
-                    this.masterList.reloadPage();
-                    this.agentList.reloadPage();
+                    this.masterList && this.masterList.reloadPage();
+                    this.agentList && this.agentList.reloadPage();
                     this.memberList.reloadPage();
                     break;
             }
