@@ -103,14 +103,14 @@ class BaseList {
         }
         else {
             this.reportParam = {
-                    DownlineUsername: this.$("#DownlineUsername").val(),
-                    Username: <string>this.$("#Username").val(),
-                    SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
-                    CustId: 0,
-                    Status: parseInt(<string>this.$("#Status").val()),
-                    PageSize: parseInt(<string>this.$("#PageSize").val()),
-                    PageIndex: 1
-                };
+                DownlineUsername: this.$("#DownlineUsername").val(),
+                Username: <string>this.$("#Username").val(),
+                SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
+                CustId: 0,
+                Status: parseInt(<string>this.$("#Status").val()),
+                PageSize: parseInt(<string>this.$("#PageSize").val()),
+                PageIndex: 1
+            };
         }
     };
 
@@ -138,7 +138,8 @@ class BaseList {
             cache: false,
             success: (rs) => {
                 this.renderCustomerList(rs);
-            }
+            },
+            complete: this.$.unblockUI
         });
     }
 
@@ -158,7 +159,7 @@ class BaseList {
     };
 
     bindingAddNewDirectDownlineButton(rs) {
-        const { SearchAccountId, SearchAccountStatus} = rs;
+        const { SearchAccountId, SearchAccountStatus } = rs;
         const buttonAddNew = this.$(`.add-directdownline-${this.levelNameLowerCase}`);
         if (SearchAccountId > 0 && SearchAccountStatus === siteInfrastructure.customerStatus.active) {
             buttonAddNew.removeAttr("disabled");
@@ -212,7 +213,7 @@ class BaseList {
 
     reloadPage() {
         const reportParamLocalStorage = JSON.parse(localStorage.getItem(`${this.levelName}ReportParam`));
-        if (reportParamLocalStorage !== null && reportParamLocalStorage !== undefined) { 
+        if (reportParamLocalStorage !== null && reportParamLocalStorage !== undefined) {
             this.reportParam = JSON.parse(localStorage.getItem(`${this.levelName}ReportParam`));
         }
 
@@ -263,6 +264,5 @@ class BaseList {
         }
 
         this.loadData(false);
-        this.$.unblockUI();
     }
 }
