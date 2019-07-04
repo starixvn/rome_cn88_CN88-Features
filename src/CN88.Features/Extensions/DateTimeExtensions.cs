@@ -30,8 +30,8 @@
         public static string ToLongDateTime24h(this DateTime dateTime)
             => dateTime.ToString(LongDateTime24h);
 
-        public static string ToGlobalShowtime(this DateTime dateTime)
-            => dateTime.ToString(GlobalShowtime);
+        public static string ToGlobalShowtime(this DateTime? dateTime)
+            => dateTime?.ToString(GlobalShowtime);
 
         public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
             => fromDate < limitedDate ? limitedDate : fromDate;
