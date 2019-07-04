@@ -1,8 +1,5 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Alpha.Web.Helpers;
     using CN88.Features.Shared.AppResources;
     using Constants;
@@ -14,6 +11,9 @@
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public abstract class ReportBaseViewModel
     {
@@ -112,7 +112,6 @@
                 new Dictionary<string, object>(routeValues)
                 {
                     ["PageSize"] = reportQuery.PageSize,
-                    ["IsSettlement"] = reportQuery.IsSettlement,
                     ["CustLevelId"] = ReportLevel.GetDirectDownLineLevel().Value,
                     ["IsDescendingSort"] = IsDescendingSort,
                     ["SortPropertyName"] = SortPropertyName
@@ -127,6 +126,7 @@
                 ["FromDate"] = reportQuery.FromDate,
                 ["ToDate"] = reportQuery.ToDate,
                 ["IsOwner"] = false,
+                ["IsSettlement"] = reportQuery.IsSettlement,
                 ["ReportType"] = reportQuery.ReportType,
                 ["UserSelectedSportGroupId"] = reportQuery.UserSelectedSportGroupId,
                 ["UserSelectedBetTypeId"] = reportQuery.UserSelectedBetTypeId,
