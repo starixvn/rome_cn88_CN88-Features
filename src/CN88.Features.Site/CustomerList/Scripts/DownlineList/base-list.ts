@@ -68,7 +68,7 @@ class BaseList {
     public init(indexManager: CustomerList, downlineObject: BaseList) {
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
-        this.reportParam = indexManager.reportParam;
+        this.reportParam = { ...indexManager.reportParam };
 
         this.isIndirectDownlineOfActor = this.levelId < this.indexManager.ActorLevel - 1;
         this.directDownlineRoleId = this.levelId - 1;
@@ -202,8 +202,8 @@ class BaseList {
         this.renderPaging(rs.TotalCustomers);
     };
 
-    reloadPage(reportParam: ReportParam) {
-        const { Username, PageSize, PageIndex, DownlineUsername } = reportParam;
+    reloadPage() {
+        const { Username, PageSize, PageIndex, DownlineUsername } = this.reportParam;
         if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline.val(DownlineUsername);
         }

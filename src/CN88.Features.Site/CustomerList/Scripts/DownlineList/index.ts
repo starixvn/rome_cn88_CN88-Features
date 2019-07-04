@@ -72,11 +72,11 @@ class CustomerList {
             this.$(".lnk-changetab[level='" + this.reportParam.SearchRoleId + "']").click();
             switch (this.reportParam.SearchRoleId) {
                 case siteInfrastructure.roleId.master:
-                    this.masterList.reloadPage(this.reportParam);
+                    this.masterList.reloadPage();
                     break;
                 case siteInfrastructure.roleId.agent:
                     this.$("#btn-submit-master").click();
-                    this.agentList.reloadPage(this.reportParam);
+                    this.agentList.reloadPage();
                     break;
                 case siteInfrastructure.roleId.member:
                     this.$("#btn-submit-master").click();
@@ -86,7 +86,7 @@ class CustomerList {
                     this.agentList.$viewedDirectUpline.val(agentUsername);
                     this.$("#btn-submit-agent").click();
 
-                    this.memberList.reloadPage(this.reportParam);
+                    this.memberList.reloadPage();
                     break;
             }
         } else {
