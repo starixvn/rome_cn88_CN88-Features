@@ -111,7 +111,7 @@ class CustomerListHelper {
         return columnContent;
     }
 
-    private buildActionColumnOnMobile(customer: any, canDoAddOrUpdateAction: boolean, levelId: number, isShowEditSettingLink: boolean) {
+    private buildActionColumnOnMobile(customer, canDoAddOrUpdateAction: boolean, levelId: number, isShowEditSettingLink: boolean) {
         const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
@@ -223,7 +223,7 @@ class CustomerListHelper {
         ];
     }
 
-    public buildBody(rs, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, reportParam: any, isShowEditSettingLink: boolean) {
+    public buildBody(rs, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, reportParam: ReportParam, isShowEditSettingLink: boolean) {
         if (rs.Customers.length === 0) {
             const desktopColspans = 9;
             const mobileColspans = 5;

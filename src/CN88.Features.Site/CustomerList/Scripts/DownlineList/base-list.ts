@@ -5,8 +5,8 @@
 
 class BaseList {
     $: JQueryStatic;
-    topWindow: any;
-    numeral: any;
+    topWindow: Window;
+    numeral: Numeral;
     statusComponent: SingleSelectionDropdownComponent;
     toggleHandler: ToggleHandler;
     pager: PagerComponent;
@@ -33,15 +33,17 @@ class BaseList {
     isIndirectDownlineOfActor: boolean;
     directDownlineRoleId: number;
 
-    minPageSize: number = 10;
+    minPageSize = 10;
+    defaultPageSize = 100;
     customerListHelper: CustomerListHelper;
     canDoAddOrUpdateAction: boolean;
     isShowEditSettingLink: boolean;
+    displayNoneClass = "display-none";
 
     constructor(
         $: JQueryStatic,
-        topWindow: any,
-        numeral: any,
+        topWindow: Window,
+        numeral: Numeral,
         levelId: number,
         levelName: string,
         canDoAddOrUpdateAction: boolean,
@@ -81,7 +83,11 @@ class BaseList {
         this.$tblReport.stickyTableHeaders();
 
         if (this.indexManager.isDevice) {
-            this.toggleHandler.render(new ToggleHandlerOption(`${this.levelNameLowerCase}-filter-toggle-icon`, `form-${this.levelNameLowerCase}`, `${this.levelNameLowerCase}-container`));
+            this.toggleHandler.render(
+                new ToggleHandlerOption(
+                    `${this.levelNameLowerCase}-filter-toggle-icon`,
+                    `form-${this.levelNameLowerCase}`,
+                    `${this.levelNameLowerCase}-container`));
         }
 
         this.$(`#btn-submit-${this.levelNameLowerCase}`).off("click").on("click", () => {
@@ -104,15 +110,15 @@ class BaseList {
         else {
             this.reportParam = {
                 DownlineUsername: this.$("#DownlineUsername").val(),
-                Username: <string>this.$("#Username").val(),
-                SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
+                Username: this.$("#Username").val(),
+                SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
                 CustId: 0,
-                Status: parseInt(<string>this.$("#Status").val()),
-                PageSize: parseInt(<string>this.$("#PageSize").val()),
+                Status: parseInt(this.$("#Status").val()),
+                PageSize: parseInt(this.$("#PageSize").val()),
                 PageIndex: 1
             };
         }
-    };
+    }
 
     loadData = (isPagingClick = true) => {
         const downlineUsername = this.isIndirectDownlineOfActor ? this.$viewedDirectUpline.val() : null,
@@ -122,7 +128,7 @@ class BaseList {
         this.reportParam.DownlineUsername = downlineUsername;
         this.reportParam.Username = this.$username.val();
         this.reportParam.SearchRoleId = this.levelId;
-        this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
+        this.reportParam.Status = parseInt(this.$dropdownStatus.find("option:selected").val());
 
         if (isPagingClick && existedPager) {
             this.reportParam.PageIndex = this.$(`#PageIndex${this.levelName}`).val();
@@ -151,12 +157,14 @@ class BaseList {
 
         this.$tblReport.find(".icon-pass").click(event => this.indexManager.resetPassword(event));
         this.$tblReport.find(".icon-security").click(event => this.indexManager.resetSecurityCode(event));
-        this.$tblReport.find(".icon-edit").click(event => this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
-        this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(this.$(event.currentTarget).attr("cust-id"), this.directDownlineRoleId, this.reportParam));
+        this.$tblReport.find(".icon-edit").click(
+            event => this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
+        this.$tblReport.find(".icon-add").click(
+            event => this.indexManager.addNewDownline(this.$(event.currentTarget).attr("cust-id"), this.directDownlineRoleId, this.reportParam));
         this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
 
         this.$('[data-toggle="tooltip"]').tooltip();
-    };
+    }
 
     bindingAddNewDirectDownlineButton(rs) {
         const { SearchAccountId, SearchAccountStatus } = rs;
@@ -178,7 +186,7 @@ class BaseList {
 
         const pagerElement = this.$(`#pager-${this.levelNameLowerCase}`);
         if (totalCustomers >= this.minPageSize && pagerElement.length > 0) {
-            var footer = `<div id='report-pager-${this.levelNameLowerCase}'` +
+            const footer = `<div id='report-pager-${this.levelNameLowerCase}'` +
                 `data-labelpage='${this.viewResources.Page}'` +
                 `data-labelof='${this.viewResources.Of}'` +
                 `data-labeldisplayitems='${this.viewResources.Pager_DisplayItems}'` +
@@ -193,14 +201,14 @@ class BaseList {
         }
     }
 
-    renderCustomerList(rs: any) {
+    renderCustomerList(rs) {
         this.bindingAddNewDirectDownlineButton(rs);
 
         if (!rs.Customers) {
             return;
         }
 
-        this.$tblReport.removeClass("display-none");
+        this.$tblReport.removeClass(this.displayNoneClass);
 
         this.$tblReport.find("> tbody").empty().html(
             this.customerListHelper.buildBody(rs, !this.indexManager.isDevice, this.canDoAddOrUpdateAction, this.levelId, this.reportParam, this.isShowEditSettingLink)
@@ -209,7 +217,7 @@ class BaseList {
 
         this.bindReportEvents();
         this.renderPaging(rs.TotalCustomers);
-    };
+    }
 
     reloadPage() {
         const reportParamLocalStorage = JSON.parse(localStorage.getItem(`${this.levelName}ReportParam`));
@@ -224,9 +232,9 @@ class BaseList {
         }
 
         this.viewList();
-    };
+    }
 
-    viewDownlines(event: any) {
+    viewDownlines(event) {
         const $this = this.$(event.currentTarget),
             custId = parseInt($this.attr("cust-id")),
             username = this.indexManager.isDevice ? $this.attr("username") : $this.html();
@@ -237,12 +245,12 @@ class BaseList {
         this.$downlineObject.$username.val('');
 
         this.$downlineObject.reportParam.PageIndex = 1;
-        this.$downlineObject.reportParam.PageSize = 100;
+        this.$downlineObject.reportParam.PageSize = this.defaultPageSize;
         this.$downlineObject.reportParam.CustId = custId;
 
         this.$downlineObject.statusComponent.changeSelection(this.reportParam.Status);
         this.$downlineObject.viewList();
-    };
+    }
 
     viewList() {
         this.$.blockUI();
@@ -255,12 +263,12 @@ class BaseList {
             const $err = this.$(`#msg-err-${this.levelNameLowerCase}`);
             const downlineUsername = this.isIndirectDownlineOfActor ? this.$viewedDirectUpline.val() : null;
             if (downlineUsername === '' || downlineUsername === undefined) {
-                $err.removeClass("display-none");
+                $err.removeClass(this.displayNoneClass);
                 this.$.unblockUI();
                 return;
             }
 
-            $err.addClass("display-none");
+            $err.addClass(this.displayNoneClass);
         }
 
         this.loadData(false);

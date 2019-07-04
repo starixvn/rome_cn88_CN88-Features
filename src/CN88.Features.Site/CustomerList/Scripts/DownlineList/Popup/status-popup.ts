@@ -1,7 +1,7 @@
 ﻿class StatusPopup extends PopupBase {
     constructor($: JQueryStatic, topWindow: any) {
         super($, topWindow);
-    };
+    }
 
     init = () => {
         this.registerEvents();
@@ -11,15 +11,15 @@
     registerEvents() {
         super.registerEvents();
         this.$(".btn-submit").bind("click", this.updateStatus);
-    };
+    }
 
     getResource() {
         super.getResource();
         this.resources.ThereIsNoChange = this.$("#ThereIsNoChange").val();
-    };
+    }
 
     updateStatus = () => {
-        let custId = this.$("#CustId").val(),
+        const custId = this.$("#CustId").val(),
             oldStatusId = this.$("#CurrentStatusId").val(),
             newStatusId = this.$("#dropdown-status").val(),
             custLevelName = this.$("#CustLevelName").val(),
@@ -37,9 +37,9 @@
 
         this.submit("UpdateCustomerStatus", data, custLevelName);
     };
-};
+}
 
 $(() => {
-    const statusPopup: any = new StatusPopup($, window.top);
+    const statusPopup = new StatusPopup($, window.top);
     statusPopup.init();
 });

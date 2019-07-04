@@ -1,6 +1,6 @@
 ﻿class PopupBase {
     public $: JQueryStatic;
-    public topWindow: any;
+    public topWindow: Window;
 
     resources = {
         UpdateSuccessfully: '',
@@ -9,27 +9,27 @@
         ThereIsNoChange: ''
     };
 
-    constructor($: JQueryStatic, topWindow: any) {
+    constructor($: JQueryStatic, topWindow: Window) {
         this.$ = $;
         this.topWindow = topWindow;
-    };
+    }
 
     public registerEvents() {
         this.$(".btn-cancel").bind("click", this.closePopup);
-    };
+    }
 
     public getResource() {
         this.resources.UpdateSuccessfully = this.$("#UpdateSuccessfully").val();
-    };
+    }
 
     closePopup = () => {
-        this.topWindow.popupManager.close();
+        this.topWindow["popupManager"].close();
     };
 
-    public submit(url: string, data: any, levelName) {
+    public submit(url: string, data, levelName) {
         this.$.blockUI();
-        const self = this, unauthorizedCode = 403, mainFrame = this.topWindow.main;
-       
+        const unauthorizedCode = 403, mainFrame = this.topWindow["main"];
+
         if (typeof mainFrame.customerList !== "undefined") {
             mainFrame.customerList.reloadData(levelName);
         }
@@ -43,16 +43,16 @@
                 xhr.setRequestHeader("__RequestVerificationToken", $("input[name=\"__RequestVerificationToken\"]").val());
             }
         })
-            .done(function (data) {
-                data.IsSuccess ? self.updateSuccesfully() : self.showFailedMessage(data.Message);
+            .done((data) => {
+                data.IsSuccess ? this.updateSuccesfully() : this.showFailedMessage(data.Message);
             })
-            .fail(function (jqXHR: JQueryXHR) {
+            .fail((jqXHR: JQueryXHR) => {
                 if (jqXHR.status === unauthorizedCode) {
-                    self.showFailedMessage(jqXHR.responseJSON.message);
+                    this.showFailedMessage(jqXHR.responseJSON.message);
                 }
             })
-            .always(function () { self.$.unblockUI(); });
-    };
+            .always(this.$.unblockUI);
+    }
 
     updateSuccesfully() {
         this.showSuccesfullyMessage();
@@ -61,19 +61,19 @@
         setTimeout(() => {
             this.closePopup();
         }, timeoutDefault);
-    };
+    }
 
     showSuccesfullyMessage() {
         this.$("#error-message").html('')
             .text(this.resources.UpdateSuccessfully)
             .removeClass("hidden msg-error")
             .addClass("msg-success");
-    };
+    }
 
     public showFailedMessage(message: any) {
         this.$("#error-message").html('')
             .text(message)
             .removeClass("hidden msg-success")
             .addClass("msg-error");
-    };
-};
+    }
+}

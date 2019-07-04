@@ -1,4 +1,7 @@
 ﻿"use strict";
+interface Window {
+    $: JQueryStatic;
+}
 
 class CN88Features {
     $: JQueryStatic;

@@ -2,17 +2,19 @@
 
 class SecurityCodeChecker {
     $: JQueryStatic;
-    top: any;
+    top: Window;
     verifySecurityCodeUrl: string;
+    needSecurityCode = 999991;
+    bootboxWidth = 350;
 
-    constructor($: JQueryStatic, top: any) {
+    constructor($: JQueryStatic, top: Window) {
         this.$ = $;
         this.top = top;
         this.verifySecurityCodeUrl = $("#VerifySecurityCodeLink").val();
     }
 
-    checkSecurityCode(result: any, options: any): void {
-        if (result.code === 999991) {
+    checkSecurityCode(result, options): void {
+        if (result.code === this.needSecurityCode) {
             this.top[options.url] = () => {
                 this.$.ajax({
                     type: "POST",
@@ -20,10 +22,10 @@ class SecurityCodeChecker {
                     data: options.data,
                     headers: this.setupAntiXSRF(),
                     dataType: "json",
-                    success: result => {
-                        result.IsSuccess ?
+                    success: data => {
+                        data.IsSuccess ?
                             options.onComplete(options.onCompleteParams) :
-                            this.top.popupManager.bootboxAlert(options.alertTitle, result.Message, undefined, 350);
+                            this.top["popupManager"].bootboxAlert(options.alertTitle, data.Message, undefined, this.bootboxWidth);
                     }
                 });
             };
@@ -36,8 +38,8 @@ class SecurityCodeChecker {
     }
 
     showSecCodePopup(preUrl: string): void {
-        this.top.popupManager.init(this.$, this.top);
-        this.top.popupManager.open({
+        this.top["popupManager"].init(this.$, this.top);
+        this.top["popupManager"].open({
             title: "",
             url: this.verifySecurityCodeUrl,
             width: 500,
@@ -46,9 +48,9 @@ class SecurityCodeChecker {
         });
     }
 
-    setupAntiXSRF(): any {
-        let token: string = this.$("input[name=__RequestVerificationToken]").val();
-        let headers: any = {};
+    setupAntiXSRF() {
+        const token: string = this.$("input[name=__RequestVerificationToken]").val();
+        const headers = {};
         headers["__RequestVerificationToken"] = token;
 
         return headers;
