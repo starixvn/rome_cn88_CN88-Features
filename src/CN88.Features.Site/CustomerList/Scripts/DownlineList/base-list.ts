@@ -68,7 +68,6 @@ class BaseList {
     public init(indexManager: CustomerList, downlineObject: BaseList) {
         this.indexManager = indexManager;
         this.viewResources = indexManager.viewResources;
-        //this.reportParam = { ...indexManager.reportParam };
 
         this.isIndirectDownlineOfActor = this.levelId < this.indexManager.ActorLevel - 1;
         this.directDownlineRoleId = this.levelId - 1;
@@ -98,18 +97,6 @@ class BaseList {
         this.$tblReport = this.$(`#tbl-${this.levelNameLowerCase}`);
         this.$formReport = this.$(`#form-${this.levelNameLowerCase}`);
 
-        this.reportParam = this.isIndirectDownlineOfActor ?
-            new ReportParam() :
-            {
-                DownlineUsername: this.$("#DownlineUsername").val(),
-                Username: <string>this.$("#Username").val(),
-                SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
-                CustId: 0,
-                Status: parseInt(<string>this.$("#Status").val()),
-                PageSize: parseInt(<string>this.$("#PageSize").val()),
-                PageIndex: 1
-            };
-
         if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline = this.$(`#txt-viewed-${this.levelId === siteInfrastructure.roleId.agent ? 'master' : 'agent'}`);
             this.reportParam = new ReportParam();
@@ -127,7 +114,7 @@ class BaseList {
         }
     };
 
-    loadData = () => {
+    loadData = (isPagingClick = true) => {
         const downlineUsername = this.isIndirectDownlineOfActor ? this.$viewedDirectUpline.val() : null,
             pagerContent = this.$(`#report-pager-${this.levelNameLowerCase}`).html(),
             existedPager = pagerContent !== '' && pagerContent !== undefined;
@@ -137,7 +124,7 @@ class BaseList {
         this.reportParam.SearchRoleId = this.levelId;
         this.reportParam.Status = <number>this.$dropdownStatus.find("option:selected").val();
 
-        if (existedPager) {
+        if (isPagingClick && existedPager) {
             this.reportParam.PageIndex = this.$(`#PageIndex${this.levelName}`).val();
             this.reportParam.PageSize = this.$(`#PageSize${this.levelName}`).val();
         }
@@ -164,7 +151,6 @@ class BaseList {
         this.$tblReport.find(".icon-pass").click(event => this.indexManager.resetPassword(event));
         this.$tblReport.find(".icon-security").click(event => this.indexManager.resetSecurityCode(event));
         this.$tblReport.find(".icon-edit").click(event => this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId, this.reportParam));
-
         this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.directDownlineRoleId, this.reportParam));
         this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
 
@@ -282,7 +268,7 @@ class BaseList {
             $err.addClass("display-none");
         }
 
-        this.loadData();
+        this.loadData(false);
         this.$.unblockUI();
     }
 }
