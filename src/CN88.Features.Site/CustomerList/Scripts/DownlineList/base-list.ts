@@ -112,6 +112,18 @@ class BaseList {
 
         if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline = this.$(`#txt-viewed-${this.levelId === siteInfrastructure.roleId.agent ? 'master' : 'agent'}`);
+            this.reportParam = new ReportParam();
+        }
+        else {
+            this.reportParam = {
+                    DownlineUsername: this.$("#DownlineUsername").val(),
+                    Username: <string>this.$("#Username").val(),
+                    SearchRoleId: parseInt(<string>this.$("#SearchRoleId").val()),
+                    CustId: 0,
+                    Status: parseInt(<string>this.$("#Status").val()),
+                    PageSize: parseInt(<string>this.$("#PageSize").val()),
+                    PageIndex: 1
+                };
         }
     };
 
@@ -131,7 +143,7 @@ class BaseList {
         }
 
         localStorage.setItem(`${this.levelName}ReportParam`, JSON.stringify(this.reportParam));
-        console.log(`${this.levelNameLowerCase}: ${JSON.stringify(this.reportParam)}`);
+
         this.$.ajax({
             method: "GET",
             data: this.reportParam,
@@ -151,8 +163,7 @@ class BaseList {
 
         this.$tblReport.find(".icon-pass").click(event => this.indexManager.resetPassword(event));
         this.$tblReport.find(".icon-security").click(event => this.indexManager.resetSecurityCode(event));
-        this.$tblReport.find(".icon-edit").click(event =>
-            this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId));
+        this.$tblReport.find(".icon-edit").click(event => this.indexManager.updateAccount(this.$(event.currentTarget).attr("cust-id"), this.levelId));
 
         this.$tblReport.find(".icon-add").click(event => this.indexManager.addNewDownline(event, this.directDownlineRoleId));
         this.$tblReport.find(".icon-unlock").click(event => this.indexManager.updateUnlock(event));
@@ -221,8 +232,6 @@ class BaseList {
         if (reportParamLocalStorage !== null && reportParamLocalStorage !== undefined) { 
             this.reportParam = JSON.parse(localStorage.getItem(`${this.levelName}ReportParam`));
         }
-
-        console.log(`${this.levelNameLowerCase}: ${JSON.stringify(this.reportParam)}`);
 
         const { Username, PageSize, PageIndex, DownlineUsername } = this.reportParam;
         if (this.isIndirectDownlineOfActor) {
