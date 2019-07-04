@@ -229,7 +229,7 @@
     <value>主页</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>昵称</value>
+    <value>登入账号</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密码</value>

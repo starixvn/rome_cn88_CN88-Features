@@ -229,8 +229,8 @@
   <data name="HeadlineStockPercent" xml:space="preserve">
     <value>Headline Stock %</value>
   </data>
-  <data name="ProfitMagin" xml:space="preserve">
-    <value>Profit Magin</value>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>Profit Margin</value>
   </data>
   <data name="Stake" xml:space="preserve">
     <value>Stake</value>

@@ -205,8 +205,8 @@
   <data name="SMAStockPercent" xml:space="preserve">
     <value>股东实货量(%)</value>
   </data>
-  <data name="ProfitMagin" xml:space="preserve">
-    <value>毛利</value>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>获利率</value>
   </data>
   <data name="SMA" xml:space="preserve">
     <value>股东</value>
@@ -248,7 +248,7 @@
     <value>日期已变更</value>
   </data>
   <data name="MemberIncome" xml:space="preserve">
-    <value>会员收入</value>
+    <value>会员</value>
   </data>
   <data name="SMAIncome" xml:space="preserve">
     <value>股东收入</value>

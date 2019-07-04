@@ -208,7 +208,7 @@
     <value>投注類別</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>暱稱</value>
+    <value>登入賬號</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密碼</value>
