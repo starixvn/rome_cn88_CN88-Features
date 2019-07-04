@@ -216,14 +216,11 @@ class BaseList {
             this.reportParam = JSON.parse(localStorage.getItem(`${this.levelName}ReportParam`));
         }
 
-        const { Username, PageSize, PageIndex, DownlineUsername } = this.reportParam;
+        const { Username, DownlineUsername } = this.reportParam;
+        this.$username.val(Username);
         if (this.isIndirectDownlineOfActor) {
             this.$viewedDirectUpline.val(DownlineUsername);
         }
-
-        this.$username.val(Username);
-        this.$(`#PageIndex${this.levelName}`).val(PageIndex);
-        this.$(`#PageSize${this.levelName}`).val(PageSize);
 
         this.viewList();
     };
