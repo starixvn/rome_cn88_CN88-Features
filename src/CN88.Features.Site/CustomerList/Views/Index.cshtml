@@ -140,7 +140,7 @@
                 <select id="@($"dropdown-status-{levelName}")" class="control">
                     @foreach (var option in CustomerStatus.Statuses)
                     {
-                        <option value="@option.Value" @(Model.Status == option.Key ? "selected='selected'" : "")>@CustomerListResources.ResourceManager.GetString(option.Value)</option>
+                        <option value="@option.Key" @(Model.Status == option.Key ? "selected='selected'" : "")>@CustomerListResources.ResourceManager.GetString(option.Value)</option>
                     }
                 </select>
             </div>
