@@ -10,7 +10,7 @@ class SecurityCodeChecker {
     forbiddenAlertTitle: string;
     forbiddenAlertOKLabel: string;
 
-    constructor($: JQueryStatic, top: Window, forbiddenAlertTitle: string = "", forbiddenAlertOKLabel: string = "OK") {
+    constructor($: JQueryStatic, top: Window, forbiddenAlertTitle = "", forbiddenAlertOKLabel = "OK") {
         this.$ = $;
         this.top = top;
         this.verifySecurityCodeUrl = $("#VerifySecurityCodeLink").val();

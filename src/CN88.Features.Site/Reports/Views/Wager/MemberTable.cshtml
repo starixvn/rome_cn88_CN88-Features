@@ -1,19 +1,16 @@
 ﻿@model ReportBaseViewModel
-
 @{
     var colIndex = 0;
     var total = Model.GrandTotal;
     var divisor = Model.Divisor;
 }
-
 <div class="tab-content main-content" id="tab-main-content">
-    <table class="tbl-noborder tbl-report" id="tbl-report"
+    <table class="tbl-noborder tbl-report settlement-report" id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
            data-descendingsort="@Model.IsDescendingSort"
            data-isMobile="@Model.IsMobile.ToString().ToLower()"
            data-cancelledreport="@Model.IsUnsettledOrCancelledReport.ToString().ToLower()">
-
         @if (Model.IsMobile && Model.IsUnsettledOrCancelledReport)
         {
             @Html.Partial("~/Reports/Views/Wager/UnsettledAndCancelledMobile/MemberTable.cshtml", Model)
@@ -31,7 +28,6 @@
                     <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="AgentPoss">
                         <span class="sorting-item more-info" data-toggle="tooltip" title="@ReportResources.SportsbookPossess / @ReportResources.NonSportsProductPossess">@ReportResources.AgentPoss</span>
                     </th>
-
                     <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="AgentIncome"><span class="sorting-item">@ReportResources.AgentIncome</span></th>
                     <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="AgentResultA"><span class="sorting-item">@ReportResources.AgentResultA</span></th>
                 </tr>

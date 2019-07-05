@@ -10,12 +10,12 @@
     <div class="page-title title-report-detail">
         <ul class="nav nav-tabs" role="tablist">
             <li class="report-name">@Model.Title</li>
-            <li role="presentation" id="tabSettlement" class="tab-selector">
+            <li role="presentation" id="tabSettlement" class="tab-selector @(Model.IsSettlement || Model.ReportLevel.IsMemberLevel() ? "active" : string.Empty)">
                 <a data-toggle="tab" href="#">@ReportResources.Settlement</a>
             </li>
             @if (Model.ReportLevel.IsNotMemberLevel())
             {
-                <li role="presentation" id="tabValidStake" class="tab-selector">
+                <li role="presentation" id="tabValidStake" class="tab-selector @(Model.IsSettlement ? string.Empty : "active")">
                     <a data-toggle="tab" href="#">@ReportResources.ValidStake</a>
                 </li>
             }

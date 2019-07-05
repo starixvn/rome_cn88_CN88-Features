@@ -1,13 +1,11 @@
 ﻿@model ReportBaseViewModel
-
 @{
     var colIndex = 0;
     var total = Model.GrandTotal;
     var divisor = Model.Divisor;
 }
-
 <div class="tab-content main-content" id="tab-main-content">
-    <table class="tbl-noborder tbl-report" id="tbl-report"
+    <table class="tbl-noborder tbl-report @(Model.IsSettlement && !Model.IsMobile ? "settlement-report" : string.Empty)" id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
            data-descendingsort="@Model.IsDescendingSort"

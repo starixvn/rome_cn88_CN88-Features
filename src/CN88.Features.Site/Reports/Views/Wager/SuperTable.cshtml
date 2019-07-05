@@ -7,12 +7,12 @@
     var divisor = Model.Divisor;
 }
 <div class="tab-content main-content" id="tab-main-content">
-    <table class="tbl-noborder tbl-report settlement-report" id="tbl-report"
+    <table class="tbl-noborder tbl-report @(Model.IsSettlement && !Model.IsMobile ? "settlement-report" : string.Empty)" id="tbl-report"
            data-totalrecords="@Model.ReportData.Count()"
            data-sortedcolumn="@Model.SortPropertyName"
            data-descendingsort="@Model.IsDescendingSort"
            data-isMobile="@Model.IsMobile.ToString().ToLower()"
-           data-numberofsettlementcolumns="@(Model.IsNotOwner ? "11" : "5")"
+           data-numberofsettlementcolumns="@(Model.IsNotOwner ? "9" : "5")"
            data-numberofvalidstakecolumns="8"
            data-cancelledreport="@Model.IsUnsettledOrCancelledReport.ToString().ToLower()">
         @if (Model.IsMobile && Model.IsUnsettledOrCancelledReport)
@@ -26,7 +26,7 @@
                     <th class="text-left header sorting" data-colindex="@(colIndex++)" data-sortedname="Username"><span class="sorting-item">@ReportResources.SMAUsername</span></th>
                     <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-stack-column="@Model.IsNotOwnerText" data-colindex="@(colIndex++)" data-sortedname="SMA"><span class="sorting-item">@ReportResources.SMA</span></th>
                     <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-stack-column="@Model.IsNotOwnerText" data-colindex="@(colIndex++)" data-sortedname="SMAIncome"><span class="sorting-item">@ReportResources.SMAIncome</span></th>
-                    <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-stack-column="@Model.IsNotOwnerText" data-colindex="@(colIndex++)" data-sortedname="SMAResult"><span class="sorting-item">@ReportResources.SMAResult</span></th>
+                    <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="SMAResult"><span class="sorting-item">@ReportResources.SMAResult</span></th>
                     <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="SMAStock"><span class="sorting-item">@ReportResources.SMAStock</span></th>
                     @if (Model.IsNotOwner)
                     {
@@ -36,8 +36,6 @@
                         </th>
                         <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="HeadlineIncome"><span class="sorting-item">@ReportResources.HeadlineIncome</span></th>
                         <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="HeadlineResult"><span class="sorting-item">@ReportResources.HeadlineResult</span></th>
-                        <th class="text-right settlement header sorting" data-stack-show-in-body="true" data-colindex="@(colIndex++)" data-sortedname="HeadlineStock"><span class="sorting-item">@ReportResources.HeadlineStock</span></th>
-                        <th class="text-right settlement header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="HeadlineStockPercent"><span class="sorting-item">@ReportResources.HeadlineStockPercent</span></th>
                     }
                     <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Wagers"><span class="sorting-item">@ReportResources.Wagers</span></th>
                     <th class="text-right valid-stake header sorting" data-stack-column="true" data-colindex="@(colIndex++)" data-sortedname="Stake"><span class="sorting-item">@ReportResources.Stake</span></th>
@@ -53,7 +51,7 @@
                         <th class="text-left">@ReportResources.Total</th>
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Super, "settlement", Model.IsNotOwner)
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperIncome, "settlement", Model.IsNotOwner)
-                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult, "settlement", Model.IsNotOwner)
+                        @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperResult, "settlement")
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock, "settlement", true)
                         @if (Model.IsNotOwner)
                         {
@@ -61,8 +59,6 @@
                             <th class="settlement" data-stack-column="true"></th>
                             @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineIncome, "settlement")
                             @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineResult, "settlement")
-                            @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineStock, "settlement")
-                            @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent, "settlement", true)
                         }
                         @HtmlHelpers.RenderHeaderNumberCell(total.Wagers, "valid-stake", true)
                         @HtmlHelpers.RenderHeaderNumberCell(divisor, total.Stake, "valid-stake", true)
@@ -92,8 +88,6 @@
                                 <td class="text-right settlement">@data.HeadlinePoss</td>
                                 @HtmlHelpers.RenderNumberCell(divisor, data.HeadlineIncome, "settlement")
                                 @HtmlHelpers.RenderNumberCell(divisor, data.HeadlineResult, "settlement")
-                                @HtmlHelpers.RenderNumberCell(divisor, data.HeadlineStock, "settlement")
-                                @ReportHtmlHelpers.RenderStockPercentCell(data.HeadlineStock, total.HeadlineStock, "settlement")
                             }
                             @HtmlHelpers.RenderNumberCell(data.Wagers, "valid-stake")
                             @HtmlHelpers.RenderNumberCell(divisor, data.Stake, "valid-stake")
@@ -107,7 +101,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td id="profit-margin" class="profit-margin" colspan="@(Model.IsSettlement ? (Model.IsNotOwner ? "11" : "5") : "8")" align="right">
+                        <td id="profit-margin" class="profit-margin" colspan="@(Model.IsSettlement ? (Model.IsNotOwner ? "9" : "5") : "8")" align="right">
                             <strong>@ReportResources.ProfitMargin <span class="@(Model.ProfitMargin < 0 ? "negative-value" : string.Empty)">@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</span></strong>
                         </td>
                     </tr>
@@ -117,7 +111,7 @@
             {
                 <tbody>
                     <tr>
-                        <td id="no-data-row" colspan="@(Model.IsSettlement ? (Model.IsNotOwner ? "11" : "5") : "8")"
+                        <td id="no-data-row" colspan="@(Model.IsSettlement ? (Model.IsNotOwner ? "9" : "5") : "8")"
                             data-isNoInfo="true"
                             align="center">
                             @SharedResources.NoInformationIsAvailable

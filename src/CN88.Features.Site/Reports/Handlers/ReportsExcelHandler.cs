@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
-    using System;
     using Extensions;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -13,6 +12,7 @@
     using ONEbook.SpreadSheets;
     using Requests;
     using Shared.ViewModels;
+    using System;
     using static ONEbook.SpreadSheets.Column;
 
     public class ReportsExcelHandler : ReportsBaseHandler, IRequestHandler<ReportExcelQuery, ExcelFileViewModel>
@@ -100,9 +100,7 @@
                 mapper.Map(M, data => isTotal ? totalStockPercent : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(N, data => isTotal ? string.Empty : data.HeadlinePoss)
                     .Map(O, data => RoundNumber(data.HeadlineIncome))
-                    .Map(P, data => RoundNumber(data.HeadlineResult))
-                    .Map(Q, data => CalculateNumber(data.HeadlineStock))
-                    .Map(R, data => isTotal ? totalStockPercent : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock));
+                    .Map(P, data => RoundNumber(data.HeadlineResult));
             }
 
             return mapper;
