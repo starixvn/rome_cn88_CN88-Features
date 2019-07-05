@@ -10,5 +10,8 @@
             : base(viewer)
         {
         }
+
+        public override bool IsValid()
+            => base.IsValid() && !IsInternal;
     }
 }

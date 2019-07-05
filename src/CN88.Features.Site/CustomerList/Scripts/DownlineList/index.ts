@@ -34,7 +34,7 @@ class CustomerList {
         this.topWindow = topWindow;
         this.numeral = numeral;
         this.viewResources = viewResources === null ? new ViewResources($) : viewResources;
-        this.securityCodeChecker = securityCodeChecker === null ? new SecurityCodeChecker($, top) : securityCodeChecker;
+        this.securityCodeChecker = securityCodeChecker || new SecurityCodeChecker($, top, this.viewResources.UnlockConfirmTitle, this.viewResources.Ok);
     }
 
     init() {

@@ -179,5 +179,5 @@ $(() => {
         top,
         new SortComponent($, new LinkBuilderComponent($)),
         new BootstrapDropdownComponent($, top),
-        new SecurityCodeChecker($, top)).init();
+        new SecurityCodeChecker($, top, $("#UnlockSubAccount").val(), $("#OK").val())).init();
 });
