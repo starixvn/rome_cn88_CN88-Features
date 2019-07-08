@@ -106,7 +106,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Available Credit.
+        ///   Looks up a localized string similar to Available Credits.
         /// </summary>
         public static string AvailableCredit {
             get {
@@ -115,7 +115,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bet Credit.
+        ///   Looks up a localized string similar to Bet Credits.
         /// </summary>
         public static string BetCredit {
             get {
@@ -151,7 +151,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Credit.
+        ///   Looks up a localized string similar to Credits.
         /// </summary>
         public static string Credit {
             get {
@@ -223,7 +223,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, increase credit unsuccessfully. You have exceeded your agent credit..
+        ///   Looks up a localized string similar to Sorry, increase credits unsuccessfully. You have exceeded your agent credits..
         /// </summary>
         public static string ExceededAgentCredit {
             get {
@@ -268,7 +268,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Credit is out of range, please refresh the form and try again..
+        ///   Looks up a localized string similar to New Credits is out of range, please refresh the form and try again..
         /// </summary>
         public static string InvalidCredit {
             get {
@@ -601,7 +601,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Credit.
+        ///   Looks up a localized string similar to Update Credits.
         /// </summary>
         public static string UpdateCredit {
             get {
@@ -637,7 +637,7 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Used Credit.
+        ///   Looks up a localized string similar to Used Credits.
         /// </summary>
         public static string UsedCredit {
             get {
