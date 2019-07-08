@@ -181,7 +181,7 @@
     <value>保存</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>暫停</value>
+    <value>禁止登入</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>帳戶</value>
@@ -319,15 +319,15 @@
     <value>解鎖此帳戶</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>已啟用</value>
+    <value>啟用</value>
   </data>
   <data name="Inactive" xml:space="preserve">
-    <value>已失效</value>
+    <value>停用</value>
   </data>
   <data name="ViewOnly" xml:space="preserve">
     <value>僅供檢視</value>
   </data>
   <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
-    <value>Update status failed. Upline level is not active.</value>
+    <value>無法更新狀態，上線層級未啟用</value>
   </data>
 </root>
