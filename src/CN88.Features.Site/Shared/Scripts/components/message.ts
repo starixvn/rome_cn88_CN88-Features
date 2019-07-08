@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 class Result {
-    static warningCode: number = -1000;
+    static warningCode = -1000;
 
     Code: number;
     Message: string;

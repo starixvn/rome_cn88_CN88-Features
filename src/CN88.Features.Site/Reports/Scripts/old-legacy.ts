@@ -88,8 +88,8 @@ class OldLegacyReport extends OldBaseReport {
     }
 
     registerEvents(): void {
-        this.$reportForm.submit(() => { this.onReportSubmit(); });
-        this.$excelIcon.click(() => { this.onExportExcelEvent(); })
+        this.$reportForm.submit(this.onReportSubmit);
+        this.$excelIcon.click(this.onExportExcelEvent);
 
         this.$("body").on("click touchend", (event) => {
             const tooltip = this.$(event.target);
@@ -118,12 +118,12 @@ class OldLegacyReport extends OldBaseReport {
         });
     }
 
-    onReportSubmit(): void {
+    onReportSubmit = () => {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.accountingPeriodSelectionComponent.updateSelectedValue();
-    }
+    };
 
-    onExportExcelEvent(): void {
+    onExportExcelEvent = () => {
         this.$exportExcelForm.submit();
         this.$.unblockUI();
     };
