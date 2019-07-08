@@ -43,8 +43,8 @@
                 xhr.setRequestHeader("__RequestVerificationToken", $("input[name=\"__RequestVerificationToken\"]").val());
             }
         })
-            .done((data) => {
-                data.IsSuccess ? this.updateSuccesfully() : this.showFailedMessage(data.Message);
+            .done((result) => {
+                result.IsSuccess ? this.updateSuccesfully() : this.showFailedMessage(result.Message);
             })
             .fail((jqXHR: JQueryXHR) => {
                 if (jqXHR.status === unauthorizedCode) {
@@ -70,7 +70,7 @@
             .addClass("msg-success");
     }
 
-    public showFailedMessage(message: any) {
+    public showFailedMessage(message: string) {
         this.$("#error-message").html('')
             .text(message)
             .removeClass("hidden msg-success")

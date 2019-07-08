@@ -219,7 +219,7 @@ class ReportIndexView extends BaseReport {
     }
 
     onQuickChoiceClick(e: JQueryEventObject, fromDate, toDate): void {
-        var button = this.$(e.target);
+        const button = this.$(e.target);
         this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
         button.removeClass("btn-default").addClass("btn-secondary");
 
@@ -227,10 +227,10 @@ class ReportIndexView extends BaseReport {
     }
 
     changeDateRange(fromDate, toDate): void {
-        let minDate = new Date(this.$dateRangePicker.data("mindate"));
-        let maxDate = new Date(this.$dateRangePicker.data("maxdate"));
-        let fDate = NexDatePickerHelper.correctDateInRange(fromDate, minDate, maxDate);
-        let tDate = NexDatePickerHelper.correctDateInRange(toDate, minDate, maxDate);
+        const minDate = new Date(this.$dateRangePicker.data("mindate"));
+        const maxDate = new Date(this.$dateRangePicker.data("maxdate"));
+        const fDate = NexDatePickerHelper.correctDateInRange(fromDate, minDate, maxDate);
+        const tDate = NexDatePickerHelper.correctDateInRange(toDate, minDate, maxDate);
 
         this.$fromDateContainer.data("DateTimePicker").maxDate(tDate);
         this.$fromDateContainer.data("DateTimePicker").date(fDate);

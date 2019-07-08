@@ -1,5 +1,5 @@
 ﻿class StatusPopup extends PopupBase {
-    constructor($: JQueryStatic, topWindow: any) {
+    constructor($: JQueryStatic, topWindow: Window) {
         super($, topWindow);
     }
 
