@@ -13,13 +13,15 @@
         <span class="bold">@(Model.CustLevel.IsMemberLevel() ? CustomerListResources.BetCredit : CustomerListResources.UsedCredit)</span>
         <span class="bold">@(Model.CustLevel.IsMemberLevel() ? Model.CreditModel.GivenCredit.ToString("N2") : Model.CreditModel.UsedCredit.ToString("N2"))</span>
     </div>
-    <div class="form-group credit-group">
+    <div class="form-group">
         <label>@CustomerListResources.Credit</label>
-        <input class="txt-credit control" id="credit" type="text" inputmode="numeric" />
-    </div>
-    <div class="form-group credit-range">
-        <span class="pull-left">@CustomerListResources.AvailableCredit</span>
-        <span class="pull-right">@Model.CreditModel.MaxCredit.ToString("N2")</span>
+        <div class="credit-group">
+            <input class="txt-credit control" id="credit" type="text" inputmode="numeric" />
+            <div class="credit-range">
+                <span class="pull-left">@CustomerListResources.AvailableCredit</span>
+                <span class="pull-right">@Model.CreditModel.MaxCredit.ToString("N2")</span>
+            </div>
+        </div>        
     </div>
     <div class="list-button">
         <button type="button" class="btn-submit">@CustomerListResources.Save</button>

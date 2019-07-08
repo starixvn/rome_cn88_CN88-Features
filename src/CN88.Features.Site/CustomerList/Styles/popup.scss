@@ -13,9 +13,18 @@ body {
         width: 100%;
     }
 
-    .control {
+    .form-group {
+        overflow: hidden;
+    }
+
+    .credit-group {
         float: right;
-        width: 360px;
+        width: 380px;
+    }
+
+    .control {
+        width: 100%;
+        margin-left: 0;
         margin-right: 0;
     }
 
@@ -45,16 +54,9 @@ body {
     margin-bottom: 20px;
 }
 
-.credit-group {
-    margin-bottom: 12px !important;
-}
-
 .credit-range {
+    margin-top: 12px;
     overflow: hidden;
-}
-
-.txt-credit {
-    text-align: right;
 }
 
 // For Phone
@@ -63,6 +65,10 @@ body.phone {
     .popup-modal {
         padding-left: 12px;
         padding-right: 12px;
+
+        .credit-group {
+            width: 100%;
+        }
 
         .list-button [class^='btn'] {
             float: right;
@@ -76,21 +82,12 @@ body.phone {
     }
 
     .form {
-        .form-group {
-            display: table;
-            width: 100%;
-        }
-
         label {
             display: block;
             text-transform: uppercase;
-            line-height: 30px;
         }
 
         .control {
-            float: none;
-            width: 100%;
-            margin-left: 0;
             font-size: $font-size-mobile-input;
         }
     }
