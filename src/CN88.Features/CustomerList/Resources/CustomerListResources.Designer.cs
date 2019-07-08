@@ -106,6 +106,15 @@ namespace CN88.Features.CustomerList.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available Credit.
+        /// </summary>
+        public static string AvailableCredit {
+            get {
+                return ResourceManager.GetString("AvailableCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Credit.
         /// </summary>
         public static string BetCredit {

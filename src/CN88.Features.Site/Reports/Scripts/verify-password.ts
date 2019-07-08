@@ -1,11 +1,16 @@
 ﻿"use strict";
+declare var CryptoJS: any;
+
 class VerifyPassword {
     $: JQueryStatic;
     $txtPassword: JQuery;
     $formVerifyPassword: JQuery;
     $hashKey: JQuery;
     $messageContainer: JQuery;
-    resources: any;
+    resources = {
+        passwordCannotEmpty: '',
+        passwordDoesNotMeetMinimunRequirement: ''
+    };
     hashKey: string;
 
     constructor($: JQueryStatic) {
@@ -37,7 +42,7 @@ class VerifyPassword {
     };
 
     onSubmit = () => {
-        let password: string = this.$txtPassword.val();
+        const password: string = this.$txtPassword.val();
 
         if (password.length === 0) {
             this.showError(this.$messageContainer, this.resources.passwordCannotEmpty);
@@ -46,39 +51,39 @@ class VerifyPassword {
             return false;
         }
 
-        let encryptedPwd = this.encrypt(this.$txtPassword.val(), this.hashKey);
+        const encryptedPwd = this.encrypt(this.$txtPassword.val(), this.hashKey);
         this.$txtPassword.val(encryptedPwd);
 
         return true;
     };
 
     isValidPassword(password: string) {
-        let whiteSpace: RegExp = /^\S*$/;
-        let whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
+        const whiteSpace: RegExp = /^\S*$/;
+        const whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
 
-        let regex1: RegExp = /^(?=.{8,100}$).*\d/i;
-        let regex2: RegExp = /^(?=.{8,100}$).*[a-z]/;
-        let regex3: RegExp = /^(?=.{8,100}$).*[A-Z]/;
-        let regex4: RegExp = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+        const regex1: RegExp = /^(?=.{8,100}$).*\d/i;
+        const regex2: RegExp = /^(?=.{8,100}$).*[a-z]/;
+        const regex3: RegExp = /^(?=.{8,100}$).*[A-Z]/;
+        const regex4: RegExp = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
 
-        let case1: number = password.search(regex1) !== -1 ? 1 : 0;
-        let case2: number = password.search(regex2) !== -1 ? 1 : 0;
-        let case3: number = password.search(regex3) !== -1 ? 1 : 0;
-        let case4: number = password.search(regex4) !== -1 ? 1 : 0;
+        const case1: number = password.search(regex1) !== -1 ? 1 : 0;
+        const case2: number = password.search(regex2) !== -1 ? 1 : 0;
+        const case3: number = password.search(regex3) !== -1 ? 1 : 0;
+        const case4: number = password.search(regex4) !== -1 ? 1 : 0;
 
         return (case1 + case2 + case3 + case4 >= 3) && whiteSpaceCase;
     }
 
-    showError = ($target: any, error: string) => {
+    showError = ($target: JQuery, error: string) => {
         $target.html("<div class='msg msg-error'>" + error + "</div>");
     };
 
     encrypt = (plainText: string, secretKey: string) => {
         const passPhrase = "a5s8d2e9c172";
-        let key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
-        let iv = key;
+        const key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
+        const iv = key;
 
-        let pwd = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
+        const pwd = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
             {
                 keySize: 128 / 8,
                 iv: iv,
@@ -89,8 +94,7 @@ class VerifyPassword {
         return pwd.toString();
     };
 }
-declare var CryptoJS: any;
 $(function () {
     const verifyPwd = new VerifyPassword($);
     verifyPwd.init();
-})
+});

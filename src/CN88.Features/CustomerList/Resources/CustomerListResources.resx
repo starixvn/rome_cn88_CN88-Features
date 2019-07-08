@@ -330,4 +330,7 @@
   <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
     <value>Update status failed. Upline level is not active.</value>
   </data>
+  <data name="AvailableCredit" xml:space="preserve">
+    <value>Available Credit</value>
+  </data>
 </root>
