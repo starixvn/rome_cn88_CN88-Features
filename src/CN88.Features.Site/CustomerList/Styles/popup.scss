@@ -45,9 +45,12 @@ body {
     margin-bottom: 20px;
 }
 
+.credit-group {
+    margin-bottom: 12px !important;
+}
+
 .credit-range {
-    margin-top: 6px;
-    text-align: right;
+    overflow: hidden;
 }
 
 .txt-credit {
