@@ -1,8 +1,5 @@
 ﻿namespace CN88.Features.Site.Reports
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Web.Mvc;
     using Alpha.Web.Helpers;
     using CN88.Web.Helpers;
     using Features.Models;
@@ -10,6 +7,9 @@
     using MediatR;
     using Requests;
     using Shared.Controllers;
+    using System;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
 
     public class OldReportsController : FeatureBaseController
     {
@@ -81,6 +81,10 @@
         [ReCheckPassword]
         public async Task<ActionResult> Legacy(OldReportQuery message)
             => await ViewAsync(message, LegacyViewPath);
+
+        [ReCheckPassword]
+        public async Task<ActionResult> Excel(OldReportExcelQuery message)
+            => await ExcelView(message);
 
         public bool Checkin()
         {

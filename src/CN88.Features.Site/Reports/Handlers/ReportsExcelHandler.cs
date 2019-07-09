@@ -15,22 +15,39 @@
     using System;
     using static ONEbook.SpreadSheets.Column;
 
-    public class ReportsExcelHandler : ReportsBaseHandler, IRequestHandler<ReportExcelQuery, ExcelFileViewModel>
+    public class ReportsExcelHandler :
+        ReportsBaseHandler,
+        IRequestHandler<ReportExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<OldReportExcelQuery, ExcelFileViewModel>
     {
         private readonly ReportService reportService;
+        private readonly AccountingPeriodService accountingPeriodService;
         private readonly ReportsWorkbook workbook;
         private int divisor = 1;
         private int totalStockPercent;
 
         public ReportsExcelHandler(
             ReportService reportService,
+            AccountingPeriodService accountingPeriodService,
             ReportsWorkbook workbook)
         {
             this.reportService = reportService;
+            this.accountingPeriodService = accountingPeriodService;
             this.workbook = workbook;
         }
 
         public ExcelFileViewModel Handle(ReportExcelQuery message)
+        {
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            message.FromDate = message.FromDate < lastPeriod.FromDate ? lastPeriod.FromDate : message.FromDate;
+
+            return ExportExcel(message);
+        }
+
+        public ExcelFileViewModel Handle(OldReportExcelQuery message)
+            => ExportExcel(message);
+
+        private ExcelFileViewModel ExportExcel(ReportExcelBaseQuery message)
         {
             if (message == null)
             {
@@ -39,6 +56,7 @@
 
             divisor = message.ActorLevel.IsHeadline() ? 100 : 1;
             totalStockPercent = message.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
+
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
             var grandTotal = AccumulateGrandTotal(reportData);
@@ -54,7 +72,7 @@
             return new ExcelFileViewModel(GetExcelFileName(param), result);
         }
 
-        internal Mapper<ReportModel> GetRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
+        internal Mapper<ReportModel> GetRowMapper(ReportExcelBaseQuery message, ReportModel grandTotal, bool isTotal)
         {
             if (message.CustLevel.IsSuperLevel())
             {
@@ -74,7 +92,7 @@
             return GetMemberRowMapper(isTotal);
         }
 
-        internal Mapper<ReportModel> GetSuperRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
+        internal Mapper<ReportModel> GetSuperRowMapper(ReportExcelBaseQuery message, ReportModel grandTotal, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
@@ -101,7 +119,7 @@
             return mapper;
         }
 
-        internal Mapper<ReportModel> GetMasterRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
+        internal Mapper<ReportModel> GetMasterRowMapper(ReportExcelBaseQuery message, ReportModel grandTotal, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
@@ -135,7 +153,7 @@
             return mapper;
         }
 
-        internal Mapper<ReportModel> GetAgentRowMapper(ReportExcelQuery message, bool isTotal)
+        internal Mapper<ReportModel> GetAgentRowMapper(ReportExcelBaseQuery message, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
@@ -175,7 +193,7 @@
                 .Map(A, data => ReportResources.ProfitMargin)
                 .Map(B, data => decimal.Round(data.SuperStock != 0 ? data.SuperResult / data.SuperStock : 0, 4));
 
-        private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
+        private TemplateInfo GetTemplateInfo(ReportExcelBaseQuery message)
             => new TemplateInfo(
                 GetExcelTemplatePath(message.IsOwner ? message.CustLevel.DisplayName + "Owner" : message.CustLevel.DisplayName),
                 noInfomationText: SharedResources.NoInformationIsAvailable,

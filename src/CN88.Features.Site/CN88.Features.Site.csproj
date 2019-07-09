@@ -796,10 +796,12 @@
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
     <Compile Include="Reports\Handlers\VerifyPasswordHandler.cs" />
     <Compile Include="Reports\OldReportsController.cs" />
+    <Compile Include="Reports\Requests\OldReportExcelQuery.cs" />
     <Compile Include="Reports\Requests\OldReportQuery.cs" />
     <Compile Include="Reports\Requests\ReportBaseQuery.cs" />
     <Compile Include="Reports\Requests\OldIndexQuery.cs" />
     <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
+    <Compile Include="Reports\Requests\ReportExcelBaseQuery.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordCommand.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
