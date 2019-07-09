@@ -325,9 +325,12 @@
     <value>停用</value>
   </data>
   <data name="ViewOnly" xml:space="preserve">
-    <value>僅供檢視</value>
+    <value>只能看帳</value>
   </data>
   <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
     <value>無法更新狀態，上線層級未啟用</value>
+  </data>
+  <data name="AvailableCredit" xml:space="preserve">
+    <value>可用額度</value>
   </data>
 </root>

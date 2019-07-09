@@ -1,7 +1,7 @@
 ﻿/// <reference path="base-sub-account.ts" />
 
 class EditSubAccount extends BaseSubAccount {
-    constructor($: JQueryStatic, top: any) {
+    constructor($: JQueryStatic, top: Window) {
         super($, top);
     }
 
@@ -10,8 +10,8 @@ class EditSubAccount extends BaseSubAccount {
         this.elements.subAccountId = this.$("#subAccountId").val();
     }
 
-    protected getFormData(): any {
-        let formData: any = super.getFormData();
+    protected getFormData() {
+        let formData = super.getFormData();
         formData.custId = this.elements.subAccountId;
 
         return formData;

@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
+    using System;
     using Extensions;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -12,7 +13,6 @@
     using ONEbook.SpreadSheets;
     using Requests;
     using Shared.ViewModels;
-    using System;
     using static ONEbook.SpreadSheets.Column;
 
     public class ReportsExcelHandler :

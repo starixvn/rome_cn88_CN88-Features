@@ -10,10 +10,26 @@ interface ISubAccountParam {
 
 class SubAccount {
     $: JQueryStatic;
-    top: any;
+    top: Window;
     tableSubAccount: JQuery;
-    resources: any;
-    urls: any;
+    resources = {
+        newSubAccount: '',
+        editSubAccount: '',
+        resetPassword: '',
+        resetSecurityCode: '',
+        unlockConfirmMessage: '',
+        unlockSubAccount: '',
+        okLabel: '',
+        cancelLabel: ''
+    };
+    urls = {
+        newSubAccount: '',
+        editSubAccount: '',
+        resetPassword: '',
+        resetSecurityCode: '',
+        unlockSubAccount: '',
+        verifySecurityCode: ''
+    };
     isDevice: boolean;
 
     sortComponent: SortComponent;
@@ -22,7 +38,7 @@ class SubAccount {
 
     constructor(
         $: JQueryStatic,
-        top: any,
+        top: Window,
         sortComponent: SortComponent,
         bootstrapDropdownComponent: BootstrapDropdownComponent,
         securityCodeChecker: SecurityCodeChecker) {
@@ -81,80 +97,83 @@ class SubAccount {
     }
 
     bindEvents(): void {
-        let self = this;
-
         this.tableSubAccount.stickyTableHeaders();
 
         this.tableSubAccount.find("[data-toggle='tooltip']").tooltip();
 
-        this.tableSubAccount.find(".icon-pass, .opt-pass").click(function (): void {
-            let param: ISubAccountParam = self.getSubAccountParam(this);
-            self.openPopup(
-                `${self.resources.resetPassword} - ${param.subAccountName}`,
-                `${self.urls.resetPassword}?custId=${param.subAccountId}`,
-                490,
-                430);
+        this.tableSubAccount.find(".icon-pass, .opt-pass").click((event: JQueryEventObject) => {
+            const param = this.getSubAccountParam(this.$(event.currentTarget));
+            const width = 490, height = 430;
+
+            this.openPopup(
+                `${this.resources.resetPassword} - ${param.subAccountName}`,
+                `${this.urls.resetPassword}?custId=${param.subAccountId}`,
+                width,
+                height);
         });
 
-        this.tableSubAccount.find(".icon-security, .opt-security").click(function (): void {
-            let param: ISubAccountParam = self.getSubAccountParam(this);
-            self.openPopup(
-                `${self.resources.resetSecurityCode} - ${param.subAccountName}`,
-                `${self.urls.resetSecurityCode}?custId=${param.subAccountId}`,
-                490,
-                344);
+        this.tableSubAccount.find(".icon-security, .opt-security").click((event: JQueryEventObject) => {
+            const param = this.getSubAccountParam(this.$(event.currentTarget));
+            const width = 490, height = 344;
+            this.openPopup(
+                `${this.resources.resetSecurityCode} - ${param.subAccountName}`,
+                `${this.urls.resetSecurityCode}?custId=${param.subAccountId}`,
+                width,
+                height);
         });
 
-        this.tableSubAccount.find(".icon-edit, .opt-edit").click(function (): void {
-            let param: ISubAccountParam = self.getSubAccountParam(this);
-            self.openPopup(
-                `${self.resources.editSubAccount} - ${param.subAccountName}`,
-                `${self.urls.editSubAccount}?custId=${param.subAccountId}`,
-                948,
-                470);
+        this.tableSubAccount.find(".icon-edit, .opt-edit").click((event: JQueryEventObject) => {
+            const param = this.getSubAccountParam(this.$(event.currentTarget));
+            const width = 948, height = 470;
+            this.openPopup(
+                `${this.resources.editSubAccount} - ${param.subAccountName}`,
+                `${this.urls.editSubAccount}?custId=${param.subAccountId}`,
+                width,
+                height);
         });
         this.tableSubAccount.find(".icon-more-action").on("click touchend", () => {
             // Hide other dropdowns
         });
 
-        this.$("#btnNewSubAccount").click(function (): void {
-            self.openPopup(self.resources.newSubAccount, self.urls.newSubAccount, 948, 470);
+        this.$("#btnNewSubAccount").click(() => {
+            const width = 948, height = 470;
+            this.openPopup(this.resources.newSubAccount, this.urls.newSubAccount, width, height);
         });
 
-        this.tableSubAccount.find(".icon-unlock, .opt-unlock").click(function (): void {
-            const param: ISubAccountParam = self.getSubAccountParam(this);
+        this.tableSubAccount.find(".icon-unlock, .opt-unlock").click((event: JQueryEventObject) => {
+            const param = this.getSubAccountParam(this.$(event.currentTarget));
 
-            self.top.popupManager.bootboxConfirm(
-                self.resources.unlockSubAccount + " - " + param.subAccountName,
-                self.resources.unlockConfirmMessage,
+            this.top["popupManager"].bootboxConfirm(
+                `${this.resources.unlockSubAccount} - ${param.subAccountName}`,
+                this.resources.unlockConfirmMessage,
                 () => {
-                    self.$.blockUI();
+                    this.$.blockUI();
                     const options = {
-                        url: self.urls.unlockSubAccount,
+                        url: this.urls.unlockSubAccount,
                         data: { custId: param.subAccountId },
                         onComplete: () => {
                             location.reload(true);
                         }
                     };
 
-                    self.$.ajax({
+                    this.$.ajax({
                         type: "POST",
                         url: options.url,
                         data: options.data,
-                        headers: self.securityCodeChecker.setupAntiXSRF(),
+                        headers: this.securityCodeChecker.setupAntiXSRF(),
                         dataType: "json",
-                        success: (result) => { self.securityCodeChecker.checkSecurityCode(result, options); },
+                        success: (result) => { this.securityCodeChecker.checkSecurityCode(result, options); },
                         complete: self.$.unblockUI
                     });
                 },
                 350,
-                self.resources.okLabel,
-                self.resources.cancelLabel);
+                this.resources.okLabel,
+                this.resources.cancelLabel);
         });
     }
 
-    getSubAccountParam(element: HTMLElement): ISubAccountParam {
-        let parent: JQuery = this.$(element).closest("td");
+    getSubAccountParam(element: JQuery): ISubAccountParam {
+        const parent = element.closest("td");
 
         return {
             subAccountId: parent.data("subaccid"),
@@ -163,8 +182,8 @@ class SubAccount {
     }
 
     openPopup(title: string, url: string, width: number, height: number): void {
-        this.top.popupManager.init(this.$, this.top);
-        this.top.popupManager.open({
+        this.top["popupManager"].init(this.$, this.top);
+        this.top["popupManager"].open({
             title: title,
             url: url,
             width: width,

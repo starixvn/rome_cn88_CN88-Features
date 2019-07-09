@@ -4,10 +4,10 @@ declare var CryptoJS: any;
 
 const encrypt = function (plainText: string, secretKey: string): string {
     const passPhrase = "a5s8d2e9c172";
-    let key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
-    let iv = key;
+    const key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
+    const iv = key;
 
-    let pwd = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
+    const pwd = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
         {
             keySize: 128 / 8,
             iv: iv,
@@ -19,7 +19,7 @@ const encrypt = function (plainText: string, secretKey: string): string {
 };
 
 class NewSubAccount extends BaseSubAccount {
-    constructor($: JQueryStatic, top: any) {
+    constructor($: JQueryStatic, top: Window) {
         super($, top);
     }
 
@@ -64,10 +64,10 @@ class NewSubAccount extends BaseSubAccount {
         });
     }
 
-    protected getFormData(): any {
-        let hashKey: string = this.elements.hashKey;
-        let password: string = this.elements.password.val();
-        let formData: any = super.getFormData();
+    protected getFormData() {
+        const hashKey: string = this.elements.hashKey;
+        const password: string = this.elements.password.val();
+        let formData = super.getFormData();
         formData.suffix1 = this.elements.suffix1.val();
         formData.suffix2 = this.elements.suffix2.val();
         formData.password = encrypt(password, hashKey);
@@ -75,14 +75,14 @@ class NewSubAccount extends BaseSubAccount {
         return formData;
     }
 
-    protected validateFormData(formData: any): boolean {
-        let isValid: boolean = super.validateFormData(formData);
+    protected validateFormData(formData): boolean {
+        const isValid: boolean = super.validateFormData(formData);
 
         if (!isValid) {
             return false;
         }
 
-        let passwordValue = this.elements.password.val();
+        const passwordValue = this.elements.password.val();
 
         if (passwordValue.length === 0) {
             this.showError(this.elements.requiredPasswordError);
@@ -107,18 +107,18 @@ class NewSubAccount extends BaseSubAccount {
     }
 
     private isValidPassword(password: string) {
-        let whiteSpace: RegExp = /^\S*$/;
-        let whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
+        const whiteSpace: RegExp = /^\S*$/;
+        const whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
 
-        let regex1: RegExp = /^(?=.{6,12}$).*\d/i;
-        let regex2: RegExp = /^(?=.{6,12}$).*[a-z]/;
-        let regex3: RegExp = /^(?=.{6,12}$).*[A-Z]/;
-        let regex4: RegExp = /^(?=.{6,12}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+        const regex1: RegExp = /^(?=.{6,12}$).*\d/i;
+        const regex2: RegExp = /^(?=.{6,12}$).*[a-z]/;
+        const regex3: RegExp = /^(?=.{6,12}$).*[A-Z]/;
+        const regex4: RegExp = /^(?=.{6,12}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
 
-        let case1: number = password.search(regex1) !== -1 ? 1 : 0;
-        let case2: number = password.search(regex2) !== -1 ? 1 : 0;
-        let case3: number = password.search(regex3) !== -1 ? 1 : 0;
-        let case4: number = password.search(regex4) !== -1 ? 1 : 0;
+        const case1: number = password.search(regex1) !== -1 ? 1 : 0;
+        const case2: number = password.search(regex2) !== -1 ? 1 : 0;
+        const case3: number = password.search(regex3) !== -1 ? 1 : 0;
+        const case4: number = password.search(regex4) !== -1 ? 1 : 0;
 
         return (case1 + case2 + case3 + case4 >= 2) && whiteSpaceCase;
     }

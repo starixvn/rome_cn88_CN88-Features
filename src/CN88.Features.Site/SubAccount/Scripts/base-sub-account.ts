@@ -2,11 +2,11 @@
 
 abstract class BaseSubAccount {
     $: JQueryStatic;
-    top: any;
+    top: Window;
     elements: any;
     message: Message;
 
-    protected constructor($: JQueryStatic, top: any) {
+    protected constructor($: JQueryStatic, top: Window) {
         this.$ = $;
         this.top = top;
         this.message = new Message();
@@ -19,6 +19,7 @@ abstract class BaseSubAccount {
 
     protected cacheElements(): void {
         this.elements = {
+            formSubAccount: this.$("#formSubAccount"),
             messageContainer: this.$("#message-container"),
             name: this.$("#name"),
             totalBets: this.$("#totalBets"),
@@ -30,31 +31,31 @@ abstract class BaseSubAccount {
     }
 
     private bindEvents(): void {
-        let self: any = this;
-
-        this.elements.acManagementViewOnly.change(function (): void {
-            if (!this.checked) {
-                self.elements.acManagementEditView.prop("checked", false);
+        this.elements.acManagementViewOnly.change((e: JQueryEventObject) => {
+            const checkbox = this.$(e.target);
+            if (!checkbox.is(":checked")) {
+                this.elements.acManagementEditView.prop("checked", false);
             }
         });
 
-        this.elements.acManagementEditView.change(function (): void {
-            if (this.checked) {
-                self.elements.acManagementViewOnly.prop("checked", true);
+        this.elements.acManagementEditView.change((e: JQueryEventObject) => {
+            const checkbox = this.$(e.target);
+            if (checkbox.is(":checked")) {
+                this.elements.acManagementViewOnly.prop("checked", true);
             }
         });
 
-        this.$("#formSubAccount").submit(function (e: any): void {
+        this.elements.formSubAccount.submit((e: JQueryEventObject) => {
             e.preventDefault();
-            let formData: any = self.getFormData();
+            const formData = this.getFormData();
 
-            if (self.validateFormData(formData)) {
-                self.submitForm(self.$(this), formData);
+            if (this.validateFormData(formData)) {
+                this.submitForm(formData);
             }
         });
 
-        this.$("#buttonCancel").click(function (): void {
-            self.top.popupManager.close();
+        this.$("#buttonCancel").click(() => {
+            this.top["popupManager"].close();
         });
     }
 
@@ -65,7 +66,7 @@ abstract class BaseSubAccount {
         };
     }
 
-    protected validateFormData(formData: any): boolean {
+    protected validateFormData(formData): boolean {
         this.message.hideMessage(this.elements.messageContainer);
 
         return true;
@@ -77,13 +78,13 @@ abstract class BaseSubAccount {
 
     protected getPageAccess(): string {
         let permissions: string[] = [];
-        let pageAccesses: JQuery[] = [
+        const pageAccesses: JQuery[] = [
             this.elements.totalBets,
             this.elements.acManagementViewOnly,
             this.elements.acManagementEditView,
             this.elements.reports];
 
-        for (let item of pageAccesses) {
+        for (const item of pageAccesses) {
             if (item.is(":checked")) {
                 permissions.push(item.val());
             }
@@ -92,40 +93,39 @@ abstract class BaseSubAccount {
         return permissions.join(",");
     }
 
-    private submitForm(formSubAccount: JQuery, formData: any): void {
+    private submitForm(formData): void {
         this.$.blockUI();
-        let self: any = this;
 
         this.$.ajax({
-            type: formSubAccount.attr("method"),
-            url: formSubAccount.attr("action"),
+            type: this.elements.formSubAccount.attr("method"),
+            url: this.elements.formSubAccount.attr("action"),
             headers: this.setupAntiXSRF(),
             data: formData,
             dataType: "json",
-            success: function (data: any): void {
+            success: (data) => {
                 if (data.ErrCode) {
                     data = { Code: data.ErrCode, Message: data.ErrMsg };
                 }
 
-                let result: Result = new Result(data);
-                self.message.showMessage(self.elements.messageContainer, result);
+                const result = new Result(data);
+                this.message.showMessage(this.elements.messageContainer, result);
 
                 if (result.IsSuccessful) {
-                    self.top.indexManager.closePopupAndReloadMainIframe();
+                    this.top["indexManager"].closePopupAndReloadMainIframe();
                 }
             },
-            error: function (xhr: any): void {
+            error: (xhr: JQueryXHR) => {
                 if (xhr.status === 401 || xhr.status === 403) {
-                    self.top.siteInfrastructure.logout();
+                    this.top["siteInfrastructure"].logout();
                 }
             },
-            complete: self.$.unblockUI
+            complete: this.$.unblockUI
         });
     }
 
-    private setupAntiXSRF(): any {
-        let token: string = this.$("input[name=__RequestVerificationToken]").val();
-        let headers: any = {};
+    private setupAntiXSRF() {
+        const token = this.$("input[name=__RequestVerificationToken]").val();
+        let headers = {};
         headers["__RequestVerificationToken"] = token;
 
         return headers;
