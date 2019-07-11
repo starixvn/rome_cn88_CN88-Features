@@ -8,7 +8,6 @@
 /// <reference path="../../shared/scripts/components/link-builder.ts" />
 /// <reference path="../../shared/scripts/components/client-pager.ts" />
 
-
 class OldWagerReport extends OldLegacyReport {
     $tabSettlement: JQuery;
     $tabValidStake: JQuery;
@@ -98,42 +97,9 @@ class OldWagerReport extends OldLegacyReport {
     }
 
     registerEvents(): void {
-        this.$tabSettlement.on("click touchend", () => {
-            if (this.$custLevelId.val() !== "1") {
-                this.$isSettlement.val("True");
-            }
+        this.$tabSettlement.on("click touchend", this.onTabSettlementClickEvent);
 
-            this.$(".tab-selector").removeClass("active");
-            this.$tabSettlement.addClass("active");
-            this.$tableReport.find(".valid-stake").hide();
-            this.$tableReport.find(".settlement").show();
-            this.linkBuilderComponent.updateParam("IsSettlement", "True");
-
-            if (this.totalRecords > 0 && this.$custLevelId.val() === "4") {
-                this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
-            }
-
-            if (this.totalRecords < 1) {
-                this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
-            }
-        });
-
-        this.$tabValidStake.on("click touchend", () => {
-            this.$isSettlement.val("False");
-            this.$(".tab-selector").removeClass("active");
-            this.$tabValidStake.addClass("active");
-            this.$tableReport.find(".settlement").hide();
-            this.$tableReport.find(".valid-stake").show();
-            this.linkBuilderComponent.updateParam("IsSettlement", "False");
-
-            if (this.totalRecords > 0 && this.$custLevelId.val() === "4") {
-                this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
-            }
-
-            if (this.totalRecords < 1) {
-                this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
-            }
-        });
+        this.$tabValidStake.on("click touchend", this.onTabValidStakeClickEvent);
 
         super.registerEvents();
 
@@ -141,6 +107,42 @@ class OldWagerReport extends OldLegacyReport {
             this.$(".btn-collapse-expanse").trigger("click");
         }
     }
+
+    onTabSettlementClickEvent = () => {
+        if (this.$custLevelId.val() !== "1") {
+            this.$isSettlement.val("True");
+            this.linkBuilderComponent.updateParam("IsSettlement", "True");
+        }
+
+        this.$(".tab-selector").removeClass("active");
+        this.$tabSettlement.addClass("active");
+        this.$tableReport.addClass("settlement-report");
+
+        if (this.totalRecords > 0 && this.$custLevelId.val() === "4") {
+            this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
+        }
+
+        if (this.totalRecords < 1) {
+            this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofsettlementcolumns"));
+        }
+    };
+
+    onTabValidStakeClickEvent = () => {
+        this.$isSettlement.val("False");
+        this.linkBuilderComponent.updateParam("IsSettlement", "False");
+
+        this.$(".tab-selector").removeClass("active");
+        this.$tabValidStake.addClass("active");
+        this.$tableReport.removeClass("settlement-report");
+
+        if (this.totalRecords > 0 && this.$custLevelId.val() === "4") {
+            this.$("#profit-margin").attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
+        }
+
+        if (this.totalRecords < 1) {
+            this.$nowDataRow.attr("colspan", this.$tableReport.data("numberofvalidstakecolumns"));
+        }
+    };
 }
 
 $(function () {

@@ -1,13 +1,13 @@
 <Functions SiteId="115" SiteName="CN88">
   <Function Name="Check belonging">
     <Setting Key="CS_Customer_CheckBelonging_Sel" SpName="CS_Customer_CheckBelonging_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_CustomerStatusSel" SpName="CS_CustomerStatusSel_uat2" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustomerStatusSel" SpName="CS_CustomerStatusSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Customer List">
     <Setting Key="CS_Customer_Credit_Sel" SpName="CS_Customer_Credit_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Customer_Credit_Upd" SpName="CS_Customer_Credit_Upd_uat2" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_CustomerStatusUpd" SpName="CS_CustomerStatusUpd_UAT2" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Acc_CustomerUpdUnlockAccess" SpName="CS_Acc_CustomerUpdUnlockAccess_xtest" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Customer_Credit_Upd" SpName="CS_Customer_Credit_Upd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustomerStatusUpd" SpName="CS_CustomerStatusUpd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Acc_CustomerUpdUnlockAccess" SpName="CS_Acc_CustomerUpdUnlockAccess" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Sub Account">
     <Setting Key="CS_CustSubSel" SpName="CS_CustSubSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />

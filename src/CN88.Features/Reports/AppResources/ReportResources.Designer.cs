@@ -394,11 +394,11 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profit Magin.
+        ///   Looks up a localized string similar to Profit Margin.
         /// </summary>
-        public static string ProfitMagin {
+        public static string ProfitMargin {
             get {
-                return ResourceManager.GetString("ProfitMagin", resourceCulture);
+                return ResourceManager.GetString("ProfitMargin", resourceCulture);
             }
         }
         

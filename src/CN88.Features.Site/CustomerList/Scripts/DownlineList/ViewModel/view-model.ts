@@ -55,3 +55,13 @@ class ViewResources {
         this.Cancel = this.$("#Cancel").val();
     }
 }
+
+class ReportParam {
+    public DownlineUsername: string = null;
+    public Username: string = '';
+    public SearchRoleId: number = 0;
+    public CustId: number = 0;
+    public Status: number = 0;
+    public PageSize: number = 100;
+    public PageIndex: number = 1;
+}

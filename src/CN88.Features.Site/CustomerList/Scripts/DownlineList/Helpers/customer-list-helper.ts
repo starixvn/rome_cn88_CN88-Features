@@ -1,57 +1,69 @@
 ﻿/// <reference path="../viewmodel/view-model.ts" />
-/// <reference path="../../../shared/scripts/components/html-wrapper.ts" />
+/// <reference path="../../../../shared/scripts/components/html-wrapper.ts" />
 
 class CustomerListHelper {
     viewResources: ViewResources;
-    getStatusName: Function;
     numeral: Function;
 
-    constructor(viewResources: ViewResources, getStatusName: Function, numeral: Function) {
+    constructor(viewResources: ViewResources, numeral: Function) {
         this.viewResources = viewResources;
-        this.getStatusName = getStatusName;
         this.numeral = numeral;
     }
 
-    private buildCommonAttributesJson = (CustId: any, Username: string) =>
-        [{ Name: 'cust-id', Value: CustId }, { Name: 'username', Value: Username }];
+    getStatusName(status: number) {
+        const { active, viewOnly, suspended, inactive } = siteInfrastructure.customerStatus;
+        switch (status) {
+            case active: return this.viewResources.Active;
+            case viewOnly: return this.viewResources.ViewOnly;
+            case suspended: return this.viewResources.Suspended;
+            case inactive: return this.viewResources.Inactive;
+            default: return '';
+        }
+    }
+
+    private buildCommonAttributesJson(CustId, Username: string) {
+        return [{ Name: 'cust-id', Value: CustId }, { Name: 'username', Value: Username }];
+    }
 
     private buildActionAttributeJson(
         levelId: number,
-        isActivedViewer: boolean,
+        canDoAddOrUpdateAction: boolean,
         isMember: boolean,
         status: number,
-        closed: boolean) {
+        closed: boolean,
+        isShowEditSettingLink: boolean) {
         return {
             Password: {
                 Attributes: [{ Name: 'class', Value: 'icon-pass' }, { Name: 'cust-role', Value: levelId.toString() }],
-                Visibile: isActivedViewer
+                Visibile: canDoAddOrUpdateAction
             },
             Security: {
                 Attributes: [{ Name: 'class', Value: 'icon-security' }],
-                Visibile: isActivedViewer && !isMember
+                Visibile: canDoAddOrUpdateAction && !isMember
             },
             EditAccount: {
                 Attributes: [{ Name: 'class', Value: 'icon-edit' }],
-                Visibile: isActivedViewer
+                Visibile: isShowEditSettingLink
             },
             AddAccount: {
                 Attributes: [{ Name: 'class', Value: 'icon-add' }],
-                Visibile: isActivedViewer && status === siteInfrastructure.customerStatus.active && !isMember
+                Visibile: canDoAddOrUpdateAction && status === siteInfrastructure.customerStatus.active && !isMember
             },
             UnlockAccount: {
                 Attributes: [{ Name: 'class', Value: 'icon-unlock' }],
-                Visibile: isActivedViewer && closed
+                Visibile: canDoAddOrUpdateAction && closed
             }
         };
     }
 
-    private buildActionColumnOnDesktop(customer: any, viewerStatusId: number, levelId: number) {
-        const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
-            isActivedViewer = viewerStatusId === siteInfrastructure.customerStatus.active,
+    private buildActionColumnOnDesktop(customer, canDoAddOrUpdateAction: boolean, levelId: number, isShowEditSettingLink: boolean) {
+        const { agent, member } = siteInfrastructure.roleId,
+            isAgent = levelId === agent,
+            isMember = levelId === member,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockTooltip } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
 
-        const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed),
+        const actionAttributeJson = this.buildActionAttributeJson(levelId, canDoAddOrUpdateAction, isMember, Status, Closed, isShowEditSettingLink),
             { Password, Security, EditAccount, AddAccount, UnlockAccount } = actionAttributeJson;
 
         const actionsJson = [
@@ -99,16 +111,10 @@ class CustomerListHelper {
         return columnContent;
     }
 
-    private buildActionColumnOnMobile(customer: any, viewerStatusId: number, levelId: number) {
+    private buildActionColumnOnMobile(customer, canDoAddOrUpdateAction: boolean, levelId: number, isShowEditSettingLink: boolean) {
         const { agent, member } = siteInfrastructure.roleId, isAgent = levelId === agent, isMember = levelId === member,
-            { active } = siteInfrastructure.customerStatus,
-            isActivedViewer = viewerStatusId === active,
             { ResetPassword, ResetSecurityCode, EditMember, EditAgent, EditMasterAgent, NewAgent, NewMember, UnlockConfirmTitle } = this.viewResources,
             { CustId, Username, Status, Closed } = customer, emptyContent = '';
-
-        if (!isActivedViewer) {
-            return emptyContent;
-        }
 
         const anchorWrapper = new AnchorWrapper(
             new SpanWrapper(emptyContent, [new Attribute('class', `${Closed ? 'icon-user-unlock' : 'icon-more-action'}`)]).ToString(),
@@ -122,7 +128,7 @@ class CustomerListHelper {
             ]
         );
 
-        const actionAttributeJson = this.buildActionAttributeJson(levelId, isActivedViewer, isMember, Status, Closed);
+        const actionAttributeJson = this.buildActionAttributeJson(levelId, canDoAddOrUpdateAction, isMember, Status, Closed, isShowEditSettingLink);
         const listItemsJson = [
             { ...{ Content: ResetPassword }, ...actionAttributeJson.Password },
             { ...{ Content: ResetSecurityCode }, ...actionAttributeJson.Security },
@@ -154,12 +160,12 @@ class CustomerListHelper {
         return new DivWrapper(`${Username}${nickNameDiv.ToString()}${nameDiv.ToString()}`, [new Attribute('class', 'username-wrapper')]).ToString();
     }
 
-    private buildNoInfoContent = (colspan: number) =>
-        `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
+    private buildNoInfoContent(colspan: number) {
+        return `<tr><td colspan='${colspan}' align='center' class='no-info'>${this.viewResources.NoInformationIsAvailable}</td></tr>`;
+    }
 
-    private buildCoulunAttributesJson(customer: any, isDesktop: boolean, viewerStatusId: number, levelId: number, customerIndex: number) {
+    private buildCoulunAttributesJson(customer, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, customerIndex: number, isShowEditSettingLink: boolean) {
         const { member } = siteInfrastructure.roleId, isMember = levelId === member,
-             isActivedViewer = viewerStatusId === siteInfrastructure.customerStatus.active,
             { CustId, Username, Status, Credit, Group, Name, Nickname, CreationDateStr } = customer,
             commonAttributesJson = this.buildCommonAttributesJson(CustId, Username);
 
@@ -191,8 +197,8 @@ class CustomerListHelper {
             },
             {
                 Content: this.numeral(Credit).format("###,0.00"),
-                Attributes: [{ Name: 'class', Value: `text-right ${isActivedViewer ? 'link col-credit' : ''}` }]
-                    .concat(isActivedViewer ? commonAttributesJson : []),
+                Attributes: [{ Name: 'class', Value: `text-right ${canDoAddOrUpdateAction ? 'link col-credit' : ''}` }]
+                    .concat(canDoAddOrUpdateAction ? commonAttributesJson : []),
                 Visibile: true
             },
             {
@@ -202,37 +208,40 @@ class CustomerListHelper {
             },
             {
                 Content: this.getStatusName(Status),
-                Attributes: [{ Name: 'class', Value: `text-center ${isActivedViewer ? 'link col-status' : ''}` }]
-                    .concat(isActivedViewer ?
+                Attributes: [{ Name: 'class', Value: `text-center ${canDoAddOrUpdateAction ? 'link col-status' : ''}` }]
+                    .concat(canDoAddOrUpdateAction ?
                         commonAttributesJson.concat([{ Name: 'current-status', Value: Status }]) : []),
                 Visibile: true
             },
             {
                 Content: isDesktop ?
-                    this.buildActionColumnOnDesktop(customer, viewerStatusId, levelId) :
-                    this.buildActionColumnOnMobile(customer, viewerStatusId, levelId),
-                Attributes: [{ Name: 'class', Value: 'col-action text-left' }],
+                    this.buildActionColumnOnDesktop(customer, canDoAddOrUpdateAction, levelId, isShowEditSettingLink) :
+                    this.buildActionColumnOnMobile(customer, canDoAddOrUpdateAction, levelId, isShowEditSettingLink),
+                Attributes: [{ Name: 'class', Value: `col-action ${isDesktop ? 'text-left' : 'text-center'}` }],
                 Visibile: true
             }
         ];
     }
 
-    public buildBody(rs: any, isDesktop: boolean, viewerStatusId: number, levelId: number, reportParam: any) {
-        if (rs.Customers.length == 0) {
-            const noInfoColspans = isDesktop ? 9 : 5;
+    public buildBody(rs, isDesktop: boolean, canDoAddOrUpdateAction: boolean, levelId: number, reportParam: ReportParam, isShowEditSettingLink: boolean) {
+        if (rs.Customers.length === 0) {
+            const desktopColspans = 9;
+            const mobileColspans = 5;
+            const noInfoColspans = isDesktop ? desktopColspans : mobileColspans;
             return this.buildNoInfoContent(levelId === siteInfrastructure.roleId.member ? noInfoColspans : noInfoColspans - 1);
         }
 
         let customerIndex = reportParam.PageSize * (reportParam.PageIndex - 1) + 1, bodyContent = '';
 
         for (let i = 0; i < rs.Customers.length; i++ , customerIndex++) {
-            let rowContent = ''
+            let rowContent = '';
             this.buildCoulunAttributesJson(
-                    rs.Customers[i],
-                    isDesktop,
-                    viewerStatusId,
+                rs.Customers[i],
+                isDesktop,
+                canDoAddOrUpdateAction,
                 levelId,
-                customerIndex).forEach(column => {
+                customerIndex,
+                isShowEditSettingLink).forEach(column => {
                     if (column.Visibile) {
                         rowContent += new ColumnWrapper(column.Content,
                             column.Attributes.map(attr => new Attribute(attr.Name, attr.Value))).ToString();
@@ -244,5 +253,5 @@ class CustomerListHelper {
         }
 
         return bodyContent;
-    };
+    }
 }

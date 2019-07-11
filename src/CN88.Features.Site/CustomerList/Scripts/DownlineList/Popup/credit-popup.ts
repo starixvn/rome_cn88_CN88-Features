@@ -1,8 +1,8 @@
 ﻿class CreditPopup extends PopupBase {
-    cleaveCredit: any;
-    constructor($: JQueryStatic, topWindow: any) {
+    cleaveCredit: Cleave;
+    constructor($: JQueryStatic, topWindow: Window) {
         super($, topWindow);
-    };
+    }
 
     init = () => {
         this.registerEvents();
@@ -18,16 +18,16 @@
     registerEvents() {
         super.registerEvents();
         this.$(".btn-submit").bind("click", this.updateCredit);
-    };
+    }
 
     getResource() {
         super.getResource();
         this.resources.InvalidCredit = this.$("#InvalidCredit").val();
         this.resources.InputNumberError = this.$("#InputNumberError").val();
-    };
+    }
 
     updateCredit = () => {
-        let minCredit = parseFloat(this.$("#MinCredit").val()),
+        const minCredit = parseFloat(this.$("#MinCredit").val()),
             maxCredit = parseFloat(this.$("#MaxCredit").val()),
             credit = parseFloat(this.cleaveCredit.getRawValue()),
             custId = this.$("#CustId").val(),
@@ -54,6 +54,6 @@
 }
 
 $(() => {
-    const creditPopup: any = new CreditPopup($, window.top);
+    const creditPopup = new CreditPopup($, window.top);
     creditPopup.init();
-})
+});

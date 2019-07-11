@@ -32,7 +32,7 @@ class OldReportIndexView extends OldBaseReport {
         this.fromDate = this.$fromDate.val();
         this.toDate = this.$toDate.val();
 
-        let displayMode = this.$displayMode.val();
+        const displayMode = this.$displayMode.val();
         this.$subMenuItems.removeClass("active");
         if (displayMode === "1") {
             this.$subMenuWager.parent().addClass("active");
@@ -67,23 +67,23 @@ class OldReportIndexView extends OldBaseReport {
     }
 
     registerEvents = () => {
-        this.$createRptForm.submit(() => { this.onSubmit(); });
-        this.$clearBtn.click(() => { this.reset(); })
+        this.$createRptForm.submit(this.onSubmit);
+        this.$clearBtn.click(this.reset);
     }
 
-    onSubmit(): void {
-        let reportType = this.$wagerRptTypeDropdown.children("option:selected").val();
+    onSubmit = () => {
+        const reportType = this.$wagerRptTypeDropdown.children("option:selected").val();
         this.$reportType.val(reportType);
         this.accountingPeriodSelectionComponent.updateSelectedValue();
         this.sportGroupSelectionComponent.updateSelectedValue();
-    }
+    };
 
-    reset(): void {
+    reset = () => {
         this.resetReportType();
         this.resetAccountingSheet();
         this.resetDatePicker();
         this.sportGroupSelectionComponent.changeSelection(0);
-    }
+    };
 
     resetReportType(): void {
         (this.$wagerRptTypeDropdown[0] as HTMLSelectElement).selectedIndex = 0;
@@ -109,4 +109,4 @@ $(function () {
         new SingleSelectionDropdownComponent($));
 
     oldReportIndexView.init();
-})
+});

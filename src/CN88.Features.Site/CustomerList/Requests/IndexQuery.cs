@@ -7,12 +7,10 @@
 
     public class IndexQuery : BaseQuery, IRequest<IndexViewModel>
     {
-        private const int DefaultPageSize = 100;
-
         private readonly IUser viewer;
         private const byte defaultStatusId = 4;
         private const byte defaultPageSize = 100;
-        private const byte defaultPageIndex= 100;
+        private const byte defaultPageIndex = 100;
 
         public IndexQuery()
             : this(null)
@@ -24,8 +22,6 @@
         {
             this.viewer = viewer;
         }
-
-        public bool AccountManagementEditView => viewer.AccountManagementEditView;
 
         public int ActorId => viewer.Id;
 

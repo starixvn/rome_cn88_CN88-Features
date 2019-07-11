@@ -2,7 +2,6 @@
 /// <reference path="../../shared/scripts/components/daterangepicker.ts" />
 /// <reference path="../../shared/scripts/components/single-selection-dropdown.ts" />
 
-var betTypes = betTypes;
 let NexDatePickerHelper: any;
 class ReportIndexView extends BaseReport {
     $wagerTab: JQuery;
@@ -42,7 +41,7 @@ class ReportIndexView extends BaseReport {
 
     defaultFromDate: Date;
     defaultToDate: Date;
-    topWindow: any;
+    topWindow: Window;
 
     constructor(
         $: JQueryStatic,
@@ -50,7 +49,7 @@ class ReportIndexView extends BaseReport {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         betTypeSelectionComponent: SingleSelectionDropdownComponent,
         liveStatusSelectionComponent: SingleSelectionDropdownComponent,
-        topWindow: any) {
+        topWindow: Window) {
         super($, dateRangePickerComponent, sportGroupSelectionComponent, betTypeSelectionComponent, liveStatusSelectionComponent);
         this.topWindow = topWindow;
     }
@@ -63,9 +62,9 @@ class ReportIndexView extends BaseReport {
         this.calculatedDate();
         this.registerEvents();
 
-        if (this.$("#IsSetMenu").val() == "1") {
-            this.topWindow.indexManager.activeMainMenu("menu-REPORTS");
-            this.topWindow.indexManager.activeSubMenu("sub-menu-WAGERREPORT", "menu-REPORTS");
+        if (this.$("#IsSetMenu").val() === "1") {
+            this.topWindow["indexManager"].activeMainMenu("menu-REPORTS");
+            this.topWindow["indexManager"].activeSubMenu("sub-menu-WAGERREPORT", "menu-REPORTS");
         }
 
         this.$.unblockUI();
@@ -169,7 +168,7 @@ class ReportIndexView extends BaseReport {
         });
 
         this.$lastWeekBtn.click((e) => {
-            let dateRange = NexDatePickerHelper.getDateRangeOfLastWeek(this.getToday());
+            const dateRange = NexDatePickerHelper.getDateRangeOfLastWeek(this.getToday());
             this.onQuickChoiceClick(e, dateRange[0], dateRange[1]);
         });
 
@@ -199,28 +198,28 @@ class ReportIndexView extends BaseReport {
     }
 
     getYesterday(date: Date): Date {
-        let yesterday = date;
+        const yesterday = date;
         yesterday.setDate(date.getDate() - 1);
         return yesterday;
     }
 
     getTomorrow(date: Date): Date {
-        let tomorrow = date;
+        const tomorrow = date;
         tomorrow.setDate(date.getDate() + 1);
         return tomorrow;
     }
 
     getDateRangeOfCurrentWeek(today: Date): [Date, Date] {
-        let date = today;
-        let baseDate = NexDatePickerHelper.getBaseDateOfWeek(today);
-        let startDate = new Date(date.setDate(baseDate));
-        let lastDate = new Date(date.setDate(date.getDate() + 6));
+        const date = today;
+        const baseDate = NexDatePickerHelper.getBaseDateOfWeek(today);
+        const startDate = new Date(date.setDate(baseDate));
+        const lastDate = new Date(date.setDate(date.getDate() + 6));
 
         return [startDate, lastDate];
     }
 
     onQuickChoiceClick(e: JQueryEventObject, fromDate, toDate): void {
-        var button = this.$(e.target);
+        const button = this.$(e.target);
         this.$choiceBtn.removeClass("btn-secondary").addClass("btn-default");
         button.removeClass("btn-default").addClass("btn-secondary");
 
@@ -228,10 +227,10 @@ class ReportIndexView extends BaseReport {
     }
 
     changeDateRange(fromDate, toDate): void {
-        let minDate = new Date(this.$dateRangePicker.data("mindate"));
-        let maxDate = new Date(this.$dateRangePicker.data("maxdate"));
-        let fDate = NexDatePickerHelper.correctDateInRange(fromDate, minDate, maxDate);
-        let tDate = NexDatePickerHelper.correctDateInRange(toDate, minDate, maxDate);
+        const minDate = new Date(this.$dateRangePicker.data("mindate"));
+        const maxDate = new Date(this.$dateRangePicker.data("maxdate"));
+        const fDate = NexDatePickerHelper.correctDateInRange(fromDate, minDate, maxDate);
+        const tDate = NexDatePickerHelper.correctDateInRange(toDate, minDate, maxDate);
 
         this.$fromDateContainer.data("DateTimePicker").maxDate(tDate);
         this.$fromDateContainer.data("DateTimePicker").date(fDate);
@@ -269,9 +268,9 @@ class ReportIndexView extends BaseReport {
     }
 
     updateReportTypeValue = () => {
-        let selected = [];
+        const selected = [];
         let selectedOptions;
-        let this$ = this.$;
+        const this$ = this.$;
 
         if (this.$wagerTab.hasClass("active")) {
             selectedOptions = this.$wagerRptTypeDropdown.find("option:selected");

@@ -80,20 +80,20 @@
     <Reference Include="CN88.BetList.Lottery, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.Lottery.1.0.0\lib\net461\CN88.BetList.Lottery.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.BetList.NumberGame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.NumberGame.1.0.0\lib\net461\CN88.BetList.NumberGame.dll</HintPath>
+    <Reference Include="CN88.BetList.NumberGame, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.NumberGame.1.0.0.1\lib\net461\CN88.BetList.NumberGame.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.Sportsbook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0.1\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
+    <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0.1\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
     </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.1-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.1.0\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.1.3\lib\net461\CN88.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -550,9 +550,17 @@
     <Content Include="BetLists\Styles\wager-monitor-console.min.css">
       <DependentUpon>wager-monitor-console.css</DependentUpon>
     </Content>
-    <Content Include="CustomerList\bundles\scripts\index.js" />
-    <Content Include="CustomerList\bundles\scripts\index.min.js">
+    <Content Include="CustomerList\bundles\scripts\DownlineList\index.js" />
+    <Content Include="CustomerList\bundles\scripts\DownlineList\index.min.js">
       <DependentUpon>index.js</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\credit-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\credit-popup.min.js">
+      <DependentUpon>credit-popup.js</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\status-popup.js" />
+    <Content Include="CustomerList\bundles\scripts\DownlineList\popup\status-popup.min.js">
+      <DependentUpon>status-popup.js</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\scripts\memberstatement.js" />
     <Content Include="CustomerList\bundles\scripts\memberstatement.min.js">
@@ -561,14 +569,6 @@
     <Content Include="CustomerList\bundles\scripts\onlinemember.js" />
     <Content Include="CustomerList\bundles\scripts\onlinemember.min.js">
       <DependentUpon>onlinemember.js</DependentUpon>
-    </Content>
-    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.js" />
-    <Content Include="CustomerList\bundles\scripts\popup\credit-popup.min.js">
-      <DependentUpon>credit-popup.js</DependentUpon>
-    </Content>
-    <Content Include="CustomerList\bundles\scripts\popup\status-popup.js" />
-    <Content Include="CustomerList\bundles\scripts\popup\status-popup.min.js">
-      <DependentUpon>status-popup.js</DependentUpon>
     </Content>
     <Content Include="CustomerList\bundles\styles\customizeDCSCN88.css" />
     <Content Include="CustomerList\bundles\styles\customizeDCSCN88.min.css">
@@ -796,10 +796,12 @@
     <Compile Include="Reports\Handlers\ReportsWorkbook.cs" />
     <Compile Include="Reports\Handlers\VerifyPasswordHandler.cs" />
     <Compile Include="Reports\OldReportsController.cs" />
+    <Compile Include="Reports\Requests\OldReportExcelQuery.cs" />
     <Compile Include="Reports\Requests\OldReportQuery.cs" />
     <Compile Include="Reports\Requests\ReportBaseQuery.cs" />
     <Compile Include="Reports\Requests\OldIndexQuery.cs" />
     <Compile Include="Reports\Requests\PTHistoryQuery.cs" />
+    <Compile Include="Reports\Requests\ReportExcelBaseQuery.cs" />
     <Compile Include="Reports\Requests\ReportExcelQuery.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordCommand.cs" />
     <Compile Include="Reports\Requests\VerifyPasswordQuery.cs" />
@@ -1065,19 +1067,16 @@
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\pause.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\wager-monitoring.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\agent-list.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Helpers\customer-list-helper.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Helpers\customer-list-helper.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\base-list.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\index.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\master-list.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\member-list.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Popup\credit-popup.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Popup\popup-base.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\Popup\status-popup.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\base-list.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\index.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\credit-popup.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\popup-base.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\status-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\site-infrastructure.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\ViewModel\view-model.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\ViewModel\view-model.ts" />
     <TypeScriptCompile Include="Reports\Scripts\base-report.ts" />
     <TypeScriptCompile Include="Reports\Scripts\pt-history.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\client-pager.ts" />
@@ -1101,6 +1100,7 @@
     <TypeScriptCompile Include="Shared\Scripts\components\sort.ts" />
     <TypeScriptCompile Include="Shared\Scripts\components\html-wrapper.ts" />
     <TypeScriptCompile Include="Shared\Scripts\core.ts" />
+    <TypeScriptCompile Include="Shared\Scripts\security-code-checker.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
@@ -1116,6 +1116,7 @@
     <TypeScriptCompile Include="typings\globals\jqueryui\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\numeral\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\storejs\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>

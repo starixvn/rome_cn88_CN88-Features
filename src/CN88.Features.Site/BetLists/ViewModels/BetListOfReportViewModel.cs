@@ -1,8 +1,5 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -19,6 +16,9 @@
     using Shared.Helpers;
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class BetListOfReportViewModel : BetListViewModelBase
     {
@@ -76,6 +76,7 @@
             DisplayMode = message.DisplayMode;
             ReportMainActionPath = message.ReportMainActionPath;
             IsOldReport = message.IsOldReport;
+            IsSettlement = message.IsSettlement;
 
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, message.UserSelectedSportGroupId);
             var dateRangePickerViewModel = CreateDateRangePickerViewModel(message, lastPeriod, oldAccountingPeriods);

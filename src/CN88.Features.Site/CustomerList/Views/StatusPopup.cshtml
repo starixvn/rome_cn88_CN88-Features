@@ -35,15 +35,18 @@ new {
     <div class="col-xs-12 hidden msg" id="error-message"></div>
     <div class="form-group">
         <label>@CustomerListResources.Status</label>
-        <select id="dropdown-status" class="control">
-            @foreach (var option in options)
-            {
-                if (option.Show)
+        <div class="credit-group">
+            <select id="dropdown-status" class="control">
+                @foreach (var option in options)
                 {
-                    <option value="@option.Value" @(Model.StatusId == option.Value ? "selected='selected'" : "")>@option.Text</option>
+                    if (option.Show)
+                    {
+                        <option value="@option.Value" @(Model.StatusId == option.Value ? "selected='selected'" : "")>@option.Text</option>
+                    }
                 }
-            }
-        </select>
+            </select>
+        </div>
+        
     </div>
     <div class="list-button">
         <button type="button" class="btn-submit">@CustomerListResources.Save</button>
@@ -59,5 +62,5 @@ new {
 @Html.AntiForgeryToken()
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/popup/status-popup")
+    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/DownlineList/popup/status-popup")
 }

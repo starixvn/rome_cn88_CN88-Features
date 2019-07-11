@@ -40,9 +40,9 @@ class OldBaseReport {
     }
 
     onPeriodChange(): void {
-        let $this = this.accountingPeriodSelectionComponent.$dropdown.children("option:selected");
-        let fromDate = new Date($this.data("fromdate"));
-        let toDate = new Date($this.data("todate"));
+        const $this = this.accountingPeriodSelectionComponent.$dropdown.children("option:selected");
+        const fromDate = new Date($this.data("fromdate"));
+        const toDate = new Date($this.data("todate"));
         this.$fromDate.val(moment(fromDate).format(cn88Features.format.shortDate_DatePicker));
         this.$toDate.val(moment(toDate).format(cn88Features.format.shortDate_DatePicker));
     }
@@ -50,11 +50,10 @@ class OldBaseReport {
     reCheckIn(): void {
         this.checkIn();
 
-        let expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
-        let $this = this;
+        const expiredSessionSeconds: number = this.$('#expiredSessionSeconds').val();
 
-        setInterval(function () {
-            $this.checkIn();
+        setInterval(() => {
+            this.checkIn();
         }, expiredSessionSeconds * 1000);
     }
 

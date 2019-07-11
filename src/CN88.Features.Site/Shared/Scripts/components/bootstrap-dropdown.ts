@@ -1,41 +1,41 @@
 ﻿"use strict";
 
 class BootstrapDropdownOption {
-    constructor(public dropdownId: string = "dropdown-single") { }
+    constructor(public dropdownId = "dropdown-single") { }
 }
 
 class BootstrapDropdownComponent {
     $: JQueryStatic;
-    topWindow: any;
+    topWindow: Window;
     $dropdown: JQuery;
 
     options = new BootstrapDropdownOption();
 
-    constructor($: JQueryStatic, topWindow: any) {
+    constructor($: JQueryStatic, topWindow: Window) {
         this.$ = $;
         this.topWindow = topWindow;
     }
 
     render = (options: BootstrapDropdownOption = new BootstrapDropdownOption()) => {
-        this.options = <BootstrapDropdownOption>this.$.extend({}, this.options, options);
+        this.options = this.$.extend({}, this.options, options) as BootstrapDropdownOption;
 
-        let $dropdown = this.$(this.options.dropdownId);
+        const $dropdown = this.$(this.options.dropdownId);
         this.$dropdown = $dropdown;
 
-        let this$ = this.$;
-        let thisWindow = this.topWindow;
+        const this$ = this.$;
+        const thisTopWindow = this.topWindow;
 
         $dropdown.on("shown.bs.dropdown", function () {
-            var $window = this$(window);
-            var $this = this$(this);
-            var $button = $this.children(".dropdown-toggle");
-            var $ul = $this.children(".dropdown-menu");
-            var ulOffset = $ul.offset();
-            var isiOS = /iPhone/i.test(navigator.userAgent);
-            var scrollTop = isiOS ? thisWindow.$("body").scrollTop() : $window.scrollTop();
+            const $window = this$(window);
+            const $this = this$(this);
+            const $button = $this.children(".dropdown-toggle");
+            const $ul = $this.children(".dropdown-menu");
+            const ulOffset = $ul.offset();
+            const isiOS = /iPhone/i.test(navigator.userAgent);
+            const scrollTop = isiOS ? thisTopWindow.$("body").scrollTop() : $window.scrollTop();
 
-            var spaceUp = (ulOffset.top - $button.height() - $ul.height()) - scrollTop;
-            var spaceDown = scrollTop + thisWindow.$("#content").height() - (ulOffset.top + $ul.height());
+            const spaceUp = (ulOffset.top - $button.height() - $ul.height()) - scrollTop;
+            const spaceDown = scrollTop + thisTopWindow.$("#content").height() - (ulOffset.top + $ul.height());
 
             if (spaceDown < 0 && (spaceUp >= 0 || spaceUp > spaceDown)) {
                 $this.addClass("dropup");

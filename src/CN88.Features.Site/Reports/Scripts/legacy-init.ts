@@ -18,4 +18,4 @@ $(function () {
         new ClientPagerComponent($));
 
     legacyReport.init();
-})
+});

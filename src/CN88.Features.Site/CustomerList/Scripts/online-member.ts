@@ -22,4 +22,4 @@ $(function () {
         new PagerComponent($));
 
     onlineMembers.init();
-})
+});

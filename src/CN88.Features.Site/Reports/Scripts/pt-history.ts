@@ -1,5 +1,5 @@
 ﻿class PTHistory {
-    $: JQueryStatic
+    $: JQueryStatic;
     $ptHistoryUrl: JQuery;
     $FromDate: JQuery;
     $ToDate: JQuery;
@@ -28,20 +28,19 @@
     loadPTHistory = (e: JQueryEventObject) => {
         this.$.blockUI();
 
-        let icon = this.$(e.target);
-        let custId = icon.data("custid");
-        let fromDate = this.$FromDate.val();
-        let toDate = this.$ToDate.val();
-        var self = this;
+        const icon = this.$(e.target);
+        const custId = icon.data("custid");
+        const fromDate = this.$FromDate.val();
+        const toDate = this.$ToDate.val();
 
         this.$.ajax({
             method: "GET",
             url: this.$ptHistoryUrl.val(),
             cache: false,
             data: { CustId: custId, FromDate: fromDate, ToDate: toDate },
-            success: function (result) {
-                self.renderPTHistory(result);
-                self.showPTHistory(icon.position());
+            success: (result) => {
+                this.renderPTHistory(result);
+                this.showPTHistory(icon.position());
             },
             complete: this.$.unblockUI
         });
@@ -52,7 +51,7 @@
             this.$ptHistory.remove();
         }
 
-        if (html == "") {
+        if (html === "") {
             return;
         }
 

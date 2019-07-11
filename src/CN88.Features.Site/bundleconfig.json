@@ -96,27 +96,25 @@
       "Shared/Scripts/components/client-pager.js",
       "Shared/Scripts/components/sort.js",
       "Reports/Scripts/old-base-report.js",
-      //"Reports/Scripts/pt-history.js",
       "Reports/Scripts/old-legacy.js",
       "Reports/Scripts/old-legacy-init.js"
     ]
   },
   {
-    "outputFileName": "CustomerList/bundles/scripts/index.js",
+    "outputFileName": "CustomerList/bundles/scripts/DownlineList/index.js",
     "inputFiles": [
+      "Shared/Scripts/core.js",
       "Shared/scripts/components/single-selection-dropdown.js",
       "Shared/Scripts/components/filter-toggle.js",
       "Shared/Scripts/components/bootstrap-dropdown.js",
       "Shared/scripts/components/pager.js",
       "Shared/Scripts/components/html-wrapper.js",
-      "CustomerList/scripts/ViewModel/view-model.js",
-      "CustomerList/scripts/Helpers/customer-list-helper.js",
+      "Shared/Scripts/security-code-checker.js",
+      "CustomerList/scripts/DownlineList/ViewModel/view-model.js",
+      "CustomerList/scripts/DownlineList/Helpers/customer-list-helper.js",
       "CustomerList/scripts/site-infrastructure.js",
-      "CustomerList/scripts/base-list.js",
-      "CustomerList/scripts/master-list.js",
-      "CustomerList/scripts/agent-list.js",
-      "CustomerList/scripts/member-list.js",
-      "CustomerList/scripts/index.js"
+      "CustomerList/scripts/DownlineList/base-list.js",
+      "CustomerList/scripts/DownlineList/index.js"
     ]
   },
   {
@@ -137,17 +135,17 @@
     ]
   },
   {
-    "outputFileName": "CustomerList/bundles/scripts/popup/credit-popup.js",
+    "outputFileName": "CustomerList/bundles/scripts/DownlineList/popup/credit-popup.js",
     "inputFiles": [
-      "CustomerList/scripts/popup/popup-base.js",
-      "CustomerList/scripts/popup/credit-popup.js"
+      "CustomerList/scripts/DownlineList/popup/popup-base.js",
+      "CustomerList/scripts/DownlineList/popup/credit-popup.js"
     ]
   },
   {
-    "outputFileName": "CustomerList/bundles/scripts/popup/status-popup.js",
+    "outputFileName": "CustomerList/bundles/scripts/DownlineList/popup/status-popup.js",
     "inputFiles": [
-      "CustomerList/scripts/popup/popup-base.js",
-      "CustomerList/scripts/popup/status-popup.js"
+      "CustomerList/scripts/DownlineList/popup/popup-base.js",
+      "CustomerList/scripts/DownlineList/popup/status-popup.js"
     ]
   },
   {
@@ -184,6 +182,7 @@
     "outputFileName": "SubAccount/bundles/scripts/sub-account.js",
     "inputFiles": [
       "Shared/Scripts/core.js",
+      "Shared/Scripts/security-code-checker.js",
       "Shared/Scripts/components/message.js",
       "Shared/Scripts/components/sort.js",
       "Shared/Scripts/components/link-builder.js",

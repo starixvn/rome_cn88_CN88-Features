@@ -6,7 +6,6 @@
 /// <reference path="../../shared/scripts/components/client-pager.ts" />
 /// <reference path="../../shared/scripts/components/link-builder.ts" />
 
-
 $(function () {
     const linkBuilderComponent = new LinkBuilderComponent($);
     const oldLegacyReport = new OldLegacyReport(
@@ -19,4 +18,4 @@ $(function () {
         new ClientPagerComponent($));
 
     oldLegacyReport.init();
-})
+});

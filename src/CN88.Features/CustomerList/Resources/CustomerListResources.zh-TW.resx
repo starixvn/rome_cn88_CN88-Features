@@ -181,7 +181,7 @@
     <value>保存</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>暫停</value>
+    <value>禁止登入</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>帳戶</value>
@@ -193,7 +193,7 @@
     <value>已用額度</value>
   </data>
   <data name="Nickname" xml:space="preserve">
-    <value>暱稱</value>
+    <value>登入賬號</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>限額</value>
@@ -235,7 +235,7 @@
     <value>更新狀態</value>
   </data>
   <data name="UsernameOrNameContains" xml:space="preserve">
-    <value>暱稱或名字中含</value>
+    <value>登入賬號或名字中含</value>
   </data>
   <data name="NewAgent" xml:space="preserve">
     <value>新增代理</value>
@@ -319,15 +319,18 @@
     <value>解鎖此帳戶</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>已啟用</value>
+    <value>啟用</value>
   </data>
   <data name="Inactive" xml:space="preserve">
-    <value>已失效</value>
+    <value>停用</value>
   </data>
   <data name="ViewOnly" xml:space="preserve">
-    <value>僅供檢視</value>
+    <value>只能看帳</value>
   </data>
   <data name="UpdateStatusFailedCauseOfDirectUplineNotActive" xml:space="preserve">
-    <value>Update status failed. Upline level is not active.</value>
+    <value>無法更新狀態，上線層級未啟用</value>
+  </data>
+  <data name="AvailableCredit" xml:space="preserve">
+    <value>可用額度</value>
   </data>
 </root>

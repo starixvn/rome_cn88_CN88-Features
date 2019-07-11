@@ -4,7 +4,7 @@
 class MemberStatement {
     $: JQueryStatic;
     $reportForm: JQuery;
-    topWindow: any;
+    topWindow: Window;
     sportGroupSelectionComponent: SingleSelectionDropdownComponent;
     fromDateSelectionComponent: SingleSelectionDropdownComponent;
     toDateSelectionComponent: SingleSelectionDropdownComponent;
@@ -19,7 +19,7 @@ class MemberStatement {
         sportGroupSelectionComponent: SingleSelectionDropdownComponent,
         fromDateSelectionComponent: SingleSelectionDropdownComponent,
         toDateSelectionComponent: SingleSelectionDropdownComponent,
-        topWindow: any,
+        topWindow: Window,
         toggleHandler: ToggleHandler) {
         this.$ = $;
         this.topWindow = topWindow;
@@ -42,17 +42,17 @@ class MemberStatement {
 
         if (this.isMobile) {
             this.toggleHandler.render(new ToggleHandlerOption("filter-toggle-icon", "report-form", "tbl-member-statement"));
-        }        
+        }
     }
 
     public onReportSubmit = () => {
         this.sportGroupSelectionComponent.updateSelectedValue();
         this.fromDateSelectionComponent.updateSelectedValue();
         this.toDateSelectionComponent.updateSelectedValue();
-        var fromValue = this.$("#UserSelectedfromdate").val();
-        var toValue = this.$("#UserSelectedtodate").val();
+        const fromValue = this.$("#UserSelectedfromdate").val();
+        const toValue = this.$("#UserSelectedtodate").val();
         if (fromValue < toValue) {
-            this.topWindow.popupManager.bootboxAlert(this.warning, this.invalidDateRange, null, 400, this.ok);
+            this.topWindow["popupManager"].bootboxAlert(this.warning, this.invalidDateRange, null, 400, this.ok);
             return false;
         }
     };
@@ -67,4 +67,4 @@ $(function () {
         window.top,
         new ToggleHandler($));
     memberStatement.init();
-})
+});

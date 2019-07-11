@@ -181,8 +181,8 @@
   <data name="HeadlineStockPercent" xml:space="preserve">
     <value>大股東實貨量(%)</value>
   </data>
-  <data name="ProfitMagin" xml:space="preserve">
-    <value>毛利</value>
+  <data name="ProfitMargin" xml:space="preserve">
+    <value>獲利率</value>
   </data>
   <data name="Wagers" xml:space="preserve">
     <value>注單</value>
@@ -227,7 +227,7 @@
     <value>交收</value>
   </data>
   <data name="MemberIncome" xml:space="preserve">
-    <value>會員收入</value>
+    <value>會員</value>
   </data>
   <data name="CancelledReport" xml:space="preserve">
     <value>取消單分析</value>

@@ -1,48 +1,41 @@
 ﻿@model IndexViewModel
-
 @{
     Layout = "~/Shared/Views/_Layout.cshtml";
     ViewBag.Title = CN88.Features.CustomerList.Resources.CustomerListResources.DownlineList;
-}
 
+}
 @section Styles {
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/downline-list")
 }
-
 <!----------------- Mobile Tab view ---------------->
 <ul id="nav-tabs" class="nav @(Model.IsDevice ? "nav-tabs" : "nav-tabs-style2")" role="tablist">
     @if (Model.ActorLevel.IsSuperLevel())
     {
         @RenderMobileTab(UserLevel.Master, CustomerListResources.Master)
     }
-
     @if (Model.ActorLevel.IsMasterOrSuperLevel())
     {
         @RenderMobileTab(UserLevel.Agent, CustomerListResources.Agent)
     }
-
     @RenderMobileTab(UserLevel.Member, CustomerListResources.Member)
 </ul>
-
 <!----------------- Desktop Tab view ---------------->
-@if (Model.ActorLevel.IsSuperLevel())
-{
-    @RenderContent(UserLevel.Master, CustomerListResources.NewMasterAgent)
-}
-
-@if (Model.ActorLevel.IsMasterOrSuperLevel())
-{
-    @RenderContent(UserLevel.Agent, CustomerListResources.NewAgent, Model.ActorLevel.IsSuperLevel(), true, CustomerListResources.MasterIsRequired)
-}
-
-@RenderContent(UserLevel.Member, CustomerListResources.NewMember, Model.ActorLevel.IsMasterOrSuperLevel(), true, CustomerListResources.AgentIsRequired)
-
+<div class="tab-content">
+    @if (Model.ActorLevel.IsSuperLevel())
+    {
+        @RenderContent(UserLevel.Master, CustomerListResources.NewMasterAgent)
+    }
+    @if (Model.ActorLevel.IsMasterOrSuperLevel())
+    {
+        @RenderContent(UserLevel.Agent, CustomerListResources.NewAgent, Model.ActorLevel.IsSuperLevel(), true, CustomerListResources.MasterIsRequired)
+    }
+    @RenderContent(UserLevel.Member, CustomerListResources.NewMember, Model.ActorLevel.IsMasterOrSuperLevel(), true, CustomerListResources.AgentIsRequired)
+</div>
 <div class="shadow" id="shadow"></div>
 <div class="output" id="output"></div>
 @Html.Hidden("directDownline", Model.ActorLevel.GetDirectDownLineLevel().Value)
 @Html.Hidden("getCustomerListUrl", Url.Action("GetCustomerList", "CustomerList"))
 @Html.Hidden("viewStatementtUrl", Url.Action("MemberStatement", "CustomerList"))
-
 @Html.Hidden("NoInformationIsAvailable", CustomerListResources.NoInformationIsAvailable)
 @Html.Hidden("Open", CustomerListResources.Open)
 @Html.Hidden("Closed", CustomerListResources.Closed)
@@ -62,31 +55,27 @@
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
 @Html.Hidden("AccessDenyPage", Model.AccessDenyPage)
-@Html.Hidden("ViewerStatusId", Model.ViewerStatusId)
-
+@Html.Hidden("CanDoAddOrUpdateAction", Model.CanDoAddOrUpdateAction ? 1 : 0)
+@Html.Hidden("IsShowEditSettingLink", Model.IsShowEditSettingLink ? 1 : 0)
 @Html.Hidden("UpdateStatus", CustomerListResources.UpdateStatus)
 @Html.Hidden("UpdateCredit", CustomerListResources.UpdateCredit)
 @Html.Hidden("ResetPassword", CustomerListResources.ResetPassword)
 @Html.Hidden("UnlockTooltip", CustomerListResources.UnlockTooltip)
 @Html.Hidden("UnlockConfirmTitle", CustomerListResources.UnlockConfirmTitle)
 @Html.Hidden("UnlockConfirmMessage", CustomerListResources.UnlockConfirmMessage)
-
 @Html.Hidden(nameof(SharedResources.OK), SharedResources.OK)
 @Html.Hidden(nameof(SharedResources.Cancel), SharedResources.Cancel)
-
 @Html.Hidden("NewMember", CustomerListResources.NewMember)
 @Html.Hidden("NewAgent", CustomerListResources.NewAgent)
 @Html.Hidden("EditMember", CustomerListResources.EditMember)
 @Html.Hidden("EditAgent", CustomerListResources.EditAgent)
 @Html.Hidden("EditMasterAgent", CustomerListResources.EditMasterAgent)
-
 @Html.Hidden("ResetSecurityCode", CustomerListResources.ResetSecurityCode)
 @Html.Hidden("Disabled", CustomerListResources.Disabled)
 @Html.Hidden("AccountManagementEditView", Model.AccountManagementEditView ? 1 : 0)
 @Html.Hidden("Language", Model.Language)
 @Html.Hidden("ViewerId", Model.ViewerId)
 @Html.Hidden("ActorLevel", Model.ActorLevel.Value)
-
 @Html.Hidden("DownlineUsername", Model.DownlineUsername)
 @Html.Hidden("Username", Model.Username)
 @Html.Hidden("SearchRoleId", Model.SearchRoleId)
@@ -94,13 +83,12 @@
 @Html.Hidden("PageSize", Model.PageSize)
 @Html.Hidden("PageIndex", Model.PageIndex)
 @Html.Hidden("IsDevice", Model.IsDevice ? 1 : 0)
-
+@Html.Hidden(nameof(Model.UnlockCustomerPath), Model.UnlockCustomerPath)
+@Html.Hidden(nameof(Model.VerifySecurityCodeLink), Model.VerifySecurityCodeLink)
 @Html.AntiForgeryToken()
-
 @section Scripts {
-    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/index")
+    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/DownlineList/index")
 }
-
 @helper RenderContent(
     UserLevel level,
     string submitButtonLabel,
@@ -108,14 +96,11 @@
     bool renderRequiredHint = false,
     string requiredHint = "")
 {
-    <div class="tab-content display-none" level="@level.Value">
-        <div class="tab-panel active" role="tabpanel">
-            @RenderFilter(level, submitButtonLabel, renderUplineSearchingText, renderRequiredHint, requiredHint)
-            @RenderContainer(level)
-        </div>
+    <div id="@($"tab{level.DisplayName}")" class="tab-pane fade @(IsActiveTab(level) ? "in active" : string.Empty)" role="tabpanel">
+        @RenderFilter(level, submitButtonLabel, renderUplineSearchingText, renderRequiredHint, requiredHint)
+        @RenderContainer(level)
     </div>
 }
-
 @helper RenderFilter(
     UserLevel level,
     string submitButtonLabel,
@@ -125,20 +110,12 @@
 {
     var levelName = level.DisplayName.ToLower();
     var uplineLevelName = level.GetDirectUpLineLevel().DisplayName.ToLower();
-    var options = new[]
-    {
-new { Value = CustomerStatus.All, Text = CustomerListResources.All },
-new { Value = CustomerStatus.Active, Text = CustomerListResources.Active },
-new { Value = CustomerStatus.ViewOnly, Text = CustomerListResources.ViewOnly },
-new { Value = CustomerStatus.Suspended, Text = CustomerListResources.Suspended },
-new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
-}.ToList();
 
     if (Model.IsDevice)
     {
         <div class="filter-mobile">
             <span class="icon-filter-down" id="@($"{levelName}-filter-toggle-icon")"></span>
-            @if (Model.ViewerStatusId != CustomerStatus.ViewOnly)
+            @if (Model.CanDoAddOrUpdateAction)
             {
                 @RenderAddNewButton(levelName, submitButtonLabel)
             }
@@ -154,7 +131,6 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
                     <input id="@($"txt-viewed-{level.GetDirectUpLineLevel().DisplayName.ToLower()}")" class="control txt-username-nickname" type="text" value="" />
                 </div>
             }
-
             <div class="form-group">
                 <label>@CustomerListResources.UsernameOrNameContains</label>
                 <input id="@($"txt-username-{levelName}")" class="control txt-username-nickname" type="text" value="" />
@@ -162,29 +138,26 @@ new { Value = CustomerStatus.Inactive, Text = CustomerListResources.Inactive }
             <div class="form-group">
                 <label>@CustomerListResources.Status</label>
                 <select id="@($"dropdown-status-{levelName}")" class="control">
-                    @foreach (var option in options)
+                    @foreach (var option in CustomerStatus.Statuses)
                     {
-                        <option value="@option.Value" @(Model.Status == option.Value ? "selected='selected'" : "")>@option.Text</option>
+                        <option value="@option.Key" @(Model.Status == option.Key ? "selected='selected'" : "")>@CustomerListResources.ResourceManager.GetString(option.Value)</option>
                     }
                 </select>
             </div>
             <div class="form-group">
                 <input id="@($"btn-submit-{levelName}")" class="btn-submit" type="button" value="@CustomerListResources.Submit" />
             </div>
-
             @if (renderRequiredHint)
             {
                 <div id="@($"msg-err-{levelName}")" class="msg msg-error display-none">@requiredHint</div>
             }
-
-            @if (Model.IsNotPhone && Model.ViewerStatusId != CustomerStatus.ViewOnly)
+            @if (Model.IsNotPhone && Model.CanDoAddOrUpdateAction)
             {
                 @RenderAddNewButton(levelName, submitButtonLabel)
             }
         </div>
     </div>
 }
-
 @helper RenderContainer(UserLevel level)
 {
     var levelName = level.DisplayName.ToLower();
@@ -229,7 +202,6 @@ new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true
     }
 </div>
 }
-
 @helper RenderAddNewButton(string levelName, string submitButtonLabel)
 {
     <button id="add-directdownline"
@@ -242,10 +214,15 @@ new { Text = CustomerListResources.Action, ClassName = "col-action", Show = true
         </span>@submitButtonLabel
     </button>
 }
-
 @helper RenderMobileTab(UserLevel level, string displayName)
 {
-    <li class="lnk-changetab" role="presentation" level="@level.Value">
-        <a>@displayName</a>
+    <li @(IsActiveTab(level) ? "class=active" : string.Empty) role="presentation">
+        <a id="@($"tab{level.Value}")" data-toggle="tab" href="@($"#tab{level.DisplayName}")">@displayName</a>
     </li>
+}
+@functions{
+    public bool IsActiveTab(UserLevel userLevel)
+    {
+        return Model.ActorLevel.GetDirectDownLineLevel().Value == userLevel.Value;
+    }
 }

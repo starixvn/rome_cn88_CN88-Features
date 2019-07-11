@@ -1,13 +1,12 @@
 ﻿@model CreditRangeViewModel
-
 @{
+    /**/
+
     Layout = "~/Shared/Views/_Layout.cshtml";
 }
-
 @section Styles {
     @StaticResources.RenderStyles("~/CustomerList/bundles/styles/popup")
 }
-
 <div class="popup-modal form">
     <div class="col-xs-12 hidden msg" id="error-message"></div>
     <div class="used-credit">
@@ -16,16 +15,19 @@
     </div>
     <div class="form-group">
         <label>@CustomerListResources.Credit</label>
-        <input class="txt-credit control" id="credit" type="text" inputmode="numeric" />
-
-        <div class="credit-range">[@Model.CreditModel.MinCredit.ToString("N2"); @Model.CreditModel.MaxCredit.ToString("N2")]</div>
+        <div class="credit-group">
+            <input class="txt-credit control" id="credit" type="text" inputmode="numeric" />
+            <div class="credit-range">
+                <span class="pull-left">@CustomerListResources.AvailableCredit</span>
+                <span class="pull-right">@Model.CreditModel.MaxCredit.ToString("N2")</span>
+            </div>
+        </div>        
     </div>
     <div class="list-button">
         <button type="button" class="btn-submit">@CustomerListResources.Save</button>
         <button type="button" class="btn-cancel">@CustomerListResources.Cancel</button>
     </div>
 </div>
-
 @Html.Hidden("MinCredit", Model.CreditModel.MinCredit)
 @Html.Hidden("MaxCredit", Model.CreditModel.MaxCredit)
 @Html.Hidden("CustId", Model.CustId)
@@ -35,7 +37,6 @@
 @Html.Hidden("InvalidCredit", CustomerListResources.InvalidCredit)
 @Html.Hidden("InputNumberError", CustomerListResources.InputNumberError)
 @Html.AntiForgeryToken()
-
 @section Scripts {
-    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/popup/credit-popup")
+    @StaticResources.RenderScripts("~/CustomerList/bundles/scripts/DownlineList/popup/credit-popup")
 }

@@ -274,7 +274,6 @@ body {
     transform: rotate(180deg);
 }
 
-
 .nav-tabs > li.report-name:hover:after {
     width: 0;
 }
@@ -322,8 +321,21 @@ body {
             }
         }
     }
-}
 
+    .settlement {
+        display: none;
+    }
+
+    &.settlement-report {
+        .valid-stake {
+            display: none;
+        }
+
+        .settlement {
+            display: table-cell;
+        }
+    }
+}
 
 .report-detail .accountingsheet-control {
     .multiselect .multiselect-selected-text {
@@ -540,6 +552,10 @@ body.phone {
             margin-top: -8px;
             font-size: 16px;
         }
+
+        .settlement {
+            display: table-cell;
+        }
     }
 
     .wager-report .tab-content.main-content {
@@ -551,4 +567,3 @@ body.phone {
         padding-right: 12px;
     }
 }
-

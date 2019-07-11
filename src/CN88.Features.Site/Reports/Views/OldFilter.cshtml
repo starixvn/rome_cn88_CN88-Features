@@ -13,7 +13,7 @@
         <input type="submit" value="@SharedResources.Submit" class="btn-submit" />
     </div>
 </form>
-<form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("Excel","Reports")">
+<form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("Excel","OldReports")">
     @RenderHiddenFields()
     @Html.Hidden("FromDate", Model.DateRangePickerViewModel.FromDate)
     @Html.Hidden("ToDate", Model.DateRangePickerViewModel.ToDate)
@@ -21,6 +21,7 @@
 </form>
 @helper RenderHiddenFields()
 {
+    /**/
     @Html.Hidden("CustId", Model.CustId)
     @Html.Hidden("CustName", Model.CustName)
     @Html.Hidden("CustLevelId", Model.CustLevel.Value)

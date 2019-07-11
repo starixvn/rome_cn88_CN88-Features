@@ -2,6 +2,7 @@
 {
     using Alpha.Auth.Configurations;
     using Alpha.Web.Helpers;
+    using CN88.Features.CustomerList;
     using CN88.Web.Helpers;
     using Features.Shared.Models;
 
@@ -68,5 +69,15 @@
         public bool IsDevice { get; }
 
         public bool IsNotPhone => !IsDevice;
+
+        public string UnlockCustomerPath => $"{SiteFeaturePath}/CustomerList/UnlockCustomer";
+
+        public string VerifySecurityCodeLink => $"{SiteMainPath}/SecurityCode/VerifySecurityCode";
+
+        public bool CanDoAddOrUpdateAction
+            => ViewerStatusId == CustomerStatus.Active && AccountManagementEditView;
+
+        public bool IsShowEditSettingLink
+            => ViewerStatusId == CustomerStatus.Active;
     }
 }

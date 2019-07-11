@@ -15,7 +15,10 @@
     using Shared.ViewModels;
     using static ONEbook.SpreadSheets.Column;
 
-    public class ReportsExcelHandler : ReportsBaseHandler, IRequestHandler<ReportExcelQuery, ExcelFileViewModel>
+    public class ReportsExcelHandler :
+        ReportsBaseHandler,
+        IRequestHandler<ReportExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<OldReportExcelQuery, ExcelFileViewModel>
     {
         private readonly ReportService reportService;
         private readonly AccountingPeriodService accountingPeriodService;
@@ -35,15 +38,25 @@
 
         public ExcelFileViewModel Handle(ReportExcelQuery message)
         {
+            var lastPeriod = accountingPeriodService.GetLastPeriod();
+            message.FromDate = message.FromDate < lastPeriod.FromDate ? lastPeriod.FromDate : message.FromDate;
+
+            return ExportExcel(message);
+        }
+
+        public ExcelFileViewModel Handle(OldReportExcelQuery message)
+            => ExportExcel(message);
+
+        private ExcelFileViewModel ExportExcel(ReportExcelBaseQuery message)
+        {
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message));
             }
-            var lastPeriod = accountingPeriodService.GetLastPeriod();
-            message.FromDate = message.FromDate < lastPeriod.FromDate ? lastPeriod.FromDate : message.FromDate;
 
-            divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
+            divisor = message.ActorLevel.IsHeadline() ? 100 : 1;
             totalStockPercent = message.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
+
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
             var grandTotal = AccumulateGrandTotal(reportData);
@@ -59,7 +72,7 @@
             return new ExcelFileViewModel(GetExcelFileName(param), result);
         }
 
-        internal Mapper<ReportModel> GetRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
+        internal Mapper<ReportModel> GetRowMapper(ReportExcelBaseQuery message, ReportModel grandTotal, bool isTotal)
         {
             if (message.CustLevel.IsSuperLevel())
             {
@@ -79,7 +92,7 @@
             return GetMemberRowMapper(isTotal);
         }
 
-        internal Mapper<ReportModel> GetSuperRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
+        internal Mapper<ReportModel> GetSuperRowMapper(ReportExcelBaseQuery message, ReportModel grandTotal, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
@@ -100,15 +113,13 @@
                 mapper.Map(M, data => isTotal ? totalStockPercent : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(N, data => isTotal ? string.Empty : data.HeadlinePoss)
                     .Map(O, data => RoundNumber(data.HeadlineIncome))
-                    .Map(P, data => RoundNumber(data.HeadlineResult))
-                    .Map(Q, data => CalculateNumber(data.HeadlineStock))
-                    .Map(R, data => isTotal ? totalStockPercent : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock));
+                    .Map(P, data => RoundNumber(data.HeadlineResult));
             }
 
             return mapper;
         }
 
-        internal Mapper<ReportModel> GetMasterRowMapper(ReportExcelQuery message, ReportModel grandTotal, bool isTotal)
+        internal Mapper<ReportModel> GetMasterRowMapper(ReportExcelBaseQuery message, ReportModel grandTotal, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
@@ -142,7 +153,7 @@
             return mapper;
         }
 
-        internal Mapper<ReportModel> GetAgentRowMapper(ReportExcelQuery message, bool isTotal)
+        internal Mapper<ReportModel> GetAgentRowMapper(ReportExcelBaseQuery message, bool isTotal)
         {
             var mapper = new Mapper<ReportModel>()
                 .Map(A, data => isTotal ? ReportResources.Total.ToUpperInvariant() : data.Username)
@@ -179,10 +190,10 @@
 
         internal static Mapper<ReportModel> GetFooterRowMapper()
             => new Mapper<ReportModel>()
-                .Map(A, data => ReportResources.ProfitMagin)
+                .Map(A, data => ReportResources.ProfitMargin)
                 .Map(B, data => decimal.Round(data.SuperStock != 0 ? data.SuperResult / data.SuperStock : 0, 4));
 
-        private TemplateInfo GetTemplateInfo(ReportExcelQuery message)
+        private TemplateInfo GetTemplateInfo(ReportExcelBaseQuery message)
             => new TemplateInfo(
                 GetExcelTemplatePath(message.IsOwner ? message.CustLevel.DisplayName + "Owner" : message.CustLevel.DisplayName),
                 noInfomationText: SharedResources.NoInformationIsAvailable,
