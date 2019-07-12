@@ -160,7 +160,7 @@
     <value>權限</value>
   </data>
   <data name="Reports" xml:space="preserve">
-    <value>报告</value>
+    <value>報表</value>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
     <value>對不起，密碼欄位不能為空！</value>
