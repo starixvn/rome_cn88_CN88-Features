@@ -167,13 +167,13 @@
     <value>股東用戶名</value>
   </data>
   <data name="HeadlinePoss" xml:space="preserve">
-    <value>大股東成數</value>
+    <value>總監成數</value>
   </data>
   <data name="HeadlineIncome" xml:space="preserve">
-    <value>大股東收入</value>
+    <value>總監收入</value>
   </data>
   <data name="HeadlineResult" xml:space="preserve">
-    <value>大股東結果</value>
+    <value>總監結果</value>
   </data>
   <data name="HeadlineStock" xml:space="preserve">
     <value>大股東實貨量</value>

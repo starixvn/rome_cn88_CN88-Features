@@ -145,7 +145,7 @@
     <value>修改</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>群組</value>
+    <value>盤口種類</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>總代理</value>
@@ -178,7 +178,7 @@
     <value>狀態</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>保存</value>
+    <value>提交</value>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>禁止登入</value>
@@ -235,7 +235,7 @@
     <value>更新狀態</value>
   </data>
   <data name="UsernameOrNameContains" xml:space="preserve">
-    <value>登入賬號或名字中含</value>
+    <value>賬戶搜尋</value>
   </data>
   <data name="NewAgent" xml:space="preserve">
     <value>新增代理</value>

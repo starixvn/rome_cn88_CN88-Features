@@ -230,13 +230,13 @@
     <value>股东用户名</value>
   </data>
   <data name="HeadlinePoss" xml:space="preserve">
-    <value>大股东成数</value>
+    <value>总监成数</value>
   </data>
   <data name="HeadlineIncome" xml:space="preserve">
-    <value>大股东收入</value>
+    <value>总监收入</value>
   </data>
   <data name="HeadlineResult" xml:space="preserve">
-    <value>大股东结果</value>
+    <value>总监结果</value>
   </data>
   <data name="HeadlineStock" xml:space="preserve">
     <value>大股东实货量</value>
