@@ -12,7 +12,9 @@
         protected internal static ReportParam CreateReportParam(ReportBaseQuery message)
             => new ReportParam(
                 message.CustId,
+                message.SubAccountId,
                 message.IsOwner,
+                message.ActorLevel.IsHeadline() || message.ViewerLevelId > message.CustLevelId,
                 message.FromDate,
                 message.ToDate,
                 message.UserSelectedSportGroupId,

@@ -78,7 +78,9 @@
             {
                 return new GetWinLossReportCriteria(
                     param.CustId,
+                    param.SubAccId,
                     param.IsOwner,
+                    param.IsViewAll,
                     param.FromDate,
                     param.ToDate,
                     archiveDate,
@@ -93,7 +95,9 @@
             {
                 return new GetOutstandingReportCriteria(
                     param.CustId,
+                    param.SubAccId,
                     param.IsOwner,
+                    param.IsViewAll,
                     param.FromDate,
                     param.ToDate,
                     param.SportGroupId,
@@ -104,7 +108,9 @@
 
             return new GetCancelledReportCriteria(
                 param.CustId,
+                param.SubAccId,
                 param.IsOwner,
+                param.IsViewAll,
                 param.FromDate,
                 param.ToDate,
                 archiveDate,

@@ -15,7 +15,9 @@
 
         public GetCancelledReportCriteria(
             int custId,
+            int subAccId,
             bool isOwner,
+            bool isViewAll,
             DateTime fromDate,
             DateTime toDate,
             DateTime archiveDate,
@@ -25,7 +27,7 @@
             int isLive,
             int reportType,
             UserLevel reportLevel)
-            : base(custId, isOwner, fromDate, toDate, archiveDate, moveBetsDay, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, subAccId, isOwner, isViewAll, fromDate, toDate, archiveDate, moveBetsDay, sportGroupId, betTypeId, isLive, reportLevel)
         {
             ReportType = CancelledReportType[reportType];
         }
