@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.Web.Filters;
+    using CN88.Web.Helpers;
     using MediatR;
     using Requests;
     using Shared.Controllers;
@@ -11,9 +12,12 @@
     [RestrictHeadlineFilter]
     public class SubAccountController : FeatureBaseController
     {
-        public SubAccountController(IMediator mediator)
+        private readonly BrowserHelper browserHelper;
+
+        public SubAccountController(IMediator mediator, BrowserHelper browserHelper)
             : base(mediator)
         {
+            this.browserHelper = browserHelper;
         }
 
         public async Task<ActionResult> Index(IndexQuery message)
@@ -22,7 +26,7 @@
         public async Task<ActionResult> New(NewQuery message)
         {
             ViewData["ActorLevel"] = message.ActorLevel;
-            return await ViewAsync(message);
+            return await ViewAsync(message, browserHelper.IsMobile() ? "NewMobile" : "New");
         }
 
         [HttpPost, AntiXsrfFilter]

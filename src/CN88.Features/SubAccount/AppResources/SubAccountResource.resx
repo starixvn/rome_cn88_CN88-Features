@@ -216,4 +216,7 @@
   <data name="ACM" xml:space="preserve">
     <value>ACM</value>
   </data>
+  <data name="ManagedAccount" xml:space="preserve">
+    <value>Managed Account</value>
+  </data>
 </root>

@@ -178,6 +178,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Managed Account.
+        /// </summary>
+        public static string ManagedAccount {
+            get {
+                return ResourceManager.GetString("ManagedAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {

@@ -1032,6 +1032,7 @@
     <Content Include="typings\globals\cleave.js\LICENSE" />
     <Content Include="typings\globals\cleave.js\package.json" />
     <Content Include="typings\globals\cleave.js\README.md" />
+    <Content Include="SubAccount\Views\NewMobile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

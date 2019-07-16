@@ -136,7 +136,7 @@ class SubAccount {
         });
 
         this.$("#btnNewSubAccount").click(() => {
-            const width = 948, height = 470;
+            const width = 948, height = 540;
             this.openPopup(this.resources.newSubAccount, this.urls.newSubAccount, width, height);
         });
 
