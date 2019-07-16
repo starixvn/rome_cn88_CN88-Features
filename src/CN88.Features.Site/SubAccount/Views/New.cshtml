@@ -53,8 +53,9 @@
     </div>
         {
             var pageAccess = new Sunplus.Agent.Model.Entities.PageAccess();
-            pageAccess.SetFullPermission();
-            Html.RenderPartial("~/SubAccount/Views/_Permissions.cshtml", pageAccess);
+            pageAccess.ViewReports = true;
+            pageAccess.ViewTotalBets = true;
+            Html.RenderPartial("~/SubAccount/Views/_Permissions.cshtml", pageAccess, ViewData);
         }
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />

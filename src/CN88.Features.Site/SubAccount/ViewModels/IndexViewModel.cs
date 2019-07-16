@@ -11,17 +11,17 @@
 
         public IndexViewModel(
             IEnumerable<SubAccountItem> subAccounts,
-            bool viewerIsActive,
+            bool showActionButtons,
             BrowserHelper browserHelper)
         {
             SubAccounts = subAccounts;
             this.browserHelper = browserHelper;
-            ViewerIsActive = viewerIsActive;
+            ShowActionButtons = showActionButtons;
         }
 
         public IEnumerable<SubAccountItem> SubAccounts { get; }
 
-        public bool ViewerIsActive { get; }
+        public bool ShowActionButtons { get; }
 
         public string NewSubAccountLink
             => UrlHelper.GetFeaturesAppPath("~/SubAccount/New");

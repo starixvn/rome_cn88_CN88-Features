@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.Web.Filters;
-    using Features.Models;
     using MediatR;
     using Requests;
     using Shared.Controllers;
@@ -18,38 +17,30 @@
         }
 
         public async Task<ActionResult> Index(IndexQuery message)
-            => message.IsValid()
-                ? await ViewAsync(message)
-                : View(NoInformationPageViewPath);
+            => await ViewAsync(message);
 
         public async Task<ActionResult> New(NewQuery message)
-            => message.IsValid()
-                ? await ViewAsync(message)
-                : View(NoInformationPageViewPath);
+        {
+            ViewData["ActorLevel"] = message.ActorLevel;
+            return await ViewAsync(message);
+        }
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> New(NewCommand message)
-            => Json(
-                message.IsValid() 
-                ? await mediator.Send(message) 
-                : Result.CreateForbiddenResult(),
-                JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync(message);
 
         public async Task<ActionResult> Edit(UpdateQuery message)
-            => message.IsValid()
-                ? await ViewAsync(message)
-                : View(NoInformationPageViewPath);
+        {
+            ViewData["ActorLevel"] = message.ActorLevel;
+            return await ViewAsync(message);
+        }
 
         [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
         public async Task<ActionResult> Edit(UpdateCommand message)
-            => Json(
-                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
-                JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync(message);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
         public async Task<ActionResult> Unlock(UnlockCommand message)
-            => Json(
-                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
-                JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync(message);
     }
 }

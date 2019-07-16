@@ -1,6 +1,8 @@
-﻿@using Sunplus.Agent.Model.Entities;
+﻿@using CN88.Features.Shared.Models;
+@using Sunplus.Agent.Model.Entities;
 @{
     Layout = null;
+    var actorLevel = (UserLevel)ViewData["ActorLevel"];
 }
 @model PageAccess
 <div class="permission account-data">
@@ -9,36 +11,41 @@
         <div class="form-group">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="@PageAccessType.ViewTotalBets" id="totalBets" @(Model.ViewTotalBets ? "checked=checked" : string.Empty)> @SubAccountResource.TotalBets
+                    <input type="checkbox"
+                           value="@PageAccessType.ViewTotalBets"
+                           id="totalBets"
+                           @(Model.ViewTotalBets ? "checked=checked" : string.Empty)> @SubAccountResource.TotalBets
                 </label>
             </div>
         </div>
+        @if (actorLevel.IsSuperLevel())
+        {
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               disabled="disabled"
+                               @(Model.ViewMemberInfo ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.ViewOnly
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                                disabled="disabled"
+                                @(Model.UpdateAccount ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.EditView
+                    </label>
+                </div>
+            </div>
+        }
         <div class="form-group">
             <div class="checkbox">
                 <label>
                     <input type="checkbox"
-                           value="@PageAccessType.ViewMemberInfo" id="acManagementViewOnly"
-                           @(Model.ViewMemberInfo ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.ViewOnly
-               </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"
-                            value="@PageAccessType.UpdateAccount"
-                            id="acManagementEditView"
-                            @(Model.UpdateAccount ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.EditView
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="checkbox">
-            <label>
-                <input type="checkbox"
-                        value="@PageAccessType.ViewReports"
-                        id="reports"
-                        @(Model.ViewReports ? "checked=checked" : string.Empty)> @SubAccountResource.Reports
+                           value="@PageAccessType.ViewReports"
+                           id="reports"
+                           @(Model.ViewReports ? "checked=checked" : string.Empty)> @SubAccountResource.Reports
                 </label>
             </div>
         </div>

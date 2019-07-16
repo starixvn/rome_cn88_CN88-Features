@@ -11,7 +11,5 @@
             : base(viewer)
         {
         }
-
-        public Result Result { get; set; }
     }
 }

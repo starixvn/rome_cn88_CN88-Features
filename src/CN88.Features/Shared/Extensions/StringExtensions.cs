@@ -25,5 +25,8 @@
 
             return ids;
         }
+
+        public static string[] SplitString(this string value)
+            => value.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
     }
 }

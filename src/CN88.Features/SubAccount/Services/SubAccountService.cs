@@ -1,6 +1,5 @@
 ﻿namespace CN88.Features.SubAccount.Services
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using AppResources;

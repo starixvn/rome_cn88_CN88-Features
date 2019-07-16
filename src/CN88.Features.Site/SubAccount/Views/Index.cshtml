@@ -13,7 +13,7 @@
 @model IndexViewModel
 <div class="subacc-page">
     <div id="message-container"></div>
-    @if (Model.ViewerIsActive)
+    @if (Model.ShowActionButtons)
     {
         <div>
             <button class="btn-submit add-new" id="btnNewSubAccount">
@@ -42,7 +42,7 @@
                 <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.EditView</th>
                 <th class="text-center col-reports">@SubAccountResource.Reports</th>
                 <th class="header sorting hide-mobile" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
-                @if (Model.ViewerIsActive)
+                @if (Model.ShowActionButtons)
                 {
                     <th>@SubAccountResource.Action</th>
                 }
@@ -77,7 +77,7 @@
                             @RenderPermissionCell(permission.ViewReports)
                         </td>
                         <td class="hide-mobile">@item.CreateDateString</td>
-                        @if (Model.ViewerIsActive)
+                        @if (Model.ShowActionButtons)
                         {
                             <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
                             @if (Model.IsDevice)
@@ -110,7 +110,7 @@
             else
             {
                 <tr>
-                    <td colspan="@(Model.ViewerIsActive ? 9 : 8)" class="text-center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@(Model.ShowActionButtons ? 9 : 8)" class="text-center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
         </tbody>

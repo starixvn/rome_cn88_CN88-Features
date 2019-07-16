@@ -43,10 +43,10 @@
 
         public async Task<IndexViewModel> Handle(IndexQuery message)
         {
-            var viewerIsActive = message.ViewerIsActive;
+            var showActionButtons = message.ShowActionButtons;
             var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
 
-            return new IndexViewModel(subAccounts, viewerIsActive, browserHelper);
+            return new IndexViewModel(subAccounts, showActionButtons, browserHelper);
         }
 
         public NewViewModel Handle(NewQuery message)

@@ -23,28 +23,12 @@ abstract class BaseSubAccount {
             messageContainer: this.$("#message-container"),
             name: this.$("#name"),
             totalBets: this.$("#totalBets"),
-            acManagementViewOnly: this.$("#acManagementViewOnly"),
-            acManagementEditView: this.$("#acManagementEditView"),
             reports: this.$("#reports"),
             requiredNameError: this.$("#RequiredNameError").val()
         };
     }
 
     private bindEvents(): void {
-        this.elements.acManagementViewOnly.change((e: JQueryEventObject) => {
-            const checkbox = this.$(e.target);
-            if (!checkbox.is(":checked")) {
-                this.elements.acManagementEditView.prop("checked", false);
-            }
-        });
-
-        this.elements.acManagementEditView.change((e: JQueryEventObject) => {
-            const checkbox = this.$(e.target);
-            if (checkbox.is(":checked")) {
-                this.elements.acManagementViewOnly.prop("checked", true);
-            }
-        });
-
         this.elements.formSubAccount.submit((e: JQueryEventObject) => {
             e.preventDefault();
             const formData = this.getFormData();
@@ -78,11 +62,7 @@ abstract class BaseSubAccount {
 
     protected getPageAccess(): string {
         let permissions: string[] = [];
-        const pageAccesses: JQuery[] = [
-            this.elements.totalBets,
-            this.elements.acManagementViewOnly,
-            this.elements.acManagementEditView,
-            this.elements.reports];
+        const pageAccesses: JQuery[] = [this.elements.totalBets, this.elements.reports];
 
         for (const item of pageAccesses) {
             if (item.is(":checked")) {

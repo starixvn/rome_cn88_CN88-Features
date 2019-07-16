@@ -13,6 +13,6 @@
         {
         }
 
-        public bool ViewerIsActive => ViewerStatusId == CustomerStatus.Active;
+        public bool ShowActionButtons => ViewerStatusId == CustomerStatus.Active;
     }
 }

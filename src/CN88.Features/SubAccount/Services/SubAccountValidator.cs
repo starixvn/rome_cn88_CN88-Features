@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using AppResources;
+    using CN88.Features.Shared.Extensions;
     using Fanex.Cryptography.Aes;
     using Features.Models;
     using Sunplus.Agent.Model.Entities;
@@ -38,14 +39,6 @@
          * [E]: Reports
          * [H]: Account Management View Only
          */
-
-        private static readonly string[] ValidPermissions = new[]
-        {
-            PageAccessType.UpdateAccount,
-            PageAccessType.ViewTotalBets,
-            PageAccessType.ViewReports,
-            PageAccessType.ViewMemberInfo
-        };
 
         private readonly Encryptor encryptor;
 
@@ -88,31 +81,12 @@
         }
 
         public string FilterWithValidPermissions(string pageAccess)
-        {
-            if (string.IsNullOrWhiteSpace(pageAccess))
-            {
-                return string.Empty;
-            }
-
-            pageAccess = AddViewOnlyModeToEditMode(pageAccess);
-
-            return string.Join(string.Empty, pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Intersect(ValidPermissions));
-        }
-
-        private static string AddViewOnlyModeToEditMode(string pageAccess)
-        {
-            var modes = pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var existEditMode = modes.Any(i => i == PageAccessType.UpdateAccount);
-            var notExistViewMode = !modes.Any(i => i == PageAccessType.ViewMemberInfo);
-
-            if (existEditMode && notExistViewMode)
-            {
-                modes.Add(PageAccessType.ViewMemberInfo);
-            }
-
-            return string.Join(",", modes);
-        }
+            => string.IsNullOrWhiteSpace(pageAccess)
+            ? string.Empty
+            : pageAccess
+                .SplitString()
+                .Intersect(new[] { PageAccessType.ViewTotalBets, PageAccessType.ViewReports })
+                .JoinWithComma();
 
         private static bool IsEqualsPasswordHint(string password)
             => password.Equals("BCD!$#H", StringComparison.OrdinalIgnoreCase) ||
