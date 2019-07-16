@@ -9,8 +9,21 @@
 
 .modal-sub-account {
     .head-title {
-        padding: 12px 20px;
+        padding: 12px 20px 12px 27px;
         border-bottom: 1px solid #737373;
+
+        &:before {
+            position: absolute;
+            left: 6px;
+            margin-top: -2px;
+            content: "\e900";
+            font-family: "CN88Icon", sans-serif !important;
+            font-size: 18px;
+        }
+
+        &.active:before {
+            content: "\e908";
+        }
     }
 
     .account-data {
@@ -101,6 +114,25 @@
             bottom: -4px;
             border-left-width: 0;
             margin-left: 2px;
+        }
+    }
+
+    .tbl-managed-account {
+        width: 422px;
+        margin: 20px;
+
+        .col-all-check {
+            position: relative;
+            width: 100px;
+            text-align: center;
+        }
+
+        .icon-info {
+            position: absolute;
+            right: 20px;
+            right: 16px;
+            top: 8px;
+            left: auto;
         }
     }
 }
@@ -373,23 +405,32 @@ body.mobile {
         }
 
         .list-button {
+            display: flex;
+            justify-content: space-between;
             padding-left: 12px;
             padding-right: 12px;
             padding-bottom: 12px;
             overflow: hidden;
 
-            .btn-cancel, .btn-submit {
-                float: left;
-                width: 48%;
+            [class^="btn"] {
+                -moz-box-flex: 1;
+                -webkit-flex: 1;
+                -ms-flex: 1;
+                flex: 1;
             }
 
-            .btn-cancel {
-                margin-right: 4%;
-            }
-
-            .btn-submit {
+            [class^="btn"]:last-child {
                 margin-right: 0;
             }
+        }
+
+        .tabManagedAccount {
+            padding: 12px;
+        }
+
+        .tbl-managed-account {
+            width: 100%;
+            margin: 0 0 20px;
         }
     }
 }

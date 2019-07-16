@@ -13,7 +13,7 @@
 @model NewViewModel
 <div class="modal-sub-account">
     <div id="message-container" class="message-container"></div>
-    <ul class="nav nav-tabs-style2" role="tablist">
+    <ul class="nav nav-tabs" role="tablist">
         <li class="active" role="presentation">
             <a data-toggle="tab" href="#tabAccountDetails">@SubAccountResource.AccountDetails</a>
         </li>
@@ -70,12 +70,13 @@
                 }
                 <div class="list-button text-right">
                     <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
+                    <input type="submit" class="btn-submit btn-save-new" value="Save & New" />
                     <input type="submit" class="btn-submit" value="@SharedResources.Save" />
                 </div>
             }
         </div>
-        <div id="tabManagedAccount" class="tab-pane fade" role="tabpanel">
-            <table class="tbl-style2">
+        <div id="tabManagedAccount" class="tab-pane fade tabManagedAccount" role="tabpanel">
+            <table class="tbl-style2 tbl-managed-account">
                 <thead>
                     <tr>
                         <th>@SubAccountResource.UserName</th>
@@ -98,6 +99,12 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div class="list-button">
+                <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
+                <input type="submit" class="btn-submit" value="Save & New" />
+                <input type="submit" class="btn-submit" value="@SharedResources.Save" />
+            </div>
         </div>
     </div>
 </div>
