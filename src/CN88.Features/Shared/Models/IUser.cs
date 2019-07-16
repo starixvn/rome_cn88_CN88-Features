@@ -20,6 +20,10 @@
 
         int SubAccountId { get; }
 
+        bool IsSubAccount { get; }
+
+        bool IsAllDownline { get; }
+
         string IP { get; }
 
         bool AccountManagementEditView { get; }

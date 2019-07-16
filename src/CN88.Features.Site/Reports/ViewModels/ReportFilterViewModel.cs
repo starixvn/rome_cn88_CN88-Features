@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
     using System.Collections.Generic;
+    using CN88.Features.Reports.Models;
     using CN88.Features.Site.Shared.ViewModels;
     using Features.Shared.Models;
     using Shared.ViewModels.Components;
@@ -20,8 +21,22 @@
             SingleSelectionViewModel betTypeSelectionViewModel,
             SingleSelectionViewModel liveStatusSelectionViewModel,
             IEnumerable<SelectListItemExt> allBetTypeGroups,
-            bool isMobile = false)
-            : base(displayMode, reportType, isOwner, custId, custName, breadcrumbLevelJson, custLevel, sportGroupSelectionViewModel, dateRangePickerViewModel, isMobile)
+            bool isMobile = false,
+            bool isShowPermissionOnDownlinesMessage = false,
+            AssignedDownlinesCount assignedDownlinesCount = null)
+            : base(
+                  displayMode,
+                  reportType,
+                  isOwner,
+                  custId,
+                  custName,
+                  breadcrumbLevelJson,
+                  custLevel,
+                  sportGroupSelectionViewModel,
+                  dateRangePickerViewModel,
+                  isMobile,
+                  isShowPermissionOnDownlinesMessage,
+                  assignedDownlinesCount)
         {
             BetTypeSelectionViewModel = betTypeSelectionViewModel;
             LiveStatusSelectionViewModel = liveStatusSelectionViewModel;

@@ -18,7 +18,9 @@
             IEnumerable<ReportModel> reportData,
             ReportModel grandTotal,
             IEnumerable<AccountingPeriod> oldAccountingPeriods,
-            bool isMobile)
+            bool isMobile,
+            bool isShowPermissionOnDownlinesMessage,
+            AssignedDownlinesCount assignedDownlinesCount)
             : base(query, reportData, grandTotal, isMobile)
         {
             var sportGroupSelectionViewModel = new SingleSelectionViewModel(sportGroups, query.UserSelectedSportGroupId);
@@ -38,7 +40,9 @@
                 sportGroupSelectionViewModel,
                 accountingPeriodSelectionViewModel,
                 dateRangePickerViewModel,
-                isMobile);
+                isMobile,
+                isShowPermissionOnDownlinesMessage,
+                assignedDownlinesCount);
         }
 
         public OldReportFilterViewModel OldReportFilterViewModel { get; }

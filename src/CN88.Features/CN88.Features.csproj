@@ -261,6 +261,8 @@
     <Compile Include="CustomerList\Criteria\UnlockCustomerCriteria.cs" />
     <Compile Include="CustomerList\Params\UnlockCustomerParam.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Reports\Criteria\GetSubAccountAssignedDownlinesCount.cs" />
+    <Compile Include="Reports\Models\AssignedDownlinesCount.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />
     <Compile Include="Shared\Constants\SportGroupConstants.cs" />

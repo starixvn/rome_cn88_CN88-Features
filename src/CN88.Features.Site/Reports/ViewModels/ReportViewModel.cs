@@ -23,6 +23,8 @@
             ReportModel grandTotal,
             AccountingPeriod lastPeriod,
             bool isMobile,
+            bool isShowPermissionOnDownlinesMessage,
+            AssignedDownlinesCount assignedDownlinesCount,
             IEnumerable<SelectListItemExt> allBetTypes = null)
             : base(query, reportData, grandTotal, isMobile)
         {
@@ -51,7 +53,9 @@
                 betTypeSelectionViewModel,
                 liveStatusSelectionViewModel,
                 allBetTypes,
-                isMobile);
+                isMobile,
+                isShowPermissionOnDownlinesMessage,
+                assignedDownlinesCount);
         }
 
         public ReportFilterViewModel ReportFilterViewModel { get; }

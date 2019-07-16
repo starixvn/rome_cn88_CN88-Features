@@ -347,6 +347,11 @@ body {
     }
 }
 
+.msg-warning {
+    display: inline-block;
+    margin-top: 0;
+}
+
 @media all and (min-width: $screen-device-greater768) {
     .wager-report {
         .filter-container {

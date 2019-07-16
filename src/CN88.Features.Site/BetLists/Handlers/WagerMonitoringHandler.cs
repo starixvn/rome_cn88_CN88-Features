@@ -57,6 +57,8 @@
             var param = new WagerMonitoringParam(
                 message.ViewerId,
                 message.ViewerLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.SportGroup,
                 FormatStakeConditions(message),
                 message.Market,

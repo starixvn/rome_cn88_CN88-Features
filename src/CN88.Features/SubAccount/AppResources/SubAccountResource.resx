@@ -219,4 +219,7 @@
   <data name="ManagedAccount" xml:space="preserve">
     <value>Managed Account</value>
   </data>
+  <data name="SelectAllDownlineMessage" xml:space="preserve">
+    <value>”Select All” will automatically apply to all future accounts created.</value>
+  </data>
 </root>

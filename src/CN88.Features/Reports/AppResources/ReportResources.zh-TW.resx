@@ -289,4 +289,7 @@
   <data name="AccountingMobile" xml:space="preserve">
     <value>月帳期數表</value>
   </data>
+  <data name="PermissionOnDownlinesMessage" xml:space="preserve">
+    <value>您的子帳號已被選擇觀看部分的帳號，帳目只顯示 {0} / {1} 個帳號</value>
+  </data>
 </root>

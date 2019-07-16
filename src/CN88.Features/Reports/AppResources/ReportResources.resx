@@ -289,4 +289,7 @@
   <data name="AccountingMobile" xml:space="preserve">
     <value>Accounting</value>
   </data>
+  <data name="PermissionOnDownlinesMessage" xml:space="preserve">
+    <value>You do not have permission to view all accounts. This data only displays {0} of {1} accounts</value>
+  </data>
 </root>

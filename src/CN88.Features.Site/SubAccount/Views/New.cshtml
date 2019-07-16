@@ -87,11 +87,10 @@
         </table>
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
-            <input type="submit" class="btn-submit" value="Save & New" />
+            <input type="submit" class="btn-submit" value="@SharedResources.SaveAndNew" />
             <input type="submit" class="btn-submit" value="@SharedResources.Save" />
         </div>
     }
-
 </div>
 @Html.Hidden(nameof(Model.HashKey), Model.HashKey)
 @Html.Hidden(nameof(SubAccountResource.RequiredNameError), SubAccountResource.RequiredNameError)

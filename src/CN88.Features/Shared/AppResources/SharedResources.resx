@@ -318,4 +318,7 @@
   <data name="Unlock" xml:space="preserve">
     <value>Unlock</value>
   </data>
+  <data name="SaveAndNew" xml:space="preserve">
+    <value>Save &amp; New</value>
+  </data>
 </root>

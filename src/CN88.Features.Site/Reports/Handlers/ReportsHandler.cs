@@ -65,11 +65,12 @@
             var sportGroups = sportGroupService.GetSportGroups();
             var allBetTypes = betTypeService.GetBetTypeGroups();
             var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
-            
+
+            var isShowPermissionOnDownlinesMessage = IsShowPermissionOnDownlinesMessage(message);
+            var assignedDownlinesCount = isShowPermissionOnDownlinesMessage ? reportService.GetAssignedDownlinesCount(message.SubAccountId) : null;
 
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
-
             var grandTotal = AccumulateGrandTotal(reportData);
 
             return new ReportViewModel(
@@ -80,6 +81,8 @@
                 grandTotal,
                 lastPeriod,
                 browserHelper.IsMobile(),
+                isShowPermissionOnDownlinesMessage,
+                assignedDownlinesCount,
                 BuildBetTypeSelectListItems(allBetTypes, 0));
         }
 

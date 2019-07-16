@@ -8,6 +8,8 @@
             int custId,
             DateTime limitedDate,
             int roleId,
+            int subAccId,
+            bool isAllDownline,
             int matchId,
             int betType,
             int liveIndicator,
@@ -18,6 +20,8 @@
             CustId = custId;
             LimitedDate = limitedDate;
             RoleId = roleId;
+            SubAccId = subAccId;
+            IsAllDownline = isAllDownline;
             MatchId = matchId;
             BetType = betType;
             LiveIndicator = liveIndicator;
@@ -31,6 +35,10 @@
         public DateTime LimitedDate { get; }
 
         public int RoleId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         public int MatchId { get; }
 

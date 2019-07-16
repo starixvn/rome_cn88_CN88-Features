@@ -16,6 +16,8 @@
             NickName = viewer.NickName;
             ViewerLevelId = viewer.LevelId;
             SubAccountId = viewer.SubAccountId;
+            IsSubAccount = viewer.IsSubAccount;
+            IsAllDownline = viewer.IsAllDownline;
             IsInternal = viewer.IsInternal;
             IP = viewer.IP;
             LanguageKey = viewer.LanguageKey;
@@ -49,6 +51,10 @@
         public IEnumerable<CustInfo> BreadcrumbLevel { get; set; } = Enumerable.Empty<CustInfo>();
 
         public int SubAccountId { get; }
+
+        public bool IsSubAccount { get; }
+
+        public bool IsAllDownline { get; }
 
         public bool AccountManagementEditView { get; }
 

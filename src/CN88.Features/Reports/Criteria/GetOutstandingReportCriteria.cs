@@ -9,14 +9,14 @@
             int custId,
             int subAccId,
             bool isOwner,
-            bool isViewAll,
+            bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
             int sportGroupId,
             int betTypeId,
             int isLive,
             UserLevel reportLevel)
-            : base(custId, subAccId, isOwner, isViewAll, fromDate, toDate, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, subAccId, isOwner, isAllDownline, fromDate, toDate, sportGroupId, betTypeId, isLive, reportLevel)
         {
         }
 

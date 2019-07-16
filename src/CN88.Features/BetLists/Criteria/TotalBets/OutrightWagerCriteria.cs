@@ -10,6 +10,8 @@
         {
             CustId = param.CustId;
             RoleId = param.RoleId;
+            SubAccId = param.SubAccId;
+            IsAllDownline = param.IsAllDownline;
             MatchId = param.MatchId;
             StakeCondition = param.StakeCondition;
             Stake = param.Stake;
@@ -18,6 +20,10 @@
         public int CustId { get; }
 
         public int RoleId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         [SpParam(SqlParamName = "OrId")]
         public int MatchId { get; }

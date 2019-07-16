@@ -29,6 +29,8 @@
 
         public int SubAccountId => userSession.SubAccId;
 
+        public bool IsSubAccount => userSession.IsSubAcc;
+
         public string IP => userSession.UserLoginIp;
 
         public bool AccountManagementEditView => userSession.SubPageAccess.UpdateAccount;
@@ -42,5 +44,7 @@
         public DateTime LimitedDateToShowInfo => userSession.GetProperty<DateTime>("CustomerDateLimit");
 
         public byte StatusId => userSession.GetProperty<byte>("CUSTOMERSTATUS");
+
+        public bool IsAllDownline => userSession.GetProperty<bool>("ISALLDOWNLINE");
     }
 }

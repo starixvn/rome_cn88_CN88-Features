@@ -11,7 +11,7 @@
             int custId,
             int subAccId,
             bool isOwner,
-            bool isViewAll,
+            bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
             int sportGroupId,
@@ -22,7 +22,7 @@
             CustId = custId;
             SubAccId = subAccId;
             IsOwner = isOwner;
-            IsViewAll = isViewAll;
+            IsAllDownline = isAllDownline;
             FromDate = fromDate;
             ToDate = toDate;
             SportGroupId = sportGroupId;
@@ -37,7 +37,7 @@
 
         public bool IsOwner { get; }
 
-        public bool IsViewAll { get; }
+        public bool IsAllDownline { get; }
 
         public DateTime FromDate { get; }
 
