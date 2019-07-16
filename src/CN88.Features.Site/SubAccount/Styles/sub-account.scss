@@ -24,6 +24,10 @@
         &.active:before {
             content: "\e908";
         }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .account-data {
