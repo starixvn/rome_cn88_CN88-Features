@@ -711,6 +711,12 @@
     <Content Include="SubAccount\Styles\sub-account.min.css">
       <DependentUpon>sub-account.css</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.localmaster.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.uatmaster.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.local.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1028,6 +1034,9 @@
     <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Web.localmaster.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1035,6 +1044,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.sit.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.uatmaster.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
