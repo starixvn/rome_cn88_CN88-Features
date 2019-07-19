@@ -85,28 +85,28 @@
                         @if (Model.ShowActionButtons)
                         {
                             <td class="col-action" data-subaccid="@item.SubAccId" data-subaccname="@item.UserName">
-                            @if (Model.IsDevice)
-                            {
-                                <div class="dropdown visible-mobile">
-                                    <a class="dropdown-toggle" data-toggle="dropdown">
-                                        @if (item.Closed)
-                                        {
-                                            <span class="icon-user-unlock"></span>
-                                        }
-                                        else
-                                        {
-                                            <span class="icon-more-action"></span>
-                                        }
-                                    </a>
-                                    <ul id="dropdown-@item.SubAccId" class="dropdown-menu">
-                                        @RenderActionCell_Mobile(item.Closed)
-                                    </ul>
-                                </div>
-                            }
-                            else
-                            {
-                                @RenderActionCell(item.Closed)
-                            }
+                                @if (Model.IsDevice)
+                                {
+                                    <div class="dropdown visible-mobile">
+                                        <a class="dropdown-toggle" data-toggle="dropdown">
+                                            @if (item.Closed)
+                                            {
+                                                <span class="icon-user-unlock"></span>
+                                            }
+                                            else
+                                            {
+                                                <span class="icon-more-action"></span>
+                                            }
+                                        </a>
+                                        <ul id="dropdown-@item.SubAccId" class="dropdown-menu">
+                                            @RenderActionCell_Mobile(item.Closed)
+                                        </ul>
+                                    </div>
+                                }
+                                else
+                                {
+                                    @RenderActionCell(item.Closed)
+                                }
                             </td>
                         }
                     </tr>
@@ -168,6 +168,9 @@
     </li>
     <li>
         <span class="opt-edit">@SubAccountResource.EditSubAccount</span>
+    </li>
+    <li>
+        <span class="opt-delete">@SubAccountResource.DeleteSubAccount</span>
     </li>
     if (isClosed)
     {
