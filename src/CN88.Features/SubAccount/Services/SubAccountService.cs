@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.SubAccount.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -25,6 +26,8 @@
         Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param);
 
         Task<Result> DeleteSubAccountAsync(UnlockSubAccountParam param);
+
+        Task<Tuple<bool, IEnumerable<ManagedAccount>>> GetManagedAccounts(int custId, byte roleId, int subAccId);
     }
 
     public class SubAccountServiceImpl : SubAccountService
@@ -163,6 +166,14 @@
                     ? SubAccountResource.AccountSuccessfullyCreated
                     : SubAccountResource.UpdateSuccessfully)
                 : command.ErrMsg);
+        }
+
+        public async Task<Tuple<bool, IEnumerable<ManagedAccount>>> GetManagedAccounts(int custId, byte roleId, int subAccId)
+        {
+            var criteria = new GetManagedAccountCriteria(custId, roleId, subAccId);
+            var downlines = await dynamicRepository.FetchAsync<ManagedAccount>(criteria);
+
+            return Tuple.Create(criteria.IsAllDownline, downlines);
         }
     }
 }

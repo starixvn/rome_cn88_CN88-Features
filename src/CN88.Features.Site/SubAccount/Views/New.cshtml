@@ -18,7 +18,6 @@
     {
         @Html.AntiForgeryToken()
         <div class="head-title">@SubAccountResource.AccountDetails</div>
-
         <div class="general-info account-data">
             <div class="title">@SubAccountResource.GeneralData</div>
             <div class="account-data-content">
@@ -62,7 +61,7 @@
                 new Tuple<bool, PageAccess>(Model.ShowAccountManagementPermission, pageAccess));
         }
         <div class="head-title">@SubAccountResource.ManagedAccount</div>
-        @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml")
+        @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
             <input type="submit" class="btn-submit" value="@SharedResources.SaveAndNew" />

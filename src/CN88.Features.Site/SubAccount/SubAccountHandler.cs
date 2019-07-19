@@ -16,7 +16,7 @@
 
     public class SubAccountHandler :
         IAsyncRequestHandler<IndexQuery, IndexViewModel>,
-        IRequestHandler<NewQuery, NewViewModel>,
+        IAsyncRequestHandler<NewQuery, NewViewModel>,
         IAsyncRequestHandler<UpdateQuery, SubAccountItem>,
         IAsyncRequestHandler<NewCommand, Result>,
         IAsyncRequestHandler<UpdateCommand, Result>,
@@ -51,11 +51,12 @@
             return new IndexViewModel(subAccounts, showActionButtons, showAccountManagementPermission, browserHelper);
         }
 
-        public NewViewModel Handle(NewQuery message)
+        public async Task<NewViewModel> Handle(NewQuery message)
             => new NewViewModel(
                 message.ViewerName + SubAccountConst.SubAccountPadding,
                 GenerateHashKey(),
-                message.ShowAccountManagementPermission);
+                message.ShowAccountManagementPermission,
+                await subAccountService.GetManagedAccounts(message.ViewerId, message.ViewerLevelId, message.SubAccountId));
 
         public async Task<SubAccountItem> Handle(UpdateQuery message)
             => await subAccountService.GetSubAccountAsync(message.ViewerId, message.CustId);

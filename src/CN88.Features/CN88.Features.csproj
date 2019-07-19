@@ -394,11 +394,13 @@
     <Compile Include="SubAccount\Criteria\BaseSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\CreateSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\DeleteSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\GetManagedAccountCriteria.cs" />
     <Compile Include="SubAccount\Criteria\GetSubAccountCriteria.cs" />
     <Compile Include="SubAccount\Criteria\GetSubAccountListCriteria.cs" />
     <Compile Include="SubAccount\Criteria\KickoutSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\UnlockSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\UpdateSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Models\ManagedAccount.cs" />
     <Compile Include="SubAccount\Models\SubAccountItem.cs" />
     <Compile Include="SubAccount\Params\BaseSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\CreateSubAccountParam.cs" />
