@@ -119,24 +119,10 @@
             // Kickout when updating Permissions.
             if (result.IsSuccess && oldPageAccess != param.PageAccess)
             {
-                await dynamicRepository.ExecuteAsync(
-                    new KickoutSubAccountCommand(param.ActorId, param.SubAccId));
+                await KickoutSubAccountAsync(param.ActorId, param.SubAccId);
             }
 
             return result;
-        }
-
-        private async Task<Result> ExecuteAsync(BaseSubAccountCommand command)
-        {
-            await dynamicRepository.ExecuteAsync(command);
-
-            return new Result(
-                command.ErrCode,
-                command.ErrCode == 0
-                ? (command is CreateSubAccountCommand
-                    ? SubAccountResource.AccountSuccessfullyCreated
-                    : SubAccountResource.UpdateSuccessfully)
-                : command.ErrMsg);
         }
 
         public async Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param)
@@ -152,7 +138,31 @@
             var command = new DeleteSubAccountCommand(param.CustId, param.SubAccId, param.IP, param.LanguageKey);
             await dynamicRepository.ExecuteAsync(command);
 
-            return new Result(command.ErrCode, command.ErrMsg);
+            var result = new Result(command.ErrCode, command.ErrMsg);
+
+            // Kickout.
+            if (result.IsSuccess)
+            {
+                await KickoutSubAccountAsync(param.CustId, param.SubAccId);
+            }
+
+            return result;
+        }
+
+        private async Task KickoutSubAccountAsync(int actorId, int subAccountId)
+            => await dynamicRepository.ExecuteAsync(new KickoutSubAccountCommand(actorId, subAccountId));
+
+        private async Task<Result> ExecuteAsync(BaseSubAccountCommand command)
+        {
+            await dynamicRepository.ExecuteAsync(command);
+
+            return new Result(
+                command.ErrCode,
+                command.ErrCode == 0
+                ? (command is CreateSubAccountCommand
+                    ? SubAccountResource.AccountSuccessfullyCreated
+                    : SubAccountResource.UpdateSuccessfully)
+                : command.ErrMsg);
         }
     }
 }
