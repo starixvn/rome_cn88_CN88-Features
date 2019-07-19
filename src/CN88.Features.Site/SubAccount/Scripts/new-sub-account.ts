@@ -25,8 +25,8 @@ class NewSubAccount extends BaseSubAccount {
 
     protected cacheElements(): void {
         super.cacheElements();
-        this.elements.passRule = this.$("#pass-rule");
-        this.elements.passRule.tooltip();
+        this.elements.tooltips = this.$('[data-toggle="tooltip"]');
+        this.elements.tooltips.tooltip();
         this.elements.requiredPasswordError = this.$("#RequiredPasswordError").val();
         this.elements.passwordWrongRuleError = this.$("#PasswordWrongRuleError").val();
         this.elements.confirmPasswordError = this.$("#ConfirmPasswordError").val();
@@ -59,8 +59,8 @@ class NewSubAccount extends BaseSubAccount {
                 return false;
             }
 
-            this.elements.passRule.tooltip("hide");
-            this.elements.passRule.removeClass(showTooltipClass);
+            this.elements.tooltips.tooltip("hide");
+            this.elements.tooltips.removeClass(showTooltipClass);
         });
     }
 

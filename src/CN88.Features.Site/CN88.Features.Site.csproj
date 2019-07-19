@@ -1034,7 +1034,7 @@
     <Content Include="typings\globals\cleave.js\package.json" />
     <Content Include="typings\globals\cleave.js\README.md" />
     <Content Include="SubAccount\Views\NewMobile.cshtml" />
-    <Content Include="SubAccount\Views\_ManagedAccount.cshtml" />
+    <Content Include="SubAccount\Views\_ManagedAccountTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

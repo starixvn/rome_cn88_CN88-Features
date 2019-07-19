@@ -23,9 +23,9 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div id="tabAccountDetails" class="tab-pane fade in active" role="tabpanel">
-            @using (Html.BeginForm("New", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
-            {
+        @using (Html.BeginForm("New", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
+        {
+            <div id="tabAccountDetails" class="tab-pane fade in active" role="tabpanel">
                 @Html.AntiForgeryToken()
                 <div class="general-info account-data">
                     <div class="title">@SubAccountResource.GeneralData</div>
@@ -63,50 +63,22 @@
                         </div>
                     </div>
                 </div>
-                {
+                @{
                     var pageAccess = new PageAccess { ViewReports = true, ViewTotalBets = true };
                     Html.RenderPartial(
                         "~/SubAccount/Views/_Permissions.cshtml",
                         new Tuple<bool, PageAccess>(Model.ShowAccountManagementPermission, pageAccess));
                 }
-                <div class="list-button text-right">
-                    <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
-                    <input type="submit" class="btn-submit btn-save-new" value="@SharedResources.SaveAndNew" />
-                    <input type="submit" class="btn-submit" value="@SharedResources.Save" />
-                </div>
-            }
-        </div>
-        <div id="tabManagedAccount" class="tab-pane fade tabManagedAccount" role="tabpanel">
-            <table class="tbl-style2 tbl-managed-account">
-                <thead>
-                    <tr>
-                        <th>@SubAccountResource.UserName</th>
-                        <th>@SubAccountResource.Name</th>
-                        <th>
-                            <input type="checkbox" name="chkAll" value="" />
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>TpT02</td>
-                        <td>John Doe</td>
-                        <td><input type="checkbox" name="name" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>TpT03</td>
-                        <td>John Connor</td>
-                        <td><input type="checkbox" name="name" value="" /></td>
-                    </tr>
-                </tbody>
-            </table>
-
+            </div>
+            <div id="tabManagedAccount" class="tab-pane fade tabManagedAccount" role="tabpanel">
+                @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml")
+            </div>
             <div class="list-button">
                 <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
                 <input type="submit" class="btn-submit" value="@SharedResources.SaveAndNew" />
                 <input type="submit" class="btn-submit" value="@SharedResources.Save" />
             </div>
-        </div>
+        }
     </div>
 </div>
 @Html.Hidden(nameof(Model.HashKey), Model.HashKey)
