@@ -151,6 +151,24 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Sub Account.
+        /// </summary>
+        public static string DeleteSubAccount {
+            get {
+                return ResourceManager.GetString("DeleteSubAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this account?.
+        /// </summary>
+        public static string DeleteSubAccountConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteSubAccountConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Sub Account.
         /// </summary>
         public static string EditSubAccount {

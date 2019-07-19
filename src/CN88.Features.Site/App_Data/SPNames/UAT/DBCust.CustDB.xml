@@ -1,6 +1,6 @@
 ﻿<Functions>
   <Function Name="Check belonging for Headline">
-    <Setting Key="CS_Customer_CheckBelonging_Sel" SpName="CS_Customer_CheckBelonging_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_HeadlineSelCheckBelonging" SpName="CS_HeadlineSelCheckBelonging" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustomerStatusSel" SpName="CS_CustomerStatusSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Customer List">
@@ -15,6 +15,7 @@
     <Setting Key="CS_CustSubIns" SpName="CS_CustSubIns" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustSubUpd" SpName="CS_CustSubUpd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustSubUnlock" SpName="CS_CustSubUnlock" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubDel" SpName="CS_CustSubDel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="PT">
     <Setting Key="CS_CustSetting_LegacyReportSetting_Sel" SpName="CS_CustSetting_LegacyReportSetting_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />

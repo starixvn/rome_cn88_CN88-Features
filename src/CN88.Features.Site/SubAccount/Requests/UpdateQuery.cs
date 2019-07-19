@@ -12,7 +12,7 @@
         {
         }
 
-        public Result Result { get; set; }
+        public bool ShowAccountManagementPermission => ActorLevel.IsSuperLevel();
 
         public override bool IsValid()
             => base.IsValid() && CustId != ViewerId;

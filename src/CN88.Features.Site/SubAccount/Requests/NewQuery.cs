@@ -11,5 +11,7 @@
             : base(viewer)
         {
         }
+
+        public bool ShowAccountManagementPermission => ActorLevel.IsSuperLevel();
     }
 }

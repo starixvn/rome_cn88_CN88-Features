@@ -1,10 +1,8 @@
-﻿@using CN88.Features.Shared.Models;
-@using Sunplus.Agent.Model.Entities;
+﻿@using Sunplus.Agent.Model.Entities;
 @{
     Layout = null;
-    var actorLevel = (UserLevel)ViewData["ActorLevel"];
 }
-@model PageAccess
+@model Tuple<bool, PageAccess>
 <div class="permission account-data">
     <div class="title">@SubAccountResource.Permissions</div>
     <div class="account-data-content">
@@ -14,18 +12,18 @@
                     <input type="checkbox"
                            value="@PageAccessType.ViewTotalBets"
                            id="totalBets"
-                           @(Model.ViewTotalBets ? "checked=checked" : string.Empty)> @SubAccountResource.TotalBets
+                           @(Model.Item2.ViewTotalBets ? "checked=checked" : string.Empty)> @SubAccountResource.TotalBets
                 </label>
             </div>
         </div>
-        @if (actorLevel.IsSuperLevel())
+        @if (Model.Item1)
         {
             <div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input type="checkbox"
                                disabled="disabled"
-                               @(Model.ViewMemberInfo ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.ViewOnly
+                               @(Model.Item2.ViewMemberInfo ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.ViewOnly
                     </label>
                 </div>
             </div>
@@ -34,7 +32,7 @@
                     <label>
                         <input type="checkbox"
                                 disabled="disabled"
-                                @(Model.UpdateAccount ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.EditView
+                                @(Model.Item2.UpdateAccount ? "checked=checked" : string.Empty)> @SubAccountResource.AccountManagement - @SubAccountResource.EditView
                     </label>
                 </div>
             </div>
@@ -45,7 +43,7 @@
                     <input type="checkbox"
                            value="@PageAccessType.ViewReports"
                            id="reports"
-                           @(Model.ViewReports ? "checked=checked" : string.Empty)> @SubAccountResource.Reports
+                           @(Model.Item2.ViewReports ? "checked=checked" : string.Empty)> @SubAccountResource.Reports
                 </label>
             </div>
         </div>

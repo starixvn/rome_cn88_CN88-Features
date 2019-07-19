@@ -6,15 +6,18 @@
 
     public class NewViewModel
     {
-        public NewViewModel(string subAccountName, string hashKey)
+        public NewViewModel(string subAccountName, string hashKey, bool showAccountManagementPermission)
         {
             SubAccountName = subAccountName;
             HashKey = hashKey;
+            ShowAccountManagementPermission = showAccountManagementPermission;
         }
 
         public string SubAccountName { get; }
 
         public string HashKey { get; }
+
+        public bool ShowAccountManagementPermission { get; }
 
         public IEnumerable<SelectListItem> Suffix1
             => new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }

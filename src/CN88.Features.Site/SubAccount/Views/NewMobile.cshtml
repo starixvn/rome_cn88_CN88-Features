@@ -1,8 +1,9 @@
-﻿@{
+﻿@using Sunplus.Agent.Model.Entities;
+@{
     /**/
 
     Layout = "~/Shared/Views/_Layout.cshtml";
-    ViewBag.Title = "Sub Account";
+    ViewBag.Title = CN88.Features.SubAccount.AppResources.SubAccountResource.SubAccount;
 }
 @section Styles {
     @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
@@ -63,14 +64,14 @@
                     </div>
                 </div>
                 {
-                    var pageAccess = new Sunplus.Agent.Model.Entities.PageAccess();
-                    pageAccess.ViewReports = true;
-                    pageAccess.ViewTotalBets = true;
-                    Html.RenderPartial("~/SubAccount/Views/_Permissions.cshtml", pageAccess, ViewData);
+                    var pageAccess = new PageAccess { ViewReports = true, ViewTotalBets = true };
+                    Html.RenderPartial(
+                        "~/SubAccount/Views/_Permissions.cshtml",
+                        new Tuple<bool, PageAccess>(Model.ShowAccountManagementPermission, pageAccess));
                 }
                 <div class="list-button text-right">
                     <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
-                    <input type="submit" class="btn-submit btn-save-new" value="Save & New" />
+                    <input type="submit" class="btn-submit btn-save-new" value="@SharedResources.SaveAndNew" />
                     <input type="submit" class="btn-submit" value="@SharedResources.Save" />
                 </div>
             }
@@ -102,7 +103,7 @@
 
             <div class="list-button">
                 <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
-                <input type="submit" class="btn-submit" value="Save & New" />
+                <input type="submit" class="btn-submit" value="@SharedResources.SaveAndNew" />
                 <input type="submit" class="btn-submit" value="@SharedResources.Save" />
             </div>
         </div>

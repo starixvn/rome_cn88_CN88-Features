@@ -14,5 +14,7 @@
         }
 
         public bool ShowActionButtons => ViewerStatusId == CustomerStatus.Active;
+
+        public bool ShowAccountManagementPermission => ActorLevel.IsSuperLevel();
     }
 }

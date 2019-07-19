@@ -20,7 +20,8 @@
         IAsyncRequestHandler<UpdateQuery, SubAccountItem>,
         IAsyncRequestHandler<NewCommand, Result>,
         IAsyncRequestHandler<UpdateCommand, Result>,
-        IAsyncRequestHandler<UnlockCommand, Result>
+        IAsyncRequestHandler<UnlockCommand, Result>,
+        IAsyncRequestHandler<DeleteCommand, Result>
     {
         private const string HashKeySessionKey = "Alpha.CN88.Site.Handlers.PasswordHandler.PasswordHash";
 
@@ -44,13 +45,17 @@
         public async Task<IndexViewModel> Handle(IndexQuery message)
         {
             var showActionButtons = message.ShowActionButtons;
+            var showAccountManagementPermission = message.ShowAccountManagementPermission;
             var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
 
-            return new IndexViewModel(subAccounts, showActionButtons, browserHelper);
+            return new IndexViewModel(subAccounts, showActionButtons, showAccountManagementPermission, browserHelper);
         }
 
         public NewViewModel Handle(NewQuery message)
-            => new NewViewModel(message.ViewerName + SubAccountConst.SubAccountPadding, GenerateHashKey());
+            => new NewViewModel(
+                message.ViewerName + SubAccountConst.SubAccountPadding,
+                GenerateHashKey(),
+                message.ShowAccountManagementPermission);
 
         public async Task<SubAccountItem> Handle(UpdateQuery message)
             => await subAccountService.GetSubAccountAsync(message.ViewerId, message.CustId);
@@ -80,6 +85,13 @@
 
         public async Task<Result> Handle(UnlockCommand message)
             => await subAccountService.UnlockSubAccountAsync(new UnlockSubAccountParam(
+                message.ViewerId,
+                message.CustId,
+                message.IP,
+                message.LanguageKey));
+
+        public async Task<Result> Handle(DeleteCommand message)
+            => await subAccountService.DeleteSubAccountAsync(new UnlockSubAccountParam(
                 message.ViewerId,
                 message.CustId,
                 message.IP,

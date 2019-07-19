@@ -1,6 +1,7 @@
-﻿@{
+﻿@using Sunplus.Agent.Model.Entities;
+@{
     Layout = "~/Shared/Views/_Layout.cshtml";
-    ViewBag.Title = "Sub Account";
+    ViewBag.Title = CN88.Features.SubAccount.AppResources.SubAccountResource.SubAccount;
 }
 @section Styles {
     @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
@@ -31,7 +32,11 @@
                 </div>
             </div>
         </div>
-        { Html.RenderPartial("~/SubAccount/Views/_Permissions.cshtml", Model.Permissions, ViewData); }
+        {
+            Html.RenderPartial(
+                "~/SubAccount/Views/_Permissions.cshtml",
+                new Tuple<bool, PageAccess>((bool)ViewBag.ShowAccountManagementPermission, Model.Permissions));
+        }
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
             <input type="submit" class="btn-submit" value="@SharedResources.Save" />

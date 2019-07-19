@@ -21,7 +21,9 @@
 
         Result IsMatchPasswordRules(string password, IEnumerable<string> invalidPasswords);
 
-        string FilterWithValidPermissions(string pageAccess);
+        IEnumerable<string> FilterWithValidPermissions(string pageAccess);
+
+        IEnumerable<string> GetAccountManagementPermission(string pageAccess);
 
         Result ValidateSuffix(string suffix1, string suffix2);
     }
@@ -33,12 +35,6 @@
         private static readonly Regex PasswordRule3 = new Regex(@"^(?=.*[A-Z]).{6,12}$");
         private static readonly Regex PasswordRule4 = new Regex(@"^(?=.*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]).{6,12}$");
         private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
-
-        /* [B]: Account Management Edit & View
-         * [D]: Total Bets
-         * [E]: Reports
-         * [H]: Account Management View Only
-         */
 
         private readonly Encryptor encryptor;
 
@@ -80,13 +76,27 @@
                 : Result.CreateErrorResult(message: SubAccountResource.PasswordWrongRuleError);
         }
 
-        public string FilterWithValidPermissions(string pageAccess)
+        public IEnumerable<string> FilterWithValidPermissions(string pageAccess)
             => string.IsNullOrWhiteSpace(pageAccess)
-            ? string.Empty
+            ? Enumerable.Empty<string>()
             : pageAccess
                 .SplitString()
-                .Intersect(new[] { PageAccessType.ViewTotalBets, PageAccessType.ViewReports })
-                .JoinWithComma();
+                .Intersect(new[] { PageAccessType.ViewTotalBets, PageAccessType.ViewReports });
+
+        public IEnumerable<string> GetAccountManagementPermission(string pageAccess)
+        {
+            var pageAccessObject = (PageAccess)pageAccess;
+
+            if (pageAccessObject.UpdateAccount)
+            {
+                yield return PageAccessType.ViewMemberInfo;
+                yield return PageAccessType.UpdateAccount;
+            }
+            else if (pageAccessObject.ViewMemberInfo)
+            {
+                yield return PageAccessType.ViewMemberInfo;
+            }
+        }
 
         private static bool IsEqualsPasswordHint(string password)
             => password.Equals("BCD!$#H", StringComparison.OrdinalIgnoreCase) ||

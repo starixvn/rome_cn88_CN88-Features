@@ -1,6 +1,5 @@
 ﻿@{
     /**/
-
     Layout = "~/Shared/Views/_Layout.cshtml";
     ViewBag.Title = CN88.Features.SubAccount.AppResources.SubAccountResource.SubAccount;
 }
@@ -36,10 +35,13 @@
                 <th class="header sorting hide-mobile" data-colindex="1" data-sortedname="FirstName">@SubAccountResource.Name</th>
                 <th class="header sorting hide-mobile" data-colindex="2" data-sortedname="NickName">@SubAccountResource.NickName</th>
                 <th class="text-center">@SubAccountResource.TotalBets</th>
-                <th class="text-center hide-mobile">@SubAccountResource.ACManagement<br />@SubAccountResource.ViewOnly</th>
-                <th class="text-center hide-mobile">@SubAccountResource.ACManagement<br />@SubAccountResource.EditView</th>
-                <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.ViewOnly</th>
-                <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.EditView</th>
+                @if (Model.ShowAccountManagementPermission)
+                {
+                    <th class="text-center hide-mobile">@SubAccountResource.ACManagement<br />@SubAccountResource.ViewOnly</th>
+                    <th class="text-center hide-mobile">@SubAccountResource.ACManagement<br />@SubAccountResource.EditView</th>
+                    <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.ViewOnly</th>
+                    <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.EditView</th>
+                }
                 <th class="text-center col-reports">@SubAccountResource.Reports</th>
                 <th class="header sorting hide-mobile" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
                 @if (Model.ShowActionButtons)
@@ -67,12 +69,15 @@
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewTotalBets)
                         </td>
-                        <td class="text-center">
-                            @RenderPermissionCell(permission.ViewMemberInfo)
-                        </td>
-                        <td class="text-center">
-                            @RenderPermissionCell(permission.UpdateAccount)
-                        </td>
+                        @if (Model.ShowAccountManagementPermission)
+                        {
+                            <td class="text-center">
+                                @RenderPermissionCell(permission.ViewMemberInfo)
+                            </td>
+                            <td class="text-center">
+                                @RenderPermissionCell(permission.UpdateAccount)
+                            </td>
+                        }
                         <td class="text-center">
                             @RenderPermissionCell(permission.ViewReports)
                         </td>
@@ -110,7 +115,7 @@
             else
             {
                 <tr>
-                    <td colspan="@(Model.ShowActionButtons ? 9 : 8)" class="text-center">@SharedResources.NoInformationIsAvailable</td>
+                    <td colspan="@Model.TotalColumns" class="text-center">@SharedResources.NoInformationIsAvailable</td>
                 </tr>
             }
         </tbody>
@@ -123,6 +128,8 @@
 @Html.Hidden(nameof(SubAccountResource.ResetSecurityCode), SubAccountResource.ResetSecurityCode)
 @Html.Hidden(nameof(SubAccountResource.UnlockAccountConfirmMessage), SubAccountResource.UnlockAccountConfirmMessage)
 @Html.Hidden(nameof(SubAccountResource.UnlockSubAccount), SubAccountResource.UnlockSubAccount)
+@Html.Hidden(nameof(SubAccountResource.DeleteSubAccountConfirmMessage), SubAccountResource.DeleteSubAccountConfirmMessage)
+@Html.Hidden(nameof(SubAccountResource.DeleteSubAccount), SubAccountResource.DeleteSubAccount)
 @Html.Hidden(nameof(SharedResources.OK), SharedResources.OK)
 @Html.Hidden(nameof(SharedResources.Cancel), SharedResources.Cancel)
 @Html.Hidden(nameof(Model.NewSubAccountLink), Model.NewSubAccountLink)
@@ -130,6 +137,7 @@
 @Html.Hidden(nameof(Model.ResetPasswordLink), Model.ResetPasswordLink)
 @Html.Hidden(nameof(Model.ResetSecurityCodeLink), Model.ResetSecurityCodeLink)
 @Html.Hidden(nameof(Model.UnlockSubAccountLink), Model.UnlockSubAccountLink)
+@Html.Hidden(nameof(Model.DeleteSubAccountLink), Model.DeleteSubAccountLink)
 @Html.Hidden(nameof(Model.VerifySecurityCodeLink), Model.VerifySecurityCodeLink)
 @Html.Hidden(nameof(Model.IsDevice), Model.IsDevice)
 @helper RenderPermissionCell(bool hasPermission)
@@ -143,6 +151,7 @@
     <span class="icon-pass hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetPassword"></span>
     <span class="icon-security hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ResetSecurityCode"></span>
     <span class="icon-edit hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.EditSubAccount"></span>
+    <span class="icon-delete hide-mobile" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.DeleteSubAccount"></span>
     if (isClosed)
     {
         <span class="icon-unlock" data-toggle="tooltip" data-placement="top" title="@SubAccountResource.ClickToUnlock"></span>

@@ -24,10 +24,7 @@
             => await ViewAsync(message);
 
         public async Task<ActionResult> New(NewQuery message)
-        {
-            ViewData["ActorLevel"] = message.ActorLevel;
-            return await ViewAsync(message, browserHelper.IsMobile() ? "NewMobile" : "New");
-        }
+            => await ViewAsync(message, browserHelper.IsMobile() ? "NewMobile" : "New");
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> New(NewCommand message)
@@ -35,7 +32,7 @@
 
         public async Task<ActionResult> Edit(UpdateQuery message)
         {
-            ViewData["ActorLevel"] = message.ActorLevel;
+            ViewBag.ShowAccountManagementPermission = message.ShowAccountManagementPermission;
             return await ViewAsync(message);
         }
 
@@ -45,6 +42,10 @@
 
         [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
         public async Task<ActionResult> Unlock(UnlockCommand message)
+            => await JsonDataAsync(message);
+
+        [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
+        public async Task<ActionResult> Delete(DeleteCommand message)
             => await JsonDataAsync(message);
     }
 }

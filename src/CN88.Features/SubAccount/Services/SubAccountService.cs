@@ -1,8 +1,10 @@
 ﻿namespace CN88.Features.SubAccount.Services
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using AppResources;
+    using CN88.Features.Shared.Extensions;
     using Constants;
     using Criteria;
     using Fanex.Data.Repository;
@@ -21,6 +23,8 @@
         Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param);
 
         Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param);
+
+        Task<Result> DeleteSubAccountAsync(UnlockSubAccountParam param);
     }
 
     public class SubAccountServiceImpl : SubAccountService
@@ -59,7 +63,7 @@
             {
                 param.UserName = $"{param.ActorName}{SubAccountConst.SubAccountPadding}{param.Suffix1}{param.Suffix2}";
                 param.Password = subAccountValidator.Encode(param.Password);
-                param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+                param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess).JoinWithComma();
 
                 result = await ExecuteAsync(new CreateSubAccountCommand(param));
             }
@@ -106,7 +110,10 @@
 
         private async Task<Result> UpdateSubAccountAndKickoutAsync(UpdateSubAccountParam param, string oldPageAccess)
         {
-            param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+            var pageAccessList = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+            var oldPageAccessList = subAccountValidator.GetAccountManagementPermission(oldPageAccess);
+            param.PageAccess = pageAccessList.Concat(oldPageAccessList).JoinWithComma();
+
             var result = await ExecuteAsync(new UpdateSubAccountCommand(param));
 
             // Kickout when updating Permissions.
@@ -135,6 +142,14 @@
         public async Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param)
         {
             var command = new UnlockSubAccountCommand(param.CustId, param.SubAccId, param.IP, param.LanguageKey);
+            await dynamicRepository.ExecuteAsync(command);
+
+            return new Result(command.ErrCode, command.ErrMsg);
+        }
+
+        public async Task<Result> DeleteSubAccountAsync(UnlockSubAccountParam param)
+        {
+            var command = new DeleteSubAccountCommand(param.CustId, param.SubAccId, param.IP, param.LanguageKey);
             await dynamicRepository.ExecuteAsync(command);
 
             return new Result(command.ErrCode, command.ErrMsg);
