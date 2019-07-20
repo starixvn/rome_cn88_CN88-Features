@@ -4,6 +4,7 @@
     {
         public CustomerListParam(
             int viewerId,
+            int subAccountId,
             string downlineUsername,
             int searchRoleId,
             string username,
@@ -12,6 +13,7 @@
             int pageIndex)
         {
             ViewerId = viewerId;
+            SubAccountId = subAccountId;
             DownlineUsername = downlineUsername;
             SearchRoleId = searchRoleId;
             Username = username;
@@ -21,6 +23,8 @@
         }
 
         public int ViewerId { get; }
+
+        public int SubAccountId { get; }
 
         public string DownlineUsername { get; }
 

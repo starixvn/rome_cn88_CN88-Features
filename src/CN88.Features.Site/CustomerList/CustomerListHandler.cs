@@ -53,6 +53,7 @@
         {
             var param = new CustomerListParam(
                 message.ViewerId,
+                message.SubAccountId,
                 message.DownlineUsername,
                 message.SearchRoleId,
                 message.Username,

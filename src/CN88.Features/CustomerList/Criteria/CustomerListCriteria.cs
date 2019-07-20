@@ -9,6 +9,7 @@
         public CustomerListCriteria(CustomerListParam param)
         {
             ViewerId = param.ViewerId;
+            SubAccId = param.SubAccountId;
             DownlineUsername = string.IsNullOrWhiteSpace(param.DownlineUsername) ? string.Empty : param.DownlineUsername.Trim();
             SearchRoleId = param.SearchRoleId;
             Username = string.IsNullOrWhiteSpace(param.Username) ? string.Empty : param.Username.Trim();
@@ -19,6 +20,8 @@
 
         [SpParam(SqlParamName = "CustId")]
         public int ViewerId { get; }
+
+        public int SubAccId { get; }
 
         public string DownlineUsername { get; }
 
