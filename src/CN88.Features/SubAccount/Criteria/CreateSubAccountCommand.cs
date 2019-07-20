@@ -15,6 +15,8 @@
 
         public string UserPwd { get; }
 
+        public int SubAccId { get; set; }
+
         public override string GetSettingKey()
             => "CS_CustSubIns";
 

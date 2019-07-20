@@ -75,7 +75,7 @@
             </div>
             <div class="list-button">
                 <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
-                <input type="submit" class="btn-submit" value="@SharedResources.SaveAndNew" />
+                <input type="button" class="btn-submit" value="@SharedResources.SaveAndNew" />
                 <input type="submit" class="btn-submit" value="@SharedResources.Save" />
             </div>
         }
@@ -86,3 +86,4 @@
 @Html.Hidden(nameof(SubAccountResource.RequiredPasswordError), SubAccountResource.RequiredPasswordError)
 @Html.Hidden(nameof(SubAccountResource.PasswordWrongRuleError), SubAccountResource.PasswordWrongRuleError)
 @Html.Hidden(nameof(SubAccountResource.ConfirmPasswordError), SubAccountResource.ConfirmPasswordError)
+@Html.Hidden("SuccessMessage", SubAccountResource.AccountSuccessfullyCreated)

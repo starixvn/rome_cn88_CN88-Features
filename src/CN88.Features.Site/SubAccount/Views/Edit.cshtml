@@ -9,25 +9,26 @@
 @section Scripts {
     @StaticResources.RenderScripts("~/SubAccount/bundles/scripts/edit-sub-account")
 }
-@model CN88.Features.SubAccount.Models.SubAccountItem
+@model EditViewModel
 <div class="modal-sub-account">
     <div id="message-container" class="message-container"></div>
-    <div class="head-title">@SubAccountResource.AccountDetails</div>
     @using (Html.BeginForm("Edit", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
     {
+        var subAccount = Model.SubAccountItem;
         @Html.AntiForgeryToken()
-        @Html.Hidden("subAccountId", Model.SubAccId.ToString())
+        @Html.Hidden("subAccountId", subAccount.SubAccId.ToString())
+        <div class="head-title">@SubAccountResource.AccountDetails</div>
         <div class="general-info account-data">
             <div class="title">@SubAccountResource.GeneralData</div>
             <div class="account-data-content">
                 <div class="form-group">
                     <label class="control-label">@SubAccountResource.UserName</label>
-                    <div class="content-control">@Model.UserName</div>
+                    <div class="content-control">@subAccount.UserName</div>
                 </div>
                 <div class="form-group">
                     <label for="name" class="control-label">@SubAccountResource.Name</label>
                     <div class="content-control">
-                        <input type="text" class="control" maxlength="50" value="@WebUtility.HtmlDecode(Model.FirstName)" id="name" autocomplete="off" />
+                        <input type="text" class="control" maxlength="50" value="@WebUtility.HtmlDecode(subAccount.FirstName)" id="name" autocomplete="off" />
                     </div>
                 </div>
             </div>
@@ -35,8 +36,10 @@
         {
             Html.RenderPartial(
                 "~/SubAccount/Views/_Permissions.cshtml",
-                new Tuple<bool, PageAccess>((bool)ViewBag.ShowAccountManagementPermission, Model.Permissions));
+                new Tuple<bool, PageAccess>((bool)ViewBag.ShowAccountManagementPermission, subAccount.Permissions));
         }
+        <div class="head-title">@SubAccountResource.ManagedAccount</div>
+        @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
             <input type="submit" class="btn-submit" value="@SharedResources.Save" />
@@ -44,3 +47,4 @@
     }
 </div>
 @Html.Hidden(nameof(SubAccountResource.RequiredNameError), SubAccountResource.RequiredNameError)
+@Html.Hidden("SuccessMessage", SubAccountResource.UpdateSuccessfully)

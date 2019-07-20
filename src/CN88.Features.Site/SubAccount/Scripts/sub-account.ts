@@ -127,7 +127,7 @@ class SubAccount {
 
         this.tableSubAccount.find(".icon-edit, .opt-edit").click((event: JQueryEventObject) => {
             const param = this.getSubAccountParam(this.$(event.currentTarget));
-            const width = 948, height = 470;
+            const width = 948, height = 600;
             this.openPopup(
                 `${this.resources.editSubAccount} - ${param.subAccountName}`,
                 `${this.urls.editSubAccount}?custId=${param.subAccountId}`,
@@ -140,7 +140,7 @@ class SubAccount {
         });
 
         this.$("#btnNewSubAccount").click(() => {
-            const width = 948, height = 540;
+            const width = 948, height = 600;
             this.openPopup(this.resources.newSubAccount, this.urls.newSubAccount, width, height);
         });
 

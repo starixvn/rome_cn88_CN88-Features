@@ -16,6 +16,7 @@
     <Setting Key="CS_CustSubUnlock" SpName="CS_CustSubUnlock" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustSubDel" SpName="CS_CustSubDel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_SubAccManagementSel" SpName="CS_SubAccManagementSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_SubAccManagementUpd" SpName="CS_SubAccManagementUpd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="PT">
     <Setting Key="CS_CustSetting_LegacyReportSetting_Sel" SpName="CS_CustSetting_LegacyReportSetting_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />

@@ -5,6 +5,9 @@ abstract class BaseSubAccount {
     top: Window;
     elements: any;
     message: Message;
+    $checkboxSelectAll: JQuery;
+    $downlineCheckboxs: JQuery;
+    successMessage: string;
 
     protected constructor($: JQueryStatic, top: Window) {
         this.$ = $;
@@ -26,6 +29,10 @@ abstract class BaseSubAccount {
             reports: this.$("#reports"),
             requiredNameError: this.$("#RequiredNameError").val()
         };
+
+        this.successMessage = this.$("#SuccessMessage").val();
+        this.$checkboxSelectAll = this.$("#ckboxSelectAll");
+        this.$downlineCheckboxs = this.$("#tblManagedAccount tr td input[type='checkbox']");
     }
 
     private bindEvents(): void {
@@ -41,13 +48,56 @@ abstract class BaseSubAccount {
         this.$("#buttonCancel").click(() => {
             this.top["popupManager"].close();
         });
+
+        this.$checkboxSelectAll.change(() => {
+            this.$downlineCheckboxs.prop("checked", this.$checkboxSelectAll.is(":checked"));
+        });
+
+        this.$downlineCheckboxs.on("click touchend", (e: JQueryEventObject) => {
+            if (this.$(e.target).is(":checked")) {
+                let isAllChecked = true;
+
+                this.$downlineCheckboxs.each(function () {
+                    if (!this.checked) {
+                        isAllChecked = false;
+                    }
+                });
+
+                if (isAllChecked) {
+                    this.$checkboxSelectAll.prop("checked", true);
+                }
+            } else {
+                this.$checkboxSelectAll.prop("checked", false);
+            }
+        });
     }
 
     protected getFormData(): any {
+        let downlineId = "";
+        const isSelectAllDownline = this.$checkboxSelectAll.is(":checked");
+
+        if (!isSelectAllDownline) {
+            downlineId = this.getSelectedDownlines();
+        }
+
         return {
             name: this.$.trim(this.elements.name.val()),
-            pageAccess: this.getPageAccess()
+            pageAccess: this.getPageAccess(),
+            isSelectAllDownline: isSelectAllDownline,
+            downlineId: downlineId
         };
+    }
+
+    private getSelectedDownlines(): string {
+        const selected = [];
+        this.$downlineCheckboxs.each((index: number, elem: Element) => {
+            const $elem = this.$(elem);
+            if ($elem.is(":checked")) {
+                selected.push([$elem.val()]);
+            }
+        });
+
+        return selected.join(",");
     }
 
     protected validateFormData(formData): boolean {
@@ -88,10 +138,12 @@ abstract class BaseSubAccount {
                 }
 
                 const result = new Result(data);
-                this.message.showMessage(this.elements.messageContainer, result);
 
                 if (result.IsSuccessful) {
+                    this.message.showSuccess(this.elements.messageContainer, this.successMessage);
                     this.top["indexManager"].closePopupAndReloadMainIframe();
+                } else {
+                    this.message.showMessage(this.elements.messageContainer, result);
                 }
             },
             error: (xhr: JQueryXHR) => {

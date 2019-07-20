@@ -1,11 +1,11 @@
 ﻿@model ManagedAccountViewModel
-<table class="tbl-style2 tbl-managed-account">
+<table id="tblManagedAccount" class="tbl-style2 tbl-managed-account">
     <thead>
         <tr>
             <th>@SubAccountResource.UserName</th>
             <th>@SubAccountResource.Name</th>
             <th class="col-all-check">
-                <input type="checkbox" id="IsAllDownline" name="IsAllDownline" value="" @(Model.IsAllDownline ? "checked=checked" : string.Empty) />
+                <input type="checkbox" id="ckboxSelectAll" name="ckboxSelectAll" value="" @(Model.IsAllDownline ? "checked=checked" : string.Empty) />
                 <span class="icon-info" data-toggle="tooltip" title="@SubAccountResource.SelectAllDownlineMessage" />
             </th>
         </tr>
@@ -23,3 +23,4 @@
         }
     </tbody>
 </table>
+@Html.Hidden(nameof(Model.DownlineId), Model.DownlineId)
