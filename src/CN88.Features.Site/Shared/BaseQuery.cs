@@ -7,9 +7,10 @@
 
     public class BaseQuery
     {
+        private const int HeadlineDevisor = 100;
+
         protected BaseQuery(IUser viewer)
         {
-
             ViewerId = viewer.Id;
             ViewerName = viewer.Name;
             NickName = viewer.NickName;
@@ -58,6 +59,8 @@
         public string Language { get; }
 
         public string LanguageKey { get; }
+
+        public int Divisor => ActorLevel.IsHeadline() ? HeadlineDevisor : 1;
 
         public virtual bool IsValid()
             => ViewerId > 0

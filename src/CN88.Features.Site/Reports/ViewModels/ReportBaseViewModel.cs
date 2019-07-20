@@ -1,5 +1,8 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Alpha.Web.Helpers;
     using CN88.Features.Shared.AppResources;
     using Constants;
@@ -11,9 +14,6 @@
     using Requests;
     using Shared.Helpers;
     using Shared.ViewModels.Components;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public abstract class ReportBaseViewModel
     {
@@ -39,7 +39,7 @@
 
             ReportData = reportData.ToList();
             GrandTotal = grandTotal;
-            Divisor = (reportQuery.ActorLevel.IsHeadline()) ? 100 : 1;
+            Divisor = reportQuery.Divisor;
             TotalStockPercent = reportQuery.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
             IsMobile = isMobile;
             GetSortedProperty(reportQuery);

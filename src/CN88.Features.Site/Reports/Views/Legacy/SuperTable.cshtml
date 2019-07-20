@@ -1,4 +1,5 @@
-﻿@model ReportBaseViewModel
+﻿@using CN88.Features.Extensions
+@model ReportBaseViewModel
 @{
     var total = Model.GrandTotal;
     var divisor = Model.Divisor;
@@ -30,6 +31,8 @@
                 </th>
                 <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineIncome"><span class="sorting-item">@ReportResources.HeadlineIncome</span></th>
                 <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineResult"><span class="sorting-item">@ReportResources.HeadlineResult</span></th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineStock"><span class="sorting-item">@ReportResources.HeadlineStock</span></th>
+                <th class="text-right header sorting" data-colindex="@(colIndex++)" data-sortedname="HeadlineStockPercent"><span class="sorting-item">@ReportResources.HeadlineStockPercent</span></th>
             }
         </tr>
         @if (Model.ReportData.Any())
@@ -49,10 +52,12 @@
                 @HtmlHelpers.RenderHeaderNumberCell(divisor, total.SuperStock)
                 @if (Model.IsNotOwner)
                 {
-                    @ReportHtmlHelpers.RenderHeaderPercentCell(Model.TotalStockPercent)
+                    @ReportHtmlHelpers.RenderHeaderPercentCell(100)
                     <th></th>
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineIncome)
                     @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineResult)
+                    @HtmlHelpers.RenderHeaderNumberCell(divisor, total.HeadlineStock)
+                    @ReportHtmlHelpers.RenderHeaderPercentCell(100)
                 }
             </tr>
         }
@@ -81,13 +86,15 @@
                         <td class="text-right">@row.HeadlinePoss</td>
                         @HtmlHelpers.RenderNumberCell(divisor, row.HeadlineIncome)
                         @HtmlHelpers.RenderNumberCell(divisor, row.HeadlineResult)
+                        @HtmlHelpers.RenderNumberCell(divisor, row.HeadlineStock)
+                        @ReportHtmlHelpers.RenderStockPercentCell(row.HeadlineStock, total.HeadlineStock)
                     }
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <td class="profit-margin" colspan="@(Model.IsNotOwner ? "16" : "12")" align="right">
+                <td class="profit-margin" colspan="@(Model.IsNotOwner ? "18" : "12")" align="right">
                     <strong>@ReportResources.ProfitMargin <span class="@(Model.ProfitMargin < 0 ? "negative-value" : string.Empty)">@HtmlHelpers.FormatNumber(Model.ProfitMargin) %</span></strong>
                 </td>
             </tr>
@@ -97,7 +104,7 @@
     {
         <tbody>
             <tr>
-                <td colspan="@(Model.IsNotOwner ? "16" : "12")" align="center">@SharedResources.NoInformationIsAvailable</td>
+                <td colspan="@(Model.IsNotOwner ? "18" : "12")" align="center">@SharedResources.NoInformationIsAvailable</td>
             </tr>
         </tbody>
     }

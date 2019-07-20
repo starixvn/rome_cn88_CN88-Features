@@ -19,7 +19,7 @@
                ITicketHelper ticketHelper,
                bool isExportingExcel = false)
         {
-            Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
+            Divisor = query.Divisor;
 
             IsDataTooHuge = parlayDetailData.ParlayDetails.Count() > 5000;
             Query = query;

@@ -19,7 +19,7 @@
             ITicketHelper ticketHelper,
             CacheRefService cacheRefService)
         {
-            Divisor = (query.ActorLevel.IsHeadline()) ? 100 : 1;
+            Divisor = query.Divisor;
 
             BetListData = betListData;
             CN88Builder = cn88Builder;
