@@ -9,7 +9,7 @@
 
 .modal-sub-account {
     padding-bottom: 52px;
-    
+
     .head-title {
         padding: 12px 20px 12px 27px;
         border-bottom: 1px solid #737373;
@@ -128,16 +128,18 @@
         margin: 20px;
 
         .col-all-check {
-            position: relative;
             width: 100px;
             text-align: center;
         }
 
+        .all-check-func {
+            position: relative;
+        }
+
         .icon-info {
             position: absolute;
-            right: 20px;
-            right: 16px;
-            top: 8px;
+            right: 10px;
+            top: 2px;
             left: auto;
         }
 

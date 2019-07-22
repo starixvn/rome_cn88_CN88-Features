@@ -5,8 +5,10 @@
             <th>@SubAccountResource.UserName</th>
             <th>@SubAccountResource.Name</th>
             <th class="col-all-check">
-                <input type="checkbox" id="ckboxSelectAll" name="ckboxSelectAll" value="" @(Model.IsAllDownline ? "checked=checked" : string.Empty) />
-                <span class="icon-info" data-toggle="tooltip" title="@SubAccountResource.SelectAllDownlineMessage" />
+                <div class="all-check-func">
+                    <input type="checkbox" id="ckboxSelectAll" name="ckboxSelectAll" value="" @(Model.IsAllDownline ? "checked=checked" : string.Empty) />
+                    <span class="icon-info" data-toggle="tooltip" title="@SubAccountResource.SelectAllDownlineMessage" />
+                </div>                
             </th>
         </tr>
     </thead>
