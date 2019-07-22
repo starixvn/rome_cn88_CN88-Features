@@ -11,7 +11,8 @@ abstract class BaseSubAccount {
         systemMessage: '',
         selectAllDownlineMesage: '',
         successMessage: '',
-        okLabel: ''
+        okLabel: '',
+        managedAccountValidationMessage: ''
     };
 
     protected constructor($: JQueryStatic, top: Window) {
@@ -42,9 +43,10 @@ abstract class BaseSubAccount {
         this.resources.successMessage = this.$("#SuccessMessage").val();
         this.resources.systemMessage = this.$("#SystemMessage").val();
         this.resources.selectAllDownlineMesage = this.$("#SelectAllDownlineMessage").val();
+        this.resources.managedAccountValidationMessage = this.$("#ManagedAccountValidationMessage").val();
     }
 
-    private bindEvents(): void {
+    protected bindEvents(): void {
         this.elements.formSubAccount.submit((e: JQueryEventObject) => {
             e.preventDefault();
             const formData = this.getFormData();
@@ -89,7 +91,49 @@ abstract class BaseSubAccount {
                 this.$checkboxSelectAll.prop("checked", false);
             }
         });
+
+        this.$(".head-title").click(this.collapseSection);
+
+        this.$("body").on("click touchend", (event) => {
+            const target = this.$(event.target);
+            const showTooltipClass = "tooltip-show";
+
+            if (target.hasClass("icon-info")) {
+                const isShowing = target.hasClass(showTooltipClass);
+
+                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                showingToolTips.tooltip("hide");
+                showingToolTips.removeClass(showTooltipClass);
+
+                if (isShowing) {
+                    target.tooltip("hide");
+                    target.removeClass(showTooltipClass);
+                } else {
+                    target.tooltip("show");
+                    target.addClass(showTooltipClass);
+                }
+
+                event.stopPropagation();
+                return false;
+            }
+
+            this.elements.tooltips.tooltip("hide");
+            this.elements.tooltips.removeClass(showTooltipClass);
+        });
     }
+
+    collapseSection = (e: JQueryEventObject) => {
+        const collapsedClass = "collapsed";
+        const $title = this.$(e.target);
+
+        if ($title.hasClass(collapsedClass)) {
+            this.$($title.data("target")).removeClass("hide");
+            $title.removeClass(collapsedClass);
+        } else {
+            this.$($title.data("target")).addClass("hide");
+            $title.addClass(collapsedClass);
+        }
+    };
 
     protected getFormData(): any {
         let downlineId = "";
@@ -122,6 +166,17 @@ abstract class BaseSubAccount {
     protected validateFormData(formData): boolean {
         this.message.hideMessage(this.elements.messageContainer);
 
+        if (!(formData.isSelectAllDownline || formData.downlineId)) {
+            this.top["popupManager"].bootboxAlert(
+                this.resources.systemMessage,
+                this.resources.managedAccountValidationMessage,
+                null,
+                400,
+                this.resources.okLabel);
+
+            return false;
+        }
+
         return true;
     }
 
@@ -142,7 +197,7 @@ abstract class BaseSubAccount {
         return permissions.join(",");
     }
 
-    private submitForm(formData): void {
+    public submitForm(formData, isSaveAndNew = false): void {
         this.$.blockUI();
 
         this.$.ajax({
@@ -160,7 +215,15 @@ abstract class BaseSubAccount {
 
                 if (result.IsSuccessful) {
                     this.message.showSuccess(this.elements.messageContainer, this.resources.successMessage);
-                    this.top["indexManager"].closePopupAndReloadMainIframe();
+                    if (isSaveAndNew) {
+                        const timeOutInMiliseconds = 3000;
+                        setTimeout(() => {
+                            this.top.$("#main").attr("src", (index, attr) => { return attr });
+                            window.location.reload();
+                        }, timeOutInMiliseconds);
+                    } else {
+                        this.top["indexManager"].closePopupAndReloadMainIframe();
+                    }
                 } else {
                     this.message.showMessage(this.elements.messageContainer, result);
                 }

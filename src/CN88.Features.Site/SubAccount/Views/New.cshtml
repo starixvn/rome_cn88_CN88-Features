@@ -17,50 +17,53 @@
     @using (Html.BeginForm("New", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
-        <div class="head-title">@SubAccountResource.AccountDetails</div>
-        <div class="general-info account-data">
-            <div class="title">@SubAccountResource.GeneralData</div>
-            <div class="account-data-content">
-                <div class="form-group">
-                    <label class="control-label required">@SubAccountResource.UserName <span class="star">*</span></label>
-                    <div class="content-control username-box">
-                        <label class="name">@Model.SubAccountName</label>
-                        <div class="suffix-container">
-                            @Html.DropDownList("suffix1", Model.Suffix1, new { id = "suffix1" })
-                            @Html.DropDownList("suffix2", Model.Suffix2, new { id = "suffix2" })
+        <div class="head-title" data-target="#accountDetails">@SubAccountResource.AccountDetails</div>
+        <div id="accountDetails">
+            <div class="general-info account-data">
+                <div class="title">@SubAccountResource.GeneralData</div>
+                <div class="account-data-content">
+                    <div class="form-group">
+                        <label class="control-label required">@SubAccountResource.UserName <span class="star">*</span></label>
+                        <div class="content-control username-box">
+                            <label class="name">@Model.SubAccountName</label>
+                            <div class="suffix-container">
+                                @Html.DropDownList("suffix1", Model.Suffix1, new { id = "suffix1" })
+                                @Html.DropDownList("suffix2", Model.Suffix2, new { id = "suffix2" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label">@SubAccountResource.Name</label>
+                        <div class="content-control">
+                            <input type="text" class="control" maxlength="50" id="name" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">
+                            @SubAccountResource.Password <span class="star">*</span>
+                            <span class="icon-info" data-toggle="tooltip" data-placement="right" id="pass-rule" data-html="true" title="@SubAccountResource.PasswordRule"></span>
+                        </label>
+                        <div class="content-control">
+                            <input type="password" class="control" maxlength="12" id="password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="control-label">@SubAccountResource.ConfirmPassword <span class="star">*</span></label>
+                        <div class="content-control">
+                            <input type="password" class="control" maxlength="12" id="confirmPassword" />
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">@SubAccountResource.Name</label>
-                    <div class="content-control">
-                        <input type="text" class="control" maxlength="50" id="name" autocomplete="off" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="control-label">
-                        @SubAccountResource.Password <span class="star">*</span>
-                        <span class="icon-info" data-toggle="tooltip" data-placement="right" id="pass-rule" data-html="true" title="@SubAccountResource.PasswordRule"></span>
-                    </label>
-                    <div class="content-control">
-                        <input type="password" class="control" maxlength="12" id="password" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword" class="control-label">@SubAccountResource.ConfirmPassword <span class="star">*</span></label>
-                    <div class="content-control">
-                        <input type="password" class="control" maxlength="12" id="confirmPassword" />
-                    </div>
-                </div>
             </div>
-        </div>
-        {
-            var pageAccess = new PageAccess { ViewReports = true, ViewTotalBets = true };
-            Html.RenderPartial(
+            @{
+                var pageAccess = new PageAccess { ViewReports = true, ViewTotalBets = true };
+                Html.RenderPartial(
                 "~/SubAccount/Views/_Permissions.cshtml",
-                new Tuple<bool, PageAccess>(Model.ShowAccountManagementPermission, pageAccess));
-        }
-        <div class="head-title">@SubAccountResource.ManagedAccount</div>
+                new Tuple<bool, PageAccess>
+                    (Model.ShowAccountManagementPermission, pageAccess));
+            }
+        </div>
+        <div class="head-title" data-target="#tblManagedAccount">@SubAccountResource.ManagedAccount</div>
         @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />

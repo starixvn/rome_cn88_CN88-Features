@@ -222,4 +222,7 @@
   <data name="DeleteSubAccountConfirmMessage" xml:space="preserve">
     <value>Are you sure you want to delete this account?</value>
   </data>
+  <data name="ManagedAccountValidationMessage" xml:space="preserve">
+    <value>你沒有勾選"可管理帳號",請勾選其中一個或全選</value>
+  </data>
 </root>

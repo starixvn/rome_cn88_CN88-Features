@@ -231,4 +231,7 @@
   <data name="SystemMessage" xml:space="preserve">
     <value>System Message</value>
   </data>
+  <data name="ManagedAccountValidationMessage" xml:space="preserve">
+    <value>You do not have any Managed Accounts selected.Please select a Managed Account or select"All"</value>
+  </data>
 </root>

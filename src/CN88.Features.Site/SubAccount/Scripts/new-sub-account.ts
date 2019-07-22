@@ -35,32 +35,18 @@ class NewSubAccount extends BaseSubAccount {
         this.elements.suffix2 = this.$("#suffix2");
         this.elements.password = this.$("#password");
         this.elements.confirmPassword = this.$("#confirmPassword");
+    }
 
-        this.$("body").on("click touchend", (event) => {
-            const target = this.$(event.target);
-            const showTooltipClass = "tooltip-show";
+    protected bindEvents(): void {
+        super.bindEvents();
 
-            if (target.hasClass("icon-info")) {
-                const isShowing = target.hasClass(showTooltipClass);
+        this.$("#btnSaveAndNew").click((e: JQueryEventObject) => {
+            e.preventDefault();
+            const formData = this.getFormData();
 
-                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
-                showingToolTips.tooltip("hide");
-                showingToolTips.removeClass(showTooltipClass);
-
-                if (isShowing) {
-                    target.tooltip("hide");
-                    target.removeClass(showTooltipClass);
-                } else {
-                    target.tooltip("show");
-                    target.addClass(showTooltipClass);
-                }
-
-                event.stopPropagation();
-                return false;
+            if (this.validateFormData(formData)) {
+                this.submitForm(formData, true);
             }
-
-            this.elements.tooltips.tooltip("hide");
-            this.elements.tooltips.removeClass(showTooltipClass);
         });
     }
 

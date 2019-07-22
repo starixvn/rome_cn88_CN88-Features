@@ -205,6 +205,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have any Managed Accounts selected.Please select a Managed Account or select&quot;All&quot;.
+        /// </summary>
+        public static string ManagedAccountValidationMessage {
+            get {
+                return ResourceManager.GetString("ManagedAccountValidationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
