@@ -340,6 +340,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System Message.
+        /// </summary>
+        public static string SystemMessage {
+            get {
+                return ResourceManager.GetString("SystemMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Bets.
         /// </summary>
         public static string TotalBets {

@@ -7,7 +7,12 @@ abstract class BaseSubAccount {
     message: Message;
     $checkboxSelectAll: JQuery;
     $downlineCheckboxs: JQuery;
-    successMessage: string;
+    resources = {
+        systemMessage: '',
+        selectAllDownlineMesage: '',
+        successMessage: '',
+        okLabel: ''
+    };
 
     protected constructor($: JQueryStatic, top: Window) {
         this.$ = $;
@@ -30,9 +35,13 @@ abstract class BaseSubAccount {
             requiredNameError: this.$("#RequiredNameError").val()
         };
 
-        this.successMessage = this.$("#SuccessMessage").val();
         this.$checkboxSelectAll = this.$("#ckboxSelectAll");
         this.$downlineCheckboxs = this.$("#tblManagedAccount tr td input[type='checkbox']");
+
+        this.resources.okLabel = this.$("#Ok").val();
+        this.resources.successMessage = this.$("#SuccessMessage").val();
+        this.resources.systemMessage = this.$("#SystemMessage").val();
+        this.resources.selectAllDownlineMesage = this.$("#SelectAllDownlineMessage").val();
     }
 
     private bindEvents(): void {
@@ -50,7 +59,17 @@ abstract class BaseSubAccount {
         });
 
         this.$checkboxSelectAll.change(() => {
-            this.$downlineCheckboxs.prop("checked", this.$checkboxSelectAll.is(":checked"));
+            const isChecked = this.$checkboxSelectAll.is(":checked");
+            if (isChecked) {
+                this.top["popupManager"].bootboxAlert(
+                    this.resources.systemMessage,
+                    this.resources.selectAllDownlineMesage,
+                    null,
+                    350,
+                    this.resources.okLabel);
+            }
+
+            this.$downlineCheckboxs.prop("checked", isChecked);
         });
 
         this.$downlineCheckboxs.on("click touchend", (e: JQueryEventObject) => {
@@ -140,7 +159,7 @@ abstract class BaseSubAccount {
                 const result = new Result(data);
 
                 if (result.IsSuccessful) {
-                    this.message.showSuccess(this.elements.messageContainer, this.successMessage);
+                    this.message.showSuccess(this.elements.messageContainer, this.resources.successMessage);
                     this.top["indexManager"].closePopupAndReloadMainIframe();
                 } else {
                     this.message.showMessage(this.elements.messageContainer, result);
