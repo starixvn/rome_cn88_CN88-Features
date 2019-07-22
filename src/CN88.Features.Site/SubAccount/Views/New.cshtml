@@ -64,7 +64,7 @@
         @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
-            <input type="button" class="btn-submit" value="@SharedResources.SaveAndNew" />
+            <input type="button" class="btn-submit" id="btnSaveAndNew" value="@SharedResources.SaveAndNew" />
             <input type="submit" class="btn-submit" value="@SharedResources.Save" />
         </div>
     }
