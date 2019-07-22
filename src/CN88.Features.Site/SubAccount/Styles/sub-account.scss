@@ -8,6 +8,8 @@
 }
 
 .modal-sub-account {
+    padding-bottom: 52px;
+    
     .head-title {
         padding: 12px 20px 12px 27px;
         border-bottom: 1px solid #737373;
@@ -21,7 +23,7 @@
             font-size: 18px;
         }
 
-        &.active:before {
+        &.collapsed:before {
             content: "\e908";
         }
 
@@ -138,6 +140,17 @@
             top: 8px;
             left: auto;
         }
+
+        .tooltip {
+            width: 220px;
+        }
+    }
+
+    .list-button {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
     }
 }
 
