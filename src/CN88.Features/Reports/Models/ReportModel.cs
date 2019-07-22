@@ -1,9 +1,9 @@
 ﻿namespace CN88.Features.Reports.Models
 {
-    using CN88.Features.Shared.Extensions;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using CN88.Features.Shared.Extensions;
 
     public class ReportModel
     {
@@ -32,7 +32,8 @@
             decimal superResult,
             decimal superStock,
             decimal headlineIncome,
-            decimal headlineResult)
+            decimal headlineResult,
+            decimal headlineStock)
         {
             CustId = custId;
             Username = username;
@@ -59,6 +60,7 @@
 
             HeadlineIncome = headlineIncome;
             HeadlineResult = headlineResult;
+            HeadlineStock = headlineStock;
         }
 
         public int CustId { get; }
@@ -119,6 +121,8 @@
 
         public decimal HeadlineResult { get; private set; }
 
+        public decimal HeadlineStock { get; private set; }
+
         public ReportModel Add(ReportModel winloss)
         {
             if (winloss == null)
@@ -148,6 +152,7 @@
 
             HeadlineIncome += winloss.HeadlineIncome;
             HeadlineResult += winloss.HeadlineResult;
+            HeadlineStock += winloss.HeadlineStock;
 
             return this;
         }

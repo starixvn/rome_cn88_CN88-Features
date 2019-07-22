@@ -24,7 +24,7 @@
             bool isMobile,
             string[] excludingTicketStatus)
         {
-            Divisor = (message.ActorLevel.IsHeadline()) ? 100 : 1;
+            Divisor = message.Divisor;
 
             CustId = message.CustId;
             CustName = message.CustName;

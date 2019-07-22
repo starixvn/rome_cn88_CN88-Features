@@ -54,9 +54,8 @@
                 throw new ArgumentNullException(nameof(message));
             }
 
-            divisor = message.ActorLevel.IsHeadline() ? 100 : 1;
+            divisor = message.Divisor;
             totalStockPercent = message.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
-
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
             var grandTotal = AccumulateGrandTotal(reportData);
@@ -113,7 +112,9 @@
                 mapper.Map(M, data => isTotal ? totalStockPercent : CalculatePercentage(data.SuperStock, grandTotal.SuperStock))
                     .Map(N, data => isTotal ? string.Empty : data.HeadlinePoss)
                     .Map(O, data => RoundNumber(data.HeadlineIncome))
-                    .Map(P, data => RoundNumber(data.HeadlineResult));
+                    .Map(P, data => RoundNumber(data.HeadlineResult))
+                    .Map(Q, data => CalculateNumber(data.HeadlineStock))
+                    .Map(R, data => isTotal ? totalStockPercent : CalculatePercentage(data.HeadlineStock, grandTotal.HeadlineStock));
             }
 
             return mapper;
