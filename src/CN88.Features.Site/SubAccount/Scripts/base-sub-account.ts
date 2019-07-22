@@ -24,6 +24,7 @@ abstract class BaseSubAccount {
     init(): void {
         this.cacheElements();
         this.bindEvents();
+        this.elements.tooltips.tooltip();
     }
 
     protected cacheElements(): void {
@@ -33,7 +34,8 @@ abstract class BaseSubAccount {
             name: this.$("#name"),
             totalBets: this.$("#totalBets"),
             reports: this.$("#reports"),
-            requiredNameError: this.$("#RequiredNameError").val()
+            requiredNameError: this.$("#RequiredNameError").val(),
+            tooltips: this.$('[data-toggle="tooltip"]')
         };
 
         this.$checkboxSelectAll = this.$("#ckboxSelectAll");
@@ -51,7 +53,7 @@ abstract class BaseSubAccount {
             e.preventDefault();
             const formData = this.getFormData();
 
-            if (this.validateFormData(formData)) {
+            if (this.validateForm() && this.validateManagedAccount(formData)) {
                 this.submitForm(formData);
             }
         });
@@ -163,9 +165,13 @@ abstract class BaseSubAccount {
         return selected.join(",");
     }
 
-    protected validateFormData(formData): boolean {
+    protected validateForm(): boolean {
         this.message.hideMessage(this.elements.messageContainer);
 
+        return true;
+    }
+
+    protected validateManagedAccount(formData): boolean {
         if (!(formData.isSelectAllDownline || formData.downlineId)) {
             this.top["popupManager"].bootboxAlert(
                 this.resources.systemMessage,

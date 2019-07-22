@@ -225,4 +225,7 @@
   <data name="ManagedAccountValidationMessage" xml:space="preserve">
     <value>你沒有勾選"可管理帳號",請勾選其中一個或全選</value>
   </data>
+  <data name="SystemMessage" xml:space="preserve">
+    <value>系統訊息</value>
+  </data>
 </root>

@@ -25,8 +25,7 @@ class NewSubAccount extends BaseSubAccount {
 
     protected cacheElements(): void {
         super.cacheElements();
-        this.elements.tooltips = this.$('[data-toggle="tooltip"]');
-        this.elements.tooltips.tooltip();
+
         this.elements.requiredPasswordError = this.$("#RequiredPasswordError").val();
         this.elements.passwordWrongRuleError = this.$("#PasswordWrongRuleError").val();
         this.elements.confirmPasswordError = this.$("#ConfirmPasswordError").val();
@@ -44,7 +43,7 @@ class NewSubAccount extends BaseSubAccount {
             e.preventDefault();
             const formData = this.getFormData();
 
-            if (this.validateFormData(formData)) {
+            if (this.validateForm() && this.validateManagedAccount(formData)) {
                 this.submitForm(formData, true);
             }
         });
@@ -61,8 +60,8 @@ class NewSubAccount extends BaseSubAccount {
         return formData;
     }
 
-    protected validateFormData(formData): boolean {
-        const isValid: boolean = super.validateFormData(formData);
+    protected validateForm(): boolean {
+        const isValid: boolean = super.validateForm();
 
         if (!isValid) {
             return false;

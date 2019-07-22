@@ -17,6 +17,7 @@
             SubAccountName = subAccountName;
             HashKey = hashKey;
             ShowAccountManagementPermission = showAccountManagementPermission;
+            NumberOfDownline = managedAccounts.Item2.Count();
             ManagedAccountViewModel = new ManagedAccountViewModel(managedAccounts.Item1, managedAccounts.Item2);
         }
 
@@ -25,6 +26,8 @@
         public string HashKey { get; }
 
         public bool ShowAccountManagementPermission { get; }
+
+        public int NumberOfDownline { get; }
 
         public ManagedAccountViewModel ManagedAccountViewModel { get; }
 

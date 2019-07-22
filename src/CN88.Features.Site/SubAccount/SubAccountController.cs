@@ -33,7 +33,8 @@
         public async Task<ActionResult> Edit(UpdateQuery message)
         {
             ViewBag.ShowAccountManagementPermission = message.ShowAccountManagementPermission;
-            return await ViewAsync(message);
+
+            return await ViewAsync(message, browserHelper.IsMobile() ? "EditMobile" : "Edit");
         }
 
         [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
