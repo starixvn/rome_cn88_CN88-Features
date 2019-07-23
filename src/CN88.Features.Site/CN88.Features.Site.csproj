@@ -68,8 +68,9 @@
     <Reference Include="Alpha.Web, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn8801\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.BetList.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0.3\lib\net461\CN88.BetList.Core.dll</HintPath>
+    <Reference Include="CN88.BetList.Core, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0.4\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.ESports, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.ESports.1.0.0.2\lib\net461\CN88.BetList.ESports.dll</HintPath>
@@ -284,9 +285,6 @@
       <HintPath>..\..\packages\RabbitMQ.Client.5.0.1\lib\net451\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RemotingRef.1.0.0.2\lib\net40\RemotingRef.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -303,9 +301,6 @@
     </Reference>
     <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=4.6.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SimpleInjector.Integration.Web.Mvc.4.6.0\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
