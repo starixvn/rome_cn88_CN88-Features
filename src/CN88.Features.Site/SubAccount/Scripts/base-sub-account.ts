@@ -77,52 +77,42 @@ abstract class BaseSubAccount {
         });
 
         this.$downlineCheckboxs.on("click touchend", (e: JQueryEventObject) => {
-            if (this.$(e.target).is(":checked")) {
-                let isAllChecked = true;
-
-                this.$downlineCheckboxs.each(function () {
-                    if (!this.checked) {
-                        isAllChecked = false;
-                    }
-                });
-
-                if (isAllChecked) {
-                    this.$checkboxSelectAll.prop("checked", true);
-                }
-            } else {
+            if (!this.$(e.target).is(":checked")) {
                 this.$checkboxSelectAll.prop("checked", false);
             }
         });
 
         this.$(".head-title").click(this.collapseSection);
 
-        this.$("body").on("click touchend", (event) => {
-            const target = this.$(event.target);
-            const showTooltipClass = "tooltip-show";
+        this.$("body").on("click touchend", this.onBodyClick);
+    }
 
-            if (target.hasClass("icon-info")) {
-                const isShowing = target.hasClass(showTooltipClass);
+    onBodyClick = (event: JQueryEventObject) => {
+        const target = this.$(event.target);
+        const showTooltipClass = "tooltip-show";
 
-                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
-                showingToolTips.tooltip("hide");
-                showingToolTips.removeClass(showTooltipClass);
+        if (target.hasClass("icon-info")) {
+            const isShowing = target.hasClass(showTooltipClass);
 
-                if (isShowing) {
-                    target.tooltip("hide");
-                    target.removeClass(showTooltipClass);
-                } else {
-                    target.tooltip("show");
-                    target.addClass(showTooltipClass);
-                }
+            const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+            showingToolTips.tooltip("hide");
+            showingToolTips.removeClass(showTooltipClass);
 
-                event.stopPropagation();
-                return false;
+            if (isShowing) {
+                target.tooltip("hide");
+                target.removeClass(showTooltipClass);
+            } else {
+                target.tooltip("show");
+                target.addClass(showTooltipClass);
             }
 
-            this.elements.tooltips.tooltip("hide");
-            this.elements.tooltips.removeClass(showTooltipClass);
-        });
-    }
+            event.stopPropagation();
+            return false;
+        }
+
+        this.elements.tooltips.tooltip("hide");
+        this.elements.tooltips.removeClass(showTooltipClass);
+    };
 
     collapseSection = (e: JQueryEventObject) => {
         const collapsedClass = "collapsed";
@@ -191,7 +181,7 @@ abstract class BaseSubAccount {
     }
 
     protected getPageAccess(): string {
-        let permissions: string[] = [];
+        const permissions: string[] = [];
         const pageAccesses: JQuery[] = [this.elements.totalBets, this.elements.reports];
 
         for (const item of pageAccesses) {
@@ -224,7 +214,7 @@ abstract class BaseSubAccount {
                     if (isSaveAndNew) {
                         const timeOutInMiliseconds = 3000;
                         setTimeout(() => {
-                            this.top.$("#main").attr("src", (index, attr) => { return attr });
+                            this.top.$("#main").attr("src", (index, attr) => { return attr; });
                             window.location.reload();
                         }, timeOutInMiliseconds);
                     } else {
@@ -245,7 +235,7 @@ abstract class BaseSubAccount {
 
     private setupAntiXSRF() {
         const token = this.$("input[name=__RequestVerificationToken]").val();
-        let headers = {};
+        const headers = {};
         headers["__RequestVerificationToken"] = token;
 
         return headers;
