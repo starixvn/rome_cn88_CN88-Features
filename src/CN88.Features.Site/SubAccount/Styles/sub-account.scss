@@ -21,10 +21,15 @@
             content: "\e900";
             font-family: "CN88Icon", sans-serif !important;
             font-size: 18px;
+            transition: transform .2s ease;
+        }
+
+        &.collapsed {
+            font-weight: bold;
         }
 
         &.collapsed:before {
-            content: "\e908";
+            transform: rotate(-90deg);
         }
 
         &:hover {
@@ -107,8 +112,23 @@
     }
 
     .list-button {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
         padding: 0 20px 20px;
     }
+
+
+    .icon-info {
+        font-size: 16px;
+        color: #b1b1b1;
+        position: relative;
+        top: 2px;
+        left: 4px;
+        cursor: pointer;
+    }
+
 
     .tooltip {
         white-space: unset;
@@ -147,23 +167,8 @@
             width: 220px;
         }
     }
-
-    .list-button {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
-    }
 }
 
-.icon-info {
-    font-size: 16px;
-    color: #b1b1b1;
-    position: relative;
-    top: 2px;
-    left: 4px;
-    cursor: pointer;
-}
 
 .add-new {
     float: right;
