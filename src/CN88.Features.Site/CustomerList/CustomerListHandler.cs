@@ -93,7 +93,7 @@
                 message.SubAccountId,
                 message.LanguageKey,
                 message.IP));
-        
+
         public Result Handle(CustomerStatusCommand message)
             => service.UpdateCustomerStatus(new UpdateCustomerStatusParam(
                message.CustId,
@@ -132,7 +132,7 @@
                 BuildSportTypeSelectListItems(sportGroups, message.UserSelectedSportGroupId),
                 BuildDateTimeSelectListItems(fromDates, message.UserSelectedFromDate),
                 BuildDateTimeSelectListItems(fromDates, message.UserSelectedToDate),
-                browserHelper.IsMobile());
+                browserHelper.IsMobileTablet());
         }
 
         private IEnumerable<SelectListItemExt> BuildSportTypeSelectListItems(

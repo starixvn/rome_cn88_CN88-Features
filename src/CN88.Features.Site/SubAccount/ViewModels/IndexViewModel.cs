@@ -49,8 +49,8 @@
         public string ResetSecurityCodeLink
             => UrlHelper.GetMainAppPath("~/SecurityCode/ResetSubAccountSecurityCode");
 
-        public bool IsDevice => browserHelper.IsMobile() && !browserHelper.IsTablet();
-        
+        public bool IsDevice => browserHelper.IsMobileTablet() && !browserHelper.IsMobileTablet(true);
+
         public string UnlockSubAccountLink
             => UrlHelper.GetFeaturesAppPath("~/SubAccount/Unlock");
 

@@ -48,7 +48,7 @@
 
             return new IndexViewModel(
                 message,
-                browserHelper.IsMobile(),
+                browserHelper.IsMobileTablet(),
                 currentPeriod,
                 lastPeriod,
                 BuildSportGroupSelectListItems(sportGroups, 0),
@@ -80,7 +80,7 @@
                 reportData,
                 grandTotal,
                 lastPeriod,
-                browserHelper.IsMobile(),
+                browserHelper.IsMobileTablet(),
                 isShowPermissionOnDownlinesMessage,
                 assignedDownlinesCount,
                 BuildBetTypeSelectListItems(allBetTypes, 0));

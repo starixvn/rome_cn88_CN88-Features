@@ -22,7 +22,7 @@
         }
 
         public async Task<ActionResult> Index(IndexQuery message)
-            => browserHelper.IsMobile()
+            => browserHelper.IsMobileTablet()
                 ? await ViewAsync(message, "IndexMobile")
                 : await ViewAsync(message);
 
@@ -36,7 +36,7 @@
         {
             message.CurrentUrl = Request.Url.Query;
 
-            return browserHelper.IsMobile()
+            return browserHelper.IsMobileTablet()
                 ? await ViewAsync(message, "WagerMobile")
                 : await ViewAsync(message);
         }

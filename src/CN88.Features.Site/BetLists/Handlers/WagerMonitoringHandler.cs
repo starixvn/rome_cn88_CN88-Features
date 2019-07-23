@@ -51,7 +51,7 @@
 
         public async Task<WagerMonitoringViewModel> Handle(WagerMonitoringQuery message)
         {
-            var isMobile = browserHelper.IsMobile();
+            var isMobile = browserHelper.IsMobileTablet();
             var sportGroups = await wagerMonitoringService.GetSportGroups();
 
             var param = new WagerMonitoringParam(
@@ -82,7 +82,7 @@
 
         public async Task<WagerMonitoringFilterViewModel> Handle(WagerMonitoringFilterQuery message)
         {
-            var isMobile = browserHelper.IsMobile();
+            var isMobile = browserHelper.IsMobileTablet();
             var sportGroups = await wagerMonitoringService.GetSportGroups();
             var leagues = await wagerMonitoringService.GetLeagues(message.SportGroup);
             var matches = await wagerMonitoringService.GetMatches(message.SportGroup);
