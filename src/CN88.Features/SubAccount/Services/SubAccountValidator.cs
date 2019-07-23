@@ -111,8 +111,6 @@
             : Result.CreateForbiddenResult();
 
         private static bool ValidateSuffix(string suffix)
-        {
-            return suffix?.Length == 1 && int.TryParse(suffix, out int value);
-        }
+            => suffix?.Length == 1 && int.TryParse(suffix, out int value);
     }
 }

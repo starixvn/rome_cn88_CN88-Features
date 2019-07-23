@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AppResources;
-    using CN88.Features.Shared.Extensions;
     using Constants;
     using Criteria;
     using Fanex.Data.Repository;
@@ -66,7 +65,7 @@
             {
                 param.UserName = $"{param.ActorName}{SubAccountConst.SubAccountPadding}{param.Suffix1}{param.Suffix2}";
                 param.Password = subAccountValidator.Encode(param.Password);
-                param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess).JoinWithComma();
+                param.PageAccess = string.Join(string.Empty, subAccountValidator.FilterWithValidPermissions(param.PageAccess));
 
                 var command = new CreateSubAccountCommand(param);
                 result = await ExecuteAsync(command);
@@ -132,7 +131,7 @@
         {
             var pageAccessList = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
             var oldPageAccessList = subAccountValidator.GetAccountManagementPermission(oldPageAccess);
-            param.PageAccess = pageAccessList.Concat(oldPageAccessList).JoinWithComma();
+            param.PageAccess = string.Join(string.Empty, pageAccessList.Concat(oldPageAccessList));
 
             var result = await ExecuteAsync(new UpdateSubAccountCommand(param));
 
