@@ -139,6 +139,8 @@
 
     .cn88-bettype-name {
         line-height: 20px;
+        color: #003399;
+        font-weight: bold;
     }
 
     .status {
@@ -190,7 +192,8 @@
 
 .unit-stake,
 .bet-type {
-    color: #2e83c2 !important;
+    color: #003399 !important;
+    font-weight: bold;
 }
 
 // parlay detail
