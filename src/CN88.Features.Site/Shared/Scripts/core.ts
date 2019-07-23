@@ -35,11 +35,7 @@ class CN88Features {
         },
 
         getCookieExpireOptions: () => {
-            let cookieExpire: any = { expires: 365, path: window.location.pathname };
-
-            if (this.isIe()) {
-                cookieExpire = { expires: 365 };
-            }
+            const cookieExpire = { expires: 365, path: window.location.pathname };
 
             return cookieExpire;
         }

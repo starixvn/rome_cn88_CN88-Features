@@ -65,11 +65,12 @@ abstract class BaseSubAccount {
         this.$checkboxSelectAll.change(() => {
             const isChecked = this.$checkboxSelectAll.is(":checked");
             if (isChecked) {
+                const bootboxWidth = 350;
                 this.top["popupManager"].bootboxAlert(
                     this.resources.systemMessage,
                     this.resources.selectAllDownlineMesage,
                     null,
-                    350,
+                    bootboxWidth,
                     this.resources.okLabel);
             }
 
@@ -84,35 +85,33 @@ abstract class BaseSubAccount {
 
         this.$(".head-title").click(this.collapseSection);
 
-        this.$("body").on("click touchend", this.onBodyClick);
-    }
+        this.$("body").on("click touchend", (event) => {
+            const target = this.$(event.target);
+            const showTooltipClass = "tooltip-show";
 
-    onBodyClick = (event: JQueryEventObject) => {
-        const target = this.$(event.target);
-        const showTooltipClass = "tooltip-show";
+            if (target.hasClass("icon-info")) {
+                const isShowing = target.hasClass(showTooltipClass);
 
-        if (target.hasClass("icon-info")) {
-            const isShowing = target.hasClass(showTooltipClass);
+                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
+                showingToolTips.tooltip("hide");
+                showingToolTips.removeClass(showTooltipClass);
 
-            const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
-            showingToolTips.tooltip("hide");
-            showingToolTips.removeClass(showTooltipClass);
+                if (isShowing) {
+                    target.tooltip("hide");
+                    target.removeClass(showTooltipClass);
+                } else {
+                    target.tooltip("show");
+                    target.addClass(showTooltipClass);
+                }
 
-            if (isShowing) {
-                target.tooltip("hide");
-                target.removeClass(showTooltipClass);
-            } else {
-                target.tooltip("show");
-                target.addClass(showTooltipClass);
+                event.stopPropagation();
+                return false;
             }
 
-            event.stopPropagation();
-            return false;
-        }
-
-        this.elements.tooltips.tooltip("hide");
-        this.elements.tooltips.removeClass(showTooltipClass);
-    };
+            this.elements.tooltips.tooltip("hide");
+            this.elements.tooltips.removeClass(showTooltipClass);
+        });
+    }
 
     collapseSection = (e: JQueryEventObject) => {
         const collapsedClass = "collapsed";
@@ -163,11 +162,12 @@ abstract class BaseSubAccount {
 
     protected validateManagedAccount(formData): boolean {
         if (!(formData.isSelectAllDownline || formData.downlineId)) {
+            const bootboxWidth = 400;
             this.top["popupManager"].bootboxAlert(
                 this.resources.systemMessage,
                 this.resources.managedAccountValidationMessage,
                 null,
-                400,
+                bootboxWidth,
                 this.resources.okLabel);
 
             return false;

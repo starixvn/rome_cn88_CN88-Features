@@ -52,7 +52,7 @@ class NewSubAccount extends BaseSubAccount {
     protected getFormData() {
         const hashKey: string = this.elements.hashKey;
         const password: string = this.elements.password.val();
-        let formData = super.getFormData();
+        const formData = super.getFormData();
         formData.suffix1 = this.elements.suffix1.val();
         formData.suffix2 = this.elements.suffix2.val();
         formData.password = encrypt(password, hashKey);
