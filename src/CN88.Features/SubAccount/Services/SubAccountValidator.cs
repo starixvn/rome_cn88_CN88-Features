@@ -112,9 +112,7 @@
 
         private static bool ValidateSuffix(string suffix)
         {
-            int value;
-
-            return suffix?.Length == 1 && int.TryParse(suffix, out value);
+            return suffix?.Length == 1 && int.TryParse(suffix, out int value);
         }
     }
 }
