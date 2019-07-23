@@ -17,7 +17,7 @@
     @using (Html.BeginForm("New", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
-        <div class="head-title" data-target="#accountDetails">@SubAccountResource.AccountDetails (@Model.NumberOfDownline)</div>
+        <div class="head-title" data-target="#accountDetails">@SubAccountResource.AccountDetails</div>
         <div id="accountDetails">
             @{
                 Html.RenderPartial("~/SubAccount/Views/_NewGeneralInfo.cshtml");
@@ -27,7 +27,7 @@
                 new Tuple<bool, PageAccess>(Model.ShowAccountManagementPermission, pageAccess));
             }
         </div>
-        <div class="head-title" data-target="#tblManagedAccount">@SubAccountResource.ManagedAccount</div>
+        <div class="head-title" data-target="#tblManagedAccount">@SubAccountResource.ManagedAccount (@Model.NumberOfDownline)</div>
         @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
