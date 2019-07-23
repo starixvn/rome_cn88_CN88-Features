@@ -210,15 +210,15 @@
         [class*="icon"] {
             margin: 0 9px;
 
+            &:first-child {
+                margin-left: 0;
+            }
+
             &:hover:not(:disabled) {
                 cursor: pointer;
             }
         }
-
-        [class*="icon"]:first-child {
-            margin-left: 0;
-        }
-
+        
         .icon-unlock {
             margin-left: 6px;
         }
