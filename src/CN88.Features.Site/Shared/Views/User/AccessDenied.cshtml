@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/Shared/bundles/accessdenied-page")
+}
+<div class="page-content">
+    <span class="icon-no-stopping"></span>
+    <div class="page-message">@CN88.Features.Shared.AppResources.SharedResources.NotAuthorized</div>
+</div>

@@ -690,6 +690,16 @@
     <Content Include="Reports\Styles\settlement-summary.min.css">
       <DependentUpon>settlement-summary.css</DependentUpon>
     </Content>
+    <Content Include="Shared\bundles\accessdenied-page.css" />
+    <Content Include="Shared\bundles\accessdenied-page.min.css">
+      <DependentUpon>accessdenied-page.css</DependentUpon>
+    </Content>
+    <Content Include="Shared\Styles\accessdenied-page.css">
+      <DependentUpon>accessdenied-page.scss</DependentUpon>
+    </Content>
+    <Content Include="Shared\Styles\accessdenied-page.min.css">
+      <DependentUpon>accessdenied-page.css</DependentUpon>
+    </Content>
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
       <DependentUpon>edit-sub-account.js</DependentUpon>
@@ -823,6 +833,7 @@
     <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
+    <Compile Include="Shared\UserController.cs" />
     <Compile Include="Shared\ViewModels\Components\StakeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
@@ -1040,6 +1051,8 @@
     <Content Include="SubAccount\Views\_NewGeneralInfo.cshtml" />
     <Content Include="SubAccount\Views\EditMobile.cshtml" />
     <Content Include="SubAccount\Views\_EditGeneralInfo.cshtml" />
+    <Content Include="Shared\Views\User\AccessDenied.cshtml" />
+    <Content Include="Shared\Styles\accessdenied-page.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

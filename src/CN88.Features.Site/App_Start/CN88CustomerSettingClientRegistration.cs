@@ -1,5 +1,6 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
+    using System;
     using System.Text.RegularExpressions;
     using System.Web;
     using Fanex.Common;
@@ -54,7 +55,8 @@
         {
             var productId = GetProductId(permissionContext);
 
-            return productId == 0 || UserPermission.HasPermissionOnProduct(productId);
+            return productId == 0
+                || (UserPermission.HasPermissionOnProduct(productId) && AllowSubAccountToAccessPage());
         }
 
         private static int GetProductId(PermissionContext permissionContext)
@@ -82,6 +84,30 @@
             }
 
             return productId;
+        }
+
+        private static bool AllowSubAccountToAccessPage()
+        {
+            var httpContext = HttpContext.Current;
+            var currentUserSession = UserSessionService.GetUserSessionInstance(httpContext.Session.SessionID);
+
+            if (currentUserSession.IsSubAcc)
+            {
+                var httpRequest = httpContext.Request;
+
+                if (httpRequest.Url.AbsolutePath.EndsWith(
+                    "/CN88CustomerSetting/ViewCN88CustomerSetting/Edit",
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    var custIdQueryString = httpRequest["customerid"];
+
+                    return !string.IsNullOrWhiteSpace(custIdQueryString)
+                        && int.TryParse(custIdQueryString, out var custid)
+                        && custid > 0;
+                }
+            }
+
+            return true;
         }
     }
 }
