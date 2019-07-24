@@ -239,10 +239,10 @@
     <value>总监结果</value>
   </data>
   <data name="HeadlineStock" xml:space="preserve">
-    <value>大股东实货量</value>
+    <value>总监实货量</value>
   </data>
   <data name="HeadlineStockPercent" xml:space="preserve">
-    <value>大股东占货比(%)</value>
+    <value>总监占货比(%)</value>
   </data>
   <data name="DateChanged" xml:space="preserve">
     <value>日期已变更</value>
