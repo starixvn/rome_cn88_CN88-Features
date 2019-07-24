@@ -228,4 +228,7 @@
   <data name="SystemMessage" xml:space="preserve">
     <value>系统讯息</value>
   </data>
+  <data name="SelectAllDownlineMessage" xml:space="preserve">
+    <value>您已勾选“全选”。点击“全选”会选择所有的帐号，包括以后所有新增的帐号。</value>
+  </data>
 </root>

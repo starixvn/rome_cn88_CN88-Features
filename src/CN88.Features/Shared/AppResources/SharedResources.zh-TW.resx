@@ -303,4 +303,7 @@
   <data name="Unlock" xml:space="preserve">
     <value>解鎖</value>
   </data>
+  <data name="SaveAndNew" xml:space="preserve">
+    <value>保存與新增</value>
+  </data>
 </root>

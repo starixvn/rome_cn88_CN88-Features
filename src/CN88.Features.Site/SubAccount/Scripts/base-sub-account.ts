@@ -41,7 +41,7 @@ abstract class BaseSubAccount {
         this.$checkboxSelectAll = this.$("#ckboxSelectAll");
         this.$downlineCheckboxs = this.$("#tblManagedAccount tr td input[type='checkbox']");
 
-        this.resources.okLabel = this.$("#Ok").val();
+        this.resources.okLabel = this.$("#OK").val();
         this.resources.successMessage = this.$("#SuccessMessage").val();
         this.resources.systemMessage = this.$("#SystemMessage").val();
         this.resources.selectAllDownlineMesage = this.$("#SelectAllDownlineMessage").val();
