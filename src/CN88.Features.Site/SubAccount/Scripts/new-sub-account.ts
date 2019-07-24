@@ -41,11 +41,7 @@ class NewSubAccount extends BaseSubAccount {
 
         this.$("#btnSaveAndNew").click((e: JQueryEventObject) => {
             e.preventDefault();
-            const formData = this.getFormData();
-
-            if (this.validateForm() && this.validateManagedAccount(formData)) {
-                this.submitForm(formData, true);
-            }
+            this.onSubmit(true);
         });
     }
 

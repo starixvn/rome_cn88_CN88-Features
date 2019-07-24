@@ -51,11 +51,7 @@ abstract class BaseSubAccount {
     protected bindEvents(): void {
         this.elements.formSubAccount.submit((e: JQueryEventObject) => {
             e.preventDefault();
-            const formData = this.getFormData();
-
-            if (this.validateForm() && this.validateManagedAccount(formData)) {
-                this.submitForm(formData);
-            }
+            this.onSubmit();
         });
 
         this.$("#buttonCancel").click(() => {
@@ -191,6 +187,14 @@ abstract class BaseSubAccount {
         }
 
         return permissions.join(",");
+    }
+
+    public onSubmit(isSaveAndNew = false): void {
+        const formData = this.getFormData();
+
+        if (this.validateForm() && this.validateManagedAccount(formData)) {
+            this.submitForm(formData, isSaveAndNew);
+        }
     }
 
     public submitForm(formData, isSaveAndNew = false): void {

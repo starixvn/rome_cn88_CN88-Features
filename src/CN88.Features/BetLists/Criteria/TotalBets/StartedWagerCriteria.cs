@@ -5,7 +5,7 @@
 
     public class StartedWagerCriteria : CriteriaBase
     {
-        public StartedWagerCriteria(StartedWagerParam param)
+        public StartedWagerCriteria(EventWagerParam param)
         {
             CustId = param.CustId;
             RoleId = param.RoleId;

@@ -245,7 +245,6 @@
     <Compile Include="BetLists\Criteria\BetListOfReport\BetListOfReportBaseCriteria.cs" />
     <Compile Include="BetLists\Criteria\TotalBets\StartedWagerCriteria.cs" />
     <Compile Include="BetLists\Criteria\TotalBets\EventWagerCriteria.cs" />
-    <Compile Include="BetLists\Params\StartedWagerParam.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMatchByIdCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorBetTypeGroupCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorSportGroupCriteria.cs" />

@@ -220,7 +220,7 @@
 
         public StartedWagerByAccountViewModel Handle(StartedWagerByAccountQuery message)
         {
-            var param = new StartedWagerParam(
+            var param = new EventWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
@@ -240,7 +240,7 @@
 
         public StartedWagerDetailsViewModel Handle(StartedWagerDetailsQuery message)
         {
-            var param = new StartedWagerParam(
+            var param = new EventWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
