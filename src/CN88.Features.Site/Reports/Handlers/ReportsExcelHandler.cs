@@ -168,7 +168,17 @@
                 .Map(I, data => RoundNumber(data.AgentIncome))
                 .Map(J, data => RoundNumber(data.AgentResult));
 
-            mapper.Map(message.IsOwner ? K : N, data => CalculateNumber(data.AgentStock));
+            if (message.IsOwner)
+            {
+                mapper.Map(K, data => CalculateNumber(data.AgentStock));
+            }
+            else
+            {
+                mapper.Map(K, data => isTotal ? string.Empty : data.MasterPoss);
+                mapper.Map(L, data => RoundNumber(data.MasterIncome));
+                mapper.Map(M, data => RoundNumber(data.MasterResult));
+                mapper.Map(N, data => CalculateNumber(data.AgentStock));
+            }
 
             return mapper;
         }
