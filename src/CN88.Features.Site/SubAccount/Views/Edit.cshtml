@@ -26,7 +26,7 @@
                 new Tuple<bool, PageAccess>((bool)ViewBag.ShowAccountManagementPermission, subAccount.Permissions));
             }
         </div>
-        <div class="head-title" data-target="#tblManagedAccount">@SubAccountResource.ManagedAccount (@Model.NumberOfDownline)</div>
+        <div class="head-title" data-target="#tblManagedAccount">@SubAccountResource.ManagedAccount (@HtmlHelpers.FormatNumber(Model.NumberOfDownline))</div>
         @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
         <div class="list-button text-right">
             <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />

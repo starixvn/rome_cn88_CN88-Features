@@ -17,7 +17,7 @@
             <a data-toggle="tab" href="#tabAccountDetails">@SubAccountResource.AccountDetails</a>
         </li>
         <li role="presentation">
-            <a data-toggle="tab" href="#tabManagedAccount">@SubAccountResource.ManagedAccount</a>
+            <a data-toggle="tab" href="#tabManagedAccount">@SubAccountResource.ManagedAccount (@HtmlHelpers.FormatNumber(Model.NumberOfDownline))</a>
         </li>
     </ul>
     @using (Html.BeginForm("Edit", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
