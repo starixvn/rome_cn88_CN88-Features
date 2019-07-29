@@ -35,7 +35,7 @@
                         new Tuple<bool, PageAccess>(Model.ShowAccountManagementPermission, pageAccess));
                 }
             </div>
-            <div id="tabManagedAccount" class="tab-pane fade" role="tabpanel">
+            <div id="tabManagedAccount" class="tab-pane fade tabManagedAccount" role="tabpanel">
                 @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
             </div>
             <div class="list-button">

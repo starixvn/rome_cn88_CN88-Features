@@ -164,7 +164,7 @@
         }
 
         .tooltip {
-            width: 220px;
+            width: 250px;
         }
     }
 }
@@ -339,6 +339,11 @@ body.mobile {
     }
 
     .modal-sub-account {
+        .nav.nav-tabs > li {
+            width: 50%;
+        }
+
+
         .head-title {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -435,6 +440,7 @@ body.mobile {
             padding-right: 12px;
             padding-bottom: 12px;
             overflow: hidden;
+            background: #fff;
 
             [class^="btn"] {
                 -moz-box-flex: 1;
@@ -454,7 +460,7 @@ body.mobile {
 
         .tbl-managed-account {
             width: 100%;
-            margin: 0 0 20px;
+            margin: 0;
         }
     }
 }
