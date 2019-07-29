@@ -217,10 +217,10 @@
     <value>账户管理</value>
   </data>
   <data name="DeleteSubAccount" xml:space="preserve">
-    <value>Delete Sub Account</value>
+    <value>删除子账户</value>
   </data>
   <data name="DeleteSubAccountConfirmMessage" xml:space="preserve">
-    <value>Are you sure you want to delete this account?</value>
+    <value>确定删除此账户?</value>
   </data>
   <data name="ManagedAccountValidationMessage" xml:space="preserve">
     <value>你没有勾选"可管理帐号",请勾选其中一个或全选</value>
@@ -230,5 +230,8 @@
   </data>
   <data name="SelectAllDownlineMessage" xml:space="preserve">
     <value>您已勾选“全选”。点击“全选”会选择所有的帐号，包括以后所有新增的帐号。</value>
+  </data>
+  <data name="ManagedAccount" xml:space="preserve">
+    <value>管理账户</value>
   </data>
 </root>
