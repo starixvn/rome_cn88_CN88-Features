@@ -101,7 +101,7 @@
                 lastPeriod,
                 BuildBetTypeSelectListItems(allBetTypes, 0),
                 oldAccountingPeriods,
-                browserHelper.IsMobileTablet());
+                browserHelper.IsMobile());
         }
 
         public BetListOfStatementViewModel Handle(BetListOfStatementQuery message)
@@ -119,7 +119,7 @@
                 ticketHelper,
                 cn88Builder,
                 builder,
-                browserHelper.IsMobileTablet());
+                browserHelper.IsMobile());
         }
 
         public ParlayDetailViewModel Handle(GetParlayDetailQuery message)
@@ -158,7 +158,7 @@
 
             var betlistData = betListService.GetOutrightWager(param);
 
-            return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobileTablet());
+            return new OutrightWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public OutrightWagerDetailsViewModel Handle(OutrightWagerDetailsQuery message)
@@ -175,7 +175,7 @@
 
             var betlistData = betListService.GetOutrightWager(param);
 
-            return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobileTablet());
+            return new OutrightWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public EventWagerByAccountViewModel Handle(EventWagerByAccountQuery message)
@@ -195,7 +195,7 @@
 
             var betlistData = betListService.GetEventWager(param);
 
-            return new EventWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobileTablet());
+            return new EventWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public EventWagerDetailsViewModel Handle(EventWagerDetailsQuery message)
@@ -215,7 +215,7 @@
 
             var betlistData = betListService.GetEventWager(param);
 
-            return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobileTablet());
+            return new EventWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerByAccountViewModel Handle(StartedWagerByAccountQuery message)
@@ -235,7 +235,7 @@
 
             var betlistData = betListService.GetStartedWager(param);
 
-            return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobileTablet());
+            return new StartedWagerByAccountViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public StartedWagerDetailsViewModel Handle(StartedWagerDetailsQuery message)
@@ -255,7 +255,7 @@
 
             var betlistData = betListService.GetStartedWager(param);
 
-            return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobileTablet());
+            return new StartedWagerDetailsViewModel(message, betlistData, ticketHelper, cn88Builder, builder, browserHelper.IsMobile());
         }
 
         public TotalBetParlayViewModel Handle(TotalBetParlayQuery message)
@@ -282,7 +282,7 @@
                 BuildSportsSelectListItems(TotalBetParlaySport.Sports, message.SportGroupId),
                 BuildStakeModeSelectListItems(StakeModeConstant.Modes, message.StakeMode),
                 BuildPercentageViewModeSelectListItems(PercentageViewModeConstant.ModesByLevel[message.ActorLevel], message.ViewMode),
-                browserHelper.IsMobileTablet());
+                browserHelper.IsMobile());
         }
 
         protected internal IEnumerable<SelectListItemExt> BuildSportsSelectListItems(IEnumerable<int> sports, int userSelectedSport)

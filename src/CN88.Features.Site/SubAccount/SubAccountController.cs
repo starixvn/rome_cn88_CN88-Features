@@ -24,7 +24,7 @@
             => await ViewAsync(message);
 
         public async Task<ActionResult> New(NewQuery message)
-            => await ViewAsync(message, browserHelper.IsMobileTablet() ? "NewMobile" : "New");
+            => await ViewAsync(message, browserHelper.IsMobile() ? "NewMobile" : "New");
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> New(NewCommand message)
@@ -34,7 +34,7 @@
         {
             ViewBag.ShowAccountManagementPermission = message.ShowAccountManagementPermission;
 
-            return await ViewAsync(message, browserHelper.IsMobileTablet() ? "EditMobile" : "Edit");
+            return await ViewAsync(message, browserHelper.IsMobile() ? "EditMobile" : "Edit");
         }
 
         [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]

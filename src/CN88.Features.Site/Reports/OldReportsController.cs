@@ -62,7 +62,7 @@
         public async Task<ActionResult> Index(OldIndexQuery message)
             => await ViewAsync(
                 message,
-                browserHelper.IsMobileTablet()
+                browserHelper.IsMobile()
                 ? OldIndexMobileViewPath
                 : OldIndexViewPath);
 
@@ -73,7 +73,7 @@
 
             return ViewAsync(
                 message,
-                browserHelper.IsMobileTablet()
+                browserHelper.IsMobile()
                 ? WagerMobileViewPath
                 : WagerViewPath);
         }

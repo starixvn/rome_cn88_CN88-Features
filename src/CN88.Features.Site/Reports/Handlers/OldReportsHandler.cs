@@ -46,7 +46,7 @@
                 reportData,
                 grandTotal,
                 oldAccountingPeriods,
-                browserHelper.IsMobileTablet(),
+                browserHelper.IsMobile(),
                 isShowPermissionOnDownlinesMessage,
                 assignedDownlinesCount);
         }
