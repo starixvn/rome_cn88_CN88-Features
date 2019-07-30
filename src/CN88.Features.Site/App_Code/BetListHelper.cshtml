@@ -20,9 +20,11 @@
     else
     {
         <td class="text-left no-wrap">
-            @ticket.TransDate.ToShortDateFormat()
-            <br />
-            @ticket.TransDate.ToLongTime24h()
+            <div class="col-trans-date">
+                @ticket.TransDate.ToShortDateFormat()
+                <br />
+                @ticket.TransDate.ToLongTime24h()
+            </div>
         </td>
     }
 }
@@ -69,11 +71,13 @@
     else
     {
         <td>
-            <div>@ticket.UserName</div>
-            @if (showComm)
-            {
-                <div class="com-info">@ugroupName @formattedPlayerDiscount</div>
-            }
+            <div class="col-comm">
+                <div>@ticket.UserName</div>
+                @if (showComm)
+                {
+                    <div class="com-info">@ugroupName @formattedPlayerDiscount</div>
+                }
+            </div>
         </td>
     }
 }
@@ -87,7 +91,7 @@
     }
     else
     {
-        <td>@betInfo</td>
+        <td><div class="col-bet-info">@betInfo</div></td>
     }
 }
 @helper RenderWinLoss(ITicket ticket, int divisor, bool isMobile = false)
