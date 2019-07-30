@@ -2,6 +2,7 @@
     /**/
     Layout = "~/Shared/Views/_Layout.cshtml";
     ViewBag.Title = CN88.Features.SubAccount.AppResources.SubAccountResource.SubAccount;
+    var createdDateColIndex = Model.ShowAccountManagementPermission ? 7 : 5;
 }
 @section Styles {
     @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
@@ -43,7 +44,7 @@
                     <th class="text-center visible-mobile">@SubAccountResource.ACM<br />@SubAccountResource.EditView</th>
                 }
                 <th class="text-center col-reports">@SubAccountResource.Reports</th>
-                <th class="header sorting hide-mobile" data-colindex="7" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
+                <th class="header sorting hide-mobile" data-colindex="@createdDateColIndex" data-sortedname="CreateDateString">@SubAccountResource.CreatedDate</th>
                 @if (Model.ShowActionButtons)
                 {
                     <th>@SubAccountResource.Action</th>
@@ -140,6 +141,7 @@
 @Html.Hidden(nameof(Model.DeleteSubAccountLink), Model.DeleteSubAccountLink)
 @Html.Hidden(nameof(Model.VerifySecurityCodeLink), Model.VerifySecurityCodeLink)
 @Html.Hidden(nameof(Model.IsDevice), Model.IsDevice)
+@Html.Hidden(nameof(createdDateColIndex), createdDateColIndex)
 @helper RenderPermissionCell(bool hasPermission)
 {
     /**/

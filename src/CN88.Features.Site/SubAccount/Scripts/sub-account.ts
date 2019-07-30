@@ -55,18 +55,19 @@ class SubAccount {
         this.bindEvents();
 
         if (!this.isDevice) {
+            const headers = {
+                0: { sorter: "text" },
+                1: { sorter: "text" },
+                2: { sorter: "text" }
+            };
+            headers[this.$("#createdDateColIndex").val()] = { sorter: "text" };
             this.sortComponent.render(
                 new SortOption(
                     this.tableSubAccount,
                     this.tableSubAccount.data("totalrecords") > 1,
                     true,
                     this.sortComponent.afterSort,
-                    {
-                        0: { sorter: "text" },
-                        1: { sorter: "text" },
-                        2: { sorter: "text" },
-                        7: { sorter: "text" }
-                    }));
+                    headers));
         }
 
         this.bootstrapDropdownComponent.render(new BootstrapDropdownOption(".tbl-subaccount .dropdown"));
