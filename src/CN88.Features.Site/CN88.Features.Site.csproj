@@ -750,10 +750,10 @@
     <Content Include="Web.AppSettings.local.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.staging.config">
+    <Content Include="Web.AppSettings.staging.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-	<Content Include="Web.AppSettings.staginginternal.config">
+    <Content Include="Web.AppSettings.staginginternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.config">
@@ -1000,6 +1000,7 @@
     <Content Include="BetLists\Views\Components\HiddenFields.cshtml" />
     <Content Include="BetLists\Views\Components\TotalRows.cshtml" />
     <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
+    <Content Include="App_Data\securitycode.staging.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -1080,10 +1081,10 @@
     <Content Include="Web.uatmaster.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.staging.config">
+    <Content Include="Web.staging.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-	<Content Include="Web.staginginternal.config">
+    <Content Include="Web.staginginternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
