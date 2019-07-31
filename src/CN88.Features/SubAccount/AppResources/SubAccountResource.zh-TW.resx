@@ -234,4 +234,7 @@
   <data name="ManagedAccount" xml:space="preserve">
     <value>管理帳戶</value>
   </data>
+  <data name="SelectAllDownlineTooltip" xml:space="preserve">
+    <value>勾選"全選" 所有帳號 (包括未來新增帳號）</value>
+  </data>
 </root>

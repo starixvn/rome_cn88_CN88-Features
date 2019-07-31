@@ -340,6 +340,15 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Select All&quot; will automatically apply to all future accounts created..
+        /// </summary>
+        public static string SelectAllDownlineTooltip {
+            get {
+                return ResourceManager.GetString("SelectAllDownlineTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub Account.
         /// </summary>
         public static string SubAccount {

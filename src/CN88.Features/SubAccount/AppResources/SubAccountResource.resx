@@ -234,4 +234,7 @@
   <data name="ManagedAccountValidationMessage" xml:space="preserve">
     <value>You do not have any Managed Accounts selected.Please select a Managed Account or select"All"</value>
   </data>
+  <data name="SelectAllDownlineTooltip" xml:space="preserve">
+    <value>"Select All" will automatically apply to all future accounts created.</value>
+  </data>
 </root>
