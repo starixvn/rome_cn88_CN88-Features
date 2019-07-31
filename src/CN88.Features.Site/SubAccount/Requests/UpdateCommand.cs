@@ -24,7 +24,6 @@
         public override bool IsValid()
             => base.IsValid()
             && !IsInternal
-            && !IsSelectAllDownline
-            && !string.IsNullOrWhiteSpace(DownlineId);
+            && (IsSelectAllDownline || !string.IsNullOrWhiteSpace(DownlineId));
     }
 }
