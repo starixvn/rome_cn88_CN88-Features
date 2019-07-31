@@ -750,6 +750,12 @@
     <Content Include="Web.AppSettings.local.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+	<Content Include="Web.AppSettings.staging.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+	<Content Include="Web.AppSettings.staginginternal.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1072,6 +1078,12 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.uatmaster.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+	<Content Include="Web.staging.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+	<Content Include="Web.staginginternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
