@@ -13,6 +13,7 @@
     "SubAccount/New",
     "SubAccount/Edit",
     "SubAccount/Unlock",
+    "SubAccount/Delete",
     "CustomerList/UnlockCustomer"
   ],
   "sites": [

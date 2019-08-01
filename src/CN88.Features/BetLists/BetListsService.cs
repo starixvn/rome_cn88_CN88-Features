@@ -30,7 +30,7 @@
 
         BetListData GetTotalBetParlay(GetTotalBetParlayParam param);
 
-        BetListData GetStartedWager(StartedWagerParam param);
+        BetListData GetStartedWager(EventWagerParam param);
     }
 
     public class BetListsServiceImpl : BetListsService
@@ -105,7 +105,7 @@
         public BetListData GetTotalBetParlay(GetTotalBetParlayParam param)
             => GetBetListData(new TotalBetParlayCriteria(param, reportDateService.GetMoveBetsDay()));
 
-        public BetListData GetStartedWager(StartedWagerParam param)
+        public BetListData GetStartedWager(EventWagerParam param)
             => GetBetListData(new StartedWagerCriteria(param));
 
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetListBeforeBalanceUpDay(BetListOfReportParam param, DateTime fromDate, DateTime toDate)

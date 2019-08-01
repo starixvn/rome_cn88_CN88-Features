@@ -151,6 +151,24 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Sub Account.
+        /// </summary>
+        public static string DeleteSubAccount {
+            get {
+                return ResourceManager.GetString("DeleteSubAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this account?.
+        /// </summary>
+        public static string DeleteSubAccountConfirmMessage {
+            get {
+                return ResourceManager.GetString("DeleteSubAccountConfirmMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Sub Account.
         /// </summary>
         public static string EditSubAccount {
@@ -174,6 +192,24 @@ namespace CN88.Features.SubAccount.AppResources {
         public static string GeneralData {
             get {
                 return ResourceManager.GetString("GeneralData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Managed Account.
+        /// </summary>
+        public static string ManagedAccount {
+            get {
+                return ResourceManager.GetString("ManagedAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have any Managed Accounts selected.Please select a Managed Account or select&quot;All&quot;.
+        /// </summary>
+        public static string ManagedAccountValidationMessage {
+            get {
+                return ResourceManager.GetString("ManagedAccountValidationMessage", resourceCulture);
             }
         }
         
@@ -295,11 +331,38 @@ namespace CN88.Features.SubAccount.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ”Select All” will automatically apply to all future accounts created..
+        /// </summary>
+        public static string SelectAllDownlineMessage {
+            get {
+                return ResourceManager.GetString("SelectAllDownlineMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Select All&quot; will automatically apply to all future accounts created..
+        /// </summary>
+        public static string SelectAllDownlineTooltip {
+            get {
+                return ResourceManager.GetString("SelectAllDownlineTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub Account.
         /// </summary>
         public static string SubAccount {
             get {
                 return ResourceManager.GetString("SubAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System Message.
+        /// </summary>
+        public static string SystemMessage {
+            get {
+                return ResourceManager.GetString("SystemMessage", resourceCulture);
             }
         }
         

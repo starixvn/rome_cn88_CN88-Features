@@ -5,6 +5,8 @@
         public WagerMonitoringParam(
             int custId,
             byte custLevelId,
+            int subAccId,
+            bool isAllDownline,
             int sportGroupId,
             string stakeList,
             string market,
@@ -15,6 +17,8 @@
         {
             CustId = custId;
             CustLevelId = custLevelId;
+            SubAccId = subAccId;
+            IsAllDownline = isAllDownline;
             SportGroupId = sportGroupId;
             StakeConditons = stakeList;
             Market = market;
@@ -27,6 +31,10 @@
         public int CustId { get; }
 
         public byte CustLevelId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         public int SportGroupId { get; }
 

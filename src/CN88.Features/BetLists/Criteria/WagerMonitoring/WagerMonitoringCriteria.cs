@@ -7,6 +7,8 @@
         public WagerMonitoringCriteria(
             int custId,
             byte roleId,
+            int subAccId,
+            bool isAllDownline,
             int sportTypeGroup,
             string stakeList,
             string market,
@@ -18,6 +20,8 @@
         {
             CustId = custId;
             RoleId = roleId;
+            SubAccId = subAccId;
+            IsAllDownline = isAllDownline;
             SportTypeGroup = sportTypeGroup;
             StakeList = stakeList;
             Market = market;
@@ -31,6 +35,10 @@
         public int CustId { get; }
 
         public byte RoleId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         public int SportTypeGroup { get; }
 

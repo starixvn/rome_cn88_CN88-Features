@@ -93,8 +93,8 @@
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.1-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.1.4\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.1.5\lib\net461\CN88.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
@@ -690,6 +690,16 @@
     <Content Include="Reports\Styles\settlement-summary.min.css">
       <DependentUpon>settlement-summary.css</DependentUpon>
     </Content>
+    <Content Include="Shared\bundles\accessdenied-page.css" />
+    <Content Include="Shared\bundles\accessdenied-page.min.css">
+      <DependentUpon>accessdenied-page.css</DependentUpon>
+    </Content>
+    <Content Include="Shared\Styles\accessdenied-page.css">
+      <DependentUpon>accessdenied-page.scss</DependentUpon>
+    </Content>
+    <Content Include="Shared\Styles\accessdenied-page.min.css">
+      <DependentUpon>accessdenied-page.css</DependentUpon>
+    </Content>
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.js" />
     <Content Include="SubAccount\bundles\scripts\edit-sub-account.min.js">
       <DependentUpon>edit-sub-account.js</DependentUpon>
@@ -738,6 +748,12 @@
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.local.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.staging.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.staginginternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.config">
@@ -823,6 +839,7 @@
     <Compile Include="Reports\ViewModels\ReportBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\ReportFilterBaseViewModel.cs" />
     <Compile Include="Reports\ViewModels\VerifyPasswordViewModel.cs" />
+    <Compile Include="Shared\UserController.cs" />
     <Compile Include="Shared\ViewModels\Components\StakeSelectionViewModel.cs" />
     <Compile Include="Shared\ViewModels\ExcelFileViewModel.cs" />
     <Compile Include="BetLists\BetListsController.cs" />
@@ -837,6 +854,7 @@
     <Compile Include="Shared\Helpers\UrlHelper.cs" />
     <Compile Include="Shared\ViewModels\Components\PagerViewModel.cs" />
     <Compile Include="Shared\ViewModels\Components\SingleSelectionViewModel.cs" />
+    <Compile Include="SubAccount\Requests\DeleteCommand.cs" />
     <Compile Include="SubAccount\Requests\IndexQuery.cs" />
     <Compile Include="SubAccount\Requests\NewCommand.cs" />
     <Compile Include="SubAccount\Requests\NewQuery.cs" />
@@ -880,7 +898,9 @@
     <Compile Include="SubAccount\Requests\UpdateQuery.cs" />
     <Compile Include="SubAccount\SubAccountController.cs" />
     <Compile Include="SubAccount\SubAccountHandler.cs" />
+    <Compile Include="SubAccount\ViewModels\EditViewModel.cs" />
     <Compile Include="SubAccount\ViewModels\IndexViewModel.cs" />
+    <Compile Include="SubAccount\ViewModels\ManagedAccountViewModel.cs" />
     <Compile Include="SubAccount\ViewModels\NewViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -980,6 +1000,7 @@
     <Content Include="BetLists\Views\Components\HiddenFields.cshtml" />
     <Content Include="BetLists\Views\Components\TotalRows.cshtml" />
     <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
+    <Content Include="App_Data\securitycode.staging.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
@@ -1032,6 +1053,13 @@
     <Content Include="typings\globals\cleave.js\LICENSE" />
     <Content Include="typings\globals\cleave.js\package.json" />
     <Content Include="typings\globals\cleave.js\README.md" />
+    <Content Include="SubAccount\Views\NewMobile.cshtml" />
+    <Content Include="SubAccount\Views\_ManagedAccountTable.cshtml" />
+    <Content Include="SubAccount\Views\_NewGeneralInfo.cshtml" />
+    <Content Include="SubAccount\Views\EditMobile.cshtml" />
+    <Content Include="SubAccount\Views\_EditGeneralInfo.cshtml" />
+    <Content Include="Shared\Views\User\AccessDenied.cshtml" />
+    <Content Include="Shared\Styles\accessdenied-page.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1051,6 +1079,12 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.uatmaster.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.staging.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.staginginternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>

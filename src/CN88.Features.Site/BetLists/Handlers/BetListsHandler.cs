@@ -150,6 +150,8 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.MatchId,
                 message.StakeCondition,
                 message.Stake);
@@ -165,6 +167,8 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.MatchId,
                 message.StakeCondition,
                 message.Stake);
@@ -180,6 +184,8 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.MatchId,
                 message.BetType,
                 message.LiveIndicator,
@@ -198,6 +204,8 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.MatchId,
                 message.BetType,
                 message.LiveIndicator,
@@ -212,10 +220,12 @@
 
         public StartedWagerByAccountViewModel Handle(StartedWagerByAccountQuery message)
         {
-            var param = new StartedWagerParam(
+            var param = new EventWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.MatchId,
                 message.BetType,
                 message.LiveIndicator,
@@ -230,10 +240,12 @@
 
         public StartedWagerDetailsViewModel Handle(StartedWagerDetailsQuery message)
         {
-            var param = new StartedWagerParam(
+            var param = new EventWagerParam(
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.ViewerLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.MatchId,
                 message.BetType,
                 message.LiveIndicator,
@@ -252,6 +264,8 @@
                 message.CustId,
                 message.LimitedDateToShowInfo,
                 message.CustLevelId,
+                message.SubAccountId,
+                message.IsAllDownline,
                 message.SportGroupId,
                 message.ViewMode,
                 message.StakeMode,

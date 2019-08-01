@@ -216,4 +216,25 @@
   <data name="ACM" xml:space="preserve">
     <value>帳戶管理</value>
   </data>
+  <data name="DeleteSubAccount" xml:space="preserve">
+    <value>刪除子帳戶</value>
+  </data>
+  <data name="DeleteSubAccountConfirmMessage" xml:space="preserve">
+    <value>確定刪除此帳戶?</value>
+  </data>
+  <data name="ManagedAccountValidationMessage" xml:space="preserve">
+    <value>你沒有勾選"可管理帳號",請勾選其中一個或全選</value>
+  </data>
+  <data name="SystemMessage" xml:space="preserve">
+    <value>系統訊息</value>
+  </data>
+  <data name="SelectAllDownlineMessage" xml:space="preserve">
+    <value>您已勾選“全選”。點擊“全選”會選擇所有的賬戶，包括以後所有新增的賬戶。</value>
+  </data>
+  <data name="ManagedAccount" xml:space="preserve">
+    <value>管理帳戶</value>
+  </data>
+  <data name="SelectAllDownlineTooltip" xml:space="preserve">
+    <value>勾選"全選" 所有帳號 (包括未來新增帳號）</value>
+  </data>
 </root>

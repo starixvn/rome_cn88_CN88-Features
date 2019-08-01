@@ -8,9 +8,33 @@
 }
 
 .modal-sub-account {
+    padding-bottom: 52px;
+
     .head-title {
-        padding: 12px 20px;
+        padding: 12px 20px 12px 27px;
         border-bottom: 1px solid #737373;
+
+        &:before {
+            position: absolute;
+            left: 6px;
+            margin-top: -2px;
+            content: "\e900";
+            font-family: "CN88Icon", sans-serif !important;
+            font-size: 18px;
+            transition: transform .2s ease;
+        }
+
+        &.collapsed {
+            font-weight: bold;
+        }
+
+        &.collapsed:before {
+            transform: rotate(-90deg);
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .account-data {
@@ -88,8 +112,23 @@
     }
 
     .list-button {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
         padding: 0 20px 20px;
     }
+
+
+    .icon-info {
+        font-size: 16px;
+        color: #b1b1b1;
+        position: relative;
+        top: 2px;
+        left: 4px;
+        cursor: pointer;
+    }
+
 
     .tooltip {
         white-space: unset;
@@ -103,16 +142,33 @@
             margin-left: 2px;
         }
     }
+
+    .tbl-managed-account {
+        width: 422px;
+        margin: 20px;
+
+        .col-all-check {
+            width: 100px;
+            text-align: center;
+        }
+
+        .all-check-func {
+            position: relative;
+        }
+
+        .icon-info {
+            position: absolute;
+            right: 10px;
+            top: 2px;
+            left: auto;
+        }
+
+        .tooltip {
+            width: 250px;
+        }
+    }
 }
 
-.icon-info {
-    font-size: 16px;
-    color: #b1b1b1;
-    position: relative;
-    top: 2px;
-    left: 4px;
-    cursor: pointer;
-}
 
 .add-new {
     float: right;
@@ -149,20 +205,20 @@
     }
 
     .col-action {
-        width: 178px;
+        width: 204px;
 
         [class*="icon"] {
             margin: 0 9px;
+
+            &:first-child {
+                margin-left: 0;
+            }
 
             &:hover:not(:disabled) {
                 cursor: pointer;
             }
         }
-
-        [class*="icon"]:first-child {
-            margin-left: 0;
-        }
-
+        
         .icon-unlock {
             margin-left: 6px;
         }
@@ -171,7 +227,7 @@
     th {
         padding: 4px 8px;
     }
-    
+
     .username {
         display: inline-block;
     }
@@ -283,6 +339,11 @@ body.mobile {
     }
 
     .modal-sub-account {
+        .nav.nav-tabs > li {
+            width: 50%;
+        }
+
+
         .head-title {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -373,23 +434,33 @@ body.mobile {
         }
 
         .list-button {
+            display: flex;
+            justify-content: space-between;
             padding-left: 12px;
             padding-right: 12px;
             padding-bottom: 12px;
             overflow: hidden;
+            background: #fff;
 
-            .btn-cancel, .btn-submit {
-                float: left;
-                width: 48%;
+            [class^="btn"] {
+                -moz-box-flex: 1;
+                -webkit-flex: 1;
+                -ms-flex: 1;
+                flex: 1;
             }
 
-            .btn-cancel {
-                margin-right: 4%;
-            }
-
-            .btn-submit {
+            [class^="btn"]:last-child {
                 margin-right: 0;
             }
+        }
+
+        .tabManagedAccount {
+            padding: 12px;
+        }
+
+        .tbl-managed-account {
+            width: 100%;
+            margin: 0;
         }
     }
 }

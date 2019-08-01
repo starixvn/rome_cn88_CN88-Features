@@ -363,5 +363,11 @@
     "inputFiles": [
       "BetLists/Scripts/wager-monitoring/pause.js"
     ]
+  },
+  {
+    "outputFileName": "Shared/bundles/accessdenied-page.css",
+    "inputFiles": [
+      "Shared/Styles/accessdenied-page.css"
+    ]
   }
 ]

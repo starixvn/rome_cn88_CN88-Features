@@ -54,5 +54,9 @@
   {
     "outputFile": "CustomerList/Styles/_variables.css",
     "inputFile": "CustomerList/Styles/_variables.scss"
+  },
+  {
+    "outputFile": "Shared/Styles/accessdenied-page.css",
+    "inputFile": "Shared/Styles/accessdenied-page.scss"
   }
 ]

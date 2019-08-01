@@ -10,9 +10,15 @@
     public class ReportsBaseHandler : BaseHandler
     {
         protected internal static ReportParam CreateReportParam(ReportBaseQuery message)
-            => new ReportParam(
+        {
+            var isAllDownline = message.IsAllDownline
+                || message.ActorLevel.GetDirectDownLineLevel() > message.CustLevel;
+
+            return new ReportParam(
                 message.CustId,
+                message.SubAccountId,
                 message.IsOwner,
+                isAllDownline,
                 message.FromDate,
                 message.ToDate,
                 message.UserSelectedSportGroupId,
@@ -20,6 +26,7 @@
                 message.ReportType,
                 message.UserSelectedLiveStatusId,
                 message.CustLevel);
+        }
 
         protected internal static ReportModel AccumulateGrandTotal(IEnumerable<ReportModel> reportData)
         {
@@ -57,5 +64,10 @@
 
             return result;
         }
+
+        protected internal static bool IsShowPermissionOnDownlinesMessage(ReportBaseQuery message)
+            => message.IsSubAccount
+                && !message.IsAllDownline
+                && (message.CustLevel.Is(message.ActorLevel) || message.CustLevel.IsDirectDownlineOf(message.ActorLevel));
     }
 }

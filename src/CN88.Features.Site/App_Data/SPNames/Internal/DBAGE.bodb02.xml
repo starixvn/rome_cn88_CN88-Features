@@ -25,9 +25,10 @@
 
     <Setting Key="CS_Rpt_SettlementSummary" SpName="CS_Rpt_SettlementSummary" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_Rpt_MemberStatement_Sel" SpName="CS_Rpt_MemberStatement_Sel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_SubAcc_AssignedDownlinesCount" SpName="CS_SubAcc_AssignedDownlinesCount" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
   </Function>
   <Function Name="Alpha.Auth">
-    <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_CustomerSelCheckBelonging" SpName="CS_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
   </Function>
   <Function Name="Bet Lists">
@@ -167,7 +168,7 @@
     </Setting>
   </Function>
   <Function Name="Customer List">
-    <Setting Key="CS_Customer_DownlineList_Sel" SpName="CS_Customer_DownlineList_Sel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" >
+    <Setting Key="CS_Customer_DownlineList_Sel" SpName="CS_Customer_DownlineList_Sel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="firstname" ObjectProperty="Name"></Mapping>
       <Mapping DataField="createddate" ObjectProperty="CreationDate"></Mapping>
       <Mapping DataField="isclosed" ObjectProperty="Closed"></Mapping>

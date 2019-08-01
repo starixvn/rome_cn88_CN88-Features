@@ -34,9 +34,11 @@
             var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
             var sportGroups = sportGroupService.GetSportGroups();
 
+            var isShowPermissionOnDownlinesMessage = IsShowPermissionOnDownlinesMessage(message);
+            var assignedDownlinesCount = isShowPermissionOnDownlinesMessage ? reportService.GetAssignedDownlinesCount(message.SubAccountId) : null;
+
             var param = CreateReportParam(message);
             var reportData = reportService.GetReportData(param);
-
             var grandTotal = AccumulateGrandTotal(reportData);
 
             return new OldReportViewModel(message,
@@ -44,7 +46,9 @@
                 reportData,
                 grandTotal,
                 oldAccountingPeriods,
-                browserHelper.IsMobile());
+                browserHelper.IsMobile(),
+                isShowPermissionOnDownlinesMessage,
+                assignedDownlinesCount);
         }
 
         public OldIndexViewModel Handle(OldIndexQuery message)

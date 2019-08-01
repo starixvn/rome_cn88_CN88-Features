@@ -176,10 +176,10 @@
     <value>總監結果</value>
   </data>
   <data name="HeadlineStock" xml:space="preserve">
-    <value>大股東實貨量</value>
+    <value>總監實貨量</value>
   </data>
   <data name="HeadlineStockPercent" xml:space="preserve">
-    <value>大股東佔貨比(%)</value>
+    <value>總監佔貨比(%)</value>
   </data>
   <data name="ProfitMargin" xml:space="preserve">
     <value>獲利率</value>
@@ -288,5 +288,8 @@
   </data>
   <data name="AccountingMobile" xml:space="preserve">
     <value>月帳期數表</value>
+  </data>
+  <data name="PermissionOnDownlinesMessage" xml:space="preserve">
+    <value>您的子帳號已被選擇觀看部分的帳號，帳目只顯示 {0} / {1} 個帳號</value>
   </data>
 </root>

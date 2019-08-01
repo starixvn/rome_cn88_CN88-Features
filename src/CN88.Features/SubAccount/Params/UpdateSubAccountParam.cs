@@ -8,7 +8,11 @@
             string pageAccess,
             string languageKey,
             string ip,
-            int actorId) : base(name, pageAccess, languageKey, ip, actorId)
+            int actorId,
+            byte roleId,
+            bool isAllDownline,
+            string downlineId)
+            : base(name, pageAccess, languageKey, ip, actorId, roleId, isAllDownline, downlineId)
         {
             SubAccId = subAccId;
         }

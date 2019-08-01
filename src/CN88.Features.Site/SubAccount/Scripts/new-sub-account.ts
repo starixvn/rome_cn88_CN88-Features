@@ -25,8 +25,7 @@ class NewSubAccount extends BaseSubAccount {
 
     protected cacheElements(): void {
         super.cacheElements();
-        this.elements.passRule = this.$("#pass-rule");
-        this.elements.passRule.tooltip();
+
         this.elements.requiredPasswordError = this.$("#RequiredPasswordError").val();
         this.elements.passwordWrongRuleError = this.$("#PasswordWrongRuleError").val();
         this.elements.confirmPasswordError = this.$("#ConfirmPasswordError").val();
@@ -35,39 +34,21 @@ class NewSubAccount extends BaseSubAccount {
         this.elements.suffix2 = this.$("#suffix2");
         this.elements.password = this.$("#password");
         this.elements.confirmPassword = this.$("#confirmPassword");
+    }
 
-        this.$("body").on("click touchend", (event) => {
-            const target = this.$(event.target);
-            const showTooltipClass = "tooltip-show";
+    protected bindEvents(): void {
+        super.bindEvents();
 
-            if (target.hasClass("icon-info")) {
-                const isShowing = target.hasClass(showTooltipClass);
-
-                const showingToolTips = this.$('.tooltip-show[data-toggle="tooltip"]');
-                showingToolTips.tooltip("hide");
-                showingToolTips.removeClass(showTooltipClass);
-
-                if (isShowing) {
-                    target.tooltip("hide");
-                    target.removeClass(showTooltipClass);
-                } else {
-                    target.tooltip("show");
-                    target.addClass(showTooltipClass);
-                }
-
-                event.stopPropagation();
-                return false;
-            }
-
-            this.elements.passRule.tooltip("hide");
-            this.elements.passRule.removeClass(showTooltipClass);
+        this.$("#btnSaveAndNew").click((e: JQueryEventObject) => {
+            e.preventDefault();
+            this.onSubmit(true);
         });
     }
 
     protected getFormData() {
         const hashKey: string = this.elements.hashKey;
         const password: string = this.elements.password.val();
-        let formData = super.getFormData();
+        const formData = super.getFormData();
         formData.suffix1 = this.elements.suffix1.val();
         formData.suffix2 = this.elements.suffix2.val();
         formData.password = encrypt(password, hashKey);
@@ -75,8 +56,8 @@ class NewSubAccount extends BaseSubAccount {
         return formData;
     }
 
-    protected validateFormData(formData): boolean {
-        const isValid: boolean = super.validateFormData(formData);
+    protected validateForm(): boolean {
+        const isValid: boolean = super.validateForm();
 
         if (!isValid) {
             return false;

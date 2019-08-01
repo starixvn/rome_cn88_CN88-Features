@@ -11,17 +11,31 @@
 
         public IndexViewModel(
             IEnumerable<SubAccountItem> subAccounts,
-            bool viewerIsActive,
+            bool showActionButtons,
+            bool showAccountManagementPermission,
             BrowserHelper browserHelper)
         {
             SubAccounts = subAccounts;
             this.browserHelper = browserHelper;
-            ViewerIsActive = viewerIsActive;
+            ShowActionButtons = showActionButtons;
+            ShowAccountManagementPermission = showAccountManagementPermission;
         }
 
         public IEnumerable<SubAccountItem> SubAccounts { get; }
 
-        public bool ViewerIsActive { get; }
+        public bool ShowActionButtons { get; }
+
+        public bool ShowAccountManagementPermission { get; }
+
+        public int TotalColumns
+        {
+            get
+            {
+                var totalColumns = ShowActionButtons ? 9 : 8;
+
+                return ShowAccountManagementPermission ? totalColumns : (totalColumns - 2);
+            }
+        }
 
         public string NewSubAccountLink
             => UrlHelper.GetFeaturesAppPath("~/SubAccount/New");
@@ -35,12 +49,15 @@
         public string ResetSecurityCodeLink
             => UrlHelper.GetMainAppPath("~/SecurityCode/ResetSubAccountSecurityCode");
 
-        public bool IsDevice => browserHelper.IsMobile() && !browserHelper.IsTablet();
-        
+        public bool IsDevice => browserHelper.IsMobile();
+
         public string UnlockSubAccountLink
             => UrlHelper.GetFeaturesAppPath("~/SubAccount/Unlock");
 
         public string VerifySecurityCodeLink
             => UrlHelper.GetMainAppPath("~/SecurityCode/VerifySecurityCode");
+
+        public string DeleteSubAccountLink
+            => UrlHelper.GetFeaturesAppPath("~/SubAccount/Delete");
     }
 }

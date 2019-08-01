@@ -1,5 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.ViewModels
 {
+    using CN88.Features.Reports.Models;
     using Features.Shared.Models;
     using Shared.ViewModels.Components;
 
@@ -15,7 +16,9 @@
             UserLevel custLevel,
             SingleSelectionViewModel sportGroupSelectionViewModel,
             DateRangePickerViewModel dateRangePickerViewModel,
-            bool isMobile)
+            bool isMobile,
+            bool isShowPermissionOnDownlinesMessage,
+            AssignedDownlinesCount assignedDownlinesCount)
         {
             DisplayMode = displayMode;
             ReportType = reportType;
@@ -27,6 +30,8 @@
             SportGroupSelectionViewModel = sportGroupSelectionViewModel;
             DateRangePickerViewModel = dateRangePickerViewModel;
             IsMobile = isMobile;
+            IsShowPermissionOnDownlinesMessage = isShowPermissionOnDownlinesMessage;
+            AssignedDownlinesCount = assignedDownlinesCount;
         }
 
         public int DisplayMode { get; }
@@ -48,5 +53,9 @@
         public DateRangePickerViewModel DateRangePickerViewModel { get; }
 
         public bool IsMobile { get; }
+
+        public bool IsShowPermissionOnDownlinesMessage { get; }
+
+        public AssignedDownlinesCount AssignedDownlinesCount { get; }
     }
 }

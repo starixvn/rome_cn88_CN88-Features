@@ -13,7 +13,7 @@
         public IndexViewModel(IndexQuery query, BrowserHelper browserHelper)
         {
             this.query = query;
-            IsDevice = browserHelper.IsMobile() && !browserHelper.IsTablet();
+            IsDevice = browserHelper.IsMobile();
         }
 
         public UserLevel ActorLevel => query.ActorLevel;

@@ -7,7 +7,9 @@
     {
         public GetWinLossReportCriteria(
             int custId,
+            int subAccId,
             bool isOwner,
+            bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
             DateTime archiveDate,
@@ -16,7 +18,7 @@
             int betTypeId,
             int isLive,
             UserLevel reportLevel)
-            : base(custId, isOwner, fromDate, toDate, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, subAccId, isOwner, isAllDownline, fromDate, toDate, sportGroupId, betTypeId, isLive, reportLevel)
         {
             ArchiveDate = archiveDate;
             MoveBetsDay = moveBetsDay;

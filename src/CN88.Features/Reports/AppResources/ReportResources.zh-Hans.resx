@@ -239,10 +239,10 @@
     <value>总监结果</value>
   </data>
   <data name="HeadlineStock" xml:space="preserve">
-    <value>大股东实货量</value>
+    <value>总监实货量</value>
   </data>
   <data name="HeadlineStockPercent" xml:space="preserve">
-    <value>大股东占货比(%)</value>
+    <value>总监占货比(%)</value>
   </data>
   <data name="DateChanged" xml:space="preserve">
     <value>日期已变更</value>
@@ -288,5 +288,8 @@
   </data>
   <data name="AccountingMobile" xml:space="preserve">
     <value>月帐期数表</value>
+  </data>
+  <data name="PermissionOnDownlinesMessage" xml:space="preserve">
+    <value>您的子帐号已被选择观看部分的帐号，帐目只显示 {0} / {1} 个帐号</value>
   </data>
 </root>

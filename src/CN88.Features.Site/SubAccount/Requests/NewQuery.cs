@@ -12,6 +12,6 @@
         {
         }
 
-        public Result Result { get; set; }
+        public bool ShowAccountManagementPermission => ActorLevel.IsSuperLevel();
     }
 }

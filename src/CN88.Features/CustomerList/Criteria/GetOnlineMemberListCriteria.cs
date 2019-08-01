@@ -9,12 +9,18 @@
         public GetOnlineMemberListCriteria(OnlineMembersParam param)
         {
             ViewerId = param.ViewerId;
+            SubAccId = param.SubAccId;
+            IsAllDownline = param.IsAllDownline;
             PageSize = param.PageSize;
             PageIndex = param.PageIndex;
         }
 
         [SpParam(SqlParamName = "CustId")]
         public int ViewerId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         public int PageSize { get; }
 
@@ -26,7 +32,7 @@
             => "CS_Customer_OnlineUserList_Sel";
 
         public override bool IsValid()
-            => ViewerId > 0 
+            => ViewerId > 0
             && PageIndex > 0
             && PageSize > 0;
     }

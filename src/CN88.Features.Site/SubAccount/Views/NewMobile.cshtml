@@ -1,0 +1,54 @@
+﻿@using Sunplus.Agent.Model.Entities;
+@{
+    /**/
+
+    Layout = "~/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = CN88.Features.SubAccount.AppResources.SubAccountResource.SubAccount;
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/SubAccount/bundles/styles/sub-account")
+}
+@section Scripts {
+    @StaticResources.RenderScripts("~/SubAccount/bundles/scripts/new-sub-account")
+}
+@model NewViewModel
+<div class="modal-sub-account">
+    <div id="message-container" class="message-container"></div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+            <a data-toggle="tab" href="#tabAccountDetails">@SubAccountResource.AccountDetails</a>
+        </li>
+        <li role="presentation">
+            <a data-toggle="tab" href="#tabManagedAccount">@SubAccountResource.ManagedAccount (@HtmlHelpers.FormatNumber(Model.NumberOfDownline))</a>
+        </li>
+    </ul>
+    @using (Html.BeginForm("New", "SubAccount", FormMethod.Post, new { id = "formSubAccount", @class = "form-horizontal", novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="tab-content">
+            <div id="tabAccountDetails" class="tab-pane fade in active" role="tabpanel">
+                @{
+                    Html.RenderPartial("~/SubAccount/Views/_NewGeneralInfo.cshtml");
+                    var pageAccess = new PageAccess { ViewReports = true, ViewTotalBets = true };
+                    Html.RenderPartial(
+                        "~/SubAccount/Views/_Permissions.cshtml",
+                        new Tuple<bool, PageAccess>(Model.ShowAccountManagementPermission, pageAccess));
+                }
+            </div>
+            <div id="tabManagedAccount" class="tab-pane fade tabManagedAccount" role="tabpanel">
+                @Html.Partial("~/SubAccount/Views/_ManagedAccountTable.cshtml", Model.ManagedAccountViewModel)
+            </div>
+            <div class="list-button">
+                <input type="button" class="btn-cancel" id="buttonCancel" value="@SharedResources.Cancel" />
+                <input type="button" class="btn-submit" id="btnSaveAndNew" value="@SharedResources.SaveAndNew" />
+                <input type="submit" class="btn-submit" value="@SharedResources.Save" />
+            </div>
+        </div>
+    }
+</div>
+@Html.Hidden(nameof(Model.HashKey), Model.HashKey)
+@Html.Hidden(nameof(SubAccountResource.RequiredNameError), SubAccountResource.RequiredNameError)
+@Html.Hidden(nameof(SubAccountResource.RequiredPasswordError), SubAccountResource.RequiredPasswordError)
+@Html.Hidden(nameof(SubAccountResource.PasswordWrongRuleError), SubAccountResource.PasswordWrongRuleError)
+@Html.Hidden(nameof(SubAccountResource.ConfirmPasswordError), SubAccountResource.ConfirmPasswordError)
+@Html.Hidden("SuccessMessage", SubAccountResource.AccountSuccessfullyCreated)

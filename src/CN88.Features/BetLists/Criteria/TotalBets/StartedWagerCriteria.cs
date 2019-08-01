@@ -5,10 +5,12 @@
 
     public class StartedWagerCriteria : CriteriaBase
     {
-        public StartedWagerCriteria(StartedWagerParam param)
+        public StartedWagerCriteria(EventWagerParam param)
         {
             CustId = param.CustId;
             RoleId = param.RoleId;
+            SubAccId = param.SubAccId;
+            IsAllDownline = param.IsAllDownline;
             MatchId = param.MatchId;
             BetTypeGroup = param.BetType;
             LiveIndicator = param.LiveIndicator;
@@ -20,6 +22,10 @@
         public int CustId { get; }
 
         public int RoleId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         public int MatchId { get; }
 

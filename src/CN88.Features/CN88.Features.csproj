@@ -245,7 +245,6 @@
     <Compile Include="BetLists\Criteria\BetListOfReport\BetListOfReportBaseCriteria.cs" />
     <Compile Include="BetLists\Criteria\TotalBets\StartedWagerCriteria.cs" />
     <Compile Include="BetLists\Criteria\TotalBets\EventWagerCriteria.cs" />
-    <Compile Include="BetLists\Params\StartedWagerParam.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMatchByIdCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorBetTypeGroupCriteria.cs" />
     <Compile Include="BetLists\Criteria\WagerMonitoring\GetMonitorSportGroupCriteria.cs" />
@@ -261,6 +260,8 @@
     <Compile Include="CustomerList\Criteria\UnlockCustomerCriteria.cs" />
     <Compile Include="CustomerList\Params\UnlockCustomerParam.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Reports\Criteria\GetSubAccountAssignedDownlinesCount.cs" />
+    <Compile Include="Reports\Models\AssignedDownlinesCount.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />
     <Compile Include="Shared\Constants\SportGroupConstants.cs" />
@@ -391,15 +392,20 @@
     <Compile Include="SubAccount\Constants\SubAccountConst.cs" />
     <Compile Include="SubAccount\Criteria\BaseSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\CreateSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\DeleteSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\GetManagedAccountCriteria.cs" />
     <Compile Include="SubAccount\Criteria\GetSubAccountCriteria.cs" />
     <Compile Include="SubAccount\Criteria\GetSubAccountListCriteria.cs" />
     <Compile Include="SubAccount\Criteria\KickoutSubAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\UnlockSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Criteria\UpdateManagedAccountCommand.cs" />
     <Compile Include="SubAccount\Criteria\UpdateSubAccountCommand.cs" />
+    <Compile Include="SubAccount\Models\ManagedAccount.cs" />
     <Compile Include="SubAccount\Models\SubAccountItem.cs" />
     <Compile Include="SubAccount\Params\BaseSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\CreateSubAccountParam.cs" />
     <Compile Include="SubAccount\Params\UnlockSubAccountParam.cs" />
+    <Compile Include="SubAccount\Params\UpdateManagedAccountParam.cs" />
     <Compile Include="SubAccount\Params\UpdateSubAccountParam.cs" />
     <Compile Include="SubAccount\Services\SubAccountService.cs" />
     <Compile Include="SubAccount\Services\SubAccountValidator.cs" />

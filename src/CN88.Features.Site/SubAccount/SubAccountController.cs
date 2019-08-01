@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Alpha.Web.Filters;
-    using Features.Models;
+    using CN88.Web.Helpers;
     using MediatR;
     using Requests;
     using Shared.Controllers;
@@ -12,44 +12,41 @@
     [RestrictHeadlineFilter]
     public class SubAccountController : FeatureBaseController
     {
-        public SubAccountController(IMediator mediator)
+        private readonly BrowserHelper browserHelper;
+
+        public SubAccountController(IMediator mediator, BrowserHelper browserHelper)
             : base(mediator)
         {
+            this.browserHelper = browserHelper;
         }
 
         public async Task<ActionResult> Index(IndexQuery message)
-            => message.IsValid()
-                ? await ViewAsync(message)
-                : View(NoInformationPageViewPath);
+            => await ViewAsync(message);
 
         public async Task<ActionResult> New(NewQuery message)
-            => message.IsValid()
-                ? await ViewAsync(message)
-                : View(NoInformationPageViewPath);
+            => await ViewAsync(message, browserHelper.IsMobile() ? "NewMobile" : "New");
 
         [HttpPost, AntiXsrfFilter]
         public async Task<ActionResult> New(NewCommand message)
-            => Json(
-                message.IsValid() 
-                ? await mediator.Send(message) 
-                : Result.CreateForbiddenResult(),
-                JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync(message);
 
         public async Task<ActionResult> Edit(UpdateQuery message)
-            => message.IsValid()
-                ? await ViewAsync(message)
-                : View(NoInformationPageViewPath);
+        {
+            ViewBag.ShowAccountManagementPermission = message.ShowAccountManagementPermission;
+
+            return await ViewAsync(message, browserHelper.IsMobile() ? "EditMobile" : "Edit");
+        }
 
         [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
         public async Task<ActionResult> Edit(UpdateCommand message)
-            => Json(
-                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
-                JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync(message);
 
-        [HttpPost, AntiXsrfFilter]
+        [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
         public async Task<ActionResult> Unlock(UnlockCommand message)
-            => Json(
-                message.IsValid() ? await mediator.Send(message) : Result.CreateForbiddenResult(),
-                JsonRequestBehavior.DenyGet);
+            => await JsonDataAsync(message);
+
+        [HttpPost, AntiXsrfFilter, CheckSubAccBelongingFilter]
+        public async Task<ActionResult> Delete(DeleteCommand message)
+            => await JsonDataAsync(message);
     }
 }

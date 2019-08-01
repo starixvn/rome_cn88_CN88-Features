@@ -19,6 +19,13 @@
     @Html.Hidden("ToDate", Model.DateRangePickerViewModel.ToDate)
     @Html.Hidden("UserSelectedSportGroupId", Model.SportGroupSelectionViewModel.UserSelectedId)
 </form>
+@if (Model.IsShowPermissionOnDownlinesMessage)
+{
+    <div class="message-container">
+        <div class="msg msg-warning">@string.Format(ReportResources.PermissionOnDownlinesMessage, Model.AssignedDownlinesCount.TotalAssignedAccounts, Model.AssignedDownlinesCount.TotalDirectDownlines)</div>
+    </div>
+
+}
 @helper RenderHiddenFields()
 {
     /**/

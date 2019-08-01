@@ -19,6 +19,8 @@ class SubAccount {
         resetSecurityCode: '',
         unlockConfirmMessage: '',
         unlockSubAccount: '',
+        deleteConfirmMessage: '',
+        deleteSubAccount: '',
         okLabel: '',
         cancelLabel: ''
     };
@@ -28,26 +30,24 @@ class SubAccount {
         resetPassword: '',
         resetSecurityCode: '',
         unlockSubAccount: '',
+        deleteSubAccount: '',
         verifySecurityCode: ''
     };
     isDevice: boolean;
 
     sortComponent: SortComponent;
     bootstrapDropdownComponent: BootstrapDropdownComponent;
-    securityCodeChecker: SecurityCodeChecker;
 
     constructor(
         $: JQueryStatic,
         top: Window,
         sortComponent: SortComponent,
-        bootstrapDropdownComponent: BootstrapDropdownComponent,
-        securityCodeChecker: SecurityCodeChecker) {
+        bootstrapDropdownComponent: BootstrapDropdownComponent) {
         this.$ = $;
         this.top = top;
         this.sortComponent = sortComponent;
         this.bootstrapDropdownComponent = bootstrapDropdownComponent;
         this.isDevice = cn88Features.convertAttributeToBool(this.$("#IsDevice").val());
-        this.securityCodeChecker = securityCodeChecker;
     }
 
     init(): void {
@@ -55,18 +55,19 @@ class SubAccount {
         this.bindEvents();
 
         if (!this.isDevice) {
+            const headers = {
+                0: { sorter: "text" },
+                1: { sorter: "text" },
+                2: { sorter: "text" }
+            };
+            headers[this.$("#createdDateColIndex").val()] = { sorter: "text" };
             this.sortComponent.render(
                 new SortOption(
                     this.tableSubAccount,
                     this.tableSubAccount.data("totalrecords") > 1,
                     true,
                     this.sortComponent.afterSort,
-                    {
-                        0: { sorter: "text" },
-                        1: { sorter: "text" },
-                        2: { sorter: "text" },
-                        7: { sorter: "text" }
-                    }));
+                    headers));
         }
 
         this.bootstrapDropdownComponent.render(new BootstrapDropdownOption(".tbl-subaccount .dropdown"));
@@ -82,6 +83,8 @@ class SubAccount {
             resetSecurityCode: this.$("#ResetSecurityCode").val(),
             unlockConfirmMessage: this.$("#UnlockAccountConfirmMessage").val(),
             unlockSubAccount: this.$("#UnlockSubAccount").val(),
+            deleteConfirmMessage: this.$("#DeleteSubAccountConfirmMessage").val(),
+            deleteSubAccount: this.$("#DeleteSubAccount").val(),
             okLabel: this.$("#OK").val(),
             cancelLabel: this.$("#Cancel").val()
         };
@@ -92,6 +95,7 @@ class SubAccount {
             resetPassword: this.$("#ResetPasswordLink").val(),
             resetSecurityCode: this.$("#ResetSecurityCodeLink").val(),
             unlockSubAccount: this.$("#UnlockSubAccountLink").val(),
+            deleteSubAccount: this.$("#DeleteSubAccountLink").val(),
             verifySecurityCode: this.$("#VerifySecurityCodeLink").val()
         };
     }
@@ -124,51 +128,37 @@ class SubAccount {
 
         this.tableSubAccount.find(".icon-edit, .opt-edit").click((event: JQueryEventObject) => {
             const param = this.getSubAccountParam(this.$(event.currentTarget));
-            const width = 948, height = 470;
+            const width = 948, height = 600;
             this.openPopup(
                 `${this.resources.editSubAccount} - ${param.subAccountName}`,
                 `${this.urls.editSubAccount}?custId=${param.subAccountId}`,
                 width,
                 height);
         });
+
         this.tableSubAccount.find(".icon-more-action").on("click touchend", () => {
             // Hide other dropdowns
         });
 
         this.$("#btnNewSubAccount").click(() => {
-            const width = 948, height = 470;
+            const width = 948, height = 600;
             this.openPopup(this.resources.newSubAccount, this.urls.newSubAccount, width, height);
         });
 
         this.tableSubAccount.find(".icon-unlock, .opt-unlock").click((event: JQueryEventObject) => {
-            const param = this.getSubAccountParam(this.$(event.currentTarget));
-
-            this.top["popupManager"].bootboxConfirm(
-                `${this.resources.unlockSubAccount} - ${param.subAccountName}`,
+            this.unlockOrDeleteSubAccount(
+                event,
+                this.resources.unlockSubAccount,
                 this.resources.unlockConfirmMessage,
-                () => {
-                    this.$.blockUI();
-                    const options = {
-                        url: this.urls.unlockSubAccount,
-                        data: { custId: param.subAccountId },
-                        onComplete: () => {
-                            location.reload(true);
-                        }
-                    };
+                this.urls.unlockSubAccount);
+        });
 
-                    this.$.ajax({
-                        type: "POST",
-                        url: options.url,
-                        data: options.data,
-                        headers: this.securityCodeChecker.setupAntiXSRF(),
-                        dataType: "json",
-                        success: (result) => { this.securityCodeChecker.checkSecurityCode(result, options); },
-                        complete: self.$.unblockUI
-                    });
-                },
-                350,
-                this.resources.okLabel,
-                this.resources.cancelLabel);
+        this.tableSubAccount.find(".icon-delete, .opt-delete").click((event: JQueryEventObject) => {
+            this.unlockOrDeleteSubAccount(
+                event,
+                this.resources.deleteSubAccount,
+                this.resources.deleteConfirmMessage,
+                this.urls.deleteSubAccount);
         });
     }
 
@@ -190,6 +180,38 @@ class SubAccount {
             height: height
         });
     }
+
+    unlockOrDeleteSubAccount(event: JQueryEventObject, popupTitle: string, popupMessage: string, url: string) {
+        const param = this.getSubAccountParam(this.$(event.currentTarget));
+
+        this.top["popupManager"].bootboxConfirm(
+            `${popupTitle} - ${param.subAccountName}`,
+            popupMessage,
+            () => {
+                this.$.blockUI();
+                const options = {
+                    url: url,
+                    data: { custId: param.subAccountId },
+                    onComplete: () => {
+                        location.reload(true);
+                    }
+                };
+                const securityCodeChecker = new SecurityCodeChecker(this.$, this.top, popupTitle, this.resources.okLabel);
+
+                this.$.ajax({
+                    type: "POST",
+                    url: options.url,
+                    data: options.data,
+                    headers: securityCodeChecker.setupAntiXSRF(),
+                    dataType: "json",
+                    success: (result) => { securityCodeChecker.checkSecurityCode(result, options); },
+                    complete: self.$.unblockUI
+                });
+            },
+            350,
+            this.resources.okLabel,
+            this.resources.cancelLabel);
+    }
 }
 
 $(() => {
@@ -197,6 +219,5 @@ $(() => {
         $,
         top,
         new SortComponent($, new LinkBuilderComponent($)),
-        new BootstrapDropdownComponent($, top),
-        new SecurityCodeChecker($, top, $("#UnlockSubAccount").val(), $("#OK").val())).init();
+        new BootstrapDropdownComponent($, top)).init();
 });

@@ -466,6 +466,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save &amp; New.
+        /// </summary>
+        public static string SaveAndNew {
+            get {
+                return ResourceManager.GetString("SaveAndNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {

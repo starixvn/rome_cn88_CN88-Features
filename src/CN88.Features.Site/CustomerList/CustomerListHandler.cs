@@ -53,6 +53,7 @@
         {
             var param = new CustomerListParam(
                 message.ViewerId,
+                message.SubAccountId,
                 message.DownlineUsername,
                 message.SearchRoleId,
                 message.Username,
@@ -92,7 +93,7 @@
                 message.SubAccountId,
                 message.LanguageKey,
                 message.IP));
-        
+
         public Result Handle(CustomerStatusCommand message)
             => service.UpdateCustomerStatus(new UpdateCustomerStatusParam(
                message.CustId,
@@ -106,7 +107,13 @@
 
         public OnlineMemberViewModel Handle(OnlineMembersQuery message)
         {
-            var param = new OnlineMembersParam(message.ViewerId, message.PageSize, message.PageIndex);
+            var param = new OnlineMembersParam(
+                message.ViewerId,
+                message.SubAccountId,
+                message.IsAllDownline,
+                message.PageSize,
+                message.PageIndex);
+
             var onlineMembers = service.OnlineMembers(param);
 
             return new OnlineMemberViewModel(onlineMembers, message, param.TotalRow);

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using AppResources;
     using Constants;
@@ -22,6 +23,10 @@
         Task<Result> UpdateSubAccountAsync(UpdateSubAccountParam param);
 
         Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param);
+
+        Task<Result> DeleteSubAccountAsync(UnlockSubAccountParam param);
+
+        Task<Tuple<bool, IEnumerable<ManagedAccount>>> GetManagedAccounts(int custId, byte roleId, int subAccId);
     }
 
     public class SubAccountServiceImpl : SubAccountService
@@ -60,9 +65,26 @@
             {
                 param.UserName = $"{param.ActorName}{SubAccountConst.SubAccountPadding}{param.Suffix1}{param.Suffix2}";
                 param.Password = subAccountValidator.Encode(param.Password);
-                param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+                param.PageAccess = string.Join(string.Empty, subAccountValidator.FilterWithValidPermissions(param.PageAccess));
 
-                result = await ExecuteAsync(new CreateSubAccountCommand(param));
+                var command = new CreateSubAccountCommand(param);
+                result = await ExecuteAsync(command);
+
+                if (result.IsSuccess)
+                {
+                    var updateManagedAccountResult = await UpdateManagedAccount(
+                        new UpdateManagedAccountParam(
+                            param.ActorId,
+                            param.RoleId,
+                            command.SubAccId,
+                            param.IsAllDownline,
+                            param.DownlineId,
+                            param.LanguageKey,
+                            param.IP,
+                            param.ActorId));
+
+                    return updateManagedAccountResult.Item2;
+                }
             }
 
             return result;
@@ -107,30 +129,34 @@
 
         private async Task<Result> UpdateSubAccountAndKickoutAsync(UpdateSubAccountParam param, string oldPageAccess)
         {
-            param.PageAccess = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+            var pageAccessList = subAccountValidator.FilterWithValidPermissions(param.PageAccess);
+            var oldPageAccessList = subAccountValidator.GetAccountManagementPermission(oldPageAccess);
+            param.PageAccess = string.Join(string.Empty, pageAccessList.Concat(oldPageAccessList));
+
             var result = await ExecuteAsync(new UpdateSubAccountCommand(param));
 
-            // Kickout when updating Permissions.
-            if (result.IsSuccess && oldPageAccess != param.PageAccess)
+            if (result.IsSuccess)
             {
-                await dynamicRepository.ExecuteAsync(
-                    new KickoutSubAccountCommand(param.ActorId, param.SubAccId));
+                var updatedManagedAccountResult = await UpdateManagedAccount(
+                    new UpdateManagedAccountParam(
+                        param.ActorId,
+                        param.RoleId,
+                        param.SubAccId,
+                        param.IsAllDownline,
+                        param.DownlineId,
+                        param.LanguageKey,
+                        param.IP,
+                        param.ActorId));
+
+                if (oldPageAccess != param.PageAccess || updatedManagedAccountResult.Item1)
+                {
+                    await KickoutSubAccountAsync(param.ActorId, param.SubAccId);
+                }
+
+                return updatedManagedAccountResult.Item2;
             }
 
             return result;
-        }
-
-        private async Task<Result> ExecuteAsync(BaseSubAccountCommand command)
-        {
-            await dynamicRepository.ExecuteAsync(command);
-
-            return new Result(
-                command.ErrCode,
-                command.ErrCode == 0
-                ? (command is CreateSubAccountCommand
-                    ? SubAccountResource.AccountSuccessfullyCreated
-                    : SubAccountResource.UpdateSuccessfully)
-                : command.ErrMsg);
         }
 
         public async Task<Result> UnlockSubAccountAsync(UnlockSubAccountParam param)
@@ -139,6 +165,56 @@
             await dynamicRepository.ExecuteAsync(command);
 
             return new Result(command.ErrCode, command.ErrMsg);
+        }
+
+        public async Task<Result> DeleteSubAccountAsync(UnlockSubAccountParam param)
+        {
+            var command = new DeleteSubAccountCommand(param.CustId, param.SubAccId, param.IP, param.LanguageKey);
+            await dynamicRepository.ExecuteAsync(command);
+
+            var result = new Result(command.ErrCode, command.ErrMsg);
+
+            // Kickout.
+            if (result.IsSuccess)
+            {
+                await KickoutSubAccountAsync(param.CustId, param.SubAccId);
+            }
+
+            return result;
+        }
+
+        private async Task KickoutSubAccountAsync(int actorId, int subAccountId)
+            => await dynamicRepository.ExecuteAsync(new KickoutSubAccountCommand(actorId, subAccountId));
+
+        private async Task<Result> ExecuteAsync(BaseSubAccountCommand command)
+        {
+            await dynamicRepository.ExecuteAsync(command);
+
+            return new Result(command.ErrCode, command.ErrMsg);
+        }
+
+        public async Task<Tuple<bool, IEnumerable<ManagedAccount>>> GetManagedAccounts(int custId, byte roleId, int subAccId)
+        {
+            var criteria = new GetManagedAccountCriteria(custId, roleId, subAccId);
+            var downlines = await dynamicRepository.FetchAsync<ManagedAccount>(criteria);
+
+            return Tuple.Create(criteria.IsAllDownline, downlines);
+        }
+
+        private async Task<Tuple<bool, Result>> UpdateManagedAccount(UpdateManagedAccountParam param)
+        {
+            var command = new UpdateManagedAccountCommand(
+                param.CustId,
+                param.RoleId,
+                param.SubAccId,
+                param.IsAllDownline,
+                param.DownlineId,
+                param.Language,
+                param.LoginIP,
+                param.UserId);
+            await dynamicRepository.ExecuteAsync(command);
+
+            return Tuple.Create(command.IsUpdated, new Result(command.ErrCode, command.ErrMsg));
         }
     }
 }

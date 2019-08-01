@@ -394,6 +394,15 @@ namespace CN88.Features.Reports.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have permission to view all accounts. This data only displays {0} of {1} accounts.
+        /// </summary>
+        public static string PermissionOnDownlinesMessage {
+            get {
+                return ResourceManager.GetString("PermissionOnDownlinesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profit Margin.
         /// </summary>
         public static string ProfitMargin {

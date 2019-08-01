@@ -6,7 +6,6 @@
     using CN88.Web.Helpers;
     using Features.Models;
     using Features.SubAccount.Constants;
-    using Features.SubAccount.Models;
     using Features.SubAccount.Params;
     using Features.SubAccount.Services;
     using MediatR;
@@ -16,11 +15,12 @@
 
     public class SubAccountHandler :
         IAsyncRequestHandler<IndexQuery, IndexViewModel>,
-        IRequestHandler<NewQuery, NewViewModel>,
-        IAsyncRequestHandler<UpdateQuery, SubAccountItem>,
+        IAsyncRequestHandler<NewQuery, NewViewModel>,
+        IAsyncRequestHandler<UpdateQuery, EditViewModel>,
         IAsyncRequestHandler<NewCommand, Result>,
         IAsyncRequestHandler<UpdateCommand, Result>,
-        IAsyncRequestHandler<UnlockCommand, Result>
+        IAsyncRequestHandler<UnlockCommand, Result>,
+        IAsyncRequestHandler<DeleteCommand, Result>
     {
         private const string HashKeySessionKey = "Alpha.CN88.Site.Handlers.PasswordHandler.PasswordHash";
 
@@ -43,17 +43,24 @@
 
         public async Task<IndexViewModel> Handle(IndexQuery message)
         {
-            var viewerIsActive = message.ViewerIsActive;
+            var showActionButtons = message.ShowActionButtons;
+            var showAccountManagementPermission = message.ShowAccountManagementPermission;
             var subAccounts = await subAccountService.GetSubAccountsAsync(message.ViewerId);
 
-            return new IndexViewModel(subAccounts, viewerIsActive, browserHelper);
+            return new IndexViewModel(subAccounts, showActionButtons, showAccountManagementPermission, browserHelper);
         }
 
-        public NewViewModel Handle(NewQuery message)
-            => new NewViewModel(message.ViewerName + SubAccountConst.SubAccountPadding, GenerateHashKey());
+        public async Task<NewViewModel> Handle(NewQuery message)
+            => new NewViewModel(
+                message.ViewerName + SubAccountConst.SubAccountPadding,
+                GenerateHashKey(),
+                message.ShowAccountManagementPermission,
+                await subAccountService.GetManagedAccounts(message.ViewerId, message.ViewerLevelId, 0));
 
-        public async Task<SubAccountItem> Handle(UpdateQuery message)
-            => await subAccountService.GetSubAccountAsync(message.ViewerId, message.CustId);
+        public async Task<EditViewModel> Handle(UpdateQuery message)
+            => new EditViewModel(
+                await subAccountService.GetSubAccountAsync(message.ViewerId, message.CustId),
+                await subAccountService.GetManagedAccounts(message.ViewerId, message.ViewerLevelId, message.CustId));
 
         public async Task<Result> Handle(NewCommand message)
             => await subAccountService.CreateSubAccountAsync(new CreateSubAccountParam(
@@ -67,7 +74,10 @@
                 message.LanguageKey,
                 message.IP,
                 message.ViewerId,
-                message.ViewerName));
+                message.ViewerName,
+                message.ViewerLevelId,
+                message.IsSelectAllDownline,
+                message.DownlineId));
 
         public async Task<Result> Handle(UpdateCommand message)
             => await subAccountService.UpdateSubAccountAsync(new UpdateSubAccountParam(
@@ -76,10 +86,20 @@
                 message.PageAccess,
                 message.LanguageKey,
                 message.IP,
-                message.ViewerId));
+                message.ViewerId,
+                message.ViewerLevelId,
+                message.IsSelectAllDownline,
+                message.DownlineId));
 
         public async Task<Result> Handle(UnlockCommand message)
             => await subAccountService.UnlockSubAccountAsync(new UnlockSubAccountParam(
+                message.ViewerId,
+                message.CustId,
+                message.IP,
+                message.LanguageKey));
+
+        public async Task<Result> Handle(DeleteCommand message)
+            => await subAccountService.DeleteSubAccountAsync(new UnlockSubAccountParam(
                 message.ViewerId,
                 message.CustId,
                 message.IP,

@@ -216,4 +216,25 @@
   <data name="ACM" xml:space="preserve">
     <value>ACM</value>
   </data>
+  <data name="ManagedAccount" xml:space="preserve">
+    <value>Managed Account</value>
+  </data>
+  <data name="SelectAllDownlineMessage" xml:space="preserve">
+    <value>”Select All” will automatically apply to all future accounts created.</value>
+  </data>
+  <data name="DeleteSubAccount" xml:space="preserve">
+    <value>Delete Sub Account</value>
+  </data>
+  <data name="DeleteSubAccountConfirmMessage" xml:space="preserve">
+    <value>Are you sure you want to delete this account?</value>
+  </data>
+  <data name="SystemMessage" xml:space="preserve">
+    <value>System Message</value>
+  </data>
+  <data name="ManagedAccountValidationMessage" xml:space="preserve">
+    <value>You do not have any Managed Accounts selected.Please select a Managed Account or select"All"</value>
+  </data>
+  <data name="SelectAllDownlineTooltip" xml:space="preserve">
+    <value>"Select All" will automatically apply to all future accounts created.</value>
+  </data>
 </root>

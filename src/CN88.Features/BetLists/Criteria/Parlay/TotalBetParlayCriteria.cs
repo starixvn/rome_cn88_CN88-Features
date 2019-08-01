@@ -11,6 +11,8 @@
         {
             CustId = param.CustId;
             RoleId = param.RoleId;
+            SubAccId = param.SubAccId;
+            IsAllDownline = param.IsAllDownline;
             SportGroupId = param.SportGroupId;
             StakeMode = param.StakeMode;
             StakeLimit = param.StakeLimit;
@@ -20,6 +22,10 @@
         public int CustId { get; }
 
         public int RoleId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         [SpParam(SqlParamName = "Sport")]
         public int SportGroupId { get; }

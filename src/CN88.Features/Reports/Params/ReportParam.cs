@@ -7,7 +7,9 @@
     {
         public ReportParam(
             int custId,
+            int subAccId,
             bool isOwner,
+            bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
             int sportGroupId,
@@ -17,7 +19,9 @@
             UserLevel reportLevel)
         {
             CustId = custId;
+            SubAccId = subAccId;
             IsOwner = isOwner;
+            IsAllDownline = isAllDownline;
             FromDate = fromDate;
             ToDate = toDate;
             SportGroupId = sportGroupId;
@@ -29,7 +33,11 @@
 
         public int CustId { get; }
 
+        public int SubAccId { get; }
+
         public bool IsOwner { get; }
+
+        public bool IsAllDownline { get; }
 
         public DateTime FromDate { get; }
 

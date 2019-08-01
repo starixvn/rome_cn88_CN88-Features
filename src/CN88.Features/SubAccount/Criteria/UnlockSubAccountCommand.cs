@@ -12,6 +12,8 @@
         {
             CustId = custId;
             SubAccId = subAccId;
+            IP = ip;
+            Language = language;
         }
 
         public int CustId { get; }

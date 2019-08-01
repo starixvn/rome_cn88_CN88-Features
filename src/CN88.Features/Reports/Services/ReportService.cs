@@ -17,6 +17,8 @@
         IEnumerable<ReportModel> GetReportData(ReportParam param);
 
         IEnumerable<PTHistory> GetPTHistories(int custid, DateTime fromDate, DateTime toDate);
+
+        AssignedDownlinesCount GetAssignedDownlinesCount(int subAccId);
     }
 
     public class ReportServiceImpl : ReportService
@@ -78,7 +80,9 @@
             {
                 return new GetWinLossReportCriteria(
                     param.CustId,
+                    param.SubAccId,
                     param.IsOwner,
+                    param.IsAllDownline,
                     param.FromDate,
                     param.ToDate,
                     archiveDate,
@@ -93,7 +97,9 @@
             {
                 return new GetOutstandingReportCriteria(
                     param.CustId,
+                    param.SubAccId,
                     param.IsOwner,
+                    param.IsAllDownline,
                     param.FromDate,
                     param.ToDate,
                     param.SportGroupId,
@@ -104,7 +110,9 @@
 
             return new GetCancelledReportCriteria(
                 param.CustId,
+                param.SubAccId,
                 param.IsOwner,
+                param.IsAllDownline,
                 param.FromDate,
                 param.ToDate,
                 archiveDate,
@@ -123,5 +131,8 @@
                     fromDate,
                     toDate,
                     AppSettings.IsTest));
+
+        public AssignedDownlinesCount GetAssignedDownlinesCount(int subAccId)
+            => dynamicRepository.Get<AssignedDownlinesCount>(new GetSubAccountAssignedDownlinesCount(subAccId));
     }
 }

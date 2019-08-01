@@ -8,6 +8,8 @@
             int custId,
             DateTime limitedDate,
             int roleId,
+            int subAccId,
+            bool isAllDownline,
             int sportGroupId,
             int viewMode,
             int stakeMode,
@@ -16,6 +18,8 @@
             CustId = custId;
             LimitedDate = limitedDate;
             RoleId = roleId;
+            SubAccId = subAccId;
+            IsAllDownline = isAllDownline;
             SportGroupId = sportGroupId;
             ViewMode = viewMode;
             StakeMode = stakeMode;
@@ -27,6 +31,10 @@
         public DateTime LimitedDate { get; }
 
         public int RoleId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         public int SportGroupId { get; }
 

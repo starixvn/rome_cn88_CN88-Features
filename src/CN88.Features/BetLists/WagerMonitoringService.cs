@@ -132,6 +132,8 @@
             var criteria = new WagerMonitoringCriteria(
                 param.CustId,
                 param.CustLevelId,
+                param.SubAccId,
+                param.IsAllDownline,
                 param.SportGroupId,
                 param.StakeConditons,
                 param.Market,

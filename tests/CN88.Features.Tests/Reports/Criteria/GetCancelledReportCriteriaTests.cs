@@ -17,7 +17,9 @@
             // Arrange
             var criteria = new GetCancelledReportCriteria(
                 custId: 1,
+                subAccId: 0,
                 isOwner: false,
+                isAllDownline: false,
                 fromDate: DateTime.Now,
                 toDate: DateTime.Now,
                 archiveDate: DateTime.Now,
@@ -40,7 +42,9 @@
             // Arrange
             var criteria = new GetCancelledReportCriteria(
                 custId: custId,
+                subAccId: 0,
                 isOwner: false,
+                isAllDownline: false,
                 fromDate: DateTime.Now,
                 toDate: DateTime.Now,
                 archiveDate: DateTime.Now,
@@ -61,7 +65,9 @@
             // Arrange
             var criteria = new GetCancelledReportCriteria(
                 custId: 1,
+                subAccId: 0,
                 isOwner: false,
+                isAllDownline: false,
                 fromDate: DateTime.Now.AddDays(1),
                 toDate: DateTime.Now,
                 archiveDate: DateTime.Now,
@@ -82,7 +88,9 @@
             // Arrange
             var criteria = new GetCancelledReportCriteria(
                 custId: 1,
+                subAccId: 0,
                 isOwner: false,
+                isAllDownline: false,
                 fromDate: DateTime.Now,
                 toDate: DateTime.Now,
                 archiveDate: DateTime.Now,

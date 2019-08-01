@@ -1,0 +1,41 @@
+﻿@model ManagedAccountViewModel
+<table id="tblManagedAccount" class="tbl-style2 tbl-managed-account">
+    <thead>
+        <tr>
+            <th>@SubAccountResource.UserName</th>
+            <th>@SubAccountResource.Name</th>
+            <th class="col-all-check">
+                <div class="all-check-func">
+                    <input type="checkbox" id="ckboxSelectAll" name="ckboxSelectAll" value="" @(Model.IsAllDownline ? "checked=checked" : string.Empty) />
+                    <span class="icon-info" data-toggle="tooltip" title="@SubAccountResource.SelectAllDownlineTooltip" />
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ManagedAccounts.Any())
+        {
+
+            foreach (var account in Model.ManagedAccounts)
+            {
+                <tr>
+                    <td>@account.Username</td>
+                    <td>@account.FirstName</td>
+                    <td align="center">
+                        <input type="checkbox" name="@account.CustId" value="@account.CustId" @(account.Assigned ? "checked=checked" : string.Empty) />
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" align="center">@SharedResources.NoInformationIsAvailable</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Hidden(nameof(SharedResources.OK), SharedResources.OK)
+@Html.Hidden(nameof(SubAccountResource.SystemMessage), SubAccountResource.SystemMessage)
+@Html.Hidden(nameof(SubAccountResource.SelectAllDownlineMessage), SubAccountResource.SelectAllDownlineMessage)
+@Html.Hidden(nameof(SubAccountResource.ManagedAccountValidationMessage), SubAccountResource.ManagedAccountValidationMessage)

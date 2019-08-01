@@ -347,6 +347,11 @@ body {
     }
 }
 
+.msg-warning {
+    display: inline-block;
+    margin-top: 0;
+}
+
 @media all and (min-width: $screen-device-greater768) {
     .wager-report {
         .filter-container {
@@ -393,6 +398,10 @@ body.phone {
 
         .btn-group {
             width: 100%;
+        }
+
+        .message-container {
+            padding: 12px 12px 0;
         }
     }
 

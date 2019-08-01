@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using AppResources;
+    using CN88.Features.Shared.Extensions;
     using Fanex.Cryptography.Aes;
     using Features.Models;
     using Sunplus.Agent.Model.Entities;
@@ -20,7 +21,9 @@
 
         Result IsMatchPasswordRules(string password, IEnumerable<string> invalidPasswords);
 
-        string FilterWithValidPermissions(string pageAccess);
+        IEnumerable<string> FilterWithValidPermissions(string pageAccess);
+
+        IEnumerable<string> GetAccountManagementPermission(string pageAccess);
 
         Result ValidateSuffix(string suffix1, string suffix2);
     }
@@ -32,20 +35,6 @@
         private static readonly Regex PasswordRule3 = new Regex(@"^(?=.*[A-Z]).{6,12}$");
         private static readonly Regex PasswordRule4 = new Regex(@"^(?=.*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]).{6,12}$");
         private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
-
-        /* [B]: Account Management Edit & View
-         * [D]: Total Bets
-         * [E]: Reports
-         * [H]: Account Management View Only
-         */
-
-        private static readonly string[] ValidPermissions = new[]
-        {
-            PageAccessType.UpdateAccount,
-            PageAccessType.ViewTotalBets,
-            PageAccessType.ViewReports,
-            PageAccessType.ViewMemberInfo
-        };
 
         private readonly Encryptor encryptor;
 
@@ -87,31 +76,26 @@
                 : Result.CreateErrorResult(message: SubAccountResource.PasswordWrongRuleError);
         }
 
-        public string FilterWithValidPermissions(string pageAccess)
+        public IEnumerable<string> FilterWithValidPermissions(string pageAccess)
+            => string.IsNullOrWhiteSpace(pageAccess)
+            ? Enumerable.Empty<string>()
+            : pageAccess
+                .SplitString()
+                .Intersect(new[] { PageAccessType.ViewTotalBets, PageAccessType.ViewReports });
+
+        public IEnumerable<string> GetAccountManagementPermission(string pageAccess)
         {
-            if (string.IsNullOrWhiteSpace(pageAccess))
+            var pageAccessObject = (PageAccess)pageAccess;
+
+            if (pageAccessObject.UpdateAccount)
             {
-                return string.Empty;
+                yield return PageAccessType.ViewMemberInfo;
+                yield return PageAccessType.UpdateAccount;
             }
-
-            pageAccess = AddViewOnlyModeToEditMode(pageAccess);
-
-            return string.Join(string.Empty, pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Intersect(ValidPermissions));
-        }
-
-        private static string AddViewOnlyModeToEditMode(string pageAccess)
-        {
-            var modes = pageAccess.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var existEditMode = modes.Any(i => i == PageAccessType.UpdateAccount);
-            var notExistViewMode = !modes.Any(i => i == PageAccessType.ViewMemberInfo);
-
-            if (existEditMode && notExistViewMode)
+            else if (pageAccessObject.ViewMemberInfo)
             {
-                modes.Add(PageAccessType.ViewMemberInfo);
+                yield return PageAccessType.ViewMemberInfo;
             }
-
-            return string.Join(",", modes);
         }
 
         private static bool IsEqualsPasswordHint(string password)
@@ -127,10 +111,6 @@
             : Result.CreateForbiddenResult();
 
         private static bool ValidateSuffix(string suffix)
-        {
-            int value;
-
-            return suffix?.Length == 1 && int.TryParse(suffix, out value);
-        }
+            => suffix?.Length == 1 && int.TryParse(suffix, out int value);
     }
 }
