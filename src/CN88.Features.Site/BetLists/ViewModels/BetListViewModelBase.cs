@@ -7,6 +7,7 @@
     using CN88.Features.BetLists.Models;
     using CN88.Features.Shared.Configurations;
     using CN88.Features.Shared.Models;
+    using CN88.Features.Site.BetLists.Helpers;
     using CN88.Features.Site.BetLists.Requests;
     using CN88.Features.Site.Shared.ViewModels.Components;
     using Fanex.BetList.Core.Builder;
@@ -167,5 +168,19 @@
 
             return new BreadcrumbItem(CustName, links[links.Count - 2].Link);
         }
+
+        public string GetTotalClass()
+        {
+            var rowClass = "";
+            rowClass += IsAllAbnormal() ? " row-abnormal" : string.Empty;
+            rowClass += IsAllInvalidTicket() ? " row-invalid" : string.Empty;
+            return rowClass;
+        }
+
+        public bool IsAllAbnormal()
+            => !BetListData.Tickets.Any(t => !BetListHelpers.IsAbnormalBet(t));
+
+        public bool IsAllInvalidTicket()
+            => !BetListData.Tickets.Any(t => !BetListHelpers.IsInvalidTicket(t));
     }
 }

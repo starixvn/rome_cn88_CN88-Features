@@ -155,6 +155,16 @@
             cursor: pointer;
         }
     }
+
+    .row-abnormal.stake-block {
+        text-decoration: line-through;
+    }
+
+    .row-void, .row-reject, .row-refund, .row-abnormal, .row-invalid {
+        .status, .col-winloss {
+            color: #B50000;
+        }
+    }
 }
 
 // Customize UI from betlist core

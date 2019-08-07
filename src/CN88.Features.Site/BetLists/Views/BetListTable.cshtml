@@ -1,5 +1,5 @@
-﻿@model BetListViewModelBase
-
+﻿@using CN88.Features.Site.BetLists.Helpers
+@model BetListViewModelBase
 <table id="tbl-report" class="tbl-noborder tbl-betlists">
     <thead>
         <tr>
@@ -16,7 +16,6 @@
             @Html.Partial("~/BetLists/Views/Components/PayoutColumn.cshtml")
             @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml")
         </tr>
-
         @Html.Partial("~/BetLists/Views/Components/TotalRows.cshtml")
     </thead>
     <tbody>
@@ -27,7 +26,7 @@
             for (int i = 0; i < tickets.Count; i++)
             {
                 var ticket = tickets[i];
-                <tr data-trans-id="@ticket.TransId">
+                <tr data-trans-id="@ticket.TransId" class="@BetListHelpers.TicketRowClass(ticket)">
                     @BetListHelper.RenderTransDate(ticket)
                     @BetListHelper.RenderComm(ticket)
                     @BetListHelper.RenderBetID(ticket, Model.CN88Builder, Model.TicketHelper, Model.TicketHelper.GetOddsTypeNameById)
@@ -38,13 +37,11 @@
                         @BetListHelper.RenderWinLoss(ticket, Model.Divisor)
                         @BetListHelper.RenderStatus(ticket, Model.Builder, Model.TicketHelper, Model.BetListData.TicketData, Model.DisplayVNIP)
                     }
-
                     @Html.Partial("~/BetLists/Views/Components/PayoutColumn.cshtml", Model, new ViewDataDictionary
                     {
                         { "IsBody", true },
                         { "Ticket", ticket }
                     })
-
                     @Html.Partial("~/BetLists/Views/Components/PossessColumns.cshtml", Model, new ViewDataDictionary
                     {
                         { "Ticket", ticket }
