@@ -1,4 +1,5 @@
 ﻿@using CN88.Features.BetLists.Models
+@using CN88.Features.Site.BetLists.Helpers
 @model BetListViewModelBase
 @{
     var builder = Model.CN88Builder;
@@ -36,7 +37,7 @@
                     @BetListHelper.RenderStake(ticket, Model.Divisor)
                     @if (Model.IsShowWinLoss)
                     {
-                        <td class="text-right">
+                        <td class="text-right @BetListHelpers.TicketRowClass(ticket)">
                             @BetListHelper.RenderWinLoss(ticket, divisor, true)
                             <br />
                             @BetListHelper.RenderStatus(ticket, mbcBuilder, helper, ticketData, Model.DisplayVNIP, true)

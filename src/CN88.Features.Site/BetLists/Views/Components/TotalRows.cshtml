@@ -1,5 +1,4 @@
 ﻿@model BetListViewModelBase
-
 @if (Model.BetListData.HasData())
 {
     var total = Model.BetListTotal;
@@ -8,13 +7,18 @@
     {
         <tr class="total">
             <th>@BetListsResources.Total: @Model.BetListData.TotalText</th>
-            <th class="text-right">@Html.Raw(total.TotalStakeStr)</th>
-
+            <th class="@Model.GetTotalClass() text-right stake-block">@Html.Raw(total.TotalStakeStr)</th>
             @if (Model.IsShowWinLoss)
             {
-                <th class="text-right winloss">@Html.Raw(total.TotalWinLossStr)</th>
+                if (Model.IsAllInvalidTicket())
+                {
+                    <th class="text-right @Model.GetTotalClass()"><div class="col-winloss">-</div></th>
+                }
+                else
+                {
+                    <th class="text-right winloss">@Html.Raw(total.TotalWinLossStr)</th>
+                }
             }
-
             @if (Model.IsShowPayout)
             {
                 <th class="text-right">@Model.TotalPayoutText</th>
@@ -23,9 +27,9 @@
 
         if (!Model.IsShowPayout && Model.IsShowWinLoss)
         {
-            <tr class="winloss-comm">
+            <tr class="winloss-comm @Model.GetTotalClass()">
                 <th colspan="@Model.TotalColColspan">@BetListsResources.WinLossWithCommission</th>
-                <th class="text-right">@Html.Raw(total.TotalStr)</th>
+                <th class="text-right col-winloss">@Html.Raw(Model.IsAllInvalidTicket() ? "-" : total.TotalStr)</th>
             </tr>
         }
     }
@@ -33,10 +37,10 @@
     {
         if (Model.IsShowPayout)
         {
-            <tr class="total">
+            <tr class="total @Model.GetTotalClass()">
                 <th colspan="3">@BetListsResources.Total</th>
                 <th>@Model.BetListData.TotalText</th>
-                <th class="text-right">@(new HtmlString(Model.BetListTotal.TotalStakeStr))</th>
+                <th class="text-right stake-block">@(new HtmlString(Model.BetListTotal.TotalStakeStr))</th>
                 <th class="text-right">@(new HtmlString(Model.TotalPayoutText))</th>
                 <th colspan="@(Model.NoOfColumns - 6)"></th>
             </tr>
@@ -46,18 +50,25 @@
             <tr class="total">
                 <th colspan="3">@BetListsResources.Total</th>
                 <th>@Model.BetListData.TotalText</th>
-                <th class="text-right">@(Html.Raw(total.TotalStakeStr))</th>
+                <th class="@Model.GetTotalClass() text-right stake-block">@(Html.Raw(total.TotalStakeStr))</th>
                 @if (Model.IsShowWinLoss)
                 {
-                    <th class="text-right winloss">@Html.Raw(total.TotalWinLossStr)</th>
+                    if (Model.IsAllInvalidTicket())
+                    {
+                        <th class="@Model.GetTotalClass() text-right"><div class="col-winloss">-</div></th>
+                    }
+                    else
+                    {
+                        <th class="text-right winloss">@Html.Raw(total.TotalWinLossStr)</th>
+                    }
                 }
                 <th colspan="@(Model.NoOfColumns - 6 + (Model.IsShowWinLoss ? 0 : 1))"></th>
             </tr>
             if (Model.IsShowWinLoss)
             {
-                <tr class="winloss-comm">
+                <tr class="winloss-comm @Model.GetTotalClass()">
                     <th colspan="5" mobile-colspan="2">@BetListsResources.WinLossWithCommission</th>
-                    <th class="text-right">@Html.Raw(total.TotalStr)</th>
+                    <th class="text-right col-winloss">@Html.Raw(Model.IsAllInvalidTicket() ? "-" : total.TotalStr)</th>
                     <th colspan="@(Model.NoOfColumns - 6)"></th>
                 </tr>
             }

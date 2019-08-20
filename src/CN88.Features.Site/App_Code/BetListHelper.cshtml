@@ -9,13 +9,12 @@
 @using Fanex.BetList.Core.Builder
 ﻿@using CN88.Features.Shared.AppResources
 @using CN88.Features.Site.Shared.ViewModels.Components
-
 @helper RenderTransDate(ITicket ticket, bool isMobile = false)
 {
     if (isMobile)
     {
-        @ticket.TransDate.ToShortDateFormat() 
-        @: 
+        @ticket.TransDate.ToShortDateFormat()
+        @:
         @ticket.TransDate.ToLongTime24h()
     }
     else
@@ -27,21 +26,16 @@
         </td>
     }
 }
-
-
 @helper RenderStake(ITicket ticket, int divisor)
 {
-    <td class="stake-block bl_underdog text-right">
+    <td class="@BetListHelpers.TicketRowClass(ticket) stake-block bl_underdog text-right">
         @(new HtmlString(BetListHelpers.Stake(ticket.Stake / divisor)))
     </td>
 }
-
-
 @helper RenderPayout(TicketDto ticket, int divisor)
 {
     <td class="text-right">@(new HtmlString(ConvertByBetType.Winloss(ticket.Payout / divisor)))</td>
 }
-
 @helper RenderStatus(TicketDto ticket, IBetListHTMLBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isShowVNIP, bool isMobile = false)
 {
     var status = new HtmlString(builder.BuildStatus(ticket, helper, ticketData, isShowVNIP));
@@ -57,7 +51,6 @@
         </td>
     }
 }
-
 @helper RenderComm(TicketDto ticket, bool isMobile = false)
 {
     var formattedPlayerDiscount = (ticket.PlayerDiscount * 100).ToString("#,##0.00");
@@ -84,7 +77,6 @@
         </td>
     }
 }
-
 @helper RenderBetID(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, GetCachePropertyById getOddsTypeNameFunc, bool isMobile = false)
 {
     var betInfo = new HtmlString(builder.BuildBetInfo(ticket, helper, (obj) => getOddsTypeNameFunc(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType))));
@@ -98,27 +90,26 @@
         <td>@betInfo</td>
     }
 }
-
 @helper RenderWinLoss(ITicket ticket, int divisor, bool isMobile = false)
 {
-    var winloss = new HtmlString(ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round()));
+    var winloss = BetListHelpers.IsInvalidTicket(ticket)
+        ? new HtmlString("-")
+        : new HtmlString(ConvertByBetType.Winloss(((ticket.Winlost + ticket.PlayerComm) / divisor).Round()));
     if (isMobile)
     {
-        @winloss
+        <div class="col-winloss">@winloss</div>
     }
     else
     {
-        <td class="text-right">@winloss</td>
+        <td class="text-right col-winloss">@winloss</td>
     }
 }
-
 @helper RenderNoInformation(int colspan)
 {
     <tr>
         <td colspan="@colspan" class="text-center" data-isNoInfo="true">@BetListsResources.NoInformationIsAvailable</td>
     </tr>
 }
-
 @helper RenderDetail(TicketDto ticket, IBetListCN88HtmlBuilder builder, ITicketHelper helper, List<ITicketData> ticketData, bool isMobile = false)
 {
     var choice = new HtmlString(builder.BuildChoice(ticket, helper, ticketData));
@@ -134,8 +125,6 @@
         </td>
     }
 }
-
-
 @helper RenderTotalRows(string winLoss, string stake, string total, int noOfDetails, int numberOfColumns)
 {
     <tr class="total">
@@ -152,7 +141,6 @@
         <th colspan="@(numberOfColumns- 6)"></th>
     </tr>
 }
-
 @helper RenderTotalBetsBreadcrumb(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel)
 {
     var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
@@ -185,4 +173,3 @@
         </ul>
     </div>
 }
-

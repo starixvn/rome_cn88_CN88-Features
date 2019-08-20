@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using BetList.Core.Builders;
+    using CN88.Features.Site.BetLists.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
@@ -139,14 +140,25 @@
             row.SetCellValue(0, BetListsResources.Total.ToUpperInvariant());
             row.SetCellValue(3, BetDataViewModel.BetListData.Total);
 
-            var rtfStake = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            var rtfStake = GetStakeFont(BetDataViewModel.IsAllAbnormal());
             rtfStake.Render(BetDataViewModel.BetListTotal.TotalStakeStr);
             row.SetCellValue(4, rtfHelper.RTFRenderer.Render());
             rtfHelper.RTFRenderer.Clear();
 
-            var rtfWinLoss = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
-            rtfWinLoss.Render(BetDataViewModel.BetListTotal.TotalWinLossStr);
-            row.SetCellValue(5, rtfHelper.RTFRenderer.Render());
+            var isInvalid = BetDataViewModel.IsAllInvalidTicket();
+            if (isInvalid)
+            {
+                var rtfWinLoss = new HSSFRichTextString("-");
+                rtfWinLoss.ApplyFont(rtfHelper.NegFont);
+                row.SetCellValue(5, rtfWinLoss);
+            }
+            else
+            {
+                var rtfWinLoss = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+                rtfWinLoss.Render(BetDataViewModel.BetListTotal.TotalWinLossStr);
+                row.SetCellValue(5, rtfHelper.RTFRenderer.Render());
+            }
+
             rtfHelper.RTFRenderer.Clear();
 
             currentRowIndex++;
@@ -155,9 +167,19 @@
             row.CopyCellsFrom(WinLossWithCommissionRowTemplate);
             row.SetCellValue(0, BetListsResources.WinLossWithCommission);
 
-            var rtfWinLoss2 = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
-            rtfWinLoss2.Render(BetDataViewModel.BetListTotal.TotalStr);
-            row.SetCellValue(5, rtfHelper.RTFRenderer.Render());
+            if (isInvalid)
+            {
+                var rtfWinLoss2 = new HSSFRichTextString("-");
+                rtfWinLoss2.ApplyFont(rtfHelper.NegFont);
+                row.SetCellValue(5, rtfWinLoss2);
+            }
+            else
+            {
+                var rtfWinLoss2 = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+                rtfWinLoss2.Render(BetDataViewModel.BetListTotal.TotalStr);
+                row.SetCellValue(5, rtfHelper.RTFRenderer.Render());
+            }
+
             rtfHelper.RTFRenderer.Clear();
             currentRowIndex++;
 
@@ -203,15 +225,30 @@
                 row.SetCellValue(colIndex++, cellValue);
 
                 ticket.Stake /= BetDataViewModel.Divisor;
-                row.SetCellValue(colIndex++, ticket.Stake.ToString("#,##0.00"));
+                var rtfStake = GetStakeFont(BetListHelpers.IsAbnormalBet(ticket));
+                rtfStake.Render(ticket.Stake.ToString("#,##0.00"));
+                row.SetCellValue(colIndex++, rtfHelper.RTFRenderer.Render());
+                rtfHelper.RTFRenderer.Clear();
 
-                cellValue = BuildWinLoss(ticket, rtfHelper, BetDataViewModel.Divisor);
+                var isInvalid = BetListHelpers.IsInvalidTicket(ticket);
+                if (isInvalid)
+                {
+                    cellValue = new HSSFRichTextString("-");
+                    cellValue.ApplyFont(rtfHelper.NegFont);
+                }
+                else
+                {
+                    cellValue = BuildWinLoss(ticket, rtfHelper, BetDataViewModel.Divisor);
+                }
+
                 row.SetCellValue(colIndex++, cellValue);
-
                 ticket.IP = string.Empty;
                 cellValue = excelBuilder.CreateStatusBuilder(ticket.BetTypeId)
                     .RenderRTF(ticket, BetDataViewModel.TicketHelper, null, BetDataViewModel.DisplayVNIP, rtfHelper);
-                row.SetCellValue(colIndex++, cellValue);
+
+                var rtfStatus = new HSSFRichTextString(cellValue.String);
+                rtfStatus.ApplyFont(BetListHelpers.IsInvalidTicket(ticket) ? rtfHelper.NegFont : rtfHelper.NormalFont);
+                row.SetCellValue(colIndex++, rtfStatus);
 
                 if (BetDataViewModel.CustLevel.IsAgentLevel())
                 {
@@ -258,5 +295,10 @@
 
             return winLossRtfText;
         }
+
+        private RTFNumber GetStakeFont(bool isAbnormal)
+            => isAbnormal ?
+            new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFontCrossed, rtfHelper.NegFontCrossed) :
+            new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
     }
 }
