@@ -22,12 +22,12 @@
             DateTime toDate,
             DateTime archiveDate,
             DateTime moveBetsDay,
-            int sportGroupId,
+            string sportGroupIds,
             int betTypeId,
             int isLive,
             int reportType,
             UserLevel reportLevel)
-            : base(custId, subAccId, isOwner, isAllDownline, fromDate, toDate, archiveDate, moveBetsDay, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, subAccId, isOwner, isAllDownline, fromDate, toDate, archiveDate, moveBetsDay, sportGroupIds, betTypeId, isLive, reportLevel)
         {
             ReportType = CancelledReportType[reportType];
         }

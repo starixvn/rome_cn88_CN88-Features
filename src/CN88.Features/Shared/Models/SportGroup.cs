@@ -12,14 +12,18 @@
         private readonly Func<int, string> getSportGroupDisplayName;
 
         internal SportGroup(
+            int productId,
             int id,
             IEnumerable<int> displaySportIds,
             Func<int, string> getSportGroupDisplayName)
         {
+            ProductId = productId;
             Id = id;
             DisplaySportIds = displaySportIds;
             this.getSportGroupDisplayName = getSportGroupDisplayName;
         }
+
+        public int ProductId { get; }
 
         public int Id { get; }
 

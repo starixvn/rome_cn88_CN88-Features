@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using CN88.Features.Shared.Extensions;
+    using CN88.Features.Shared.Services;
     using Features.Reports.Models;
     using Features.Reports.Params;
     using Requests;
@@ -9,7 +11,14 @@
 
     public class ReportsBaseHandler : BaseHandler
     {
-        protected internal static ReportParam CreateReportParam(ReportBaseQuery message)
+        protected readonly SportGroupService sportGroupService;
+
+        public ReportsBaseHandler(SportGroupService sportGroupService)
+        {
+            this.sportGroupService = sportGroupService;
+        }
+
+        protected internal ReportParam CreateReportParam(ReportBaseQuery message)
         {
             var isAllDownline = message.IsAllDownline
                 || message.ActorLevel.GetDirectDownLineLevel() > message.CustLevel;
@@ -21,7 +30,7 @@
                 isAllDownline,
                 message.FromDate,
                 message.ToDate,
-                message.UserSelectedSportGroupId,
+                sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId).JoinWithComma(),
                 message.UserSelectedBetTypeId,
                 message.ReportType,
                 message.UserSelectedLiveStatusId,
@@ -68,6 +77,6 @@
         protected internal static bool IsShowPermissionOnDownlinesMessage(ReportBaseQuery message)
             => message.IsSubAccount
                 && !message.IsAllDownline
-                && (message.CustLevel.Is(message.ActorLevel) || message.CustLevel.IsDirectDownlineOf(message.ActorLevel));
+                && (message.CustLevel.Is(message.ActorLevel) || message.CustLevel.IsDirectDownlineOf(message.ActorLevel));        
     }
 }

@@ -14,7 +14,7 @@
             bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
-            int sportGroupId,
+            string sportGroupIds,
             int betTypeGroupId,
             int isLive,
             UserLevel reportLevel)
@@ -25,7 +25,7 @@
             IsAllDownline = isAllDownline;
             FromDate = fromDate;
             ToDate = toDate;
-            SportGroupId = sportGroupId;
+            SportGroupIds = sportGroupIds;
             BetTypeGroupId = betTypeGroupId;
             IsLive = isLive;
             ReportLevel = reportLevel;
@@ -43,8 +43,8 @@
 
         public DateTime ToDate { get; }
 
-        [SpParam(SqlParamName = "SporttypeGroup")]
-        public int SportGroupId { get; }
+        [SpParam(SqlParamName = "SporttypeGroups")]
+        public string SportGroupIds { get; }
 
         [SpParam(SqlParamName = "BettypeGroup")]
         public int BetTypeGroupId { get; }

@@ -12,11 +12,11 @@
             bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
-            int sportGroupId,
+            string sportGroupIds,
             int betTypeId,
             int isLive,
             UserLevel reportLevel)
-            : base(custId, subAccId, isOwner, isAllDownline, fromDate, toDate, sportGroupId, betTypeId, isLive, reportLevel)
+            : base(custId, subAccId, isOwner, isAllDownline, fromDate, toDate, sportGroupIds, betTypeId, isLive, reportLevel)
         {
         }
 

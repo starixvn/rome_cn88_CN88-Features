@@ -24,6 +24,7 @@
 
             PageSize = PagerConstant.DefaultPageSize;
             PageIndex = PagerConstant.DefaultPageIndex;
+            UserSelectedSportGroupId = SportGroupTypeConstants.AllSports;
         }
 
         public int DisplayMode { get; set; }

@@ -28,6 +28,7 @@
                         while (reader.Read())
                         {
                             var group = new SportGroup(
+                                productId: Converter.ToInt(reader["ProductId"]),
                                 id: Converter.ToInt(reader["SportTypeGroup"]),
                                 displaySportIds: Converter.ToString2(reader["DisplaySport"]).Split(',').Select(int.Parse),
                                 getSportGroupDisplayName: getSportGroupDisplayName);

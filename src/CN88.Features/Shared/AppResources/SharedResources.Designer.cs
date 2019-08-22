@@ -259,6 +259,15 @@ namespace CN88.Features.Shared.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-Sports.
+        /// </summary>
+        public static string NonSports {
+            get {
+                return ResourceManager.GetString("NonSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are not authorized on this function..
         /// </summary>
         public static string NotAuthorized {
@@ -498,6 +507,15 @@ namespace CN88.Features.Shared.AppResources {
         public static string Sport {
             get {
                 return ResourceManager.GetString("Sport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sportsbook.
+        /// </summary>
+        public static string Sportsbook {
+            get {
+                return ResourceManager.GetString("Sportsbook", resourceCulture);
             }
         }
         

@@ -321,4 +321,10 @@
   <data name="SaveAndNew" xml:space="preserve">
     <value>Save &amp; New</value>
   </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>Sportsbook</value>
+  </data>
+  <data name="NonSports" xml:space="preserve">
+    <value>Non-Sports</value>
+  </data>
 </root>
