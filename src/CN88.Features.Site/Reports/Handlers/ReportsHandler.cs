@@ -40,10 +40,11 @@
 
         public IndexViewModel Handle(IndexQuery message)
         {
+            var sportIds = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
             var allBetTypeGroups = betTypeService.GetBetTypeGroups();
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(sportIds);
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
-            var sports = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
 
             return new IndexViewModel(
                 message,
@@ -52,9 +53,7 @@
                 lastPeriod,
                 BuildSportGroupTypeSelectListItems(SportGroupTypeConstants.AllSports),
                 BuildBetTypeSelectListItems(allBetTypeGroups, 0),
-                BuildBetTypeSelectListItems(
-                    allBetTypeGroups.Where(t => sports.Any(i => i == t.SportTypeGroup)),
-                    message.UserSelectedBetTypeId));
+                BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId));
         }
 
         public ReportViewModel Handle(ReportQuery message)
@@ -62,8 +61,8 @@
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             message.FromDate = message.FromDate < lastPeriod.FromDate ? lastPeriod.FromDate : message.FromDate;
             var allBetTypes = betTypeService.GetBetTypeGroups();
-            var sports = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
-            var betTypes = allBetTypes.Where(betType => sports.Any(i => i == betType.SportTypeGroup));
+            var sportIds = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(sportIds);
 
             var isShowPermissionOnDownlinesMessage = IsShowPermissionOnDownlinesMessage(message);
             var assignedDownlinesCount = isShowPermissionOnDownlinesMessage ? reportService.GetAssignedDownlinesCount(message.SubAccountId) : null;

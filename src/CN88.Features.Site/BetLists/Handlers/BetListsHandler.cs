@@ -87,7 +87,8 @@
             var betlistData = betListService.GetBetListOfReport(param);
 
             var allBetTypes = betTypeService.GetBetTypeGroups();
-            var betTypes = allBetTypes.Where(betType => sportGroupIds.Any(i => i == betType.SportTypeGroup));
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(sportGroupIds);
+
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
 

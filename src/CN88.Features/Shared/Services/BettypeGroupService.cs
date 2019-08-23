@@ -11,6 +11,7 @@
     public interface BettypeGroupService
     {
         IEnumerable<BetTypeGroup> GetBetTypeGroups();
+        IEnumerable<BetTypeGroup> GetBetTypeGroupsBySport(IEnumerable<int> sportGroupIds);
     }
 
     public class BettypeGroupServiceImpl : BettypeGroupService
@@ -27,6 +28,14 @@
             this.dynamicRepository = dynamicRepository;
             this.cacheRefService = cacheRefService;
         }
+
+        public IEnumerable<BetTypeGroup> GetBetTypeGroupsBySport(IEnumerable<int> sportGroupIds)
+            => GetBetTypeGroups()
+            .Where(b => sportGroupIds.Contains(b.SportTypeGroup))
+            .GroupBy(i => i.Id)
+            .Select(i => i.First())
+            .OrderBy(i => i.SportTypeGroup)
+            .ThenBy(i => i.Id);
 
         public IEnumerable<BetTypeGroup> GetBetTypeGroups()
         {
