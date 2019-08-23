@@ -306,4 +306,10 @@
   <data name="SaveAndNew" xml:space="preserve">
     <value>保存与新增</value>
   </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>体育博彩</value>
+  </data>
+  <data name="NonSports" xml:space="preserve">
+    <value>其他非体育</value>
+  </data>
 </root>

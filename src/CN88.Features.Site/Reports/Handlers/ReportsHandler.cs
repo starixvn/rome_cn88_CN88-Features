@@ -43,6 +43,7 @@
             var allBetTypeGroups = betTypeService.GetBetTypeGroups();
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
+            var sports = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
 
             return new IndexViewModel(
                 message,
@@ -52,7 +53,7 @@
                 BuildSportGroupTypeSelectListItems(SportGroupTypeConstants.AllSports),
                 BuildBetTypeSelectListItems(allBetTypeGroups, 0),
                 BuildBetTypeSelectListItems(
-                    allBetTypeGroups.Where(t => t.SportTypeGroup == message.UserSelectedSportGroupId),
+                    allBetTypeGroups.Where(t => sports.Any(i => i == t.SportTypeGroup)),
                     message.UserSelectedBetTypeId));
         }
 

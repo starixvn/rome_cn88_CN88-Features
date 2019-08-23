@@ -49,6 +49,23 @@
             return items;
         }
 
+        protected internal IEnumerable<SelectListItemExt> BuildSportGroupSelectListItems(
+            IEnumerable<MonitorSportGroup> sportGroups,
+            int userSelectedSportGroupId)
+        {
+            var items = sportGroups.Select(sportGroup => new SelectListItemExt
+            {
+                Text = sportGroup.DisplayName,
+                Value = sportGroup.Id.ToString(),
+                Selected = sportGroup.Id == userSelectedSportGroupId
+            })
+            .ToList();
+
+            items.Insert(0, new SelectListItemExt { Text = SharedResources.AllSports, Value = "0", Selected = userSelectedSportGroupId == 0 });
+
+            return items;
+        }
+
         protected internal IEnumerable<SelectListItemExt> BuildBetTypeSelectListItems(
             IEnumerable<BetTypeGroup> betTypes,
             int userSelectedBetTypeId)

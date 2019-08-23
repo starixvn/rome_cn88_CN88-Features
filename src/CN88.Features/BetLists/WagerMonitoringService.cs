@@ -21,7 +21,7 @@
 
     public interface WagerMonitoringService
     {
-        Task<IEnumerable<SportGroup>> GetSportGroups();
+        Task<IEnumerable<MonitorSportGroup>> GetSportGroups();
 
         Task<IEnumerable<League>> GetLeagues(int sportGroup);
 
@@ -53,8 +53,8 @@
             this.cacheRefService = cacheRefService;
             this.sportGroupDataAccess = sportGroupDataAccess;
         }
-
-        public async Task<IEnumerable<SportGroup>> GetSportGroups()
+            
+        public async Task<IEnumerable<MonitorSportGroup>> GetSportGroups()
             => await ConfiguredCacheService.GetOrSetAsync(
                 MonitorSportGroupsCacheKey,
                 () => sportGroupDataAccess.GetSportGroups(new GetMonitorSportGroupCriteria(), cacheRefService.GetSportName),

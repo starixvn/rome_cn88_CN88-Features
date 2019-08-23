@@ -377,6 +377,7 @@
     <Compile Include="Shared\Models\IUser.cs" />
     <Compile Include="Shared\Models\Result.cs" />
     <Compile Include="Shared\Models\Sport.cs" />
+    <Compile Include="Shared\Models\WagerSportGroup.cs" />
     <Compile Include="Shared\Models\SportGroup.cs" />
     <Compile Include="Shared\Models\UserLevel.cs" />
     <Compile Include="Shared\Services\BettypeGroupService.cs" />
