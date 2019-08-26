@@ -111,18 +111,31 @@ class BetListOfReport {
 
     onchangeSportType = () => {
         const sportType = this.sportGroupSelectionComponent.$dropdown.val();
+
         this.betTypeSelectionComponent.$dropdown.empty();
         const betTypes = window["betTypes"];
         const first = betTypes[0];
         this.betTypeSelectionComponent.$dropdown.append(`<option value="${first[0].Value}">${first[0].Text}</option>`);
 
+        const exists = [];
+        exists["1_0"] = true;
+        exists["-1_0"] = true;
+        exists["0_0"] = true;
+
+        var allSports = -1;
         for (const betTypeGroups of betTypes) {
-            if (betTypeGroups[0].SportTypeGroup.toString() === sportType) {
-                for (const betTypeGroup of betTypeGroups) {
-                    this.betTypeSelectionComponent.$dropdown.append(`<option value="${betTypeGroup.Value}">${betTypeGroup.Text}</option>`);
+            for (const betTypeGroup of betTypeGroups) {
+                var key = sportType + "_" + betTypeGroup.Value;
+                if (exists[key]) {
+                    continue;
                 }
 
-                break;
+                if (sportType != allSports && betTypeGroup.ProductId != sportType) {
+                    continue;
+                }
+
+                this.betTypeSelectionComponent.$dropdown.append(`<option value="${betTypeGroup.Value}">${betTypeGroup.Text}</option>`);
+                exists[key] = true;
             }
         }
 
