@@ -1,8 +1,8 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
     using System.Collections.Generic;
-    using Alpha.Web.Helpers;
     using BetList.Core.Builders;
+    using CN88.Web.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists.Models;

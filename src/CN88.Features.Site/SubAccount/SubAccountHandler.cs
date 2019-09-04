@@ -2,7 +2,6 @@
 {
     using System.Net;
     using System.Threading.Tasks;
-    using Alpha.Web.Helpers;
     using CN88.Web.Helpers;
     using Features.Models;
     using Features.SubAccount.Constants;

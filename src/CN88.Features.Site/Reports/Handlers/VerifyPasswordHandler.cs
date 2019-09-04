@@ -1,6 +1,6 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
-    using Alpha.Web.Helpers;
+    using CN88.Web.Helpers;
     using Fanex.Cryptography.Aes;
     using Features.Models;
     using Features.Reports.Services;

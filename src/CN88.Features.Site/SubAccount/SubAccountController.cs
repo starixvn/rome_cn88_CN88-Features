@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Alpha.Web.Filters;
     using CN88.Web.Helpers;
     using MediatR;
     using Requests;

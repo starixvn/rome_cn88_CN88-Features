@@ -23,7 +23,6 @@
     using global::CN88.Features.Site.Models;
     using global::CN88.Features.Site.Reports.Handlers;
     using global::CN88.Features.Site.Shared.Controllers;
-    using global::CN88.Features.Site.Shared.Helpers;
     using global::CN88.Features.SubAccount.Services;
     using global::CN88.Web.Helpers;
     using MediatR;
@@ -32,12 +31,9 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using SmartPunter.Services;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
-    using Web.Helpers;
-    using Web.Helpers.Impl;
 
     public static class DependencyConfig
     {

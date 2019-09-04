@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using Alpha.Web.Helpers;
+    using CN88.Web.Helpers;
     using Features.Shared.Configurations;
 
     public static class UrlHelper
