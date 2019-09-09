@@ -202,7 +202,7 @@
     <value>進行中</value>
   </data>
   <data name="AllSports" xml:space="preserve">
-    <value>所有球類</value>
+    <value>全部</value>
   </data>
   <data name="BetType" xml:space="preserve">
     <value>投注類別</value>
@@ -310,6 +310,6 @@
     <value>體育博彩</value>
   </data>
   <data name="NonSports" xml:space="preserve">
-    <value>其他非體育</value>
+    <value>非體育博彩</value>
   </data>
 </root>

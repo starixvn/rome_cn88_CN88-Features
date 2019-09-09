@@ -214,7 +214,7 @@
     <value>所有玩法</value>
   </data>
   <data name="AllSports" xml:space="preserve">
-    <value>所有球类</value>
+    <value>全部</value>
   </data>
   <data name="BetType" xml:space="preserve">
     <value>玩法</value>
@@ -310,6 +310,6 @@
     <value>体育博彩</value>
   </data>
   <data name="NonSports" xml:space="preserve">
-    <value>其他非体育</value>
+    <value>非体育博彩</value>
   </data>
 </root>
