@@ -100,7 +100,7 @@
                     JsonConvert.DeserializeObject<IEnumerable<SportStakeCondition>>(message.SportStakeConditions ?? string.Empty)));
         }
 
-        private IEnumerable<SportStakeCondition> BuildSportStakeConditions(IEnumerable<SportGroup> sportGroups, IEnumerable<SportStakeCondition> sportStakeConditions)
+        private IEnumerable<SportStakeCondition> BuildSportStakeConditions(IEnumerable<MonitorSportGroup> sportGroups, IEnumerable<SportStakeCondition> sportStakeConditions)
         {
             var conditions = new List<SportStakeCondition>();
 

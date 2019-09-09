@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using CN88.Features.Reports.Models;
+    using CN88.Features.Shared.Constants;
     using CN88.Web.Helpers;
     using Features.Reports.Services;
     using Features.Shared.Services;
@@ -16,7 +17,6 @@
         IRequestHandler<SettlementSummaryQuery, SettlementSummaryReport>,
         IRequestHandler<AccountingSheetQuery, AccountingSheetViewModel>
     {
-        private readonly SportGroupService sportGroupService;
         private readonly BettypeGroupService betTypeService;
         private readonly AccountingPeriodService accountingPeriodService;
         private readonly SettlementSummaryService settlementSummaryService;
@@ -29,9 +29,8 @@
             AccountingPeriodService accountingPeriodService,
             SettlementSummaryService settlementSummaryService,
             ReportService reportService,
-            BrowserHelper browserHelper)
+            BrowserHelper browserHelper) : base(sportGroupService)
         {
-            this.sportGroupService = sportGroupService;
             this.betTypeService = betTypeService;
             this.accountingPeriodService = accountingPeriodService;
             this.settlementSummaryService = settlementSummaryService;
@@ -41,8 +40,9 @@
 
         public IndexViewModel Handle(IndexQuery message)
         {
-            var sportGroups = sportGroupService.GetSportGroups();
+            var sportIds = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
             var allBetTypeGroups = betTypeService.GetBetTypeGroups();
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(sportIds);
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             var currentPeriod = accountingPeriodService.GetCurrentPeriod();
 
@@ -51,20 +51,18 @@
                 browserHelper.IsMobile(),
                 currentPeriod,
                 lastPeriod,
-                BuildSportGroupSelectListItems(sportGroups, 0),
+                BuildSportGroupTypeSelectListItems(SportGroupTypeConstants.AllSports),
                 BuildBetTypeSelectListItems(allBetTypeGroups, 0),
-                BuildBetTypeSelectListItems(
-                    allBetTypeGroups.Where(t => t.SportTypeGroup == message.UserSelectedSportGroupId),
-                    message.UserSelectedBetTypeId));
+                BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId));
         }
 
         public ReportViewModel Handle(ReportQuery message)
         {
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             message.FromDate = message.FromDate < lastPeriod.FromDate ? lastPeriod.FromDate : message.FromDate;
-            var sportGroups = sportGroupService.GetSportGroups();
             var allBetTypes = betTypeService.GetBetTypeGroups();
-            var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
+            var sportIds = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(sportIds);
 
             var isShowPermissionOnDownlinesMessage = IsShowPermissionOnDownlinesMessage(message);
             var assignedDownlinesCount = isShowPermissionOnDownlinesMessage ? reportService.GetAssignedDownlinesCount(message.SubAccountId) : null;
@@ -75,7 +73,7 @@
 
             return new ReportViewModel(
                 message,
-                BuildSportGroupSelectListItems(sportGroups, message.UserSelectedSportGroupId),
+                BuildSportGroupTypeSelectListItems(message.UserSelectedSportGroupId),
                 BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 reportData,
                 grandTotal,

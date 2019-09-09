@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Web;
+    using CN88.Features.Shared.Constants;
     using Features.Shared.AppResources;
     using Features.Shared.Models;
     using ViewModels;
@@ -22,8 +23,34 @@
 
         internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
 
+        protected static IEnumerable<SelectListItemExt> BuildSportGroupTypeSelectListItems(int userSelectedSportGroupTypeId)
+            => SportGroupTypeConstants.SportGroups
+                            .Select(s => new SelectListItemExt
+                            {
+                                Text = SharedResources.ResourceManager.GetString(s.Value),
+                                Value = s.Key.ToString(),
+                                Selected = s.Key == userSelectedSportGroupTypeId
+                            });
+
         protected internal IEnumerable<SelectListItemExt> BuildSportGroupSelectListItems(
             IEnumerable<SportGroup> sportGroups,
+            int userSelectedSportGroupId)
+        {
+            var items = sportGroups.Select(sportGroup => new SelectListItemExt
+            {
+                Text = sportGroup.DisplayName,
+                Value = sportGroup.Id.ToString(),
+                Selected = sportGroup.Id == userSelectedSportGroupId
+            })
+            .ToList();
+
+            items.Insert(0, new SelectListItemExt { Text = SharedResources.AllSports, Value = "0", Selected = userSelectedSportGroupId == 0 });
+
+            return items;
+        }
+
+        protected internal IEnumerable<SelectListItemExt> BuildSportGroupSelectListItems(
+            IEnumerable<MonitorSportGroup> sportGroups,
             int userSelectedSportGroupId)
         {
             var items = sportGroups.Select(sportGroup => new SelectListItemExt
@@ -45,6 +72,7 @@
         {
             var items = betTypes.Select(betType => new SelectListItemExt
             {
+                ProductId = betType.ProductId,
                 SportTypeGroup = betType.SportTypeGroup,
                 Text = betType.DisplayName,
                 Value = betType.Id.ToString(),

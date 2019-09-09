@@ -11,7 +11,7 @@
             CustId = param.CustId;
             FromDate = param.FromDate;
             ToDate = param.ToDate;
-            SportTypeGroup = param.SportTypeGroup;
+            SportTypeGroups  = param.SportTypeGroupIds;
             BetTypeGroup = param.BetTypeGroup;
             LiveIndicator = param.LiveIndicator;
         }
@@ -22,7 +22,7 @@
 
         public DateTime ToDate { get; }
 
-        public int SportTypeGroup { get; }
+        public string SportTypeGroups { get; }
 
         public int BetTypeGroup { get; }
 

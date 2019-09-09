@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
     using System;
+    using CN88.Features.Shared.Services;
     using Extensions;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -29,7 +30,8 @@
         public ReportsExcelHandler(
             ReportService reportService,
             AccountingPeriodService accountingPeriodService,
-            ReportsWorkbook workbook)
+            SportGroupService sportGroupService,
+            ReportsWorkbook workbook) : base(sportGroupService)
         {
             this.reportService = reportService;
             this.accountingPeriodService = accountingPeriodService;

@@ -18,7 +18,7 @@
                 param.CustId,
                 fromDate,
                 toDate,
-                param.SportTypeGroup,
+                param.SportTypeGroupIds,
                 param.BetTypeGroup,
                 param.LiveIndicator,
                 param.Type,

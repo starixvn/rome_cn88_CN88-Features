@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using BetList.Core.Builders;
+    using CN88.Features.Shared.Extensions;
+    using CN88.Features.Shared.Services;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Features.BetLists;
@@ -26,6 +28,7 @@
         private readonly ITicketHelper ticketHelper;
         private readonly IBetListCN88HtmlBuilder cn88Builder;
         private readonly IBetListHTMLBuilder builder;
+        private readonly SportGroupService sportGroupService;
 
         private readonly BetListOfReportWorkbook workbook;
         private readonly IBetListCN88ExcelBuilder cn88ExcelBuilder;
@@ -37,9 +40,11 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
+            SportGroupService sportGroupService,
             BetListOfReportWorkbook workbook) : base(excelBuilder)
         {
             this.service = service;
+            this.sportGroupService = sportGroupService;
             this.ticketHelper = ticketHelper;
             this.cn88Builder = cn88Builder;
             this.builder = builder;
@@ -50,12 +55,13 @@
 
         public ExcelFileViewModel Handle(BetListOfReportExcelQuery message)
         {
+            var sportGroupIds = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
             var viewerLevel = Enumeration.FromValue<UserLevel>(message.ViewerLevelId);
             var param = new BetListOfReportParam(
                 message.CustId,
                 message.FromDate,
                 message.ToDate,
-                message.UserSelectedSportGroupId,
+                sportGroupIds.JoinWithComma(),
                 message.UserSelectedBetTypeId,
                 message.UserSelectedLiveStatusId,
                 message.Type,

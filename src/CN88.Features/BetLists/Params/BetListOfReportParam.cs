@@ -8,7 +8,7 @@
             int custId,
             DateTime fromDate,
             DateTime toDate,
-            int sportTypeGroup,
+            string sportTypeGroupIds,
             int betTypeGroup,
             int liveIndicator,
             int type,
@@ -17,7 +17,7 @@
             CustId = custId;
             FromDate = fromDate;
             ToDate = toDate;
-            SportTypeGroup = sportTypeGroup;
+            SportTypeGroupIds = sportTypeGroupIds;
             BetTypeGroup = betTypeGroup;
             LiveIndicator = liveIndicator;
             Type = type;
@@ -30,7 +30,7 @@
 
         public DateTime ToDate { get; }
 
-        public int SportTypeGroup { get; }
+        public string SportTypeGroupIds { get; }
 
         public int BetTypeGroup { get; }
 

@@ -12,7 +12,7 @@
             bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
-            int sportGroupId,
+            string sportGroupId,
             int betTypeId,
             int reportType,
             int isLive,
@@ -43,7 +43,7 @@
 
         public DateTime ToDate { get; }
 
-        public int SportGroupId { get; }
+        public string SportGroupId { get; }
 
         public int BetTypeId { get; }
 

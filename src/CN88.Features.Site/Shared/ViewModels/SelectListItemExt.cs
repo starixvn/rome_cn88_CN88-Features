@@ -4,6 +4,8 @@
 
     public class SelectListItemExt : SelectListItem
     {
+        public int? ProductId { get; set; }
+
         public int SportTypeGroup { get; set; }
     }
 }

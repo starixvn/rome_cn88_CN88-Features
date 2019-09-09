@@ -263,6 +263,7 @@
     <Compile Include="Reports\Models\AssignedDownlinesCount.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />
+    <Compile Include="Shared\Constants\SportGroupTypeConstants.cs" />
     <Compile Include="Shared\Constants\SportGroupConstants.cs" />
     <Compile Include="Shared\Constants\StakeModeConstant.cs" />
     <Compile Include="BetLists\Criteria\BetListOfReport\OldAbnormalBetListCriteria.cs" />
@@ -376,6 +377,7 @@
     <Compile Include="Shared\Models\IUser.cs" />
     <Compile Include="Shared\Models\Result.cs" />
     <Compile Include="Shared\Models\Sport.cs" />
+    <Compile Include="Shared\Models\WagerSportGroup.cs" />
     <Compile Include="Shared\Models\SportGroup.cs" />
     <Compile Include="Shared\Models\UserLevel.cs" />
     <Compile Include="Shared\Services\BettypeGroupService.cs" />

@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using BetList.Core.Builders;
+    using CN88.Features.Shared.Extensions;
     using CN88.Web.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
@@ -72,11 +73,12 @@
 
         public BetListOfReportViewModel Handle(BetListOfReportQuery message)
         {
+            var sportGroupIds = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
             var param = new BetListOfReportParam(
                 message.CustId,
                 message.FromDate,
                 message.ToDate,
-                message.UserSelectedSportGroupId,
+                sportGroupIds.JoinWithComma(),
                 message.UserSelectedBetTypeId,
                 message.UserSelectedLiveStatusId,
                 message.Type,
@@ -84,9 +86,9 @@
 
             var betlistData = betListService.GetBetListOfReport(param);
 
-            var sportGroups = sportGroupService.GetSportGroups();
             var allBetTypes = betTypeService.GetBetTypeGroups();
-            var betTypes = allBetTypes.Where(betType => betType.SportTypeGroup == message.UserSelectedSportGroupId);
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(sportGroupIds);
+
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
 
@@ -96,7 +98,7 @@
                 ticketHelper,
                 cn88Builder,
                 builder,
-                BuildSportGroupSelectListItems(sportGroups, message.UserSelectedSportGroupId),
+                BuildSportGroupTypeSelectListItems(message.UserSelectedSportGroupId),
                 BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 lastPeriod,
                 BuildBetTypeSelectListItems(allBetTypes, 0),
