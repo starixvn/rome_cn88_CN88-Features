@@ -42,7 +42,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.BetList.Core, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0.7-ph4b-01\lib\net461\CN88.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Core.1.0.0.7\lib\net461\CN88.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.ESports, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.ESports.1.0.0.2\lib\net461\CN88.BetList.ESports.dll</HintPath>
@@ -57,7 +57,7 @@
       <HintPath>..\..\packages\CN88.BetList.NumberGame.1.0.0.2\lib\net461\CN88.BetList.NumberGame.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.Sportsbook, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0.8-ph4b-02\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.0.8\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0.3\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
@@ -75,10 +75,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.95.0-beta2\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.95.0\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.BetList.Core, Version=2.95.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.95.0-beta2\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.95.0\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
