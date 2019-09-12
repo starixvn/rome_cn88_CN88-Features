@@ -1,7 +1,5 @@
 ﻿namespace CN88.Features.Site.CustomerList.ViewModels
 {
-    using Alpha.Auth.Configurations;
-    using Alpha.Web.Helpers;
     using CN88.Features.CustomerList;
     using CN88.Web.Helpers;
     using Features.Shared.Models;
@@ -62,9 +60,9 @@
 
         public int PageIndex => query.PageIndex;
 
-        private string SiteFeaturePath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("FeaturesAppPath"), "~");
+        private string SiteFeaturePath => MicroSites.FeaturesUrl();
 
-        private string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.GetConfigValue("MainAppPath"), "~");
+        private string SiteMainPath => MicroSites.MainUrl();
 
         public bool IsDevice { get; }
 

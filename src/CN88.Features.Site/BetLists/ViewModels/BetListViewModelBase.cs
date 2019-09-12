@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.Web.Helpers;
     using CN88.BetList.Core.Builders;
     using CN88.Features.BetLists.Models;
     using CN88.Features.Shared.Configurations;
@@ -10,6 +9,7 @@
     using CN88.Features.Site.BetLists.Helpers;
     using CN88.Features.Site.BetLists.Requests;
     using CN88.Features.Site.Shared.ViewModels.Components;
+    using CN88.Web.Helpers;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
     using Fanex.BetList.Core.Utils;
@@ -82,7 +82,7 @@
 
         public string TotalPayoutText => ConvertByBetType.Winloss(TotalPayout);
 
-        public string OldMainPath => MicroSites.OldMainUrl("~");
+        public string OldMainPath => MicroSites.MainUrl();
 
         public string ResultsPath => AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
 

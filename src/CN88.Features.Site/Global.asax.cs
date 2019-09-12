@@ -8,14 +8,13 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using Alpha.CN88.Site.App_Start;
-    using Alpha.Web;
-    using Alpha.Web.Filters;
-    using Alpha.Web.Helpers;
-    using App_Start;
+    using Alpha.Logging;
+    using CN88.Web.Helpers;
     using CustomerSetting.Client;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
+    using Fanex.Logging.Extensions.Database;
     using Fanex.RemotingRef;
     using Features.Shared.Configurations;
     using ONEbook.UM.Filters;
@@ -36,7 +35,9 @@
             AreaRegistration.RegisterAllAreas();
             CN88CustomerSettingRegistration.Init();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            LoggingManager.Init();
+
+            var sensitivteInfo = new[] { "password", "seccode", "securitycode" };
+            LoggingConfig.Init(sensitivteInfo, DatabaseInfoGetters.GetDbExceptionInfo);
             DependencyConfig.Init();
             AppSettings.Verify();
 
@@ -53,7 +54,7 @@
             GlobalFilters.Filters.Add(new CheckUMFilter());
             GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
             GlobalFilters.Filters.Add(new CN88CheckBelongingFilter());
-            GlobalFilters.Filters.Add(new NoCacheFilter());
+            GlobalFilters.Filters.Add(new NoCacheFilterAttribute());
 
             StaticResources.Init(GetBuildVersion());
 

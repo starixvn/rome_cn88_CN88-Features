@@ -28,11 +28,7 @@
 
     public submit(url: string, data, levelName) {
         this.$.blockUI();
-        const unauthorizedCode = 403, mainFrame = this.topWindow["main"];
-
-        if (typeof mainFrame.customerList !== "undefined") {
-            mainFrame.customerList.reloadData(levelName);
-        }
+        const unauthorizedCode = 403;
 
         this.$.ajax({
             type: "POST",
@@ -44,7 +40,7 @@
             }
         })
             .done((result) => {
-                result.IsSuccess ? this.updateSuccesfully() : this.showFailedMessage(result.Message);
+                result.IsSuccess ? this.updateSuccesfully(levelName) : this.showFailedMessage(result.Message);
             })
             .fail((jqXHR: JQueryXHR) => {
                 if (jqXHR.status === unauthorizedCode) {
@@ -54,7 +50,14 @@
             .always(this.$.unblockUI);
     }
 
-    updateSuccesfully() {
+    updateSuccesfully(levelName) {
+        const mainFrame = this.topWindow["main"];
+        if (typeof mainFrame.customerList !== "undefined") {
+            mainFrame.customerList.reloadData(levelName);
+        } else {
+            this.topWindow.$("#main").attr("src", (index, attr) => { return attr; });
+        }
+
         this.showSuccesfullyMessage();
         const timeoutDefault = 2000;
 
