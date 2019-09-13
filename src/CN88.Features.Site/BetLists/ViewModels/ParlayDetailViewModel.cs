@@ -13,6 +13,17 @@
 
     public class ParlayDetailViewModel
     {
+        private readonly Dictionary<string, int> statusOrder = new Dictionary<string, int>
+        {
+            { string.Empty, 0 },
+            { BetStatus.Won, 1 },
+            { BetStatus.Lose, 2 },
+            { BetStatus.Draw, 3 },
+            { BetStatus.Void, 4 },
+            { BetStatus.Reject, 5 },
+            { BetStatus.Refund, 6 }
+        };
+
         public ParlayDetailViewModel(
                GetParlayDetailQuery query,
                ParlayDetailReportModel parlayDetailData,
@@ -31,6 +42,7 @@
             if (allowInitializingData)
             {
                 ParlayDetailWrappers = new List<ParlayDetailWrapper>(parlayDetailData.ParlayDetails
+                        .OrderBy(i => statusOrder[i.Status.ToLowerInvariant()])
                         .Select(d => new ParlayDetailWrapper(d, parlayDetailData.MatchDetails, ticketHelper, Divisor)));
                 ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate);
 

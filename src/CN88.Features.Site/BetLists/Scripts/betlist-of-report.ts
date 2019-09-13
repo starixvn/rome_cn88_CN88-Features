@@ -122,15 +122,15 @@ class BetListOfReport {
         exists["-1_0"] = true;
         exists["0_0"] = true;
 
-        var allSports = -1;
+        const allSports = "-1";
         for (const betTypeGroups of betTypes) {
             for (const betTypeGroup of betTypeGroups) {
-                var key = sportType + "_" + betTypeGroup.Value;
+                const key = `${sportType}_${betTypeGroup.Value}`;
                 if (exists[key]) {
                     continue;
                 }
 
-                if (sportType != allSports && betTypeGroup.ProductId != sportType) {
+                if (sportType !== allSports && betTypeGroup.ProductId !== Number(sportType)) {
                     continue;
                 }
 
