@@ -34,7 +34,7 @@
                         .Select(d => new ParlayDetailWrapper(d, parlayDetailData.MatchDetails, ticketHelper, Divisor)));
                 ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate);
 
-                OutStanding = BetListHelpers.Stake(parlayDetailData.Outstanding);
+                OutStanding = BetListHelpers.Stake(parlayDetailData.Outstanding / Divisor);
                 TotalWinLost = ConvertByBetType.Winloss(parlayDetailData.ParlayDetails.Sum(d => d.WinLost + d.PlayerComm) / Divisor);
                 IsRunningTicket = !parlayDetailData.ParlayDetails.Any();
             }
