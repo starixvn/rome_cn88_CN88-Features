@@ -44,7 +44,7 @@
                 ParlayDetailWrappers = new List<ParlayDetailWrapper>(parlayDetailData.ParlayDetails
                         .OrderBy(i => statusOrder[i.Status.ToLowerInvariant()])
                         .Select(d => new ParlayDetailWrapper(d, parlayDetailData.MatchDetails, ticketHelper, Divisor)));
-                ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate);
+                ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
                 OutStanding = BetListHelpers.Stake(parlayDetailData.Outstanding / Divisor);
                 TotalWinLost = ConvertByBetType.Winloss(parlayDetailData.ParlayDetails.Sum(d => d.WinLost + d.PlayerComm) / Divisor);
