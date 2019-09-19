@@ -221,6 +221,14 @@
     ]
   },
   {
+    "outputFileName": "BetLists/bundles/parlay-detail.css",
+    "inputFiles": [
+      "BetLists/Styles/CoreBetListCN88.css",
+      "BetLists/Styles/bet-lists.css",
+      "BetLists/Styles/parlay-detail.css"
+    ]
+  },
+  {
     "outputFileName": "BetLists/bundles/betlist-of-report.js",
     "inputFiles": [
       "BetLists/Scripts/app-path.js",
