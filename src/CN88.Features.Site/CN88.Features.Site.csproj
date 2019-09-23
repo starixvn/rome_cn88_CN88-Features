@@ -1001,6 +1001,7 @@
     <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
     <Content Include="App_Data\securitycode.staging.json" />
     <Content Include="BetLists\Styles\parlay-detail.scss" />
+    <Content Include="BetLists\Views\ParlayDetailMobile.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

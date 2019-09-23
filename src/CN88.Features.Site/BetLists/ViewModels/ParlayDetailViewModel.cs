@@ -28,6 +28,7 @@
                GetParlayDetailQuery query,
                ParlayDetailReportModel parlayDetailData,
                ITicketHelper ticketHelper,
+               bool isMobile,
                bool isExportingExcel = false)
         {
             Divisor = query.Divisor;
@@ -50,7 +51,11 @@
                 TotalWinLost = ConvertByBetType.Winloss(parlayDetailData.ParlayDetails.Sum(d => d.WinLost + d.PlayerComm) / Divisor);
                 IsRunningTicket = !parlayDetailData.ParlayDetails.Any();
             }
+
+            IsMobile = isMobile;
         }
+
+        public bool IsMobile { get; }
 
         public GetParlayDetailQuery Query { get; }
 

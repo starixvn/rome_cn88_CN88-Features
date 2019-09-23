@@ -8,6 +8,12 @@
     @StaticResources.RenderStyles("~/BetLists/bundles/parlay-detail")
 }
 
+@if (Model.IsMobile)
+{
+    @Html.Partial("~/BetLists/Views/ParlayDetailMobile.cshtml", Model);
+}
+else
+{
 <div class="popup-modal">
     @helper RenderDetailItems(IGrouping<string, ParlayDetailWrapper> groupDetailItem)
     {
@@ -187,3 +193,5 @@
         </div>
     }
 </div>
+}
+
