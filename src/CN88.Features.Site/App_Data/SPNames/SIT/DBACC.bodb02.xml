@@ -2,6 +2,9 @@
 <Functions>
   <Function Name="Bet Lists">
     <Setting Key="CS_BetList_Parlay_GetSubTickets" SpName="CS_BetList_Parlay_GetSubTickets" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_BetList_Parlay_TicketDetail" SpName="CS_BetList_Parlay_TicketDetail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_BetList_Parlay_TicketDetail" SpName="CS_BetList_Parlay_TicketDetail" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0" >
+      <Mapping DataField="modds" ObjectProperty="Odds" />
+    </Setting>
+
   </Function>
 </Functions>

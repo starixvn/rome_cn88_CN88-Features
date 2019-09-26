@@ -24,6 +24,10 @@
     "inputFile": "BetLists/Styles/bet-lists.scss"
   },
   {
+    "outputFile": "BetLists/Styles/parlay-detail.css",
+    "inputFile": "BetLists/Styles/parlay-detail.scss"
+  },  
+  {
     "outputFile": "CustomerList/Styles/member-statement.css",
     "inputFile": "CustomerList/Styles/member-statement.scss"
   },

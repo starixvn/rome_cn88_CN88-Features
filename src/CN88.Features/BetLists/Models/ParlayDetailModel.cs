@@ -4,6 +4,11 @@
 
     public class ParlayDetailModel
     {
+        public ParlayDetailModel()
+        {
+
+        }
+
         public ParlayDetailModel(
                DateTime winlostDate,
                long transId,

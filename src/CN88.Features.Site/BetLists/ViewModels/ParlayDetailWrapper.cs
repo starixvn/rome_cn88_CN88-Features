@@ -63,12 +63,6 @@
         {
             var events = new List<string>();
 
-            if (ParlayDetail.Status.ToLowerInvariant().Equals(BetStatus.Lose))
-            {
-                events.Add(BetListsResources.LosingTickets);
-                return events;
-            }
-
             var currentSerial = ParlayDetail.Serial;
             var matches = MatchDetails.Where(m => m.Serial == currentSerial);
 
@@ -81,8 +75,6 @@
         }
 
         private string GetOdds()
-            => ParlayDetail.Status.ToLowerInvariant().Equals(BetStatus.Lose)
-            ? "-"
-            : ConvertByBetType.CommValue(ParlayDetail.Odds);
+            => ConvertByBetType.CommValue(ParlayDetail.Odds);
     }
 }

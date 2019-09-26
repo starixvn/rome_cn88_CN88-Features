@@ -79,7 +79,7 @@
 
             var parlayDetailData = service.GetParlayDetails(param);
 
-            return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, isExportingExcel);
+            return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, false, isExportingExcel);
         }
 
         private Mapper<IEnumerable<ParlayDetailWrapper>> DetailsMapper()

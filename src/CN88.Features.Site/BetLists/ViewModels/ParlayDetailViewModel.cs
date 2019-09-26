@@ -13,10 +13,22 @@
 
     public class ParlayDetailViewModel
     {
+        private readonly Dictionary<string, int> statusOrder = new Dictionary<string, int>
+        {
+            { string.Empty, 0 },
+            { BetStatus.Won, 1 },
+            { BetStatus.Lose, 2 },
+            { BetStatus.Draw, 3 },
+            { BetStatus.Void, 4 },
+            { BetStatus.Reject, 5 },
+            { BetStatus.Refund, 6 }
+        };
+
         public ParlayDetailViewModel(
                GetParlayDetailQuery query,
                ParlayDetailReportModel parlayDetailData,
                ITicketHelper ticketHelper,
+               bool isMobile,
                bool isExportingExcel = false)
         {
             Divisor = query.Divisor;
@@ -31,14 +43,19 @@
             if (allowInitializingData)
             {
                 ParlayDetailWrappers = new List<ParlayDetailWrapper>(parlayDetailData.ParlayDetails
+                        .OrderBy(i => statusOrder[i.Status.ToLowerInvariant()])
                         .Select(d => new ParlayDetailWrapper(d, parlayDetailData.MatchDetails, ticketHelper, Divisor)));
-                ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate);
+                ParlayDetailWrapperGroups = ParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
                 OutStanding = BetListHelpers.Stake(parlayDetailData.Outstanding / Divisor);
                 TotalWinLost = ConvertByBetType.Winloss(parlayDetailData.ParlayDetails.Sum(d => d.WinLost + d.PlayerComm) / Divisor);
                 IsRunningTicket = !parlayDetailData.ParlayDetails.Any();
             }
+
+            IsMobile = isMobile;
         }
+
+        public bool IsMobile { get; }
 
         public GetParlayDetailQuery Query { get; }
 

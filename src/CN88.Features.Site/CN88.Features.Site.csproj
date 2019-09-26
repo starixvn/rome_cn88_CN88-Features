@@ -492,6 +492,10 @@
     <Content Include="BetLists\bundles\betlist.min.js">
       <DependentUpon>betlist.js</DependentUpon>
     </Content>
+    <Content Include="BetLists\bundles\parlay-detail.css" />
+    <Content Include="BetLists\bundles\parlay-detail.min.css">
+      <DependentUpon>parlay-detail.css</DependentUpon>
+    </Content>
     <Content Include="BetLists\bundles\total-bet-parlay.js" />
     <Content Include="BetLists\bundles\total-bet-parlay.min.js">
       <DependentUpon>total-bet-parlay.js</DependentUpon>
@@ -533,6 +537,12 @@
     <Content Include="BetLists\Styles\images\plus_details.svg" />
     <Content Include="BetLists\Styles\images\q_Icon2_1.png" />
     <Content Include="BetLists\Styles\images\q_Icon_2.png" />
+    <Content Include="BetLists\Styles\parlay-detail.css">
+      <DependentUpon>parlay-detail.scss</DependentUpon>
+    </Content>
+    <Content Include="BetLists\Styles\parlay-detail.min.css">
+      <DependentUpon>parlay-detail.css</DependentUpon>
+    </Content>
     <Content Include="BetLists\Styles\wager-monitor-console.css">
       <DependentUpon>wager-monitor-console.scss</DependentUpon>
     </Content>
@@ -608,6 +618,9 @@
     </Content>
     <Content Include="CustomerList\Styles\popup.min.css">
       <DependentUpon>popup.css</DependentUpon>
+    </Content>
+    <Content Include="CustomerList\Styles\_variables.css">
+      <DependentUpon>_variables.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Reports\bundles\index.js" />
@@ -987,6 +1000,8 @@
     <Content Include="BetLists\Views\Components\TotalRows.cshtml" />
     <Content Include="BetLists\Styles\audio\TPBTLOW.ogg" />
     <Content Include="App_Data\securitycode.staging.json" />
+    <Content Include="BetLists\Styles\parlay-detail.scss" />
+    <Content Include="BetLists\Views\ParlayDetailMobile.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

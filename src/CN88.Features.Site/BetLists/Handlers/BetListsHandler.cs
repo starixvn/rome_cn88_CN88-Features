@@ -134,7 +134,7 @@
 
             var parlayDetailData = betListService.GetParlayDetails(param);
 
-            return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, isExportingExcel: false);
+            return new ParlayDetailViewModel(message, parlayDetailData, ticketHelper, browserHelper.IsMobile(), isExportingExcel: false);
         }
 
         public ParlaySubTicketsViewModel Handle(GetParlaySubTicketsQuery message)
