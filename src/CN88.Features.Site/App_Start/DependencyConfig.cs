@@ -130,6 +130,8 @@
             RegisterBetListCore(container);
 
             container.Register<WagerMonitoringService, WagerMonitoringServiceImpl>();
+
+            container.RegisterSingleton<HeadlineService, HeadlineServiceImpl>();
         }
 
         private static void RegisterBetListCore(Container container)

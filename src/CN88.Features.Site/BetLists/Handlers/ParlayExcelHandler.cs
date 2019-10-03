@@ -75,7 +75,8 @@
                 message.RefNo,
                 message.TransId,
                 message.BetId,
-                message.CustId);
+                message.CustId,
+                message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
             var parlayDetailData = service.GetParlayDetails(param);
 

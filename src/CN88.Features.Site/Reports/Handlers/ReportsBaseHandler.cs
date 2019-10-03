@@ -34,7 +34,8 @@
                 message.UserSelectedBetTypeId,
                 message.ReportType,
                 message.UserSelectedLiveStatusId,
-                message.CustLevel);
+                message.CustLevel,
+                message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
         }
 
         protected internal static ReportModel AccumulateGrandTotal(IEnumerable<ReportModel> reportData)

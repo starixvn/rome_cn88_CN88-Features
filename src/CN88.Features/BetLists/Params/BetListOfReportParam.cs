@@ -12,7 +12,8 @@
             int betTypeGroup,
             int liveIndicator,
             int type,
-            DateTime limitedDate)
+            DateTime limitedDate,
+            int headlineId)
         {
             CustId = custId;
             FromDate = fromDate;
@@ -22,6 +23,7 @@
             LiveIndicator = liveIndicator;
             Type = type;
             LimitedDate = limitedDate;
+            HeadlineId = headlineId;
         }
 
         public int CustId { get; }
@@ -39,5 +41,9 @@
         public int Type { get; }
 
         public DateTime LimitedDate { get; }
+
+        public int HeadlineId { get; }
+
+        public bool IsHeadline => HeadlineId > 0;
     }
 }

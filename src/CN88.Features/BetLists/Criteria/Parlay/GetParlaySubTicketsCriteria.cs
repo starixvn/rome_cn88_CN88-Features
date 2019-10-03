@@ -9,11 +9,14 @@
         {
             TransId = param.TransId;
             CustId = param.CustId;
+            HeadlineId = param.HeadlineId;
         }
 
         public string TransId { get; }
 
         public int CustId { get; }
+
+        public int HeadlineId { get; }
 
         public override string GetSettingKey() => "CS_BetList_Parlay_GetSubTickets";
 

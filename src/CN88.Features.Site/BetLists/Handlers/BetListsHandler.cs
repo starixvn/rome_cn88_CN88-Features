@@ -83,7 +83,8 @@
                 message.UserSelectedBetTypeId,
                 message.UserSelectedLiveStatusId,
                 message.Type,
-                message.LimitedDateToShowInfo);
+                message.LimitedDateToShowInfo,
+                message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
             var betlistData = betListService.GetBetListOfReport(param);
 
@@ -117,7 +118,8 @@
                 message.UserSelectedBetTypeId,
                 message.UserSelectedLiveStatusId,
                 message.Type,
-                message.LimitedDateToShowInfo);
+                message.LimitedDateToShowInfo,
+                message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
             var betlistData = betListService.GetBetListOfReport(param);
 
@@ -162,7 +164,8 @@
                 message.RefNo,
                 message.TransId,
                 message.BetId,
-                message.CustId);
+                message.CustId,
+                message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
             var parlayDetailData = betListService.GetParlayDetails(param);
 
@@ -171,7 +174,7 @@
 
         public ParlaySubTicketsViewModel Handle(GetParlaySubTicketsQuery message)
         {
-            var param = new GetParlaySubTicketsParam(message.TransId, message.CustId);
+            var param = new GetParlaySubTicketsParam(message.TransId, message.CustId, message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
             var tickets = betListService.GetParlaySubTickets(param);
 

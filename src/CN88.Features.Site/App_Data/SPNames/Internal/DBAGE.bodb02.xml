@@ -16,12 +16,26 @@
     <Setting Key="CS_Rpt_Winloss_Master" SpName="CS_Rpt_Winloss_Master" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_Rpt_Winloss_Super" SpName="CS_Rpt_Winloss_Super" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
 
+    <Setting Key="CS_HL_Rpt_Winloss_Member" SpName="CS_HL_Rpt_Winloss_Member" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="AgentResultA" ObjectProperty="AgentResult"></Mapping>
+    </Setting>
+    <Setting Key="CS_HL_Rpt_Winloss_Agent" SpName="CS_HL_Rpt_Winloss_Agent" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_HL_Rpt_Winloss_Master" SpName="CS_HL_Rpt_Winloss_Master" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_HL_Rpt_Winloss_Super" SpName="CS_HL_Rpt_Winloss_Super" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+
     <Setting Key="CS_Rpt_Cancelled_Member" SpName="CS_Rpt_Cancelled_Member" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
       <Mapping DataField="AgentResultA" ObjectProperty="AgentResult"></Mapping>
     </Setting>
     <Setting Key="CS_Rpt_Cancelled_Agent" SpName="CS_Rpt_Cancelled_Agent" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_Rpt_Cancelled_Master" SpName="CS_Rpt_Cancelled_Master" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_Rpt_Cancelled_Super" SpName="CS_Rpt_Cancelled_Super" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+
+    <Setting Key="CS_HL_Rpt_Cancelled_Member" SpName="CS_HL_Rpt_Cancelled_Member" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="AgentResultA" ObjectProperty="AgentResult"></Mapping>
+    </Setting>
+    <Setting Key="CS_HL_Rpt_Cancelled_Agent" SpName="CS_HL_Rpt_Cancelled_Agent" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_HL_Rpt_Cancelled_Master" SpName="CS_HL_Rpt_Cancelled_Master" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_HL_Rpt_Cancelled_Super" SpName="CS_HL_Rpt_Cancelled_Super" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
 
     <Setting Key="CS_Rpt_SettlementSummary" SpName="CS_Rpt_SettlementSummary" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_Rpt_MemberStatement_Sel" SpName="CS_Rpt_MemberStatement_Sel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />

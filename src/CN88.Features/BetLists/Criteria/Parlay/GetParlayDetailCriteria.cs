@@ -15,6 +15,7 @@
             TransId = param.TransId;
             BetId = param.BetId;
             CustId = param.CustId;
+            HeadlineId = param.HeadlineId;
 
             MoveBetDay = moveBetsDate;
             BalanceUpDay = balanceUpDay;
@@ -27,6 +28,8 @@
         public string BetId { get; }
 
         public int CustId { get; }
+
+        public int HeadlineId { get; }
 
         public DateTime MoveBetDay { get; }
 

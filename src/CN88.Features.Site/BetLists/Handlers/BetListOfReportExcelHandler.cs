@@ -85,7 +85,8 @@
                 message.UserSelectedBetTypeId,
                 message.UserSelectedLiveStatusId,
                 message.Type,
-                message.LimitedDateToShowInfo);
+                message.LimitedDateToShowInfo,
+                message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
             var betlistData = service.GetBetListOfReport(param);
             var viewModel =

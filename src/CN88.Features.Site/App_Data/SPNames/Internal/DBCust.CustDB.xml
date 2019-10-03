@@ -2,6 +2,7 @@
   <Function Name="Check belonging">
     <Setting Key="CS_HeadlineSelCheckBelonging" SpName="CS_HeadlineSelCheckBelonging" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="CS_CustomerStatusSel" SpName="CS_CustomerStatusSel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="CS_Customer_CheckBelongingHeadline_ByDate" SpName="CS_Customer_CheckBelongingHeadline_ByDate" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
   </Function>
   <Function Name="Customer List">
     <Setting Key="CS_Customer_Credit_Sel" SpName="CS_Customer_Credit_Sel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />

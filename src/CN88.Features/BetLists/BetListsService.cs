@@ -37,13 +37,16 @@
     {
         private readonly ReportDateService reportDateService;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly HeadlineService headlineService;
 
         public BetListsServiceImpl(
             ReportDateService reportDateService,
-            IDynamicRepository dynamicRepository)
+            IDynamicRepository dynamicRepository,
+            HeadlineService headlineService)
         {
             this.reportDateService = reportDateService;
             this.dynamicRepository = dynamicRepository;
+            this.headlineService = headlineService;
         }
 
         public BetListData GetBetListOfReport(BetListOfReportParam param)
@@ -109,11 +112,15 @@
             => GetBetListData(new StartedWagerCriteria(param));
 
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetListBeforeBalanceUpDay(BetListOfReportParam param, DateTime fromDate, DateTime toDate)
-          => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
-              BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), fromDate, toDate, isBackup: true));
+            => param.IsHeadline && !headlineService.IsCustomerBelonging(param.HeadlineId, param.CustId, fromDate, toDate)
+            ? new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>(Enumerable.Empty<TicketDto>(), Enumerable.Empty<TicketData>())
+            : dynamicRepository.FetchMultiple<TicketDto, TicketData>(
+                BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), fromDate, toDate, isBackup: true));
 
         private Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>> GetBetList(BetListOfReportParam param, DateTime fromDate)
-            => dynamicRepository.FetchMultiple<TicketDto, TicketData>(
+            => param.IsHeadline && !headlineService.IsCustomerBelonging(param.HeadlineId, param.CustId, fromDate, param.ToDate)
+            ? new Tuple<IEnumerable<TicketDto>, IEnumerable<TicketData>>(Enumerable.Empty<TicketDto>(), Enumerable.Empty<TicketData>())
+            : dynamicRepository.FetchMultiple<TicketDto, TicketData>(
                 BetListOfReportCriteriaFactory.CreateCriteria(param, reportDateService.GetMoveBetsDay(), fromDate, param.ToDate, isBackup: false));
 
         private BetListData GetBetListData(CriteriaBase criteria)
