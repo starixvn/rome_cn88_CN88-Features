@@ -22,6 +22,10 @@
         public async Task<ActionResult> BetListOfReport(BetListOfReportQuery message)
             => await ViewAsync(message, "ReportBetList");
 
+        [HttpGet]
+        public async Task<ActionResult> BetListOfEBReport(BetListOfEBReportQuery message)
+            => await ViewAsync(message, "EBReportBetList");
+
         [HttpGet, RestrictHeadlineFilter]
         public async Task<ActionResult> BetListOfStatement(BetListOfStatementQuery message)
              => await ViewAsync(message, "StatementBetList");
@@ -39,6 +43,9 @@
 
         [ReCheckPassword]
         public async Task<FileContentResult> BetListOfReportExcel(BetListOfReportExcelQuery message)
+            => await ExcelView(message);
+
+        public async Task<FileContentResult> BetListOfEBReportExcel(BetListOfEBReportExcelQuery message)
             => await ExcelView(message);
 
         [HttpGet, RestrictHeadlineFilter]

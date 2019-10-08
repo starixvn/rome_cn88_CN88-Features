@@ -312,4 +312,13 @@
   <data name="NonSports" xml:space="preserve">
     <value>非體育博彩</value>
   </data>
+  <data name="ExcludeTestData" xml:space="preserve">
+    <value>排除測試資料</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
 </root>

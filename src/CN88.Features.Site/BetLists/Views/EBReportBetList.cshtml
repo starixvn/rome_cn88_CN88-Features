@@ -1,0 +1,65 @@
+﻿@using CN88.Features.Shared.Extensions;
+
+@model BetListOfEBReportViewModel
+@{
+    ViewBag.Title = "Bet List";
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+
+@section Styles {
+    @StaticResources.RenderStyles("~/BetLists/bundles/betlist-of-report")
+}
+<div class="betlist-container">
+    <div class="page-title title-report-detail">
+        <span class="report-name">@Model.ReportTitle</span>
+        <div class="breadcrumb-container">
+            <span id="icon-excel" class="icon-excel" title="@SharedResources.ExportToExcel" data-toggle="tooltip" data-placement="bottom"></span>
+        </div>
+
+    </div>
+    <div class="form-inline filter report-form" role="form">
+        <div class="form-group-l">
+            <label>@SharedResources.Sport</label>
+            @Model.SportGroups
+        </div>
+        <div class="form-group-l">
+            <label>@SharedResources.From</label>
+            @Model.Query.FromDate.ToShortDate()
+        </div>
+        <div class="form-group-l">
+            <label>@SharedResources.To</label>
+            @Model.Query.ToDate.ToShortDate()
+        </div>
+        <div class="form-group-l">
+            <label>@SharedResources.BetType</label>
+            @Model.BetTypeSelectionViewModel.Items.FirstOrDefault(i => i.Selected).Text
+        </div>
+        <div class="form-group-l">
+            <label>@SharedResources.Market</label>
+            @Model.LiveStatusSelectionViewModel.Items.FirstOrDefault(i => i.Selected).Text
+        </div>
+        <div class="form-group">
+            <label>@SharedResources.ExcludeTestData</label>
+            @(Model.Query.ExcludeDataTest ? SharedResources.Yes : SharedResources.No)
+        </div>
+    </div>
+    @Html.Partial("~/BetLists/Views/BetListTable.cshtml")
+    @Pager.Render(Model.PagerViewModel)
+
+</div>
+
+<form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("BetListOfEBReportExcel","BetLists")">
+    @Html.Hidden("FromDate", Model.Query.FromDate)
+    @Html.Hidden("ToDate", Model.Query.ToDate)
+    @Html.Hidden("UserSelectedSportGroupIds", Model.Query.UserSelectedSportGroupId)
+    @Html.Hidden("UserSelectedBetTypeId", Model.Query.UserSelectedBetTypeId)
+    @Html.Hidden("UserSelectedLiveStatusId", Model.LiveStatusSelectionViewModel.UserSelectedId)
+    @Html.Hidden("CustId", Model.CustId)
+    @Html.Hidden("CustName", Model.Query.CustName)
+    @Html.Hidden("CustLevelId", Model.CustLevel.Value)
+    @Html.Hidden("Type", Model.Query.Type)
+</form>
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-report")
+}

@@ -24,6 +24,7 @@
     public class BetListsHandler :
         BaseHandler,
         IRequestHandler<BetListOfReportQuery, BetListOfReportViewModel>,
+        IRequestHandler<BetListOfEBReportQuery, BetListOfEBReportViewModel>,
         IRequestHandler<BetListOfStatementQuery, BetListOfStatementViewModel>,
         IRequestHandler<GetParlayDetailQuery, ParlayDetailViewModel>,
         IRequestHandler<GetParlaySubTicketsQuery, ParlaySubTicketsViewModel>,
@@ -103,6 +104,37 @@
                 lastPeriod,
                 BuildBetTypeSelectListItems(allBetTypes, 0),
                 oldAccountingPeriods,
+                browserHelper.IsMobile());
+        }
+
+        public BetListOfEBReportViewModel Handle(BetListOfEBReportQuery message)
+        {
+            var param = new BetListOfReportParam(
+                message.CustId,
+                message.FromDate,
+                message.ToDate,
+                message.UserSelectedSportGroupId,
+                message.UserSelectedBetTypeId,
+                message.UserSelectedLiveStatusId,
+                message.Type,
+                message.LimitedDateToShowInfo);
+
+            var betlistData = betListService.GetBetListOfReport(param);
+
+            var sportGroupIds = message.UserSelectedSportGroupId.ToListInt();
+            var sportGroups = sportGroupService.GetSportGroups().Where(i => sportGroupIds.Contains(i.Id));
+            var allSportGroups = sportGroupService.GetSportGroups();
+            var betTypes = betTypeService.GetBetTypeGroupsBySport(sportGroupIds);
+
+            return new BetListOfEBReportViewModel(
+                message,
+                betlistData,
+                ticketHelper,
+                cn88Builder,
+                builder,
+                sportGroups,
+                allSportGroups,
+                BuildBetTypeSelectListItems(betTypes, message.UserSelectedBetTypeId),
                 browserHelper.IsMobile());
         }
 

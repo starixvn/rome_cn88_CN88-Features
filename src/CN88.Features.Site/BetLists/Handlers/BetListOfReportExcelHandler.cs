@@ -22,7 +22,8 @@
 
     public class BetListOfReportExcelHandler :
         BetListExcelBaseHandler,
-        IRequestHandler<BetListOfReportExcelQuery, ExcelFileViewModel>
+        IRequestHandler<BetListOfReportExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<BetListOfEBReportExcelQuery, ExcelFileViewModel>
     {
         private readonly BetListsService service;
         private readonly ITicketHelper ticketHelper;
@@ -62,6 +63,41 @@
                 message.FromDate,
                 message.ToDate,
                 sportGroupIds.JoinWithComma(),
+                message.UserSelectedBetTypeId,
+                message.UserSelectedLiveStatusId,
+                message.Type,
+                message.LimitedDateToShowInfo);
+
+            var betlistData = service.GetBetListOfReport(param);
+            var viewModel =
+                new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+
+            var onebookWorkbook = workbook
+                .SetData(viewModel, ExcelBuilder, cn88ExcelBuilder)
+                .UseTemplate(GetTemplateInfo(viewerLevel));
+
+            RtfHelper = message.RtfHelper ?? InitRTFHelper((onebookWorkbook as NpoiWorkbook<IEnumerable<TicketDto>>).Workbook);
+            workbook.SetRTFHelper(RtfHelper);
+
+            var title = $"{BetListsResources.MemberBetList.ToUpperInvariant()} {message.CustName}|{message.FromDate.ToShortDateFormat()} --> {message.ToDate.ToShortDateFormat()}";
+            var fileContent = onebookWorkbook
+                .Header(BetListsResources.ResourceManager.GetString)
+                .Title(title)
+                .ExportToBytes();
+
+            var fileName = $"{BetListsResources.BetList.ToUpperInvariant()} - {message.CustName} - {message.FromDate.ToShortDateFormat()} -- {message.ToDate.ToShortDateFormat()}";
+
+            return new ExcelFileViewModel(fileName, fileContent);
+        }
+
+        public ExcelFileViewModel Handle(BetListOfEBReportExcelQuery message)
+        {
+            var viewerLevel = Enumeration.FromValue<UserLevel>(message.ViewerLevelId);
+            var param = new BetListOfReportParam(
+                message.CustId,
+                message.FromDate,
+                message.ToDate,
+                message.UserSelectedSportGroupIds,
                 message.UserSelectedBetTypeId,
                 message.UserSelectedLiveStatusId,
                 message.Type,
