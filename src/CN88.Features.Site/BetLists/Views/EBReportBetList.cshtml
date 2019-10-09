@@ -18,23 +18,23 @@
 
     </div>
     <div class="form-inline filter report-form" role="form">
-        <div class="form-group-l">
+        <div class="form-group">
             <label>@SharedResources.Sport</label>
             @Model.SportGroups
         </div>
-        <div class="form-group-l">
+        <div class="form-group">
             <label>@SharedResources.From</label>
             @Model.Query.FromDate.ToShortDate()
         </div>
-        <div class="form-group-l">
+        <div class="form-group">
             <label>@SharedResources.To</label>
             @Model.Query.ToDate.ToShortDate()
         </div>
-        <div class="form-group-l">
+        <div class="form-group">
             <label>@SharedResources.BetType</label>
             @Model.BetTypeSelectionViewModel.Items.FirstOrDefault(i => i.Selected).Text
         </div>
-        <div class="form-group-l">
+        <div class="form-group">
             <label>@SharedResources.Market</label>
             @Model.LiveStatusSelectionViewModel.Items.FirstOrDefault(i => i.Selected).Text
         </div>
@@ -59,7 +59,7 @@
     @Html.Hidden("CustLevelId", Model.CustLevel.Value)
     @Html.Hidden("Type", Model.Query.Type)
 </form>
-
+@Html.Partial("~/BetLists/Views/Components/HiddenFields.cshtml")
 @section Scripts {
     @StaticResources.RenderScripts("~/BetLists/bundles/betlist-of-report")
 }
