@@ -771,7 +771,9 @@
     <Compile Include="BetLists\Helpers\BetListHelpers.cs" />
     <Compile Include="BetLists\Models\SportStakeCondition.cs" />
     <Compile Include="BetLists\Requests\BetListBaseQuery.cs" />
+    <Compile Include="BetLists\Requests\EB\BetListOfEBReportExcelQuery.cs" />
     <Compile Include="BetLists\Requests\BetListOfReportExcelQuery.cs" />
+    <Compile Include="BetLists\Requests\EB\BetListOfEBReportQuery.cs" />
     <Compile Include="BetLists\Requests\Totalbets\StartedWagerDetailsQuery.cs" />
     <Compile Include="BetLists\Requests\Totalbets\StartedWagerByAccountQuery.cs" />
     <Compile Include="BetLists\Requests\Totalbets\EventWagerDetailsQuery.cs" />
@@ -783,6 +785,7 @@
     <Compile Include="BetLists\Requests\GetParlayDetailQuery.cs" />
     <Compile Include="BetLists\Requests\TotalBetParlayQuery.cs" />
     <Compile Include="BetLists\Requests\Totalbets\OutrightWagerDetailsQuery.cs" />
+    <Compile Include="BetLists\ViewModels\BetListOfEBReportViewModel.cs" />
     <Compile Include="BetLists\ViewModels\BetListViewModelBase.cs" />
     <Compile Include="BetLists\ViewModels\Totalbets\StartedWagerDetailsViewModel.cs" />
     <Compile Include="BetLists\ViewModels\Totalbets\StartedWagerByAccountViewModel.cs" />
@@ -1002,6 +1005,7 @@
     <Content Include="App_Data\securitycode.staging.json" />
     <Content Include="BetLists\Styles\parlay-detail.scss" />
     <Content Include="BetLists\Views\ParlayDetailMobile.cshtml" />
+    <Content Include="BetLists\Views\EBReportBetList.cshtml" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

@@ -1,9 +1,11 @@
 ﻿namespace CN88.Features.Site.BetLists.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using BetList.Core.Builders;
     using Fanex.BetList.Core.Builder;
     using Fanex.BetList.Core.Entities;
-    using Features.BetLists.Constants;
     using Features.BetLists.Models;
     using Features.Reports.AppResources;
     using Features.Reports.Constants;
@@ -16,23 +18,9 @@
     using Shared.Helpers;
     using Shared.ViewModels;
     using Shared.ViewModels.Components;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     public class BetListOfReportViewModel : BetListViewModelBase
-    {
-        private static readonly IDictionary<int, int> ReportTypes = new Dictionary<int, int>
-        {
-            [BetListTypeConstant.Settled] = ReportTypeConstants.SettledWager,
-            [BetListTypeConstant.OldSettled] = ReportTypeConstants.SettledWager,
-            [BetListTypeConstant.Unsettled] = ReportTypeConstants.UnsettledWager,
-            [BetListTypeConstant.Cancelled] = ReportTypeConstants.CancelledReport,
-            [BetListTypeConstant.OldCancelled] = ReportTypeConstants.CancelledReport,
-            [BetListTypeConstant.Abnormal] = ReportTypeConstants.AbnormalBets,
-            [BetListTypeConstant.OldAbnormal] = ReportTypeConstants.AbnormalBets,
-        };
-
+    {      
         protected readonly BetListOfReportQuery message;
 
         public BetListOfReportViewModel(

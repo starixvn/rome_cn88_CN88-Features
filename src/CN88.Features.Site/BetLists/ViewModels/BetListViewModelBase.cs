@@ -3,7 +3,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using CN88.BetList.Core.Builders;
+    using CN88.Features.BetLists.Constants;
     using CN88.Features.BetLists.Models;
+    using CN88.Features.Reports.Constants;
     using CN88.Features.Shared.Configurations;
     using CN88.Features.Shared.Models;
     using CN88.Features.Site.BetLists.Helpers;
@@ -16,6 +18,17 @@
 
     public class BetListViewModelBase
     {
+        protected static readonly IDictionary<int, int> ReportTypes = new Dictionary<int, int>
+        {
+            [BetListTypeConstant.Settled] = ReportTypeConstants.SettledWager,
+            [BetListTypeConstant.OldSettled] = ReportTypeConstants.SettledWager,
+            [BetListTypeConstant.Unsettled] = ReportTypeConstants.UnsettledWager,
+            [BetListTypeConstant.Cancelled] = ReportTypeConstants.CancelledReport,
+            [BetListTypeConstant.OldCancelled] = ReportTypeConstants.CancelledReport,
+            [BetListTypeConstant.Abnormal] = ReportTypeConstants.AbnormalBets,
+            [BetListTypeConstant.OldAbnormal] = ReportTypeConstants.AbnormalBets,
+        };
+
         public BetListViewModelBase(
             BetListBaseQuery message,
             BetListData betListData,
