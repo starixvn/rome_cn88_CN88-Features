@@ -57,73 +57,12 @@
         public ExcelFileViewModel Handle(BetListOfReportExcelQuery message)
         {
             var sportGroupIds = sportGroupService.GetSportGroupIdsByType(message.UserSelectedSportGroupId);
-            var viewerLevel = Enumeration.FromValue<UserLevel>(message.ViewerLevelId);
-            var param = new BetListOfReportParam(
-                message.CustId,
-                message.FromDate,
-                message.ToDate,
-                sportGroupIds.JoinWithComma(),
-                message.UserSelectedBetTypeId,
-                message.UserSelectedLiveStatusId,
-                message.Type,
-                message.LimitedDateToShowInfo);
 
-            var betlistData = service.GetBetListOfReport(param);
-            var viewModel =
-                new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
-
-            var onebookWorkbook = workbook
-                .SetData(viewModel, ExcelBuilder, cn88ExcelBuilder)
-                .UseTemplate(GetTemplateInfo(viewerLevel));
-
-            RtfHelper = message.RtfHelper ?? InitRTFHelper((onebookWorkbook as NpoiWorkbook<IEnumerable<TicketDto>>).Workbook);
-            workbook.SetRTFHelper(RtfHelper);
-
-            var title = $"{BetListsResources.MemberBetList.ToUpperInvariant()} {message.CustName}|{message.FromDate.ToShortDateFormat()} --> {message.ToDate.ToShortDateFormat()}";
-            var fileContent = onebookWorkbook
-                .Header(BetListsResources.ResourceManager.GetString)
-                .Title(title)
-                .ExportToBytes();
-
-            var fileName = $"{BetListsResources.BetList.ToUpperInvariant()} - {message.CustName} - {message.FromDate.ToShortDateFormat()} -- {message.ToDate.ToShortDateFormat()}";
-
-            return new ExcelFileViewModel(fileName, fileContent);
+            return BuildExcelFileViewModel(message, sportGroupIds.JoinWithComma(), message.RtfHelper);
         }
 
         public ExcelFileViewModel Handle(BetListOfEBReportExcelQuery message)
-        {
-            var viewerLevel = Enumeration.FromValue<UserLevel>(message.ViewerLevelId);
-            var param = new BetListOfReportParam(
-                message.CustId,
-                message.FromDate,
-                message.ToDate,
-                message.UserSelectedSportGroupIds,
-                message.UserSelectedBetTypeId,
-                message.UserSelectedLiveStatusId,
-                message.Type,
-                message.LimitedDateToShowInfo);
-
-            var betlistData = service.GetBetListOfReport(param);
-            var viewModel =
-                new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
-
-            var onebookWorkbook = workbook
-                .SetData(viewModel, ExcelBuilder, cn88ExcelBuilder)
-                .UseTemplate(GetTemplateInfo(viewerLevel));
-
-            RtfHelper = message.RtfHelper ?? InitRTFHelper((onebookWorkbook as NpoiWorkbook<IEnumerable<TicketDto>>).Workbook);
-            workbook.SetRTFHelper(RtfHelper);
-
-            var title = $"{BetListsResources.MemberBetList.ToUpperInvariant()} {message.CustName}|{message.FromDate.ToShortDateFormat()} --> {message.ToDate.ToShortDateFormat()}";
-            var fileContent = onebookWorkbook
-                .Header(BetListsResources.ResourceManager.GetString)
-                .Title(title)
-                .ExportToBytes();
-
-            var fileName = $"{BetListsResources.BetList.ToUpperInvariant()} - {message.CustName} - {message.FromDate.ToShortDateFormat()} -- {message.ToDate.ToShortDateFormat()}";
-
-            return new ExcelFileViewModel(fileName, fileContent);
-        }
+            => BuildExcelFileViewModel(message, message.UserSelectedSportGroupIds, message.RtfHelper);
 
         protected internal override TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
             => new TemplateInfo(
@@ -132,5 +71,42 @@
                   bodyStartIndex: 3,
                   bodyEndIndex: 4,
                   footerEndIndex: 5);
+
+        private ExcelFileViewModel BuildExcelFileViewModel(
+            BetListOfReportQuery message,
+            string sportTypeGroupIds,
+            RTFHelper? rtfHelper)
+        {
+            var param = new BetListOfReportParam(
+                message.CustId,
+                message.FromDate,
+                message.ToDate,
+                sportTypeGroupIds,
+                message.UserSelectedBetTypeId,
+                message.UserSelectedLiveStatusId,
+                message.Type,
+                message.LimitedDateToShowInfo);
+
+            var betlistData = service.GetBetListOfReport(param);
+            var viewModel =
+                new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
+
+            var onebookWorkbook = workbook
+                .SetData(viewModel, ExcelBuilder, cn88ExcelBuilder)
+                .UseTemplate(GetTemplateInfo(message.ActorLevel));
+
+            RtfHelper = rtfHelper ?? InitRTFHelper((onebookWorkbook as NpoiWorkbook<IEnumerable<TicketDto>>).Workbook);
+            workbook.SetRTFHelper(RtfHelper);
+
+            var title = $"{BetListsResources.MemberBetList.ToUpperInvariant()} {message.CustName}|{message.FromDate.ToShortDateFormat()} --> {message.ToDate.ToShortDateFormat()}";
+            var fileContent = onebookWorkbook
+                .Header(BetListsResources.ResourceManager.GetString)
+                .Title(title)
+                .ExportToBytes();
+
+            var fileName = $"{BetListsResources.BetList.ToUpperInvariant()} - {message.CustName} - {message.FromDate.ToShortDateFormat()} -- {message.ToDate.ToShortDateFormat()}";
+
+            return new ExcelFileViewModel(fileName, fileContent);
+        }
     }
 }

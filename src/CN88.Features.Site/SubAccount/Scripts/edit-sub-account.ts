@@ -11,10 +11,15 @@ class EditSubAccount extends BaseSubAccount {
     }
 
     protected getFormData() {
-        let formData = super.getFormData();
-        formData.custId = this.elements.subAccountId;
+        const formData = super.getFormData();
 
-        return formData;
+        return {
+            name: formData.name,
+            pageAccess: formData.pageAccess,
+            isSelectAllDownline: formData.isSelectAllDownline,
+            downlineId: formData.downlineId,
+            custId: this.elements.subAccountId
+        };
     }
 }
 

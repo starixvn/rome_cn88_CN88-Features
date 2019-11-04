@@ -195,6 +195,7 @@
     "inputFiles": [
       "SubAccount/Scripts/aes.js",
       "Shared/Scripts/components/message.js",
+      "SubAccount/Scripts/encryptor.js",
       "SubAccount/Scripts/base-sub-account.js",
       "SubAccount/Scripts/new-sub-account.js"
     ]

@@ -17,6 +17,8 @@
 
     public class BetListOfEBReportViewModel : BetListViewModelBase
     {
+        private const int MaxColumn = 11;
+
         public BetListOfEBReportViewModel(
             BetListOfEBReportQuery message,
             BetListData betListData,
@@ -53,7 +55,7 @@
 
         public int ReportType { get; private set; }
 
-        protected override int GetMaxColumn() => 11;
+        protected override int GetMaxColumn() => MaxColumn;
 
         private static IEnumerable<SelectListItemExt> GetLiveStatusList(BetListOfEBReportQuery message)
             => LiveStatusConstants.LiveStatuses
