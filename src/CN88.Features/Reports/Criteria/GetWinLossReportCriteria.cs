@@ -12,7 +12,6 @@
             bool isAllDownline,
             DateTime fromDate,
             DateTime toDate,
-            DateTime archiveDate,
             DateTime moveBetsDay,
             string sportGroupIds,
             int betTypeId,
@@ -20,11 +19,8 @@
             UserLevel reportLevel)
             : base(custId, subAccId, isOwner, isAllDownline, fromDate, toDate, sportGroupIds, betTypeId, isLive, reportLevel)
         {
-            ArchiveDate = archiveDate;
             MoveBetsDay = moveBetsDay;
         }
-
-        public DateTime ArchiveDate { get; }
 
         public DateTime MoveBetsDay { get; }
 

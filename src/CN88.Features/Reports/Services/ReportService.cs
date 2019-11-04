@@ -74,7 +74,6 @@
         private ICriteria CreateReportCriteria(ReportParam param)
         {
             var moveBetsDay = reportDateService.GetMoveBetsDay();
-            var archiveDate = reportDateService.GetArchiveDate();
 
             if (param.ReportType == ReportTypeConstants.SettledWager)
             {
@@ -85,7 +84,6 @@
                     param.IsAllDownline,
                     param.FromDate,
                     param.ToDate,
-                    archiveDate,
                     moveBetsDay,
                     param.SportGroupId,
                     param.BetTypeId,
@@ -115,7 +113,6 @@
                 param.IsAllDownline,
                 param.FromDate,
                 param.ToDate,
-                archiveDate,
                 moveBetsDay,
                 param.SportGroupId,
                 param.BetTypeId,
