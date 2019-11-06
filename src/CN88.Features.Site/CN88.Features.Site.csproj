@@ -1158,6 +1158,9 @@
     <TypeScriptCompile Include="Shared\Scripts\security-code-checker.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
+    <TypeScriptCompile Include="SubAccount\Scripts\encryptor.ts" >
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\sub-account.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
@@ -1174,7 +1177,7 @@
     <TypeScriptCompile Include="typings\globals\numeral\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\storejs\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
-  </ItemGroup>
+	  </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>

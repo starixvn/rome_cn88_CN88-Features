@@ -183,6 +183,7 @@ class SubAccount {
 
     unlockOrDeleteSubAccount(event: JQueryEventObject, popupTitle: string, popupMessage: string, url: string) {
         const param = this.getSubAccountParam(this.$(event.currentTarget));
+        const popupWidth = 350;
 
         this.top["popupManager"].bootboxConfirm(
             `${popupTitle} - ${param.subAccountName}`,
@@ -193,7 +194,7 @@ class SubAccount {
                     url: url,
                     data: { custId: param.subAccountId },
                     onComplete: () => {
-                        location.reload(true);
+                        location.reload();
                     }
                 };
                 const securityCodeChecker = new SecurityCodeChecker(this.$, this.top, popupTitle, this.resources.okLabel);
@@ -208,7 +209,7 @@ class SubAccount {
                     complete: self.$.unblockUI
                 });
             },
-            350,
+            popupWidth,
             this.resources.okLabel,
             this.resources.cancelLabel);
     }

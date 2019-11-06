@@ -3,7 +3,7 @@
 abstract class BaseSubAccount {
     $: JQueryStatic;
     top: Window;
-    elements: any;
+    elements = null;
     message: Message;
     $checkboxSelectAll: JQuery;
     $downlineCheckboxs: JQuery;
@@ -122,7 +122,7 @@ abstract class BaseSubAccount {
         }
     };
 
-    protected getFormData(): any {
+    protected getFormData() {
         let downlineId = "";
         const isSelectAllDownline = this.$checkboxSelectAll.is(":checked");
 
@@ -229,7 +229,9 @@ abstract class BaseSubAccount {
                 }
             },
             error: (xhr: JQueryXHR) => {
-                if (xhr.status === 401 || xhr.status === 403) {
+                const Unauthorized = 401;
+                const Forbidden = 403;
+                if (xhr.status === Unauthorized || xhr.status === Forbidden) {
                     this.top["siteInfrastructure"].logout();
                 }
             },
