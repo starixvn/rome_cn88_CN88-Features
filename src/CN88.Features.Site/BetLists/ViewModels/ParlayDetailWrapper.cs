@@ -68,7 +68,8 @@
 
             foreach (var match in matches)
             {
-                events.Add($"{ticketHelper.GetTeamNameById(match.HomeId)} - vs - {ticketHelper.GetTeamNameById(match.AwayId)}");
+                var neutral = match.IsNeutral ? $"{BetListsResources.Neutral} " : string.Empty;
+                events.Add($"{ticketHelper.GetTeamNameById(match.HomeId)} {neutral}- vs - {ticketHelper.GetTeamNameById(match.AwayId)}");
             }
 
             return events;
