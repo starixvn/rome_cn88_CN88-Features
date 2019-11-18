@@ -1102,6 +1102,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="BetLists\Scripts\base-betlist.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\base-wager.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report-old.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\total-bet-parlay.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-details.ts" />
@@ -1109,15 +1110,25 @@
     <TypeScriptCompile Include="BetLists\Scripts\betlist-of-statement.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\sportsbook-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\details\base-details.ts" />
-    <TypeScriptCompile Include="BetLists\Scripts\result\other-result-details.ts" />
-    <TypeScriptCompile Include="BetLists\Scripts\result\casino-result-details.ts" />
-    <TypeScriptCompile Include="BetLists\Scripts\result\sportsbook-result-details.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\result\other-result-details.ts">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="BetLists\Scripts\result\casino-result-details.ts">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="BetLists\Scripts\result\sportsbook-result-details.ts">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="BetLists\Scripts\app-path.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\popup-details.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\sub-tickets\parlay-sub-tickets.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\utils.ts" />
-    <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts" />
-    <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts" />
+    <TypeScriptCompile Include="BetLists\Scripts\result\base-result.ts">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="BetLists\Scripts\betlist-of-report.ts">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\filter-modal.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\multi-selection-checkbox.ts" />
     <TypeScriptCompile Include="BetLists\Scripts\wager-monitoring\pause.ts" />
@@ -1125,8 +1136,12 @@
     <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Helpers\customer-list-helper.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\member-statement.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\online-member.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\base-list.ts" />
-    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\index.ts" />
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\base-list.ts">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\index.ts">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\credit-popup.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\popup-base.ts" />
     <TypeScriptCompile Include="CustomerList\Scripts\DownlineList\Popup\status-popup.ts" />
@@ -1158,7 +1173,7 @@
     <TypeScriptCompile Include="Shared\Scripts\security-code-checker.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\base-sub-account.ts" />
     <TypeScriptCompile Include="SubAccount\Scripts\edit-sub-account.ts" />
-    <TypeScriptCompile Include="SubAccount\Scripts\encryptor.ts" >
+    <TypeScriptCompile Include="SubAccount\Scripts\encryptor.ts">
       <SonarQubeExclude>true</SonarQubeExclude>
     </TypeScriptCompile>
     <TypeScriptCompile Include="SubAccount\Scripts\new-sub-account.ts" />
@@ -1177,7 +1192,7 @@
     <TypeScriptCompile Include="typings\globals\numeral\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\storejs\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
-	  </ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
