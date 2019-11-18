@@ -1,4 +1,4 @@
-﻿<Functions SiteId="115" SiteName="CN88">
+﻿<Functions SiteId="107" SiteName="CN88 - Agency">
   <Function Name="Customer List">
     <Setting Key="CS_Member_TotalBetStake_Sel" SpName="CS_Member_TotalBetStake_Sel " DbName="DBTXN.BODB02.BODBDownlineNet" Plain="0" >
       <Mapping DataField="TotalBetStake" ObjectProperty="UsedCredit" Class="CreditRangeModel"></Mapping>

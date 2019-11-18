@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Functions>
+<Functions SiteId="107" SiteName="CN88 - Agency">
   <Function Name="Shared">
     <Setting Key="CS_SportType_Sel" SpName="CS_SportType_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_BetType_Sel" SpName="CS_BetType_Sel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">

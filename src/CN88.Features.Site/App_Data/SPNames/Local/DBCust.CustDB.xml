@@ -1,4 +1,4 @@
-<Functions SiteId="115" SiteName="CN88">
+<Functions SiteId="107" SiteName="CN88 - Agency">
   <Function Name="Check belonging">
     <Setting Key="CS_HeadlineSelCheckBelonging" SpName="CS_HeadlineSelCheckBelonging" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustomerStatusSel" SpName="CS_CustomerStatusSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
