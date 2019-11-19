@@ -210,10 +210,11 @@ class ReportIndexView extends BaseReport {
     }
 
     getDateRangeOfCurrentWeek(today: Date): [Date, Date] {
+        const lastDateNum = 6;
         const date = today;
         const baseDate = NexDatePickerHelper.getBaseDateOfWeek(today);
         const startDate = new Date(date.setDate(baseDate));
-        const lastDate = new Date(date.setDate(date.getDate() + 6));
+        const lastDate = new Date(date.setDate(date.getDate() + lastDateNum));
 
         return [startDate, lastDate];
     }

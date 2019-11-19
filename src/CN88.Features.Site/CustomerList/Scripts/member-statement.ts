@@ -52,9 +52,12 @@ class MemberStatement {
         const fromValue = this.$("#UserSelectedfromdate").val();
         const toValue = this.$("#UserSelectedtodate").val();
         if (fromValue < toValue) {
-            this.topWindow["popupManager"].bootboxAlert(this.warning, this.invalidDateRange, null, 400, this.ok);
+            const popupWidth = 400;
+            this.topWindow["popupManager"].bootboxAlert(this.warning, this.invalidDateRange, null, popupWidth, this.ok);
             return false;
         }
+
+        return true;
     };
 }
 
