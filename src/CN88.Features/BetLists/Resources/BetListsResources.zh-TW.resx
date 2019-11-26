@@ -315,4 +315,7 @@
   <data name="Wednesday" xml:space="preserve">
     <value>星期三</value>
   </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>(中)</value>
+  </data>
 </root>
