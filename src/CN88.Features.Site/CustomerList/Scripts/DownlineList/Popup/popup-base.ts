@@ -52,18 +52,18 @@
 
     updateSuccesfully(levelName) {
         const mainFrame = this.topWindow["main"];
+        this.showSuccesfullyMessage();
+
         if (typeof mainFrame.customerList !== "undefined") {
             mainFrame.customerList.reloadData(levelName);
+
+            const timeoutDefault = 2000;
+            setTimeout(() => {
+                this.closePopup();
+            }, timeoutDefault);
         } else {
-            this.topWindow.$("#main").attr("src", (index, attr) => { return attr; });
+            this.topWindow["indexManager"].closePopupAndReloadMainIframe();
         }
-
-        this.showSuccesfullyMessage();
-        const timeoutDefault = 2000;
-
-        setTimeout(() => {
-            this.closePopup();
-        }, timeoutDefault);
     }
 
     showSuccesfullyMessage() {
