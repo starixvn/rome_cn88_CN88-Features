@@ -25,7 +25,8 @@ class SecurityCodeChecker {
         }
 
         if (result.code === this.needSecurityCode) {
-            this.top[options.url] = () => {
+            const url: string = options.url;
+            this.top[url] = () => {
                 this.$.ajax({
                     type: "POST",
                     url: options.url,
