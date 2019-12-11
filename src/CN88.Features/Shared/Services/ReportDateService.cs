@@ -13,14 +13,11 @@ namespace CN88.Features.Shared.Services
         DateTime GetBalanceUpDay();
 
         DateTime GetMoveBetsDay();
-
-        DateTime GetArchiveDate();
     }
 
     public class ReportDateServiceImpl : ReportDateService
     {
         private const string BalanceUpDayAndMoveBetsDayCacheKey = "CN88.Features.Shared.Services.ReportDateServiceImpl.BalanceUpDayAndMoveBetsDay";
-        private const string ArchiveDateCacheKey = "CN88.Features.Shared.Services.ReportDateServiceImpl.ArchiveDate";
 
         private readonly IDynamicRepository dynamicRepository;
 
@@ -39,12 +36,6 @@ namespace CN88.Features.Shared.Services
             => ConfiguredCacheService.GetOrSet(
                 BalanceUpDayAndMoveBetsDayCacheKey,
                 () => dynamicRepository.Get<BalanceUpDayAndMoveBetsDay>(new GetBalanceUpDayAndMoveBetsDayCriteria()),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(5)));
-
-        public DateTime GetArchiveDate()
-            => ConfiguredCacheService.GetOrSet(
-                ArchiveDateCacheKey,
-                () => dynamicRepository.Get<DateTime>(new GetArchiveDateCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(5)));
     }
 }

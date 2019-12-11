@@ -7,10 +7,10 @@
 
     public static class ReportCriteriaFactory
     {
-        public static ICriteria CreateCriteria(ReportParam param, DateTime moveBetsDay, DateTime archiveDate)
+        public static ICriteria CreateCriteria(ReportParam param, DateTime moveBetsDay)
             => param.IsHeadline
                 ? CreateHeadlineReportCriteria(param, moveBetsDay)
-                : CreateReportCriteria(param, moveBetsDay, archiveDate);
+                : CreateReportCriteria(param, moveBetsDay);
 
         private static ICriteria CreateHeadlineReportCriteria(ReportParam param, DateTime moveBetsDay)
         {
@@ -54,7 +54,7 @@
                 param.ReportLevel);
         }
 
-        private static ICriteria CreateReportCriteria(ReportParam param, DateTime moveBetsDay, DateTime archiveDate)
+        private static ICriteria CreateReportCriteria(ReportParam param, DateTime moveBetsDay)
         {
             if (param.ReportType == ReportTypeConstants.SettledWager)
             {
@@ -65,7 +65,6 @@
                     param.IsAllDownline,
                     param.FromDate,
                     param.ToDate,
-                    archiveDate,
                     moveBetsDay,
                     param.SportGroupId,
                     param.BetTypeId,
@@ -95,7 +94,6 @@
                 param.IsAllDownline,
                 param.FromDate,
                 param.ToDate,
-                archiveDate,
                 moveBetsDay,
                 param.SportGroupId,
                 param.BetTypeId,

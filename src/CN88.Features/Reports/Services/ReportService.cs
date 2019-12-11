@@ -81,20 +81,11 @@
                 return Enumerable.Empty<ReportModel>();
             }
 
-            DateTime moveBetsDay = DateTime.MinValue;
-            DateTime archiveDate = DateTime.MinValue;
+            var moveBetsDay = param.ReportType == ReportTypeConstants.UnsettledWager
+                ? DateTime.MinValue
+                : reportDateService.GetMoveBetsDay();
 
-            if (param.ReportType != ReportTypeConstants.UnsettledWager)
-            {
-                moveBetsDay = reportDateService.GetMoveBetsDay();
-
-                if (!param.IsHeadline)
-                {
-                    archiveDate = reportDateService.GetArchiveDate();
-                }
-            }
-
-            return dynamicRepository.Fetch<ReportModel>(ReportCriteriaFactory.CreateCriteria(param, moveBetsDay, archiveDate));
+            return dynamicRepository.Fetch<ReportModel>(ReportCriteriaFactory.CreateCriteria(param, moveBetsDay));
         }
 
         public IEnumerable<PTHistory> GetPTHistories(int custid, DateTime fromDate, DateTime toDate)

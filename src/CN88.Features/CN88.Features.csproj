@@ -346,7 +346,6 @@
     <Compile Include="Reports\Services\AccountingPeriodService.cs" />
     <Compile Include="Reports\Services\PasswordService.cs" />
     <Compile Include="Reports\Services\SettlementSummaryService.cs" />
-    <Compile Include="Shared\Criteria\GetArchiveDateCriteria.cs" />
     <Compile Include="Shared\Extensions\EnumerableExtensions.cs" />
     <Compile Include="Shared\Extensions\StringExtensions.cs" />
     <Compile Include="Shared\Models\CustInfo.cs" />

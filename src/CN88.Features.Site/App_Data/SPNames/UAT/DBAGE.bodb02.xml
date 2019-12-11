@@ -6,7 +6,6 @@
       <Mapping DataField="BetTypeGroup" ObjectProperty="Id" />
     </Setting>
     <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_SelArchiveDate" SpName="CS_SelArchiveDate" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Reports">
     <Setting Key="CS_Rpt_Winloss_Member" SpName="CS_Rpt_Winloss_Member" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
