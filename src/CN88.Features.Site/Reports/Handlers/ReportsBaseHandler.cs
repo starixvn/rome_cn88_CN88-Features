@@ -68,7 +68,8 @@
                     ps.Add(p);
                 }
 
-                result.Add(new AccountingPeriodGroup(group.Key, ps.OrderByDescending(p => p.Year).ToList()));
+                var period = ps.OrderByDescending(p => p.Year);
+                result.Add(new AccountingPeriodGroup(group.Key, period.ToList(), period.FirstOrDefault().Year));
             }
 
             return result;

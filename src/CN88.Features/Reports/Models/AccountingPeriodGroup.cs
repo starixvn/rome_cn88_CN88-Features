@@ -4,14 +4,17 @@
 
     public class AccountingPeriodGroup
     {
-        public AccountingPeriodGroup(string name, List<AccountingPeriod> periods)
+        public AccountingPeriodGroup(string name, List<AccountingPeriod> periods, int year)
         {
             Name = name;
             Periods = periods;
+            Year = year;
         }
 
         public string Name { get; set; }
 
         public List<AccountingPeriod> Periods { get; set; }
+
+        public int Year { get; set; }
     }
 }
