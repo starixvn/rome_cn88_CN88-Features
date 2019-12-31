@@ -27,11 +27,11 @@
 
         public DateTime FromDate { get; }
 
-        public string FromDateStr => FromDate.ToString("yyyy/MM/dd");
+        public string FromDateStr => FromDate == DateTime.MinValue ? string.Empty : FromDate.ToString("yyyy/MM/dd");
 
         public DateTime ToDate { get; }
 
-        public string ToDateStr => ToDate.ToString("yyyy/MM/dd");
+        public string ToDateStr => ToDate == DateTime.MinValue ? string.Empty : ToDate.ToString("yyyy/MM/dd");
 
         public bool IsCurrentPeriod => FromDate <= SystemTime.Today && SystemTime.Today <= ToDate;
     }

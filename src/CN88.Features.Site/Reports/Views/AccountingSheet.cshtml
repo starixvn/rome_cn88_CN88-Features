@@ -1,10 +1,12 @@
 ﻿@model AccountingSheetViewModel
-
+@{ 
+    var groupPeriod = Model.AccountingPeriodGroups.FirstOrDefault();
+}
 <table class="tbl-noborder tblAccountingSheet" id="tblAccountingSheet">
     <thead>
         <tr>
-            <th>@DateTime.Now.Year</th>
-            <th>@(DateTime.Now.Year - 1)</th>
+            <th>@groupPeriod.Year</th>
+            <th>@(groupPeriod.Year - 1)</th>
         </tr>
     </thead>
     <tbody>
@@ -13,8 +15,11 @@
             <tr>
                 @foreach (var period in group.Periods)
                 {
+                    var periodStr = string.IsNullOrWhiteSpace(period.FromDateStr) || 
+                        string.IsNullOrWhiteSpace(period.FromDateStr) ? string.Empty :
+                        $"{period.FromDateStr} ~ {period.ToDateStr}";
                     <td class="@(period.IsCurrentPeriod ? "current" : string.Empty)">
-                        <span class="reportNo">@period.PeriodId.</span>@period.FromDateStr ~ @period.ToDateStr
+                        <span class="reportNo">@period.PeriodId.</span>@periodStr
                     </td>
                 }
             </tr>
