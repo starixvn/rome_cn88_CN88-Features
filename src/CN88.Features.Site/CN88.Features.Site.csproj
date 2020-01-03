@@ -726,6 +726,12 @@
     <Content Include="Web.AppSettings.localmaster.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.napinternalHL.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.staginginternalHL.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
     <Content Include="Web.AppSettings.uatmaster.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
@@ -1074,6 +1080,9 @@
     <Content Include="Web.localmaster.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Web.napinternalHL.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1090,6 +1099,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.staginginternal.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.staginginternalHL.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>
