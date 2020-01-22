@@ -30,4 +30,7 @@
   <Function Name="ReCheck Customer Password">
     <Setting Key="CS_CustomerReCheckPwd" SpName="CS_CustomerReCheckPwd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
   </Function>
+  <Function Name="Check Headline To View all Old Accounting Periods">
+    <Setting Key="CS_HL_ReportPermission_Sel" SpName="CS_HL_ReportPermission_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
 </Functions>
