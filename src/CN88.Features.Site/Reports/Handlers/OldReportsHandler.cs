@@ -30,7 +30,9 @@
 
         public OldReportViewModel Handle(OldReportQuery message)
         {
-            var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline() :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
             var isShowPermissionOnDownlinesMessage = IsShowPermissionOnDownlinesMessage(message);
             var assignedDownlinesCount = isShowPermissionOnDownlinesMessage ? reportService.GetAssignedDownlinesCount(message.SubAccountId) : null;
@@ -51,7 +53,9 @@
         public OldIndexViewModel Handle(OldIndexQuery message)
         {
             var accountingPeriods = accountingPeriodService.GetAccountingPeriods();
-            var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline() :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
             return new OldIndexViewModel(
                 message,

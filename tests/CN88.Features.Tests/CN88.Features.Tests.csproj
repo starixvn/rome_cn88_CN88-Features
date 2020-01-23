@@ -83,7 +83,7 @@
   <ItemGroup>
     <Compile Include="Constants\RoleIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\Criteria\GetAccountingPeriodsCriteriaTest.cs" />
+    <Compile Include="Reports\Criteria\GetAccountingPeriodsForAgencyCriteriaTest.cs" />
     <Compile Include="Reports\Criteria\GetHeadlineCancelledReportCriteriaTests.cs" />
     <Compile Include="Reports\Criteria\GetCancelledReportCriteriaTests.cs" />
     <Compile Include="Reports\Criteria\GetCustomerPTSettingCriteriaTests.cs" />

@@ -37,5 +37,7 @@
         DateTime LimitedDateToShowInfo { get; }
 
         byte StatusId { get; }
+
+        bool IsHeadline { get; }
     }
 }

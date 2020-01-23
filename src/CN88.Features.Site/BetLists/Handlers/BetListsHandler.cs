@@ -92,7 +92,9 @@
             var betTypes = betTypeService.GetBetTypeGroupsBySport(sportGroupIds);
 
             var lastPeriod = accountingPeriodService.GetLastPeriod();
-            var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline() :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
             return new BetListOfReportViewModel(
                 message,

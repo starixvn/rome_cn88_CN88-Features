@@ -24,6 +24,7 @@
             Language = viewer.Language;
             ViewerStatusId = viewer.StatusId;
             AccountManagementEditView = viewer.AccountManagementEditView;
+            IsHeadline = viewer.IsHeadline;
         }
 
         public int CustId { get; set; }
@@ -74,5 +75,7 @@
             && !string.IsNullOrWhiteSpace(Language);
 
         public virtual string ErrorMessage { get; set; }
+
+        public bool IsHeadline { get; }
     }
 }

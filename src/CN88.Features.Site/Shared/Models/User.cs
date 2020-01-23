@@ -46,5 +46,7 @@
         public byte StatusId => userSession.GetProperty<byte>("CUSTOMERSTATUS");
 
         public bool IsAllDownline => userSession.GetProperty<bool>("ISALLDOWNLINE");
+
+        public bool IsHeadline => userSession.RoleId == 0;
     }
 }
