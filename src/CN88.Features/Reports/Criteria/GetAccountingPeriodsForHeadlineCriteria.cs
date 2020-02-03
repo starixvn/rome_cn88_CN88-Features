@@ -4,7 +4,14 @@
 
     public class GetAccountingPeriodsForHeadlineCriteria : CriteriaBase
     {
-        public override string GetSettingKey() => "CS_HL_AccountingPeriod_Sel";
+        public GetAccountingPeriodsForHeadlineCriteria(bool isViewAllPeriod)
+        {
+            IsViewAllPeriod = isViewAllPeriod;
+        }
+
+        public override string GetSettingKey() => "CS_HL_Period_Sel";
+
+        public bool IsViewAllPeriod { get; }
 
         public override bool IsValid() => true;
     }

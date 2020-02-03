@@ -93,7 +93,7 @@
 
             var lastPeriod = accountingPeriodService.GetLastPeriod();
             var oldAccountingPeriods = message.IsHeadline ?
-                accountingPeriodService.GetOldAccountingPeriodsForHeadline() :
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
                 accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
             return new BetListOfReportViewModel(

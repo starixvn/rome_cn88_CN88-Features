@@ -19,7 +19,7 @@
 
         IEnumerable<AccountingPeriod> GetAccountingPeriods();
 
-        IEnumerable<AccountingPeriod> GetOldAccountingPeriodsForHeadline();
+        IEnumerable<AccountingPeriod> GetOldAccountingPeriodsForHeadline(int viewerId);
     }
 
     public class AccountingPeriodServiceImpl : AccountingPeriodService
@@ -62,7 +62,10 @@
                 () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsForAgencyCriteria()),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
 
-        public IEnumerable<AccountingPeriod> GetOldAccountingPeriodsForHeadline()
-            => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsForHeadlineCriteria());
+        public IEnumerable<AccountingPeriod> GetOldAccountingPeriodsForHeadline(int viewerId)
+        {
+            var isViewAllPeriod = dynamicRepository.Get<bool>(new GetHeadlineReportPermissionCriteria(viewerId));
+            return dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsForHeadlineCriteria(isViewAllPeriod)).OrderByDescending(p => p.FromDate);
+        }
     }
 }
