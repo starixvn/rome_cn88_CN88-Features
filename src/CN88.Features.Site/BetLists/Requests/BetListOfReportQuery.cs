@@ -1,6 +1,9 @@
 ﻿namespace CN88.Features.Site.BetLists.Requests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using CN88.Features.Reports.Models;
     using Features.Models;
     using MediatR;
     using ViewModels;
@@ -30,5 +33,8 @@
         public bool IsOldReport { get; set; }
 
         public bool IsSettlement { get; set; }
+
+        public bool IsValidReportRange(IEnumerable<AccountingPeriod> periods)
+            => periods.Any(p => FromDate >= p.FromDate && ToDate <= p.ToDate);
     }
 }

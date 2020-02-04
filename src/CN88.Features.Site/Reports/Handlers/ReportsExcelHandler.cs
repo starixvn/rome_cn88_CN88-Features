@@ -1,6 +1,7 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
     using System;
+    using System.Linq;
     using CN88.Features.Shared.Services;
     using Extensions;
     using Features.Reports.AppResources;
@@ -59,7 +60,13 @@
             divisor = message.Divisor;
             totalStockPercent = message.ReportType == ReportTypeConstants.SettledWager ? 100 : 0;
             var param = CreateReportParam(message);
-            var reportData = reportService.GetReportData(param);
+
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
+
+            var reportData = message.IsValidReportRange(oldAccountingPeriods) ?
+                reportService.GetReportData(param) : Enumerable.Empty<ReportModel>();
             var grandTotal = AccumulateGrandTotal(reportData);
 
             var result = workbook

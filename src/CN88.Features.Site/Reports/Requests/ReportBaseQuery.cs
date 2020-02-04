@@ -1,6 +1,9 @@
 ﻿namespace CN88.Features.Site.Reports.Requests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using CN88.Features.Reports.Models;
     using Features.Models;
     using Features.Reports.Constants;
     using Features.Shared.Constants;
@@ -66,5 +69,8 @@
                 isSettlement = value;
             }
         }
+
+        public bool IsValidReportRange(IEnumerable<AccountingPeriod> periods)
+            => periods.Any(p => FromDate >= p.FromDate && ToDate <= p.ToDate);
     }
 }
