@@ -20,7 +20,7 @@
             : base(query, sportGroups)
         {
             var selectPeriod = oldAccountingPeriods.First();
-            AccountingPeriodSelectionViewModel = new AccountingPeriodSelectionViewModel(oldAccountingPeriods, selectPeriod.PeriodId);
+            AccountingPeriodSelectionViewModel = new AccountingPeriodSelectionViewModel(oldAccountingPeriods, $"{selectPeriod.FromDate.ToString("yyyyMMdd")}{selectPeriod.ToDate.ToString("yyyyMMdd")}");
             DateRangePickerViewModel = new DateRangePickerViewModel(oldAccountingPeriods.Last().FromDate, selectPeriod.ToDate, selectPeriod.FromDate, selectPeriod.ToDate);
         }
 

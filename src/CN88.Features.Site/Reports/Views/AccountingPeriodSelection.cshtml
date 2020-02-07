@@ -4,7 +4,7 @@
     <select id="dropdown-period">
         @foreach (var period in Model.Periods)
         {
-            <option value="@period.PeriodId" @(period.PeriodId == Model.UserSelectedPeriodId ? " selected=\"selected\"" : string.Empty)
+            <option value="@($"{period.FromDate.ToString("yyyyMMdd")}{period.ToDate.ToString("yyyyMMdd")}")" @($"{period.FromDate.ToString("yyyyMMdd")}{period.ToDate.ToString("yyyyMMdd")}" == Model.UserSelectedPeriodId ? " selected=\"selected\"" : string.Empty)
                     data-fromdate="@period.FromDate.ToShortDate()"
                     data-todate="@period.ToDate.ToShortDate()">
                 @period.FromDateStr ~ @period.ToDateStr

@@ -40,7 +40,7 @@
 
         public int UserSelectedLiveStatusId { get; set; }
 
-        public int UserSelectedPeriodId { get; set; }
+        public string UserSelectedPeriodId { get; set; }
 
         public DateTime FromDate { get; set; }
 
