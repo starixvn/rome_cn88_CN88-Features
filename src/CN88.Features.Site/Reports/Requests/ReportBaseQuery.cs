@@ -71,6 +71,8 @@
         }
 
         public bool IsValidReportRange(IEnumerable<AccountingPeriod> periods)
-            => periods.Any(p => FromDate >= p.FromDate && ToDate <= p.ToDate);
+            => FromDate <= ToDate &&
+                FromDate >= periods.Min(p => p.FromDate) &&
+                ToDate <= periods.Max(p => p.ToDate);
     }
 }
