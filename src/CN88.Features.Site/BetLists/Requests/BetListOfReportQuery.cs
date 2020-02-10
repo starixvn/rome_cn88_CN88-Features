@@ -34,9 +34,9 @@
 
         public bool IsSettlement { get; set; }
 
-        public bool IsValidReportRange(IEnumerable<AccountingPeriod> periods)
+        public bool IsValidOldReportRange(IEnumerable<AccountingPeriod> oldPeriods)
             => FromDate <= ToDate &&
-                FromDate >= periods.Min(p => p.FromDate) &&
-                ToDate <= periods.Max(p => p.ToDate);
+                FromDate >= oldPeriods.Min(p => p.FromDate) &&
+                ToDate <= oldPeriods.Max(p => p.ToDate);
     }
 }

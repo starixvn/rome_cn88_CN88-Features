@@ -252,6 +252,7 @@
     <Compile Include="CustomerList\Criteria\UnlockCustomerCriteria.cs" />
     <Compile Include="CustomerList\Params\UnlockCustomerParam.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Reports\Criteria\GetHeadlineCancelledReportCriteria.cs" />
     <Compile Include="Reports\Criteria\GetHeadlineReportPermissionCriteria.cs" />
     <Compile Include="Reports\Criteria\GetHeadlineOutstandingReportCriteria.cs" />
     <Compile Include="Reports\Criteria\GetHeadlineWinLossReportCriteria.cs" />

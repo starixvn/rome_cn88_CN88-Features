@@ -65,7 +65,7 @@
                 accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
                 accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
-            var reportData = message.IsValidReportRange(oldAccountingPeriods) ?
+            var reportData = message.IsValidOldReportRange(oldAccountingPeriods) ?
                 reportService.GetReportData(param) : Enumerable.Empty<ReportModel>();
             var grandTotal = AccumulateGrandTotal(reportData);
 
