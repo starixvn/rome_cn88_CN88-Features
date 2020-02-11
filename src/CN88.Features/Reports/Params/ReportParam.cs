@@ -16,7 +16,8 @@
             int betTypeId,
             int reportType,
             int isLive,
-            UserLevel reportLevel)
+            UserLevel reportLevel,
+            int headlineId)
         {
             CustId = custId;
             SubAccId = subAccId;
@@ -29,6 +30,7 @@
             ReportType = reportType;
             IsLive = isLive;
             ReportLevel = reportLevel;
+            HeadlineId = headlineId;
         }
 
         public int CustId { get; }
@@ -52,5 +54,9 @@
         public int ReportType { get; }
 
         public UserLevel ReportLevel { get; }
+
+        public int HeadlineId { get; }
+
+        public bool IsHeadline => HeadlineId > 0;
     }
 }

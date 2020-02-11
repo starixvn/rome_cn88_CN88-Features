@@ -6,12 +6,14 @@
             string refNo,
             string transId,
             string betId,
-            int custId)
+            int custId,
+            int headlineId)
         {
             RefNo = refNo;
             TransId = transId;
             BetId = betId;
             CustId = custId;
+            HeadlineId = headlineId;
         }
 
         public string RefNo { get; }
@@ -21,5 +23,7 @@
         public string BetId { get; }
 
         public int CustId { get; }
+
+        public int HeadlineId { get; }
     }
 }

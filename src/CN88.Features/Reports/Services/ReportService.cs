@@ -25,18 +25,21 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly ReportDateService reportDateService;
+        private readonly HeadlineService headlineService;
 
         public ReportServiceImpl(
             IDynamicRepository dynamicRepository,
-            ReportDateService reportDateService)
+            ReportDateService reportDateService,
+            HeadlineService headlineService)
         {
             this.dynamicRepository = dynamicRepository;
             this.reportDateService = reportDateService;
+            this.headlineService = headlineService;
         }
 
         public IEnumerable<ReportModel> GetReportData(ReportParam param)
         {
-            var data = dynamicRepository.Fetch<ReportModel>(CreateReportCriteria(param));
+            var data = GetReportRawData(param);
 
             if (data != null && data.Any())
             {
@@ -71,54 +74,18 @@
             return data;
         }
 
-        private ICriteria CreateReportCriteria(ReportParam param)
+        private IEnumerable<ReportModel> GetReportRawData(ReportParam param)
         {
-            var moveBetsDay = reportDateService.GetMoveBetsDay();
-
-            if (param.ReportType == ReportTypeConstants.SettledWager)
+            if (param.IsHeadline && !headlineService.IsCustomerBelonging(param.HeadlineId, param.CustId, param.FromDate, param.ToDate))
             {
-                return new GetWinLossReportCriteria(
-                    param.CustId,
-                    param.SubAccId,
-                    param.IsOwner,
-                    param.IsAllDownline,
-                    param.FromDate,
-                    param.ToDate,
-                    moveBetsDay,
-                    param.SportGroupId,
-                    param.BetTypeId,
-                    param.IsLive,
-                    param.ReportLevel);
+                return Enumerable.Empty<ReportModel>();
             }
 
-            if (param.ReportType == ReportTypeConstants.UnsettledWager)
-            {
-                return new GetOutstandingReportCriteria(
-                    param.CustId,
-                    param.SubAccId,
-                    param.IsOwner,
-                    param.IsAllDownline,
-                    param.FromDate,
-                    param.ToDate,
-                    param.SportGroupId,
-                    param.BetTypeId,
-                    param.IsLive,
-                    param.ReportLevel);
-            }
+            var moveBetsDay = param.ReportType == ReportTypeConstants.UnsettledWager
+                ? DateTime.MinValue
+                : reportDateService.GetMoveBetsDay();
 
-            return new GetCancelledReportCriteria(
-                param.CustId,
-                param.SubAccId,
-                param.IsOwner,
-                param.IsAllDownline,
-                param.FromDate,
-                param.ToDate,
-                moveBetsDay,
-                param.SportGroupId,
-                param.BetTypeId,
-                param.IsLive,
-                param.ReportType,
-                param.ReportLevel);
+            return dynamicRepository.Fetch<ReportModel>(ReportCriteriaFactory.CreateCriteria(param, moveBetsDay));
         }
 
         public IEnumerable<PTHistory> GetPTHistories(int custid, DateTime fromDate, DateTime toDate)

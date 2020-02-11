@@ -9,6 +9,7 @@
         protected BetListOfReportBaseCriteria(BetListOfReportParam param)
         {
             CustId = param.CustId;
+            HeadlineId = param.HeadlineId;
             FromDate = param.FromDate;
             ToDate = param.ToDate;
             SportTypeGroups  = param.SportTypeGroupIds;
@@ -17,6 +18,8 @@
         }
 
         public int CustId { get; }
+
+        public int HeadlineId { get; }
 
         public DateTime FromDate { get; }
 

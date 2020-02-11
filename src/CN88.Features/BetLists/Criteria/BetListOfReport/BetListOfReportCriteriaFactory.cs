@@ -22,7 +22,8 @@
                 param.BetTypeGroup,
                 param.LiveIndicator,
                 param.Type,
-                param.LimitedDate);
+                param.LimitedDate,
+                param.HeadlineId);
 
             if (isBackup)
             {
