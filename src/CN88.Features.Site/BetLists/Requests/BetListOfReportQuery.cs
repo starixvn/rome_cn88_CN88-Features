@@ -34,6 +34,8 @@
 
         public bool IsSettlement { get; set; }
 
+        public string UserSelectedPeriodId { get; set; }
+
         public bool IsValidReportRange(IEnumerable<AccountingPeriod> oldPeriods)
             => IsValidForNormalReportRange() || IsValidForOldReportRange(oldPeriods);
 

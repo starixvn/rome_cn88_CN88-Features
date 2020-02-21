@@ -145,6 +145,8 @@
 
         public IEnumerable<CustInfo> BreadcrumbLevel { get; }
 
+        public string UserSelectedPeriodId { get; set; }
+
         public IEnumerable<string> BreadcrumbParamByLevel { get; protected set; }
 
         public BreadcrumbLevelViewModel BreadcrumbLevelViewModel

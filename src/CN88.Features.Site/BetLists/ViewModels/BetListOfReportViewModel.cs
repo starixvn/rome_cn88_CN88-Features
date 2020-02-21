@@ -44,6 +44,8 @@
 
             ReportType = ReportTypes[message.Type];
             ReportTitle = ReportResources.ResourceManager.GetString(ReportTypeConstants.ReportTypes[ReportType]);
+
+            UserSelectedPeriodId = message.UserSelectedPeriodId;
         }
 
         public BetListOfReportViewModel(
@@ -140,7 +142,8 @@
                 UrlHelper.GetFeaturesAppPath(ReportMainActionPath),
                 new Dictionary<string, object>
                 {
-                    ["DisplayMode"] = DisplayMode
+                    ["DisplayMode"] = DisplayMode,
+                    ["UserSelectedPeriodId"] = UserSelectedPeriodId
                 });
 
         public override BreadcrumbItem BuildBackLink(string request)

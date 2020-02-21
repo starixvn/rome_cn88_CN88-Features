@@ -5,7 +5,9 @@
 
     var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
     var query = Model.IsOldReport ?
-            Request.Url.Query.Replace("UserSelectedBetTypeId", "--") :
+            Request.Url.Query
+                .Replace("UserSelectedBetTypeId", "--")
+                .Replace("UserSelectedLiveStatusId", "--") :
             Request.Url.Query;
     var backLink = Model.BuildBackLink(query);
 }

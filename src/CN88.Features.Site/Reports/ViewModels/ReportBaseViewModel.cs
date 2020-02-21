@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using CN88.Features.Shared.AppResources;
+    using CN88.Features.Shared.Constants;
     using CN88.Web.Helpers;
     using Constants;
     using Features.BetLists.Constants;
@@ -129,8 +130,8 @@
                 ["IsSettlement"] = reportQuery.IsSettlement,
                 ["ReportType"] = reportQuery.ReportType,
                 ["UserSelectedSportGroupId"] = reportQuery.UserSelectedSportGroupId,
-                ["UserSelectedBetTypeId"] = IsOldReport() ? 0 : reportQuery.UserSelectedBetTypeId,
-                ["UserSelectedLiveStatusId"] = reportQuery.UserSelectedLiveStatusId,
+                ["UserSelectedBetTypeId"] = IsOldReport() ? BetType.AllBetTypes : reportQuery.UserSelectedBetTypeId,
+                ["UserSelectedLiveStatusId"] = IsOldReport() ? LiveStatusConstants.AllMarkets : reportQuery.UserSelectedLiveStatusId,
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model)),
                 ["UserSelectedPeriodId"] = string.IsNullOrWhiteSpace(reportQuery.UserSelectedPeriodId) ? $"{reportQuery.FromDate.ToString("yyyyMMdd")}{reportQuery.ToDate.ToString("yyyyMMdd")}" : reportQuery.UserSelectedPeriodId
             };
