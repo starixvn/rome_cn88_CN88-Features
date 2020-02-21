@@ -94,7 +94,7 @@
                 accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
                 accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
-            var betlistData = message.IsValidOldReportRange(oldAccountingPeriods) ?
+            var betlistData = message.IsValidReportRange(oldAccountingPeriods) ?
                 betListService.GetBetListOfReport(param) : new BetListData(Enumerable.Empty<TicketDto>(), new List<ITicketData>());
 
             return new BetListOfReportViewModel(

@@ -39,7 +39,7 @@
             var isShowPermissionOnDownlinesMessage = IsShowPermissionOnDownlinesMessage(message);
             var assignedDownlinesCount = isShowPermissionOnDownlinesMessage ? reportService.GetAssignedDownlinesCount(message.SubAccountId) : null;
             var param = CreateReportParam(message);
-            var reportData = message.IsValidOldReportRange(oldAccountingPeriods) ? 
+            var reportData = message.IsValidReportRange(oldAccountingPeriods) ? 
                 reportService.GetReportData(param) : Enumerable.Empty<ReportModel>();
             var grandTotal = AccumulateGrandTotal(reportData);
 

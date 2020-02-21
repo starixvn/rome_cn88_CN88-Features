@@ -56,6 +56,8 @@
 
         public string CurrentUrl { get; set; }
 
+        public bool IsOldReport { get; set; }
+
         public bool? IsSettlement
         {
             get
@@ -70,7 +72,13 @@
             }
         }
 
-        public bool IsValidOldReportRange(IEnumerable<AccountingPeriod> oldPeriods)
+        public bool IsValidReportRange(IEnumerable<AccountingPeriod> oldPeriods)
+            => IsValidForNormalReportRange() || IsValidForOldReportRange(oldPeriods);
+
+        private bool IsValidForNormalReportRange()
+            => !IsOldReport && FromDate <= ToDate;
+
+        private bool IsValidForOldReportRange(IEnumerable<AccountingPeriod> oldPeriods)
             => FromDate <= ToDate &&
                 FromDate >= oldPeriods.Min(p => p.FromDate) &&
                 ToDate <= oldPeriods.Max(p => p.ToDate);

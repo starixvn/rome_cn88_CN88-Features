@@ -132,7 +132,7 @@
                 ["UserSelectedBetTypeId"] = IsOldReport() ? 0 : reportQuery.UserSelectedBetTypeId,
                 ["UserSelectedLiveStatusId"] = reportQuery.UserSelectedLiveStatusId,
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model)),
-                ["UserSelectedPeriodId"] = reportQuery.UserSelectedPeriodId
+                ["UserSelectedPeriodId"] = string.IsNullOrWhiteSpace(reportQuery.UserSelectedPeriodId) ? $"{reportQuery.FromDate.ToString("yyyyMMdd")}{reportQuery.ToDate.ToString("yyyyMMdd")}" : reportQuery.UserSelectedPeriodId
             };
 
         public BreadcrumbItem BuildBackLink()
