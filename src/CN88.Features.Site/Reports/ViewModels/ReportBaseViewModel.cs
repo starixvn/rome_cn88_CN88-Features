@@ -131,7 +131,8 @@
                 ["UserSelectedSportGroupId"] = reportQuery.UserSelectedSportGroupId,
                 ["UserSelectedBetTypeId"] = reportQuery.UserSelectedBetTypeId,
                 ["UserSelectedLiveStatusId"] = reportQuery.UserSelectedLiveStatusId,
-                ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model))
+                ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model)),
+                ["UserSelectedPeriodId"] = reportQuery.UserSelectedPeriodId
             };
 
         public BreadcrumbItem BuildBackLink()
