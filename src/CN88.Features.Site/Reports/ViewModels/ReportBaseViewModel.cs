@@ -129,7 +129,7 @@
                 ["IsSettlement"] = reportQuery.IsSettlement,
                 ["ReportType"] = reportQuery.ReportType,
                 ["UserSelectedSportGroupId"] = reportQuery.UserSelectedSportGroupId,
-                ["UserSelectedBetTypeId"] = reportQuery.UserSelectedBetTypeId,
+                ["UserSelectedBetTypeId"] = IsOldReport() ? 0 : reportQuery.UserSelectedBetTypeId,
                 ["UserSelectedLiveStatusId"] = reportQuery.UserSelectedLiveStatusId,
                 ["BreadcrumbLevelJson"] = JsonHelper.ToJsonFunc(BuildBreadcrumbLevel(model)),
                 ["UserSelectedPeriodId"] = reportQuery.UserSelectedPeriodId
