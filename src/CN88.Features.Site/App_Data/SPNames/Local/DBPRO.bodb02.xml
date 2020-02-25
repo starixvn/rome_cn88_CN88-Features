@@ -2,5 +2,6 @@
 <Functions SiteId="107" SiteName="CN88 - Agency">
   <Function Name="Reports">
     <Setting Key="CS_AccountingPeriod_Sel" SpName="CS_AccountingPeriod_Sel" DbName="DBPRO.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_HL_Period_Sel" SpName="CS_HL_Period_Sel" DbName="DBPRO.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

@@ -1,11 +1,13 @@
 ﻿namespace CN88.Features.Site.Reports.Handlers
 {
+    using CN88.Features.Reports.Models;
     using CN88.Features.Shared.Constants;
     using CN88.Web.Helpers;
     using Features.Reports.Services;
     using Features.Shared.Services;
     using MediatR;
     using Requests;
+    using System.Linq;
     using ViewModels;
 
     public class OldReportsHandler :
@@ -30,12 +32,15 @@
 
         public OldReportViewModel Handle(OldReportQuery message)
         {
-            var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
             var isShowPermissionOnDownlinesMessage = IsShowPermissionOnDownlinesMessage(message);
             var assignedDownlinesCount = isShowPermissionOnDownlinesMessage ? reportService.GetAssignedDownlinesCount(message.SubAccountId) : null;
             var param = CreateReportParam(message);
-            var reportData = reportService.GetReportData(param);
+            var reportData = message.IsValidReportRange(oldAccountingPeriods) ? 
+                reportService.GetReportData(param) : Enumerable.Empty<ReportModel>();
             var grandTotal = AccumulateGrandTotal(reportData);
 
             return new OldReportViewModel(message,
@@ -51,7 +56,9 @@
         public OldIndexViewModel Handle(OldIndexQuery message)
         {
             var accountingPeriods = accountingPeriodService.GetAccountingPeriods();
-            var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
 
             return new OldIndexViewModel(
                 message,

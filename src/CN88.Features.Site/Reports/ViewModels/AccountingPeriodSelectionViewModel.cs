@@ -7,7 +7,7 @@
     {
         public AccountingPeriodSelectionViewModel(
             IEnumerable<AccountingPeriod> periods,
-            int userSelectedPeriodId)
+            string userSelectedPeriodId)
         {
             Periods = periods;
             UserSelectedPeriodId = userSelectedPeriodId;
@@ -15,6 +15,6 @@
 
         public IEnumerable<AccountingPeriod> Periods { get; }
 
-        public int UserSelectedPeriodId { get; }
+        public string UserSelectedPeriodId { get; }
     }
 }

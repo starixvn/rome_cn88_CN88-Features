@@ -86,13 +86,16 @@
                 message.LimitedDateToShowInfo,
                 message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
-            var betlistData = betListService.GetBetListOfReport(param);
-
             var allBetTypes = betTypeService.GetBetTypeGroups();
             var betTypes = betTypeService.GetBetTypeGroupsBySport(sportGroupIds);
 
             var lastPeriod = accountingPeriodService.GetLastPeriod();
-            var oldAccountingPeriods = accountingPeriodService.GetOldAccountingPeriods();
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
+
+            var betlistData = message.IsValidReportRange(oldAccountingPeriods) ?
+                betListService.GetBetListOfReport(param) : new BetListData(Enumerable.Empty<TicketDto>(), new List<ITicketData>());
 
             return new BetListOfReportViewModel(
                 message,

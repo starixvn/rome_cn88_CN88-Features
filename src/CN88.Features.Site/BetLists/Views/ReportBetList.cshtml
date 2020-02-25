@@ -4,7 +4,12 @@
     Layout = Model.IsOldReport ? "~/Reports/Views/_OldLayout.cshtml" : "~/Shared/Views/_Layout.cshtml";
 
     var isSettlement = string.IsNullOrWhiteSpace(Request["IsSettlement"]) || string.Equals(Request["IsSettlement"], bool.TrueString, StringComparison.OrdinalIgnoreCase);
-    var backLink = Model.BuildBackLink(Request.Url.Query);
+    var query = Model.IsOldReport ?
+            Request.Url.Query
+                .Replace("UserSelectedBetTypeId", "--")
+                .Replace("UserSelectedLiveStatusId", "--") :
+            Request.Url.Query;
+    var backLink = Model.BuildBackLink(query);
 }
 
 @section Styles {
@@ -24,7 +29,7 @@
     {
         <div class="page-title title-report-detail">
             <span class="report-name">@Model.ReportTitle</span>
-            @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, Request.Url.Query, Model.BreadcrumbParamByLevel, Model.IsSettlement)
+            @Breadcrumb.Render(Model.BreadcrumbLevelViewModel, query, Model.BreadcrumbParamByLevel, Model.IsSettlement)
         </div>
         @Html.Partial("~/BetLists/Views/Filter.cshtml")
         @Html.Partial("~/BetLists/Views/BetListTable.cshtml")

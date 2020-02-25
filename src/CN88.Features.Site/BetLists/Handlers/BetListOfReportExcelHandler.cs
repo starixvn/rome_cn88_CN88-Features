@@ -1,7 +1,9 @@
 ﻿namespace CN88.Features.Site.BetLists.Handlers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using BetList.Core.Builders;
+    using CN88.Features.Reports.Services;
     using CN88.Features.Shared.Extensions;
     using CN88.Features.Shared.Services;
     using Fanex.BetList.Core.Builder;
@@ -33,6 +35,7 @@
 
         private readonly BetListOfReportWorkbook workbook;
         private readonly IBetListCN88ExcelBuilder cn88ExcelBuilder;
+        private readonly AccountingPeriodService accountingPeriodService;
 
         public BetListOfReportExcelHandler(
             IBetListExcelBuilder excelBuilder,
@@ -41,7 +44,9 @@
             ITicketHelper ticketHelper,
             IBetListCN88HtmlBuilder cn88Builder,
             IBetListHTMLBuilder builder,
+            AccountingPeriodService accountingPeriodService,
             SportGroupService sportGroupService,
+
             BetListOfReportWorkbook workbook) : base(excelBuilder)
         {
             this.service = service;
@@ -52,6 +57,7 @@
 
             this.workbook = workbook;
             this.cn88ExcelBuilder = cn88ExcelBuilder;
+            this.accountingPeriodService = accountingPeriodService;
         }
 
         public ExcelFileViewModel Handle(BetListOfReportExcelQuery message)
@@ -88,7 +94,12 @@
                 message.LimitedDateToShowInfo,
                 message.ActorLevel.IsHeadline() ? message.ViewerId : 0);
 
-            var betlistData = service.GetBetListOfReport(param);
+            var oldAccountingPeriods = message.IsHeadline ?
+                accountingPeriodService.GetOldAccountingPeriodsForHeadline(message.ViewerId) :
+                accountingPeriodService.GetOldAccountingPeriodsForAgency();
+
+            var betlistData = message.IsValidReportRange(oldAccountingPeriods) ?
+                service.GetBetListOfReport(param) : new BetListData(Enumerable.Empty<TicketDto>(), new List<ITicketData>());
             var viewModel =
                 new BetListOfReportViewModel(message, betlistData, ticketHelper, cn88Builder, builder);
 

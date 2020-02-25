@@ -253,12 +253,14 @@
     <Compile Include="CustomerList\Params\UnlockCustomerParam.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Reports\Criteria\GetHeadlineCancelledReportCriteria.cs" />
+    <Compile Include="Reports\Criteria\GetHeadlineReportPermissionCriteria.cs" />
     <Compile Include="Reports\Criteria\GetHeadlineOutstandingReportCriteria.cs" />
     <Compile Include="Reports\Criteria\GetHeadlineWinLossReportCriteria.cs" />
     <Compile Include="Reports\Criteria\GetSubAccountAssignedDownlinesCount.cs" />
     <Compile Include="Reports\Criteria\HeadlineReportCriteriaBase.cs" />
     <Compile Include="Reports\Criteria\ReportCriteriaFactory.cs" />
     <Compile Include="Reports\Models\AssignedDownlinesCount.cs" />
+    <Compile Include="Reports\Criteria\GetAccountingPeriodsForHeadlineCriteria.cs" />
     <Compile Include="Shared\Constants\PagerConstant.cs" />
     <Compile Include="Shared\Constants\PercentageViewModeConstant.cs" />
     <Compile Include="Shared\Constants\SportGroupTypeConstants.cs" />
@@ -331,7 +333,7 @@
       <DependentUpon>ReportResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Reports\Constants\ReportTypeConstants.cs" />
-    <Compile Include="Reports\Criteria\GetAccountingPeriodsCriteria.cs" />
+    <Compile Include="Reports\Criteria\GetAccountingPeriodsForAgencyCriteria.cs" />
     <Compile Include="Reports\Criteria\GetCancelledReportCriteria.cs" />
     <Compile Include="Reports\Criteria\GetCustomerPTSettingCriteria.cs" />
     <Compile Include="Reports\Criteria\GetOutstandingReportCriteria.cs" />

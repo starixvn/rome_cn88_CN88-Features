@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetAccountingPeriodsCriteria : CriteriaBase
+    public class GetAccountingPeriodsForAgencyCriteria : CriteriaBase
     {
         public override string GetSettingKey() => "CS_AccountingPeriod_Sel";
 

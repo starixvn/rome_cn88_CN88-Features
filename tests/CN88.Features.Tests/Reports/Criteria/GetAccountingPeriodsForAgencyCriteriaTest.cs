@@ -3,13 +3,13 @@
     using CN88.Features.Reports.Criteria;
     using Xunit;
 
-    public class GetAccountingPeriodsCriteriaTests
+    public class GetAccountingPeriodsForAgencyCriteriaTests
     {
         [Fact]
         public void GetSettingKey_Always_ReturnsCorrectSettingKey()
         {
             // Arrange
-            var criteria = new GetAccountingPeriodsCriteria();
+            var criteria = new GetAccountingPeriodsForAgencyCriteria();
 
             // Act & Assert
             Assert.Equal("CS_AccountingPeriod_Sel", criteria.GetSettingKey());
@@ -19,7 +19,7 @@
         public void IsValid_Always_ReturnsTrue()
         {
             // Arrange
-            var criteria = new GetAccountingPeriodsCriteria();
+            var criteria = new GetAccountingPeriodsForAgencyCriteria();
 
             // Act & Assert
             Assert.True(criteria.IsValid());

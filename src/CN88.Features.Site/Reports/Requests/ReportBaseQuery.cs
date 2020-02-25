@@ -1,6 +1,9 @@
 ﻿namespace CN88.Features.Site.Reports.Requests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using CN88.Features.Reports.Models;
     using Features.Models;
     using Features.Reports.Constants;
     using Features.Shared.Constants;
@@ -37,7 +40,7 @@
 
         public int UserSelectedLiveStatusId { get; set; }
 
-        public int UserSelectedPeriodId { get; set; }
+        public string UserSelectedPeriodId { get; set; }
 
         public DateTime FromDate { get; set; }
 
@@ -53,6 +56,8 @@
 
         public string CurrentUrl { get; set; }
 
+        public bool IsOldReport { get; set; }
+
         public bool? IsSettlement
         {
             get
@@ -66,5 +71,16 @@
                 isSettlement = value;
             }
         }
+
+        public bool IsValidReportRange(IEnumerable<AccountingPeriod> oldPeriods)
+            => IsValidForNormalReportRange() || IsValidForOldReportRange(oldPeriods);
+
+        private bool IsValidForNormalReportRange()
+            => !IsOldReport && FromDate <= ToDate;
+
+        private bool IsValidForOldReportRange(IEnumerable<AccountingPeriod> oldPeriods)
+            => FromDate <= ToDate &&
+                FromDate >= oldPeriods.Min(p => p.FromDate) &&
+                ToDate <= oldPeriods.Max(p => p.ToDate);
     }
 }
