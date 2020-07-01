@@ -26,7 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
-    <TypeScriptToolsVersion>3.2</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,13 +82,13 @@
       <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0.4\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
     </Reference>
     <Reference Include="CN88.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Common.1.0.0-beta2\lib\net461\CN88.Common.dll</HintPath>
+      <HintPath>..\..\packages\CN88.Common.1.0.0\lib\net461\CN88.Common.dll</HintPath>
     </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.1-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.1.6-ProblemAccounts-05\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.1.7\lib\net461\CN88.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.6.3\lib\net40\Couchbase.dll</HintPath>
