@@ -56,8 +56,8 @@
     <Reference Include="CN88.BetList.NumberGame, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.NumberGame.1.0.0.3\lib\net461\CN88.BetList.NumberGame.dll</HintPath>
     </Reference>
-    <Reference Include="CN88.BetList.Sportsbook, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.2\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
+    <Reference Include="CN88.BetList.Sportsbook, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.BetList.Sportsbook.1.0.3\lib\net461\CN88.BetList.Sportsbook.dll</HintPath>
     </Reference>
     <Reference Include="CN88.BetList.VirtualSports, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CN88.BetList.VirtualSports.1.0.0.4\lib\net461\CN88.BetList.VirtualSports.dll</HintPath>
@@ -75,10 +75,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.BetList.BetTrade, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.110.3\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.110.7\lib\net40\Fanex.BetList.BetTrade.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=2.110.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.BetList.Core.2.110.3\lib\net40\Fanex.BetList.Core.dll</HintPath>
+    <Reference Include="Fanex.BetList.Core, Version=2.110.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.BetList.Core.2.110.7\lib\net40\Fanex.BetList.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
