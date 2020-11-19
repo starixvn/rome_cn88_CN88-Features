@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Reports">
-    <Setting Key="CS_Rpt_Outstanding_Member" SpName="CS_Rpt_Outstanding_Member" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_Rpt_Outstanding_Member" SpName="CS_Rpt_Outstanding_Member" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="AgentResultA" ObjectProperty="AgentResult"></Mapping>
     </Setting>
-    <Setting Key="CS_Rpt_Outstanding_Agent" SpName="CS_Rpt_Outstanding_Agent" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_Outstanding_Master" SpName="CS_Rpt_Outstanding_Master" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Rpt_Outstanding_Super" SpName="CS_Rpt_Outstanding_Super" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Outstanding_Agent" SpName="CS_Rpt_Outstanding_Agent" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Outstanding_Master" SpName="CS_Rpt_Outstanding_Master" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Rpt_Outstanding_Super" SpName="CS_Rpt_Outstanding_Super" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
     
-    <Setting Key="CS_HL_Rpt_Outstanding_Member" SpName="CS_HL_Rpt_Outstanding_Member" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_HL_Rpt_Outstanding_Member" SpName="CS_HL_Rpt_Outstanding_Member" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="AgentResultA" ObjectProperty="AgentResult"></Mapping>
     </Setting>
-    <Setting Key="CS_HL_Rpt_Outstanding_Agent" SpName="CS_HL_Rpt_Outstanding_Agent" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_HL_Rpt_Outstanding_Master" SpName="CS_HL_Rpt_Outstanding_Master" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_HL_Rpt_Outstanding_Super" SpName="CS_HL_Rpt_Outstanding_Super" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_HL_Rpt_Outstanding_Agent" SpName="CS_HL_Rpt_Outstanding_Agent" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_HL_Rpt_Outstanding_Master" SpName="CS_HL_Rpt_Outstanding_Master" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_HL_Rpt_Outstanding_Super" SpName="CS_HL_Rpt_Outstanding_Super" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Bet Lists">
-    <Setting Key="CS_BetList_Unsettled_Mem" SpName="CS_BetList_Unsettled_Mem" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_Unsettled_Mem" SpName="CS_BetList_Unsettled_Mem" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -42,7 +42,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="CS_BetList_TotalBets_Outright" SpName="CS_BetList_TotalBets_Outright" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_TotalBets_Outright" SpName="CS_BetList_TotalBets_Outright" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -68,7 +68,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="CS_BetList_TotalBets_Match" SpName="CS_BetList_TotalBets_Match" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_TotalBets_Match" SpName="CS_BetList_TotalBets_Match" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -94,7 +94,7 @@
       <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData"></Mapping>
       <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData"></Mapping>
     </Setting>
-    <Setting Key="CS_BetList_TotalBets_Parlay" SpName="CS_BetList_TotalBets_Parlay" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_BetList_TotalBets_Parlay" SpName="CS_BetList_TotalBets_Parlay" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
@@ -122,12 +122,12 @@
     </Setting>
   </Function>
   <Function Name="Wager Monitoring">
-    <Setting Key="CS_Monitor_SportSel" SpName="CS_Monitor_SportSel" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Monitor_BetTypeSel" SpName="CS_Monitor_BetTypeSel" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Monitor_MatchSelByID" SpName="CS_Monitor_MatchSelByID" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Monitor_MatchSel" SpName="CS_Monitor_MatchSel" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Monitor_OutrightSel" SpName="CS_Monitor_OutrightSel" DbName="DB042.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_Monitor_BetList" SpName="CS_Monitor_BetList" DbName="DB042.bodb02.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_Monitor_SportSel" SpName="CS_Monitor_SportSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Monitor_BetTypeSel" SpName="CS_Monitor_BetTypeSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Monitor_MatchSelByID" SpName="CS_Monitor_MatchSelByID" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Monitor_MatchSel" SpName="CS_Monitor_MatchSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Monitor_OutrightSel" SpName="CS_Monitor_OutrightSel" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_Monitor_BetList" SpName="CS_Monitor_BetList" DbName="DBBOF.bodb02.BODBDownlineNet" Plain="0">
       <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto"></Mapping>
       <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto"></Mapping>
